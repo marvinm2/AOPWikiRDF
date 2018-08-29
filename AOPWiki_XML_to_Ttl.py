@@ -251,9 +251,9 @@ for ke in root.findall('{http://www.aopkb.org/aop-xml}key-event'):
 		kedict[ke.get('id')]['aopo:CellTypeContext']['dc:source']=ke.find('{http://www.aopkb.org/aop-xml}cell-term').find('{http://www.aopkb.org/aop-xml}source').text
 		kedict[ke.get('id')]['aopo:CellTypeContext']['dc:title']=ke.find('{http://www.aopkb.org/aop-xml}cell-term').find('{http://www.aopkb.org/aop-xml}name').text
 		if kedict[ke.get('id')]['aopo:CellTypeContext']['dc:source']=='CL':
-			kedict[ke.get('id')]['aopo:CellTypeContext']['dc:identifier']='http://identifiers.org/cl/'+ke.find('{http://www.aopkb.org/aop-xml}cell-term').find('{http://www.aopkb.org/aop-xml}source-id').text
+			kedict[ke.get('id')]['aopo:CellTypeContext']['dc:identifier']=['http://purl.obolibrary.org/obo/CL_'+ke.find('{http://www.aopkb.org/aop-xml}cell-term').find('{http://www.aopkb.org/aop-xml}source-id').text[3:],ke.find('{http://www.aopkb.org/aop-xml}cell-term').find('{http://www.aopkb.org/aop-xml}source-id').text]
 		elif kedict[ke.get('id')]['aopo:CellTypeContext']['dc:source']=='UBERON':
-			kedict[ke.get('id')]['aopo:CellTypeContext']['dc:identifier']='http://identifiers.org/uberon/'+ke.find('{http://www.aopkb.org/aop-xml}cell-term').find('{http://www.aopkb.org/aop-xml}source-id').text
+			kedict[ke.get('id')]['aopo:CellTypeContext']['dc:identifier']=['http://purl.obolibrary.org/obo/UBERON_'+ke.find('{http://www.aopkb.org/aop-xml}cell-term').find('{http://www.aopkb.org/aop-xml}source-id').text[7:],ke.find('{http://www.aopkb.org/aop-xml}cell-term').find('{http://www.aopkb.org/aop-xml}source-id').text]
 		else:
 			#print ('The following ontology was not found for cell term: '+kedict[ke.get('id')]['aopo:CellTypeContext']['dc:source'])
 			kedict[ke.get('id')]['aopo:CellTypeContext']['dc:identifier']=ke.find('{http://www.aopkb.org/aop-xml}cell-term').find('{http://www.aopkb.org/aop-xml}source-id').text
@@ -262,7 +262,7 @@ for ke in root.findall('{http://www.aopkb.org/aop-xml}key-event'):
 		kedict[ke.get('id')]['aopo:OrganContext']['dc:source']=ke.find('{http://www.aopkb.org/aop-xml}organ-term').find('{http://www.aopkb.org/aop-xml}source').text
 		kedict[ke.get('id')]['aopo:OrganContext']['dc:title']=ke.find('{http://www.aopkb.org/aop-xml}organ-term').find('{http://www.aopkb.org/aop-xml}name').text
 		if kedict[ke.get('id')]['aopo:OrganContext']['dc:source']=='UBERON':
-			kedict[ke.get('id')]['aopo:OrganContext']['dc:identifier']='http://identifiers.org/uberon/'+ke.find('{http://www.aopkb.org/aop-xml}organ-term').find('{http://www.aopkb.org/aop-xml}source-id').text
+			kedict[ke.get('id')]['aopo:OrganContext']['dc:identifier']=['http://purl.obolibrary.org/obo/UBERON_'+ke.find('{http://www.aopkb.org/aop-xml}organ-term').find('{http://www.aopkb.org/aop-xml}source-id').text[7:],ke.find('{http://www.aopkb.org/aop-xml}organ-term').find('{http://www.aopkb.org/aop-xml}source-id').text]
 		else:
 			#print ('The following ontology was not found for organ term: '+kedict[ke.get('id')]['aopo:OrganContext']['dc:source'])
 			kedict[ke.get('id')]['aopo:OrganContext']['dc:identifier']=ke.find('{http://www.aopkb.org/aop-xml}organ-term').find('{http://www.aopkb.org/aop-xml}source-id').text
@@ -307,6 +307,18 @@ for ker in root.findall('{http://www.aopkb.org/aop-xml}key-event-relationship'):
 				kerdict[ker.get('id')]['taxonomy']=[[tax.get('taxonomy-id'),tax.find('{http://www.aopkb.org/aop-xml}evidence').text,taxdict[tax.get('taxonomy-id')]['dc:identifier'],taxdict[tax.get('taxonomy-id')]['dc:source'],taxdict[tax.get('taxonomy-id')]['dc:title']]]
 			else:
 				kerdict[ker.get('id')]['taxonomy'].append([tax.get('taxonomy-id'),tax.find('{http://www.aopkb.org/aop-xml}evidence').text,taxdict[tax.get('taxonomy-id')]['dc:identifier'],taxdict[tax.get('taxonomy-id')]['dc:source'],taxdict[tax.get('taxonomy-id')]['dc:title']])
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
