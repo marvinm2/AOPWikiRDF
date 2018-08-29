@@ -92,15 +92,13 @@ chedict={}
 for che in root.findall('{http://www.aopkb.org/aop-xml}chemical'):
 	chedict[che.get('id')]={}
 	if not che.find('{http://www.aopkb.org/aop-xml}chasrn')==None:#could elaborate here with BridgeDb calls
-		chedict[che.get('id')]['casrn']='http://identifiers.org/cas/'+che.find('{http://www.aopkb.org/aop-xml}chasrn').text
+		chedict[che.get('id')]['cheminf:CHEMINF_000446']=['http://identifiers.org/cas/'+che.find('{http://www.aopkb.org/aop-xml}chasrn').text,che.find('{http://www.aopkb.org/aop-xml}chasrn').text]
 	if not che.find('{http://www.aopkb.org/aop-xml}jchem-inchi-key')==None:
-		chedict[che.get('id')]['jchem-inchi-key']='http://identifiers.org/inchikey/'+str(che.find('{http://www.aopkb.org/aop-xml}jchem-inchi-key').text)
-	if not che.find('{http://www.aopkb.org/aop-xml}indigo-inchi-key')==None:
-		chedict[che.get('id')]['indigo-inchi-key']='http://identifiers.org/inchikey/'+che.find('{http://www.aopkb.org/aop-xml}indigo-inchi-key').text[:-1]
+		chedict[che.get('id')]['cheminf:CHEMINF_000059']=['http://identifiers.org/inchikey/'+str(che.find('{http://www.aopkb.org/aop-xml}jchem-inchi-key').text),str(che.find('{http://www.aopkb.org/aop-xml}jchem-inchi-key').text)]
 	if not che.find('{http://www.aopkb.org/aop-xml}preferred-name')==None:
 		chedict[che.get('id')]['preferred-name']=che.find('{http://www.aopkb.org/aop-xml}preferred-name').text[:-1]
 	if not che.find('{http://www.aopkb.org/aop-xml}dsstox-id')==None:
-		chedict[che.get('id')]['dsstox-id']=che.find('{http://www.aopkb.org/aop-xml}dsstox-id').text[:-1]
+		chedict[che.get('id')]['cheminf:CHEMINF_000568']=che.find('{http://www.aopkb.org/aop-xml}dsstox-id').text[:-1]
 	if not che.find('{http://www.aopkb.org/aop-xml}synonyms')==None:
 		chedict[che.get('id')]['synonyms']=[]
 		for synonym in che.find('{http://www.aopkb.org/aop-xml}synonyms').findall('{http://www.aopkb.org/aop-xml}synonym'):
@@ -132,7 +130,7 @@ for tax in root.findall('{http://www.aopkb.org/aop-xml}taxonomy'):
 	if taxdict[tax.get('id')]['dc:source'] =='NCBI':
 		taxdict[tax.get('id')]['dc:identifier']='http://identifiers.org/taxonomy/'+tax.find('{http://www.aopkb.org/aop-xml}source-id').text
 	elif not taxdict[tax.get('id')]['dc:source']==None:
-		print ('The following ontology was not found for taxonomy: '+taxdict[tax.get('id')]['dc:source'])
+		#print ('The following ontology was not found for taxonomy: '+taxdict[tax.get('id')]['dc:source'])
 		taxdict[tax.get('id')]['dc:identifier']=tax.find('{http://www.aopkb.org/aop-xml}source-id').text
 	else:
 		taxdict[tax.get('id')]['dc:identifier']=tax.find('{http://www.aopkb.org/aop-xml}source-id').text
@@ -148,7 +146,7 @@ for bioact in root.findall('{http://www.aopkb.org/aop-xml}biological-action'):
 	bioactdict[bioact.get('id')]={}
 	bioactdict[bioact.get('id')]['dc:source']=bioact.find('{http://www.aopkb.org/aop-xml}source').text
 	bioactdict[bioact.get('id')]['dc:title']=bioact.find('{http://www.aopkb.org/aop-xml}name').text
-	print ('The following ontology was not found for biological action: '+bioactdict[bioact.get('id')]['dc:source'])
+	#print ('The following ontology was not found for biological action: '+bioactdict[bioact.get('id')]['dc:source'])
 	bioactdict[bioact.get('id')]['dc:identifier']=bioact.find('{http://www.aopkb.org/aop-xml}source-id').text
 
 bioprodict={}
@@ -161,18 +159,25 @@ for biopro in root.findall('{http://www.aopkb.org/aop-xml}biological-process'):
 	bioprodict[biopro.get('id')]['dc:source']=biopro.find('{http://www.aopkb.org/aop-xml}source').text
 	bioprodict[biopro.get('id')]['dc:title']=biopro.find('{http://www.aopkb.org/aop-xml}name').text
 	if bioprodict[biopro.get('id')]['dc:source'] =='GO':
-		bioprodict[biopro.get('id')]['dc:identifier']='http://identifiers.org/go/'+biopro.find('{http://www.aopkb.org/aop-xml}source-id').text
+		bioprodict[biopro.get('id')]['dc:identifier']=['http://purl.obolibrary.org/obo/GO_'+biopro.find('{http://www.aopkb.org/aop-xml}source-id').text[3:],biopro.find('{http://www.aopkb.org/aop-xml}source-id').text]#predicate go:trerm possible
 	elif bioprodict[biopro.get('id')]['dc:source'] =='MI':
-		bioprodict[biopro.get('id')]['dc:identifier']='http://identifiers.org/psimi/'+biopro.find('{http://www.aopkb.org/aop-xml}source-id').text
+		bioprodict[biopro.get('id')]['dc:identifier']=['http://purl.obolibrary.org/obo/MI_'+biopro.find('{http://www.aopkb.org/aop-xml}source-id').text,biopro.find('{http://www.aopkb.org/aop-xml}source-id').text]
 	elif bioprodict[biopro.get('id')]['dc:source'] =='MP':
-		bioprodict[biopro.get('id')]['dc:identifier']='http://identifiers.org/mp/'+biopro.find('{http://www.aopkb.org/aop-xml}source-id').text
+		bioprodict[biopro.get('id')]['dc:identifier']=['http://purl.obolibrary.org/obo/MP_'+biopro.find('{http://www.aopkb.org/aop-xml}source-id').text[3:],biopro.find('{http://www.aopkb.org/aop-xml}source-id').text]
 	elif bioprodict[biopro.get('id')]['dc:source'] =='MESH':
-		bioprodict[biopro.get('id')]['dc:identifier']='http://identifiers.org/mesh/'+biopro.find('{http://www.aopkb.org/aop-xml}source-id').text
+		bioprodict[biopro.get('id')]['dc:identifier']=['http://purl.bioontology.org/ontology/MESH/'+biopro.find('{http://www.aopkb.org/aop-xml}source-id').text,biopro.find('{http://www.aopkb.org/aop-xml}source-id').text]
 	elif bioprodict[biopro.get('id')]['dc:source'] =='HP':
-		bioprodict[biopro.get('id')]['dc:identifier']='http://identifiers.org/hp/'+biopro.find('{http://www.aopkb.org/aop-xml}source-id').text
+		bioprodict[biopro.get('id')]['dc:identifier']=['http://purl.obolibrary.org/obo/HP_'+biopro.find('{http://www.aopkb.org/aop-xml}source-id').text[3:],biopro.find('{http://www.aopkb.org/aop-xml}source-id').text]
+	elif bioprodict[biopro.get('id')]['dc:source'] =='PCO':
+		bioprodict[biopro.get('id')]['dc:identifier']=['http://purl.obolibrary.org/obo/PCO_'+biopro.find('{http://www.aopkb.org/aop-xml}source-id').text[4:],biopro.find('{http://www.aopkb.org/aop-xml}source-id').text]
+	elif bioprodict[biopro.get('id')]['dc:source'] =='NBO':
+		bioprodict[biopro.get('id')]['dc:identifier']=['http://purl.obolibrary.org/obo/NBO_'+biopro.find('{http://www.aopkb.org/aop-xml}source-id').text[4:],biopro.find('{http://www.aopkb.org/aop-xml}source-id').text]
+	elif bioprodict[biopro.get('id')]['dc:source'] =='VT':
+		bioprodict[biopro.get('id')]['dc:identifier']=['http://purl.obolibrary.org/obo/VT_'+biopro.find('{http://www.aopkb.org/aop-xml}source-id').text[3:],biopro.find('{http://www.aopkb.org/aop-xml}source-id').text]
 	else:
-		print('The following ontology was not found for biological process: '+biopro.find('{http://www.aopkb.org/aop-xml}source').text)
+		#print('The following ontology was not found for biological process: '+biopro.find('{http://www.aopkb.org/aop-xml}source').text)
 		bioprodict[biopro.get('id')]['dc:identifier']=biopro.find('{http://www.aopkb.org/aop-xml}source-id').text
+
 
 bioobjdict={}
 bioobjdict[None]={}
@@ -184,21 +189,25 @@ for bioobj in root.findall('{http://www.aopkb.org/aop-xml}biological-object'):
 	bioobjdict[bioobj.get('id')]['dc:source']=bioobj.find('{http://www.aopkb.org/aop-xml}source').text
 	bioobjdict[bioobj.get('id')]['dc:title']=bioobj.find('{http://www.aopkb.org/aop-xml}name').text
 	if bioobjdict[bioobj.get('id')]['dc:source']=='PR':
-		bioobjdict[bioobj.get('id')]['dc:identifier']='http://identifiers.org/pr/'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text
+		bioobjdict[bioobj.get('id')]['dc:identifier']=['http://purl.obolibrary.org/obo/PR_'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text[3:],bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text]
 	elif bioobjdict[bioobj.get('id')]['dc:source']=='CL':
-		bioobjdict[bioobj.get('id')]['dc:identifier']='http://identifiers.org/cl/'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text
+		bioobjdict[bioobj.get('id')]['dc:identifier']=['http://purl.obolibrary.org/obo/CL_'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text[3:],bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text]
 	elif bioobjdict[bioobj.get('id')]['dc:source']=='MESH':
-		bioobjdict[bioobj.get('id')]['dc:identifier']='http://identifiers.org/mesh/'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text
+		bioobjdict[bioobj.get('id')]['dc:identifier']=['http://purl.bioontology.org/ontology/MESH/'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text,bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text]
 	elif bioobjdict[bioobj.get('id')]['dc:source']=='GO':
-		bioobjdict[bioobj.get('id')]['dc:identifier']='http://identifiers.org/go/'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text
+		bioobjdict[bioobj.get('id')]['dc:identifier']=['http://purl.obolibrary.org/obo/GO_'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text[3:],bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text]#predicate go:trerm possible
 	elif bioobjdict[bioobj.get('id')]['dc:source']=='UBERON':
-		bioobjdict[bioobj.get('id')]['dc:identifier']='http://identifiers.org/uberon/'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text
+		bioobjdict[bioobj.get('id')]['dc:identifier']=['http://purl.obolibrary.org/obo/UBERON_'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text[7:],bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text]
 	elif bioobjdict[bioobj.get('id')]['dc:source']=='CHEBI':
-		bioobjdict[bioobj.get('id')]['dc:identifier']='http://identifiers.org/chebi/'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text
+		bioobjdict[bioobj.get('id')]['dc:identifier']=['http://purl.obolibrary.org/obo/CHEBI_'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text[6:],bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text]
 	elif bioobjdict[bioobj.get('id')]['dc:source']=='MP':
-		bioobjdict[bioobj.get('id')]['dc:identifier']='http://identifiers.org/mp/'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text
+		bioobjdict[bioobj.get('id')]['dc:identifier']=['http://purl.obolibrary.org/obo/MP_'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text[3:],bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text]
+	elif bioobjdict[bioobj.get('id')]['dc:source']=='FMA':
+		bioobjdict[bioobj.get('id')]['dc:identifier']=['http://purl.org/sig/ont/fma/fma'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text[4:],bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text]
+	elif bioobjdict[bioobj.get('id')]['dc:source']=='PCO':
+		bioobjdict[bioobj.get('id')]['dc:identifier']=['http://purl.obolibrary.org/obo/PCO_'+bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text[4:],bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text]
 	else:
-		print ('The following ontology was not found for biological object: '+bioobj.find('{http://www.aopkb.org/aop-xml}source').text)
+		#print ('The following ontology was not found for biological object: '+bioobj.find('{http://www.aopkb.org/aop-xml}source').text)
 		bioobjdict[bioobj.get('id')]['dc:identifier']=bioobj.find('{http://www.aopkb.org/aop-xml}source-id').text
 
 
@@ -246,7 +255,7 @@ for ke in root.findall('{http://www.aopkb.org/aop-xml}key-event'):
 		elif kedict[ke.get('id')]['aopo:CellTypeContext']['dc:source']=='UBERON':
 			kedict[ke.get('id')]['aopo:CellTypeContext']['dc:identifier']='http://identifiers.org/uberon/'+ke.find('{http://www.aopkb.org/aop-xml}cell-term').find('{http://www.aopkb.org/aop-xml}source-id').text
 		else:
-			print ('The following ontology was not found for cell term: '+kedict[ke.get('id')]['aopo:CellTypeContext']['dc:source'])
+			#print ('The following ontology was not found for cell term: '+kedict[ke.get('id')]['aopo:CellTypeContext']['dc:source'])
 			kedict[ke.get('id')]['aopo:CellTypeContext']['dc:identifier']=ke.find('{http://www.aopkb.org/aop-xml}cell-term').find('{http://www.aopkb.org/aop-xml}source-id').text
 	if not ke.find('{http://www.aopkb.org/aop-xml}organ-term') ==None:
 		kedict[ke.get('id')]['aopo:OrganContext']={}
@@ -255,7 +264,7 @@ for ke in root.findall('{http://www.aopkb.org/aop-xml}key-event'):
 		if kedict[ke.get('id')]['aopo:OrganContext']['dc:source']=='UBERON':
 			kedict[ke.get('id')]['aopo:OrganContext']['dc:identifier']='http://identifiers.org/uberon/'+ke.find('{http://www.aopkb.org/aop-xml}organ-term').find('{http://www.aopkb.org/aop-xml}source-id').text
 		else:
-			print ('The following ontology was not found for organ term: '+kedict[ke.get('id')]['aopo:OrganContext']['dc:source'])
+			#print ('The following ontology was not found for organ term: '+kedict[ke.get('id')]['aopo:OrganContext']['dc:source'])
 			kedict[ke.get('id')]['aopo:OrganContext']['dc:identifier']=ke.find('{http://www.aopkb.org/aop-xml}organ-term').find('{http://www.aopkb.org/aop-xml}source-id').text
 #Stressor related to KE
 	if not ke.find('{http://www.aopkb.org/aop-xml}key-event-stressors')==None:
@@ -298,18 +307,6 @@ for ker in root.findall('{http://www.aopkb.org/aop-xml}key-event-relationship'):
 				kerdict[ker.get('id')]['taxonomy']=[[tax.get('taxonomy-id'),tax.find('{http://www.aopkb.org/aop-xml}evidence').text,taxdict[tax.get('taxonomy-id')]['dc:identifier'],taxdict[tax.get('taxonomy-id')]['dc:source'],taxdict[tax.get('taxonomy-id')]['dc:title']]]
 			else:
 				kerdict[ker.get('id')]['taxonomy'].append([tax.get('taxonomy-id'),tax.find('{http://www.aopkb.org/aop-xml}evidence').text,taxdict[tax.get('taxonomy-id')]['dc:identifier'],taxdict[tax.get('taxonomy-id')]['dc:source'],taxdict[tax.get('taxonomy-id')]['dc:title']])
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
