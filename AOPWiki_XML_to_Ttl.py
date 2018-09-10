@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
-tree = ET.parse('C:\\Users\marvin.martens\Documents\AOPWiki RDF/aop-wiki-xml-2018-07-01') #double \\ after C: because python3 reads this as a character with one \
+tree = ET.parse('C:\\Users\\marvin.martens\\ownCloud\\Documents\\Documents\\AOPWiki RDF/aop-wiki-xml-2018-07-01') #double \\ after C: because python3 reads this as a character with one \
 root = tree.getroot()
+
 
 
 #AOPWIKI IDs to add for AOP, stressors and KEs
@@ -25,7 +26,7 @@ for AOP in root.findall('{http://www.aopkb.org/aop-xml}aop'):
 #General info about the AOPs
 	aopdict[AOP.get('id')]['dc:identifier'] = 'http://identifiers.org/aop/'+refs['aop'][AOP.get('id')]
 	aopdict[AOP.get('id')]['dc:title'] = AOP.find('{http://www.aopkb.org/aop-xml}title').text
-	aopdict[AOP.get('id')]['short-name'] = AOP.find('{http://www.aopkb.org/aop-xml}short-name').text
+	aopdict[AOP.get('id')]['dcterms:alternative'] = AOP.find('{http://www.aopkb.org/aop-xml}short-name').text
 	if not AOP.find('{http://www.aopkb.org/aop-xml}status').find('{http://www.aopkb.org/aop-xml}wiki-status')==None:
 		aopdict[AOP.get('id')]['wiki-status'] = AOP.find('{http://www.aopkb.org/aop-xml}status').find('{http://www.aopkb.org/aop-xml}wiki-status').text
 	if not AOP.find('{http://www.aopkb.org/aop-xml}status').find('{http://www.aopkb.org/aop-xml}oecd-status')==None:
@@ -61,7 +62,7 @@ for AOP in root.findall('{http://www.aopkb.org/aop-xml}aop'):
 		aopdict[AOP.get('id')]['aopo:has_key_event_relationship'][KER.get('id')]['dc:identifier']='http://identifiers.org/aop.relationships/'+refs['KERs'][KER.get('id')]
 		aopdict[AOP.get('id')]['aopo:has_key_event_relationship'][KER.get('id')]['adjacency']=KER.find('{http://www.aopkb.org/aop-xml}adjacency').text
 		aopdict[AOP.get('id')]['aopo:has_key_event_relationship'][KER.get('id')]['quantitative-understanding-value']=KER.find('{http://www.aopkb.org/aop-xml}quantitative-understanding-value').text
-		aopdict[AOP.get('id')]['aopo:has_key_event_relationship'][KER.get('id')]['evidence']=KER.find('{http://www.aopkb.org/aop-xml}evidence').text
+		aopdict[AOP.get('id')]['aopo:has_key_event_relationship'][KER.get('id')]['aopo:has_evidence']=KER.find('{http://www.aopkb.org/aop-xml}evidence').text
 #Molecular Initiating Events
 	aopdict[AOP.get('id')]['aopo:has_molecular_initiating_event']={}
 	for MIE in AOP.findall('{http://www.aopkb.org/aop-xml}molecular-initiating-event'):
@@ -84,7 +85,7 @@ for AOP in root.findall('{http://www.aopkb.org/aop-xml}aop'):
 		for stressor in AOP.find('{http://www.aopkb.org/aop-xml}aop-stressors').findall('{http://www.aopkb.org/aop-xml}aop-stressor'):
 			aopdict[AOP.get('id')]['stressor'][stressor.get('stressor-id')]={}
 			aopdict[AOP.get('id')]['stressor'][stressor.get('stressor-id')]['dc:identifier']='http://identifiers.org/aop.stressor/'+refs['stressor'][stressor.get('stressor-id')]
-			aopdict[AOP.get('id')]['stressor'][stressor.get('stressor-id')]['evidence']=stressor.find('{http://www.aopkb.org/aop-xml}evidence').text
+			aopdict[AOP.get('id')]['stressor'][stressor.get('stressor-id')]['aopo:has_evidence']=stressor.find('{http://www.aopkb.org/aop-xml}evidence').text
 
 
 #CHEMICALS
@@ -96,13 +97,13 @@ for che in root.findall('{http://www.aopkb.org/aop-xml}chemical'):
 	if not che.find('{http://www.aopkb.org/aop-xml}jchem-inchi-key')==None:
 		chedict[che.get('id')]['cheminf:CHEMINF_000059']=['http://identifiers.org/inchikey/'+str(che.find('{http://www.aopkb.org/aop-xml}jchem-inchi-key').text),str(che.find('{http://www.aopkb.org/aop-xml}jchem-inchi-key').text)]
 	if not che.find('{http://www.aopkb.org/aop-xml}preferred-name')==None:
-		chedict[che.get('id')]['preferred-name']=che.find('{http://www.aopkb.org/aop-xml}preferred-name').text[:-1]
+		chedict[che.get('id')]['dc:title']=che.find('{http://www.aopkb.org/aop-xml}preferred-name').text[:-1]
 	if not che.find('{http://www.aopkb.org/aop-xml}dsstox-id')==None:
 		chedict[che.get('id')]['cheminf:CHEMINF_000568']=che.find('{http://www.aopkb.org/aop-xml}dsstox-id').text[:-1]
 	if not che.find('{http://www.aopkb.org/aop-xml}synonyms')==None:
-		chedict[che.get('id')]['synonyms']=[]
+		chedict[che.get('id')]['dcterms:alternative']=[]
 		for synonym in che.find('{http://www.aopkb.org/aop-xml}synonyms').findall('{http://www.aopkb.org/aop-xml}synonym'):
-			chedict[che.get('id')]['synonyms'].append(synonym.text[:-1])
+			chedict[che.get('id')]['dcterms:alternative'].append(synonym.text[:-1])
 
 
 #STRESSORS, later to combine with CHEMICALS when writing file
@@ -115,10 +116,10 @@ for str in root.findall('{http://www.aopkb.org/aop-xml}stressor'):
 	strdict[str.get('id')]['dcterms:created'] = str.find('{http://www.aopkb.org/aop-xml}creation-timestamp').text
 	strdict[str.get('id')]['dcterms:modified'] = str.find('{http://www.aopkb.org/aop-xml}last-modification-timestamp').text
 #Chemicals related to stressor
-	strdict[str.get('id')]['chemicals']=[]
+	strdict[str.get('id')]['aopo:has_chemical_entity']=[]
 	if not str.find('{http://www.aopkb.org/aop-xml}chemicals')==None:
 		for chemical in str.find('{http://www.aopkb.org/aop-xml}chemicals').findall('{http://www.aopkb.org/aop-xml}chemical-initiator'):
-			strdict[str.get('id')]['chemicals'].append(chemical.get('chemical-id')) #user-term is not important
+			strdict[str.get('id')]['aopo:has_chemical_entity'].append(chemical.get('chemical-id')) #user-term is not important
 
 #TAXONOMY
 taxdict={}
@@ -128,7 +129,7 @@ for tax in root.findall('{http://www.aopkb.org/aop-xml}taxonomy'):
 	taxdict[tax.get('id')]['dc:source']=tax.find('{http://www.aopkb.org/aop-xml}source').text
 	taxdict[tax.get('id')]['dc:title']=tax.find('{http://www.aopkb.org/aop-xml}name').text
 	if taxdict[tax.get('id')]['dc:source'] =='NCBI':
-		taxdict[tax.get('id')]['dc:identifier']='http://identifiers.org/taxonomy/'+tax.find('{http://www.aopkb.org/aop-xml}source-id').text
+		taxdict[tax.get('id')]['dc:identifier']='http://purl.bioontology.org/ontology/NCBITAXON/'+tax.find('{http://www.aopkb.org/aop-xml}source-id').text
 	elif not taxdict[tax.get('id')]['dc:source']==None:
 		#print ('The following ontology was not found for taxonomy: '+taxdict[tax.get('id')]['dc:source'])
 		taxdict[tax.get('id')]['dc:identifier']=tax.find('{http://www.aopkb.org/aop-xml}source-id').text
@@ -218,7 +219,7 @@ for ke in root.findall('{http://www.aopkb.org/aop-xml}key-event'):
 #General info about the KEs
 	kedict[ke.get('id')]['dc:identifier'] = 'http://identifiers.org/aop.events/'+refs['KEs'][ke.get('id')]
 	kedict[ke.get('id')]['dc:title'] = ke.find('{http://www.aopkb.org/aop-xml}title').text
-	kedict[ke.get('id')]['short-name'] = ke.find('{http://www.aopkb.org/aop-xml}short-name').text
+	kedict[ke.get('id')]['dcterms:alternative'] = ke.find('{http://www.aopkb.org/aop-xml}short-name').text
 	kedict[ke.get('id')]['biological-organization-level'] = ke.find('{http://www.aopkb.org/aop-xml}biological-organization-level').text
 	kedict[ke.get('id')]['dc:source'] = ke.find('{http://www.aopkb.org/aop-xml}source').text
 #Applicability
@@ -234,10 +235,10 @@ for ke in root.findall('{http://www.aopkb.org/aop-xml}key-event'):
 			else:
 				kedict[ke.get('id')]['aopo:LifeStageContext'].append([life.find('{http://www.aopkb.org/aop-xml}evidence').text,life.find('{http://www.aopkb.org/aop-xml}life-stage').text])
 		for tax in appl.findall('{http://www.aopkb.org/aop-xml}taxonomy'):
-			if not 'taxonomy' in kedict[ke.get('id')]:
-				kedict[ke.get('id')]['taxonomy']=[[tax.get('taxonomy-id'),tax.find('{http://www.aopkb.org/aop-xml}evidence').text,taxdict[tax.get('taxonomy-id')]['dc:identifier'],taxdict[tax.get('taxonomy-id')]['dc:source'],taxdict[tax.get('taxonomy-id')]['dc:title']]]
+			if not 'NCBITAXON:131567' in kedict[ke.get('id')]:
+				kedict[ke.get('id')]['NCBITAXON:131567']=[[tax.get('taxonomy-id'),tax.find('{http://www.aopkb.org/aop-xml}evidence').text,taxdict[tax.get('taxonomy-id')]['dc:identifier'],taxdict[tax.get('taxonomy-id')]['dc:source'],taxdict[tax.get('taxonomy-id')]['dc:title']]]
 			else:
-				kedict[ke.get('id')]['taxonomy'].append([tax.get('taxonomy-id'),tax.find('{http://www.aopkb.org/aop-xml}evidence').text,taxdict[tax.get('taxonomy-id')]['dc:identifier'],taxdict[tax.get('taxonomy-id')]['dc:source'],taxdict[tax.get('taxonomy-id')]['dc:title']])
+				kedict[ke.get('id')]['NCBITAXON:131567'].append([tax.get('taxonomy-id'),tax.find('{http://www.aopkb.org/aop-xml}evidence').text,taxdict[tax.get('taxonomy-id')]['dc:identifier'],taxdict[tax.get('taxonomy-id')]['dc:source'],taxdict[tax.get('taxonomy-id')]['dc:title']])
 #Biological Events
 	if not ke.find('{http://www.aopkb.org/aop-xml}biological-events') ==None:
 		for event in ke.find('{http://www.aopkb.org/aop-xml}biological-events').findall('{http://www.aopkb.org/aop-xml}biological-event'):
@@ -271,7 +272,7 @@ for ke in root.findall('{http://www.aopkb.org/aop-xml}key-event'):
 		kedict[ke.get('id')]['key-event-stressors']={}
 		for stressor in ke.find('{http://www.aopkb.org/aop-xml}key-event-stressors').findall('{http://www.aopkb.org/aop-xml}key-event-stressor'):
 			kedict[ke.get('id')]['key-event-stressors'][stressor.get('id')]={}
-			kedict[ke.get('id')]['key-event-stressors'][stressor.get('id')]['evidence']=stressor.find('{http://www.aopkb.org/aop-xml}evidence').text
+			kedict[ke.get('id')]['key-event-stressors'][stressor.get('id')]['aopo:has_evidence']=stressor.find('{http://www.aopkb.org/aop-xml}evidence').text
 
 
 
@@ -303,22 +304,10 @@ for ker in root.findall('{http://www.aopkb.org/aop-xml}key-event-relationship'):
 			else:
 				kerdict[ker.get('id')]['aopo:LifeStageContext'].append([life.find('{http://www.aopkb.org/aop-xml}evidence').text,life.find('{http://www.aopkb.org/aop-xml}life-stage').text])
 		for tax in appl.findall('{http://www.aopkb.org/aop-xml}taxonomy'):
-			if not 'taxonomy' in kerdict[ker.get('id')]:
-				kerdict[ker.get('id')]['taxonomy']=[[tax.get('taxonomy-id'),tax.find('{http://www.aopkb.org/aop-xml}evidence').text,taxdict[tax.get('taxonomy-id')]['dc:identifier'],taxdict[tax.get('taxonomy-id')]['dc:source'],taxdict[tax.get('taxonomy-id')]['dc:title']]]
+			if not 'NCBITAXON:131567' in kerdict[ker.get('id')]:
+				kerdict[ker.get('id')]['NCBITAXON:131567']=[[tax.get('taxonomy-id'),tax.find('{http://www.aopkb.org/aop-xml}evidence').text,taxdict[tax.get('taxonomy-id')]['dc:identifier'],taxdict[tax.get('taxonomy-id')]['dc:source'],taxdict[tax.get('taxonomy-id')]['dc:title']]]
 			else:
-				kerdict[ker.get('id')]['taxonomy'].append([tax.get('taxonomy-id'),tax.find('{http://www.aopkb.org/aop-xml}evidence').text,taxdict[tax.get('taxonomy-id')]['dc:identifier'],taxdict[tax.get('taxonomy-id')]['dc:source'],taxdict[tax.get('taxonomy-id')]['dc:title']])
-
-
-
-
-
-
-
-
-
-
-
-
+				kerdict[ker.get('id')]['NCBITAXON:131567'].append([tax.get('taxonomy-id'),tax.find('{http://www.aopkb.org/aop-xml}evidence').text,taxdict[tax.get('taxonomy-id')]['dc:identifier'],taxdict[tax.get('taxonomy-id')]['dc:source'],taxdict[tax.get('taxonomy-id')]['dc:title']])
 
 
 
