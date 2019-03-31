@@ -32,7 +32,7 @@ sudo docker exec -it AOPwiki  bash
 First, enter the "/data" folder and move the "all.ttl" file to the folder upstream by using:
 ```
 cd data
-mv all.ttl ../
+mv aopwiki.ttl ../
 cd ../
 ```
 
