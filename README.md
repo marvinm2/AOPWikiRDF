@@ -1,4 +1,8 @@
 # AOPWikiRDF
+
+[![DOI](https://zenodo.org/badge/146466058.svg)](https://zenodo.org/badge/latestdoi/146466058)
+
+
 This repository will contain code and information about AOP Wiki RDF creation
 
 
