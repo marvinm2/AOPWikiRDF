@@ -11,28 +11,28 @@ This repository will contain code and information about AOP Wiki RDF creation
  
 # Guideline to set up a Virtuoso SPARQL endpoint with AOP-Wiki RDF (on linux):
 
-# Step 1 - Create folder to mount
+## Step 1 - Create folder to mount
 Enter the terminal and create a local folder to map to the docker container. Note the path to the folder to enter it at step 3. In this example, the folder '/dataload/data' was created and entered it by using:
 ```
 mkdir -p aopwikirdf
 ```
 
-# Step 2 - Move the RDF (.ttl) in the newly created folder
+## Step 2 - Move the RDF (.ttl) in the newly created folder
 
-# Step 3 - Run the Docker image
+## Step 3 - Run the Docker image
 Use 'sudo' if necessary. Be sure to use ports 8890:8890 and 1111:1111. In this case, the container was named "loadVirtuoso". Also, this step configures the mapped local folder with the data, which is in this example "/dataload". The Docker image used  is openlink/virtuoso-opensource-7. Do this by entering:
 ```
 sudo docker run -d --env DBA_PASSWORD=dba -p 8890:8890 -p 1111:1111 --name AOPwiki --volume `pwd`/aopwikirdf/:/database/data/  openlink/virtuoso-opensource-7
 ```
 
-# Step 4 - Enter the running container
+## Step 4 - Enter the running container
 While the docker image is running in a container, the data is not yet loaded. Therefore you need to enter the it by using:
 
 ```
 sudo docker exec -it AOPwiki  bash
 ```
 
-# Step 5 - Move the all.ttl file and create a .graph file.
+## Step 5 - Move the all.ttl file and create a .graph file.
 First, enter the "/data" folder and move the "all.ttl" file to the folder upstream by using:
 ```
 cd data
@@ -53,7 +53,7 @@ When the file is entered, write "aopwiki.org" (without ") and exit the file by p
 exit
 ```
 
-# Step 6 - Enter the container SQL to configure RDF loading
+## Step 6 - Enter the container SQL to configure RDF loading
 Enter the running docker container SQL by using: 
 ```
 sudo docker exec -i AOPwiki isql 1111
@@ -114,5 +114,5 @@ Quit the SQL by entering:
 quit;
 ```
 
-# Step 7 - Enter the Virtuoso service with loaded AOP-Wiki RDF
+## Step 7 - Enter the Virtuoso service with loaded AOP-Wiki RDF
 The container is running with loaded RDF, available through http://localhost:8890, or enter the SPARQL endpoint directly through http://localhost:8890/sparql/.
