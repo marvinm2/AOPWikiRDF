@@ -21,9 +21,9 @@ for line in genes:
 	if len(a[1]) > 2:
 		genedict[a[0]] = []
 		for item in a[1].split(';'):
-			if not 'ensembl:' + item in genedict[a[0]]:
+			if not 'ensembl:' + item in genedict[a[0]] and 'ENS' in item:
 				genedict[a[0]].append('ensembl:' + item)
-			if not 'ensembl:' + item in listofensembl:
+			if not 'ensembl:' + item in listofensembl and 'ENS' in item:
 				listofensembl.append('ensembl:' + item)
 
 # AOPWIKI IDs to add for AOP, stressors and KEs
@@ -133,7 +133,7 @@ for che in root.findall(aopxml + 'chemical'):
 		if 'NOCAS' not in che.find(aopxml + 'casrn').text:  # all NOCAS ids are out, so no issues as subjects
 			chedict[che.get('id')]['dc:identifier'] = 'cas:' + che.find(aopxml + 'casrn').text
 			chedict[che.get('id')]['cheminf:CHEMINF_000446'] = '"' + che.find(aopxml + 'casrn').text + '"'
-			a = requests.get('http://bridgedb.prod.openrisknet.org/Human/xrefs/Ca/'+che.find(aopxml + 'casrn').text).text.split('\n')
+			a = requests.get('http://localhost:8080/Human/xrefs/Ca/'+che.find(aopxml + 'casrn').text).text.split('\n')
 			dictionaryforchemical = {}
 			if 'html' not in a:
 				for item in a:
@@ -362,16 +362,18 @@ for ke in root.findall(aopxml + 'key-event'):
 					kedict[ke.get('id')]['ncbitaxon:131567'].append([tax.get('taxonomy-id'), tax.find(aopxml + 'evidence').text, taxdict[tax.get('taxonomy-id')]['dc:identifier'], taxdict[tax.get('taxonomy-id')]['dc:source'], taxdict[tax.get('taxonomy-id')]['dc:title']])
 	# Biological Events
 	if ke.find(aopxml + 'biological-events') is not None:
+		kedict[ke.get('id')]['biological-event'] = {}
+		kedict[ke.get('id')]['biological-event']['go:0008150'] = []
+		kedict[ke.get('id')]['biological-event']['pato:PATO_0001241'] = []
+		kedict[ke.get('id')]['biological-event']['pato:PATO_0000001'] = []
 		for event in ke.find(aopxml + 'biological-events').findall(aopxml + 'biological-event'):
-			if 'biological-event' not in kedict[ke.get('id')]:
-				kedict[ke.get('id')]['biological-event'] = {}
-				kedict[ke.get('id')]['biological-event']['go:0008150'] = []
-				kedict[ke.get('id')]['biological-event']['object'] = []
-				kedict[ke.get('id')]['biological-event']['action'] = []
-			if bioprodict[event.get('process-id')]['dc:identifier'] is not None:
+
+			if event.get('process-id') is not None:
 				kedict[ke.get('id')]['biological-event']['go:0008150'].append(bioprodict[event.get('process-id')]['dc:identifier'])
-			kedict[ke.get('id')]['biological-event']['object'].append(bioobjdict[event.get('object-id')]['dc:identifier'])
-			kedict[ke.get('id')]['biological-event']['action'].append(bioactdict[event.get('action-id')]['dc:identifier'])
+			if event.get('object-id') is not None:
+				kedict[ke.get('id')]['biological-event']['pato:PATO_0001241'].append(bioobjdict[event.get('object-id')]['dc:identifier'])
+			if event.get('action-id') is not None:
+				kedict[ke.get('id')]['biological-event']['pato:PATO_0000001'].append(bioactdict[event.get('action-id')]['dc:identifier'])
 	# cell term / Organ term
 	if ke.find(aopxml + 'cell-term') is not None:
 		kedict[ke.get('id')]['aopo:CellTypeContext'] = {}
@@ -402,6 +404,42 @@ for ke in root.findall(aopxml + 'key-event'):
 			kedict[ke.get('id')]['ncit:C54571'][stressor.get('stressor-id')]['dc:identifier'] = strdict[stressor.get('stressor-id')]['dc:identifier']
 			kedict[ke.get('id')]['ncit:C54571'][stressor.get('stressor-id')]['aopo:has_evidence'] = stressor.find(aopxml + 'evidence').text
 print('. . Done ')
+
+#Gene identifiers:
+geneiddict = {}
+listofentrez = []
+listofhgnc = []
+listofuniprot = []
+for gene in listofensembl:
+	a = requests.get('http://localhost:8080//Human/xrefs/En/'+gene[8:]).text.split('\n')
+	dictionaryforgene = {}
+	if 'html' not in a:
+		for item in a:
+			b = item.split('\t')
+			if len(b) == 2:
+				if b[1] not in dictionaryforgene:
+					dictionaryforgene[b[1]] = []
+					dictionaryforgene[b[1]].append(b[0])
+				else:
+					dictionaryforgene[b[1]].append(b[0])
+	geneiddict[gene] = []
+	if 'Entrez Gene' in dictionaryforgene:
+		for entrez in dictionaryforgene['Entrez Gene']:
+			if 'ncbigene:'+entrez not in listofentrez:
+				listofentrez.append('ncbigene:'+entrez)
+			geneiddict[gene].append('ncbigene:'+entrez)
+	if 'HGNC' in dictionaryforgene:
+		for hgnc in dictionaryforgene['HGNC']:
+			if 'hgnc:'+hgnc not in listofhgnc:
+				listofhgnc.append('hgnc:'+hgnc)
+			geneiddict[gene].append('hgnc:'+hgnc)
+	if 'Uniprot-TrEMBL' in dictionaryforgene:
+		for uniprot in dictionaryforgene['Uniprot-TrEMBL']:
+			if 'uniprot:'+uniprot not in listofuniprot:
+				listofuniprot.append('uniprot:'+uniprot)
+			geneiddict[gene].append('uniprot:'+uniprot)
+
+print(geneiddict)
 
 # KEY EVENT RELATIONSHIPS
 print('Parsing and organizing Key Event Relationship information. . ', end="")
@@ -448,69 +486,104 @@ print('. . Done \n')
 print('Creating output TTL file. . ', end="")
 g = open('/home/marvinmartens/Documents/AOP-Wiki RDF/OutputTurtle.ttl', 'w', encoding='utf-8')
 print('. . Done ')
+
 # Writing prefixes
 print('Writing rdf prefixes. . ', end="")
-g.write('@prefix dc: <http://purl.org/dc/elements/1.1/> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix foaf: <http://xmlns.com/foaf/0.1/> .\n@prefix aop: <http://identifiers.org/aop/> .\n@prefix aop.events: <http://identifiers.org/aop.events/> .\n@prefix aop.relationships: <http://identifiers.org/aop.relationships/> .\n@prefix aop.stressor: <http://identifiers.org/aop.stressor/> .\n@prefix aopo: <http://aopkb.org/aop_ontology#> .\n@prefix skos: <http://www.w3.org/2004/02/skos/core#> . \n@prefix cas: <http://identifiers.org/cas/> .\n@prefix inchikey: <http://identifiers.org/inchikey/> .\n@prefix pato: <http://purl.obolibrary.org/obo/> .\n@prefix ncbitaxon: <http://purl.bioontology.org/ontology/NCBITAXON/> .\n@prefix cl: <http://purl.obolibrary.org/obo/CL_> .\n@prefix uberon: <http://purl.obolibrary.org/obo/UBERON_> .\n@prefix go: <http://purl.obolibrary.org/obo/GO_> .\n@prefix mi: <http://purl.obolibrary.org/obo/MI_> .\n@prefix mp: <http://purl.obolibrary.org/obo/MP_> .\n@prefix mesh: <http://purl.bioontology.org/ontology/MESH/> .\n@prefix hp: <http://purl.obolibrary.org/obo/HP_> .\n@prefix pco: <http://purl.obolibrary.org/obo/PCO_> .\n@prefix nbo: <http://purl.obolibrary.org/obo/NBO_> .\n@prefix vt: <http://purl.obolibrary.org/obo/VT_> .\n@prefix pr: <http://purl.obolibrary.org/obo/PR_> .\n@prefix chebio: <http://purl.obolibrary.org/obo/CHEBI_> .\n@prefix fma: <http://purl.org/sig/ont/fma/fma> .\n@prefix cheminf: <http://semanticscience.org/resource/> .\n@prefix ncit: <http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#> .\n@prefix comptox: <https://identifiers.org/comptox/> .\n@prefix mmo: <http://purl.obolibrary.org/obo/MMO_> .\n@prefix chebi: <https://identifiers.org/chebi/> .\n@prefix chemspider: <https://identifiers.org/chemspider/> .\n@prefix wikidata: <https://identifiers.org/wikidata/> .\n@prefix chembl.compound: <https://identifiers.org/chembl.compound/> .\n@prefix pubchem.compound: <https://identifiers.org/pubchem.compound/> .\n@prefix drugbank: <https://identifiers.org/drugbank/> .\n@prefix kegg.compound: <https://identifiers.org/kegg.compound/> .\n@prefix lipidmaps: <https://identifiers.org/lipidmaps/> .\n@prefix hmdb: <https://identifiers.org/hmdb/> .\n@prefix ensembl: <http://identifiers.org/ensembl/> .\n@prefix edam: <http://edamontology.org/> .\n\n')
+g.write('@prefix dc: <http://purl.org/dc/elements/1.1/> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix foaf: <http://xmlns.com/foaf/0.1/> .\n@prefix aop: <http://identifiers.org/aop/> .\n@prefix aop.events: <http://identifiers.org/aop.events/> .\n@prefix aop.relationships: <http://identifiers.org/aop.relationships/> .\n@prefix aop.stressor: <http://identifiers.org/aop.stressor/> .\n@prefix aopo: <http://aopkb.org/aop_ontology#> .\n@prefix skos: <http://www.w3.org/2004/02/skos/core#> . \n@prefix cas: <http://identifiers.org/cas/> .\n@prefix inchikey: <http://identifiers.org/inchikey/> .\n@prefix pato: <http://purl.obolibrary.org/obo/> .\n@prefix ncbitaxon: <http://purl.bioontology.org/ontology/NCBITAXON/> .\n@prefix cl: <http://purl.obolibrary.org/obo/CL_> .\n@prefix uberon: <http://purl.obolibrary.org/obo/UBERON_> .\n@prefix go: <http://purl.obolibrary.org/obo/GO_> .\n@prefix mi: <http://purl.obolibrary.org/obo/MI_> .\n@prefix mp: <http://purl.obolibrary.org/obo/MP_> .\n@prefix mesh: <http://purl.bioontology.org/ontology/MESH/> .\n@prefix hp: <http://purl.obolibrary.org/obo/HP_> .\n@prefix pco: <http://purl.obolibrary.org/obo/PCO_> .\n@prefix nbo: <http://purl.obolibrary.org/obo/NBO_> .\n@prefix vt: <http://purl.obolibrary.org/obo/VT_> .\n@prefix pr: <http://purl.obolibrary.org/obo/PR_> .\n@prefix chebio: <http://purl.obolibrary.org/obo/CHEBI_> .\n@prefix fma: <http://purl.org/sig/ont/fma/fma> .\n@prefix cheminf: <http://semanticscience.org/resource/> .\n@prefix ncit: <http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#> .\n@prefix comptox: <https://identifiers.org/comptox/> .\n@prefix mmo: <http://purl.obolibrary.org/obo/MMO_> .\n@prefix chebi: <https://identifiers.org/chebi/> .\n@prefix chemspider: <https://identifiers.org/chemspider/> .\n@prefix wikidata: <https://identifiers.org/wikidata/> .\n@prefix chembl.compound: <https://identifiers.org/chembl.compound/> .\n@prefix pubchem.compound: <https://identifiers.org/pubchem.compound/> .\n@prefix drugbank: <https://identifiers.org/drugbank/> .\n@prefix kegg.compound: <https://identifiers.org/kegg.compound/> .\n@prefix lipidmaps: <https://identifiers.org/lipidmaps/> .\n@prefix hmdb: <https://identifiers.org/hmdb/> .\n@prefix ensembl: <http://identifiers.org/ensembl/> .\n@prefix edam: <http://edamontology.org/> .\n@prefix hgnc: <https://identifiers.org/hgnc/>.\n@prefix ncbigene: <https://identifiers.org/ncbigene/>.\n@prefix uniprot: <https://identifiers.org/uniprot/>.\n\n')
 print('. . Done ')
 
 # Writing AOP triples
 print('Writing AOP triples. . ', end="")
+naopo = 0
+naopohaschem = 0
+naopohaske = 0
+naopohasker = 0
+naopohasmie = 0
+naopohasao = 0
+naopolife = 0
+naopocell = 0
+naopoorgan = 0
+naopoupke = 0
+naopodownke = 0
+naop = 0
+naopa = 0
 for aop in aopdict:
-	g.write(
-		aopdict[aop]['dc:identifier'] + '\n\ta\taopo:AdverseOutcomePathway ;\n\tdc:identifier\t' + aopdict[aop]['dc:identifier'] + ' ;\n\trdfs:label\t' + aopdict[aop]['rdfs:label'] + ' ;\n\tfoaf:page\t' + aopdict[aop]['foaf:page'] + ' ;\n\tdc:title\t' + aopdict[aop][
-			'dc:title'] + ' ;\n\tdcterms:alternative\t"' + aopdict[aop]['dcterms:alternative'] + '" ;\n\tdc:source\t"' + aopdict[aop][
-			'dc:source'] + '" ;\n\tdcterms:created\t"' + aopdict[aop]['dcterms:created'] + '" ;\n\tdcterms:modified\t"' + aopdict[aop]['dcterms:modified'] + '"')
+	g.write(aopdict[aop]['dc:identifier'] + '\n\ta\taopo:AdverseOutcomePathway ;\n\tdc:identifier\t' + aopdict[aop]['dc:identifier'] + ' ;\n\trdfs:label\t' + aopdict[aop]['rdfs:label'] + ' ;\n\tfoaf:page\t' + aopdict[aop]['foaf:page'] + ' ;\n\tdc:title\t' + aopdict[aop]['dc:title'] + ' ;\n\tdcterms:alternative\t"' + aopdict[aop]['dcterms:alternative'] + '" ;\n\tdc:source\t"' + aopdict[aop]['dc:source'] + '" ;\n\tdcterms:created\t"' + aopdict[aop]['dcterms:created'] + '" ;\n\tdcterms:modified\t"' + aopdict[aop]['dcterms:modified'] + '"')
+	naop += 1
+	naopa += 9
 	if 'dcterms:description' in aopdict[aop]:
 		g.write(' ;\n\tdcterms:description\t' + aopdict[aop]['dcterms:description'])
+		naopa += 1
 	listofthings = []
 	for KE in aopdict[aop]['aopo:has_key_event']:
 		listofthings.append(aopdict[aop]['aopo:has_key_event'][KE]['dc:identifier'])
 	if not listofthings == []:
 		g.write(' ;\n\taopo:has_key_event\t' + (','.join(listofthings)))
+		naopa  +=  1
+		naopo  +=  1
+		naopohaske += 1
 	listofthings = []
 	for KER in aopdict[aop]['aopo:has_key_event_relationship']:
 		listofthings.append(aopdict[aop]['aopo:has_key_event_relationship'][KER]['dc:identifier'])
 	if not listofthings == []:
 		g.write(' ;\n\taopo:has_key_event_relationship\t' + (','.join(listofthings)))
+		naopo  +=  1
+		naopohasker += 1
+		naopa  +=  1
 	listofthings = []
 	for mie in aopdict[aop]['aopo:has_molecular_initiating_event']:
 		listofthings.append(aopdict[aop]['aopo:has_molecular_initiating_event'][mie]['dc:identifier'])
 	if not listofthings == []:
 		g.write(' ;\n\taopo:has_molecular_initiating_event\t' + (','.join(listofthings)))
+		naopo  +=  1
+		naopohasmie += 1
+		naopa  +=  1
 	listofthings = []
 	for ao in aopdict[aop]['aopo:has_adverse_outcome']:
 		listofthings.append(aopdict[aop]['aopo:has_adverse_outcome'][ao]['dc:identifier'])
 	if not listofthings == []:
 		g.write(' ;\n\taopo:has_adverse_outcome\t' + (','.join(listofthings)))
+		naopo += 1
+		naopohasao += 1
+		naopa += 1
 	listofthings = []
 	for stressor in aopdict[aop]['ncit:C54571']:
 		listofthings.append(aopdict[aop]['ncit:C54571'][stressor]['dc:identifier'])
 	if not listofthings == []:
 		g.write(' ;\n\tncit:C54571\t' + (','.join(listofthings)))
+		naopa  +=  1
 	listofthings = []
 	if 'pato:PATO_0000047' in aopdict[aop]:
 		for sex in aopdict[aop]['pato:PATO_0000047']:
 			listofthings.append('"' + sex[1] + '"')
 		if not listofthings == []:
 			g.write(' ;\n\tpato:PATO_0000047\t' + (','.join(listofthings)))
+			naopa  +=  1
 	listofthings = []
 	if 'aopo:LifeStageContext' in aopdict[aop]:
 		for lifestage in aopdict[aop]['aopo:LifeStageContext']:
 			listofthings.append('"' + lifestage[1] + '"')
 		if not listofthings == []:
 			g.write(' ;\n\taopo:LifeStageContext\t' + (','.join(listofthings)))
+			naopo  +=  1
+			naopolife += 1
+			naopa  +=  1
 	if 'dc:accessRights' in aopdict[aop]:
 		g.write(' ;\n\tdc:accessRights\t"' + aopdict[aop]['dc:accessRights'] + '"')
+		naopa  +=  1
 	g.write(' .\n\n')
-print('. . Done ')
+print('. . Done \nNumber of AOPs: '+str(naop))
+print('Number of attributes for AOPs: '+str(naopa)+'\n')
 
 # Creating cell term and organ term dictionary
 cterm = {}
 oterm = {}
 # Writing KE triples
 print('Writing KE triples. . ', end="")
+nke = 0
 for ke in kedict:
 	g.write(kedict[ke]['dc:identifier'] + '\n\ta\taopo:KeyEvent ;\n\tdc:identifier\t' + kedict[ke]['dc:identifier'] + ' ;\n\trdfs:label\t' + kedict[ke]['rdfs:label'] + ' ;\n\tfoaf:page\t' + kedict[ke]['foaf:page'] + ' ;\n\tdc:title\t' + kedict[ke]['dc:title'] + ' ;\n\tdcterms:alternative\t"' + kedict[ke]['dcterms:alternative'] + '" ;\n\tdc:source\t"' + kedict[ke]['dc:source'] + '"')
+	nke  +=  1
 	if 'dcterms:description' in kedict[ke]:
 		g.write(' ;\n\tdcterms:description\t' + kedict[ke]['dcterms:description'])
 	if 'mmo:0000000' in kedict[ke]:
@@ -529,6 +602,8 @@ for ke in kedict:
 			listofthings.append('"' + lifestage[1] + '"')
 		if not listofthings == []:
 			g.write(' ;\n\taopo:LifeStageContext\t' + (','.join(listofthings)))
+			naopo  +=  1
+			naopolife += 1
 	listofthings = []
 	if 'ncbitaxon:131567' in kedict[ke]:
 		for taxonomy in kedict[ke]['ncbitaxon:131567']:
@@ -544,18 +619,27 @@ for ke in kedict:
 
 	if 'aopo:CellTypeContext' in kedict[ke]:
 		g.write(' ;\n\taopo:CellTypeContext\t' + kedict[ke]['aopo:CellTypeContext']['dc:identifier'][0])
+		naopo  +=  1
+		naopocell += 1
 		if not kedict[ke]['aopo:CellTypeContext']['dc:identifier'][0] in cterm:
 			cterm[kedict[ke]['aopo:CellTypeContext']['dc:identifier'][0]] = {}
 			cterm[kedict[ke]['aopo:CellTypeContext']['dc:identifier'][0]]['dc:source'] = kedict[ke]['aopo:CellTypeContext']['dc:source']
 			cterm[kedict[ke]['aopo:CellTypeContext']['dc:identifier'][0]]['dc:title'] = kedict[ke]['aopo:CellTypeContext']['dc:title']
 	if 'aopo:OrganContext' in kedict[ke]:
 		g.write(' ;\n\taopo:OrganContext\t' + kedict[ke]['aopo:OrganContext']['dc:identifier'][0])
+		naopo  +=  1
+		naopoorgan += 1
 		if not kedict[ke]['aopo:OrganContext']['dc:identifier'][0] in oterm:
 			oterm[kedict[ke]['aopo:OrganContext']['dc:identifier'][0]] = {}
 			oterm[kedict[ke]['aopo:OrganContext']['dc:identifier'][0]]['dc:source'] = kedict[ke]['aopo:OrganContext']['dc:source']
 			oterm[kedict[ke]['aopo:OrganContext']['dc:identifier'][0]]['dc:title'] = kedict[ke]['aopo:OrganContext']['dc:title']
 	if 'biological-event' in kedict[ke]:
-		g.write(' ;\n\tgo:0008150\t' + (','.join(kedict[ke]['biological-event']['go:0008150'])))
+		if len(kedict[ke]['biological-event']['go:0008150']) > 0:
+			g.write(' ;\n\tgo:0008150\t' + (','.join(kedict[ke]['biological-event']['go:0008150'])))
+		if len(kedict[ke]['biological-event']['pato:PATO_0000001']) > 0:
+			g.write(' ;\n\tpato:PATO_0000001\t' + (','.join(kedict[ke]['biological-event']['pato:PATO_0000001'])))
+		if len(kedict[ke]['biological-event']['pato:PATO_0001241']) >0:
+			g.write(' ;\n\tpato:PATO_0001241\t' + (','.join(kedict[ke]['biological-event']['pato:PATO_0001241'])))
 
 	listofthings = []
 	for aop in aopdict:
@@ -565,13 +649,21 @@ for ke in kedict:
 		g.write(' ;\n\tdcterms:isPartOf\t' + (','.join(listofthings)))
 
 	g.write(' .\n\n')
-print('. . Done ')
+print('. . Done \nNumber of KEs: '+str(nke)+'\n')
+
+
+
+
 
 # Writing KER triples
 print('Writing KER triples. . ', end="")
+nker = 0
 for ker in kerdict:
-	g.write(
-		kerdict[ker]['dc:identifier'] + '\n\ta\taopo:KeyEventRelationship ;\n\tdc:identifier\t' + kerdict[ker]['dc:identifier'] + ' ;\n\trdfs:label\t' + kerdict[ker]['rdfs:label'] + ' ;\n\tfoaf:page\t' + kerdict[ker]['foaf:page'] + ' ;\n\tdcterms:created\t"' + kerdict[ker]['dcterms:created'] + '" ;\n\tdcterms:modified\t"' + kerdict[ker]['dcterms:modified'] + '" ;\n\taopo:has_upstream_key_event\t' + kerdict[ker]['aopo:has_upstream_key_event']['dc:identifier'] + ' ;\n\taopo:has_downstream_key_event\t' + kerdict[ker]['aopo:has_downstream_key_event']['dc:identifier'])
+	g.write(kerdict[ker]['dc:identifier'] + '\n\ta\taopo:KeyEventRelationship ;\n\tdc:identifier\t' + kerdict[ker]['dc:identifier'] + ' ;\n\trdfs:label\t' + kerdict[ker]['rdfs:label'] + ' ;\n\tfoaf:page\t' + kerdict[ker]['foaf:page'] + ' ;\n\tdcterms:created\t"' + kerdict[ker]['dcterms:created'] + '" ;\n\tdcterms:modified\t"' + kerdict[ker]['dcterms:modified'] + '" ;\n\taopo:has_upstream_key_event\t' + kerdict[ker]['aopo:has_upstream_key_event']['dc:identifier'] + ' ;\n\taopo:has_downstream_key_event\t' + kerdict[ker]['aopo:has_downstream_key_event']['dc:identifier'])
+	naopo  +=  2
+	naopoupke += 1
+	naopodownke += 1
+	nker  +=  1
 	if 'dcterms:description' in kerdict[ker]:
 		g.write(' ;\n\tdcterms:description\t' + kerdict[ker]['dcterms:description'])
 	listofthings = []
@@ -586,6 +678,8 @@ for ker in kerdict:
 			listofthings.append('"' + lifestage[1] + '"')
 		if not listofthings == []:
 			g.write(' ;\n\taopo:LifeStageContext\t' + (','.join(listofthings)))
+			naopo  +=  1
+			naopolife += 1
 	listofthings = []
 	if 'ncbitaxon:131567' in kerdict[ker]:
 		for taxonomy in kerdict[ker]['ncbitaxon:131567']:
@@ -599,23 +693,29 @@ for ker in kerdict:
 	if not listofthings == []:
 		g.write(' ;\n\tdcterms:isPartOf\t' + (','.join(listofthings)))
 	g.write(' .\n\n')
-print('. . Done ')
+print('. . Done \nNumber of KERs: '+str(nker)+'\n')
 
 # Writing Taxonomy triples
 print('Writing Taxonomy triples. . ', end="")
+ntax = 0
 for tax in taxdict:
 	if 'dc:identifier' in taxdict[tax]:
 		if '"' not in taxdict[tax]['dc:identifier']:
 			g.write(taxdict[tax]['dc:identifier'] + '\n\ta\tncbitaxon:131567 ;\n\tdc:identifier\t' + taxdict[tax]['dc:identifier'] + ' ;\n\tdc:title\t"' + taxdict[tax]['dc:title'])
+			ntax  +=  1
 			if taxdict[tax]['dc:source'] is not None:
 				g.write('" ;\n\tdc:source\t"' + taxdict[tax]['dc:source'])
 			g.write('" .\n\n')
-print('. . Done ')
+print('. . Done \nNumber of taxonomies: '+str(ntax)+'\n')
 
 # Writing Stressor triples
 print('Writing Stressor triples. . ', end="")
+
+nstr = 0
+nhaschem = 0
 for stressor in strdict:
 	g.write(strdict[stressor]['dc:identifier'] + '\n\ta\tncit:C54571 ;\n\tdc:identifier\t' + strdict[stressor]['dc:identifier'] + ' ;\n\trdfs:label\t' + strdict[stressor]['rdfs:label'] + ' ;\n\tfoaf:page\t' + strdict[stressor]['foaf:page'] + ' ;\n\tdc:title\t' + strdict[stressor]['dc:title'] + ' ;\n\tdcterms:created\t"' + strdict[stressor]['dcterms:created'] + '" ;\n\tdcterms:modified\t"' + strdict[stressor]['dcterms:modified'] + '"')
+	nstr  +=  1
 	if 'dcterms:description' in strdict[stressor]:
 		g.write(' ;\n\tdcterms:description\t' + strdict[stressor]['dcterms:description'])
 	listofthings = []
@@ -623,8 +723,10 @@ for stressor in strdict:
 		listofthings.append(chedict[chem]['dc:identifier'])
 	if not listofthings == []:
 		g.write(' ;\n\taopo:has_chemical_entity\t' + ','.join(listofthings))
+		nhaschem  +=  1
+		naopo  +=  1
+		naopohaschem += 1
 	listofthings = []
-
 	for ke in kedict:
 		if 'ncit:C54571' in kedict[ke]:
 			if stressor in kedict[ke]['ncit:C54571']:
@@ -642,13 +744,16 @@ for stressor in strdict:
 	if not listofthings == []:
 		g.write(' ;\n\tdcterms:isPartOf\t' + (','.join(listofthings)))
 	g.write(' .\n\n')
-print('. . Done ')
+print('. . Done \nNumber of stressors: '+str(nstr))
+print('Number of stressors with at least one chemical linked to it: '+str(nhaschem)+'\n')
 
 # Writing Chemical triples
 print('Writing Chemical triples. . ', end="")
+nchem = 0
 for che in chedict:
 	if 'dc:identifier' in chedict[che] and '"' not in chedict[che]['dc:identifier']:
 		g.write(chedict[che]['dc:identifier'] + '\n\tdc:identifier\t' + chedict[che]['dc:identifier'])
+		nchem  +=  1
 		if 'cheminf:CHEMINF_000446' in chedict[che]:
 			g.write(' ;\n\ta\tcheminf:CHEMINF_000000 ;\n\tcheminf:CHEMINF_000446\t' + chedict[che]['cheminf:CHEMINF_000446'])
 		if not chedict[che]['cheminf:CHEMINF_000059'] == 'inchikey:None':
@@ -691,68 +796,157 @@ for che in chedict:
 		if not listofthings == []:
 			g.write(' ;\n\tdcterms:isPartOf\t' + (','.join(listofthings)))
 		g.write(' .\n\n')
-print('. . Done ')
+print('. . Done \nNumber of chemicals: '+str(nchem)+'\n')
 
 print('Writing chemical identifiers. . ', end="")
+ntot = 0
+ncheb = 0
+nchems = 0
+nwd = 0
+nchembl = 0
+npub = 0
+ndrug = 0
+nkegg = 0
+nlip = 0
+nhmdb = 0
 for chebi in listofchebi:
 	g.write(chebi + '\tcheminf:CHEMINF_000407\t"'+chebi[6:]+'".\n\n')
+	ntot  +=  1
+	ncheb  +=  1
 for chemspider in listofchemspider:
 	g.write(chemspider + '\tcheminf:CHEMINF_000405\t"'+chemspider[11:]+'".\n\n')
+	ntot  +=  1
+	nchems  +=  1
 for wd in listofwikidata:
 	g.write(wd + '\tcheminf:CHEMINF_000567\t"'+wd[3:]+'".\n\n')
+	ntot  +=  1
+	nwd  +=  1
 for chembl in listofchembl:
 	g.write(chembl + '\tcheminf:CHEMINF_000412\t"'+chembl[7:]+'".\n\n')
+	ntot  +=  1
+	nchembl  +=  1
 for pubchem in listofpubchem:
 	g.write(pubchem + '\tcheminf:CHEMINF_000140\t"'+pubchem[8:]+'".\n\n')
+	ntot  +=  1
+	npub  +=  1
 for drugbank in listofdrugbank:
 	g.write(drugbank + '\tcheminf:CHEMINF_000412\t"'+drugbank[9:]+'".\n\n')
+	ntot  +=  1
+	ndrug  +=  1
 for kegg in listofkegg:
 	g.write(kegg + '\tcheminf:CHEMINF_000409\t"'+kegg[5:]+'".\n\n')
+	ntot  +=  1
+	nkegg  +=  1
 for lipidmaps in listoflipidmaps:
 	g.write(lipidmaps + '\tcheminf:CHEMINF_000564\t"'+lipidmaps[10:]+'".\n\n')
+	ntot  +=  1
+	nlip  +=  1
 for hmdb in listofhmdb:
 	g.write(hmdb + '\tcheminf:CHEMINF_000408\t"'+hmdb[5:]+'".\n\n')
-print('. . Done ')
+	ntot  +=  1
+	nhmdb  +=  1
+print('. . Done \nTotal number of chemical identifiers: '+str(ntot))
+print('Number of ChEBI chemical identifiers: '+str(ncheb))
+print('Number of Chemspider chemical identifiers: '+str(nchems))
+print('Number of Wikidata chemical identifiers: '+str(nwd))
+print('Number of Chembl chemical identifiers: '+str(nchembl))
+print('Number of Pubchem chemical identifiers: '+str(npub))
+print('Number of Drugbank chemical identifiers: '+str(ndrug))
+print('Number of Kegg chemical identifiers: '+str(nkegg))
+print('Number of Lipidmaps chemical identifiers: '+str(nlip))
+print('Number of HMDB chemical identifiers: '+str(nhmdb)+'\n')
 
-print('Writing chemical identifiers. . ', end="")
+print('Writing gene identifiers. . ', end="")
+ngen = 0
+numens = 0
+nentrez = 0
+nhgnc = 0
+nuniprot = 0
 for ensembl in listofensembl:
-	g.write(ensembl + '\tedam:data_1033\t"'+ensembl[8:]+'".\n\n')
-print('. . Done ')
+	g.write(ensembl + '\tedam:data_1033\t"'+ensembl[8:]+'"')
+	numens += 1
+	ngen += 1
+	if geneiddict[ensembl] is not None:
+		g.write(' ;\n\tskos:exactMatch\t'+','.join(geneiddict[ensembl]))
+	g.write('.\n\n')
+print('. . Done \nTotal number of gene identifiers: '+str(ngen)+'\n')
+
+for entrez in listofentrez:
+	g.write(entrez + '\tedam:data_1027\t"'+entrez[7:]+'".\n\n')
+	ngen += 1
+	nentrez += 1
+for hgnc in listofhgnc:
+	g.write(hgnc + '\tedam:data_2298\t"'+hgnc[5:]+'".\n\n')
+	ngen += 1
+	nhgnc += 1
+for uniprot in listofuniprot:
+	g.write(uniprot + '\tedam:data_2298\t"'+uniprot[8:]+'".\n\n')
+	ngen += 1
+	nuniprot += 1
+
+print('Number of Ensembl identifiers: '+str(numens))
+print('Number of Entrez Gene / NCBI Gene identifiers: '+str(nentrez))
+print('Number of HGNC identifiers: '+str(nhgnc))
+print('Number of Uniprot identifiers: '+str(nuniprot)+'\n')
 
 # Writing Biological Process triples
 print('Writing Biological Process triples. . ', end="")
+numbiopro = 0
 for pro in bioprodict:
 	if pro is not None:
 		g.write(bioprodict[pro]['dc:identifier'] + '\n\tdc:identifier\t' + bioprodict[pro]['dc:identifier'] + ' ;\n\tdc:title\t' + bioprodict[pro]['dc:title'] + ' ;\n\tdc:source\t' + bioprodict[pro]['dc:source'] + ' . \n\n')
-print('. . Done ')
+		numbiopro += 1
+print('. . Done \nNumber of biological processes: '+str(numbiopro)+'\n')
 
 # Writing Biological Object triples
 print('Writing Biological Object triples. . ', end="")
+numbioobj = 0
 for obj in bioobjdict:
 	if obj is not None and 'TAIR' not in bioobjdict[obj]['dc:identifier']:
 		g.write(bioobjdict[obj]['dc:identifier'] + '\n\tdc:identifier\t' + bioobjdict[obj]['dc:identifier'] + ' ;\n\tdc:title\t' + bioobjdict[obj]['dc:title'] + ' ;\n\tdc:source\t' + bioobjdict[obj]['dc:source'] + ' . \n\n')
-print('. . Done ')
+		numbioobj += 1
+print('. . Done \nNumber of biological objects: '+str(numbioobj)+'\n')
 
 # Writing Biological Action triples
 print('Writing Biological Action triples. . ', end="")
+numbioact = 0
 for act in bioactdict:
 	if act is not None:
 		if '"' not in bioactdict[act]['dc:identifier']:
 			g.write(bioactdict[act]['dc:identifier'] + '\n\tdc:identifier\t' + bioactdict[act]['dc:identifier'] + ' ;\n\tdc:title\t' + bioactdict[act]['dc:title'] + ' ;\n\tdc:source\t' + bioactdict[act]['dc:source'] + ' . \n\n')
-print('. . Done ')
+			numbioact += 1
+print('. . Done \nNumber of biological actions: '+str(numbioact)+'\n')
 
 # Writing Cell term triples
 print('Writing Cell term triples. . ', end="")
+numcterm = 0
 for item in cterm:
 	if '"' not in item:
 		g.write(item + '\n\tdc:identifier\t' + item + ' ;\n\tdc:title\t' + cterm[item]['dc:title'] + ' ;\n\tdc:source\t' + cterm[item]['dc:source'] + ' .\n\n')
-print('. . Done ')
+		numcterm += 1
+print('. . Done \nNumber of cell terms: '+str(numcterm)+'\n')
 
 # Writing Organ term triples
 print('Writing Organ term triples. . ', end="")
+numoterm = 0
 for item in oterm:
 	if '"' not in item:
 		g.write(item + '\n\tdc:identifier\t' + item + ' ;\n\tdc:title\t' + oterm[item]['dc:title'] + ' ;\n\tdc:source\t' + oterm[item]['dc:source'] + ' .\n\n')
-print('. . Done ')
+		numoterm  += 1
+print('. . Done \nNumber of organ terms: '+str(numoterm)+'\n')
 # Close output file
 g.close()
+
+persistent=ntot+numens+naop+nke+nstr+nker+(nchem*3)
+print('Total number of identifiers with identifiers.org: '+str(persistent))
+print('Total number of AOPO predicates: '+str(naopo))
+print("Total number of 'aopo:has_chemical_entity': " +str(naopohaschem))
+print("Total number of 'aopo:has_key_event': " +str(naopohaske))
+print("Total number of 'aopo:has_key_event_relationship': " +str(naopohasker))
+print("Total number of 'aopo:has_molecular_initiating_event': " +str(naopohasmie))
+print("Total number of 'aopo:has_adverse_outcome': " +str(naopohasao))
+print("Total number of 'aopo:LifeStageContext': " +str(naopolife))
+print("Total number of 'aopo:CellTypeContext': " +str(naopocell))
+print("Total number of 'aopo:OrganContext': " +str(naopoorgan))
+print("Total number of 'aopo:has_upstream_key_event': " +str(naopoupke))
+print("Total number of 'aopo:has_downstream_key_event': " +str(naopodownke))
