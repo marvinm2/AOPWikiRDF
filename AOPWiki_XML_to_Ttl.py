@@ -52,7 +52,7 @@ for AOP in root.findall(aopxml + 'aop'):
 	aopdict[AOP.get('id')]['dc:title'] = '"' + AOP.find(aopxml + 'title').text + '"'
 	aopdict[AOP.get('id')]['dcterms:alternative'] = AOP.find(aopxml + 'short-name').text
 	if AOP.find(aopxml + 'abstract').text is not None:
-		aopdict[AOP.get('id')]['dcterms:description'] = '"' + TAG_RE.sub('', AOP.find(aopxml + 'abstract').text) + '"'
+		aopdict[AOP.get('id')]['dcterms:description'] = '"""' + TAG_RE.sub('', AOP.find(aopxml + 'abstract').text) + '"""'
 	if AOP.find(aopxml + 'status').find(aopxml + 'wiki-status') is not None:
 		aopdict[AOP.get('id')]['dc:accessRights'] = AOP.find(aopxml + 'status').find(aopxml + 'wiki-status').text  # dc:accessRights = wiki-status
 	if AOP.find(aopxml + 'status').find(aopxml + 'oecd-status') is not None:
@@ -223,7 +223,7 @@ for stressor in root.findall(aopxml + 'stressor'):
 	strdict[stressor.get('id')]['foaf:page'] = '<http://identifiers.org/aop.stressor/' + refs['stressor'][stressor.get('id')] + '>'
 	strdict[stressor.get('id')]['dc:title'] = '"' + stressor.find(aopxml + 'name').text + '"'
 	if stressor.find(aopxml + 'description').text is not None:
-		strdict[stressor.get('id')]['dcterms:description'] = '"' + TAG_RE.sub('', stressor.find(aopxml + 'description').text) + '"'
+		strdict[stressor.get('id')]['dcterms:description'] = '"""' + TAG_RE.sub('', stressor.find(aopxml + 'description').text) + '"""'
 	strdict[stressor.get('id')]['dcterms:created'] = stressor.find(aopxml + 'creation-timestamp').text
 	strdict[stressor.get('id')]['dcterms:modified'] = stressor.find(aopxml + 'last-modification-timestamp').text
 	# Chemicals related to stressor
@@ -295,6 +295,7 @@ bioobjdict = {None: {}}
 bioobjdict[None]['dc:identifier'] = None
 bioobjdict[None]['dc:source'] = None
 bioobjdict[None]['dc:title'] = None
+objectstoskip = []
 for bioobj in root.findall(aopxml + 'biological-object'):
 	bioobjdict[bioobj.get('id')] = {}
 	bioobjdict[bioobj.get('id')]['dc:source'] = '"' + bioobj.find(aopxml + 'source').text + '"'
@@ -318,8 +319,8 @@ for bioobj in root.findall(aopxml + 'biological-object'):
 	elif bioobjdict[bioobj.get('id')]['dc:source'] == '"PCO"':
 		bioobjdict[bioobj.get('id')]['dc:identifier'] = 'pco:' + bioobj.find(aopxml + 'source-id').text[4:]
 	else:
-		# print ('The following ontology was not found for biological object: '+bioobj.find(aopxml+'source').text)
-		bioobjdict[bioobj.get('id')]['dc:identifier'] = bioobj.find(aopxml + 'source-id').text
+		# print ('The following ontology was not found for biological object: '+bioobj.find(aopxml + 'source-id').text)
+		bioobjdict[bioobj.get('id')]['dc:identifier'] = '"' + bioobj.find(aopxml + 'source-id').text + '"'
 print('. . Done ')
 
 # KEY EVENTS, later to combine with TAXONOMY when writing file
@@ -334,9 +335,9 @@ for ke in root.findall(aopxml + 'key-event'):
 	kedict[ke.get('id')]['dc:title'] = '"' + ke.find(aopxml + 'title').text + '"'
 	kedict[ke.get('id')]['dcterms:alternative'] = ke.find(aopxml + 'short-name').text
 	if ke.find(aopxml + 'description').text is not None:
-		kedict[ke.get('id')]['dcterms:description'] = '"' + TAG_RE.sub('', ke.find(aopxml + 'description').text) + '"'
+		kedict[ke.get('id')]['dcterms:description'] = '"""' + TAG_RE.sub('', ke.find(aopxml + 'description').text) + '"""'
 	if ke.find(aopxml + 'measurement-methodology').text is not None:
-		kedict[ke.get('id')]['mmo:0000000'] = '"' + TAG_RE.sub('', ke.find(aopxml + 'measurement-methodology').text) + '"'
+		kedict[ke.get('id')]['mmo:0000000'] = '"""' + TAG_RE.sub('', ke.find(aopxml + 'measurement-methodology').text) + '"""'
 	if refs['KEs'][ke.get('id')] in genedict:
 		kedict[ke.get('id')]['dcterms:contributor'] = genedict[refs['KEs'][ke.get('id')]]
 	kedict[ke.get('id')]['biological-organization-level'] = ke.find(aopxml + 'biological-organization-level').text
@@ -439,7 +440,6 @@ for gene in listofensembl:
 				listofuniprot.append('uniprot:'+uniprot)
 			geneiddict[gene].append('uniprot:'+uniprot)
 
-print(geneiddict)
 
 # KEY EVENT RELATIONSHIPS
 print('Parsing and organizing Key Event Relationship information. . ', end="")
@@ -454,7 +454,7 @@ for ker in root.findall(aopxml + 'key-event-relationship'):
 	kerdict[ker.get('id')]['dcterms:created'] = ker.find(aopxml + 'creation-timestamp').text
 	kerdict[ker.get('id')]['dcterms:modified'] = ker.find(aopxml + 'last-modification-timestamp').text
 	if ker.find(aopxml + 'description').text is not None:
-		kerdict[ker.get('id')]['dcterms:description'] = '"' + TAG_RE.sub('', ker.find(aopxml + 'description').text) + '"'
+		kerdict[ker.get('id')]['dcterms:description'] = '"""' + TAG_RE.sub('', ker.find(aopxml + 'description').text) + '"""'
 	kerdict[ker.get('id')]['aopo:has_upstream_key_event'] = {}
 	kerdict[ker.get('id')]['aopo:has_upstream_key_event']['id'] = ker.find(aopxml + 'title').find(aopxml + 'upstream-id').text
 	kerdict[ker.get('id')]['aopo:has_upstream_key_event']['dc:identifier'] = 'aop.events:' + refs['KEs'][ker.find(aopxml + 'title').find(aopxml + 'upstream-id').text]
@@ -750,6 +750,8 @@ print('Number of stressors with at least one chemical linked to it: '+str(nhasch
 # Writing Chemical triples
 print('Writing Chemical triples. . ', end="")
 nchem = 0
+ninchi = 0
+ndsstox = 0
 for che in chedict:
 	if 'dc:identifier' in chedict[che] and '"' not in chedict[che]['dc:identifier']:
 		g.write(chedict[che]['dc:identifier'] + '\n\tdc:identifier\t' + chedict[che]['dc:identifier'])
@@ -758,10 +760,12 @@ for che in chedict:
 			g.write(' ;\n\ta\tcheminf:CHEMINF_000000 ;\n\tcheminf:CHEMINF_000446\t' + chedict[che]['cheminf:CHEMINF_000446'])
 		if not chedict[che]['cheminf:CHEMINF_000059'] == 'inchikey:None':
 			g.write(' ;\n\tcheminf:CHEMINF_000059\t' + chedict[che]['cheminf:CHEMINF_000059'])
+			ninchi += 1
 		if 'dc:title' in chedict[che]:
 			g.write(' ;\n\tdc:title\t' + chedict[che]['dc:title'])
 		if 'cheminf:CHEMINF_000568' in chedict[che]:
 			g.write(' ;\n\tcheminf:CHEMINF_000568\t' + str(chedict[che]['cheminf:CHEMINF_000568']))
+			ndsstox += 1
 		listofexactmatches = []
 		if 'cheminf:CHEMINF_000407' in chedict[che]:
 			listofexactmatches.append(','.join(chedict[che]['cheminf:CHEMINF_000407']))
@@ -796,7 +800,9 @@ for che in chedict:
 		if not listofthings == []:
 			g.write(' ;\n\tdcterms:isPartOf\t' + (','.join(listofthings)))
 		g.write(' .\n\n')
-print('. . Done \nNumber of chemicals: '+str(nchem)+'\n')
+print('. . Done \nNumber of chemicals: '+str(nchem))
+print('Number of InchiKeys: '+str(ninchi))
+print('Number of CompTox identifiers: '+str(ndsstox)+'\n')
 
 print('Writing chemical identifiers. . ', end="")
 ntot = 0
@@ -818,15 +824,15 @@ for chemspider in listofchemspider:
 	ntot  +=  1
 	nchems  +=  1
 for wd in listofwikidata:
-	g.write(wd + '\tcheminf:CHEMINF_000567\t"'+wd[3:]+'".\n\n')
+	g.write(wd + '\tcheminf:CHEMINF_000567\t"'+wd[9:]+'".\n\n')
 	ntot  +=  1
 	nwd  +=  1
 for chembl in listofchembl:
-	g.write(chembl + '\tcheminf:CHEMINF_000412\t"'+chembl[7:]+'".\n\n')
+	g.write(chembl + '\tcheminf:CHEMINF_000412\t"'+chembl[16:]+'".\n\n')
 	ntot  +=  1
 	nchembl  +=  1
 for pubchem in listofpubchem:
-	g.write(pubchem + '\tcheminf:CHEMINF_000140\t"'+pubchem[8:]+'".\n\n')
+	g.write(pubchem + '\tcheminf:CHEMINF_000140\t"'+pubchem[17:]+'".\n\n')
 	ntot  +=  1
 	npub  +=  1
 for drugbank in listofdrugbank:
@@ -834,7 +840,7 @@ for drugbank in listofdrugbank:
 	ntot  +=  1
 	ndrug  +=  1
 for kegg in listofkegg:
-	g.write(kegg + '\tcheminf:CHEMINF_000409\t"'+kegg[5:]+'".\n\n')
+	g.write(kegg + '\tcheminf:CHEMINF_000409\t"'+kegg[14:]+'".\n\n')
 	ntot  +=  1
 	nkegg  +=  1
 for lipidmaps in listoflipidmaps:
@@ -872,7 +878,7 @@ for ensembl in listofensembl:
 print('. . Done \nTotal number of gene identifiers: '+str(ngen)+'\n')
 
 for entrez in listofentrez:
-	g.write(entrez + '\tedam:data_1027\t"'+entrez[7:]+'".\n\n')
+	g.write(entrez + '\tedam:data_1027\t"'+entrez[9:]+'".\n\n')
 	ngen += 1
 	nentrez += 1
 for hgnc in listofhgnc:
