@@ -3,7 +3,7 @@ import re
 import requests
 
 print('Parsing AOP-Wiki XML file. . ', end="")
-tree = parse('/home/marvinmartens/Documents/AOP-Wiki RDF/aop-wiki-xml-2019-04-01')  # double \\ after C: because python3 reads this as a character with one \
+tree = parse('/home/marvinmartens/Documents/AOP-Wiki RDF/aop-wiki-xml-2019-07-01')  # double \\ after C: because python3 reads this as a character with one \
 root = tree.getroot()
 print('. . Done ')
 aopxml = '{http://www.aopkb.org/aop-xml}'
@@ -13,18 +13,23 @@ aopxml = '{http://www.aopkb.org/aop-xml}'
 TAG_RE = re.compile(r'<[^>]+>')
 
 # Create a dictionary for all genes that were mapped through HGNC identifiers for KEs
-genedict = {}
-listofensembl = []
-genes = open('/home/marvinmartens/Documents/AOP-Wiki RDF/aopgenes.txt', 'r')
-for line in genes:
-	a = line[:-1].split('\t')
-	if len(a[1]) > 2:
-		genedict[a[0]] = []
-		for item in a[1].split(';'):
-			if not 'ensembl:' + item in genedict[a[0]] and 'ENS' in item:
-				genedict[a[0]].append('ensembl:' + item)
-			if not 'ensembl:' + item in listofensembl and 'ENS' in item:
-				listofensembl.append('ensembl:' + item)
+#Create a dictionary with all gene names to map to KE and KER descriptions
+HGNC= open('/home/marvinmartens/Documents/AOP-Wiki RDF/HGNCgenelist.txt', 'r') #The HGNC gene name file from the HGNC database
+genedict = {} #A dictionary to contain all variants of all genes provided by the HGNC file
+for line in HGNC:
+	if not 'HGNC ID	Approved Symbol	Approved Name	Previous Symbols	Synonyms	Ensembl ID(supplied by Ensembl)'in line: #To avoid the first line to be added to the dictionary
+		a = line.split('\t')
+		genedict[a[0]]=[]
+		if not a[5][:-1] == '':
+			genedict[a[0]].append(a[5][:-1])
+		genedict[a[0]].extend((' '+a[1]+' ','('+a[1]+',',' '+a[1]+',','('+a[1]+')',' '+a[1]+')','['+a[1]+']','['+a[1]+',',' '+a[1]+']',' '+a[1]+'.','('+a[1]+' ','['+a[1]+' ',' '+a[2]+' ','('+a[2]+',',' '+a[2]+',','('+a[2]+')',' '+a[2]+')','['+a[2]+']','['+a[2]+',',' '+a[2]+']',' '+a[2]+'.','('+a[2]+' ','['+a[2]+' ')) #From all variants of gene names and synonyms, a range of written varieties are stored in the dictionary
+		for item in a[3].split(', '):
+			if not item == '':
+				genedict[a[0]].extend((' '+item+' ','('+item+',',' '+item+',','('+item+')',' '+item+')','['+item+']','['+item+',',' '+item+']',' '+item+'.','('+item+' ','['+item+' '))
+		for item in a[4].split(', '):
+			if not item == '':
+				genedict[a[0]].extend((' '+item+' ','('+item+',',' '+item+',','('+item+')',' '+item+')','['+item+']','['+item+',',' '+item+']',' '+item+'.','('+item+' ','['+item+' '))
+HGNC.close()
 
 # AOPWIKI IDs to add for AOP, stressors and KEs
 print('Creating AOP-Wiki ID dictionaries. . ', end="")
@@ -51,8 +56,10 @@ for AOP in root.findall(aopxml + 'aop'):
 	aopdict[AOP.get('id')]['foaf:page'] = '<http://identifiers.org/aop/' + refs['aop'][AOP.get('id')] + '>'
 	aopdict[AOP.get('id')]['dc:title'] = '"' + AOP.find(aopxml + 'title').text + '"'
 	aopdict[AOP.get('id')]['dcterms:alternative'] = AOP.find(aopxml + 'short-name').text
+	if AOP.find(aopxml + 'authors').text is not None:
+		aopdict[AOP.get('id')]['dc:creator'] = '"""' + TAG_RE.sub('', AOP.find(aopxml + 'authors').text) + '"""'
 	if AOP.find(aopxml + 'abstract').text is not None:
-		aopdict[AOP.get('id')]['dcterms:description'] = '"""' + TAG_RE.sub('', AOP.find(aopxml + 'abstract').text) + '"""'
+		aopdict[AOP.get('id')]['dcterms:abstract'] = '"""' + TAG_RE.sub('', AOP.find(aopxml + 'abstract').text) + '"""'
 	if AOP.find(aopxml + 'status').find(aopxml + 'wiki-status') is not None:
 		aopdict[AOP.get('id')]['dc:accessRights'] = AOP.find(aopxml + 'status').find(aopxml + 'wiki-status').text  # dc:accessRights = wiki-status
 	if AOP.find(aopxml + 'status').find(aopxml + 'oecd-status') is not None:
@@ -223,7 +230,7 @@ for stressor in root.findall(aopxml + 'stressor'):
 	strdict[stressor.get('id')]['foaf:page'] = '<http://identifiers.org/aop.stressor/' + refs['stressor'][stressor.get('id')] + '>'
 	strdict[stressor.get('id')]['dc:title'] = '"' + stressor.find(aopxml + 'name').text + '"'
 	if stressor.find(aopxml + 'description').text is not None:
-		strdict[stressor.get('id')]['dcterms:description'] = '"""' + TAG_RE.sub('', stressor.find(aopxml + 'description').text) + '"""'
+		strdict[stressor.get('id')]['dc:description'] = '"""' + TAG_RE.sub('', stressor.find(aopxml + 'description').text) + '"""'
 	strdict[stressor.get('id')]['dcterms:created'] = stressor.find(aopxml + 'creation-timestamp').text
 	strdict[stressor.get('id')]['dcterms:modified'] = stressor.find(aopxml + 'last-modification-timestamp').text
 	# Chemicals related to stressor
@@ -326,7 +333,10 @@ print('. . Done ')
 # KEY EVENTS, later to combine with TAXONOMY when writing file
 print('Parsing and organizing Key Event information. . ', end="")
 kedict = {}
+ensembllist = []
+listofkedescriptions = []
 for ke in root.findall(aopxml + 'key-event'):
+	geneoverlapdict = {}
 	kedict[ke.get('id')] = {}
 	# General info about the KEs
 	kedict[ke.get('id')]['dc:identifier'] = 'aop.events:' + refs['KEs'][ke.get('id')]
@@ -335,11 +345,23 @@ for ke in root.findall(aopxml + 'key-event'):
 	kedict[ke.get('id')]['dc:title'] = '"' + ke.find(aopxml + 'title').text + '"'
 	kedict[ke.get('id')]['dcterms:alternative'] = ke.find(aopxml + 'short-name').text
 	if ke.find(aopxml + 'description').text is not None:
-		kedict[ke.get('id')]['dcterms:description'] = '"""' + TAG_RE.sub('', ke.find(aopxml + 'description').text) + '"""'
+		kedict[ke.get('id')]['dc:description'] = '"""' + TAG_RE.sub('', ke.find(aopxml + 'description').text) + '"""'
+		listofkedescriptions.append('"""' + TAG_RE.sub('', ke.find(aopxml + 'description').text) + '"""')
+		geneoverlapdict[ke.get('id')]=[]
+		for key in genedict:
+			if genedict[key][1][1:-1] in ke.find(aopxml + 'description').text:
+				for item in genedict[key]:
+					if item in ke.find(aopxml + 'description').text and not 'ensembl:'+genedict[key][0] in geneoverlapdict[ke.get('id')]:
+						geneoverlapdict[ke.get('id')].append('ensembl:'+genedict[key][0])
+						if 'ensembl:'+genedict[key][0] not in ensembllist:
+							ensembllist.append('ensembl:'+genedict[key][0])
+		if geneoverlapdict[ke.get('id')] == []:
+			del geneoverlapdict[ke.get('id')]
+
 	if ke.find(aopxml + 'measurement-methodology').text is not None:
 		kedict[ke.get('id')]['mmo:0000000'] = '"""' + TAG_RE.sub('', ke.find(aopxml + 'measurement-methodology').text) + '"""'
-	if refs['KEs'][ke.get('id')] in genedict:
-		kedict[ke.get('id')]['dcterms:contributor'] = genedict[refs['KEs'][ke.get('id')]]
+	if ke.get('id') in geneoverlapdict:
+		kedict[ke.get('id')]['dc:contributor'] = geneoverlapdict[ke.get('id')]
 	kedict[ke.get('id')]['biological-organization-level'] = ke.find(aopxml + 'biological-organization-level').text
 	kedict[ke.get('id')]['dc:source'] = ke.find(aopxml + 'source').text
 	# Applicability
@@ -405,13 +427,14 @@ for ke in root.findall(aopxml + 'key-event'):
 			kedict[ke.get('id')]['ncit:C54571'][stressor.get('stressor-id')]['dc:identifier'] = strdict[stressor.get('stressor-id')]['dc:identifier']
 			kedict[ke.get('id')]['ncit:C54571'][stressor.get('stressor-id')]['aopo:has_evidence'] = stressor.find(aopxml + 'evidence').text
 print('. . Done ')
+print(len(ensembllist))
 
 #Gene identifiers:
 geneiddict = {}
 listofentrez = []
 listofhgnc = []
 listofuniprot = []
-for gene in listofensembl:
+for gene in ensembllist:
 	a = requests.get('http://localhost:8080//Human/xrefs/En/'+gene[8:]).text.split('\n')
 	dictionaryforgene = {}
 	if 'html' not in a:
@@ -454,7 +477,7 @@ for ker in root.findall(aopxml + 'key-event-relationship'):
 	kerdict[ker.get('id')]['dcterms:created'] = ker.find(aopxml + 'creation-timestamp').text
 	kerdict[ker.get('id')]['dcterms:modified'] = ker.find(aopxml + 'last-modification-timestamp').text
 	if ker.find(aopxml + 'description').text is not None:
-		kerdict[ker.get('id')]['dcterms:description'] = '"""' + TAG_RE.sub('', ker.find(aopxml + 'description').text) + '"""'
+		kerdict[ker.get('id')]['dc:description'] = '"""' + TAG_RE.sub('', ker.find(aopxml + 'description').text) + '"""'
 	kerdict[ker.get('id')]['aopo:has_upstream_key_event'] = {}
 	kerdict[ker.get('id')]['aopo:has_upstream_key_event']['id'] = ker.find(aopxml + 'title').find(aopxml + 'upstream-id').text
 	kerdict[ker.get('id')]['aopo:has_upstream_key_event']['dc:identifier'] = 'aop.events:' + refs['KEs'][ker.find(aopxml + 'title').find(aopxml + 'upstream-id').text]
@@ -511,8 +534,11 @@ for aop in aopdict:
 	g.write(aopdict[aop]['dc:identifier'] + '\n\ta\taopo:AdverseOutcomePathway ;\n\tdc:identifier\t' + aopdict[aop]['dc:identifier'] + ' ;\n\trdfs:label\t' + aopdict[aop]['rdfs:label'] + ' ;\n\tfoaf:page\t' + aopdict[aop]['foaf:page'] + ' ;\n\tdc:title\t' + aopdict[aop]['dc:title'] + ' ;\n\tdcterms:alternative\t"' + aopdict[aop]['dcterms:alternative'] + '" ;\n\tdc:source\t"' + aopdict[aop]['dc:source'] + '" ;\n\tdcterms:created\t"' + aopdict[aop]['dcterms:created'] + '" ;\n\tdcterms:modified\t"' + aopdict[aop]['dcterms:modified'] + '"')
 	naop += 1
 	naopa += 9
-	if 'dcterms:description' in aopdict[aop]:
-		g.write(' ;\n\tdcterms:description\t' + aopdict[aop]['dcterms:description'])
+	if 'dc:creator' in aopdict[aop]:
+		g.write(' ;\n\tdc:creator\t' + aopdict[aop]['dc:creator'])
+		naopa += 1
+	if 'dcterms:abstract' in aopdict[aop]:
+		g.write(' ;\n\tdcterms:abstract\t' + aopdict[aop]['dcterms:abstract'])
 		naopa += 1
 	listofthings = []
 	for KE in aopdict[aop]['aopo:has_key_event']:
@@ -584,12 +610,12 @@ nke = 0
 for ke in kedict:
 	g.write(kedict[ke]['dc:identifier'] + '\n\ta\taopo:KeyEvent ;\n\tdc:identifier\t' + kedict[ke]['dc:identifier'] + ' ;\n\trdfs:label\t' + kedict[ke]['rdfs:label'] + ' ;\n\tfoaf:page\t' + kedict[ke]['foaf:page'] + ' ;\n\tdc:title\t' + kedict[ke]['dc:title'] + ' ;\n\tdcterms:alternative\t"' + kedict[ke]['dcterms:alternative'] + '" ;\n\tdc:source\t"' + kedict[ke]['dc:source'] + '"')
 	nke  +=  1
-	if 'dcterms:description' in kedict[ke]:
-		g.write(' ;\n\tdcterms:description\t' + kedict[ke]['dcterms:description'])
+	if 'dc:description' in kedict[ke]:
+		g.write(' ;\n\tdc:description\t' + kedict[ke]['dc:description'])
 	if 'mmo:0000000' in kedict[ke]:
 		g.write(' ;\n\tmmo:0000000\t' + kedict[ke]['mmo:0000000'])
-	if 'dcterms:contributor' in kedict[ke]:
-		g.write(' ;\n\tdcterms:contributor\t' + ','.join(kedict[ke]['dcterms:contributor']))
+	if 'dc:contributor' in kedict[ke]:
+		g.write(' ;\n\tdc:contributor\t' + ','.join(kedict[ke]['dc:contributor']))
 	listofthings = []
 	if 'pato:PATO_0000047' in kedict[ke]:
 		for sex in kedict[ke]['pato:PATO_0000047']:
@@ -664,8 +690,8 @@ for ker in kerdict:
 	naopoupke += 1
 	naopodownke += 1
 	nker  +=  1
-	if 'dcterms:description' in kerdict[ker]:
-		g.write(' ;\n\tdcterms:description\t' + kerdict[ker]['dcterms:description'])
+	if 'dc:description' in kerdict[ker]:
+		g.write(' ;\n\tdc:description\t' + kerdict[ker]['dc:description'])
 	listofthings = []
 	if 'pato:PATO_0000047' in kerdict[ker]:
 		for sex in kerdict[ker]['pato:PATO_0000047']:
@@ -716,8 +742,8 @@ nhaschem = 0
 for stressor in strdict:
 	g.write(strdict[stressor]['dc:identifier'] + '\n\ta\tncit:C54571 ;\n\tdc:identifier\t' + strdict[stressor]['dc:identifier'] + ' ;\n\trdfs:label\t' + strdict[stressor]['rdfs:label'] + ' ;\n\tfoaf:page\t' + strdict[stressor]['foaf:page'] + ' ;\n\tdc:title\t' + strdict[stressor]['dc:title'] + ' ;\n\tdcterms:created\t"' + strdict[stressor]['dcterms:created'] + '" ;\n\tdcterms:modified\t"' + strdict[stressor]['dcterms:modified'] + '"')
 	nstr  +=  1
-	if 'dcterms:description' in strdict[stressor]:
-		g.write(' ;\n\tdcterms:description\t' + strdict[stressor]['dcterms:description'])
+	if 'dc:description' in strdict[stressor]:
+		g.write(' ;\n\tdc:description\t' + strdict[stressor]['dc:description'])
 	listofthings = []
 	for chem in strdict[stressor]['linktochemical']:
 		listofthings.append(chedict[chem]['dc:identifier'])
@@ -868,7 +894,7 @@ numens = 0
 nentrez = 0
 nhgnc = 0
 nuniprot = 0
-for ensembl in listofensembl:
+for ensembl in ensembllist:
 	g.write(ensembl + '\tedam:data_1033\t"'+ensembl[8:]+'"')
 	numens += 1
 	ngen += 1
