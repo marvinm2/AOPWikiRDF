@@ -1,9 +1,9 @@
 from xml.etree.ElementTree import parse
 import re
 import requests
-
+filename = 'aop-wiki-xml-2019-07-01'
 print('Parsing AOP-Wiki XML file. . ', end="")
-tree = parse('/home/marvin.martens/Documents/AOPWikiRDF/aop-wiki-xml-2019-07-01')  # double \\ after C: because python3 reads this as a character with one \
+tree = parse('/home/marvin.martens/Documents/AOPWikiRDF/' + filename)  # double \\ after C: because python3 reads this as a character with one \
 root = tree.getroot()
 print('. . Done ')
 aopxml = '{http://www.aopkb.org/aop-xml}'
@@ -12,13 +12,10 @@ aopxml = '{http://www.aopkb.org/aop-xml}'
 
 TAG_RE = re.compile(r'<[^>]+>')
 
-
-
-
 # Create a dictionary for all genes that were mapped through HGNC identifiers for KEs
 # Create a dictionary with all gene names to map to KE and KER descriptions
 # The HGNC gene name file from the HGNC database
-HGNC = open('/home/marvin.martens/Documents/AOPWikiRDF/HGNCgenelist.txt', 'r')
+HGNC = open('/home/marvin.martens/Documents/AOPWikiRDF/HGNCgenes2.txt', 'r')
 genedict = {}
 # A dictionary to contain all variants of all genes provided by the HGNC file
 for line in HGNC:
@@ -53,7 +50,7 @@ print('. . Done ')
 # ADVERSE OUTCOME PATHWAYS
 print('Parsing and organizing AOP information. . ', end="")
 aopdict = {}
-
+kedict = {}
 for AOP in root.findall(aopxml + 'aop'):
 	aopdict[AOP.get('id')] = {}
 	# General info about the AOPs
@@ -110,6 +107,9 @@ for AOP in root.findall(aopxml + 'aop'):
 		# question: do you want ALL KEs in an AOP (so add MIE and AO also in list of KEs?)? If yes, following lines:
 		aopdict[AOP.get('id')]['aopo:has_key_event'][MIE.get('key-event-id')] = {}
 		aopdict[AOP.get('id')]['aopo:has_key_event'][MIE.get('key-event-id')]['dc:identifier'] = 'aop.events:' + refs['KEs'][MIE.get('key-event-id')]
+		if MIE.find(aopxml + 'evidence-supporting-chemical-initiation').text is not None:
+			kedict[MIE.get('key-event-id')] = {}
+			kedict[MIE.get('key-event-id')]['dc:description'] = MIE.find(aopxml + 'evidence-supporting-chemical-initiation').text
 	# Adverse Outcomes
 	aopdict[AOP.get('id')]['aopo:has_adverse_outcome'] = {}
 	for AO in AOP.findall(aopxml + 'adverse-outcome'):
@@ -118,6 +118,9 @@ for AOP in root.findall(aopxml + 'aop'):
 		# question: do you want ALL KEs in an AOP (so add MIE and AO also in list of KEs?)? If yes, following lines:
 		aopdict[AOP.get('id')]['aopo:has_key_event'][AO.get('key-event-id')] = {}
 		aopdict[AOP.get('id')]['aopo:has_key_event'][AO.get('key-event-id')]['dc:identifier'] = 'aop.events:' + refs['KEs'][AO.get('key-event-id')]
+		if AO.find(aopxml + 'examples').text is not None:
+			kedict[AO.get('key-event-id')] = {}
+			kedict[AO.get('key-event-id')]['dc:description'] = AO.find(aopxml + 'examples').text
 	# stressors
 	aopdict[AOP.get('id')]['ncit:C54571'] = {}
 	if AOP.find(aopxml + 'aop-stressors') is not None:
@@ -125,6 +128,7 @@ for AOP in root.findall(aopxml + 'aop'):
 			aopdict[AOP.get('id')]['ncit:C54571'][stressor.get('stressor-id')] = {}
 			aopdict[AOP.get('id')]['ncit:C54571'][stressor.get('stressor-id')]['dc:identifier'] = 'aop.stressor:' + refs['stressor'][stressor.get('stressor-id')]
 			aopdict[AOP.get('id')]['ncit:C54571'][stressor.get('stressor-id')]['aopo:has_evidence'] = stressor.find(aopxml + 'evidence').text
+
 print('. . Done ')
 
 # CHEMICALS
@@ -338,12 +342,12 @@ print('. . Done ')
 
 # KEY EVENTS, later to combine with TAXONOMY when writing file
 print('Parsing and organizing Key Event information. . ', end="")
-kedict = {}
-ensembllist = []
+hgnclist = []
 listofkedescriptions = []
 for ke in root.findall(aopxml + 'key-event'):
 	geneoverlapdict = {}
-	kedict[ke.get('id')] = {}
+	if not ke.get('id') in kedict:
+		kedict[ke.get('id')] = {}
 	# General info about the KEs
 	kedict[ke.get('id')]['dc:identifier'] = 'aop.events:' + refs['KEs'][ke.get('id')]
 	kedict[ke.get('id')]['rdfs:label'] = '"KE ' + refs['KEs'][ke.get('id')] + '"'
@@ -351,15 +355,18 @@ for ke in root.findall(aopxml + 'key-event'):
 	kedict[ke.get('id')]['dc:title'] = '"' + ke.find(aopxml + 'title').text + '"'
 	kedict[ke.get('id')]['dcterms:alternative'] = ke.find(aopxml + 'short-name').text
 	if ke.find(aopxml + 'description').text is not None:
-		kedict[ke.get('id')]['dc:description'] = '"""' + TAG_RE.sub('', ke.find(aopxml + 'description').text) + '"""'
+		if 'dc:description' not in kedict[ke.get('id')]:
+			kedict[ke.get('id')]['dc:description'] = '"""' + TAG_RE.sub('', ke.find(aopxml + 'description').text) + '"""'
+		else:
+			kedict[ke.get('id')]['dc:description'] = '"""' + TAG_RE.sub('', ke.find(aopxml + 'description').text) + '\n' + TAG_RE.sub('', kedict[ke.get('id')]['dc:description']) + '"""'
 		geneoverlapdict[ke.get('id')] = []
 		for key in genedict:
 			if genedict[key][1][1:-1] in ke.find(aopxml + 'description').text:
 				for item in genedict[key]:
-					if item in ke.find(aopxml + 'description').text and not 'ensembl:' + genedict[key][0] in geneoverlapdict[ke.get('id')]:
-						geneoverlapdict[ke.get('id')].append('ensembl:' + genedict[key][0])
-						if 'ensembl:' + genedict[key][0] not in ensembllist:
-							ensembllist.append('ensembl:' + genedict[key][0])
+					if item in ke.find(aopxml + 'description').text and not 'hgnc:' + genedict[key][1][1:-1] in geneoverlapdict[ke.get('id')]:
+						geneoverlapdict[ke.get('id')].append('hgnc:' + genedict[key][1][1:-1])
+						if 'hgnc:' + genedict[key][1][1:-1] not in hgnclist:
+							hgnclist.append('hgnc:' + genedict[key][1][1:-1])
 		if not geneoverlapdict[ke.get('id')]:
 			del geneoverlapdict[ke.get('id')]
 	if ke.get('id') in geneoverlapdict:
@@ -431,7 +438,7 @@ for ke in root.findall(aopxml + 'key-event'):
 			kedict[ke.get('id')]['ncit:C54571'][stressor.get('stressor-id')]['dc:identifier'] = strdict[stressor.get('stressor-id')]['dc:identifier']
 			kedict[ke.get('id')]['ncit:C54571'][stressor.get('stressor-id')]['aopo:has_evidence'] = stressor.find(aopxml + 'evidence').text
 print('. . Done ')
-print('Number of unique genes identified after KEs: ',len(ensembllist))
+print('Number of unique genes identified after KEs: ', len(hgnclist))
 
 # KEY EVENT RELATIONSHIPS
 print('Parsing and organizing Key Event Relationship information. . ', end="")
@@ -452,29 +459,35 @@ for ker in root.findall(aopxml + 'key-event-relationship'):
 		for key in genedict:
 			if genedict[key][1][1:-1] in ker.find(aopxml + 'description').text:
 				for item in genedict[key]:
-					if item in ker.find(aopxml + 'description').text and not 'ensembl:' + genedict[key][0] in geneoverlapdict[ker.get('id')]:
-						geneoverlapdict[ker.get('id')].append('ensembl:' + genedict[key][0])
-						if 'ensembl:' + genedict[key][0] not in ensembllist:
-							ensembllist.append('ensembl:' + genedict[key][0])
-	if ker.get('id') in geneoverlapdict:
-		kerdict[ker.get('id')]['dc:contributor'] = geneoverlapdict[ker.get('id')]
-
-
+					if item in ker.find(aopxml + 'description').text and not 'hgnc:' + genedict[key][1][1:-1] in geneoverlapdict[ker.get('id')]:
+						geneoverlapdict[ker.get('id')].append('hgnc:' + genedict[key][1][1:-1])
+						if 'hgnc:' + genedict[key][1][1:-1] not in hgnclist:
+							hgnclist.append('hgnc:' + genedict[key][1][1:-1])
 	for weight in ker.findall(aopxml + 'weight-of-evidence'):
+		if weight.find(aopxml + 'biological-plausibility').text is not None:
+			kerdict[ker.get('id')]['ncit:C80263'] = '"""' + TAG_RE.sub('', weight.find(aopxml + 'biological-plausibility').text) + '"""'
+			for key in genedict:
+				if genedict[key][1][1:-1] in weight.find(aopxml + 'biological-plausibility').text:
+					for item in genedict[key]:
+						if item in weight.find(aopxml + 'biological-plausibility').text and not 'hgnc:' + genedict[key][1][1:-1] in geneoverlapdict[ker.get('id')]:
+							geneoverlapdict[ker.get('id')].append('hgnc:' + genedict[key][1][1:-1])
+							if 'hgnc:' + genedict[key][1][1:-1] not in hgnclist:
+								hgnclist.append('hgnc:' + genedict[key][1][1:-1])
 		if weight.find(aopxml + 'emperical-support-linkage').text is not None:
 			kerdict[ker.get('id')]['data_2042'] = '"""' + TAG_RE.sub('', weight.find(aopxml + 'emperical-support-linkage').text) + '"""'
 			for key in genedict:
 				if genedict[key][1][1:-1] in weight.find(aopxml + 'emperical-support-linkage').text:
 					for item in genedict[key]:
-						if item in weight.find(aopxml + 'emperical-support-linkage').text and not 'ensembl:' + genedict[key][0] in geneoverlapdict[ker.get('id')]:
-							geneoverlapdict[ker.get('id')].append('ensembl:' + genedict[key][0])
-							if 'ensembl:' + genedict[key][0] not in ensembllist:
-								ensembllist.append('ensembl:' + genedict[key][0])
+						if item in weight.find(aopxml + 'emperical-support-linkage').text and not 'hgnc:' + genedict[key][1][1:-1] in geneoverlapdict[ker.get('id')]:
+							geneoverlapdict[ker.get('id')].append('hgnc:' + genedict[key][1][1:-1])
+							if 'hgnc:' + genedict[key][1][1:-1] not in hgnclist:
+								hgnclist.append('hgnc:' + genedict[key][1][1:-1])
+		if weight.find(aopxml + 'uncertainties-or-inconsistencies').text is not None:
+			kerdict[ker.get('id')]['ncit:C71478'] = '"""' + TAG_RE.sub('', weight.find(aopxml + 'uncertainties-or-inconsistencies').text) + '"""'
 	if not geneoverlapdict[ker.get('id')]:
 		del geneoverlapdict[ker.get('id')]
 	if ker.get('id') in geneoverlapdict:
 		kerdict[ker.get('id')]['dc:contributor'] = geneoverlapdict[ker.get('id')]
-
 
 	kerdict[ker.get('id')]['aopo:has_upstream_key_event'] = {}
 	kerdict[ker.get('id')]['aopo:has_upstream_key_event']['id'] = ker.find(aopxml + 'title').find(aopxml + 'upstream-id').text
@@ -502,15 +515,17 @@ for ker in root.findall(aopxml + 'key-event-relationship'):
 				if 'dc:identifier' in taxdict[tax.get('taxonomy-id')]:
 					kerdict[ker.get('id')]['ncbitaxon:131567'].append([tax.get('taxonomy-id'), tax.find(aopxml + 'evidence').text, taxdict[tax.get('taxonomy-id')]['dc:identifier'], taxdict[tax.get('taxonomy-id')]['dc:source'], taxdict[tax.get('taxonomy-id')]['dc:title']])
 print('. . Done ')
-print('Number of unique genes identified after KEs and KERs: ',len(ensembllist),'\n')
+print('Number of unique genes identified after KEs and KERs: ', len(hgnclist), '\n')
 
 # Gene identifiers:
 geneiddict = {}
 listofentrez = []
-listofhgnc = []
+listofensembl = []
 listofuniprot = []
-for gene in ensembllist:
-	a = requests.get('http://localhost:8080//Human/xrefs/En/'+gene[8:]).text.split('\n')
+for gene in hgnclist:
+	print(gene)
+	print(gene[5:])
+	a = requests.get('http://localhost:8080//Human/xrefs/H/' + gene[5:]).text.split('\n')
 	dictionaryforgene = {}
 	if 'html' not in a:
 		for item in a:
@@ -527,11 +542,11 @@ for gene in ensembllist:
 			if 'ncbigene:'+entrez not in listofentrez:
 				listofentrez.append('ncbigene:'+entrez)
 			geneiddict[gene].append('ncbigene:'+entrez)
-	if 'HGNC' in dictionaryforgene:
-		for hgnc in dictionaryforgene['HGNC']:
-			if 'hgnc:'+hgnc not in listofhgnc:
-				listofhgnc.append('hgnc:'+hgnc)
-			geneiddict[gene].append('hgnc:'+hgnc)
+	if 'Ensembl' in dictionaryforgene:
+		for ensembl in dictionaryforgene['Ensembl']:
+			if 'ensembl:' + ensembl not in listofensembl:
+				listofensembl.append('ensembl:'+ensembl)
+			geneiddict[gene].append('ensembl:'+ensembl)
 	if 'Uniprot-TrEMBL' in dictionaryforgene:
 		for uniprot in dictionaryforgene['Uniprot-TrEMBL']:
 			if 'uniprot:'+uniprot not in listofuniprot:
@@ -541,7 +556,7 @@ for gene in ensembllist:
 
 # Creating output file
 print('Creating output TTL file. . ', end="")
-g = open('/home/marvin.martens/Documents/AOPWikiRDF/OutputTurtle.ttl', 'w', encoding='utf-8')
+g = open('/home/marvin.martens/Documents/AOPWikiRDF/AOPWikiRDF.ttl', 'w', encoding='utf-8')
 print('. . Done ')
 
 # Writing prefixes
@@ -722,8 +737,15 @@ for ker in kerdict:
 	nker += 1
 	if 'dc:description' in kerdict[ker]:
 		g.write(' ;\n\tdc:description\t' + kerdict[ker]['dc:description'])
+	if 'ncit:C80263' in kerdict[ker]:
+		g.write(' ;\n\tncit:C80263\t' + kerdict[ker]['ncit:C80263'])
+	if 'data_2042' in kerdict[ker]:
+		g.write(' ;\n\tdata_2042\t' + kerdict[ker]['data_2042'])
+	if 'ncit:C71478' in kerdict[ker]:
+		g.write(' ;\n\tncit:C71478\t' + kerdict[ker]['ncit:C71478'])
 	if 'dc:contributor' in kerdict[ker]:
-		g.write(' ;\n\tdc:contributor\t' + ','.join(kerdict[ker]['dc:contributor']))
+		if kerdict[ker]['dc:contributor'] is not None:
+			g.write(' ;\n\tdc:contributor\t' + ','.join(kerdict[ker]['dc:contributor']))
 	listofthings = []
 	if 'pato:PATO_0000047' in kerdict[ker]:
 		for sex in kerdict[ker]['pato:PATO_0000047']:
@@ -926,12 +948,12 @@ numens = 0
 nentrez = 0
 nhgnc = 0
 nuniprot = 0
-for ensembl in ensembllist:
-	g.write(ensembl + '\tedam:data_1033\t"'+ensembl[8:]+'"')
-	numens += 1
+for hgnc in hgnclist:
+	g.write(hgnc + '\tedam:data_2298\t"'+hgnc[5:]+'"')
+	nhgnc += 1
 	ngen += 1
-	if geneiddict[ensembl] is not None:
-		g.write(' ;\n\tskos:exactMatch\t'+','.join(geneiddict[ensembl]))
+	if geneiddict[hgnc] is not None:
+		g.write(' ;\n\tskos:exactMatch\t'+','.join(geneiddict[hgnc]))
 	g.write('.\n\n')
 print('. . Done \nTotal number of gene identifiers: '+str(ngen)+'\n')
 
@@ -939,18 +961,18 @@ for entrez in listofentrez:
 	g.write(entrez + '\tedam:data_1027\t"'+entrez[9:]+'".\n\n')
 	ngen += 1
 	nentrez += 1
-for hgnc in listofhgnc:
-	g.write(hgnc + '\tedam:data_2298\t"'+hgnc[5:]+'".\n\n')
+for ensembl in listofensembl:
+	g.write(ensembl + '\tedam:data_1033\t"'+ensembl[8:]+'".\n\n')
 	ngen += 1
-	nhgnc += 1
+	numens += 1
 for uniprot in listofuniprot:
-	g.write(uniprot + '\tedam:data_2298\t"'+uniprot[8:]+'".\n\n')
+	g.write(uniprot + '\tedam:data_2291\t"'+uniprot[8:]+'".\n\n')
 	ngen += 1
 	nuniprot += 1
 
+print('Number of HGNC identifiers: '+str(nhgnc))
 print('Number of Ensembl identifiers: '+str(numens))
 print('Number of Entrez Gene / NCBI Gene identifiers: '+str(nentrez))
-print('Number of HGNC identifiers: '+str(nhgnc))
 print('Number of Uniprot identifiers: '+str(nuniprot)+'\n')
 
 # Writing Biological Process triples
@@ -1014,3 +1036,11 @@ print("Total number of 'aopo:CellTypeContext': " + str(naopocell))
 print("Total number of 'aopo:OrganContext': " + str(naopoorgan))
 print("Total number of 'aopo:has_upstream_key_event': " + str(naopoupke))
 print("Total number of 'aopo:has_downstream_key_event': " + str(naopodownke))
+
+import datetime
+
+x = datetime.datetime.now()
+g = open('/home/marvin.martens/Documents/AOPWikiRDF/AOPWikiRDF-Void.ttl', 'w', encoding='utf-8')
+g.write('@prefix : <#> .\n@prefix dc: <http://purl.org/dc/elements/1.1/> .\n@prefix void:  <http://rdfs.org/ns/void#> .\n@prefix pav:   <http://purl.org/pav/> .\n@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n@prefix dcat:  <http://www.w3.org/ns/dcat#> .\n@prefix foaf:  <http://xmlns.com/foaf/0.1/> .')
+g.write('\n:AOPWikiRDF\ta\tvoid:Dataset ;\n\tdc:description\t"AOP-Wiki RDF data from the AOP-Wiki database" ;\n\tpav:createdOn\t' + str(x) + ' ;\n\tpav:createdWith\t' + str(filename) + ' ;\n\tpav:createdBy\t<https://zenodo.org/badge/latestdoi/146466058> ;\n\tfoaf:homepage\t<https://aopwiki.org> ;\n\tdcat:downloadURL\t<https://aopwiki.org/downloads/' + str(filename) + '> .')
+g.close()
