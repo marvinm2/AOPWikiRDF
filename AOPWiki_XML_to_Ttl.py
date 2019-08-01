@@ -474,7 +474,7 @@ for ker in root.findall(aopxml + 'key-event-relationship'):
 							if 'hgnc:' + genedict[key][1][1:-1] not in hgnclist:
 								hgnclist.append('hgnc:' + genedict[key][1][1:-1])
 		if weight.find(aopxml + 'emperical-support-linkage').text is not None:
-			kerdict[ker.get('id')]['data_2042'] = '"""' + TAG_RE.sub('', weight.find(aopxml + 'emperical-support-linkage').text) + '"""'
+			kerdict[ker.get('id')]['edam:data_2042'] = '"""' + TAG_RE.sub('', weight.find(aopxml + 'emperical-support-linkage').text) + '"""'
 			for key in genedict:
 				if genedict[key][1][1:-1] in weight.find(aopxml + 'emperical-support-linkage').text:
 					for item in genedict[key]:
@@ -523,8 +523,6 @@ listofentrez = []
 listofensembl = []
 listofuniprot = []
 for gene in hgnclist:
-	print(gene)
-	print(gene[5:])
 	a = requests.get('http://localhost:8080//Human/xrefs/H/' + gene[5:]).text.split('\n')
 	dictionaryforgene = {}
 	if 'html' not in a:
@@ -739,8 +737,8 @@ for ker in kerdict:
 		g.write(' ;\n\tdc:description\t' + kerdict[ker]['dc:description'])
 	if 'ncit:C80263' in kerdict[ker]:
 		g.write(' ;\n\tncit:C80263\t' + kerdict[ker]['ncit:C80263'])
-	if 'data_2042' in kerdict[ker]:
-		g.write(' ;\n\tdata_2042\t' + kerdict[ker]['data_2042'])
+	if 'edam:data_2042' in kerdict[ker]:
+		g.write(' ;\n\tedam:data_2042\t' + kerdict[ker]['edam:data_2042'].replace("\\",""))
 	if 'ncit:C71478' in kerdict[ker]:
 		g.write(' ;\n\tncit:C71478\t' + kerdict[ker]['ncit:C71478'])
 	if 'dc:contributor' in kerdict[ker]:
@@ -952,7 +950,7 @@ for hgnc in hgnclist:
 	g.write(hgnc + '\tedam:data_2298\t"'+hgnc[5:]+'"')
 	nhgnc += 1
 	ngen += 1
-	if geneiddict[hgnc] is not None:
+	if not geneiddict[hgnc] == []:
 		g.write(' ;\n\tskos:exactMatch\t'+','.join(geneiddict[hgnc]))
 	g.write('.\n\n')
 print('. . Done \nTotal number of gene identifiers: '+str(ngen)+'\n')
@@ -1041,6 +1039,6 @@ import datetime
 
 x = datetime.datetime.now()
 g = open('/home/marvin.martens/Documents/AOPWikiRDF/AOPWikiRDF-Void.ttl', 'w', encoding='utf-8')
-g.write('@prefix : <#> .\n@prefix dc: <http://purl.org/dc/elements/1.1/> .\n@prefix void:  <http://rdfs.org/ns/void#> .\n@prefix pav:   <http://purl.org/pav/> .\n@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n@prefix dcat:  <http://www.w3.org/ns/dcat#> .\n@prefix foaf:  <http://xmlns.com/foaf/0.1/> .')
-g.write('\n:AOPWikiRDF\ta\tvoid:Dataset ;\n\tdc:description\t"AOP-Wiki RDF data from the AOP-Wiki database" ;\n\tpav:createdOn\t' + str(x) + ' ;\n\tpav:createdWith\t' + str(filename) + ' ;\n\tpav:createdBy\t<https://zenodo.org/badge/latestdoi/146466058> ;\n\tfoaf:homepage\t<https://aopwiki.org> ;\n\tdcat:downloadURL\t<https://aopwiki.org/downloads/' + str(filename) + '> .')
+g.write('@prefix : <#> .\n@prefix dc: <http://purl.org/dc/elements/1.1/> .\n@prefix void:  <http://rdfs.org/ns/void#> .\n@prefix pav:   <http://purl.org/pav/> .\n@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix dcat:  <http://www.w3.org/ns/dcat#> .\n@prefix foaf:  <http://xmlns.com/foaf/0.1/> .')
+g.write('\n:AOPWikiRDF\ta\tvoid:Dataset ;\n\tdc:description\t"AOP-Wiki RDF data from the AOP-Wiki database" ;\n\tpav:createdOn\t"' + str(x) + '" ;\n\tpav:createdWith\t"' + str(filename) + '" ;\n\tpav:createdBy\t<https://zenodo.org/badge/latestdoi/146466058> ;\n\tfoaf:homepage\t<https://aopwiki.org> ;\n\tdcat:downloadURL\t<https://aopwiki.org/downloads/' + str(filename) + '> .')
 g.close()
