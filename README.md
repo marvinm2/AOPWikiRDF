@@ -33,10 +33,10 @@ sudo docker exec -it AOPwiki  bash
 ```
 
 ## Step 5 - Move the all.ttl file and create a .graph file.
-First, enter the "/data" folder and move the "all.ttl" file to the folder upstream by using:
+First, enter the "/data" folder and move the Turtle file(s) to the folder upstream by using:
 ```
 cd data
-mv aopwiki.ttl ../
+mv AOPWikiRDF.ttl ../
 cd ../
 ```
 
@@ -57,6 +57,15 @@ exit
 Enter the running docker container SQL by using: 
 ```
 sudo docker exec -i AOPwiki isql 1111
+```
+In case the service is already active and contains older RDF, be sure to perform a global reset and delete the old RDF files from the load_list, using the following commands:
+```
+RDF_GLOBAL_RESET();
+DELETE FROM load_list WHERE ll_graph = 'aopwiki.org';
+```
+The presence of files in the load_list can be viewed using the following command:
+```
+select * from DB.DBA.load_list;
 ```
 
 Use the following commands to complete the loading of RDF. If errors occur, try again within a few seconds (which often works), or look at http://docs.openlinksw.com/virtuoso/errorcodes/ to find out what they mean. 
@@ -113,6 +122,7 @@ grant select on "DB.DBA.SPARQL_SINV_2" to "SPARQL";
 grant execute on "DB.DBA.SPARQL_SINV_IMP" to "SPARQL";
 ld_dir('.', 'AOPWikiRDF.ttl', 'aopwiki.org');
 ld_dir('.', 'AOPWikiRDF-Void.ttl', 'aopwiki.org');
+ld_dir('.', 'AOPWikiRDF-genes.ttl', 'aopwiki.org');
 ```
 
 To finalize the loading of data, use:
