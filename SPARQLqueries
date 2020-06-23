@@ -1,0 +1,72 @@
+all triples
+select (COUNT(distinct *) as ?Triples)  where {?s ?p ?o}
+
+all subjects, predicates and objects
+select (COUNT(distinct ?s) as ?Subjects)  where {?s ?p ?o}
+select (COUNT(distinct ?p) as ?Predicates)  where {?s ?p ?o}
+select (COUNT(distinct ?o) as ?Objects)  where {?s ?p ?o}
+
+AOPO
+select (COUNT(?p) as ?Predicates)  where {?s ?p ?o. FILTER regex(?p, "http://aopkb.org/aop_ontology#")}
+select (COUNT(?o) as ?Objects)  where {?s ?p ?o. FILTER regex(?o, "http://aopkb.org/aop_ontology#")}
+select (COUNT(distinct ?s) as ?Subjects)  where {?s ?p ?o. FILTER regex(?p, "http://aopkb.org/aop_ontology#has_chemical_entity")}
+select (COUNT(distinct ?s) as ?Subjects)  where {?s ?p ?o. FILTER regex(?p, "http://aopkb.org/aop_ontology#has_key_event")}
+select (COUNT(distinct ?s) as ?Subjects)  where {?s ?p ?o. FILTER regex(?p, "http://aopkb.org/aop_ontology#has_key_event_relationship")}
+select (COUNT(distinct ?s) as ?Subjects)  where {?s ?p ?o. FILTER regex(?p, "http://aopkb.org/aop_ontology#has_molecular_initiating_event")}
+select (COUNT(distinct ?s) as ?Subjects)  where {?s ?p ?o. FILTER regex(?p, "http://aopkb.org/aop_ontology#has_adverse_outcome")}
+select (COUNT(distinct ?s) as ?Subjects)  where {?s ?p ?o. FILTER regex(?p, "http://aopkb.org/aop_ontology#has_upstream_key_event")}
+select (COUNT(distinct ?s) as ?Subjects)  where {?s ?p ?o. FILTER regex(?p, "http://aopkb.org/aop_ontology#has_downstream_key_event")}
+select (COUNT(distinct ?s) as ?Subjects)  where {?s ?p ?o. FILTER regex(?p, "http://aopkb.org/aop_ontology#AopContext")}
+select (COUNT(distinct ?s) as ?Subjects)  where {?s ?p ?o. FILTER regex(?p, "http://aopkb.org/aop_ontology#CellTypeContext")}
+select (COUNT(distinct ?s) as ?Subjects)  where {?s ?p ?o. FILTER regex(?p, "http://aopkb.org/aop_ontology#OrganContext")}
+select (COUNT(distinct ?s) as ?Subjects)  where {?s ?p ?o. FILTER regex(?p, "http://aopkb.org/aop_ontology#has_evidence")}
+select (COUNT(distinct ?s) as ?Subjects)  where {?s ?p ?o. FILTER regex(?p, "http://aopkb.org/aop_ontology#LifeStageContext")}
+
+Counts of subjectsAOPs
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a aopo:AdverseOutcomePathway}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a aopo:KeyEvent}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a aopo:KeyEventRelationship}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a ncbitaxon:131567}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a ncit:C54571}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a go:0008150}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a pato:PATO_0001241}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a pato:PATO_0000001}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a aopo:CellTypeContext}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a aopo:OrganContext}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a cheminf:CHEMINF_000000}
+
+predicates of AOPs
+select (COUNT (?p) as ?Predicates) where {?s ?p ?o; a aopo:AdverseOutcomePathway}
+
+persistent IDs
+select (COUNT(?o) as ?Objects)  where {?s ?p ?o. FILTER regex(?o, "http://identifiers.org/")}
+select (COUNT(?s) as ?Subjects)  where {?s ?p ?o. FILTER regex(?s, "http://identifiers.org/")}
+
+Chemical IDs
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a cheminf:CHEMINF_000446}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a cheminf:CHEMINF_000407}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a cheminf:CHEMINF_000405}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a cheminf:CHEMINF_000567}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a cheminf:CHEMINF_000412}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a cheminf:CHEMINF_000140}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a cheminf:CHEMINF_000406}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a cheminf:CHEMINF_000409}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a cheminf:CHEMINF_000564}
+select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a cheminf:CHEMINF_000408}
+
+Genes mapped with PR
+select (COUNT (distinct ?s2) as ?Subjects) where {?s a pato:PATO_0001241; skos:exactMatch ?s2. ?s2 ?p ?o; a edam:data_2298}
+select (COUNT (distinct ?s2) as ?Subjects) where {?s a pato:PATO_0001241; skos:exactMatch ?s2. ?s2 ?p ?o; a edam:data_1027}
+select (COUNT (distinct ?s2) as ?Subjects) where {?s a pato:PATO_0001241; skos:exactMatch ?s2. ?s2 ?p ?o; a edam:data_2291}
+
+KEs with genes mapped to text
+select (COUNT (distinct ?s) as ?Subjects) where {?s a aopo:KeyEvent; edam:data_1025 ?s2.}
+select (COUNT (distinct ?s) as ?Subjects) where {?s a aopo:KeyEventRelationship; edam:data_1025 ?s2.}
+
+Gene ids
+select (COUNT (distinct ?o) as ?Objects) where {?s edam:data_1025 ?o.}
+select (COUNT (distinct ?o2) as ?Objects) where {?s edam:data_1025 ?o. ?o skos:exactMatch ?o2. ?o2 a edam:data_1027}
+select (COUNT (distinct ?o2) as ?Objects) where {?s edam:data_1025 ?o. ?o skos:exactMatch ?o2. ?o2 a edam:data_1033}
+select (COUNT (distinct ?o2) as ?Objects) where {?s edam:data_1025 ?o. ?o skos:exactMatch ?o2. ?o2 a edam:data_2291}
+
+
