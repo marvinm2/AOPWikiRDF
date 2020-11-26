@@ -1,62 +1,45 @@
-# AOPWikiRDF
+# AOP-Wiki XML to RDF conversion
 
 [![DOI](https://zenodo.org/badge/146466058.svg)](https://zenodo.org/badge/latestdoi/146466058)
 
 
-This repository will contain code and information about AOP Wiki RDF creation
+This GitHub repository accompanies the publication linked to the AOP-Wiki RDF, and contains the conversion Jupyter notebook, guidelines to use the RDF in a local SPARQL endpoint, and an additional Jupyter notebook to extract statistics. 
 
+## Set up a Virtuoso SPARQL endpoint with AOP-Wiki RDF (on linux):
 
-
- 
- 
-# Guideline to set up a Virtuoso SPARQL endpoint with AOP-Wiki RDF (on linux):
-
-## Step 1 - Create folder to mount
-Enter the terminal and create a local folder to map to the docker container. Note the path to the folder to enter it at step 3. In this example, the folder '/dataload/data' was created and entered it by using:
+### Step 1 - Create folder to mount
+Enter the terminal and create a local folder to map to the docker container. Note the path to the folder to enter it at step 3. In this example, the folder '/aopwikirdf' was created and entered it by using:
 ```
 mkdir -p aopwikirdf
 ```
 
-## Step 2 - Move the RDF (.ttl) in the newly created folder
+### Step 2 - Move the RDF (.ttl) files into the newly created folder
 
-## Step 3 - Run the Docker image
-Use 'sudo' if necessary. Be sure to use ports 8890:8890 and 1111:1111. In this case, the container was named "loadVirtuoso". Also, this step configures the mapped local folder with the data, which is in this example "/dataload". The Docker image used  is openlink/virtuoso-opensource-7. Do this by entering:
+### Step 3 - Run the Docker image
+Be sure to use ports 8890:8890 and 1111:1111. In this case, the container was named "AOPWiki". Also, this step configures the mapped local folder with the data, which is in this example "/aopwikirdf". The Docker image used is openlink/virtuoso-opensource-7. Run the Docker image by entering:
 ```
-sudo docker run -d --env DBA_PASSWORD=dba -p 8890:8890 -p 1111:1111 --name AOPwiki --volume `pwd`/aopwikirdf/:/database/data/  openlink/virtuoso-opensource-7
-```
-
-## Step 4 - Enter the running container
-While the docker image is running in a container, the data is not yet loaded. Therefore you need to enter the it by using:
-
-```
-sudo docker exec -it AOPwiki  bash
+sudo docker run -d --env DBA_PASSWORD=dba -p 8890:8890 -p 1111:1111 --name AOPWiki --volume `pwd`/aopwikirdf/:/database/data/  openlink/virtuoso-opensource-7
 ```
 
-## Step 5 - Move the all.ttl file and create a .graph file.
+### Step 4 - Enter the running container
+The SPARQL endpoint should already be accessible through [localhost:8890/sparql/](http://localhost:8890/sparql/). However, while the Docker image is running, the data is not yet loaded. Therefore you need to enter the it by using:
+```
+sudo docker exec -it AOPWiki  bash
+```
+
+### Step 5 - Move the .ttl files
 First, enter the "/data" folder and move the Turtle file(s) to the folder upstream by using:
 ```
-cd data
-mv AOPWikiRDF.ttl ../
-cd ../
-```
-
-Second, create a ".graph" file and add the graph.iri in that file, which is "aopwiki.org". Prior to that, a text editing tool needs to be installed, such as "nano". Use the commands:
-```
-touch aopwiki.ttl.graph
-apt-get update
-apt-get install nano
-nano aopwiki.ttl.graph 
-```
-
-When the file is entered, write "aopwiki.org" (without ") and exit the file by pressing Ctrl+X, followed by "Y" and Enter to save and return. Exit the docker container by:
-```
+mv data/AOPWikiRDF.ttl .
+mv data/AOPWikiRDF-Void.ttl .
+mv data/AOPWikiRDF-genes.ttl .
 exit
 ```
 
-## Step 6 - Enter the container SQL to configure RDF loading
+### Step 6 - Enter the container SQL and reset
 Enter the running docker container SQL by using: 
 ```
-sudo docker exec -i AOPwiki isql 1111
+sudo docker exec -i AOPWiki isql 1111
 ```
 In case the service is already active and contains older RDF, be sure to perform a global reset and delete the old RDF files from the load_list, using the following commands:
 ```
@@ -68,6 +51,7 @@ The presence of files in the load_list can be viewed using the following command
 select * from DB.DBA.load_list;
 ```
 
+### Step 7 - Load the RDF
 Use the following commands to complete the loading of RDF. If errors occur, try again within a few seconds (which often works), or look at http://docs.openlinksw.com/virtuoso/errorcodes/ to find out what they mean. 
 ```
 log_enable(2);
@@ -141,5 +125,5 @@ Quit the SQL by entering:
 quit;
 ```
 
-## Step 7 - Enter the Virtuoso service with loaded AOP-Wiki RDF
+### Step 8 - Enter the Virtuoso service with loaded AOP-Wiki RDF
 The container is running with loaded RDF, available through http://localhost:8890, or enter the SPARQL endpoint directly through http://localhost:8890/sparql/.
