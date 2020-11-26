@@ -82,7 +82,7 @@ DB.DBA.XML_SET_NS_DECL ('aop.stressor', 'http://identifiers.org/aop.stressor/',2
 DB.DBA.XML_SET_NS_DECL ('aopo', 'http://aopkb.org/aop_ontology#',2);
 DB.DBA.XML_SET_NS_DECL ('cas', 'http://identifiers.org/cas/',2);
 DB.DBA.XML_SET_NS_DECL ('inchikey', 'http://identifiers.org/inchikey/',2);
-DB.DBA.XML_SET_NS_DECL ('pato', 'http://purl.obolibrary.org/obo/',2);
+DB.DBA.XML_SET_NS_DECL ('pato', 'http://purl.obolibrary.org/obo/PATO_',2);
 DB.DBA.XML_SET_NS_DECL ('ncbitaxon', 'http://purl.bioontology.org/ontology/NCBITAXON/',2);
 DB.DBA.XML_SET_NS_DECL ('cl', 'http://purl.obolibrary.org/obo/CL_',2);
 DB.DBA.XML_SET_NS_DECL ('uberon', 'http://purl.obolibrary.org/obo/UBERON_',2);
@@ -96,7 +96,7 @@ DB.DBA.XML_SET_NS_DECL ('vt', 'http://purl.obolibrary.org/obo/VT_',2);
 DB.DBA.XML_SET_NS_DECL ('pr', 'http://purl.obolibrary.org/obo/PR_',2);
 DB.DBA.XML_SET_NS_DECL ('chebio', 'http://purl.obolibrary.org/obo/CHEBI_',2);
 DB.DBA.XML_SET_NS_DECL ('fma', 'http://purl.org/sig/ont/fma/fma',2);
-DB.DBA.XML_SET_NS_DECL ('cheminf', 'http://semanticscience.org/resource/',2);
+DB.DBA.XML_SET_NS_DECL ('cheminf', 'http://semanticscience.org/resource/CHEMINF_',2);
 DB.DBA.XML_SET_NS_DECL ('ncit', 'http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#',2);
 DB.DBA.XML_SET_NS_DECL ('comptox', 'https://comptox.epa.gov/dashboard/',2);
 DB.DBA.XML_SET_NS_DECL ('mmo', 'http://purl.obolibrary.org/obo/MMO_',2);
