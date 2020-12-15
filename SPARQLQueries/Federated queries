@@ -1,0 +1,33 @@
+AOP-Wiki with uniprot: filter by taxonomy
+
+PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT  distinct ?tax (group_concat(distinct ?name;separator=" | ") as ?names) count(distinct ?keker) as ?n 
+WHERE {
+    ?keker ncbitaxon:131567 ?taxon2.
+?taxon2 a ncbitaxon:131567; dc:title ?name.
+BIND (fn:substring(?taxon2,48) as ?tax2)
+SERVICE <http://sparql.uniprot.org/sparql/> {
+    ?taxon rdfs:subClassOf* taxon:39107 .} #taxon:39107 stands for Murinae. Replace with taxon:9989 for all rodents
+BIND (fn:substring(?taxon,34) as ?tax)
+FILTER (?tax = ?tax2)
+} order by desc (?n)
+
+
+
+
+AOP-Wiki with Wikidata: filter by group of chemicals
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+SELECT  distinct  ?cas1 ?chemName 
+WHERE {
+    ?chem a cheminf:000000 ;
+        dc:title ?chemName;
+        cheminf:000446 ?cas.
+BIND (fn:substring(?cas,0) as ?cas1)
+    SERVICE <https://query.wikidata.org/sparql> {
+       ?wdchem wdt:P31 wd:Q187661; wdt:P231 ?cas2.} #wd:Q187661 stands for carcinogen, Q72941151 stands for developmental toxicant, Q35456 stands for essential medicine, Q55427774 for male reproductive toxicant, Q55427776 for female reproductive toxicant, Q407752 for neurotoxin, Q1138899 for endocrine disruptors, 
+BIND (fn:substring(?cas2,0) as ?cas3)
+FILTER (?cas1 = ?cas3)
+} ORDER BY ASC (?chemName)
