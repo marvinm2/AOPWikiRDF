@@ -31,3 +31,65 @@ BIND (fn:substring(?cas,0) as ?cas1)
 BIND (fn:substring(?cas2,0) as ?cas3)
 FILTER (?cas1 = ?cas3)
 } ORDER BY ASC (?chemName)
+
+
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+SELECT  distinct  ?cas1 ?chemName ?KETitle
+WHERE {
+    ?chem a cheminf:000000 ;
+        dc:title ?chemName;
+        cheminf:000446 ?cas.
+    ?stressor aopo:has_chemical_entity ?chem.
+    ?aop a aopo:KeyEvent; nci:C54571 ?stressor; dc:title ?KETitle.
+BIND (fn:substring(?cas,0) as ?cas1)
+    SERVICE <https://query.wikidata.org/sparql> {
+       ?wdchem wdt:P31 wd:Q187661; wdt:P231 ?cas2.} #Q187661 stands for carcinogen, Q72941151 stands for developmental toxicant, Q35456 stands for essential medicine, Q55427774 for male reproductive toxicant, Q55427776 for female reproductive toxicant, Q407752 for neurotoxin, Q1138899 for endocrine disruptors, 
+BIND (fn:substring(?cas2,0) as ?cas3)
+FILTER (?cas1 = ?cas3)
+} ORDER BY ASC (?chemName)
+
+
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+SELECT  distinct  ?cas1 ?chemName ?AOPTitle
+WHERE {
+    ?chem a cheminf:000000 ;
+        dc:title ?chemName;
+        cheminf:000446 ?cas.
+    ?stressor aopo:has_chemical_entity ?chem.
+    ?aop a aopo:AdverseOutcomePathway; nci:C54571 ?stressor; dc:title ?AOPTitle.
+BIND (fn:substring(?cas,0) as ?cas1)
+    SERVICE <https://query.wikidata.org/sparql> {
+       ?wdchem wdt:P31 wd:Q407752; wdt:P231 ?cas2.} #Q187661 stands for carcinogen, Q72941151 stands for developmental toxicant, Q35456 stands for essential medicine, Q55427774 for male reproductive toxicant, Q55427776 for female reproductive toxicant, Q407752 for neurotoxin, Q1138899 for endocrine disruptors, 
+BIND (fn:substring(?cas2,0) as ?cas3)
+FILTER (?cas1 = ?cas3)
+} ORDER BY ASC (?chemName)
+
+###################################
+SELECT  distinct  ?aop ?ke (group_concat(distinct ?speciesname;separator=" | ") as ?speciesnames) ?method
+WHERE {
+    ?aop a aopo:AdverseOutcomePathway ;
+        rdfs:label ?aop_id;
+        aopo:has_key_event ?ke.
+    ?ke ncbitaxon:131567 ?taxon.
+    ?taxon a ncbitaxon:131567; dc:title ?speciesname
+    OPTIONAL {?ke mmo:0000000 ?method.}
+VALUES ?aop_id {"AOP 12" "AOP 57"}
+} ORDER BY ASC (?aop)
+
+###################################
+SELECT  distinct  ?keid ?ketitle ?objectname ?prot ?assaytitle ?assay
+WHERE {
+    ?aop a aopo:AdverseOutcomePathway ;
+        rdfs:label ?aop_id;
+        aopo:has_key_event ?ke.
+    ?ke pato:0001241 ?object; dc:title ?ketitle; rdfs:label ?keid.
+    ?object dc:title ?objectname; skos:exactMatch ?prot.
+    ?prot a edam:data_1027.
+SERVICE <https://aopdb.rdf.bigcat-bioinformatics.org/sparql> {
+?prot mmo:0000441 ?assay.
+?assay dc:title ?assaytitle.
+}} 

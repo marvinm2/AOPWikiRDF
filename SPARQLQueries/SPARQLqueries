@@ -70,3 +70,14 @@ select (COUNT (distinct ?o2) as ?Objects) where {?s edam:data_1025 ?o. ?o skos:e
 select (COUNT (distinct ?o2) as ?Objects) where {?s edam:data_1025 ?o. ?o skos:exactMatch ?o2. ?o2 a edam:data_2291}
 
 
+
+SELECT  distinct  ?aop ?ke (group_concat(distinct ?speciesname;separator=" | ") as ?speciesnames) ?method
+WHERE {
+    ?aop a aopo:AdverseOutcomePathway ;
+        rdfs:label ?aop_id;
+        aopo:has_key_event ?ke.
+    ?ke ncbitaxon:131567 ?taxon.
+    ?taxon a ncbitaxon:131567; dc:title ?speciesname
+    OPTIONAL {?ke mmo:0000000 ?method.}
+VALUES ?aop_id {"AOP 12" "AOP 57"}
+} ORDER BY ASC (?aop)
