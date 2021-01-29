@@ -1,0 +1,9 @@
+@prefix sd: <http://www.w3.org/ns/sparql-service-description#> .
+@prefix ent: <http://www.w3.org/ns/entailment/> .
+@prefix prof: <http://www.w3.org/ns/owl-profile/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+
+[] a sd:Service ;
+    sd:endpoint <https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/> ;
+    sd:supportedLanguage sd:SPARQL11Query ;
+    sd:resultFormat <http://www.w3.org/ns/formats/RDF_XML>, <http://www.w3.org/ns/formats/Turtle> .
