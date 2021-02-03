@@ -1,0 +1,28 @@
+URI,label,description
+<http://rdfs.org/ns/void#Dataset>,Dataset,-
+<http://edamontology.org/data_1027>,Gene ID (NCBI),An NCBI unique identifier of a gene.
+<http://edamontology.org/data_1025>,Gene identifier,"An identifier of a gene, such as a name/symbol or a unique identifier of a gene in a database."
+<http://edamontology.org/data_2298>,Gene ID (HGNC),Identifier for a gene approved by the HUGO Gene Nomenclature Committee.
+<http://purl.org/obo/owl/GO#0008150>,biological_process,"A biological process represents a specific objective that the organism is genetically programmed to achieve. Biological processes are often described by their outcome or ending state, e.g., the biological process of cell division results in the creation of two daughter cells (a divided cell) from a single parent cell. A biological process is accomplished by a particular set of molecular functions carried out by specific gene products (or macromolecular complexes), often in a highly regulated manner and in a particular temporal sequence. Note that, in addition to forming the root of the biological process ontology, this term is recommended for use for the annotation of gene products whose biological process is unknown. When this term is used for annotation, it indicates that no information was available about the biological process of the gene product annotated as of the date the annotation was made; the evidence code 'no data' (ND), is used to indicate this."
+<http://aopkb.org/aop_ontology#CellTypeContext>,Cell-term,-
+<http://aopkb.org/aop_ontology#OrganContext>,Organ-term,-
+<http://semanticscience.org/resource/CHEMINF_000407>,ChEBI identifier,Database identifier used by ChEBI.
+<http://semanticscience.org/resource/CHEMINF_000412>,ChEMBL identifier,"Identifier used by the ChEMBL database for compounds, assays, target, etc."
+<http://semanticscience.org/resource/CHEMINF_000405>,ChemSpider identifier,Database identifier used by ChemSpider.
+<http://semanticscience.org/resource/CHEMINF_000406>,DrugBank identifier,Database identifier used by DrugBank.
+<http://semanticscience.org/resource/CHEMINF_000408>,HMDB identifier,Database identifier used by Human Metabolome Database.
+<http://semanticscience.org/resource/CHEMINF_000409>,KEGG identifier,Database identifier used by KEGG.
+<http://semanticscience.org/resource/CHEMINF_000564>,LipidMaps identifier,"Identifier used by the LipidMaps database, http://www.lipidmaps.org/."
+<http://semanticscience.org/resource/CHEMINF_000140>,PubChem compound identifier (CID),-
+<http://semanticscience.org/resource/CHEMINF_000567>,Wikidata identifier,Database identifier used by Wikidata.
+<http://rdfs.org/ns/void#Linkset>,Linkset,-
+<http://aopkb.org/aop_ontology#KeyEvent>,Key Event,-
+<http://aopkb.org/aop_ontology#KeyEventRelationship>,Key Event Relationship,-
+<http://edamontology.org/data_1033>,Ensembl gene ID,Unique identifier for a gene (or other feature) from the Ensembl database.
+<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571>,Stressor,"An agent, stimulus, activity, or event that causes stress on an organism, speeds up a reaction rate, or keeps a reaction rate the same."
+<http://aopkb.org/aop_ontology#AdverseOutcomePathway>,Adverse Outcome Pathway,-
+<http://semanticscience.org/resource/CHEMINF_000000>,chemical entity,A chemical entity is any molecular entity or chemical substance.
+<http://semanticscience.org/resource/CHEMINF_000446>,CAS registry number,Identifier used by the Chemical Abstracts Service database.
+<http://edamontology.org/data_2291>,UniProt ID,An identifier of a polypeptide in the UniProt database.
+<http://purl.bioontology.org/ontology/NCBITAXON/131567>,cellular organisms,-
+<http://purl.obolibrary.org/obo/PATO_0001241>,physical object quality,A quality which inheres in a continuant
