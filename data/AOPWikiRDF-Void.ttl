@@ -10,22 +10,22 @@
 @prefix freq:  <http://purl.org/cld/freq/> .
 :AOPWikiRDF.ttl	a	void:Dataset ;
 	dc:description	"AOP-Wiki RDF data from the AOP-Wiki database" ;
-	pav:createdOn	"2021-01-29"^^xsd:date;
-	dcterms:modified	"2021-01-29"^^xsd:date ;
-	pav:createdWith	"aop-wiki-xml-2021-01-03", :Promapping ;
+	pav:createdOn	"2021-06-21"^^xsd:date;
+	dcterms:modified	"2021-06-21"^^xsd:date ;
+	pav:createdWith	"aop-wiki-xml-2021-04-01", :Promapping ;
 	pav:createdBy	<https://zenodo.org/badge/latestdoi/146466058> ;
 	foaf:homepage	<https://aopwiki.org> ;
 	dcterms:accuralPeriodicity  freq:quarterly ;
-	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2021-01-03> .
+	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2021-04-01> .
 
 :AOPWikiRDF-Genes.ttl	a	void:Dataset ;
 	dc:description	"AOP-Wiki RDF extension with gene mappings based on approved names and symbols" ;
-	pav:createdOn	"2021-01-29 13:15:42.816694" ;
-	pav:createdWith	"aop-wiki-xml-2021-01-03", :HGNCgenes ;
+	pav:createdOn	"2021-06-21 18:05:44.676077" ;
+	pav:createdWith	"aop-wiki-xml-2021-04-01", :HGNCgenes ;
 	pav:createdBy	<https://zenodo.org/badge/latestdoi/146466058> ;
 	dcterms:accuralPeriodicity  freq:quarterly ;
 	foaf:homepage	<https://aopwiki.org> ;
-	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2021-01-03>, <https://www.genenames.org/download/custom/> . 
+	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2021-04-01>, <https://www.genenames.org/download/custom/> . 
 
 :HGNCgenes.txt	a	void:Dataset, void:Linkset ;
 	dc:description	"HGNC approved symbols and names for genes" ;
