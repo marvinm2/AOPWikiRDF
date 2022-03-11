@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Martens
+    given-names: Marvin
+title: AOP-Wiki XML to RDF conversion
+version: v1.3
+date-released: 2020-11-26
+url: "https://github.com/marvinm2/AOPWikiRDF"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Martens
+      given-names: M.
+    - family-names: Evelo
+      given-names: Chris T.
+    - family-names: Willighagen
+      given-names: Egon L.
+  title: "Providing Adverse Outcome Pathways from the AOP-Wiki in a Semantic Web Format to Increase Usability and Accessibility of the Content"
+  year: 2022
+  month: 2
+  day: 25
+  journal: Applied In Vitro Toxicology
+  doi: 10.1089/aivt.2021.0010
+  url: https://doi.org/10.1089/aivt.2021.0010
