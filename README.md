@@ -104,9 +104,12 @@ DB.DBA.XML_SET_NS_DECL ('dcat', 'http://www.w3.org/ns/dcat#',2);
 log_enable(1);
 grant select on "DB.DBA.SPARQL_SINV_2" to "SPARQL";
 grant execute on "DB.DBA.SPARQL_SINV_IMP" to "SPARQL";
-ld_dir('/import', 'AOPWikiRDF.ttl', 'aopwiki.org');
-ld_dir('/import', 'AOPWikiRDF-Void.ttl', 'aopwiki.org');
-ld_dir('/import', 'AOPWikiRDF-Genes.ttl', 'aopwiki.org');
+```
+
+```
+ld_dir('.', 'AOPWikiRDF.ttl', 'aopwiki.org');
+ld_dir('.', 'AOPWikiRDF-Void.ttl', 'aopwiki.org');
+ld_dir('.', 'AOPWikiRDF-Genes.ttl', 'aopwiki.org');
 ```
 
 To finalize the loading of data, use:
