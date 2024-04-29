@@ -1,0 +1,26 @@
+name: Jupyterbook Action
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */24 * * *'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: repo
+        name: Repo Checkout
+        uses: actions/checkout@v2
+      - id: python
+        name: Python Setup & Packages Installation
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          cache: 'pip
+      - run: pip install -r requirements.txt
+
+      - id: jupyter
+        name: Jupyter Notebook Execution
+        run: jupyter execute AOP-Wiki_XML_to_RDF_conversion.ipynb
+        shell: bash
