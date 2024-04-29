@@ -44,7 +44,7 @@ sudo docker exec -i AOPWiki isql 1111
 In case the service is already active and contains older RDF, be sure to perform a global reset and delete the old RDF files from the load_list, using the following commands:
 ```
 RDF_GLOBAL_RESET();
-DELETE FROM load_list WHERE ll_graph = 'aopwiki.org';
+DELETE FROM load_list WHERE ll_graph = 'http://aopwiki.org/';
 ```
 The presence of files in the load_list can be viewed using the following command:
 ```
@@ -107,9 +107,10 @@ grant execute on "DB.DBA.SPARQL_SINV_IMP" to "SPARQL";
 ```
 
 ```
-ld_dir('.', 'AOPWikiRDF.ttl', 'aopwiki.org');
-ld_dir('.', 'AOPWikiRDF-Void.ttl', 'aopwiki.org');
-ld_dir('.', 'AOPWikiRDF-Genes.ttl', 'aopwiki.org');
+ld_dir('data', 'AOPWikiRDF.ttl', 'http://aopwiki.org/');
+ld_dir('data', 'AOPWikiRDF-Void.ttl', 'http://aopwiki.org/');
+ld_dir('data', 'AOPWikiRDF-Genes.ttl', 'http://aopwiki.org/');
+ld_dir('data', 'ServiceDescription.ttl', 'servicedescription');
 ```
 
 To finalize the loading of data, use:
