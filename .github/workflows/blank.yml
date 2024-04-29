@@ -33,3 +33,21 @@ jobs:
         name: Jupyter Notebook Execution
         run: jupyter execute AOP-Wiki_XML_to_RDF_conversion.ipynb
         shell: bash
+# Add new files in folder, commit along with other modified files, push
+      - id: commit
+        name: Commit files
+        run:
+          git config --local user.name actions-user
+
+          git config --local user.email "actions@github.com"
+
+          git add *
+
+          git commit -am "GH ACTION Headlines $(date)"
+
+          git push origin main
+
+        env:
+          REPO_KEY: ${{secrets.GITHUB_TOKEN}}
+
+          username: github-actions
