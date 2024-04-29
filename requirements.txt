@@ -1,0 +1,6 @@
+ipython==7.6.1
+pandas==0.24.2
+pyvis==0.1.7.0
+Requests==2.31.0
+SPARQLWrapper==1.8.2
+SPARQLWrapper==2.0.0
