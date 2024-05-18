@@ -150,8 +150,6 @@ aop.events:1884	edam:data_1025	hgnc:FYN,hgnc:YES1 .
 
 aop.events:1939	edam:data_1025	hgnc:ACE2,hgnc:AMH,hgnc:IFNA1 .
 
-aop.events:1982	edam:data_1025	hgnc:EGF,hgnc:EPHB2,hgnc:FOXC2,hgnc:ITK,hgnc:MAPK1,hgnc:MET,hgnc:MMRN1,hgnc:PIK3CA,hgnc:PPIB,hgnc:SLC22A3,hgnc:TWIST1,hgnc:VIM,hgnc:ZEB1 .
-
 aop.events:1046	edam:data_1025	hgnc:EREG,hgnc:ESR1,hgnc:ESR2 .
 
 aop.events:2092	edam:data_1025	hgnc:ASAH1,hgnc:EREG,hgnc:MFAP1,hgnc:NR5A1,hgnc:PGR,hgnc:SF1,hgnc:STAR,hgnc:TMEM37 .
