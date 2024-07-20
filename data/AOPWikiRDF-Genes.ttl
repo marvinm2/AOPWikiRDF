@@ -1762,7 +1762,7 @@ aop.relationships:3104	edam:data_1025	hgnc:FAS,hgnc:FASN,hgnc:MLXIPL,hgnc:SCD,hg
 
 aop.relationships:3113	edam:data_1025	hgnc:RAB40B,hgnc:RARA,hgnc:NPC1 .
 
-aop.relationships:3167	edam:data_1025	hgnc:CYP17A1,hgnc:GCNT2,hgnc:GUCY2C,hgnc:NR2F2,hgnc:STAR,hgnc:DBP,hgnc:GC,hgnc:HSD17B4 .
+aop.relationships:3167	edam:data_1025	hgnc:CYP17A1,hgnc:GCNT2,hgnc:NR2F2,hgnc:DBP,hgnc:GC,hgnc:GUCY2C,hgnc:HSD17B4,hgnc:STAR .
 
 aop.relationships:3168	edam:data_1025	hgnc:STAR,hgnc:CYP11A1,hgnc:CYP17A1,hgnc:DBP,hgnc:DPT,hgnc:FDX1,hgnc:GC,hgnc:GUCY2C,hgnc:HSD17B4,hgnc:RANGAP1,hgnc:SERPINB3,hgnc:SLC17A5,hgnc:TSPO .
 
@@ -1770,7 +1770,7 @@ aop.relationships:3169	edam:data_1025	hgnc:DBP,hgnc:GC,hgnc:HSD17B4,hgnc:TM2D1 .
 
 aop.relationships:3170	edam:data_1025	hgnc:DBP,hgnc:GC,hgnc:HSD17B4,hgnc:RANGAP1,hgnc:SLC17A5 .
 
-aop.relationships:3171	edam:data_1025	hgnc:STAR,hgnc:FDX1 .
+aop.relationships:3171	edam:data_1025	hgnc:FDX1 .
 
 aop.relationships:3172	edam:data_1025	hgnc:DBP,hgnc:GC,hgnc:HSD17B4 .
 
