@@ -21,7 +21,7 @@
 "test"	a	void:Dataset ;
 	this should fail rterly 
 	foaf:homepage	<https://aopwiki.org> ;
-	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2024-08-20>, <https://www.genenames.org/download/custom/> 
+	dcat:downloadURL	https://aopwiki.org/downloads/aop-wiki-xml-2024-08-20>, <https://www.genenames.org/download/custom/> 
 
 :HGNCgenes.txt	a	void:Dataset, void:Linkset ;
 	dc:description	"HGNC approved symbols and names for genes" ;
