@@ -51,22 +51,22 @@ jobs:
         name: Remove Downloaded Files
         run: rm -f aop-wiki-xml-*
 # Add new files in folder, commit along with other modified files, push
-      - id: check_changes
-        name: Check for Changes
-        run: |
-          git diff --exit-code
-          if [ $? -eq 0 ]; then
-            echo "No changes to commit."
-            echo "::set-output name=changes::false"
-          else
-            echo "Changes detected."
-            echo "::set-output name=changes::true"
-          fi
-        continue-on-error: true
+#      - id: check_changes
+#        name: Check for Changes
+#        run: |
+#          git diff --exit-code
+#          if [ $? -eq 0 ]; then
+#            echo "No changes to commit."
+#            echo "::set-output name=changes::false"
+#          else
+#            echo "Changes detected."
+#            echo "::set-output name=changes::true"
+#          fi
+#        continue-on-error: true
 
       - id: commit
         name: Commit files
-        if: steps.check_changes.outputs.changes == 'true'
+#        if: steps.check_changes.outputs.changes == 'true'
         run: |
           git config --local user.name actions-user
           git config --local user.email "actions@github.com"
