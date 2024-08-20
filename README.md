@@ -2,6 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/146466058.svg)](https://zenodo.org/badge/latestdoi/146466058)
 [![RDF generation](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/rdfgeneration.yml/badge.svg)](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/rdfgeneration.yml)
+[![Turtle File Quality Control](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/Turtle_File_Quality_Control.yml/badge.svg)](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/Turtle_File_Quality_Control.yml)
 
 This GitHub repository accompanies the publication linked to the AOP-Wiki RDF, and contains the conversion Jupyter notebook, guidelines to use the RDF in a local SPARQL endpoint, and an additional Jupyter notebook to extract statistics. 
 
