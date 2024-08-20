@@ -24,9 +24,9 @@ jobs:
           deposition_id=$(echo $response | jq -r '.id')
           bucket_url=$(echo $response | jq -r '.links.bucket')
           # echo "::set-output name=deposition_id::$deposition_id"
-          echo "{deposition_id}={$deposition_id}" >> $GITHUB_STATE
+          echo "{deposition_id}={deposition_id}" >> $GITHUB_STATE
           # echo "::set-output name=bucket_url::$bucket_url"
-          echo "{bucket_url}={$bucket_url}" >> $GITHUB_STATE
+          echo "{bucket_url}={bucket_url}" >> $GITHUB_STATE
 
       - name: Upload files to Zenodo
         run: |
