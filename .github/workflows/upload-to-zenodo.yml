@@ -23,8 +23,8 @@ jobs:
           echo "$response" | jq '.'
           deposition_id=$(echo $response | jq -r '.id')
           bucket_url=$(echo $response | jq -r '.links.bucket')
-          echo "deposition_id=$deposition_id" >> $GITHUB_ENV
-          echo "bucket_url=$bucket_url" >> $GITHUB_ENV
+          echo "{deposition_id}={$deposition_id}" >> $GITHUB_ENV
+          echo "{bucket_url}={$bucket_url}" >> $GITHUB_ENV
 
       - name: Debug Bucket URL
         run: echo "Bucket URL: ${{ env.bucket_url }}"
