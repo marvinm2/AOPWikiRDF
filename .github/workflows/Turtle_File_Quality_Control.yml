@@ -1,0 +1,49 @@
+name: Turtle File Quality Control
+
+on:
+  push:
+    paths:
+      - 'data/AOPWikiRDF.ttl'
+      - 'data/AOPWikiRDF-Genes.ttl'
+      - 'data/AOPWikiRDF-Void.ttl'
+  pull_request:
+    paths:
+      - 'data/AOPWikiRDF.ttl'
+      - 'data/AOPWikiRDF-Genes.ttl'
+      - 'data/AOPWikiRDF-Void.ttl'
+
+jobs:
+  quality-control:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python (if needed for the tools)
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      # Step 3: Install RDFLib
+      - name: Install RDFLib
+        run: |
+          pip install rdflib
+
+      # Step 4: Syntax Check for Turtle Files
+      - name: Syntax Check for Turtle Files
+        run: |
+          for file in data/AOPWikiRDF.ttl data/AOPWikiRDF-Genes.ttl data/AOPWikiRDF-Void.ttl; do
+            echo "Checking syntax of $file"
+            python -m rdflib.util -i turtle $file || exit 1
+          done
+
+      # Optional: Upload Report (only if the workflow failed)
+      - name: Upload QC Report
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: qc-report
+          path: data/qc-report.txt
