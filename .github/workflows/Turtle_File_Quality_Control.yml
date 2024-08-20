@@ -54,14 +54,14 @@ jobs:
       # Optional: Upload Report (only if the workflow failed)
       - name: Upload QC Report
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: qc-report
           path: data/qc-report.txt
 
       - name: Upload QC Status
         if: success()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: qc-status
           path: .
