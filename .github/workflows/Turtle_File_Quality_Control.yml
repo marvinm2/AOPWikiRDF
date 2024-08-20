@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'data/**'
+  workflow_dispatch:
 
 jobs:
   quality-control:
