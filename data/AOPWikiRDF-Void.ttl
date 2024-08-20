@@ -18,7 +18,7 @@
 	dcterms:accuralPeriodicity  freq:quarterly ;
 	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2024-08-20> .
 
-:AOPWikiRDF-Genes.ttl	a	void:Dataset ;
+"test"	a	void:Dataset ;
 	dc:description	"AOP-Wiki RDF extension with gene mappings based on approved names and symbols" ;
 	pav:createdOn	"2024-08-20 11:08:20.159641" ;
 	pav:createdWith	"aop-wiki-xml-2024-08-20", :HGNCgenes ;
