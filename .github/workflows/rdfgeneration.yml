@@ -53,11 +53,18 @@ jobs:
 # Add new files in folder, commit along with other modified files, push
       - id: check_changes
         name: Check for Changes
-        run: git diff --exit-code || echo "Changes detected."
+        run: |
+          git diff --exit-code
+          if [ $? -eq 0 ]; then
+            echo "No changes to commit."
+            echo "::set-output name=changes::false"
+          else
+            echo "::set-output name=changes::true"
+          fi
 
       - id: commit
         name: Commit files
-        if: success() && steps.check_changes.outputs.changed == 'true'
+        if: steps.check_changes.outputs.changes == 'true'
         run: |
           git config --local user.name actions-user
           git config --local user.email "actions@github.com"
