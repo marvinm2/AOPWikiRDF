@@ -32,13 +32,31 @@ jobs:
         run: |
           pip install rdflib
 
-      # Step 4: Syntax Check for Turtle Files
+      # Step 4: Create Validation Script
+      - name: Create Validation Script
+        run: |
+          echo "
+          import sys
+          from rdflib import Graph
+
+          def validate_turtle(file_path):
+              try:
+                  g = Graph()
+                  g.parse(file_path, format='turtle')
+                  print(f'File {file_path} is valid.')
+              except Exception as e:
+                  print(f'Error in {file_path}: {e}', file=sys.stderr)
+                  sys.exit(1)
+
+          if __name__ == '__main__':
+              for file in sys.argv[1:]:
+                  validate_turtle(file)
+          " > validate_ttl.py
+
+      # Step 5: Syntax Check for Turtle Files using the Script
       - name: Syntax Check for Turtle Files
         run: |
-          for file in data/AOPWikiRDF.ttl data/AOPWikiRDF-Genes.ttl data/AOPWikiRDF-Void.ttl; do
-            echo "Checking syntax of $file"
-            python -m rdflib.util -i turtle $file || exit 1
-          done
+          python validate_ttl.py data/AOPWikiRDF.ttl data/AOPWikiRDF-Genes.ttl data/AOPWikiRDF-Void.ttl
 
       # Optional: Upload Report (only if the workflow failed)
       - name: Upload QC Report
@@ -47,7 +65,6 @@ jobs:
         with:
           name: qc-report
           path: data/qc-report.txt
-
 
       - name: Upload QC Status
         if: success()
