@@ -3,14 +3,7 @@ name: Turtle File Quality Control
 on:
   push:
     paths:
-      - 'data/AOPWikiRDF.ttl'
-      - 'data/AOPWikiRDF-Genes.ttl'
-      - 'data/AOPWikiRDF-Void.ttl'
-  pull_request:
-    paths:
-      - 'data/AOPWikiRDF.ttl'
-      - 'data/AOPWikiRDF-Genes.ttl'
-      - 'data/AOPWikiRDF-Void.ttl'
+      - 'data/**'
 
 jobs:
   quality-control:
