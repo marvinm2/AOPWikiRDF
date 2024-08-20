@@ -29,12 +29,20 @@ jobs:
       - name: Debug Bucket URL
         run: echo "$bucket_url"
 
-      - name: Upload files to Zenodo
+      - name: Upload files to Zenodo with retry
         run: |
           for file in data/*.ttl; do
-            curl --progress-bar -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
-                  --upload-file $file "${{ env.bucket_url }}/$(basename $file)"
+            n=0
+            until [ $n -ge 5 ]
+            do
+              curl --progress-bar -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
+                   --upload-file $file "$bucket_url/$(basename $file)" && break
+              n=$((n+1))
+              echo "Upload failed. Retrying in 10 seconds..."
+              sleep 10
+            done
           done
+
 
       - name: Publish Updated Zenodo Record
         run: |
