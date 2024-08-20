@@ -47,3 +47,12 @@ jobs:
         with:
           name: qc-report
           path: data/qc-report.txt
+
+
+      - name: Upload QC Status
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: qc-status
+          path: .
+          retention-days: 7
