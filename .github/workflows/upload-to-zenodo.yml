@@ -27,7 +27,7 @@ jobs:
           echo "{bucket_url}={$bucket_url}" >> $GITHUB_ENV
 
       - name: Debug Bucket URL
-        run: echo "Bucket URL: $bucket_url"
+        run: echo "$bucket_url"
 
       - name: Upload files to Zenodo
         run: |
