@@ -23,20 +23,21 @@ jobs:
           echo "$response" | jq '.'
           deposition_id=$(echo $response | jq -r '.id')
           bucket_url=$(echo $response | jq -r '.links.bucket')
-          # echo "::set-output name=deposition_id::$deposition_id"
-          echo "{deposition_id}={deposition_id}" >> $GITHUB_STATE
-          # echo "::set-output name=bucket_url::$bucket_url"
-          echo "{bucket_url}={bucket_url}" >> $GITHUB_STATE
+          echo "deposition_id=$deposition_id" >> $GITHUB_ENV
+          echo "bucket_url=$bucket_url" >> $GITHUB_ENV
+
+      - name: Debug Bucket URL
+        run: echo "Bucket URL: ${{ env.bucket_url }}"
 
       - name: Upload files to Zenodo
         run: |
           for file in data/*.ttl; do
             curl --progress-bar -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
-                  --upload-file $file "${{ steps.get_deposition.outputs.bucket_url }}/$(basename $file)"
+                  --upload-file $file "${{ env.bucket_url }}/$(basename $file)"
           done
 
       - name: Publish Updated Zenodo Record
         run: |
           curl -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
                -H "Content-Type: application/json" \
-               -X POST "https://zenodo.org/api/deposit/depositions/${{ secrets.ZENODO_DEPOSITION_ID }}/actions/publish"
+               -X POST "https://zenodo.org/api/deposit/depositions/${{ env.deposition_id }}/actions/publish"
