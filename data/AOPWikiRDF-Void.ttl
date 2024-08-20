@@ -35,4 +35,4 @@
 <https://proconsortium.org/download/current/promapping.txt>	a	void:Dataset, void:Linkset;
 	dc:description	"PRotein ontology mappings to protein database identifiers";
 	dcat:downloadURL	<https://proconsortium.org/download/current/promapping.txt>;
-	pav:importedOn	"Tue Aug 20 10:51:13 2024".
+	pav:importedOn	"Tue Aug 20 10:51:14 2024".
