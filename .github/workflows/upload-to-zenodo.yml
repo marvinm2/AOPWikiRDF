@@ -1,4 +1,4 @@
-name: Update Zenodo Record
+name: Update Zenodo Record with New Version
 
 on:
   workflow_dispatch:
@@ -14,38 +14,30 @@ jobs:
       - name: Install curl and jq
         run: sudo apt-get install -y curl jq
 
-      - name: Get Latest Deposition (Draft) from Zenodo
-        id: get_deposition
+      - name: Create a New Version of the Deposition
+        id: new_version
         run: |
-          # Retrieve the draft of the latest version of the deposition
-          response=$(curl -s -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
-                           "https://zenodo.org/api/deposit/depositions/${{ secrets.ZENODO_DEPOSITION_ID }}")
-          echo "$response" | jq '.'
-          deposition_id=$(echo $response | jq -r '.id')
-          bucket_url=$(echo $response | jq -r '.links.bucket')
-          echo "{deposition_id}={$deposition_id}" >> $GITHUB_ENV
-          echo "{bucket_url}={$bucket_url}" >> $GITHUB_ENV
+          response=$(curl -s -X POST -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
+                        "https://zenodo.org/api/deposit/depositions/${{ secrets.ZENODO_DEPOSITION_ID }}/actions/newversion")
+          new_draft_url=$(echo "$response" | jq -r '.links.latest_draft')
+          new_draft_response=$(curl -s -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" "$new_draft_url")
+          new_deposition_id=$(echo "$new_draft_response" | jq -r '.id')
+          new_bucket_url=$(echo "$new_draft_response" | jq -r '.links.bucket')
+          echo "new_deposition_id=$new_deposition_id" >> $GITHUB_ENV
+          echo "new_bucket_url=$new_bucket_url" >> $GITHUB_ENV
 
-      - name: Debug Bucket URL
-        run: echo "$bucket_url"
+      - name: Debug New Bucket URL
+        run: echo "$new_bucket_url"
 
-      - name: Upload files to Zenodo with retry
+      - name: Upload files to Zenodo
         run: |
           for file in data/*.ttl; do
-            n=0
-            until [ $n -ge 5 ]
-            do
-              curl --progress-bar -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
-                   --upload-file $file "$bucket_url/$(basename $file)" && break
-              n=$((n+1))
-              echo "Upload failed. Retrying in 10 seconds..."
-              sleep 10
-            done
+            curl --progress-bar -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
+                  --upload-file $file "$new_bucket_url/$(basename $file)"
           done
-
 
       - name: Publish Updated Zenodo Record
         run: |
           curl -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
                -H "Content-Type: application/json" \
-               -X POST "https://zenodo.org/api/deposit/depositions/${{ env.deposition_id }}/actions/publish"
+               -X POST "https://zenodo.org/api/deposit/depositions/$new_deposition_id/actions/publish"
