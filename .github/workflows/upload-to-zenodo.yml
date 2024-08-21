@@ -71,9 +71,12 @@ jobs:
 
       - name: Update Metadata for New Version
         run: |
+          version=$(date +'%Y-%m')  # Generate the version name in the format of year-month
+          current_date=$(date +%Y-%m-%d)
           metadata=$(jq -n --arg title "Adverse Outcome Pathway Wiki RDF" \
                            --arg doi "10.5281/zenodo.***" \
-                           --arg date "2023-10-31" \
+                           --arg version "$version" \
+                           --arg date "$current_date" \
                            --arg description "<p>This dataset is the RDF generated from the AOP-Wiki data release (<a href=\"https://aopwiki.org/downloads\">aopwiki.org/downloads</a>). It was generated using a Jupyter notebook that is available on GitHub (<a href=\"https://github.com/marvinm2/AOPWikiRDF\">github.com/marvinm2/AOPWikiRDF</a>), and the process and additional description of the RDF have been published (<a href=\"https://doi.org/10.1089/aivt.2021.0010\">doi.org/10.1089/aivt.2021.0010</a>).</p>" \
                            --argjson creators '[{"name": "Martens, Marvin", "affiliation": "Department of Bioinformatics (BiGCaT), NUTRIM, Maastricht University, Maastricht, the Netherlands", "orcid": "0000-0003-2230-0840"}, {"name": "Willighagen, Egon", "affiliation": "Department of Bioinformatics (BiGCaT), NUTRIM, Maastricht University, Maastricht, the Netherlands", "orcid": "0000-0001-7542-0286"}, {"name": "Evelo, Chris", "affiliation": "Department of Bioinformatics (BiGCaT), NUTRIM, Maastricht University, Maastricht, the Netherlands", "orcid": "0000-0002-5301-3142"}]' \
                            --argjson related_identifiers '[{"identifier": "10.1089/aivt.2021.0010", "relation": "references", "resource_type": "publication-article", "scheme": "doi"}]' \
@@ -84,6 +87,7 @@ jobs:
                            '{
                               metadata: {
                                 title: $title,
+                                version: $version,
                                 doi: $doi,
                                 publication_date: $date,
                                 description: $description,
