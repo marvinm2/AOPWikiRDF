@@ -36,6 +36,86 @@ jobs:
                   --upload-file $file "$new_bucket_url/$(basename $file)"
           done
 
+      - name: Update Metadata for New Version
+        run: |
+          metadata='{
+            "metadata": {
+              "title": "Adverse Outcome Pathway Wiki RDF",
+              "doi": "10.5281/zenodo.***",  # Replace with your actual DOI
+              "publication_date": "2023-10-31",  # Use the existing publication date
+              "description": "<p>This dataset is the RDF generated from the AOP-Wiki data release&nbsp;(<a href=\"https://aopwiki.org/downloads\">aopwiki.org/downloads</a>). It was generated using a Jupyter notebook that is available on GitHub (<a href=\"https://github.com/marvinm2/AOPWikiRDF\">github.com/marvinm2/AOPWikiRDF</a>), and the process and additional description of the RDF have been published (<a href=\"https://doi.org/10.1089/aivt.2021.0010\">doi.org/10.1089/aivt.2021.0010</a>).&nbsp;</p>",
+              "access_right": "open",
+              "creators": [
+                {
+                  "name": "Martens, Marvin",
+                  "affiliation": "Department of Bioinformatics (BiGCaT), NUTRIM, Maastricht University, Maastricht, the Netherlands",
+                  "orcid": "0000-0003-2230-0840"
+                },
+                {
+                  "name": "Willighagen, Egon",
+                  "affiliation": "Department of Bioinformatics (BiGCaT), NUTRIM, Maastricht University, Maastricht, the Netherlands",
+                  "orcid": "0000-0001-7542-0286"
+                },
+                {
+                  "name": "Evelo, Chris",
+                  "affiliation": "Department of Bioinformatics (BiGCaT), NUTRIM, Maastricht University, Maastricht, the Netherlands",
+                  "orcid": "0000-0002-5301-3142"
+                }
+              ],
+              "keywords": [
+                "AOP-Wiki",
+                "Resource Description Framework",
+                "Adverse Outcome Pathways"
+              ],
+              "related_identifiers": [
+                {
+                  "identifier": "10.1089/aivt.2021.0010",
+                  "relation": "references",
+                  "resource_type": "publication-article",
+                  "scheme": "doi"
+                }
+              ],
+              "references": [
+                "10.1089/aivt.2021.0010"
+              ],
+              "language": "eng",
+              "grants": [
+                {
+                  "id": "10.13039/501100000780::814572"
+                },
+                {
+                  "id": "10.13039/501100000780::681002"
+                },
+                {
+                  "id": "10.13039/501100000780::814425"
+                },
+                {
+                  "id": "10.13039/501100000780::731075"
+                },
+                {
+                  "id": "10.13039/501100003246::36952"
+                }
+              ],
+              "license": "cc-by-4.0",
+              "communities": [
+                {
+                  "identifier": "nsc"
+                },
+                {
+                  "identifier": "vhp4safety"
+                },
+                {
+                  "identifier": "nanosolveit"
+                }
+              ],
+              "notes": "Funded by the European Union's Horizon 2020 (EU 2020) research and innovation program under grant agreement no. 681002 (EU-ToxRisk), grant agreement no. 814572 (NanoSolveIT), grant agreement no. 814425 (RiskGONE), EINFRA-22-2016 program under grant agreement no. 731075 (OpenRiskNet), and VHP4Safety, which is funded by the Netherlands Research Council (NWO) 'Netherlands Research Agenda: Research on Routes by Consortia' (NWA-ORC 1292.19.272)",
+              "upload_type": "dataset"
+            }
+          }'
+          curl -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
+               -H "Content-Type: application/json" \
+               -X PUT --data "$metadata" "https://zenodo.org/api/deposit/depositions/$new_deposition_id"
+
       - name: Publish Updated Zenodo Record
         run: |
           curl -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
