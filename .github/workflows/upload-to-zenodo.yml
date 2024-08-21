@@ -74,7 +74,6 @@ jobs:
           version=$(date +'%Y-%m')  # Generate the version name in the format of year-month
           current_date=$(date +%Y-%m-%d)
           metadata=$(jq -n --arg title "Adverse Outcome Pathway Wiki RDF" \
-#                           --arg doi "10.5281/zenodo.***" \
                            --arg version "$version" \
                            --arg date "$current_date" \
                            --arg description "<p>This dataset is the RDF generated from the AOP-Wiki data release (<a href=\"https://aopwiki.org/downloads\">aopwiki.org/downloads</a>). It was generated using a Jupyter notebook that is available on GitHub (<a href=\"https://github.com/marvinm2/AOPWikiRDF\">github.com/marvinm2/AOPWikiRDF</a>), and the process and additional description of the RDF have been published (<a href=\"https://doi.org/10.1089/aivt.2021.0010\">doi.org/10.1089/aivt.2021.0010</a>).</p>" \
@@ -88,7 +87,6 @@ jobs:
                               metadata: {
                                 title: $title,
                                 version: $version,
-#                                doi: $doi,
                                 publication_date: $date,
                                 description: $description,
                                 access_right: "open",
