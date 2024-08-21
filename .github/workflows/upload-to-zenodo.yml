@@ -133,12 +133,12 @@ jobs:
           "identifier": "nanosolveit"
           }
           ],
-    "notes": "Funded by the European Union's Horizon 2020 (EU 2020) research and innovation program under grant agreement no. 681002 (EU-ToxRisk), grant agreement no. 814572 (NanoSolveIT), grant agreement no. 814425 (RiskGONE), EINFRA-22-2016 program under grant agreement no. 731075 (OpenRiskNet), and VHP4Safety, which is funded by the Netherlands Research Council (NWO) 'Netherlands Research Agenda: Research on Routes by Consortia' (NWA-ORC 1292.19.272)",
-    "upload_type": "dataset"
-  }
-}
-EOF
-)
+          "notes": "Funded by the European Union's Horizon 2020 (EU 2020) research and innovation program under grant agreement no. 681002 (EU-ToxRisk), grant agreement no. 814572 (NanoSolveIT), grant agreement no. 814425 (RiskGONE), EINFRA-22-2016 program under grant agreement no. 731075 (OpenRiskNet), and VHP4Safety, which is funded by the Netherlands Research Council (NWO) 'Netherlands Research Agenda: Research on Routes by Consortia' (NWA-ORC 1292.19.272)",
+          "upload_type": "dataset"
+          }
+          }
+          EOF
+          )
           curl -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
                -H "Content-Type: application/json" \
                -X PUT --data "$metadata" "https://zenodo.org/api/deposit/depositions/$new_deposition_id"
