@@ -1390,6 +1390,8 @@ aop.relationships:2031	edam:data_1025	hgnc:CCK,hgnc:CCL28,hgnc:PSMB6,hgnc:TBXT,h
 
 aop.relationships:2032	edam:data_1025	hgnc:CCK,hgnc:AOX1,hgnc:NR3C2,hgnc:RHCE,hgnc:RHD,hgnc:SLC39A7 .
 
+aop.relationships:2056	edam:data_1025	hgnc:ACE2,hgnc:PSMD1,hgnc:PSMD2,hgnc:PTGFR,hgnc:RPS2,hgnc:SDHA .
+
 aop.relationships:2303	edam:data_1025	hgnc:AHSA1,hgnc:AIMP2,hgnc:EPHB2,hgnc:MAPK1,hgnc:MAPK14,hgnc:NFKB1,hgnc:TBXT,hgnc:TICAM1,hgnc:TIRAP .
 
 aop.relationships:2496	edam:data_1025	hgnc:ATP6AP1,hgnc:ATP6AP2,hgnc:DDX58,hgnc:IFIH1,hgnc:NECTIN1,hgnc:IFNA1,hgnc:CGAS,hgnc:CXCL10,hgnc:G3BP1,hgnc:IKBKG,hgnc:IRF3,hgnc:ISG15,hgnc:JAK1,hgnc:KHDRBS1,hgnc:KPNA2,hgnc:MAVS,hgnc:NUP62,hgnc:RSAD2,hgnc:SH2D3A,hgnc:SH2D3C,hgnc:SQSTM1,hgnc:STAT1,hgnc:STAT2,hgnc:TBK1,hgnc:TMEM173,hgnc:TNF,hgnc:TOMM70,hgnc:USP18,hgnc:XK .
