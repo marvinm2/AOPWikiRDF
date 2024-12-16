@@ -5,6 +5,10 @@ on:
     paths:
       - 'data/**'
   workflow_dispatch:
+  workflow_run:
+    workflows: [RDF Generation]
+    types:
+      - completed
 
 jobs:
   quality-control:
