@@ -20,7 +20,7 @@
 
 :AOPWikiRDF-Genes.ttl	a	void:Dataset ;
 	dc:description	"AOP-Wiki RDF extension with gene mappings based on approved names and symbols" ;
-	pav:createdOn	"2024-12-16 10:09:57.199391" ;
+	pav:createdOn	"2024-12-16 11:07:02.177842" ;
 	pav:createdWith	"aop-wiki-xml-2024-12-16", :HGNCgenes ;
 	pav:createdBy	<https://zenodo.org/badge/latestdoi/146466058> ;
 	dcterms:accuralPeriodicity  freq:quarterly ;
@@ -30,9 +30,9 @@
 :HGNCgenes.txt	a	void:Dataset, void:Linkset ;
 	dc:description	"HGNC approved symbols and names for genes" ;
 	dcat:downloadURL	<https://www.genenames.org/download/custom/> ;
-	pav:importedOn	"Mon Dec 16 09:42:31 2024" .
+	pav:importedOn	"Mon Dec 16 10:46:12 2024" .
 
 <https://proconsortium.org/download/current/promapping.txt>	a	void:Dataset, void:Linkset;
 	dc:description	"PRotein ontology mappings to protein database identifiers";
 	dcat:downloadURL	<https://proconsortium.org/download/current/promapping.txt>;
-	pav:importedOn	"Mon Dec 16 09:47:33 2024".
+	pav:importedOn	"Mon Dec 16 10:49:49 2024".
