@@ -46,7 +46,7 @@ aop.events:79	edam:data_1025	hgnc:COX8A,hgnc:CRYGEP,hgnc:KIAA1549L,hgnc:PRRC2A .
 
 aop.events:228	edam:data_1025	hgnc:INS .
 
-aop.events:459	edam:data_1025	hgnc:FXN .
+aop.events:459	edam:data_1025	hgnc:FXN,hgnc:INS .
 
 aop.events:344	edam:data_1025	hgnc:MMRN1 .
 
@@ -346,6 +346,8 @@ aop.events:721	edam:data_1025	hgnc:ADCY10 .
 
 aop.events:1214	edam:data_1025	hgnc:ABCC2,hgnc:CXADR,hgnc:CXADRP1,hgnc:CYP2B6,hgnc:CYP2B7P,hgnc:CYP3A4,hgnc:GCNT2,hgnc:GSTA1,hgnc:GSTA2,hgnc:KLHL1,hgnc:NR1I2,hgnc:NR1I3,hgnc:RXRA,hgnc:SLC1A6,hgnc:SPG7,hgnc:SYCE1L,hgnc:UGT1A1 .
 
+aop.events:1614	edam:data_1025	hgnc:AKR1B1,hgnc:AR,hgnc:SRC .
+
 aop.events:814	edam:data_1025	hgnc:ALB,hgnc:CLU,hgnc:DMRT1,hgnc:NAGLU,hgnc:NBAS,hgnc:PSMD3,hgnc:RPS3,hgnc:SLC11A2 .
 
 aop.events:844	edam:data_1025	hgnc:UROD .
@@ -485,8 +487,6 @@ aop.events:1604	edam:data_1025	hgnc:EREG .
 aop.events:1825	edam:data_1025	hgnc:AIM2,hgnc:DDX58,hgnc:MMRN1,hgnc:PARP1,hgnc:PPIB,hgnc:TBXT,hgnc:TLR3,hgnc:TLR4,hgnc:TMEM173,hgnc:TNFRSF1A,hgnc:TNFRSF10A,hgnc:TNFRSF10B,hgnc:TNFSF10 .
 
 aop.events:1613	edam:data_1025	hgnc:HSD17B6,hgnc:OCA2,hgnc:SLC35A2,hgnc:TBXT .
-
-aop.events:1614	edam:data_1025	hgnc:AKR1B1,hgnc:AR,hgnc:SRC .
 
 aop.events:1616	edam:data_1025	hgnc:AOX1 .
 
@@ -715,6 +715,8 @@ aop.events:2255	edam:data_1025	hgnc:IL15,hgnc:PPIB,hgnc:TBXT .
 aop.events:2256	edam:data_1025	hgnc:PPIB,hgnc:TBXT,hgnc:TGM2 .
 
 aop.events:2260	edam:data_1025	hgnc:GCNT2,hgnc:PPIB,hgnc:TBXT .
+
+aop.events:2275	edam:data_1025	hgnc:GCNT2,hgnc:PPIB,hgnc:TBXT .
 
 aop.events:2214	edam:data_1025	hgnc:INSL3,hgnc:RXFP2 .
 
@@ -1825,6 +1827,8 @@ aop.relationships:3104	edam:data_1025	hgnc:FAS,hgnc:FASN,hgnc:MLXIPL,hgnc:SCD,hg
 aop.relationships:3113	edam:data_1025	hgnc:RAB40B,hgnc:RARA,hgnc:NPC1 .
 
 aop.relationships:3115	edam:data_1025	hgnc:CAT,hgnc:LPO,hgnc:ROS1,hgnc:ELF4,hgnc:ESR1,hgnc:MEFV .
+
+aop.relationships:3342	edam:data_1025	hgnc:PPIB,hgnc:TBXT,hgnc:TGM2 .
 
 aop.relationships:3167	edam:data_1025	hgnc:CYP17A1,hgnc:GCNT2,hgnc:NR2F2,hgnc:DBP,hgnc:GC,hgnc:GUCY2C,hgnc:HSD17B4,hgnc:STAR .
 
