@@ -1938,7 +1938,9 @@ aop.relationships:3389	edam:data_1025	hgnc:LDLR,hgnc:PCSK9,hgnc:SREBF2 .
 
 aop.relationships:3436	edam:data_1025	hgnc:BCHE,hgnc:CST12P,hgnc:CYP19A1,hgnc:DLAT,hgnc:ENOPH1,hgnc:SNORA62,hgnc:SNORA73A .
 
-aop.relationships:3467	edam:data_1025	hgnc:BCL2,hgnc:DIAPH2,hgnc:FMR1,hgnc:POF1B,hgnc:PAH .
+aop.relationships:3466	edam:data_1025	hgnc:AHR,hgnc:AIP,hgnc:ARNT,hgnc:AURKAIP1,hgnc:BCL2,hgnc:CYP1A1,hgnc:CYP1B1,hgnc:PTGES3,hgnc:TMED10 .
+
+aop.relationships:3467	edam:data_1025	hgnc:BCL2,hgnc:BAX,hgnc:DIAPH2,hgnc:DNAAF3,hgnc:DNAH5,hgnc:DNAI1,hgnc:FMR1,hgnc:PCBD1,hgnc:POF1B,hgnc:PAH .
 
 aop.relationships:3483	edam:data_1025	hgnc:DIAPH2,hgnc:FMR1,hgnc:PAH,hgnc:POF1B,hgnc:TBXT .
 
