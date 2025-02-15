@@ -1932,7 +1932,7 @@ aop.relationships:3378	edam:data_1025	hgnc:AKR1B1,hgnc:AR,hgnc:TG .
 
 aop.relationships:3379	edam:data_1025	hgnc:AKR1B1,hgnc:AR,hgnc:GCNT2 .
 
-aop.relationships:3388	edam:data_1025	hgnc:GCNT2,hgnc:INSIG1,hgnc:LDLR,hgnc:MBTPS1,hgnc:MBTPS2,hgnc:PCSK9,hgnc:SCAP,hgnc:SREBF2 .
+aop.relationships:3388	edam:data_1025	hgnc:GCNT2,hgnc:INSIG1,hgnc:MBTPS1,hgnc:MBTPS2,hgnc:PCSK9,hgnc:SCAP,hgnc:SREBF2 .
 
 aop.relationships:3389	edam:data_1025	hgnc:LDLR,hgnc:PCSK9,hgnc:SREBF2 .
 
