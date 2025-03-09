@@ -19,16 +19,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Python (if needed for the tools)
+      # Step 2: Set up Python
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
       # Step 3: Install RDFLib
       - name: Install RDFLib
-        run: |
-          pip install rdflib
+        run: pip install rdflib
 
       # Step 4: Create Validation Script
       - name: Create Validation Script
@@ -42,32 +41,30 @@ jobs:
                   g = Graph()
                   g.parse(file_path, format='turtle')
                   print(f'File {file_path} is valid.')
+                  return True
               except Exception as e:
                   print(f'Error in {file_path}: {e}', file=sys.stderr)
-                  sys.exit(1)
+                  return False
 
           if __name__ == '__main__':
-              for file in sys.argv[1:]:
-                  validate_turtle(file)
+              files = sys.argv[1:]
+              all_valid = all(validate_turtle(file) for file in files)
+
+              with open('qc-status.txt', 'w') as f:
+                  f.write('valid' if all_valid else 'not valid')
+
+              if not all_valid:
+                  sys.exit(1)
           " > validate_ttl.py
 
-      # Step 5: Syntax Check for Turtle Files using the Script
-      - name: Syntax Check for Turtle Files
-        run: |
-          python validate_ttl.py data/AOPWikiRDF.ttl data/AOPWikiRDF-Genes.ttl data/AOPWikiRDF-Void.ttl
+      # Step 5: Validate Turtle Files and Write QC Status
+      - name: Run Turtle Validation
+        run: python validate_ttl.py data/AOPWikiRDF.ttl data/AOPWikiRDF-Genes.ttl data/AOPWikiRDF-Void.ttl
 
-      # Optional: Upload Report (only if the workflow failed)
-      - name: Upload QC Report
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: qc-report
-          path: data/qc-report.txt
-
+      # Step 6: Upload QC Status File
       - name: Upload QC Status
-        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: qc-status
-          path: .
+          path: qc-status.txt
           retention-days: 7
