@@ -1,6 +1,8 @@
-name: Update Zenodo Record with New Version
+name: Monthly Zenodo Upload
 
 on:
+  schedule:
+    - cron: '0 6 1 * *'  # Runs on the 1st of every month at 06:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -10,6 +12,20 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Check QC Status
+        id: check_qc
+        run: |
+          if [ ! -f data/qc-status.txt ]; then
+            echo "QC status file not found. Exiting."
+            exit 1
+          fi
+          QC_STATUS=$(cat data/qc-status.txt)
+          echo "QC status is: $QC_STATUS"
+          if [ "$QC_STATUS" != "valid" ]; then
+            echo "QC status is not 'valid'. Skipping Zenodo upload."
+            exit 1
+          fi
 
       - name: Install curl and jq
         run: sudo apt-get install -y curl jq
@@ -23,44 +39,30 @@ jobs:
             echo "Failed to discard the draft. The draft might be locked or in an invalid state."
             exit 1
           fi
+
       - name: Create a New Version of the Deposition
         id: new_version
         run: |
-          # Attempt to create a new version and capture the full response
           response=$(curl -s -X POST -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
                         "https://zenodo.org/api/deposit/depositions/${{ secrets.ZENODO_DEPOSITION_ID }}/actions/newversion")
-          
           echo "Response: $response"
-
-          # Extract the latest draft URL from the response
           new_draft_url=$(echo "$response" | jq -r '.links.latest_draft')
           if [[ "$new_draft_url" == "null" || -z "$new_draft_url" ]]; then
             echo "Failed to retrieve the latest draft URL. Response was: $response"
             exit 1
           fi
-
-          # Fetch the new draft deposition details
           new_draft_response=$(curl -s -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" "$new_draft_url")
-          
           echo "New Draft Response: $new_draft_response"
-
-          # Extract necessary information for the next steps
           new_deposition_id=$(echo "$new_draft_response" | jq -r '.id')
           new_bucket_url=$(echo "$new_draft_response" | jq -r '.links.bucket')
-          
           if [[ "$new_deposition_id" == "null" || -z "$new_deposition_id" ]]; then
             echo "Failed to retrieve the new deposition ID. New draft response was: $new_draft_response"
             exit 1
           fi
-          
           echo "New Deposition ID: $new_deposition_id"
           echo "New Bucket URL: $new_bucket_url"
-
           echo "new_deposition_id=$new_deposition_id" >> $GITHUB_ENV
           echo "new_bucket_url=$new_bucket_url" >> $GITHUB_ENV
-
-      - name: Debug New Bucket URL
-        run: echo "$new_bucket_url"
 
       - name: Upload files to Zenodo
         run: |
@@ -71,7 +73,7 @@ jobs:
 
       - name: Update Metadata for New Version
         run: |
-          version=$(date +'%Y-%m')  # Generate the version name in the format of year-month
+          version=$(date +'%Y-%m')
           current_date=$(date +%Y-%m-%d)
           metadata=$(jq -n --arg title "Adverse Outcome Pathway Wiki RDF" \
                            --arg version "$version" \
@@ -104,7 +106,6 @@ jobs:
           curl -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
                -H "Content-Type: application/json" \
                -X PUT --data "$metadata" "https://zenodo.org/api/deposit/depositions/$new_deposition_id"
-      
 
       - name: Publish Updated Zenodo Record
         run: |
