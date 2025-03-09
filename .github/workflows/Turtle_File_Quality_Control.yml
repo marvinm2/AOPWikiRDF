@@ -52,18 +52,18 @@ jobs:
               files = sys.argv[1:]
               all_valid = all(validate_turtle(file) for file in files)
 
-              with open('qc-status.txt', 'w') as f:
+              with open('data/qc-status.txt', 'w') as f:
                   f.write('valid' if all_valid else 'not valid')
 
               if not all_valid:
                   sys.exit(1)
           " > validate_ttl.py
 
-      # Step 5: Run Validation and Create QC Status File
+      # Step 5: Run Validation and Create QC Status File in /data
       - name: Run Turtle Validation
         run: python validate_ttl.py data/AOPWikiRDF.ttl data/AOPWikiRDF-Genes.ttl data/AOPWikiRDF-Void.ttl
 
-      # Step 6: Commit and Push QC Status File (if changed)
+      # Step 6: Commit and Push QC Status File to /data
       - name: Commit and Push QC Status
         run: |
           git config --global user.name "github-actions[bot]"
