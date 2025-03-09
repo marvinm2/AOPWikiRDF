@@ -18,6 +18,8 @@ jobs:
       # Step 1: Check out the repository
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # Step 2: Set up Python
       - name: Set up Python
@@ -57,14 +59,14 @@ jobs:
                   sys.exit(1)
           " > validate_ttl.py
 
-      # Step 5: Validate Turtle Files and Write QC Status
+      # Step 5: Run Validation and Create QC Status File
       - name: Run Turtle Validation
         run: python validate_ttl.py data/AOPWikiRDF.ttl data/AOPWikiRDF-Genes.ttl data/AOPWikiRDF-Void.ttl
 
-      # Step 6: Upload QC Status File
-      - name: Upload QC Status
-        uses: actions/upload-artifact@v4
-        with:
-          name: qc-status
-          path: qc-status.txt
-          retention-days: 7
+      # Step 6: Commit and Push QC Status File (if changed)
+      - name: Commit and Push QC Status
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add qc-status.txt
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update QC status" && git push)
