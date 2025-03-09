@@ -1,35 +1,30 @@
-# This is a basic workflow to help you get started with Actions
-
 name: RDF Generation
 
-# Controls when the workflow will run
 on:
-  # Allows daily run of this workflow
   schedule:
-    - cron: '0 8 * * 6'
-  # Allows you to run this workflow manually from the Actions tab
+    - cron: '0 8 * * 6'  # Runs every Saturday at 08:00 UTC
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Step 1: Checkout repository
       - id: repo
         name: Repo Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
+      # Step 2: Set up Python
       - id: python
         name: Python Setup
         uses: actions/setup-python@v2
         with:
           python-version: '3.9'
           
+      # Step 3: Cache pip dependencies
       - name: Cache pip dependencies
         uses: actions/cache@v4
         with:
@@ -38,42 +33,42 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
             
+      # Step 4: Install Python dependencies
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-
+      # Step 5: Run Jupyter Notebook for RDF conversion
       - id: jupyter
         name: Jupyter Notebook Execution
         run: jupyter execute AOP-Wiki_XML_to_RDF_conversion.ipynb
         shell: bash
 
+      # Step 6: Remove all "aop-wiki-xml-*" files in /data
       - id: cleanup
-        name: Remove Downloaded Files
-        run: rm -f aop-wiki-xml-*
-# Add new files in folder, commit along with other modified files, push
-#      - id: check_changes
-#        name: Check for Changes
-#        run: |
-#          git diff --exit-code
-#          if [ $? -eq 0 ]; then
-#            echo "No changes to commit."
-#            echo "::set-output name=changes::false"
-#          else
-#            echo "Changes detected."
-#            echo "::set-output name=changes::true"
-#          fi
-#        continue-on-error: true
-
-      - id: commit
-        name: Commit files
-#        if: steps.check_changes.outputs.changes == 'true'
+        name: Remove AOP-Wiki XML Files
         run: |
-          git config --local user.name actions-user
-          git config --local user.email "actions@github.com"
-          git add *
-          git commit -am "GH ACTION Headlines $(date)"
-          git push origin master
-        env:
-          REPO_KEY: ${{secrets.GITHUB_TOKEN}}
-          username: github-actions
+          rm -f data/aop-wiki-xml-*
+          git status
 
+      # Step 7: Check if there are changes
+      - id: check_changes
+        name: Check for Changes
+        run: |
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes to commit."
+            echo "CHANGES=false" >> $GITHUB_ENV
+          else
+            echo "Changes detected."
+            echo "CHANGES=true" >> $GITHUB_ENV
+          fi
+
+      # Step 8: Commit and Push Changes (only if there are changes)
+      - id: commit
+        name: Commit and Push Changes
+        if: env.CHANGES == 'true'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Cleanup: Removed old AOP-Wiki XML files ($(date -u))"
+          git push origin HEAD
