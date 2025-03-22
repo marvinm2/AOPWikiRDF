@@ -506,8 +506,6 @@ aop.events:1754	edam:data_1025	hgnc:PRCP,hgnc:WNT1,hgnc:WNT2,hgnc:WNT3,hgnc:WNT4
 
 aop.events:1755	edam:data_1025	hgnc:CTNNB1,hgnc:LRP6 .
 
-aop.events:1940	edam:data_1025	hgnc:NCF1,hgnc:NCF2,hgnc:ROS1 .
-
 aop.events:1656	edam:data_1025	hgnc:F2R,hgnc:PPIB,hgnc:PRB1,hgnc:SLC25A5,hgnc:TERC,hgnc:TH,hgnc:TMEFF2,hgnc:TXNRD2 .
 
 aop.events:1682	edam:data_1025	hgnc:SHF .
@@ -775,6 +773,8 @@ aop.events:2250	edam:data_1025	hgnc:BCHE,hgnc:CAVIN2,hgnc:CST12P,hgnc:CYP19A1,hg
 aop.events:2303	edam:data_1025	hgnc:CST12P,hgnc:DLAT,hgnc:OCA2,hgnc:PPIB,hgnc:SNORA62 .
 
 aop.events:2306	edam:data_1025	hgnc:CP,hgnc:CST12P,hgnc:DLAT,hgnc:SNORA62 .
+
+aop.events:1940	edam:data_1025	hgnc:NCF1,hgnc:NCF2,hgnc:ROS1 .
 
 aop.relationships:908	edam:data_1025	hgnc:ROS1,hgnc:AGO2,hgnc:ALDH2,hgnc:CD1A,hgnc:CD1B,hgnc:CD1C,hgnc:CELIAC2,hgnc:CTLA4,hgnc:IV,hgnc:NLRP1,hgnc:NOD2,hgnc:SCG2,hgnc:SIGLEC1,hgnc:SIRT1,hgnc:SLC6A3,hgnc:SOD2,hgnc:TH,hgnc:TXN,hgnc:XK .
 
@@ -1408,7 +1408,7 @@ aop.relationships:1914	edam:data_1025	hgnc:FUS,hgnc:PPIB,hgnc:PSMB6,hgnc:TBXT,hg
 
 aop.relationships:1918	edam:data_1025	hgnc:TBATA .
 
-aop.relationships:2526	edam:data_1025	hgnc:ROS1 .
+aop.relationships:3505	edam:data_1025	hgnc:ROS1 .
 
 aop.relationships:2069	edam:data_1025	hgnc:ROS1 .
 
