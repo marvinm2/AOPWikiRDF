@@ -690,7 +690,7 @@ aop.events:2090	edam:data_1025	hgnc:ASRGL1,hgnc:ATHS,hgnc:ATRNL1,hgnc:BTF3P11,hg
 
 aop.events:2097	edam:data_1025	hgnc:CCL2,hgnc:CRYGEP,hgnc:CXCL8,hgnc:IL6,hgnc:IRF6,hgnc:MRLN,hgnc:ROS1 .
 
-aop.events:2124	edam:data_1025	hgnc:AHR,hgnc:BCL2,hgnc:PAH .
+aop.events:2124	edam:data_1025	hgnc:BCL2 .
 
 aop.events:2146	edam:data_1025	hgnc:MAPK1,hgnc:MAPK3 .
 
@@ -1886,7 +1886,7 @@ aop.relationships:3341	edam:data_1025	hgnc:CD4,hgnc:TBXT,hgnc:IFNA1,hgnc:IRF6 .
 
 aop.relationships:3342	edam:data_1025	hgnc:PPIB,hgnc:TBXT,hgnc:TGM2 .
 
-aop.relationships:3333	edam:data_1025	hgnc:GCNT2,hgnc:IL2,hgnc:IL7,hgnc:IL15,hgnc:IL17C,hgnc:IL21,hgnc:IL22,hgnc:PPIB,hgnc:TBXT .
+aop.relationships:3333	edam:data_1025	hgnc:GCNT2,hgnc:IL2,hgnc:IL7,hgnc:IL15,hgnc:IL17C,hgnc:IL21,hgnc:IL22,hgnc:PPIB,hgnc:TBXT,hgnc:APC,hgnc:CD40LG .
 
 aop.relationships:3335	edam:data_1025	hgnc:CELIAC2,hgnc:CTLA4,hgnc:NOD2,hgnc:PPIB,hgnc:TBXT,hgnc:TGM2,hgnc:IL15 .
 
