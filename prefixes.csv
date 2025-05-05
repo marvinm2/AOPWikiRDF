@@ -16,7 +16,7 @@ pato,http://purl.obolibrary.org/obo/PATO_
 ncbitaxon,http://purl.bioontology.org/ontology/NCBITAXON/
 cl,http://purl.obolibrary.org/obo/CL_
 uberon,http://purl.obolibrary.org/obo/UBERON_
-go,http://purl.obolibrary.org/obo/GO_
+go,http://purl.org/obo/owl/GO#
 mi,http://purl.obolibrary.org/obo/MI_
 mp,http://purl.obolibrary.org/obo/MP_
 mesh,http://purl.org/commons/record/mesh/
@@ -26,7 +26,7 @@ nbo,http://purl.obolibrary.org/obo/NBO_
 vt,http://purl.obolibrary.org/obo/VT_
 pr,http://purl.obolibrary.org/obo/PR_
 chebio,http://purl.obolibrary.org/obo/CHEBI_
-fma,http://purl.org/sig/ont/fma/fma
+fma,http://purl.obolibrary.org/obo/FMA_
 cheminf,http://semanticscience.org/resource/CHEMINF_
 nci,http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#
 comptox,https://identifiers.org/comptox/
