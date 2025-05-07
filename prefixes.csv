@@ -47,3 +47,5 @@ ncbigene,https://identifiers.org/ncbigene/
 uniprot,https://identifiers.org/uniprot/
 rbo,http://purl.obolibrary.org/obo/RBO_
 ido,http://purl.obolibrary.org/obo/IDO_
+sh,http://www.w3.org/ns/shacl#
+xsd,http://www.w3.org/2001/XMLSchema#
