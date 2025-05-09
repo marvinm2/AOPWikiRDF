@@ -16,7 +16,7 @@ pato,http://purl.obolibrary.org/obo/PATO_
 ncbitaxon,http://purl.bioontology.org/ontology/NCBITAXON/
 cl,http://purl.obolibrary.org/obo/CL_
 uberon,http://purl.obolibrary.org/obo/UBERON_
-go,http://purl.org/obo/owl/GO#
+go,http://purl.obolibrary.org/obo/GO_
 mi,http://purl.obolibrary.org/obo/MI_
 mp,http://purl.obolibrary.org/obo/MP_
 mesh,http://purl.org/commons/record/mesh/
