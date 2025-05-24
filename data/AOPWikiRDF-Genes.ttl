@@ -776,8 +776,6 @@ aop.events:2303	edam:data_1025	hgnc:CST12P,hgnc:DLAT,hgnc:OCA2,hgnc:PPIB,hgnc:SN
 
 aop.events:2306	edam:data_1025	hgnc:CP,hgnc:CST12P,hgnc:DLAT,hgnc:SNORA62 .
 
-aop.events:1940	edam:data_1025	hgnc:NCF1,hgnc:NCF2,hgnc:ROS1 .
-
 aop.relationships:908	edam:data_1025	hgnc:ROS1,hgnc:AGO2,hgnc:ALDH2,hgnc:CD1A,hgnc:CD1B,hgnc:CD1C,hgnc:CELIAC2,hgnc:CTLA4,hgnc:IV,hgnc:NLRP1,hgnc:NOD2,hgnc:SCG2,hgnc:SIGLEC1,hgnc:SIRT1,hgnc:SLC6A3,hgnc:SOD2,hgnc:TH,hgnc:TXN,hgnc:XK .
 
 aop.relationships:933	edam:data_1025	hgnc:NDUFB6,hgnc:ROS1,hgnc:GCNT2,hgnc:IV,hgnc:IVNS1ABP,hgnc:MT-ND1,hgnc:NDUFS7 .
