@@ -120,8 +120,6 @@ aop.events:1632	edam:data_1025	hgnc:HDAC4,hgnc:PTEN,hgnc:ROS1 .
 
 aop.events:1634	edam:data_1025	hgnc:C5,hgnc:C6,hgnc:GC,hgnc:PSMA7,hgnc:ROS1 .
 
-aop.events:1753	edam:data_1025	hgnc:NCF1,hgnc:NCF2,hgnc:ROS1 .
-
 aop.events:1651	edam:data_1025	hgnc:ITK,hgnc:SLC22A3 .
 
 aop.events:1672	edam:data_1025	hgnc:ALB .
@@ -1415,8 +1413,6 @@ aop.relationships:1914	edam:data_1025	hgnc:FUS,hgnc:PPIB,hgnc:PSMB6,hgnc:TBXT,hg
 aop.relationships:1918	edam:data_1025	hgnc:TBATA .
 
 aop.relationships:3505	edam:data_1025	hgnc:ROS1 .
-
-aop.relationships:2069	edam:data_1025	hgnc:ROS1 .
 
 aop.relationships:2070	edam:data_1025	hgnc:CTNNB1,hgnc:LRP6,hgnc:TBXT .
 
