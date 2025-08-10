@@ -1,0 +1,18 @@
+# Temporary and generated files
+derby.log
+getgenesforaop
+mygraph.html
+TargetsinMIEs
+
+# Downloaded XML data (temporary)
+aop-wiki-xml*
+data/aop-wiki-xml*
+
+# Development files
+.ipynb_checkpoints/
+.vscode/
+data/.ipynb_checkpoints/
+data/test.ttl
+
+# Paper materials directory (active academic work)
+paper-materials/

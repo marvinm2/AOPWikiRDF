@@ -1,10 +1,43 @@
-# AOP-Wiki XML to RDF conversion
+# AOP-Wiki XML to RDF Conversion Tool
 
 [![DOI](https://zenodo.org/badge/146466058.svg)](https://zenodo.org/badge/latestdoi/146466058)
 [![RDF generation](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/rdfgeneration.yml/badge.svg)](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/rdfgeneration.yml)
 [![Turtle File Quality Control](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/Turtle_File_Quality_Control.yml/badge.svg)](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/Turtle_File_Quality_Control.yml)
 
-This GitHub repository accompanies the publication linked to the AOP-Wiki RDF, and contains the conversion Jupyter notebook, guidelines to use the RDF in a local SPARQL endpoint, and an additional Jupyter notebook to extract statistics. 
+A tool for converting AOP-Wiki XML data exports into RDF (Resource Description Framework) format. This repository contains the conversion notebook that transforms Adverse Outcome Pathway data into semantic web formats, along with automated workflows for data generation and quality control.
+
+## Features
+
+- **Automated XML-to-RDF conversion** from AOP-Wiki XML exports
+- **Gene mapping integration** using HGNC data and BridgeDb services
+- **Weekly automated updates** via GitHub Actions
+- **Quality control validation** of generated RDF files
+- **SPARQL endpoint setup** instructions for local data exploration
+
+## Generated Data
+
+The conversion process produces three main RDF files:
+
+- **AOPWikiRDF.ttl**: Main dataset containing AOP-Wiki data (AOPs, Key Events, Key Event Relationships, Chemical Stressors)
+- **AOPWikiRDF-Genes.ttl**: Gene mapping extensions with approved HGNC symbols and database identifiers
+- **AOPWikiRDF-Void.ttl**: VoID metadata describing the datasets
+
+## Quick Start
+
+### Prerequisites
+```bash
+pip install -r requirements.txt
+```
+
+### Run Conversion
+```bash
+jupyter execute AOP-Wiki_XML_to_RDF_conversion.ipynb
+```
+
+### Generate Statistics
+```bash
+jupyter execute AOP-Wiki_stats.ipynb
+``` 
 
 ## Set up a Virtuoso SPARQL endpoint with AOP-Wiki RDF (on linux):
 
