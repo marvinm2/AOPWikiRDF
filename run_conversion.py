@@ -38,8 +38,8 @@ def main():
             f"level=logging.{args.log_level}"
         )
     
-    # Execute the modified script
-    exec(compile(script_content, 'AOP-Wiki_XML_to_RDF_conversion.py', 'exec'))
+    # Execute the modified script with proper global namespace
+    exec(compile(script_content, 'AOP-Wiki_XML_to_RDF_conversion.py', 'exec'), globals())
 
 if __name__ == '__main__':
     main()
