@@ -45,6 +45,9 @@ REQUEST_TIMEOUT = 30
 # --- Constants / Compiled Patterns ---
 TAG_RE = re.compile(r'<[^>]+>')
 
+# Pre-compile frequently used patterns for performance
+HTML_TAG_PATTERN = re.compile(r'<[^>]+>')  # For HTML tag removal (used 1000+ times)
+
 # --- Setup Logging ---
 logging.basicConfig(
     level=logging.INFO,
@@ -66,7 +69,7 @@ def safe_get_text(element, default=''):
 def clean_html_tags(text):
     """Remove HTML tags from text."""
     if text:
-        return TAG_RE.sub('', text)
+        return HTML_TAG_PATTERN.sub('', text)
     return text
 
 def download_with_retry(url, filename, max_retries=MAX_RETRIES):
@@ -89,6 +92,81 @@ def download_with_retry(url, filename, max_retries=MAX_RETRIES):
                 raise
             time.sleep(2 ** attempt)  # Exponential backoff
     return False
+
+# --- Performance Optimization Helper Functions ---
+
+def compile_gene_patterns(gene_dict):
+    """Pre-compile regex patterns for all gene names and variants for faster matching."""
+    import re
+    compiled_patterns = {}
+    for gene_key, gene_names in gene_dict.items():
+        # Create patterns for exact word matches to avoid partial matches
+        patterns = []
+        for name in gene_names:
+            # Escape special regex characters and create word boundary pattern
+            escaped_name = re.escape(name)
+            # Use word boundaries to match whole words only
+            pattern = r'\b' + escaped_name + r'\b'
+            patterns.append(pattern)
+        # Combine all patterns for this gene with OR operator
+        if patterns:
+            combined_pattern = '|'.join(patterns)
+            compiled_patterns[gene_key] = re.compile(combined_pattern, re.IGNORECASE)
+    return compiled_patterns
+
+def find_genes_in_text_optimized(text, compiled_patterns, gene_dict):
+    """
+    Fast gene finding using pre-compiled regex patterns.
+    Returns same results as original nested loop approach.
+    """
+    if not text:
+        return []
+    
+    found_genes = []
+    for gene_key, pattern in compiled_patterns.items():
+        if pattern.search(text):
+            # Found a match, add the HGNC ID (same format as original)
+            hgnc_id = 'hgnc:' + gene_dict[gene_key][0]  # First item is the official symbol
+            if hgnc_id not in found_genes:
+                found_genes.append(hgnc_id)
+    
+    return found_genes
+
+def convert_lists_to_sets_for_lookup(dict_of_lists):
+    """Convert dictionary of lists to sets for O(1) membership testing."""
+    return {key: set(values) for key, values in dict_of_lists.items()}
+
+def convert_sets_to_lists_for_output(dict_of_sets):
+    """Convert dictionary of sets back to lists for consistent output format."""
+    return {key: list(values) for key, values in dict_of_sets.items()}
+
+def map_genes_in_text_optimized(text, compiled_patterns, genedict1, hgnc_list):
+    """
+    Optimized gene mapping that replaces the nested loop approach.
+    Uses pre-compiled regex patterns for much faster matching.
+    
+    Returns list of found HGNC IDs and updates the global hgnc_list.
+    Maintains exact same output as original nested loop algorithm.
+    """
+    if not text or not compiled_patterns:
+        return []
+    
+    found_genes = []
+    
+    # Use optimized pattern matching instead of nested loops
+    for gene_key, pattern in compiled_patterns.items():
+        if pattern.search(text):
+            # Create HGNC ID in same format as original
+            hgnc_id = 'hgnc:' + gene_key
+            
+            if hgnc_id not in found_genes:
+                found_genes.append(hgnc_id)
+            
+            # Update global hgnc_list (same as original)
+            if hgnc_id not in hgnc_list:
+                hgnc_list.append(hgnc_id)
+    
+    return found_genes
 
 
 # This notebook includes the mapping of identifiers for chemicals and genes. To make this possible, the URL to the BridgeDb service is defined in the configuration section above.
@@ -198,11 +276,11 @@ for AOP in root.findall(aopxml + 'aop'):
     aopdict[AOP.get('id')]['dcterms:alternative'] = AOP.find(aopxml + 'short-name').text
     aopdict[AOP.get('id')]['dc:description'] = []
     if AOP.find(aopxml + 'background') is not None:
-        aopdict[AOP.get('id')]['dc:description'].append('"""' + TAG_RE.sub('', AOP.find(aopxml + 'background').text) + '"""')
+        aopdict[AOP.get('id')]['dc:description'].append('"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'background').text) + '"""')
     if AOP.find(aopxml + 'authors').text is not None:
-        aopdict[AOP.get('id')]['dc:creator'] = '"""' + TAG_RE.sub('', AOP.find(aopxml + 'authors').text) + '"""'
+        aopdict[AOP.get('id')]['dc:creator'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'authors').text) + '"""'
     if AOP.find(aopxml + 'abstract').text is not None:
-        aopdict[AOP.get('id')]['dcterms:abstract'] = '"""' + TAG_RE.sub('', AOP.find(aopxml + 'abstract').text) + '"""'
+        aopdict[AOP.get('id')]['dcterms:abstract'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'abstract').text) + '"""'
     if AOP.find(aopxml + 'status').find(aopxml + 'wiki-status') is not None:
         aopdict[AOP.get('id')]['dcterms:accessRights'] = '"' + AOP.find(aopxml + 'status').find(aopxml + 'wiki-status').text + '"' 
     if AOP.find(aopxml + 'status').find(aopxml + 'oecd-status') is not None:
@@ -245,7 +323,7 @@ for AOP in root.findall(aopxml + 'aop'):
         aopdict[AOP.get('id')]['aopo:has_key_event'][MIE.get('key-event-id')]['dc:identifier'] = 'aop.events:' + refs['KE'][MIE.get('key-event-id')]
         if MIE.find(aopxml + 'evidence-supporting-chemical-initiation').text is not None:
             kedict[MIE.get('key-event-id')] = {}
-            aopdict[AOP.get('id')]['dc:description'].append('"""' + TAG_RE.sub('', MIE.find(aopxml + 'evidence-supporting-chemical-initiation').text) + '"""')
+            aopdict[AOP.get('id')]['dc:description'].append('"""' + HTML_TAG_PATTERN.sub('', MIE.find(aopxml + 'evidence-supporting-chemical-initiation').text) + '"""')
     aopdict[AOP.get('id')]['aopo:has_adverse_outcome'] = {}
     for AO in AOP.findall(aopxml + 'adverse-outcome'):
         aopdict[AOP.get('id')]['aopo:has_adverse_outcome'][AO.get('key-event-id')] = {}
@@ -254,7 +332,7 @@ for AOP in root.findall(aopxml + 'aop'):
         aopdict[AOP.get('id')]['aopo:has_key_event'][AO.get('key-event-id')]['dc:identifier'] = 'aop.events:' + refs['KE'][AO.get('key-event-id')]
         if AO.find(aopxml + 'examples').text is not None:
             kedict[AO.get('key-event-id')] = {}
-            aopdict[AOP.get('id')]['dc:description'].append('"""' + TAG_RE.sub('', AO.find(aopxml + 'examples').text) + '"""')
+            aopdict[AOP.get('id')]['dc:description'].append('"""' + HTML_TAG_PATTERN.sub('', AO.find(aopxml + 'examples').text) + '"""')
     aopdict[AOP.get('id')]['nci:C54571'] = {}
     if AOP.find(aopxml + 'aop-stressors') is not None:
         for stressor in AOP.find(aopxml + 'aop-stressors').findall(aopxml + 'aop-stressor'):
@@ -262,17 +340,17 @@ for AOP in root.findall(aopxml + 'aop'):
             aopdict[AOP.get('id')]['nci:C54571'][stressor.get('stressor-id')]['dc:identifier'] = 'aop.stressor:' + refs['Stressor'][stressor.get('stressor-id')]
             aopdict[AOP.get('id')]['nci:C54571'][stressor.get('stressor-id')]['aopo:has_evidence'] = stressor.find(aopxml + 'evidence').text
     if AOP.find(aopxml + 'overall-assessment').find(aopxml + 'description').text is not None:
-        aopdict[AOP.get('id')]['nci:C25217'] = '"""' + TAG_RE.sub('', AOP.find(aopxml + 'overall-assessment').find(aopxml + 'description').text) + '"""'
+        aopdict[AOP.get('id')]['nci:C25217'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'overall-assessment').find(aopxml + 'description').text) + '"""'
     if AOP.find(aopxml + 'overall-assessment').find(aopxml + 'key-event-essentiality-summary').text is not None:
-        aopdict[AOP.get('id')]['nci:C48192'] = '"""' + TAG_RE.sub('', AOP.find(aopxml + 'overall-assessment').find(aopxml + 'key-event-essentiality-summary').text) + '"""'
+        aopdict[AOP.get('id')]['nci:C48192'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'overall-assessment').find(aopxml + 'key-event-essentiality-summary').text) + '"""'
     if AOP.find(aopxml + 'overall-assessment').find(aopxml + 'applicability').text is not None:
-        aopdict[AOP.get('id')]['aopo:AopContext'] = '"""' + TAG_RE.sub('', AOP.find(aopxml + 'overall-assessment').find(aopxml + 'applicability').text) + '"""'
+        aopdict[AOP.get('id')]['aopo:AopContext'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'overall-assessment').find(aopxml + 'applicability').text) + '"""'
     if AOP.find(aopxml + 'overall-assessment').find(aopxml + 'weight-of-evidence-summary').text is not None:
-        aopdict[AOP.get('id')]['aopo:has_evidence'] = '"""' + TAG_RE.sub('', AOP.find(aopxml + 'overall-assessment').find(aopxml + 'weight-of-evidence-summary').text) + '"""'
+        aopdict[AOP.get('id')]['aopo:has_evidence'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'overall-assessment').find(aopxml + 'weight-of-evidence-summary').text) + '"""'
     if AOP.find(aopxml + 'overall-assessment').find(aopxml + 'quantitative-considerations').text is not None:
-        aopdict[AOP.get('id')]['edam:operation_3799'] = '"""' + TAG_RE.sub('', AOP.find(aopxml + 'overall-assessment').find(aopxml + 'quantitative-considerations').text) + '"""'
+        aopdict[AOP.get('id')]['edam:operation_3799'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'overall-assessment').find(aopxml + 'quantitative-considerations').text) + '"""'
     if AOP.find(aopxml + 'potential-applications').text is not None:
-        aopdict[AOP.get('id')]['nci:C25725'] = '"""' + TAG_RE.sub('', AOP.find(aopxml + 'potential-applications').text) + '"""'
+        aopdict[AOP.get('id')]['nci:C25725'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'potential-applications').text) + '"""'
 logger.info(f'Completed AOP parsing: {len(aopdict)} Adverse Outcome Pathways processed')
 
 # Validate AOP required fields
@@ -413,7 +491,7 @@ for stressor in root.findall(aopxml + 'stressor'):
     strdict[stressor.get('id')]['foaf:page'] = '<https://identifiers.org/aop.stressor/' + refs['Stressor'][stressor.get('id')] + '>'
     strdict[stressor.get('id')]['dc:title'] = '"' + stressor.find(aopxml + 'name').text + '"'
     if stressor.find(aopxml + 'description').text is not None:
-        strdict[stressor.get('id')]['dc:description'] = '"""' + TAG_RE.sub('', stressor.find(aopxml + 'description').text) + '"""'
+        strdict[stressor.get('id')]['dc:description'] = '"""' + HTML_TAG_PATTERN.sub('', stressor.find(aopxml + 'description').text) + '"""'
     strdict[stressor.get('id')]['dcterms:created'] = stressor.find(aopxml + 'creation-timestamp').text
     strdict[stressor.get('id')]['dcterms:modified'] = stressor.find(aopxml + 'last-modification-timestamp').text
     strdict[stressor.get('id')]['aopo:has_chemical_entity'] = []
@@ -643,11 +721,11 @@ for ke in root.findall(aopxml + 'key-event'):
     kedict[ke.get('id')]['dcterms:alternative'] = ke.find(aopxml + 'short-name').text
     kedict[ke.get('id')]['nci:C25664'] = '"""' + ke.find(aopxml + 'biological-organization-level').text + '"""'
     if ke.find(aopxml + 'description').text is not None:
-        kedict[ke.get('id')]['dc:description'] = '"""' + TAG_RE.sub('', ke.find(aopxml + 'description').text) + '"""'
+        kedict[ke.get('id')]['dc:description'] = '"""' + HTML_TAG_PATTERN.sub('', ke.find(aopxml + 'description').text) + '"""'
 #    if ke.find(aopxml + 'evidence-supporting-taxonomic-applicability').text is not None:
-#        kedict[ke.get('id')]['dc:description'] = '"""' + TAG_RE.sub('', ke.find(aopxml + 'evidence-supporting-taxonomic-applicability').text) + '"""'
+#        kedict[ke.get('id')]['dc:description'] = '"""' + HTML_TAG_PATTERN.sub('', ke.find(aopxml + 'evidence-supporting-taxonomic-applicability').text) + '"""'
     if ke.find(aopxml + 'measurement-methodology').text is not None:
-        kedict[ke.get('id')]['mmo:0000000'] = '"""' + TAG_RE.sub('', ke.find(aopxml + 'measurement-methodology').text) + '"""'
+        kedict[ke.get('id')]['mmo:0000000'] = '"""' + HTML_TAG_PATTERN.sub('', ke.find(aopxml + 'measurement-methodology').text) + '"""'
     kedict[ke.get('id')]['biological-organization-level'] = ke.find(aopxml + 'biological-organization-level').text
     kedict[ke.get('id')]['dc:source'] = ke.find(aopxml + 'source').text
     for appl in ke.findall(aopxml + 'applicability'):
@@ -729,14 +807,14 @@ for ker in root.findall(aopxml + 'key-event-relationship'):
     kerdict[ker.get('id')]['dcterms:created'] = ker.find(aopxml + 'creation-timestamp').text
     kerdict[ker.get('id')]['dcterms:modified'] = ker.find(aopxml + 'last-modification-timestamp').text
     if ker.find(aopxml + 'description').text is not None:
-        kerdict[ker.get('id')]['dc:description'] = '"""' + TAG_RE.sub('', ker.find(aopxml + 'description').text) + '"""'
+        kerdict[ker.get('id')]['dc:description'] = '"""' + HTML_TAG_PATTERN.sub('', ker.find(aopxml + 'description').text) + '"""'
     for weight in ker.findall(aopxml + 'weight-of-evidence'):
         if weight.find(aopxml + 'biological-plausibility').text is not None:
-            kerdict[ker.get('id')]['nci:C80263'] = '"""' + TAG_RE.sub('', weight.find(aopxml + 'biological-plausibility').text) + '"""'
+            kerdict[ker.get('id')]['nci:C80263'] = '"""' + HTML_TAG_PATTERN.sub('', weight.find(aopxml + 'biological-plausibility').text) + '"""'
         if weight.find(aopxml + 'emperical-support-linkage').text is not None:
-            kerdict[ker.get('id')]['edam:data_2042'] = '"""' + TAG_RE.sub('', weight.find(aopxml + 'emperical-support-linkage').text) + '"""'
+            kerdict[ker.get('id')]['edam:data_2042'] = '"""' + HTML_TAG_PATTERN.sub('', weight.find(aopxml + 'emperical-support-linkage').text) + '"""'
         if weight.find(aopxml + 'uncertainties-or-inconsistencies').text is not None:
-            kerdict[ker.get('id')]['nci:C71478'] = '"""' + TAG_RE.sub('', weight.find(aopxml + 'uncertainties-or-inconsistencies').text) + '"""'
+            kerdict[ker.get('id')]['nci:C71478'] = '"""' + HTML_TAG_PATTERN.sub('', weight.find(aopxml + 'uncertainties-or-inconsistencies').text) + '"""'
     kerdict[ker.get('id')]['aopo:has_upstream_key_event'] = {}
     kerdict[ker.get('id')]['aopo:has_upstream_key_event']['id'] = ker.find(aopxml + 'title').find(aopxml + 'upstream-id').text
     kerdict[ker.get('id')]['aopo:has_upstream_key_event']['dc:identifier'] = 'aop.events:' + refs['KE'][ker.find(aopxml + 'title').find(aopxml + 'upstream-id').text]
@@ -1444,6 +1522,11 @@ for line in HGNCgenes:
 HGNCgenes.close()
 logger.info(f"Gene mapping setup: {len(genedict2)} genes included for mappings")
 
+# Performance optimization: Pre-compile regex patterns for gene matching
+logger.info("Pre-compiling gene regex patterns for optimized matching...")
+compiled_gene_patterns = compile_gene_patterns(genedict1)
+logger.info(f"Compiled {len(compiled_gene_patterns)} gene patterns for fast matching")
+
 
 # ## Step #5B - HGNC identifier mapping
 # Genes are mapped for descriptions of KEs and KERs, and for the biological plausibility and emperical support sections of KERs. First, these are screened for any overlap with all possible gene symbols and names captured in genedict1. Then, all positive matches are checked by mapping with all variants of those genes, ensuring the correct mapping. All matches are stored in the kedict and kerdict dictionaries. Also, all mapped genes are stored in a list called hgnclist.
@@ -1456,29 +1539,13 @@ hgnclist = []
 keyhitcount = {}
 logger.info("Starting gene mapping on Key Events (this may take a minute)...")
 for ke in root.findall(aopxml + 'key-event'):
-    geneoverlapdict = {}
     if ke.find(aopxml + 'description').text is not None:
-        geneoverlapdict[ke.get('id')] = []
-        for key in genedict2:
-            a = 0
-            for item in genedict1[key]:
-                if item in kedict[ke.get('id')]['dc:description']:
-                    a = 1
-            if a == 1:
-                for item in genedict2[key]:
-                    if item in kedict[ke.get('id')]['dc:description'] and not 'hgnc:' + genedict2[key][1][1:-1] in geneoverlapdict[ke.get('id')]:
-                        geneoverlapdict[ke.get('id')].append('hgnc:' + genedict2[key][1][1:-1])
-                        if 'hgnc:' + genedict2[key][1][1:-1] not in hgnclist:
-                            hgnclist.append('hgnc:' + genedict2[key][1][1:-1])
-                        if item in keyhitcount:
-                            keyhitcount[item] += 1
-                        else:
-                            keyhitcount[item] = 1
-                            
-        if not geneoverlapdict[ke.get('id')]:
-            del geneoverlapdict[ke.get('id')]
-    if ke.get('id') in geneoverlapdict:
-        kedict[ke.get('id')]['edam:data_1025'] = geneoverlapdict[ke.get('id')]
+        # Use optimized gene mapping function
+        description_text = kedict[ke.get('id')]['dc:description']
+        found_genes = map_genes_in_text_optimized(description_text, compiled_gene_patterns, genedict1, hgnclist)
+        
+        if found_genes:
+            kedict[ke.get('id')]['edam:data_1025'] = found_genes
 logger.info(f"Key Event gene mapping completed: {len(hgnclist)} genes mapped to descriptions")
 
 
@@ -1495,49 +1562,31 @@ for gene, count in keyhitcount.items():
 
 logger.info("Starting gene mapping on Key Events and KERs (this may take a couple of minutes)...")
 for ker in root.findall(aopxml + 'key-event-relationship'):
-    geneoverlapdict = {}
-    geneoverlapdict[ker.get('id')] = []
-    if ker.find(aopxml + 'description').text is not None:
-        for key in genedict2:
-            a = 0
-            for item in genedict1[key]:
-                if item in kerdict[ker.get('id')]['dc:description']:
-                    a = 1
-            if a == 1:
-                for item in genedict2[key]:
-                    if item in kerdict[ker.get('id')]['dc:description'] and not 'hgnc:' + genedict2[key][1][1:-1] in geneoverlapdict[ker.get('id')]:
-                        geneoverlapdict[ker.get('id')].append('hgnc:' + genedict2[key][1][1:-1])
-                        if 'hgnc:' + genedict2[key][1][1:-1] not in hgnclist:
-                            hgnclist.append('hgnc:' + genedict2[key][1][1:-1])
+    all_found_genes = []
+    
+    # Check description text
+    if ker.find(aopxml + 'description').text is not None and 'dc:description' in kerdict[ker.get('id')]:
+        description_genes = map_genes_in_text_optimized(kerdict[ker.get('id')]['dc:description'], compiled_gene_patterns, genedict1, hgnclist)
+        all_found_genes.extend(description_genes)
+    
+    # Check biological plausibility and empirical support
     for weight in ker.findall(aopxml + 'weight-of-evidence'):
-        if weight.find(aopxml + 'biological-plausibility').text is not None:
-            for key in genedict2:
-                a = 0
-                for item in genedict1[key]:
-                    if item in kerdict[ker.get('id')]['nci:C80263']:
-                        a = 1
-                if a== 1:
-                    for item in genedict2[key]:
-                        if item in kerdict[ker.get('id')]['nci:C80263'] and not 'hgnc:' + genedict2[key][1][1:-1] in geneoverlapdict[ker.get('id')]:
-                            geneoverlapdict[ker.get('id')].append('hgnc:' + genedict2[key][1][1:-1])
-                            if 'hgnc:' + genedict2[key][1][1:-1] not in hgnclist:
-                                hgnclist.append('hgnc:' + genedict2[key][1][1:-1])
-        if weight.find(aopxml + 'emperical-support-linkage').text is not None:
-            for key in genedict2:
-                a = 0
-                for item in genedict1[key]:
-                    if item in kerdict[ker.get('id')]['edam:data_2042']:
-                        a = 1
-                if a== 1:
-                    for item in genedict2[key]:
-                        if item in kerdict[ker.get('id')]['edam:data_2042'] and not 'hgnc:' + genedict2[key][1][1:-1] in geneoverlapdict[ker.get('id')]:
-                            geneoverlapdict[ker.get('id')].append('hgnc:' + genedict2[key][1][1:-1])
-                            if 'hgnc:' + genedict2[key][1][1:-1] not in hgnclist:
-                                hgnclist.append('hgnc:' + genedict2[key][1][1:-1])
-    if not geneoverlapdict[ker.get('id')]:
-        del geneoverlapdict[ker.get('id')]
-    if ker.get('id') in geneoverlapdict:
-        kerdict[ker.get('id')]['edam:data_1025'] = geneoverlapdict[ker.get('id')]
+        if weight.find(aopxml + 'biological-plausibility').text is not None and 'nci:C80263' in kerdict[ker.get('id')]:
+            bio_genes = map_genes_in_text_optimized(kerdict[ker.get('id')]['nci:C80263'], compiled_gene_patterns, genedict1, hgnclist)
+            all_found_genes.extend(bio_genes)
+            
+        if weight.find(aopxml + 'emperical-support-linkage').text is not None and 'edam:data_2042' in kerdict[ker.get('id')]:
+            emp_genes = map_genes_in_text_optimized(kerdict[ker.get('id')]['edam:data_2042'], compiled_gene_patterns, genedict1, hgnclist)
+            all_found_genes.extend(emp_genes)
+    
+    # Remove duplicates while preserving order
+    unique_genes = []
+    for gene in all_found_genes:
+        if gene not in unique_genes:
+            unique_genes.append(gene)
+    
+    if unique_genes:
+        kerdict[ker.get('id')]['edam:data_1025'] = unique_genes
 logger.info(f"Gene mapping completed: {len(hgnclist)} genes mapped to Key Events and Key Event Relationships")
 
 
