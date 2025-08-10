@@ -847,15 +847,6 @@ logger.info(f'Key Event Relationships parsing completed: {len(kerdict)} relation
 
 
 
-# Open main RDF output file with proper error handling
-main_rdf_filename = filepath + 'AOPWikiRDF.ttl'
-logger.info(f"Writing main RDF file: {main_rdf_filename}")
-
-try:
-    main_rdf_file = open(main_rdf_filename, 'w', encoding='utf-8')
-    g = main_rdf_file  # Keep existing variable name for compatibility
-
-
 # --- RDF Writing Helper Functions ---
 def write_multivalue_triple(file_handle, predicate, values, quote=False):
     """Write multiple values for a single predicate."""
@@ -887,6 +878,10 @@ def safe_write_simple(file_handle, predicate, value, quote=True):
     if value is not None and str(value).strip():
         formatted_value = f'"{value}"' if quote else str(value)
         file_handle.write(f' ;\n\t{predicate}\t{formatted_value}')
+
+# Open main RDF output file with proper error handling
+main_rdf_filename = filepath + 'AOPWikiRDF.ttl'
+logger.info(f"Writing main RDF file: {main_rdf_filename}")
 
 # --- Validation Functions ---
 def validate_xml_structure(root, expected_namespace):
@@ -937,6 +932,14 @@ def validate_required_fields(entity_dict, entity_type, required_fields):
     
     return len(missing_fields) == 0
 
+
+# Start main RDF file writing with error handling
+try:
+    main_rdf_file = open(main_rdf_filename, 'w', encoding='utf-8')
+    g = main_rdf_file  # Keep existing variable name for compatibility
+except IOError as e:
+    logger.error(f"Failed to open main RDF output file: {e}")
+    raise SystemExit(1)
 
 # ### Writing prefixes
 # The first thing is writing the Prefixes of all ontologies and database identifiers, which go in the top of the document. That is followed by the writing of all entities of the AOP-Wiki described in Figure 1.
@@ -1454,14 +1457,8 @@ for row,index in df.iterrows():
 
 
 
-    main_rdf_file.close()
-    logger.info("AOP-Wiki RDF conversion completed successfully!")
-except IOError as e:
-    logger.error(f"Error writing main RDF file: {e}")
-    raise SystemExit(1)
-finally:
-    if 'main_rdf_file' in locals() and not main_rdf_file.closed:
-        main_rdf_file.close()
+main_rdf_file.close()
+logger.info("AOP-Wiki RDF conversion completed successfully!")
 
 # Final validation summary
 logger.info("=== Conversion Summary ===")
@@ -1650,7 +1647,9 @@ logger.info(f"Writing genes RDF file: {genes_rdf_filename}")
 try:
     genes_rdf_file = open(genes_rdf_filename, 'w', encoding='utf-8')
     g = genes_rdf_file  # Keep existing variable name for compatibility
-
+except IOError as e:
+    logger.error(f"Failed to open genes RDF output file: {e}")
+    raise SystemExit(1)
 
 # ### Writing prefixes
 
@@ -1710,14 +1709,8 @@ logger.info(f"{len(listofuniprot)} UniProt triples written")
 
 
 
-    genes_rdf_file.close()
-    logger.info("AOP-Wiki RDF Genes file created successfully")
-except IOError as e:
-    logger.error(f"Error writing genes RDF file: {e}")
-    raise SystemExit(1)
-finally:
-    if 'genes_rdf_file' in locals() and not genes_rdf_file.closed:
-        genes_rdf_file.close()
+genes_rdf_file.close()
+logger.info("AOP-Wiki RDF Genes file created successfully")
 
 
 # ## <b>Step #6: Creating the VoID file</b>
@@ -1759,14 +1752,11 @@ logger.info(f"Writing VoID RDF file: {void_rdf_filename}")
 try:
     void_rdf_file = open(void_rdf_filename, 'w', encoding='utf-8')
     g = void_rdf_file  # Keep existing variable name for compatibility
+except IOError as e:
+    logger.error(f"Failed to open VoID RDF output file: {e}")
+    raise SystemExit(1)
 g.write('@prefix : <https://aopwiki.rdf.bigcat-bioinformatics.org/> .\n@prefix dc: <http://purl.org/dc/elements/1.1/> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n@prefix void:  <http://rdfs.org/ns/void#> .\n@prefix pav:   <http://purl.org/pav/> .\n@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix dcat:  <http://www.w3.org/ns/dcat#> .\n@prefix foaf:  <http://xmlns.com/foaf/0.1/> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n@prefix freq:  <http://purl.org/cld/freq/> .')
 g.write('\n:AOPWikiRDF.ttl\ta\tvoid:Dataset ;\n\tdc:description\t"AOP-Wiki RDF data from the AOP-Wiki database" ;\n\tpav:createdOn\t"' + y + '"^^xsd:date;\n\tdcterms:modified\t"' + y +'"^^xsd:date ;\n\tpav:createdWith\t"' + str(aopwikixmlfilename) + '", :Promapping ;\n\tpav:createdBy\t<https://zenodo.org/badge/latestdoi/146466058> ;\n\tfoaf:homepage\t<https://aopwiki.org> ;\n\tdcterms:accuralPeriodicity  freq:quarterly ;\n\tdcat:downloadURL\t<https://aopwiki.org/downloads/' + str(aopwikixmlfilename) + '> .\n\n:AOPWikiRDF-Genes.ttl\ta\tvoid:Dataset ;\n\tdc:description\t"AOP-Wiki RDF extension with gene mappings based on approved names and symbols" ;\n\tpav:createdOn\t"' + str(x) + '" ;\n\tpav:createdWith\t"' + str(aopwikixmlfilename) + '", :HGNCgenes ;\n\tpav:createdBy\t<https://zenodo.org/badge/latestdoi/146466058> ;\n\tdcterms:accuralPeriodicity  freq:quarterly ;\n\tfoaf:homepage\t<https://aopwiki.org> ;\n\tdcat:downloadURL\t<https://aopwiki.org/downloads/' + str(aopwikixmlfilename) + '>, <https://www.genenames.org/download/custom/> . \n\n:HGNCgenes.txt\ta\tvoid:Dataset, void:Linkset ;\n\tdc:description\t"HGNC approved symbols and names for genes" ;\n\tdcat:downloadURL\t<https://www.genenames.org/download/custom/> ;\n\tpav:importedOn\t"'+HGNCmodificationTime+'" .\n\n<https://proconsortium.org/download/current/promapping.txt>\ta\tvoid:Dataset, void:Linkset;\n\tdc:description\t"PRotein ontology mappings to protein database identifiers";\n\tdcat:downloadURL\t<https://proconsortium.org/download/current/promapping.txt>;\n\tpav:importedOn\t"'+PromodificationTime+'".')
-    void_rdf_file.close()
-    logger.info("VoID file created successfully")
-except IOError as e:
-    logger.error(f"Error writing VoID RDF file: {e}")
-    raise SystemExit(1)
-finally:
-    if 'void_rdf_file' in locals() and not void_rdf_file.closed:
-        void_rdf_file.close()
+void_rdf_file.close()
+logger.info("VoID file created successfully")
 
