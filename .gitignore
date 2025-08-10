@@ -18,7 +18,7 @@ data/test.ttl
 paper-materials/
 
 # Temporary converted files
-AOP-Wiki_XML_to_RDF_conversion.py
+# AOP-Wiki_XML_to_RDF_conversion.py - now permanent part of testing infrastructure
 
 # Test directories and files
 data-test/
