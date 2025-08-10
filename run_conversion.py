@@ -7,6 +7,7 @@ This allows testing the Python version alongside the Jupyter notebook version.
 import sys
 import os
 import argparse
+import shutil
 
 def main():
     parser = argparse.ArgumentParser(description='Run AOP-Wiki XML to RDF conversion')
@@ -20,6 +21,18 @@ def main():
     
     # Ensure output directory exists
     os.makedirs(args.output_dir, exist_ok=True)
+    
+    # Copy required static files from production data directory if they don't exist
+    static_files = ['typelabels.txt', 'HGNCgenes.txt']
+    production_data_dir = 'data/'
+    
+    for static_file in static_files:
+        source_path = os.path.join(production_data_dir, static_file)
+        dest_path = os.path.join(args.output_dir, static_file)
+        
+        if os.path.exists(source_path) and not os.path.exists(dest_path):
+            print(f"Copying {static_file} to test directory...")
+            shutil.copy2(source_path, dest_path)
     
     # Read the conversion script
     with open('AOP-Wiki_XML_to_RDF_conversion.py', 'r') as f:
