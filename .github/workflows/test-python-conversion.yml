@@ -1,0 +1,270 @@
+name: Test Python Conversion Script
+
+on:
+  # Run automatically 1 hour after the weekly RDF generation
+  schedule:
+    - cron: '0 9 * * 6'  # Runs every Saturday at 09:00 UTC (1 hour after RDF generation)
+  
+  # Also allow manual triggering
+  workflow_dispatch:
+    inputs:
+      compare_with_production:
+        description: 'Compare with current production RDF files'
+        required: false
+        default: 'true'
+        type: choice
+        options:
+        - 'true'
+        - 'false'
+
+jobs:
+  test-conversion:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - id: repo
+        name: Repo Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Step 2: Set up Python
+      - id: python
+        name: Python Setup
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      # Step 3: Cache pip dependencies
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            
+      # Step 4: Install Python dependencies
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      # Step 5: Backup production files and create test directory
+      - name: Backup Production Files and Setup Test Directory
+        if: ${{ inputs.compare_with_production == 'true' || github.event_name == 'schedule' }}
+        run: |
+          # Create directories
+          mkdir -p data-test
+          mkdir -p data-production-backup
+          
+          # Backup current production files for comparison
+          if [ -d "data" ]; then
+            echo "Backing up current production RDF files..."
+            cp data/*.ttl data-production-backup/ 2>/dev/null || echo "No TTL files found in data/ directory"
+            ls -la data-production-backup/
+          else
+            echo "No production data directory found - this is expected on first run"
+          fi
+
+      # Step 6: Run Python conversion script (test version)
+      - id: python-conversion
+        name: Run Python Conversion Script
+        run: |
+          echo "Running Python conversion script..."
+          python run_conversion.py --output-dir data-test/ --log-level INFO
+          
+          echo "Generated files:"
+          ls -lh data-test/
+        shell: bash
+
+      # Step 7: Compare with production files
+      - id: compare-production
+        name: Compare with Production RDF Files
+        if: ${{ inputs.compare_with_production == 'true' || github.event_name == 'schedule' }}
+        run: |
+          echo "=== Production vs Python Script Comparison ==="
+          
+          # Compare main RDF files
+          files=("AOPWikiRDF.ttl" "AOPWikiRDF-Genes.ttl" "AOPWikiRDF-Void.ttl")
+          
+          for file in "${files[@]}"; do
+            echo "Comparing $file..."
+            
+            if [ -f "data-test/$file" ] && [ -f "data-production-backup/$file" ]; then
+              # Get file sizes
+              size_test=$(wc -c < "data-test/$file")
+              size_prod=$(wc -c < "data-production-backup/$file")
+              
+              echo "  Python script: $size_test bytes"
+              echo "  Production (Jupyter): $size_prod bytes"
+              
+              # Calculate size difference percentage
+              if [ $size_prod -gt 0 ]; then
+                size_diff=$(( (size_test - size_prod) * 100 / size_prod ))
+                echo "  Size difference: ${size_diff}%"
+              fi
+              
+              # Compare line counts
+              lines_test=$(wc -l < "data-test/$file")
+              lines_prod=$(wc -l < "data-production-backup/$file")
+              
+              echo "  Python script: $lines_test lines"
+              echo "  Production (Jupyter): $lines_prod lines"
+              
+              # Check if files are identical
+              if cmp -s "data-test/$file" "data-production-backup/$file"; then
+                echo "  ✅ Files are identical!"
+              else
+                echo "  ❌ Files differ"
+                
+                # Count different lines
+                diff_lines=$(diff "data-test/$file" "data-production-backup/$file" | wc -l)
+                echo "  Different lines: $diff_lines"
+                
+                # Show sample differences (excluding timestamps which are expected to differ)
+                echo "  Sample differences (excluding timestamps):"
+                diff "data-test/$file" "data-production-backup/$file" | grep -v "pav:createdOn\|dcterms:modified\|pav:importedOn" | head -10 || true
+                
+                # Check if only timestamps differ
+                if diff "data-test/$file" "data-production-backup/$file" | grep -v "pav:createdOn\|dcterms:modified\|pav:importedOn" > /dev/null; then
+                  echo "  ⚠️  Files differ in more than just timestamps"
+                else
+                  echo "  ✅ Files only differ in timestamps (expected)"
+                fi
+              fi
+            else
+              if [ ! -f "data-test/$file" ]; then
+                echo "  ❌ Missing from Python script output"
+              fi
+              if [ ! -f "data-production-backup/$file" ]; then
+                echo "  ⚠️  Missing from production backup (may be first run)"
+              fi
+            fi
+            echo ""
+          done
+        shell: bash
+
+      # Step 9: Validate test TTL files
+      - name: Validate Test TTL Files
+        run: |
+          echo "=== TTL Validation ==="
+          
+          # Install rdflib for validation
+          pip install rdflib
+          
+          # Create validation script
+          cat > validate_test_ttl.py << 'EOF'
+          import sys
+          from rdflib import Graph
+          import os
+
+          def validate_turtle(file_path):
+              try:
+                  g = Graph()
+                  g.parse(file_path, format='turtle')
+                  size = len(g)
+                  print(f'✅ {file_path}: Valid ({size:,} triples)')
+                  return True, size
+              except Exception as e:
+                  print(f'❌ {file_path}: Invalid - {e}')
+                  return False, 0
+
+          test_files = [
+              'data-test/AOPWikiRDF.ttl',
+              'data-test/AOPWikiRDF-Genes.ttl', 
+              'data-test/AOPWikiRDF-Void.ttl'
+          ]
+          
+          total_triples = 0
+          all_valid = True
+          
+          for file_path in test_files:
+              if os.path.exists(file_path):
+                  valid, triples = validate_turtle(file_path)
+                  total_triples += triples
+                  all_valid = all_valid and valid
+              else:
+                  print(f'❌ {file_path}: File not found')
+                  all_valid = False
+          
+          print(f'\nTotal triples in test files: {total_triples:,}')
+          
+          if not all_valid:
+              sys.exit(1)
+          EOF
+          
+          python validate_test_ttl.py
+
+      # Step 10: Upload test artifacts
+      - name: Upload Test Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-rdf-files
+          path: |
+            data-test/*.ttl
+            data-test/*.log
+            *.log
+          retention-days: 30
+
+      # Step 11: Upload production backup for comparison
+      - name: Upload Production Backup Files
+        if: ${{ inputs.compare_with_production == 'true' || github.event_name == 'schedule' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-rdf-backup
+          path: |
+            data-production-backup/*.ttl
+          retention-days: 30
+
+      # Step 12: Create comparison report
+      - name: Create Comparison Report
+        if: ${{ inputs.compare_with_production == 'true' || github.event_name == 'schedule' }}
+        run: |
+          echo "# RDF Conversion Comparison Report" > comparison_report.md
+          echo "Generated: $(date -u)" >> comparison_report.md
+          echo "" >> comparison_report.md
+          
+          for file in AOPWikiRDF.ttl AOPWikiRDF-Genes.ttl AOPWikiRDF-Void.ttl; do
+            if [ -f "data-test/$file" ] && [ -f "data-production-backup/$file" ]; then
+              echo "## $file" >> comparison_report.md
+              
+              size_test=$(wc -c < "data-test/$file")
+              size_prod=$(wc -c < "data-production-backup/$file")
+              lines_test=$(wc -l < "data-test/$file")
+              lines_prod=$(wc -l < "data-production-backup/$file")
+              
+              echo "- **Python script**: $size_test bytes, $lines_test lines" >> comparison_report.md
+              echo "- **Production**: $size_prod bytes, $lines_prod lines" >> comparison_report.md
+              
+              if cmp -s "data-test/$file" "data-production-backup/$file"; then
+                echo "- **Status**: ✅ Identical" >> comparison_report.md
+              else
+                diff_count=$(diff "data-test/$file" "data-production-backup/$file" | wc -l)
+                echo "- **Status**: ❌ Different ($diff_count diff lines)" >> comparison_report.md
+                
+                if ! diff "data-test/$file" "data-production-backup/$file" | grep -v "pav:createdOn\|dcterms:modified\|pav:importedOn" > /dev/null; then
+                  echo "- **Note**: Only timestamp differences (expected)" >> comparison_report.md
+                fi
+              fi
+              echo "" >> comparison_report.md
+            fi
+          done
+          
+          cat comparison_report.md
+
+      # Step 13: Upload comparison report
+      - name: Upload Comparison Report
+        if: ${{ inputs.compare_with_production == 'true' || github.event_name == 'schedule' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: comparison-report
+          path: comparison_report.md
+          retention-days: 90
+
+      # Step 14: Cleanup temporary files
+      - name: Cleanup
+        run: |
+          rm -f aop-wiki-xml-*
+          rm -f validate_test_ttl.py
+          rm -rf data-test/aop-wiki-xml-*
+          rm -rf data-production-backup/aop-wiki-xml-*

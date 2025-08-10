@@ -16,3 +16,13 @@ data/test.ttl
 
 # Paper materials directory (active academic work)
 paper-materials/
+
+# Temporary converted files
+AOP-Wiki_XML_to_RDF_conversion.py
+
+# Test directories and files
+data-test/
+data-jupyter/
+test_conversion.py
+validate_test_ttl.py
+aop_conversion.log
