@@ -20,6 +20,7 @@ on:
 jobs:
   test-conversion:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
 
     steps:
       # Step 1: Checkout repository
@@ -69,6 +70,7 @@ jobs:
       # Step 6: Run Python conversion script (test version)
       - id: python-conversion
         name: Run Python Conversion Script
+        timeout-minutes: 60
         run: |
           echo "Running Python conversion script..."
           python run_conversion.py --output-dir data-test/ --log-level INFO

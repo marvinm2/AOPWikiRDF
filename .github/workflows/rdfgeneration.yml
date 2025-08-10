@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 120
 
     steps:
       # Step 1: Checkout repository
@@ -40,6 +41,7 @@ jobs:
       # Step 5: Run Jupyter Notebook for RDF conversion
       - id: jupyter
         name: Jupyter Notebook Execution
+        timeout-minutes: 90
         run: jupyter execute AOP-Wiki_XML_to_RDF_conversion.ipynb
         shell: bash
 
