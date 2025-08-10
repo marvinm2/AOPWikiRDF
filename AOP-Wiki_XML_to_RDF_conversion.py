@@ -168,6 +168,54 @@ def map_genes_in_text_optimized(text, compiled_patterns, genedict1, hgnc_list):
     
     return found_genes
 
+# --- Validation Functions ---
+def validate_xml_structure(root, expected_namespace):
+    """Validate basic XML structure."""
+    if root is None:
+        raise ValueError("XML root is None")
+    
+    if root.tag != expected_namespace + 'data':
+        logger.warning(f"Unexpected root tag: {root.tag}")
+    
+    # Check for required vendor-specific section
+    vendor_section = root.find(expected_namespace + 'vendor-specific')
+    if vendor_section is None:
+        raise ValueError("Missing vendor-specific section in XML")
+    
+    logger.info("XML structure validation passed")
+    return True
+
+def validate_entity_counts(refs):
+    """Validate that we have reasonable entity counts."""
+    min_expected = {'AOP': 1, 'KE': 1, 'KER': 1, 'Stressor': 1}
+    
+    for entity_type, min_count in min_expected.items():
+        actual_count = len(refs.get(entity_type, {}))
+        if actual_count < min_count:
+            logger.warning(f"Low count for {entity_type}: {actual_count} (expected >= {min_count})")
+        else:
+            logger.info(f"Entity count validation passed for {entity_type}: {actual_count}")
+    
+    return True
+
+def validate_required_fields(entity_dict, entity_type, required_fields):
+    """Validate that required fields are present in entities."""
+    missing_fields = []
+    for entity_id, entity_data in entity_dict.items():
+        for field in required_fields:
+            if field not in entity_data or not entity_data[field]:
+                missing_fields.append(f"{entity_type} {entity_id} missing {field}")
+    
+    if missing_fields:
+        logger.warning(f"Found {len(missing_fields)} missing required fields")
+        for missing in missing_fields[:5]:  # Log first 5
+            logger.warning(missing)
+        if len(missing_fields) > 5:
+            logger.warning(f"... and {len(missing_fields) - 5} more")
+    else:
+        logger.info(f"Required field validation passed for {entity_type}")
+    
+    return len(missing_fields) == 0
 
 # This notebook includes the mapping of identifiers for chemicals and genes. To make this possible, the URL to the BridgeDb service is defined in the configuration section above.
 
@@ -882,56 +930,6 @@ def safe_write_simple(file_handle, predicate, value, quote=True):
 # Open main RDF output file with proper error handling
 main_rdf_filename = filepath + 'AOPWikiRDF.ttl'
 logger.info(f"Writing main RDF file: {main_rdf_filename}")
-
-# --- Validation Functions ---
-def validate_xml_structure(root, expected_namespace):
-    """Validate basic XML structure."""
-    if root is None:
-        raise ValueError("XML root is None")
-    
-    if root.tag != expected_namespace + 'data':
-        logger.warning(f"Unexpected root tag: {root.tag}")
-    
-    # Check for required vendor-specific section
-    vendor_section = root.find(expected_namespace + 'vendor-specific')
-    if vendor_section is None:
-        raise ValueError("Missing vendor-specific section in XML")
-    
-    logger.info("XML structure validation passed")
-    return True
-
-def validate_entity_counts(refs):
-    """Validate that we have reasonable entity counts."""
-    min_expected = {'AOP': 1, 'KE': 1, 'KER': 1, 'Stressor': 1}
-    
-    for entity_type, min_count in min_expected.items():
-        actual_count = len(refs.get(entity_type, {}))
-        if actual_count < min_count:
-            logger.warning(f"Low count for {entity_type}: {actual_count} (expected >= {min_count})")
-        else:
-            logger.info(f"Entity count validation passed for {entity_type}: {actual_count}")
-    
-    return True
-
-def validate_required_fields(entity_dict, entity_type, required_fields):
-    """Validate that required fields are present in entities."""
-    missing_fields = []
-    for entity_id, entity_data in entity_dict.items():
-        for field in required_fields:
-            if field not in entity_data or not entity_data[field]:
-                missing_fields.append(f"{entity_type} {entity_id} missing {field}")
-    
-    if missing_fields:
-        logger.warning(f"Found {len(missing_fields)} missing required fields")
-        for missing in missing_fields[:5]:  # Log first 5
-            logger.warning(missing)
-        if len(missing_fields) > 5:
-            logger.warning(f"... and {len(missing_fields) - 5} more")
-    else:
-        logger.info(f"Required field validation passed for {entity_type}")
-    
-    return len(missing_fields) == 0
-
 
 # Start main RDF file writing with error handling
 try:
