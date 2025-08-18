@@ -22,17 +22,29 @@ def main():
     # Ensure output directory exists
     os.makedirs(args.output_dir, exist_ok=True)
     
-    # Copy required static files from production data directory if they don't exist
+    # Copy required static files from multiple possible locations if they don't exist
     static_files = ['typelabels.txt', 'HGNCgenes.txt']
-    production_data_dir = 'data/'
+    # Try multiple locations: production data dir, current directory, data-test-local
+    search_dirs = ['data/', './', 'data-test-local/']
     
     for static_file in static_files:
-        source_path = os.path.join(production_data_dir, static_file)
         dest_path = os.path.join(args.output_dir, static_file)
         
-        if os.path.exists(source_path) and not os.path.exists(dest_path):
-            print(f"Copying {static_file} to test directory...")
-            shutil.copy2(source_path, dest_path)
+        if not os.path.exists(dest_path):
+            copied = False
+            for search_dir in search_dirs:
+                source_path = os.path.join(search_dir, static_file)
+                if os.path.exists(source_path):
+                    print(f"Copying {static_file} from {search_dir} to test directory...")
+                    shutil.copy2(source_path, dest_path)
+                    copied = True
+                    break
+            
+            if not copied:
+                error_msg = f"Error: Required file {static_file} not found in any of: {', '.join(search_dirs)}"
+                print(error_msg)
+                print(f"       Test conversion will likely fail")
+                # Don't exit here - let the conversion attempt and fail with a clear error
     
     # Read the conversion script
     with open('AOP-Wiki_XML_to_RDF_conversion.py', 'r') as f:
