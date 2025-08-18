@@ -127,11 +127,26 @@ jobs:
                 echo "  Sample differences (excluding timestamps):"
                 diff "data-test/$file" "data-production-backup/$file" | grep -v "pav:createdOn\|dcterms:modified\|pav:importedOn" | head -10 || true
                 
-                # Check if only timestamps differ
-                if diff "data-test/$file" "data-production-backup/$file" | grep -v "pav:createdOn\|dcterms:modified\|pav:importedOn" > /dev/null; then
-                  echo "  ⚠️  Files differ in more than just timestamps"
+                # Check if only timestamps differ or minimal acceptable differences
+                significant_diff=$(diff "data-test/$file" "data-production-backup/$file" | grep -v "pav:createdOn\|dcterms:modified\|pav:importedOn" | wc -l)
+                
+                # Calculate percentage difference in size
+                if [ $size_prod -gt 0 ]; then
+                  size_diff_pct=$(( (size_test - size_prod) * 100 / size_prod ))
+                  abs_size_diff_pct=${size_diff_pct#-}  # Get absolute value
                 else
+                  abs_size_diff_pct=0
+                fi
+                
+                if [ $significant_diff -eq 0 ]; then
                   echo "  ✅ Files only differ in timestamps (expected)"
+                elif [ $abs_size_diff_pct -le 2 ]; then
+                  echo "  ✅ Minimal differences within acceptable range (${abs_size_diff_pct}% size difference)"
+                  echo "  ℹ️  Small variations expected due to XML download timing and processing order"
+                else
+                  echo "  ⚠️  Files differ significantly (${abs_size_diff_pct}% size difference)"
+                  echo "  ❌ This requires investigation"
+                  exit 1
                 fi
               fi
             else
@@ -244,8 +259,17 @@ jobs:
                 diff_count=$(diff "data-test/$file" "data-production-backup/$file" | wc -l)
                 echo "- **Status**: ❌ Different ($diff_count diff lines)" >> comparison_report.md
                 
-                if ! diff "data-test/$file" "data-production-backup/$file" | grep -v "pav:createdOn\|dcterms:modified\|pav:importedOn" > /dev/null; then
+                # Check if differences are acceptable
+                significant_diff=$(diff "data-test/$file" "data-production-backup/$file" | grep -v "pav:createdOn\|dcterms:modified\|pav:importedOn" | wc -l)
+                size_diff_pct=$(( (size_test - size_prod) * 100 / size_prod ))
+                abs_size_diff_pct=${size_diff_pct#-}
+                
+                if [ $significant_diff -eq 0 ]; then
                   echo "- **Note**: Only timestamp differences (expected)" >> comparison_report.md
+                elif [ $abs_size_diff_pct -le 2 ]; then
+                  echo "- **Note**: Minimal differences within acceptable range (${abs_size_diff_pct}% size difference)" >> comparison_report.md
+                else
+                  echo "- **Note**: Significant differences requiring investigation" >> comparison_report.md
                 fi
               fi
               echo "" >> comparison_report.md
