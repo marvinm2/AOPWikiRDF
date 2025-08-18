@@ -95,42 +95,7 @@ def download_with_retry(url, filename, max_retries=MAX_RETRIES):
 
 # --- Performance Optimization Helper Functions ---
 
-def compile_gene_patterns(gene_dict):
-    """Pre-compile regex patterns for all gene names and variants for faster matching."""
-    import re
-    compiled_patterns = {}
-    for gene_key, gene_names in gene_dict.items():
-        # Create patterns for exact word matches to avoid partial matches
-        patterns = []
-        for name in gene_names:
-            # Escape special regex characters and create word boundary pattern
-            escaped_name = re.escape(name)
-            # Use word boundaries to match whole words only
-            pattern = r'\b' + escaped_name + r'\b'
-            patterns.append(pattern)
-        # Combine all patterns for this gene with OR operator
-        if patterns:
-            combined_pattern = '|'.join(patterns)
-            compiled_patterns[gene_key] = re.compile(combined_pattern, re.IGNORECASE)
-    return compiled_patterns
-
-def find_genes_in_text_optimized(text, compiled_patterns, gene_dict):
-    """
-    Fast gene finding using pre-compiled regex patterns.
-    Returns same results as original nested loop approach.
-    """
-    if not text:
-        return []
-    
-    found_genes = []
-    for gene_key, pattern in compiled_patterns.items():
-        if pattern.search(text):
-            # Found a match, add the HGNC ID (same format as original)
-            hgnc_id = 'hgnc:' + gene_dict[gene_key][0]  # First item is the official symbol
-            if hgnc_id not in found_genes:
-                found_genes.append(hgnc_id)
-    
-    return found_genes
+# Removed regex-based gene mapping functions - using simple string containment instead
 
 def convert_lists_to_sets_for_lookup(dict_of_lists):
     """Convert dictionary of lists to sets for O(1) membership testing."""
@@ -140,31 +105,49 @@ def convert_sets_to_lists_for_output(dict_of_sets):
     """Convert dictionary of sets back to lists for consistent output format."""
     return {key: list(values) for key, values in dict_of_sets.items()}
 
-def map_genes_in_text_optimized(text, compiled_patterns, genedict1, hgnc_list):
+def map_genes_in_text_simple(text, genedict1, hgnc_list):
     """
-    Optimized gene mapping that replaces the nested loop approach.
-    Uses pre-compiled regex patterns for much faster matching.
+    Simple gene mapping using string containment like the original notebook.
+    This matches the 28-minute performance baseline from the Jupyter notebook.
     
     Returns list of found HGNC IDs and updates the global hgnc_list.
-    Maintains exact same output as original nested loop algorithm.
     """
-    if not text or not compiled_patterns:
+    import time
+    if not text or not genedict1:
         return []
     
     found_genes = []
     
-    # Use optimized pattern matching instead of nested loops
-    for gene_key, pattern in compiled_patterns.items():
-        if pattern.search(text):
+    # Add timing for performance monitoring
+    start_time = time.time()
+    genes_checked = 0
+    
+    # Use simple string containment (notebook algorithm)
+    for gene_key in genedict1:
+        genes_checked += 1
+        a = 0  # Match original notebook variable naming
+        for item in genedict1[gene_key]:
+            if item in text:
+                a = 1
+                break
+        
+        if a == 1:
             # Create HGNC ID in same format as original
             hgnc_id = 'hgnc:' + gene_key
             
             if hgnc_id not in found_genes:
                 found_genes.append(hgnc_id)
             
-            # Update global hgnc_list (same as original)
+            # Update global list (matching original behavior)
             if hgnc_id not in hgnc_list:
                 hgnc_list.append(hgnc_id)
+    
+    # Log slow mappings for performance monitoring
+    elapsed = time.time() - start_time
+    if elapsed > 1.0:  # Log anything taking more than 1 second
+        logger.info(f"SLOW gene mapping: {elapsed:.2f}s, {genes_checked} genes, {len(found_genes)} genes found, text_len={len(text)}")
+    elif found_genes:  # Log successful finds
+        logger.debug(f"Gene mapping: {elapsed:.2f}s, {len(found_genes)} genes found, text_len={len(text)}")
     
     return found_genes
 
@@ -1517,10 +1500,9 @@ for line in HGNCgenes:
 HGNCgenes.close()
 logger.info(f"Gene mapping setup: {len(genedict2)} genes included for mappings")
 
-# Performance optimization: Pre-compile regex patterns for gene matching
-logger.info("Pre-compiling gene regex patterns for optimized matching...")
-compiled_gene_patterns = compile_gene_patterns(genedict1)
-logger.info(f"Compiled {len(compiled_gene_patterns)} gene patterns for fast matching")
+# Using simple string containment like the original notebook (28-minute baseline)
+logger.info("Gene mapping setup: using simple string containment for fast performance")
+logger.info(f"Gene mapping setup: {len(genedict1)} genes included for mappings")
 
 
 # ## Step #5B - HGNC identifier mapping
@@ -1533,15 +1515,33 @@ logger.info(f"Compiled {len(compiled_gene_patterns)} gene patterns for fast matc
 hgnclist = []
 keyhitcount = {}
 logger.info("Starting gene mapping on Key Events (this may take a minute)...")
-for ke in root.findall(aopxml + 'key-event'):
+
+import time
+ke_start_time = time.time()
+ke_list = root.findall(aopxml + 'key-event')
+total_kes = len(ke_list)
+logger.info(f"Processing {total_kes} Key Events for gene mapping...")
+
+for ke_idx, ke in enumerate(ke_list):
     if ke.find(aopxml + 'description').text is not None:
         # Use optimized gene mapping function
         description_text = kedict[ke.get('id')]['dc:description']
-        found_genes = map_genes_in_text_optimized(description_text, compiled_gene_patterns, genedict1, hgnclist)
+        found_genes = map_genes_in_text_simple(description_text, genedict1, hgnclist)
         
         if found_genes:
             kedict[ke.get('id')]['edam:data_1025'] = found_genes
-logger.info(f"Key Event gene mapping completed: {len(hgnclist)} genes mapped to descriptions")
+    
+    # Progress logging every 100 Key Events or at milestones
+    if (ke_idx + 1) % 100 == 0 or ke_idx + 1 in [10, 50, total_kes]:
+        elapsed = time.time() - ke_start_time
+        progress_pct = (ke_idx + 1) / total_kes * 100
+        rate = (ke_idx + 1) / elapsed if elapsed > 0 else 0
+        eta_seconds = (total_kes - ke_idx - 1) / rate if rate > 0 else 0
+        logger.info(f"Key Event progress: {ke_idx + 1}/{total_kes} ({progress_pct:.1f}%) - {rate:.2f} KE/sec - ETA: {eta_seconds:.0f}s - Found: {len(hgnclist)} genes")
+
+ke_end_time = time.time()
+ke_duration = ke_end_time - ke_start_time
+logger.info(f"Key Event gene mapping completed: {len(hgnclist)} genes mapped to descriptions in {ke_duration:.1f} seconds")
 
 
 
@@ -1556,22 +1556,38 @@ for gene, count in keyhitcount.items():
 
 
 logger.info("Starting gene mapping on Key Events and KERs (this may take a couple of minutes)...")
-for ker in root.findall(aopxml + 'key-event-relationship'):
+ker_start_time = time.time()
+ker_list = root.findall(aopxml + 'key-event-relationship')
+total_kers = len(ker_list)
+logger.info(f"Processing {total_kers} Key Event Relationships for gene mapping...")
+
+for ker_idx, ker in enumerate(ker_list):
+    # Progress reporting every 10% or every 50 KERs (whichever is more frequent)
+    if ker_idx % max(1, total_kers // 10) == 0 or ker_idx % 50 == 0:
+        elapsed_ker = time.time() - ker_start_time
+        progress_pct = (ker_idx / total_kers) * 100
+        if ker_idx > 0:
+            eta_seconds = (elapsed_ker / ker_idx) * (total_kers - ker_idx)
+            eta_str = f", ETA: {eta_seconds/60:.1f}m" if eta_seconds > 60 else f", ETA: {eta_seconds:.0f}s"
+        else:
+            eta_str = ""
+        logger.info(f"KER gene mapping progress: {ker_idx}/{total_kers} ({progress_pct:.1f}%), elapsed: {elapsed_ker/60:.1f}m{eta_str}")
+    
     all_found_genes = []
     
     # Check description text
     if ker.find(aopxml + 'description').text is not None and 'dc:description' in kerdict[ker.get('id')]:
-        description_genes = map_genes_in_text_optimized(kerdict[ker.get('id')]['dc:description'], compiled_gene_patterns, genedict1, hgnclist)
+        description_genes = map_genes_in_text_simple(kerdict[ker.get('id')]['dc:description'], genedict1, hgnclist)
         all_found_genes.extend(description_genes)
     
     # Check biological plausibility and empirical support
     for weight in ker.findall(aopxml + 'weight-of-evidence'):
         if weight.find(aopxml + 'biological-plausibility').text is not None and 'nci:C80263' in kerdict[ker.get('id')]:
-            bio_genes = map_genes_in_text_optimized(kerdict[ker.get('id')]['nci:C80263'], compiled_gene_patterns, genedict1, hgnclist)
+            bio_genes = map_genes_in_text_simple(kerdict[ker.get('id')]['nci:C80263'], genedict1, hgnclist)
             all_found_genes.extend(bio_genes)
             
         if weight.find(aopxml + 'emperical-support-linkage').text is not None and 'edam:data_2042' in kerdict[ker.get('id')]:
-            emp_genes = map_genes_in_text_optimized(kerdict[ker.get('id')]['edam:data_2042'], compiled_gene_patterns, genedict1, hgnclist)
+            emp_genes = map_genes_in_text_simple(kerdict[ker.get('id')]['edam:data_2042'], genedict1, hgnclist)
             all_found_genes.extend(emp_genes)
     
     # Remove duplicates while preserving order
@@ -1582,7 +1598,10 @@ for ker in root.findall(aopxml + 'key-event-relationship'):
     
     if unique_genes:
         kerdict[ker.get('id')]['edam:data_1025'] = unique_genes
-logger.info(f"Gene mapping completed: {len(hgnclist)} genes mapped to Key Events and Key Event Relationships")
+
+ker_total_time = time.time() - ker_start_time
+logger.info(f"KER gene mapping completed: {total_kers} relationships processed in {ker_total_time/60:.1f} minutes")
+logger.info(f"Total gene mapping completed: {len(hgnclist)} genes mapped to Key Events and Key Event Relationships")
 
 
 # ## Step #5C - Identifier mapping for other databases
@@ -1590,20 +1609,44 @@ logger.info(f"Gene mapping completed: {len(hgnclist)} genes mapped to Key Events
 
 
 
+logger.info(f"Starting BridgeDb identifier mapping for {len(hgnclist)} genes (this may take 5-30 minutes depending on network speed)...")
+bridgedb_start_time = time.time()
+total_genes = len(hgnclist)
+
 geneiddict = {}
 listofentrez = []
 listofensembl = []
 listofuniprot = []
+failed_requests = 0
 
-for gene in hgnclist:
+for gene_idx, gene in enumerate(hgnclist):
+    # Progress reporting every 5% or every 100 genes (whichever is more frequent)
+    if gene_idx % max(1, total_genes // 20) == 0 or gene_idx % 100 == 0:
+        elapsed_bridgedb = time.time() - bridgedb_start_time
+        progress_pct = (gene_idx / total_genes) * 100
+        if gene_idx > 0:
+            avg_time_per_gene = elapsed_bridgedb / gene_idx
+            eta_seconds = avg_time_per_gene * (total_genes - gene_idx)
+            eta_str = f", ETA: {eta_seconds/60:.1f}m" if eta_seconds > 60 else f", ETA: {eta_seconds:.0f}s"
+            rate_str = f", rate: {gene_idx/elapsed_bridgedb:.1f} genes/sec"
+        else:
+            eta_str = ""
+            rate_str = ""
+        logger.info(f"BridgeDb progress: {gene_idx}/{total_genes} ({progress_pct:.1f}%), elapsed: {elapsed_bridgedb/60:.1f}m{eta_str}{rate_str}")
+    
     # BridgeDb gene mapping with error handling
     try:
         response = requests.get(bridgedb + 'xrefs/H/' + gene[5:], timeout=REQUEST_TIMEOUT)
         response.raise_for_status()
         a = response.text.split('\n')
     except requests.RequestException as e:
-        logger.warning(f"BridgeDb gene mapping failed for HGNC {gene[5:]}: {e}")
+        failed_requests += 1
+        if failed_requests <= 5:  # Only log first 5 failures to avoid spam
+            logger.warning(f"BridgeDb gene mapping failed for HGNC {gene[5:]}: {e}")
+        elif failed_requests == 6:
+            logger.warning(f"BridgeDb failures continuing... (suppressing further warnings)")
         a = ['html']  # Set to trigger fallback behavior
+    
     dictionaryforgene = {}
     if 'html' not in a:
         for item in a:
@@ -1630,6 +1673,11 @@ for gene in hgnclist:
             if 'uniprot:'+uniprot not in listofuniprot:
                 listofuniprot.append("uniprot:"+uniprot)
             geneiddict[gene].append("uniprot:"+uniprot)
+
+bridgedb_total_time = time.time() - bridgedb_start_time
+success_rate = ((total_genes - failed_requests) / total_genes) * 100
+logger.info(f"BridgeDb identifier mapping completed in {bridgedb_total_time/60:.1f} minutes")
+logger.info(f"Success rate: {success_rate:.1f}% ({total_genes - failed_requests}/{total_genes} genes), {failed_requests} failed requests")
 logger.info(f"Gene identifiers mapped: {len(listofentrez)} Entrez, {len(listofuniprot)} UniProt, {len(listofensembl)} Ensembl IDs")
 
 
