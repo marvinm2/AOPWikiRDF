@@ -1,0 +1,171 @@
+name: URI Resolvability Check
+
+on:
+  workflow_dispatch:
+    inputs:
+      sample_size:
+        description: 'Number of URIs to test per prefix'
+        required: false
+        default: '5'
+        type: string
+  schedule:
+    - cron: '0 10 * * 0'  # Runs every Sunday at 10:00 UTC
+
+jobs:
+  uri-resolvability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      
+      # Step 3: Cache pip dependencies
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      
+      # Step 4: Install dependencies
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install requests
+      
+      # Step 5: Run URI validation
+      - name: Run URI Validation
+        run: |
+          echo "🔍 Running URI pattern validation..."
+          python scripts/validation/validate_rdf_uris.py
+          echo "VALIDATION_EXIT_CODE=$?" >> $GITHUB_ENV
+      
+      # Step 6: Run URI resolvability test
+      - name: Run URI Resolvability Test
+        env:
+          SAMPLE_SIZE: ${{ github.event.inputs.sample_size || '5' }}
+        run: |
+          echo "🌐 Running URI resolvability test with $SAMPLE_SIZE samples per prefix..."
+          python scripts/validation/test_uri_resolvability.py
+          echo "RESOLVABILITY_EXIT_CODE=$?" >> $GITHUB_ENV
+      
+      # Step 7: Generate badge data
+      - name: Generate Badge Data
+        run: |
+          # Extract success rate from resolvability report
+          if [ -f uri_resolvability_report.md ]; then
+            # Parse success rate from the report
+            SUCCESS_RATE=$(grep -o "Successfully resolved: [0-9]* ([0-9.]*%)" uri_resolvability_report.md | grep -o "([0-9.]*%)" | tr -d "()" | head -1)
+            echo "SUCCESS_RATE=$SUCCESS_RATE" >> $GITHUB_ENV
+            
+            # Determine badge color
+            RATE_NUM=$(echo $SUCCESS_RATE | sed 's/%//')
+            if (( $(echo "$RATE_NUM >= 70" | bc -l) )); then
+              COLOR="brightgreen"
+            elif (( $(echo "$RATE_NUM >= 50" | bc -l) )); then
+              COLOR="yellow"
+            else
+              COLOR="red"
+            fi
+            echo "BADGE_COLOR=$COLOR" >> $GITHUB_ENV
+            
+            # Generate badge JSON
+            mkdir -p badges
+            cat > badges/uri-resolvability.json << EOF
+          {
+            "schemaVersion": 1,
+            "label": "URI Resolvability",
+            "message": "$SUCCESS_RATE",
+            "color": "$COLOR",
+            "cacheSeconds": 3600
+          }
+          EOF
+            echo "Badge data generated: URI Resolvability $SUCCESS_RATE ($COLOR)"
+          else
+            echo "No resolvability report found"
+          fi
+      
+      # Step 8: Upload artifacts
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: uri-test-reports-${{ github.run_number }}
+          path: |
+            uri_validation_report.md
+            uri_resolvability_report.md
+            badges/uri-resolvability.json
+          retention-days: 90
+      
+      # Step 9: Update badge file in repository
+      - name: Update Badge File
+        run: |
+          # Configure git
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Check if badge file changed
+          if [ -f badges/uri-resolvability.json ]; then
+            if git diff --quiet badges/uri-resolvability.json 2>/dev/null; then
+              echo "No badge changes to commit"
+            else
+              git add badges/uri-resolvability.json
+              git commit -m "Update URI resolvability badge: ${{ env.SUCCESS_RATE }} 🔗
+
+              🤖 Generated with [Claude Code](https://claude.ai/code)
+              
+              Co-Authored-By: Claude <noreply@anthropic.com>"
+              git push origin HEAD
+              echo "Badge updated and committed"
+            fi
+          fi
+      
+      # Step 10: Create/update issue on significant changes
+      - name: Check for Significant Changes
+        if: success()
+        run: |
+          # This step would compare with previous results and create issues
+          # For now, just log the current status
+          echo "Current resolvability rate: ${{ env.SUCCESS_RATE }}"
+          echo "Validation exit code: ${{ env.VALIDATION_EXIT_CODE }}"
+          echo "Resolvability exit code: ${{ env.RESOLVABILITY_EXIT_CODE }}"
+          
+          # Future enhancement: Compare with historical data and alert on significant drops
+          echo "Future: Implement trend analysis and alerting"
+      
+      # Step 11: Generate summary
+      - name: Generate Summary
+        run: |
+          echo "## URI Quality Check Summary 📊" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Date**: $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "**Repository**: ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Workflow**: ${{ github.workflow }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ env.VALIDATION_EXIT_CODE }}" = "0" ]; then
+            echo "✅ **URI Validation**: PASSED" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **URI Validation**: FAILED" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ -n "${{ env.SUCCESS_RATE }}" ]; then
+            echo "🔗 **URI Resolvability**: ${{ env.SUCCESS_RATE }}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❓ **URI Resolvability**: Unknown" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📈 **Badge**: ![URI Resolvability](https://img.shields.io/badge/URI%20Resolvability-${{ env.SUCCESS_RATE }}-${{ env.BADGE_COLOR }})" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📋 **Reports**: Check workflow artifacts for detailed reports" >> $GITHUB_STEP_SUMMARY

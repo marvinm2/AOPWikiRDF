@@ -3,6 +3,7 @@
 [![DOI](https://zenodo.org/badge/146466058.svg)](https://zenodo.org/badge/latestdoi/146466058)
 [![RDF generation](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/rdfgeneration.yml/badge.svg)](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/rdfgeneration.yml)
 [![Turtle File Quality Control](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/Turtle_File_Quality_Control.yml/badge.svg)](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/Turtle_File_Quality_Control.yml)
+[![URI Resolvability Check](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/uri-resolvability-check.yml/badge.svg)](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/uri-resolvability-check.yml)
 
 A tool for converting AOP-Wiki XML data exports into RDF (Resource Description Framework) format. This repository contains the conversion notebook that transforms Adverse Outcome Pathway data into semantic web formats, along with automated workflows for data generation and quality control.
 
@@ -12,6 +13,7 @@ A tool for converting AOP-Wiki XML data exports into RDF (Resource Description F
 - **Gene mapping integration** using HGNC data and BridgeDb services
 - **Weekly automated updates** via GitHub Actions
 - **Quality control validation** of generated RDF files
+- **URI resolvability monitoring** with automated badge generation
 - **SPARQL endpoint setup** instructions for local data exploration
 
 ## Generated Data
