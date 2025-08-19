@@ -107,14 +107,16 @@ def convert_sets_to_lists_for_output(dict_of_sets):
 
 def map_genes_in_text_simple(text, genedict1, hgnc_list, genedict2=None):
     """
-    Two-stage gene mapping algorithm matching the original Jupyter notebook.
+    Enhanced two-stage gene mapping algorithm with false positive filtering.
     
     Stage 1: Screen with genedict1 (basic gene names)
-    Stage 2: Match with genedict2 (punctuation-delimited variants) for precision
+    Stage 2: Match with genedict2 (punctuation-delimited variants) with precision filters
+    Stage 3: Apply false positive filters to eliminate problematic matches
     
     Returns list of found HGNC IDs and updates the global hgnc_list.
     """
     import time
+    import re
     if not text or not genedict1:
         return []
     
@@ -124,15 +126,50 @@ def map_genes_in_text_simple(text, genedict1, hgnc_list, genedict2=None):
     start_time = time.time()
     genes_checked = 0
     
-    # Two-stage algorithm exactly like the Jupyter notebook
+    # False positive filter patterns
+    # Roman numerals (I, II, III, IV, V, etc.) - common in scientific text
+    roman_numeral_pattern = re.compile(r'\b[IVX]+\b')
+    
+    # Single letter aliases that are too ambiguous
+    single_letter_aliases = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
+                           'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'}
+    
+    def is_false_positive(gene_symbol, matched_alias, matched_text_context):
+        """Filter out known false positive patterns"""
+        
+        # Filter 1: Single letter aliases (too ambiguous)
+        if matched_alias.strip() in single_letter_aliases:
+            return True, f"single letter alias '{matched_alias.strip()}'"
+        
+        # Filter 2: Roman numerals (often match complex numbering in scientific text)
+        if roman_numeral_pattern.fullmatch(matched_alias.strip()):
+            return True, f"Roman numeral '{matched_alias.strip()}'"
+        
+        # Filter 3: Short ambiguous symbols in parentheses or brackets
+        stripped = matched_alias.strip()
+        if len(stripped) <= 2 and any(char in matched_text_context for char in '()[]{}'):
+            return True, f"short symbol '{stripped}' in parentheses/brackets context"
+        
+        # Filter 4: Gene-specific false positive patterns
+        if gene_symbol == 'IV' and ('Complex I' in matched_text_context or '(I–V)' in matched_text_context):
+            return True, "IV gene matching complex numbering"
+        
+        if gene_symbol == 'GCNT2' and matched_alias.strip() == 'II' and ('(I–V)' in matched_text_context or 'complexes' in matched_text_context.lower()):
+            return True, "GCNT2 alias 'II' matching complex numbering"
+        
+        return False, None
+    
+    # Two-stage algorithm with enhanced precision filtering
     for gene_key in genedict1:
         genes_checked += 1
         
         # Stage 1: Screen with genedict1 (basic gene symbols/names)
         a = 0  # Match original notebook variable naming
+        stage1_matched_alias = None
         for item in genedict1[gene_key]:
             if item in text:
                 a = 1
+                stage1_matched_alias = item
                 break
         
         # Stage 2: If Stage 1 passes, use genedict2 for precise matching
@@ -144,6 +181,25 @@ def map_genes_in_text_simple(text, genedict1, hgnc_list, genedict2=None):
                 # Use punctuation-delimited variants for precise matching
                 for item in genedict2[gene_key]:
                     if item in text and hgnc_id not in found_genes:
+                        
+                        # Stage 3: False positive filtering
+                        # Get context around the match for better filtering
+                        match_index = text.find(item)
+                        context_start = max(0, match_index - 50)
+                        context_end = min(len(text), match_index + len(item) + 50)
+                        context = text[context_start:context_end]
+                        
+                        # Extract the actual matched alias (strip punctuation delimiters)
+                        matched_alias = item.strip(' ()[],.') if len(item) >= 3 else item[1:-1] if len(item) == 3 else item
+                        
+                        # Apply false positive filters
+                        is_fp, fp_reason = is_false_positive(gene_key, matched_alias, context)
+                        
+                        if is_fp:
+                            logger.debug(f"Filtered false positive: {gene_key} (alias '{matched_alias}') - {fp_reason}")
+                            break  # Skip this gene entirely
+                        
+                        # Valid match - add to results
                         found_genes.append(hgnc_id)
                         
                         # Add to global list if not already present
@@ -152,16 +208,21 @@ def map_genes_in_text_simple(text, genedict1, hgnc_list, genedict2=None):
                         break
             else:
                 # Fallback to genedict1-only matching (less precise)
-                if hgnc_id not in found_genes:
+                # Still apply basic false positive filtering
+                is_fp, fp_reason = is_false_positive(gene_key, stage1_matched_alias, text)
+                
+                if not is_fp and hgnc_id not in found_genes:
                     found_genes.append(hgnc_id)
                     
                     # Add to global list if not already present
                     if hgnc_id not in hgnc_list:
                         hgnc_list.append(hgnc_id)
+                elif is_fp:
+                    logger.debug(f"Filtered false positive: {gene_key} (alias '{stage1_matched_alias}') - {fp_reason}")
     
     # Log slow mappings for performance monitoring
     elapsed = time.time() - start_time
-    precision_note = " (using genedict2 precision)" if genedict2 else " (genedict1 fallback)"
+    precision_note = " (using enhanced precision filtering)" if genedict2 else " (genedict1 fallback)"
     if elapsed > 1.0:  # Log anything taking more than 1 second
         logger.info(f"SLOW gene mapping: {elapsed:.2f}s, {genes_checked} genes, {len(found_genes)} genes found, text_len={len(text)}{precision_note}")
     elif found_genes:  # Log successful finds
