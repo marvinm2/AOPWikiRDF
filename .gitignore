@@ -3,10 +3,18 @@ derby.log
 getgenesforaop
 mygraph.html
 TargetsinMIEs
+*.log
 
 # Downloaded XML data (temporary)
 aop-wiki-xml*
 data/aop-wiki-xml*
+
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
 
 # Development files
 .ipynb_checkpoints/
@@ -14,15 +22,41 @@ data/aop-wiki-xml*
 data/.ipynb_checkpoints/
 data/test.ttl
 
+# Hidden test directory (development and testing scripts)
+.tests/
+
+# Generated RDF files (produced by conversion process)
+*.ttl
+data/*.ttl
+
+# Local development guide (not for repository)
+CLAUDE.md
+
 # Paper materials directory (active academic work)
 paper-materials/
 
-# Temporary converted files
-# AOP-Wiki_XML_to_RDF_conversion.py - now permanent part of testing infrastructure
-
-# Test directories and files
-data-test/
+# Temporary test directories and files
+data-test*/
 data-jupyter/
 test_conversion.py
 validate_test_ttl.py
-aop_conversion.log
+
+# Temporary development files
+debug_*.py
+test_*.py
+validate_*.py
+
+# IDE and editor files
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
