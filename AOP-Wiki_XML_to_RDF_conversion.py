@@ -472,7 +472,266 @@ except Exception as e:
 
 
 # ### Chemicals
-# For the chemicals in the AOP-Wiki, we added BridgeDb mappings for increased coverage of chemical databases for which we used the already present CAS identifers. 
+# For the chemicals in the AOP-Wiki, we added BridgeDb mappings for increased coverage of chemical databases for which we used the already present CAS identifers.
+
+def map_chemicals_batch(cas_numbers, batch_size=100, bridgedb_url=None, timeout=REQUEST_TIMEOUT):
+    """
+    Map multiple CAS numbers to chemical identifiers using BridgeDb batch API.
+    
+    Args:
+        cas_numbers: List of CAS numbers to map
+        batch_size: Number of chemicals per batch request (default 100)
+        bridgedb_url: BridgeDb service URL (uses global bridgedb if None)
+        timeout: Request timeout in seconds
+    
+    Returns:
+        Dictionary mapping CAS numbers to their identifier dictionaries
+    """
+    if bridgedb_url is None:
+        bridgedb_url = bridgedb
+        
+    batch_url = bridgedb_url.rstrip('/') + '/xrefsBatch/Ca'
+    results = {}
+    
+    logger.info(f'Starting batch chemical mapping for {len(cas_numbers)} chemicals')
+    
+    # Process in batches
+    for i in range(0, len(cas_numbers), batch_size):
+        batch = cas_numbers[i:i + batch_size]
+        batch_data = '\n'.join(batch)
+        
+        batch_num = i//batch_size + 1
+        total_batches = (len(cas_numbers) + batch_size - 1)//batch_size
+        logger.info(f"Processing chemical batch {batch_num}/{total_batches} ({len(batch)} chemicals)")
+        
+        try:
+            response = requests.post(
+                batch_url, 
+                data=batch_data,
+                headers={'Content-Type': 'text/plain'},
+                timeout=timeout
+            )
+            response.raise_for_status()
+            
+            # Parse batch response
+            batch_results = parse_batch_chemical_response(response.text)
+            results.update(batch_results)
+            
+        except requests.RequestException as e:
+            logger.warning(f"Batch chemical mapping failed for batch {batch_num}: {e}")
+            # Fall back to individual requests for this batch
+            for cas in batch:
+                try:
+                    individual_result = map_chemical_individual_fallback(cas, bridgedb_url, timeout)
+                    if individual_result:
+                        results[cas] = individual_result
+                except Exception as individual_error:
+                    logger.warning(f"Individual chemical mapping fallback failed for {cas}: {individual_error}")
+                    results[cas] = {}
+    
+    logger.info(f'Completed batch chemical mapping: {len(results)} chemicals processed')
+    return results
+
+def parse_batch_chemical_response(response_text):
+    """
+    Parse BridgeDb batch chemical response into structured format.
+    Response format: "CAS_NUMBER\tCAS\tCs:id,Ch:id,Dr:id,Ce:id,..."
+    """
+    results = {}
+    
+    for line in response_text.strip().split('\n'):
+        if not line.strip():
+            continue
+            
+        parts = line.split('\t')
+        if len(parts) < 3:
+            continue
+            
+        cas_number = parts[0]
+        xrefs_str = parts[2]
+        
+        if xrefs_str == 'N/A':
+            results[cas_number] = {}
+            continue
+        
+        # Parse system codes
+        chemical_dict = {}
+        xrefs = xrefs_str.split(',')
+        
+        for xref in xrefs:
+            if ':' not in xref:
+                continue
+                
+            system_code, identifier = xref.split(':', 1)
+            
+            # Map system codes to database names and chemical dictionary keys
+            # Reference: Complete BridgeDb system code mapping
+            if system_code == 'Ca':  # CAS
+                # CAS is handled separately as dc:identifier, skip here
+                pass
+                
+            elif system_code == 'Ce':  # ChEBI
+                if 'cheminf:000407' not in chemical_dict:
+                    chemical_dict['cheminf:000407'] = []
+                formatted_chebi = f"chebi:{identifier.split('CHEBI:')[-1]}"
+                chemical_dict['cheminf:000407'].append(formatted_chebi)
+                
+            elif system_code == 'Cs':  # ChemSpider
+                if 'cheminf:000405' not in chemical_dict:
+                    chemical_dict['cheminf:000405'] = []
+                chemical_dict['cheminf:000405'].append(f"chemspider:{identifier}")
+                
+            elif system_code == 'Cl':  # ChEMBL compound
+                if 'cheminf:000412' not in chemical_dict:
+                    chemical_dict['cheminf:000412'] = []
+                chemical_dict['cheminf:000412'].append(f"chembl.compound:{identifier}")
+                
+            elif system_code == 'Dr':  # DrugBank
+                if 'cheminf:000406' not in chemical_dict:
+                    chemical_dict['cheminf:000406'] = []
+                chemical_dict['cheminf:000406'].append(f"drugbank:{identifier}")
+                
+            elif system_code == 'Ch':  # HMDB
+                if 'cheminf:000408' not in chemical_dict:
+                    chemical_dict['cheminf:000408'] = []
+                chemical_dict['cheminf:000408'].append(f"hmdb:{identifier}")
+                
+            elif system_code == 'Gpl':  # Guide to Pharmacology Ligand ID (IUPHAR)
+                # Could add support if needed - not in original mapping
+                pass
+                
+            elif system_code == 'Ik':  # InChIKey
+                # InChIKey is handled separately from XML, skip here
+                pass
+                
+            elif system_code == 'Ck':  # KEGG Compound  
+                if 'cheminf:000409' not in chemical_dict:
+                    chemical_dict['cheminf:000409'] = []
+                chemical_dict['cheminf:000409'].append(f"kegg.compound:{identifier}")
+                
+            elif system_code == 'Kd':  # KEGG Drug
+                if 'cheminf:000409' not in chemical_dict:
+                    chemical_dict['cheminf:000409'] = []
+                chemical_dict['cheminf:000409'].append(f"kegg.compound:{identifier}")
+                
+            elif system_code == 'Kl':  # KEGG Glycan
+                # Could add support if needed - not in original mapping
+                pass
+                
+            elif system_code == 'Lm':  # LIPID MAPS
+                if 'cheminf:000564' not in chemical_dict:
+                    chemical_dict['cheminf:000564'] = []
+                chemical_dict['cheminf:000564'].append(f"lipidmaps:{identifier}")
+                
+            elif system_code == 'Lb':  # LipidBank
+                # Could add support if needed - not in original mapping
+                pass
+                
+            elif system_code == 'Pgd':  # PharmGKB Drug
+                # Could add support if needed - not in original mapping
+                pass
+                
+            elif system_code == 'Cpc':  # PubChem Compound
+                if 'cheminf:000140' not in chemical_dict:
+                    chemical_dict['cheminf:000140'] = []
+                chemical_dict['cheminf:000140'].append(f"pubchem.compound:{identifier}")
+                
+            elif system_code == 'Cps':  # PubChem Substance
+                # Could add support if needed - not in original mapping
+                pass
+                
+            elif system_code == 'Sl':  # SwissLipids
+                # Could add support if needed - not in original mapping
+                pass
+                
+            elif system_code == 'Td':  # TTD Drug
+                # Could add support if needed - not in original mapping
+                pass
+                
+            elif system_code == 'Wd':  # Wikidata
+                if 'cheminf:000567' not in chemical_dict:
+                    chemical_dict['cheminf:000567'] = []
+                chemical_dict['cheminf:000567'].append(f"wikidata:{identifier}")
+                
+            elif system_code == 'Wi':  # Wikipedia
+                # Could add support if needed - not in original mapping
+                pass
+        
+        results[cas_number] = chemical_dict
+    
+    return results
+
+def map_chemical_individual_fallback(cas_number, bridgedb_url, timeout):
+    """
+    Fall back to individual chemical mapping (original approach).
+    """
+    individual_url = bridgedb_url.rstrip('/') + f'/xrefs/Ca/{cas_number}'
+    
+    try:
+        response = requests.get(individual_url, timeout=timeout)
+        response.raise_for_status()
+        
+        chemical_dict = {}
+        for line in response.text.split('\n'):
+            if not line.strip():
+                continue
+                
+            parts = line.split('\t')
+            if len(parts) == 2:
+                identifier, database = parts
+                
+                # Map database names to chemical dictionary keys (original format)
+                if database == 'Chemspider':
+                    if 'cheminf:000405' not in chemical_dict:
+                        chemical_dict['cheminf:000405'] = []
+                    chemical_dict['cheminf:000405'].append(f"chemspider:{identifier}")
+                    
+                elif database == 'HMDB':
+                    if 'cheminf:000408' not in chemical_dict:
+                        chemical_dict['cheminf:000408'] = []
+                    chemical_dict['cheminf:000408'].append(f"hmdb:{identifier}")
+                    
+                elif database == 'DrugBank':
+                    if 'cheminf:000406' not in chemical_dict:
+                        chemical_dict['cheminf:000406'] = []
+                    chemical_dict['cheminf:000406'].append(f"drugbank:{identifier}")
+                    
+                elif database == 'ChEBI':
+                    if 'cheminf:000407' not in chemical_dict:
+                        chemical_dict['cheminf:000407'] = []
+                    formatted_chebi = f"chebi:{identifier.split('CHEBI:')[-1]}"
+                    chemical_dict['cheminf:000407'].append(formatted_chebi)
+                    
+                elif database == 'ChEMBL compound':
+                    if 'cheminf:000412' not in chemical_dict:
+                        chemical_dict['cheminf:000412'] = []
+                    chemical_dict['cheminf:000412'].append(f"chembl.compound:{identifier}")
+                    
+                elif database == 'Wikidata':
+                    if 'cheminf:000567' not in chemical_dict:
+                        chemical_dict['cheminf:000567'] = []
+                    chemical_dict['cheminf:000567'].append(f"wikidata:{identifier}")
+                    
+                elif database == 'PubChem-compound':
+                    if 'cheminf:000140' not in chemical_dict:
+                        chemical_dict['cheminf:000140'] = []
+                    chemical_dict['cheminf:000140'].append(f"pubchem.compound:{identifier}")
+                    
+                elif database == 'KEGG Compound':
+                    if 'cheminf:000409' not in chemical_dict:
+                        chemical_dict['cheminf:000409'] = []
+                    chemical_dict['cheminf:000409'].append(f"kegg.compound:{identifier}")
+                    
+                elif database == 'LIPID MAPS':
+                    if 'cheminf:000564' not in chemical_dict:
+                        chemical_dict['cheminf:000564'] = []
+                    chemical_dict['cheminf:000564'].append(f"lipidmaps:{identifier}")
+        
+        return chemical_dict
+        
+    except requests.RequestException as e:
+        logger.warning(f"Individual chemical mapping failed for {cas_number}: {e}")
+        return {}
 
 
 
@@ -490,90 +749,65 @@ listofcas = []
 listofinchikey = []
 listofcomptox = []
 
+# First pass: collect all chemical information and CAS numbers for batch processing
+chemicals_to_map = []  # List of (chemical_id, cas_number) for batch mapping
+cas_to_chemical_id = {}  # Map CAS number back to chemical ID(s)
+
 for che in root.findall(aopxml + 'chemical'):
     chedict[che.get('id')] = {}
     if che.find(aopxml + 'casrn') is not None:
         if 'NOCAS' not in che.find(aopxml + 'casrn').text:  # all NOCAS ids are taken out, so no issues as subjects
-            chedict[che.get('id')]['dc:identifier'] = 'cas:' + che.find(aopxml + 'casrn').text
-            listofcas.append('cas:' + che.find(aopxml + 'casrn').text)
-            chedict[che.get('id')]['cheminf:000446'] = '"' + che.find(aopxml + 'casrn').text + '"'
-            # BridgeDb chemical mapping with error handling
-            try:
-                response = requests.get(bridgedb+'xrefs/Ca/'+che.find(aopxml + 'casrn').text, timeout=REQUEST_TIMEOUT)
-                response.raise_for_status()
-                a = response.text.split('\n')
-            except requests.RequestException as e:
-                logger.warning(f"BridgeDb chemical mapping failed for CAS {che.find(aopxml + 'casrn').text}: {e}")
-                a = ['html']  # Set to trigger fallback behavior
-            dictionaryforchemical = {}
-            if 'html' not in a:
-                for item in a:
-                    b = item.split('\t')
-                    if len(b) == 2:
-                        if b[1] not in dictionaryforchemical:
-                            dictionaryforchemical[b[1]] = []
-                            dictionaryforchemical[b[1]].append(b[0])
-                        else:
-                            dictionaryforchemical[b[1]].append(b[0])
-            if 'ChEBI' in dictionaryforchemical:
-                chedict[che.get('id')]['cheminf:000407'] = []
-                for chebi in dictionaryforchemical['ChEBI']:
-                    # Remove "CHEBI:" prefix if it exists
-                    formatted_chebi = "chebi:" + chebi.split("CHEBI:")[-1]
-                    if formatted_chebi not in listofchebi:
-                        listofchebi.append(formatted_chebi)
-                    if formatted_chebi not in chedict[che.get('id')]['cheminf:000407']:
-                        chedict[che.get('id')]['cheminf:000407'].append(formatted_chebi)
-            if 'Chemspider' in dictionaryforchemical:
-                chedict[che.get('id')]['cheminf:000405'] = []
-                for chemspider in dictionaryforchemical['Chemspider']:
-                    if "chemspider:"+chemspider not in listofchemspider:
-                        listofchemspider.append("chemspider:"+chemspider)
-                    chedict[che.get('id')]['cheminf:000405'].append("chemspider:"+chemspider)
-            if 'Wikidata' in dictionaryforchemical:
-                chedict[che.get('id')]['cheminf:000567'] = []
-                for wd in dictionaryforchemical['Wikidata']:
-                    if "wikidata:"+wd not in listofwikidata:
-                        listofwikidata.append("wikidata:"+wd)
-                    chedict[che.get('id')]['cheminf:000567'].append("wikidata:"+wd)
-            if 'ChEMBL compound' in dictionaryforchemical:
-                chedict[che.get('id')]['cheminf:000412'] = []
-                for chembl in dictionaryforchemical['ChEMBL compound']:
-                    if "chembl.compound:"+chembl not in listofchembl:
-                        listofchembl.append("chembl.compound:"+chembl)
-                    chedict[che.get('id')]['cheminf:000412'].append("chembl.compound:"+chembl)
-            if 'PubChem-compound' in dictionaryforchemical:
-                chedict[che.get('id')]['cheminf:000140'] = []
-                for pub in dictionaryforchemical['PubChem-compound']:
-                    if "pubchem.compound:"+pub not in listofpubchem:
-                        listofpubchem.append("pubchem.compound:"+pub)
-                    chedict[che.get('id')]['cheminf:000140'].append("pubchem.compound:"+pub)
-            if 'DrugBank' in dictionaryforchemical:
-                chedict[che.get('id')]['cheminf:000406'] = []
-                for drugbank in dictionaryforchemical['DrugBank']:
-                    if "drugbank:"+drugbank not in listofdrugbank:
-                        listofdrugbank.append("drugbank:"+drugbank)
-                    chedict[che.get('id')]['cheminf:000406'].append("drugbank:"+drugbank)
-            if 'KEGG Compound' in dictionaryforchemical:
-                chedict[che.get('id')]['cheminf:000409'] = []
-                for kegg in dictionaryforchemical['KEGG Compound']:
-                    if "kegg.compound:"+kegg not in listofkegg:
-                        listofkegg.append("kegg.compound:"+kegg)
-                    chedict[che.get('id')]['cheminf:000409'].append("kegg.compound:"+kegg)
-            if 'LIPID MAPS' in dictionaryforchemical:
-                chedict[che.get('id')]['cheminf:000564'] = []
-                for lipidmaps in dictionaryforchemical['LIPID MAPS']:
-                    if "lipidmaps:"+lipidmaps not in listoflipidmaps:
-                        listoflipidmaps.append("lipidmaps:"+lipidmaps)
-                    chedict[che.get('id')]['cheminf:000564'].append("lipidmaps:"+lipidmaps)
-            if 'HMDB' in dictionaryforchemical:
-                chedict[che.get('id')]['cheminf:000408'] = []
-                for hmdb in dictionaryforchemical['HMDB']:
-                    if "hmdb:"+hmdb not in listofhmdb:
-                        listofhmdb.append("hmdb:"+hmdb)
-                    chedict[che.get('id')]['cheminf:000408'].append("hmdb:"+hmdb)
+            cas_number = che.find(aopxml + 'casrn').text
+            chedict[che.get('id')]['dc:identifier'] = 'cas:' + cas_number
+            listofcas.append('cas:' + cas_number)
+            chedict[che.get('id')]['cheminf:000446'] = '"' + cas_number + '"'
+            
+            # Collect for batch processing
+            chemicals_to_map.append((che.get('id'), cas_number))
+            if cas_number not in cas_to_chemical_id:
+                cas_to_chemical_id[cas_number] = []
+            cas_to_chemical_id[cas_number].append(che.get('id'))
         else:
             chedict[che.get('id')]['dc:identifier'] = '"' + che.find(aopxml + 'casrn').text + '"'
+
+# Batch BridgeDb chemical mapping (major performance improvement)
+if chemicals_to_map:
+    logger.info(f"Starting batch chemical mapping for {len(chemicals_to_map)} chemicals with CAS numbers")
+    cas_numbers_list = [cas for _, cas in chemicals_to_map]
+    batch_results = map_chemicals_batch(cas_numbers_list)
+    
+    # Apply batch results to chemical dictionaries
+    for cas_number, chemical_mappings in batch_results.items():
+        if cas_number in cas_to_chemical_id:
+            for chemical_id in cas_to_chemical_id[cas_number]:
+                # Apply all mapped identifiers to this chemical
+                for db_key, identifiers in chemical_mappings.items():
+                    if identifiers:  # Only add if there are identifiers
+                        chedict[chemical_id][db_key] = identifiers.copy()
+                        
+                        # Update global lists for deduplication (matching original behavior)
+                        for identifier in identifiers:
+                            if db_key == 'cheminf:000407' and identifier not in listofchebi:  # ChEBI
+                                listofchebi.append(identifier)
+                            elif db_key == 'cheminf:000405' and identifier not in listofchemspider:  # Chemspider
+                                listofchemspider.append(identifier)
+                            elif db_key == 'cheminf:000567' and identifier not in listofwikidata:  # Wikidata
+                                listofwikidata.append(identifier)
+                            elif db_key == 'cheminf:000412' and identifier not in listofchembl:  # ChEMBL
+                                listofchembl.append(identifier)
+                            elif db_key == 'cheminf:000140' and identifier not in listofpubchem:  # PubChem
+                                listofpubchem.append(identifier)
+                            elif db_key == 'cheminf:000406' and identifier not in listofdrugbank:  # DrugBank
+                                listofdrugbank.append(identifier)
+                            elif db_key == 'cheminf:000409' and identifier not in listofkegg:  # KEGG
+                                listofkegg.append(identifier)
+                            elif db_key == 'cheminf:000564' and identifier not in listoflipidmaps:  # LIPID MAPS
+                                listoflipidmaps.append(identifier)
+                            elif db_key == 'cheminf:000408' and identifier not in listofhmdb:  # HMDB
+                                listofhmdb.append(identifier)
+
+# Continue with other chemical properties (InChI keys, names, etc.)
+for che in root.findall(aopxml + 'chemical'):
     if che.find(aopxml + 'jchem-inchi-key') is not None:
         chedict[che.get('id')]['cheminf:000059'] = 'inchikey:' + str(che.find(aopxml + 'jchem-inchi-key').text)
         listofinchikey.append('inchikey:' + str(che.find(aopxml + 'jchem-inchi-key').text))
