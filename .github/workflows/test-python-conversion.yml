@@ -120,7 +120,7 @@ jobs:
                 echo "  ❌ Files differ"
                 
                 # Count different lines
-                diff_lines=$(diff "data-test/$file" "data-production-backup/$file" | wc -l)
+                diff_lines=$(diff "data-test/$file" "data-production-backup/$file" | wc -l || echo "0")
                 echo "  Different lines: $diff_lines"
                 
                 # Show sample differences (excluding timestamps which are expected to differ)
@@ -128,7 +128,7 @@ jobs:
                 diff "data-test/$file" "data-production-backup/$file" | grep -v "pav:createdOn\|dcterms:modified\|pav:importedOn" | head -10 || true
                 
                 # Check if only timestamps differ or minimal acceptable differences
-                significant_diff=$(diff "data-test/$file" "data-production-backup/$file" | grep -v "pav:createdOn\|dcterms:modified\|pav:importedOn" | wc -l)
+                significant_diff=$(diff "data-test/$file" "data-production-backup/$file" | grep -v "pav:createdOn\|dcterms:modified\|pav:importedOn" | wc -l || echo "0")
                 
                 # Calculate percentage difference in size
                 if [ $size_prod -gt 0 ]; then
