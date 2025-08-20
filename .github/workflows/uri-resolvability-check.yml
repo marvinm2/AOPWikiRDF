@@ -4,17 +4,22 @@ on:
   workflow_dispatch:
     inputs:
       sample_size:
-        description: 'Number of URIs to test per prefix'
+        description: 'Number of URIs to test per prefix (ignored if test_all is checked)'
         required: false
         default: '5'
         type: string
+      test_all:
+        description: 'Test ALL URIs instead of sampling (very slow - ~40 minutes)'
+        required: false
+        default: false
+        type: boolean
   schedule:
     - cron: '0 10 * * 0'  # Runs every Sunday at 10:00 UTC
 
 jobs:
   uri-resolvability:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60  # Increased timeout for --all option (needs ~40 minutes)
     
     steps:
       # Step 1: Checkout repository
@@ -55,9 +60,15 @@ jobs:
       - name: Run URI Resolvability Test
         env:
           SAMPLE_SIZE: ${{ github.event.inputs.sample_size || '5' }}
+          TEST_ALL: ${{ github.event.inputs.test_all || 'false' }}
         run: |
-          echo "🌐 Running URI resolvability test with $SAMPLE_SIZE samples per prefix..."
-          python scripts/validation/test_uri_resolvability.py
+          if [ "$TEST_ALL" = "true" ]; then
+            echo "🌐 Running URI resolvability test for ALL URIs (this will take ~40 minutes)..."
+            python scripts/validation/test_uri_resolvability.py --all --workers 10
+          else
+            echo "🌐 Running URI resolvability test with $SAMPLE_SIZE samples per prefix..."
+            python scripts/validation/test_uri_resolvability.py --samples $SAMPLE_SIZE
+          fi
           echo "RESOLVABILITY_EXIT_CODE=$?" >> $GITHUB_ENV
       
       # Step 7: Generate badge data
@@ -175,6 +186,11 @@ jobs:
           echo "**Date**: $(date -u)" >> $GITHUB_STEP_SUMMARY
           echo "**Repository**: ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
           echo "**Workflow**: ${{ github.workflow }}" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ github.event.inputs.test_all }}" = "true" ]; then
+            echo "**Mode**: Full test (all ~23,488 URIs)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "**Mode**: Sample test (${{ github.event.inputs.sample_size || '5' }} URIs per prefix)" >> $GITHUB_STEP_SUMMARY
+          fi
           echo "" >> $GITHUB_STEP_SUMMARY
           
           if [ "${{ env.VALIDATION_EXIT_CODE }}" = "0" ]; then
