@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "label": "uri resolvability",
+  "message": "pending",
+  "color": "lightgrey",
+  "style": "flat",
+  "labelColor": "555",
+  "cacheSeconds": 3600
+}

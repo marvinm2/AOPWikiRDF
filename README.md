@@ -4,6 +4,7 @@
 [![RDF generation](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/rdfgeneration.yml/badge.svg)](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/rdfgeneration.yml)
 [![Turtle File Quality Control](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/Turtle_File_Quality_Control.yml/badge.svg)](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/Turtle_File_Quality_Control.yml)
 [![URI Resolvability Check](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/uri-resolvability-check.yml/badge.svg)](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/uri-resolvability-check.yml)
+[![uri resolvability](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/marvinm2/AOPWikiRDF/master/badges/uri-resolvability.json)](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/uri-resolvability-check.yml)
 
 A tool for converting AOP-Wiki XML data exports into RDF (Resource Description Framework) format. This repository contains the conversion notebook that transforms Adverse Outcome Pathway data into semantic web formats, along with automated workflows for data generation and quality control.
 

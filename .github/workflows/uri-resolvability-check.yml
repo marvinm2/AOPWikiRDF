@@ -69,31 +69,50 @@ jobs:
             SUCCESS_RATE=$(grep -o "Successfully resolved: [0-9]* ([0-9.]*%)" uri_resolvability_report.md | grep -o "([0-9.]*%)" | tr -d "()" | head -1)
             echo "SUCCESS_RATE=$SUCCESS_RATE" >> $GITHUB_ENV
             
-            # Determine badge color
+            # Determine badge color using coverage-style thresholds
             RATE_NUM=$(echo $SUCCESS_RATE | sed 's/%//')
-            if (( $(echo "$RATE_NUM >= 70" | bc -l) )); then
+            if (( $(echo "$RATE_NUM >= 80" | bc -l) )); then
               COLOR="brightgreen"
-            elif (( $(echo "$RATE_NUM >= 50" | bc -l) )); then
+            elif (( $(echo "$RATE_NUM >= 60" | bc -l) )); then
+              COLOR="green"
+            elif (( $(echo "$RATE_NUM >= 40" | bc -l) )); then
               COLOR="yellow"
+            elif (( $(echo "$RATE_NUM >= 20" | bc -l) )); then
+              COLOR="orange"
             else
               COLOR="red"
             fi
             echo "BADGE_COLOR=$COLOR" >> $GITHUB_ENV
             
-            # Generate badge JSON
+            # Generate coverage-style badge JSON
             mkdir -p badges
             cat > badges/uri-resolvability.json << EOF
           {
             "schemaVersion": 1,
-            "label": "URI Resolvability",
+            "label": "uri resolvability",
             "message": "$SUCCESS_RATE",
             "color": "$COLOR",
+            "style": "flat",
+            "labelColor": "555",
             "cacheSeconds": 3600
           }
           EOF
-            echo "Badge data generated: URI Resolvability $SUCCESS_RATE ($COLOR)"
+            echo "Coverage-style badge generated: uri resolvability $SUCCESS_RATE ($COLOR)"
           else
             echo "No resolvability report found"
+            # Generate default badge for failed runs
+            mkdir -p badges
+            cat > badges/uri-resolvability.json << EOF
+          {
+            "schemaVersion": 1,
+            "label": "uri resolvability",
+            "message": "unknown",
+            "color": "lightgrey",
+            "style": "flat",
+            "labelColor": "555",
+            "cacheSeconds": 3600
+          }
+          EOF
           fi
       
       # Step 8: Upload artifacts
@@ -166,6 +185,6 @@ jobs:
           fi
           
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "📈 **Badge**: ![URI Resolvability](https://img.shields.io/badge/URI%20Resolvability-${{ env.SUCCESS_RATE }}-${{ env.BADGE_COLOR }})" >> $GITHUB_STEP_SUMMARY
+          echo "📈 **Badge**: ![uri resolvability](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ github.repository }}/master/badges/uri-resolvability.json)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "📋 **Reports**: Check workflow artifacts for detailed reports" >> $GITHUB_STEP_SUMMARY
