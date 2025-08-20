@@ -85,7 +85,7 @@ def load_expected_prefixes():
         print(f"❌ Error loading prefixes.csv: {e}")
         return None
 
-def extract_sample_uris_from_files(rdf_files, samples_per_prefix=5, expected_prefixes=None):
+def extract_sample_uris_from_files(rdf_files, samples_per_prefix=5, expected_prefixes=None, test_all=False):
     """Extract sample URIs from RDF files, grouped by prefix"""
     
     prefix_uris = defaultdict(set)
@@ -93,7 +93,11 @@ def extract_sample_uris_from_files(rdf_files, samples_per_prefix=5, expected_pre
     # URI extraction pattern
     uri_pattern = r'\b([a-z][a-z0-9]*(?:\.[a-z0-9]+)*):([A-Za-z0-9@_.-]+)\b'
     
-    print(f"🔍 Extracting sample URIs from {len(rdf_files)} files...")
+    if test_all:
+        print(f"🔍 Extracting ALL URIs from {len(rdf_files)} files...")
+    else:
+        print(f"🔍 Extracting sample URIs from {len(rdf_files)} files...")
+    
     if expected_prefixes:
         print(f"📋 Focusing on {len(expected_prefixes)} expected prefixes from prefixes.csv")
     
@@ -115,20 +119,31 @@ def extract_sample_uris_from_files(rdf_files, samples_per_prefix=5, expected_pre
                             full_uri = f"{prefix}:{identifier}"
                             prefix_uris[prefix].add(full_uri)
                             
-                            # Stop collecting if we have enough samples
-                            if len(prefix_uris[prefix]) >= samples_per_prefix * 2:  # Collect extra for randomization
+                            # Stop collecting if we have enough samples (unless testing all)
+                            if not test_all and len(prefix_uris[prefix]) >= samples_per_prefix * 2:  # Collect extra for randomization
                                 break
         except Exception as e:
             print(f"⚠️  Error reading {rdf_file}: {e}")
     
-    # Sample random URIs for each prefix
+    # Sample random URIs for each prefix (or use all if requested)
     sampled_uris = {}
     for prefix, uri_set in prefix_uris.items():
         uri_list = list(uri_set)
-        sample_count = min(samples_per_prefix, len(uri_list))
-        sampled_uris[prefix] = random.sample(uri_list, sample_count)
+        if test_all:
+            sampled_uris[prefix] = uri_list
+        else:
+            sample_count = min(samples_per_prefix, len(uri_list))
+            sampled_uris[prefix] = random.sample(uri_list, sample_count)
     
-    print(f"📊 Extracted samples from {len(sampled_uris)} prefixes")
+    total_uris = sum(len(uris) for uris in sampled_uris.values())
+    if test_all:
+        print(f"📊 Extracted {total_uris} total URIs from {len(sampled_uris)} prefixes")
+        # Show breakdown by prefix
+        for prefix, uris in sorted(sampled_uris.items()):
+            print(f"   {prefix}: {len(uris)} URIs")
+    else:
+        print(f"📊 Extracted samples from {len(sampled_uris)} prefixes")
+    
     return sampled_uris
 
 def convert_to_resolvable_url(prefixed_uri, base_urls):
@@ -197,19 +212,40 @@ def test_uri_resolvability(uri, base_urls, timeout=10):
         response = requests.head(resolvable_url, timeout=timeout, allow_redirects=False)
         response_time = time.time() - start_time
         
-        # If we get a redirect (301/302), consider it successful resolution
+        # If we get a redirect (301/302), check the destination too
         if response.status_code in [301, 302]:
             redirect_url = response.headers.get('location', 'Unknown')
-            return {
-                'uri': uri,
-                'url': resolvable_url,
-                'status': 'success',
-                'response_code': response.status_code,
-                'response_time': response_time,
-                'error': None,
-                'warning': None,
-                'redirect_url': redirect_url
-            }
+            
+            # Now test the redirect destination
+            destination_status = test_destination_url(redirect_url, timeout)
+            
+            # Determine overall status based on redirect + destination
+            if destination_status['accessible']:
+                return {
+                    'uri': uri,
+                    'url': resolvable_url,
+                    'status': 'success',
+                    'response_code': response.status_code,
+                    'response_time': response_time,
+                    'error': None,
+                    'warning': destination_status.get('warning'),
+                    'redirect_url': redirect_url,
+                    'destination_code': destination_status.get('status_code'),
+                    'destination_time': destination_status.get('response_time')
+                }
+            else:
+                return {
+                    'uri': uri,
+                    'url': resolvable_url,
+                    'status': 'redirect_destination_failed',
+                    'response_code': response.status_code,
+                    'response_time': response_time,
+                    'error': None,
+                    'warning': f"Redirect works but destination failed: {destination_status.get('error', 'Unknown error')}",
+                    'redirect_url': redirect_url,
+                    'destination_code': destination_status.get('status_code'),
+                    'destination_time': destination_status.get('response_time')
+                }
         
         # If direct access works (200-299), that's also success
         if response.status_code < 400:
@@ -247,7 +283,7 @@ def test_uri_resolvability(uri, base_urls, timeout=10):
                     'response_code': response.status_code,
                     'response_time': time.time() - start_time,
                     'error': None,
-                    'warning': f'SSL certificate issue at redirect target: {str(e)}',
+                    'warning': f'SSL certificate issue at source: {str(e)}',
                     'redirect_url': redirect_url
                 }
         except:
@@ -283,6 +319,80 @@ def test_uri_resolvability(uri, base_urls, timeout=10):
             'response_time': None,
             'error': str(e),
             'warning': None
+        }
+
+def test_destination_url(url, timeout=10):
+    """Test if a destination URL is accessible"""
+    
+    if not url or url == 'Unknown':
+        return {
+            'accessible': False,
+            'error': 'No redirect URL provided',
+            'status_code': None,
+            'response_time': None
+        }
+    
+    try:
+        start_time = time.time()
+        response = requests.head(url, timeout=timeout, allow_redirects=True)
+        response_time = time.time() - start_time
+        
+        if response.status_code < 400:
+            return {
+                'accessible': True,
+                'status_code': response.status_code,
+                'response_time': response_time,
+                'warning': None
+            }
+        else:
+            return {
+                'accessible': False,
+                'error': f'HTTP {response.status_code}',
+                'status_code': response.status_code,
+                'response_time': response_time
+            }
+            
+    except requests.exceptions.SSLError as e:
+        # Try with SSL verification disabled to see if content is accessible
+        try:
+            response = requests.head(url, timeout=timeout, allow_redirects=True, verify=False)
+            response_time = time.time() - start_time
+            
+            if response.status_code < 400:
+                return {
+                    'accessible': True,
+                    'status_code': response.status_code,
+                    'response_time': response_time,
+                    'warning': f'SSL certificate issue: {str(e)}'
+                }
+            else:
+                return {
+                    'accessible': False,
+                    'error': f'HTTP {response.status_code} with SSL issues',
+                    'status_code': response.status_code,
+                    'response_time': response_time
+                }
+        except Exception as inner_e:
+            return {
+                'accessible': False,
+                'error': f'SSL error: {str(e)}',
+                'status_code': None,
+                'response_time': None
+            }
+    
+    except requests.exceptions.Timeout:
+        return {
+            'accessible': False,
+            'error': 'Request timeout',
+            'status_code': None,
+            'response_time': timeout
+        }
+    except requests.exceptions.RequestException as e:
+        return {
+            'accessible': False,
+            'error': str(e),
+            'status_code': None,
+            'response_time': None
         }
 
 def test_batch_resolvability(sampled_uris, base_urls, max_workers=5, timeout=10):
@@ -335,13 +445,16 @@ def analyze_resolvability_results(results):
     total_tested = len(results)
     successful = len([r for r in results if r['status'] in ['success', 'success_with_ssl_warning']])
     failed = total_tested - successful
-    warnings = len([r for r in results if r['status'] == 'success_with_ssl_warning'])
+    warnings = len([r for r in results if r.get('warning') is not None])
+    destination_issues = len([r for r in results if r['status'] == 'redirect_destination_failed'])
     
     print(f"\n📊 Overall Statistics:")
     print(f"  Total URIs tested: {total_tested}")
     print(f"  Successfully resolved: {successful} ({successful/total_tested*100:.1f}%)")
     if warnings > 0:
-        print(f"  With SSL warnings: {warnings} ({warnings/total_tested*100:.1f}%)")
+        print(f"  With warnings: {warnings} ({warnings/total_tested*100:.1f}%)")
+    if destination_issues > 0:
+        print(f"  Redirect works but destination failed: {destination_issues} ({destination_issues/total_tested*100:.1f}%)")
     print(f"  Failed to resolve: {failed} ({failed/total_tested*100:.1f}%)")
     
     # Status breakdown
@@ -454,7 +567,9 @@ def save_resolvability_report(results, output_file):
             
             for result in prefix_results_list:
                 if result['status'] in ['success', 'success_with_ssl_warning']:
-                    status_icon = "✅" if result['status'] == 'success' else "⚠️"
+                    status_icon = "✅" if result['status'] == 'success' and not result.get('warning') else "⚠️"
+                elif result['status'] == 'redirect_destination_failed':
+                    status_icon = "🔀"  # Redirect works but destination fails
                 else:
                     status_icon = "❌"
                     
@@ -465,8 +580,12 @@ def save_resolvability_report(results, output_file):
                     f.write(f"  - Response Code: {result['response_code']}\n")
                 if result.get('redirect_url'):
                     f.write(f"  - Redirects to: {result['redirect_url']}\n")
+                if result.get('destination_code'):
+                    f.write(f"  - Destination Status: {result['destination_code']}\n")
                 if result['response_time']:
                     f.write(f"  - Response Time: {result['response_time']:.2f}s\n")
+                if result.get('destination_time'):
+                    f.write(f"  - Destination Time: {result['destination_time']:.2f}s\n")
                 if result.get('warning'):
                     f.write(f"  - Warning: {result['warning']}\n")
                 if result['error']:
@@ -481,6 +600,8 @@ def main():
     parser.add_argument('--samples', type=int, default=5, help='Number of URIs to test per prefix (default: 5)')
     parser.add_argument('--timeout', type=int, default=10, help='HTTP request timeout in seconds (default: 10)')
     parser.add_argument('--workers', type=int, default=5, help='Number of concurrent workers (default: 5)')
+    parser.add_argument('--all', action='store_true', help='Test ALL URIs instead of sampling (can be very slow)')
+    parser.add_argument('--dry-run', action='store_true', help='Show URI counts without testing (useful with --all)')
     args = parser.parse_args()
     
     # Support environment variable for GitHub Actions
@@ -488,7 +609,11 @@ def main():
     
     print("🌐 AOP-Wiki RDF URI Resolvability Testing")
     print("="*50)
-    print(f"📊 Testing {samples_per_prefix} URIs per prefix")
+    
+    if args.all:
+        print("📊 Testing ALL URIs found in files")
+    else:
+        print(f"📊 Testing {samples_per_prefix} URIs per prefix")
     
     # Find RDF files
     rdf_files = []
@@ -507,11 +632,23 @@ def main():
     expected_prefixes = load_expected_prefixes()
     
     # Extract sample URIs
-    sampled_uris = extract_sample_uris_from_files(rdf_files, samples_per_prefix=samples_per_prefix, expected_prefixes=expected_prefixes)
+    sampled_uris = extract_sample_uris_from_files(rdf_files, samples_per_prefix=samples_per_prefix, expected_prefixes=expected_prefixes, test_all=args.all)
     
     if not sampled_uris:
         print("❌ No URIs extracted from files")
         return 1
+    
+    # If dry run, just show the counts and exit
+    if args.dry_run:
+        total_uris = sum(len(uris) for uris in sampled_uris.values())
+        print(f"\n📊 Dry Run Summary:")
+        print(f"  Total URIs that would be tested: {total_uris}")
+        print(f"  Across {len(sampled_uris)} prefixes")
+        if total_uris > 1000:
+            print(f"  ⚠️  Warning: Testing {total_uris} URIs will take significant time")
+            estimated_time = total_uris * 0.5 / args.workers  # Rough estimate: 0.5s per URI with concurrency
+            print(f"  ⏱️  Estimated time: {estimated_time/60:.1f} minutes with {args.workers} workers")
+        return 0
     
     # Get base URLs for resolution
     base_urls = get_namespace_base_urls()
