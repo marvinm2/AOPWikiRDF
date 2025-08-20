@@ -186,21 +186,82 @@ def test_uri_resolvability(uri, base_urls, timeout=10):
             'status': 'no_url_mapping',
             'response_code': None,
             'response_time': None,
-            'error': 'No URL mapping available for this prefix'
+            'error': 'No URL mapping available for this prefix',
+            'warning': None
         }
     
+    # First check if the initial URL (like identifiers.org) responds with redirect
     try:
         start_time = time.time()
-        response = requests.head(resolvable_url, timeout=timeout, allow_redirects=True)
+        # Don't follow redirects initially to check if redirect is available
+        response = requests.head(resolvable_url, timeout=timeout, allow_redirects=False)
         response_time = time.time() - start_time
         
+        # If we get a redirect (301/302), consider it successful resolution
+        if response.status_code in [301, 302]:
+            redirect_url = response.headers.get('location', 'Unknown')
+            return {
+                'uri': uri,
+                'url': resolvable_url,
+                'status': 'success',
+                'response_code': response.status_code,
+                'response_time': response_time,
+                'error': None,
+                'warning': None,
+                'redirect_url': redirect_url
+            }
+        
+        # If direct access works (200-299), that's also success
+        if response.status_code < 400:
+            return {
+                'uri': uri,
+                'url': resolvable_url,
+                'status': 'success',
+                'response_code': response.status_code,
+                'response_time': response_time,
+                'error': None,
+                'warning': None
+            }
+        
+        # HTTP error codes
         return {
             'uri': uri,
             'url': resolvable_url,
-            'status': 'success' if response.status_code < 400 else 'http_error',
+            'status': 'http_error',
             'response_code': response.status_code,
             'response_time': response_time,
-            'error': None
+            'error': None,
+            'warning': None
+        }
+        
+    except requests.exceptions.SSLError as e:
+        # For SSL errors, try without following redirects to see if redirect itself works
+        try:
+            response = requests.head(resolvable_url, timeout=timeout, allow_redirects=False, verify=False)
+            if response.status_code in [301, 302]:
+                redirect_url = response.headers.get('location', 'Unknown')
+                return {
+                    'uri': uri,
+                    'url': resolvable_url,
+                    'status': 'success_with_ssl_warning',
+                    'response_code': response.status_code,
+                    'response_time': time.time() - start_time,
+                    'error': None,
+                    'warning': f'SSL certificate issue at redirect target: {str(e)}',
+                    'redirect_url': redirect_url
+                }
+        except:
+            pass
+        
+        # SSL error without successful redirect
+        return {
+            'uri': uri,
+            'url': resolvable_url,
+            'status': 'ssl_error',
+            'response_code': None,
+            'response_time': None,
+            'error': str(e),
+            'warning': None
         }
         
     except requests.exceptions.Timeout:
@@ -210,7 +271,8 @@ def test_uri_resolvability(uri, base_urls, timeout=10):
             'status': 'timeout',
             'response_code': None,
             'response_time': timeout,
-            'error': 'Request timeout'
+            'error': 'Request timeout',
+            'warning': None
         }
     except requests.exceptions.RequestException as e:
         return {
@@ -219,7 +281,8 @@ def test_uri_resolvability(uri, base_urls, timeout=10):
             'status': 'connection_error',
             'response_code': None,
             'response_time': None,
-            'error': str(e)
+            'error': str(e),
+            'warning': None
         }
 
 def test_batch_resolvability(sampled_uris, base_urls, max_workers=5, timeout=10):
@@ -270,12 +333,15 @@ def analyze_resolvability_results(results):
     
     # Overall statistics
     total_tested = len(results)
-    successful = len([r for r in results if r['status'] == 'success'])
+    successful = len([r for r in results if r['status'] in ['success', 'success_with_ssl_warning']])
     failed = total_tested - successful
+    warnings = len([r for r in results if r['status'] == 'success_with_ssl_warning'])
     
     print(f"\n📊 Overall Statistics:")
     print(f"  Total URIs tested: {total_tested}")
     print(f"  Successfully resolved: {successful} ({successful/total_tested*100:.1f}%)")
+    if warnings > 0:
+        print(f"  With SSL warnings: {warnings} ({warnings/total_tested*100:.1f}%)")
     print(f"  Failed to resolve: {failed} ({failed/total_tested*100:.1f}%)")
     
     # Status breakdown
@@ -293,7 +359,7 @@ def analyze_resolvability_results(results):
     prefix_stats = []
     for prefix, prefix_results_list in sorted(prefix_results.items()):
         total_prefix = len(prefix_results_list)
-        successful_prefix = len([r for r in prefix_results_list if r['status'] == 'success'])
+        successful_prefix = len([r for r in prefix_results_list if r['status'] in ['success', 'success_with_ssl_warning']])
         success_rate = successful_prefix / total_prefix * 100 if total_prefix > 0 else 0
         
         # Average response time for successful requests
@@ -337,14 +403,17 @@ def save_resolvability_report(results, output_file):
     """Save detailed resolvability report"""
     
     total_tested = len(results)
-    successful = len([r for r in results if r['status'] == 'success'])
+    successful = len([r for r in results if r['status'] in ['success', 'success_with_ssl_warning']])
     success_rate = successful/total_tested*100 if total_tested > 0 else 0
+    warnings = len([r for r in results if r['status'] == 'success_with_ssl_warning'])
     
     with open(output_file, 'w') as f:
         f.write("# URI Resolvability Test Report\n\n")
         f.write(f"**Generated**: {time.strftime('%Y-%m-%d %H:%M:%S UTC')}\n")
         f.write(f"**Total URIs tested**: {total_tested}\n")
         f.write(f"**Successfully resolved**: {successful} ({success_rate:.1f}%)\n")
+        if warnings > 0:
+            f.write(f"**With SSL warnings**: {warnings} ({warnings/total_tested*100:.1f}%)\n")
         f.write(f"**Failed to resolve**: {total_tested - successful} ({(total_tested-successful)/total_tested*100:.1f}%)\n\n")
         
         # Group by prefix
@@ -371,7 +440,7 @@ def save_resolvability_report(results, output_file):
             
             if category_results:
                 cat_total = len(category_results)
-                cat_success = len([r for r in category_results if r['status'] == 'success'])
+                cat_success = len([r for r in category_results if r['status'] in ['success', 'success_with_ssl_warning']])
                 cat_rate = cat_success/cat_total*100 if cat_total > 0 else 0
                 status_icon = "✅" if cat_rate >= 70 else "⚠️" if cat_rate >= 30 else "❌"
                 f.write(f"{status_icon} **{category}**: {cat_success}/{cat_total} ({cat_rate:.1f}%)\n")
@@ -384,14 +453,22 @@ def save_resolvability_report(results, output_file):
             f.write(f"### {prefix}\n\n")
             
             for result in prefix_results_list:
-                status_icon = "✅" if result['status'] == 'success' else "❌"
+                if result['status'] in ['success', 'success_with_ssl_warning']:
+                    status_icon = "✅" if result['status'] == 'success' else "⚠️"
+                else:
+                    status_icon = "❌"
+                    
                 f.write(f"{status_icon} `{result['uri']}`\n")
                 f.write(f"  - URL: {result.get('url', 'N/A')}\n")
                 f.write(f"  - Status: {result['status']}\n")
                 if result['response_code']:
                     f.write(f"  - Response Code: {result['response_code']}\n")
+                if result.get('redirect_url'):
+                    f.write(f"  - Redirects to: {result['redirect_url']}\n")
                 if result['response_time']:
                     f.write(f"  - Response Time: {result['response_time']:.2f}s\n")
+                if result.get('warning'):
+                    f.write(f"  - Warning: {result['warning']}\n")
                 if result['error']:
                     f.write(f"  - Error: {result['error']}\n")
                 f.write("\n")
