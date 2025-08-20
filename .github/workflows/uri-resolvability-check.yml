@@ -65,22 +65,27 @@ jobs:
         run: |
           # Extract success rate from resolvability report
           if [ -f uri_resolvability_report.md ]; then
-            # Parse success rate from the report
-            SUCCESS_RATE=$(grep -o "Successfully resolved: [0-9]* ([0-9.]*%)" uri_resolvability_report.md | grep -o "([0-9.]*%)" | tr -d "()" | head -1)
+            # Parse success rate from the report markdown format
+            SUCCESS_RATE=$(grep -o "\*\*Successfully resolved\*\*: [0-9]* ([0-9.]*%)" uri_resolvability_report.md | grep -o "([0-9.]*%)" | tr -d "()" | head -1)
             echo "SUCCESS_RATE=$SUCCESS_RATE" >> $GITHUB_ENV
+            echo "Extracted SUCCESS_RATE: $SUCCESS_RATE"
             
             # Determine badge color using coverage-style thresholds
-            RATE_NUM=$(echo $SUCCESS_RATE | sed 's/%//')
-            if (( $(echo "$RATE_NUM >= 80" | bc -l) )); then
-              COLOR="brightgreen"
-            elif (( $(echo "$RATE_NUM >= 60" | bc -l) )); then
-              COLOR="green"
-            elif (( $(echo "$RATE_NUM >= 40" | bc -l) )); then
-              COLOR="yellow"
-            elif (( $(echo "$RATE_NUM >= 20" | bc -l) )); then
-              COLOR="orange"
+            RATE_NUM=$(echo $SUCCESS_RATE | sed 's/%//' | sed 's/\..*//')  # Extract integer part
+            if [ ! -z "$RATE_NUM" ] && [ "$RATE_NUM" -ge 0 ] 2>/dev/null; then
+              if [ "$RATE_NUM" -ge 80 ]; then
+                COLOR="brightgreen"
+              elif [ "$RATE_NUM" -ge 60 ]; then
+                COLOR="green"
+              elif [ "$RATE_NUM" -ge 40 ]; then
+                COLOR="yellow"
+              elif [ "$RATE_NUM" -ge 20 ]; then
+                COLOR="orange"
+              else
+                COLOR="red"
+              fi
             else
-              COLOR="red"
+              COLOR="lightgrey"
             fi
             echo "BADGE_COLOR=$COLOR" >> $GITHUB_ENV
             
