@@ -17,58 +17,48 @@ import re
 from urllib.parse import urljoin
 import concurrent.futures
 
-def get_namespace_base_urls():
-    """Define base URLs for converting prefixed URIs to resolvable URLs"""
-    return {
-        # Chemical databases
-        'chebi': 'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:',
-        'kegg.compound': 'https://www.genome.jp/entry/',
-        'pubchem.compound': 'https://pubchem.ncbi.nlm.nih.gov/compound/',
-        'chemspider': 'https://www.chemspider.com/Chemical-Structure.',
-        'drugbank': 'https://go.drugbank.com/drugs/',
-        'hmdb': 'https://hmdb.ca/metabolites/',
-        'wikidata': 'https://www.wikidata.org/entity/',
-        'lipidmaps': 'https://www.lipidmaps.org/data/LMSDRecord.php?LMID=',
-        'chembl.compound': 'https://www.ebi.ac.uk/chembl/compound_report_card/',
-        'comptox': 'https://comptox.epa.gov/dashboard/chemical/details/',
+def load_base_urls_from_csv():
+    """Load base URLs from prefixes.csv for converting prefixed URIs to resolvable URLs"""
+    base_urls = {}
+    
+    prefix_file = Path('prefixes.csv')
+    if not prefix_file.exists():
+        prefix_file = Path('data/prefixes.csv')
+    
+    if prefix_file.exists():
+        try:
+            with open(prefix_file, 'r') as f:
+                reader = csv.reader(f)
+                next(reader)  # Skip header
+                for row in reader:
+                    if len(row) >= 2:
+                        prefix = row[0].strip()
+                        uri = row[1].strip()
+                        if uri:  # Only add non-empty URIs
+                            base_urls[prefix] = uri
+            print(f"📋 Loaded {len(base_urls)} namespace URIs from {prefix_file}")
+        except Exception as e:
+            print(f"❌ Error loading prefixes.csv: {e}")
+    
+    # Add fallback URLs for prefixes not in CSV or for better resolvability
+    fallback_urls = {
+        # Fallbacks for better user experience (some identifiers.org may redirect)
         'inchikey': 'https://www.inchi-trust.org/download/',  # Not directly resolvable
-        
-        # Gene databases
-        'hgnc': 'https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/',
-        'uniprot': 'https://www.uniprot.org/uniprotkb/',
-        'ensembl': 'https://www.ensembl.org/Homo_sapiens/Gene/Summary?g=',
-        'entrez': 'https://www.ncbi.nlm.nih.gov/gene/',
-        'ncbigene': 'https://www.ncbi.nlm.nih.gov/gene/',
-        
-        # Ontologies
-        'go': 'http://amigo.geneontology.org/amigo/term/GO:',
-        'pato': 'http://purl.obolibrary.org/obo/PATO_',
-        'mesh': 'https://meshb.nlm.nih.gov/record/ui?ui=',
-        'aopo': 'http://aopkb.org/aop_ontology#',  # May not be directly resolvable
-        'cl': 'http://purl.obolibrary.org/obo/CL_',
-        'uberon': 'http://purl.obolibrary.org/obo/UBERON_',
-        'pr': 'http://purl.obolibrary.org/obo/PR_',
-        'ncbitaxon': 'https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=',
-        'cheminf': 'http://purl.obolibrary.org/obo/CHEMINF_',
-        
-        # Standard vocabularies (usually redirect to definitions)
-        'dc': 'http://purl.org/dc/elements/1.1/',
-        'dcterms': 'http://purl.org/dc/terms/',
-        'foaf': 'http://xmlns.com/foaf/0.1/',
-        'skos': 'http://www.w3.org/2004/02/skos/core#',
-        'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',
-        'owl': 'http://www.w3.org/2002/07/owl#',
-        'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
-        'void': 'http://rdfs.org/ns/void#',
-        'dcat': 'http://www.w3.org/ns/dcat#',
-        'pav': 'http://purl.org/pav/',
-        
-        # Project specific (may not be resolvable)
         'aop.events': 'https://aopwiki.org/events/',
         'aop.relationships': 'https://aopwiki.org/relationships/',
         'aop.stressor': 'https://aopwiki.org/stressors/',
-        'cas': 'https://commonchemistry.cas.org/detail?cas_rn=',
     }
+    
+    # Add fallbacks for missing prefixes
+    for prefix, url in fallback_urls.items():
+        if prefix not in base_urls:
+            base_urls[prefix] = url
+    
+    return base_urls
+
+def get_namespace_base_urls():
+    """Get namespace base URLs from prefixes.csv with fallbacks"""
+    return load_base_urls_from_csv()
 
 def load_expected_prefixes():
     """Load expected prefixes from prefixes.csv"""
@@ -154,28 +144,31 @@ def convert_to_resolvable_url(prefixed_uri, base_urls):
     
     base_url = base_urls[prefix]
     
-    # Special handling for different identifier formats
-    if prefix == 'chebi':
-        # ChEBI expects CHEBI: prefix in the identifier
-        if not identifier.startswith('CHEBI:'):
-            identifier = f"CHEBI:{identifier}"
+    # Handle identifiers.org URLs (most common in prefixes.csv)
+    if 'identifiers.org' in base_url:
+        # identifiers.org format: https://identifiers.org/prefix/identifier
         return f"{base_url}{identifier}"
-    elif prefix == 'go':
-        # GO expects GO: prefix
-        if not identifier.startswith('GO:'):
-            identifier = f"GO:{identifier}"
+    
+    # Handle OBO Foundry URLs (purl.obolibrary.org)
+    elif 'purl.obolibrary.org/obo' in base_url:
+        if prefix in ['pato', 'cl', 'uberon', 'pr', 'cheminf', 'go']:
+            # OBO format expects underscore and zero-padding for some
+            if identifier.isdigit():
+                identifier = identifier.zfill(7)  # Pad with zeros to 7 digits
+            return f"{base_url}{identifier}"
+        else:
+            return f"{base_url}{identifier}"
+    
+    # Handle standard vocabulary namespaces (direct append)
+    elif base_url.endswith(('#', '/')):
         return f"{base_url}{identifier}"
-    elif prefix in ['pato', 'cl', 'uberon', 'pr', 'cheminf']:
-        # OBO ontologies expect underscore format
-        identifier = identifier.zfill(7)  # Pad with zeros to 7 digits
+    
+    # Special cases for specific formats
+    elif prefix == 'mesh' and 'mesh' in base_url:
         return f"{base_url}{identifier}"
-    elif prefix == 'hgnc':
-        # HGNC expects the symbol, but we'll try the base URL approach
+    elif prefix == 'ncbitaxon' and 'Taxonomy' in base_url:
         return f"{base_url}{identifier}"
-    elif prefix == 'mesh':
-        return f"{base_url}{identifier}"
-    elif prefix == 'cas':
-        # Remove cas: prefix for CAS lookup
+    elif prefix in ['aop.events', 'aop.relationships', 'aop.stressor'] and 'aopwiki.org' in base_url:
         return f"{base_url}{identifier}"
     else:
         # Default: just append identifier
