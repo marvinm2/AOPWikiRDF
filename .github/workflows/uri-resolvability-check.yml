@@ -32,7 +32,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.11'
       
       # Step 3: Cache pip dependencies
       - name: Cache pip dependencies

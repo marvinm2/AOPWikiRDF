@@ -1,7 +1,20 @@
-jupyterlab
-nbclient
-ipython
-pandas
-pyvis
-Requests
-SPARQLWrapper
+# AOP-Wiki RDF Generation Dependencies
+# Pinned versions for reproducible builds
+
+# Core Jupyter environment
+jupyterlab==4.0.11
+nbclient==0.8.0
+ipython==8.25.0
+
+# Data processing and analysis
+pandas==2.2.2
+
+# Network visualization
+pyvis==0.3.2
+
+# HTTP requests
+requests==2.32.3
+
+# RDF and SPARQL handling
+rdflib==6.3.2
+SPARQLWrapper==2.0.0
