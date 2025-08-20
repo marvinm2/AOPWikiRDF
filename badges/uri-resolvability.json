@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "label": "uri resolvability",
-  "message": "",
-  "color": "red",
+  "message": "45.5%",
+  "color": "yellow",
   "style": "flat",
   "labelColor": "555",
   "cacheSeconds": 3600
