@@ -408,6 +408,12 @@ aop.events:1202	edam:data_1025	hgnc:BID,hgnc:FOS,hgnc:FOSB,hgnc:IFNA1,hgnc:IL2,h
 
 aop.events:1003	edam:data_1025	hgnc:ALB,hgnc:CRH,hgnc:F2R,hgnc:HPT,hgnc:IGHD2-15,hgnc:LMOD1,hgnc:SERPINA7,hgnc:SLC16A2,hgnc:SLC25A5,hgnc:SLCO1C1,hgnc:TERC,hgnc:TH,hgnc:THPO,hgnc:TMEFF2,hgnc:TPO,hgnc:TRH,hgnc:TTR,hgnc:TXNRD2 .
 
+aop.events:1066	edam:data_1025	hgnc:SIX1 .
+
+aop.events:2329	edam:data_1025	hgnc:SIX1 .
+
+aop.events:2330	edam:data_1025	hgnc:SIX1 .
+
 aop.events:1497	edam:data_1025	hgnc:NM .
 
 aop.events:1498	edam:data_1025	hgnc:AQP5,hgnc:IL13,hgnc:ROS1,hgnc:SFTPD,hgnc:TBXT .
@@ -4594,6 +4600,12 @@ hgnc:ESR2	a	edam:data_2298, edam:data_1025 ;
 	dc:source	"HGNC" ;
 	skos:exactMatch	ncbigene:2100,ensembl:ENSG00000140009,uniprot:A0A348FV93,uniprot:Q7LCB3,uniprot:G3V5S2,uniprot:F1D8N3,uniprot:Q92731.
 
+hgnc:SIX1	a	edam:data_2298, edam:data_1025 ;
+	edam:data_2298	"SIX1";
+	dc:identifier	"hgnc:SIX1";
+	dc:source	"HGNC" ;
+	skos:exactMatch	ncbigene:6495,ensembl:ENSG00000126778,uniprot:H0YK85,uniprot:Q15475.
+
 hgnc:ATP6AP2	a	edam:data_2298, edam:data_1025 ;
 	edam:data_2298	"ATP6AP2";
 	dc:identifier	"hgnc:ATP6AP2";
@@ -6741,12 +6753,6 @@ hgnc:FOXI1	a	edam:data_2298, edam:data_1025 ;
 	dc:identifier	"hgnc:FOXI1";
 	dc:source	"HGNC" ;
 	skos:exactMatch	ncbigene:2299,ensembl:ENSG00000168269,uniprot:Q12951,uniprot:E0XEN6.
-
-hgnc:SIX1	a	edam:data_2298, edam:data_1025 ;
-	edam:data_2298	"SIX1";
-	dc:identifier	"hgnc:SIX1";
-	dc:source	"HGNC" ;
-	skos:exactMatch	ncbigene:6495,ensembl:ENSG00000126778,uniprot:H0YK85,uniprot:Q15475.
 
 hgnc:CDCA8	a	edam:data_2298, edam:data_1025 ;
 	edam:data_2298	"CDCA8";
@@ -13480,6 +13486,11 @@ ncbigene:2100	a	edam:data_1027, edam:data_1025 ;
 	dc:identifier	"ncbigene:2100";
 	dc:source	"Entrez Gene".
 
+ncbigene:6495	a	edam:data_1027, edam:data_1025 ;
+	edam:data_1027	"6495";
+	dc:identifier	"ncbigene:6495";
+	dc:source	"Entrez Gene".
+
 ncbigene:10159	a	edam:data_1027, edam:data_1025 ;
 	edam:data_1027	"10159";
 	dc:identifier	"ncbigene:10159";
@@ -15333,11 +15344,6 @@ ncbigene:4193	a	edam:data_1027, edam:data_1025 ;
 ncbigene:2299	a	edam:data_1027, edam:data_1025 ;
 	edam:data_1027	"2299";
 	dc:identifier	"ncbigene:2299";
-	dc:source	"Entrez Gene".
-
-ncbigene:6495	a	edam:data_1027, edam:data_1025 ;
-	edam:data_1027	"6495";
-	dc:identifier	"ncbigene:6495";
 	dc:source	"Entrez Gene".
 
 ncbigene:55143	a	edam:data_1027, edam:data_1025 ;
@@ -21260,6 +21266,11 @@ ensembl:ENSG00000140009	a	edam:data_1033, edam:data_1025 ;
 	dc:identifier	"ensembl:ENSG00000140009";
 	dc:source	"Ensembl".
 
+ensembl:ENSG00000126778	a	edam:data_1033, edam:data_1025 ;
+	edam:data_1033	"ENSG00000126778";
+	dc:identifier	"ensembl:ENSG00000126778";
+	dc:source	"Ensembl".
+
 ensembl:ENSG00000182220	a	edam:data_1033, edam:data_1025 ;
 	edam:data_1033	"ENSG00000182220";
 	dc:identifier	"ensembl:ENSG00000182220";
@@ -23023,11 +23034,6 @@ ensembl:ENSG00000135679	a	edam:data_1033, edam:data_1025 ;
 ensembl:ENSG00000168269	a	edam:data_1033, edam:data_1025 ;
 	edam:data_1033	"ENSG00000168269";
 	dc:identifier	"ensembl:ENSG00000168269";
-	dc:source	"Ensembl".
-
-ensembl:ENSG00000126778	a	edam:data_1033, edam:data_1025 ;
-	edam:data_1033	"ENSG00000126778";
-	dc:identifier	"ensembl:ENSG00000126778";
 	dc:source	"Ensembl".
 
 ensembl:ENSG00000134690	a	edam:data_1033, edam:data_1025 ;
@@ -37270,6 +37276,16 @@ uniprot:Q92731	a	edam:data_2291, edam:data_1025 ;
 	dc:identifier	"uniprot:Q92731";
 	dc:source	"UniProt".
 
+uniprot:H0YK85	a	edam:data_2291, edam:data_1025 ;
+	edam:data_2291	"H0YK85";
+	dc:identifier	"uniprot:H0YK85";
+	dc:source	"UniProt".
+
+uniprot:Q15475	a	edam:data_2291, edam:data_1025 ;
+	edam:data_2291	"Q15475";
+	dc:identifier	"uniprot:Q15475";
+	dc:source	"UniProt".
+
 uniprot:A0A1B0GUT7	a	edam:data_2291, edam:data_1025 ;
 	edam:data_2291	"A0A1B0GUT7";
 	dc:identifier	"uniprot:A0A1B0GUT7";
@@ -46348,16 +46364,6 @@ uniprot:Q12951	a	edam:data_2291, edam:data_1025 ;
 uniprot:E0XEN6	a	edam:data_2291, edam:data_1025 ;
 	edam:data_2291	"E0XEN6";
 	dc:identifier	"uniprot:E0XEN6";
-	dc:source	"UniProt".
-
-uniprot:H0YK85	a	edam:data_2291, edam:data_1025 ;
-	edam:data_2291	"H0YK85";
-	dc:identifier	"uniprot:H0YK85";
-	dc:source	"UniProt".
-
-uniprot:Q15475	a	edam:data_2291, edam:data_1025 ;
-	edam:data_2291	"Q15475";
-	dc:identifier	"uniprot:Q15475";
 	dc:source	"UniProt".
 
 uniprot:Q53HL2	a	edam:data_2291, edam:data_1025 ;
