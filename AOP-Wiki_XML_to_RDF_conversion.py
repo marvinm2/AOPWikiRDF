@@ -2212,3 +2212,51 @@ g.write('\n:AOPWikiRDF.ttl\ta\tvoid:Dataset ;\n\tdc:description\t"AOP-Wiki RDF d
 void_rdf_file.close()
 logger.info("VoID file created successfully")
 
+# Generate ServiceDescription.ttl file with proper error handling
+service_desc_filename = filepath + 'ServiceDescription.ttl'
+logger.info(f"Writing ServiceDescription.ttl file: {service_desc_filename}")
+
+try:
+    service_desc_file = open(service_desc_filename, 'w', encoding='utf-8')
+except IOError as e:
+    logger.error(f"Failed to open ServiceDescription.ttl output file: {e}")
+    raise SystemExit(1)
+
+# Write ServiceDescription.ttl content with comprehensive Virtuoso capabilities
+service_desc_content = f'''@prefix sd: <http://www.w3.org/ns/sparql-service-description#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/> a sd:Service ;
+    sd:endpoint <https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/> ;
+    sd:supportedLanguage sd:SPARQL11Query ;
+    sd:resultFormat
+        <http://www.w3.org/ns/formats/SPARQL_Results_XML>,
+        <http://www.w3.org/ns/formats/SPARQL_Results_JSON>,
+        <http://www.w3.org/ns/formats/SPARQL_Results_CSV>,
+        <http://www.w3.org/ns/formats/SPARQL_Results_TSV>,
+        <http://www.w3.org/ns/formats/RDF_XML>,
+        <http://www.w3.org/ns/formats/Turtle>,
+        <http://www.w3.org/ns/formats/N-Triples>,
+        <http://www.w3.org/ns/formats/RDF_JSON>,
+        <http://www.w3.org/ns/formats/JSON-LD> ;
+    sd:feature
+        sd:DereferencesURIs,
+        sd:UnionDefaultGraph,
+        sd:BasicFederatedQuery ;
+    sd:defaultDataset [
+        a sd:Dataset ;
+        sd:defaultGraph <http://aopwiki.org/> ;
+        dcterms:title "AOP-Wiki RDF Dataset" ;
+        dcterms:description "Adverse Outcome Pathway data in RDF format" ;
+        dcterms:modified "{x.isoformat()}"^^xsd:dateTime
+    ] ;
+    dcterms:title "AOP-Wiki SPARQL Endpoint" ;
+    dcterms:description "SPARQL endpoint for querying Adverse Outcome Pathway data" .
+'''
+
+service_desc_file.write(service_desc_content)
+service_desc_file.close()
+logger.info("ServiceDescription.ttl file created successfully")
+
