@@ -38,21 +38,95 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      # Step 5: Run Jupyter Notebook for RDF conversion
-      - id: jupyter
-        name: Jupyter Notebook Execution
+      # Step 5: Run Python Script for RDF conversion (Production)
+      - id: python-conversion
+        name: Python Script RDF Generation
         timeout-minutes: 90
-        run: jupyter execute AOP-Wiki_XML_to_RDF_conversion.ipynb
+        run: |
+          echo "=== Running Python Script RDF Generation ==="
+          echo "Start time: $(date -u)"
+          
+          # Run Python conversion script with production output
+          python run_conversion.py --output-dir data/ --log-level INFO
+          
+          echo "End time: $(date -u)"
+          echo "Generated files:"
+          ls -lh data/*.ttl 2>/dev/null || echo "No TTL files found in data/"
+          
+          # Display file sizes for monitoring
+          echo "=== File Size Summary ==="
+          for file in data/*.ttl; do
+            if [ -f "$file" ]; then
+              size=$(wc -c < "$file")
+              lines=$(wc -l < "$file")
+              echo "$(basename "$file"): $size bytes, $lines lines"
+            fi
+          done
         shell: bash
 
-      # Step 6: Remove all "aop-wiki-xml-*" files in /data
+      # Step 6: Validate generated TTL files
+      - name: Validate TTL Files
+        run: |
+          echo "=== TTL Validation ==="
+          
+          # Create validation script
+          cat > validate_ttl.py << 'EOF'
+          import sys
+          from rdflib import Graph
+          import os
+          
+          def validate_turtle(file_path):
+              try:
+                  g = Graph()
+                  g.parse(file_path, format='turtle')
+                  size = len(g)
+                  print(f'✅ {file_path}: Valid ({size:,} triples)')
+                  return True, size
+              except Exception as e:
+                  print(f'❌ {file_path}: Invalid - {e}')
+                  return False, 0
+          
+          # Define expected files
+          expected_files = [
+              'data/AOPWikiRDF.ttl',
+              'data/AOPWikiRDF-Genes.ttl', 
+              'data/AOPWikiRDF-Void.ttl'
+          ]
+          
+          total_triples = 0
+          all_valid = True
+          
+          for file_path in expected_files:
+              if os.path.exists(file_path):
+                  valid, triples = validate_turtle(file_path)
+                  total_triples += triples
+                  all_valid = all_valid and valid
+              else:
+                  print(f'❌ {file_path}: File not found')
+                  all_valid = False
+          
+          print(f'\nTotal triples: {total_triples:,}')
+          
+          # Create QC status file for downstream workflows
+          with open('data/qc-status.txt', 'w') as f:
+              f.write('valid' if all_valid else 'not valid')
+          
+          if not all_valid:
+              sys.exit(1)
+          EOF
+          
+          python validate_ttl.py
+
+      # Step 7: Remove AOP-Wiki XML Files
       - id: cleanup
         name: Remove AOP-Wiki XML Files
         run: |
+          echo "=== Cleaning up XML files ==="
           rm -f data/aop-wiki-xml-*
-          git status
+          echo "Remaining files in data/:"
+          ls -la data/ | head -10
 
-      # Step 7: Check if there are changes
+      # Step 8: Check if there are changes
       - id: check_changes
         name: Check for Changes
         run: |
@@ -64,13 +138,58 @@ jobs:
             echo "CHANGES=true" >> $GITHUB_ENV
           fi
 
-      # Step 8: Commit and Push Changes (only if there are changes)
+      # Step 9: Commit and Push Changes (only if there are changes)
       - id: commit
         name: Commit and Push Changes
         if: env.CHANGES == 'true'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
           git add -A
-          git commit -m "Cleanup: Removed old AOP-Wiki XML files ($(date -u))"
+          
+          # Create commit message
+          commit_msg="Weekly RDF update (Python script generation)
+
+          Generated via Python script with enhanced precision filtering.
+          
+          🤖 Generated with [Claude Code](https://claude.ai/code)
+          
+          Co-Authored-By: Claude <noreply@anthropic.com>"
+          
+          git commit -m "$commit_msg"
           git push origin HEAD
+          
+          echo "✅ Changes committed and pushed"
+
+      # Step 10: Upload RDF artifacts
+      - name: Upload RDF Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: rdf-files
+          path: |
+            data/*.ttl
+            data/qc-status.txt
+            *.log
+          retention-days: 30
+
+      # Step 11: Execution Summary
+      - name: Execution Summary
+        run: |
+          echo "=== RDF Generation Summary ==="
+          echo "Date: $(date -u)"
+          echo "Method: Python script (enhanced precision)"
+          echo "Changes Committed: ${{ env.CHANGES }}"
+          echo ""
+          echo "Generated files:"
+          ls -lh data/*.ttl 2>/dev/null || echo "No TTL files"
+          echo ""
+          echo "QC Status: $(cat data/qc-status.txt 2>/dev/null || echo 'unknown')"
+          echo ""
+          echo "✅ RDF generation completed successfully"
+
+      # Step 12: Clean up temporary files
+      - name: Final Cleanup
+        run: |
+          rm -f validate_ttl.py
+          rm -f *.log 2>/dev/null || true
