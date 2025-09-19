@@ -1,8 +1,8 @@
-name: RDF Generation
+name: RDF Generation (Jupyter Backup)
 
 on:
-  schedule:
-    - cron: '0 8 * * 6'  # Runs every Saturday at 08:00 UTC
+  # schedule:
+  #   - cron: '0 8 * * 6'  # Runs every Saturday at 08:00 UTC (DISABLED - backup only)
   workflow_dispatch:
 
 jobs:
