@@ -1896,7 +1896,7 @@ aop.relationships:3629	edam:data_1025	hgnc:ROS1,hgnc:TBATA,hgnc:AIFM1,hgnc:CAT .
 
 aop.relationships:3650	edam:data_1025	hgnc:ASRGL1,hgnc:ATHS,hgnc:ATRNL1,hgnc:CCL27,hgnc:HMBS,hgnc:PDLIM3,hgnc:SLPI,hgnc:ROS1,hgnc:LPO,hgnc:PARK7,hgnc:STATH .
 
-aop.relationships:3645	edam:data_1025	hgnc:C1QL1,hgnc:CRH,hgnc:HPSE .
+aop.relationships:3645	edam:data_1025	hgnc:C1QL1,hgnc:CRH,hgnc:HPSE,hgnc:POMC .
 
 aop.relationships:3646	edam:data_1025	hgnc:ARC,hgnc:NOL3 .
 
