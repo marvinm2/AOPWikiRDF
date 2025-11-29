@@ -736,6 +736,8 @@ aop.events:2371	edam:data_1025	hgnc:HPSE .
 
 aop.events:2392	edam:data_1025	hgnc:OPN1SW .
 
+aop.events:2258	edam:data_1025	hgnc:LAT,hgnc:MCAT,hgnc:OAT,hgnc:SLC16A1,hgnc:SLC16A2,hgnc:SLC16A10,hgnc:SLC25A5,hgnc:SLCO1A2,hgnc:SLCO1C1,hgnc:SPNS1 .
+
 aop.relationships:908	edam:data_1025	hgnc:ROS1,hgnc:AGO2,hgnc:ALDH2,hgnc:CD1A,hgnc:CD1B,hgnc:CD1C,hgnc:CELIAC2,hgnc:CTLA4,hgnc:NLRP1,hgnc:NOD2,hgnc:PLXNA3,hgnc:SIRT1,hgnc:SLC6A3,hgnc:SOD2,hgnc:TH,hgnc:TXN,hgnc:XK .
 
 aop.relationships:933	edam:data_1025	hgnc:NDUFB6,hgnc:ROS1,hgnc:IVNS1ABP,hgnc:MT-ND1,hgnc:NDUFS7 .
@@ -7167,6 +7169,12 @@ hgnc:OPN1SW	a	edam:data_2298, edam:data_1025 ;
 	dc:identifier	"hgnc:OPN1SW";
 	dc:source	"HGNC" ;
 	skos:exactMatch	ncbigene:611,ensembl:ENSG00000128617,uniprot:P03999.
+
+hgnc:OAT	a	edam:data_2298, edam:data_1025 ;
+	edam:data_2298	"OAT";
+	dc:identifier	"hgnc:OAT";
+	dc:source	"HGNC" ;
+	skos:exactMatch	ncbigene:4942,ensembl:ENSG00000065154,uniprot:A0A140VJQ4,uniprot:P04181.
 
 hgnc:AGO2	a	edam:data_2298, edam:data_1025 ;
 	edam:data_2298	"AGO2";
@@ -15289,6 +15297,11 @@ ncbigene:611	a	edam:data_1027, edam:data_1025 ;
 	dc:identifier	"ncbigene:611";
 	dc:source	"Entrez Gene".
 
+ncbigene:4942	a	edam:data_1027, edam:data_1025 ;
+	edam:data_1027	"4942";
+	dc:identifier	"ncbigene:4942";
+	dc:source	"Entrez Gene".
+
 ncbigene:27161	a	edam:data_1027, edam:data_1025 ;
 	edam:data_1027	"27161";
 	dc:identifier	"ncbigene:27161";
@@ -22697,6 +22710,11 @@ ensembl:ENSG00000104321	a	edam:data_1033, edam:data_1025 ;
 ensembl:ENSG00000128617	a	edam:data_1033, edam:data_1025 ;
 	edam:data_1033	"ENSG00000128617";
 	dc:identifier	"ensembl:ENSG00000128617";
+	dc:source	"Ensembl".
+
+ensembl:ENSG00000065154	a	edam:data_1033, edam:data_1025 ;
+	edam:data_1033	"ENSG00000065154";
+	dc:identifier	"ensembl:ENSG00000065154";
 	dc:source	"Ensembl".
 
 ensembl:ENSG00000123908	a	edam:data_1033, edam:data_1025 ;
@@ -47832,6 +47850,16 @@ uniprot:O75762	a	edam:data_2291, edam:data_1025 ;
 uniprot:P03999	a	edam:data_2291, edam:data_1025 ;
 	edam:data_2291	"P03999";
 	dc:identifier	"uniprot:P03999";
+	dc:source	"UniProt".
+
+uniprot:A0A140VJQ4	a	edam:data_2291, edam:data_1025 ;
+	edam:data_2291	"A0A140VJQ4";
+	dc:identifier	"uniprot:A0A140VJQ4";
+	dc:source	"UniProt".
+
+uniprot:P04181	a	edam:data_2291, edam:data_1025 ;
+	edam:data_2291	"P04181";
+	dc:identifier	"uniprot:P04181";
 	dc:source	"UniProt".
 
 uniprot:E5RJY2	a	edam:data_2291, edam:data_1025 ;
