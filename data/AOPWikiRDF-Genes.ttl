@@ -586,6 +586,8 @@ aop.events:1888	edam:data_1025	hgnc:CYP26A1,hgnc:PML .
 
 aop.events:1889	edam:data_1025	hgnc:CYP26B1 .
 
+aop.events:1887	edam:data_1025	hgnc:CYP26A1,hgnc:CYP26B1,hgnc:CYP26C1 .
+
 aop.events:1967	edam:data_1025	hgnc:CASP1,hgnc:GSDMA,hgnc:GSDMD,hgnc:GSDME,hgnc:IL1B,hgnc:IL18 .
 
 aop.events:1896	edam:data_1025	hgnc:CDKN2A,hgnc:MDM2,hgnc:MYC,hgnc:NR1H2,hgnc:TP53 .

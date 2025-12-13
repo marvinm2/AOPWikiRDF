@@ -25,7 +25,7 @@
         sd:defaultGraph <http://aopwiki.org/> ;
         dcterms:title "AOP-Wiki RDF Dataset" ;
         dcterms:description "Adverse Outcome Pathway data in RDF format" ;
-        dcterms:modified "2025-12-06T08:33:43.499027"^^xsd:dateTime
+        dcterms:modified "2025-12-13T08:34:04.786620"^^xsd:dateTime
     ] ;
     dcterms:title "AOP-Wiki SPARQL Endpoint" ;
     dcterms:description "SPARQL endpoint for querying Adverse Outcome Pathway data" .
