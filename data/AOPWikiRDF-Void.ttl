@@ -10,29 +10,29 @@
 @prefix freq:  <http://purl.org/cld/freq/> .
 :AOPWikiRDF.ttl	a	void:Dataset ;
 	dc:description	"AOP-Wiki RDF data from the AOP-Wiki database" ;
-	pav:createdOn	"2026-01-03"^^xsd:date;
-	dcterms:modified	"2026-01-03"^^xsd:date ;
-	pav:createdWith	"aop-wiki-xml-2026-01-03", :Promapping ;
+	pav:createdOn	"2026-01-10"^^xsd:date;
+	dcterms:modified	"2026-01-10"^^xsd:date ;
+	pav:createdWith	"aop-wiki-xml-2026-01-10", :Promapping ;
 	pav:createdBy	<https://zenodo.org/badge/latestdoi/146466058> ;
 	foaf:homepage	<https://aopwiki.org> ;
 	dcterms:accuralPeriodicity  freq:quarterly ;
-	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-01-03> .
+	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-01-10> .
 
 :AOPWikiRDF-Genes.ttl	a	void:Dataset ;
 	dc:description	"AOP-Wiki RDF extension with gene mappings based on approved names and symbols" ;
-	pav:createdOn	"2026-01-03 08:36:18.517009" ;
-	pav:createdWith	"aop-wiki-xml-2026-01-03", :HGNCgenes ;
+	pav:createdOn	"2026-01-10 08:35:36.686347" ;
+	pav:createdWith	"aop-wiki-xml-2026-01-10", :HGNCgenes ;
 	pav:createdBy	<https://zenodo.org/badge/latestdoi/146466058> ;
 	dcterms:accuralPeriodicity  freq:quarterly ;
 	foaf:homepage	<https://aopwiki.org> ;
-	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-01-03>, <https://www.genenames.org/download/custom/> . 
+	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-01-10>, <https://www.genenames.org/download/custom/> . 
 
 :HGNCgenes.txt	a	void:Dataset, void:Linkset ;
 	dc:description	"HGNC approved symbols and names for genes" ;
 	dcat:downloadURL	<https://www.genenames.org/download/custom/> ;
-	pav:importedOn	"Sat Jan  3 08:30:01 2026" .
+	pav:importedOn	"Sat Jan 10 08:29:27 2026" .
 
 <https://proconsortium.org/download/current/promapping.txt>	a	void:Dataset, void:Linkset;
 	dc:description	"PRotein ontology mappings to protein database identifiers";
 	dcat:downloadURL	<https://proconsortium.org/download/current/promapping.txt>;
-	pav:importedOn	"Sat Jan  3 08:30:30 2026".
+	pav:importedOn	"Sat Jan 10 08:29:56 2026".
