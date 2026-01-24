@@ -736,8 +736,6 @@ aop.events:1238	edam:data_1025	hgnc:TRPA1 .
 
 aop.events:2371	edam:data_1025	hgnc:HPSE .
 
-aop.events:2392	edam:data_1025	hgnc:OPN1SW .
-
 aop.events:2258	edam:data_1025	hgnc:LAT,hgnc:MCAT,hgnc:OAT,hgnc:SLC16A1,hgnc:SLC16A2,hgnc:SLC16A10,hgnc:SLC25A5,hgnc:SLCO1A2,hgnc:SLCO1C1,hgnc:SPNS1 .
 
 aop.events:2399	edam:data_1025	hgnc:FGF10 .
@@ -7167,12 +7165,6 @@ hgnc:TRPA1	a	edam:data_2298, edam:data_1025 ;
 	dc:identifier	"hgnc:TRPA1";
 	dc:source	"HGNC" ;
 	skos:exactMatch	ncbigene:8989,ensembl:ENSG00000104321,uniprot:H0YAW0,uniprot:O75762.
-
-hgnc:OPN1SW	a	edam:data_2298, edam:data_1025 ;
-	edam:data_2298	"OPN1SW";
-	dc:identifier	"hgnc:OPN1SW";
-	dc:source	"HGNC" ;
-	skos:exactMatch	ncbigene:611,ensembl:ENSG00000128617,uniprot:P03999.
 
 hgnc:OAT	a	edam:data_2298, edam:data_1025 ;
 	edam:data_2298	"OAT";
@@ -15296,11 +15288,6 @@ ncbigene:8989	a	edam:data_1027, edam:data_1025 ;
 	dc:identifier	"ncbigene:8989";
 	dc:source	"Entrez Gene".
 
-ncbigene:611	a	edam:data_1027, edam:data_1025 ;
-	edam:data_1027	"611";
-	dc:identifier	"ncbigene:611";
-	dc:source	"Entrez Gene".
-
 ncbigene:4942	a	edam:data_1027, edam:data_1025 ;
 	edam:data_1027	"4942";
 	dc:identifier	"ncbigene:4942";
@@ -22709,11 +22696,6 @@ ensembl:ENSG00000165731	a	edam:data_1033, edam:data_1025 ;
 ensembl:ENSG00000104321	a	edam:data_1033, edam:data_1025 ;
 	edam:data_1033	"ENSG00000104321";
 	dc:identifier	"ensembl:ENSG00000104321";
-	dc:source	"Ensembl".
-
-ensembl:ENSG00000128617	a	edam:data_1033, edam:data_1025 ;
-	edam:data_1033	"ENSG00000128617";
-	dc:identifier	"ensembl:ENSG00000128617";
 	dc:source	"Ensembl".
 
 ensembl:ENSG00000065154	a	edam:data_1033, edam:data_1025 ;
@@ -47849,11 +47831,6 @@ uniprot:H0YAW0	a	edam:data_2291, edam:data_1025 ;
 uniprot:O75762	a	edam:data_2291, edam:data_1025 ;
 	edam:data_2291	"O75762";
 	dc:identifier	"uniprot:O75762";
-	dc:source	"UniProt".
-
-uniprot:P03999	a	edam:data_2291, edam:data_1025 ;
-	edam:data_2291	"P03999";
-	dc:identifier	"uniprot:P03999";
 	dc:source	"UniProt".
 
 uniprot:A0A140VJQ4	a	edam:data_2291, edam:data_1025 ;
