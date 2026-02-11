@@ -865,6 +865,21 @@ for tax in root.findall(aopxml + 'taxonomy'):
 logger.info(f'Taxonomy parsing completed: {len(taxdict)} taxonomies processed')
 
 
+# ### AOP Taxonomy (Second Pass)
+# Parse AOP taxonomy after taxdict is available
+
+for AOP in root.findall(aopxml + 'aop'):
+    for appl in AOP.findall(aopxml + 'applicability'):
+        for tax in appl.findall(aopxml + 'taxonomy'):
+            if 'ncbitaxon:131567' not in aopdict[AOP.get('id')]:
+                if 'dc:identifier' in taxdict[tax.get('taxonomy-id')]:
+                    aopdict[AOP.get('id')]['ncbitaxon:131567'] = [[tax.get('taxonomy-id'), tax.find(aopxml + 'evidence').text, taxdict[tax.get('taxonomy-id')]['dc:identifier'], taxdict[tax.get('taxonomy-id')]['dc:source'], taxdict[tax.get('taxonomy-id')]['dc:title']]]
+            else:
+                if 'dc:identifier' in taxdict[tax.get('taxonomy-id')]:
+                    aopdict[AOP.get('id')]['ncbitaxon:131567'].append([tax.get('taxonomy-id'), tax.find(aopxml + 'evidence').text, taxdict[tax.get('taxonomy-id')]['dc:identifier'], taxdict[tax.get('taxonomy-id')]['dc:source'], taxdict[tax.get('taxonomy-id')]['dc:title']])
+logger.info(f'AOP taxonomy second pass completed')
+
+
 # ### Key Event Components
 # Which comprise of the Biological Actions, Biological Processes, Biological Objects.
 
@@ -1324,6 +1339,10 @@ for aop in aopdict:
     # life stage
     if 'aopo:LifeStageContext' in aopdict[aop]:
         write_multivalue_triple(g,'aopo:LifeStageContext',[stage[1] for stage in aopdict[aop]['aopo:LifeStageContext']],quote=True)
+
+    # taxonomy
+    if 'ncbitaxon:131567' in aopdict[aop]:
+        write_multivalue_triple(g,'ncbitaxon:131567',[tax[2] for tax in aopdict[aop]['ncbitaxon:131567']])
 
     g.write(' .\n\n')
 
