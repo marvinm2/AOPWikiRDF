@@ -734,6 +734,10 @@ aop.events:2306	edam:data_1025	hgnc:CST12P,hgnc:DLAT,hgnc:SNORA62 .
 
 aop.events:2323	edam:data_1025	hgnc:PDCD1,hgnc:SNCA,hgnc:SPATA2 .
 
+aop.events:2324	edam:data_1025	hgnc:IL2RA,hgnc:IL6,hgnc:IL17A,hgnc:IL17C,hgnc:IL21,hgnc:IL22,hgnc:IL23A,hgnc:ISG20 .
+
+aop.events:2326	edam:data_1025	hgnc:FAS,hgnc:FASLG,hgnc:PDCD1,hgnc:SNCA,hgnc:SPATA2 .
+
 aop.events:2362	edam:data_1025	hgnc:FMN1,hgnc:RET,hgnc:ROS1 .
 
 aop.events:2363	edam:data_1025	hgnc:FMN1,hgnc:RET,hgnc:ROS1 .
@@ -1903,6 +1907,10 @@ aop.relationships:3471	edam:data_1025	hgnc:CST12P,hgnc:DLAT,hgnc:SNORA62 .
 aop.relationships:3473	edam:data_1025	hgnc:CST12P,hgnc:DLAT,hgnc:RANGAP1,hgnc:SLC17A5,hgnc:SNORA62 .
 
 aop.relationships:3556	edam:data_1025	hgnc:LMOD1 .
+
+aop.relationships:3558	edam:data_1025	hgnc:WDTC1 .
+
+aop.relationships:3559	edam:data_1025	hgnc:PGR .
 
 aop.relationships:3488	edam:data_1025	hgnc:AKR1B1,hgnc:AR .
 
