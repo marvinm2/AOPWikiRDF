@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.aopkb.org/aop-xml">
+  <vendor-specific>
+    <aop-reference id="1" aop-wiki-id="10"/>
+    <key-event-reference id="100" aop-wiki-id="200"/>
+    <key-event-reference id="101" aop-wiki-id="201"/>
+    <key-event-relationship-reference id="50" aop-wiki-id="500"/>
+    <stressor-reference id="30" aop-wiki-id="300"/>
+  </vendor-specific>
+
+  <aop id="1">
+    <title>Test Adverse Outcome Pathway</title>
+    <short-name>Test AOP</short-name>
+    <abstract>This is a test abstract for the AOP.</abstract>
+    <background>Background information about this AOP.</background>
+    <authors>Test Author</authors>
+    <status>
+      <wiki-status>Open for citation &amp; comment</wiki-status>
+      <oecd-status>EAGMST Under Review</oecd-status>
+      <saaop-status>Included in OECD Work Plan</saaop-status>
+    </status>
+    <oecd-project>1.1</oecd-project>
+    <source>AOPWiki</source>
+    <creation-timestamp>2020-01-01T00:00:00</creation-timestamp>
+    <last-modification-timestamp>2024-06-15T12:00:00</last-modification-timestamp>
+    <applicability>
+      <sex>
+        <evidence>High</evidence>
+        <sex>Male</sex>
+      </sex>
+      <life-stage>
+        <evidence>Moderate</evidence>
+        <life-stage>Adult</life-stage>
+      </life-stage>
+    </applicability>
+    <key-events>
+      <key-event key-event-id="100"/>
+      <key-event key-event-id="101"/>
+    </key-events>
+    <key-event-relationships>
+      <relationship id="50">
+        <adjacency>adjacent</adjacency>
+        <quantitative-understanding-value>Low</quantitative-understanding-value>
+        <evidence>Moderate</evidence>
+      </relationship>
+    </key-event-relationships>
+    <molecular-initiating-event key-event-id="100">
+      <evidence-supporting-chemical-initiation>Strong chemical evidence.</evidence-supporting-chemical-initiation>
+    </molecular-initiating-event>
+    <adverse-outcome key-event-id="101">
+      <examples>Example adverse outcomes described here.</examples>
+    </adverse-outcome>
+    <aop-stressors>
+      <aop-stressor stressor-id="30">
+        <evidence>High</evidence>
+      </aop-stressor>
+    </aop-stressors>
+    <overall-assessment>
+      <description>Overall assessment description.</description>
+      <key-event-essentiality-summary>KE essentiality summary.</key-event-essentiality-summary>
+      <applicability>Applicability summary.</applicability>
+      <weight-of-evidence-summary>Weight of evidence summary.</weight-of-evidence-summary>
+      <quantitative-considerations>Quantitative considerations text.</quantitative-considerations>
+    </overall-assessment>
+    <potential-applications>Potential applications text.</potential-applications>
+  </aop>
+
+  <chemical id="10">
+    <casrn>50-00-0</casrn>
+    <jchem-inchi-key>WSFSSNUMVMOOMR-UHFFFAOYSA-N</jchem-inchi-key>
+    <preferred-name>Formaldehyde</preferred-name>
+    <dsstox-id>DTXSID7020637</dsstox-id>
+    <synonyms>
+      <synonym>Formalin;</synonym>
+      <synonym>Methanal;</synonym>
+    </synonyms>
+  </chemical>
+
+  <stressor id="30">
+    <name>Formaldehyde exposure</name>
+    <description>Stressor description for formaldehyde.</description>
+    <creation-timestamp>2020-01-01T00:00:00</creation-timestamp>
+    <last-modification-timestamp>2024-01-01T00:00:00</last-modification-timestamp>
+    <chemicals>
+      <chemical-initiator chemical-id="10" user-term="Formaldehyde"/>
+    </chemicals>
+  </stressor>
+
+  <taxonomy id="5">
+    <source>NCBI</source>
+    <name>Homo sapiens</name>
+    <source-id>9606</source-id>
+  </taxonomy>
+
+  <taxonomy id="6">
+    <source>NCBI</source>
+    <name>Rattus norvegicus</name>
+    <source-id>10116</source-id>
+  </taxonomy>
+
+  <biological-process id="200">
+    <source>GO</source>
+    <name>apoptotic process</name>
+    <source-id>GO:0006915</source-id>
+  </biological-process>
+
+  <biological-object id="300">
+    <source>PR</source>
+    <name>tumor protein p53</name>
+    <source-id>PR:000003061</source-id>
+  </biological-object>
+
+  <biological-object id="301">
+    <source>CL</source>
+    <name>hepatocyte</name>
+    <source-id>CL:0000182</source-id>
+  </biological-object>
+
+  <biological-action id="400">
+    <source>GO</source>
+    <name>increased</name>
+  </biological-action>
+
+  <key-event id="100">
+    <title>Activation of receptor</title>
+    <short-name>Receptor activation</short-name>
+    <biological-organization-level>Molecular</biological-organization-level>
+    <description>Description of receptor activation event.</description>
+    <measurement-methodology>Measurement methods described here.</measurement-methodology>
+    <source>AOPWiki</source>
+    <applicability>
+      <sex>
+        <evidence>High</evidence>
+        <sex>Unspecific</sex>
+      </sex>
+      <life-stage>
+        <evidence>Moderate</evidence>
+        <life-stage>Adult</life-stage>
+      </life-stage>
+      <taxonomy taxonomy-id="5">
+        <evidence>High</evidence>
+      </taxonomy>
+    </applicability>
+    <biological-events>
+      <biological-event process-id="200" object-id="300" action-id="400"/>
+    </biological-events>
+    <cell-term>
+      <source>CL</source>
+      <name>hepatocyte</name>
+      <source-id>CL:0000182</source-id>
+    </cell-term>
+    <organ-term>
+      <source>UBERON</source>
+      <name>liver</name>
+      <source-id>UBERON:0002107</source-id>
+    </organ-term>
+    <key-event-stressors>
+      <key-event-stressor stressor-id="30">
+        <evidence>High</evidence>
+      </key-event-stressor>
+    </key-event-stressors>
+  </key-event>
+
+  <key-event id="101">
+    <title>Cell death</title>
+    <short-name>Apoptosis</short-name>
+    <biological-organization-level>Cellular</biological-organization-level>
+    <description>Description of cell death.</description>
+    <measurement-methodology>Cell viability assays.</measurement-methodology>
+    <source>AOPWiki</source>
+    <applicability/>
+    <biological-events/>
+  </key-event>
+
+  <key-event-relationship id="50">
+    <title>
+      <upstream-id>100</upstream-id>
+      <downstream-id>101</downstream-id>
+    </title>
+    <description>Relationship description between KE100 and KE101.</description>
+    <source>AOPWiki</source>
+    <creation-timestamp>2020-06-01T00:00:00</creation-timestamp>
+    <last-modification-timestamp>2024-06-01T00:00:00</last-modification-timestamp>
+    <weight-of-evidence>
+      <biological-plausibility>Plausibility text.</biological-plausibility>
+      <emperical-support-linkage>Empirical support text.</emperical-support-linkage>
+      <uncertainties-or-inconsistencies>Uncertainties text.</uncertainties-or-inconsistencies>
+    </weight-of-evidence>
+    <taxonomic-applicability>
+      <taxonomy taxonomy-id="5">
+        <evidence>High</evidence>
+      </taxonomy>
+    </taxonomic-applicability>
+  </key-event-relationship>
+</data>
