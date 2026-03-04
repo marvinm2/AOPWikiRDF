@@ -36,7 +36,9 @@ jobs:
             
       # Step 4: Install Python dependencies
       - name: Install Python dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          pip install -e .
 
       # Step 5: Run Python Script for RDF conversion (Production)
       - id: python-conversion
