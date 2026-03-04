@@ -41,10 +41,10 @@ data-jupyter/
 test_conversion.py
 validate_test_ttl.py
 
-# Temporary development files
-debug_*.py
-test_*.py
-validate_*.py
+# Temporary development files (root-level only, not tests/ directory)
+/debug_*.py
+/test_*.py
+/validate_*.py
 
 # IDE and editor files
 .idea/
@@ -59,4 +59,4 @@ validate_*.py
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db
+Thumbs.db.planning/
