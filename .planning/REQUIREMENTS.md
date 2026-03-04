@@ -24,8 +24,8 @@
 
 ### Gene Mapping Rework
 
-- [ ] **GENE-01**: Implement dynamic HGNC data download at pipeline startup via BioMart endpoint
-- [ ] **GENE-02**: Fall back to cached static HGNC file when dynamic download fails
+- [x] **GENE-01**: Implement dynamic HGNC data download at pipeline startup via BioMart endpoint
+- [x] **GENE-02**: Fall back to cached static HGNC file when dynamic download fails
 - [ ] **GENE-03**: Maintain existing three-stage precision filtering (screening, precision matching, false positive filtering)
 - [ ] **GENE-04**: Gene mapping module is independently testable with unit tests
 
@@ -88,8 +88,8 @@
 |-------------|-------|--------|
 | MOD-01 | Phase 1 | Complete |
 | MOD-02 | Phase 1 | Pending |
-| GENE-01 | Phase 1 | Pending |
-| GENE-02 | Phase 1 | Pending |
+| GENE-01 | Phase 1 | Complete |
+| GENE-02 | Phase 1 | Complete |
 | MOD-03 | Phase 2 | Pending |
 | MOD-04 | Phase 2 | Pending |
 | MOD-05 | Phase 2 | Pending |
