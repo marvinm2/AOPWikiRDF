@@ -23,8 +23,19 @@ from aopwiki_rdf.config import PipelineConfig
 
 
 # Date/time patterns that vary between runs
-_DATE_RE = re.compile(r'"?\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}[^"]*)?("|\^\^)', re.ASCII)
+# ISO format: "2026-03-06T18:41:54.053721" or "2026-03-06 18:41:54.053721"
+_ISO_DATE_RE = re.compile(
+    r'"?\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}(\.\d+)?[^"]*("|\^\^)',
+    re.ASCII,
+)
+# ctime format: "Fri Mar  6 18:31:31 2026"
+_CTIME_RE = re.compile(
+    r'"(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s+\w+\s+\d+\s+\d{2}:\d{2}:\d{2}\s+\d{4}"',
+    re.ASCII,
+)
 _BLANK_RE = re.compile(r'_:\w+')
+# file:// URIs with temp directory paths (BiologicalEvent base URIs)
+_FILE_URI_RE = re.compile(r'<file:///[^>]*/(\d+_bioevent_\d+)>')
 
 
 def normalize_ntriples(nt_text: str) -> list[str]:
@@ -36,8 +47,12 @@ def normalize_ntriples(nt_text: str) -> list[str]:
             continue
         # Normalize blank node labels
         line = _BLANK_RE.sub('_:BLANK', line)
-        # Normalize date/time literals so VoID timestamps don't cause false diffs
-        line = _DATE_RE.sub('"NORMALIZED-DATE\\2', line)
+        # Normalize file:// URIs that embed temp directory paths
+        line = _FILE_URI_RE.sub(r'<file:///NORMALIZED_DIR/\1>', line)
+        # Normalize ISO date/time literals so VoID timestamps don't cause false diffs
+        line = _ISO_DATE_RE.sub('"NORMALIZED-DATE\\2', line)
+        # Normalize ctime-format date strings (used in importedOn)
+        line = _CTIME_RE.sub('"NORMALIZED-CTIME"', line)
         normalized.append(line)
     return sorted(normalized)
 
