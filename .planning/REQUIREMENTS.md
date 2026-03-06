@@ -13,7 +13,7 @@
 - [x] **MOD-04**: Extract chemical mapper into a standalone module with defined input/output contracts
 - [x] **MOD-05**: Extract RDF writer(s) into standalone module(s) with defined input/output contracts
 - [x] **MOD-06**: Create thin orchestrator that wires modules together and replaces monolithic execution
-- [ ] **MOD-07**: Modularized pipeline produces identical RDF output compared to current monolithic script (triple-for-triple regression test)
+- [x] **MOD-07**: Modularized pipeline produces identical RDF output compared to current monolithic script (triple-for-triple regression test)
 
 ### Predicate Correction
 
@@ -94,7 +94,7 @@
 | MOD-04 | Phase 2 | Complete |
 | MOD-05 | Phase 2 | Complete |
 | MOD-06 | Phase 2 | Complete |
-| MOD-07 | Phase 2 | Pending |
+| MOD-07 | Phase 2 | Complete |
 | PRED-01 | Phase 3 | Pending |
 | PRED-02 | Phase 3 | Pending |
 | PRED-03 | Phase 3 | Pending |
