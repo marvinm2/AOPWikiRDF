@@ -29,23 +29,32 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. `src/aopwiki_rdf/parser/xml_parser.py` can be imported and called independently with an XML file path, returning typed entity objects, without running the full pipeline
   3. HGNC gene data is fetched from the BioMart HTTP endpoint at pipeline startup; a `len(genedict) < 19000` assertion guards against a failed or empty download
   4. When the BioMart download fails, the pipeline falls back to the cached static `HGNCgenes.txt` and logs a warning
-**Plans:** 3 plans
+**Plans:** 4 plans
 
 Plans:
 - [ ] 01-01-PLAN.md — Package scaffold, PipelineConfig dataclass, rewrite run_conversion.py
 - [ ] 01-02-PLAN.md — Extract XML parser into standalone module with tests
 - [ ] 01-03-PLAN.md — Dynamic HGNC download with fallback and HGNC TSV parser
+- [ ] 01-04-PLAN.md — Gap closure: eliminate exec() from pipeline.py, wire HGNC download into execution path
 
 ### Phase 2: Module Extraction
 **Goal**: All pipeline logic lives in isolated modules with defined contracts; a thin orchestrator wires them together; the modularized output is verified triple-for-triple against the current monolithic script
 **Depends on**: Phase 1
 **Requirements**: MOD-03, MOD-04, MOD-05, MOD-06, MOD-07
 **Success Criteria** (what must be TRUE):
-  1. `mapping/gene_mapper.py`, `mapping/chemical_mapper.py`, and `rdf/writer_*.py` can each be imported and instantiated without importing or running the other modules
+  1. `mapping/gene_mapper.py`, `mapping/chemical_mapper.py`, and `rdf/writer.py` can each be imported and instantiated without importing or running the other modules
   2. A thin `pipeline.py` orchestrator replaces the monolithic execution path and passes named data objects between stages (no shared global state)
   3. Running the modularized pipeline against the current AOP-Wiki XML produces a triple count within 0% of the monolithic script output (regression test passes)
-  4. Unit tests exist for the gene mapper and chemical mapper modules that run without network access (injectable config for testing)
-**Plans**: TBD
+  4. Unit tests exist for the gene mapper and chemical mapper modules that run with real BridgeDb API calls
+**Plans:** 6 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Shared foundations: BridgeDb client, protein ontology mapper, RDF namespaces
+- [ ] 02-02-PLAN.md — Extract gene mapper module with unit tests
+- [ ] 02-03-PLAN.md — Extract chemical mapper module, clean parser duplicates, unit tests
+- [ ] 02-04-PLAN.md — Extract RDF writer module with unit tests
+- [ ] 02-05-PLAN.md — Thin orchestrator replacing monolith, structural tests
+- [ ] 02-06-PLAN.md — Triple-for-triple regression test (monolith vs modularized)
 
 ### Phase 3: Predicate Correction
 **Goal**: All cross-database identifier links use semantically correct predicates; HGNC gene symbols remain queryable; downstream SPARQL consumers are audited and a safe transition path exists
@@ -88,8 +97,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/3 | Planning complete | - |
-| 2. Module Extraction | 0/TBD | Not started | - |
+| 1. Foundation | 4/4 | Complete | 2026-03-05 |
+| 2. Module Extraction | 0/6 | Planned | - |
 | 3. Predicate Correction | 0/TBD | Not started | - |
 | 4. Output Separation | 0/TBD | Not started | - |
 | 5. Validation and Documentation | 0/TBD | Not started | - |
