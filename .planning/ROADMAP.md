@@ -13,7 +13,7 @@ The pipeline starts as a 2,281-line monolith with an exec()-based config antipat
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [ ] **Phase 1: Foundation** - Replace exec() config, extract XML parser, add dynamic HGNC download
-- [ ] **Phase 2: Module Extraction** - Extract gene/chemical/RDF writer modules and create thin orchestrator with triple-for-triple regression baseline
+- [x] **Phase 2: Module Extraction** - Extract gene/chemical/RDF writer modules and create thin orchestrator with triple-for-triple regression baseline (completed 2026-03-06)
 - [ ] **Phase 3: Predicate Correction** - Fix skos:exactMatch, HGNC ID/symbol distinction, and SNORQL audit with dual-predicate transition
 - [ ] **Phase 4: Output Separation** - Separate pure AOP-Wiki RDF from enriched content and enrich VoID with subset declarations
 - [ ] **Phase 5: Validation and Documentation** - SHACL shapes, full VoID enrichment, schema documentation, BioBERT exploration
@@ -46,7 +46,7 @@ Plans:
   2. A thin `pipeline.py` orchestrator replaces the monolithic execution path and passes named data objects between stages (no shared global state)
   3. Running the modularized pipeline against the current AOP-Wiki XML produces a triple count within 0% of the monolithic script output (regression test passes)
   4. Unit tests exist for the gene mapper and chemical mapper modules that run with real BridgeDb API calls
-**Plans:** 5/6 plans executed
+**Plans:** 6/6 plans complete
 
 Plans:
 - [ ] 02-01-PLAN.md — Shared foundations: BridgeDb client, protein ontology mapper, RDF namespaces
@@ -98,7 +98,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 4/4 | Complete | 2026-03-05 |
-| 2. Module Extraction | 5/6 | In Progress|  |
+| 2. Module Extraction | 6/6 | Complete   | 2026-03-06 |
 | 3. Predicate Correction | 0/TBD | Not started | - |
 | 4. Output Separation | 0/TBD | Not started | - |
 | 5. Validation and Documentation | 0/TBD | Not started | - |
