@@ -9,7 +9,7 @@
 
 - [x] **MOD-01**: Replace `exec()`/string-replacement config with Python dataclass-based configuration
 - [x] **MOD-02**: Extract XML parser into a standalone module with defined input/output contracts
-- [ ] **MOD-03**: Extract gene mapper into a standalone module with defined input/output contracts
+- [x] **MOD-03**: Extract gene mapper into a standalone module with defined input/output contracts
 - [ ] **MOD-04**: Extract chemical mapper into a standalone module with defined input/output contracts
 - [ ] **MOD-05**: Extract RDF writer(s) into standalone module(s) with defined input/output contracts
 - [ ] **MOD-06**: Create thin orchestrator that wires modules together and replaces monolithic execution
@@ -90,7 +90,7 @@
 | MOD-02 | Phase 1 | Complete |
 | GENE-01 | Phase 1 | Complete |
 | GENE-02 | Phase 1 | Complete |
-| MOD-03 | Phase 2 | Pending |
+| MOD-03 | Phase 2 | Complete |
 | MOD-04 | Phase 2 | Pending |
 | MOD-05 | Phase 2 | Pending |
 | MOD-06 | Phase 2 | Pending |
