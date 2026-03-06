@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-03-PLAN.md
-last_updated: "2026-03-06T15:05:34Z"
-last_activity: 2026-03-06 — Completed 02-03 chemical mapper extraction plan
+stopped_at: Completed 02-05-PLAN.md
+last_updated: "2026-03-06T15:35:00Z"
+last_activity: 2026-03-06 — Completed 02-05 orchestrator replacement plan
 progress:
   total_phases: 5
   completed_phases: 1
   total_plans: 10
-  completed_plans: 7
-  percent: 70
+  completed_plans: 9
+  percent: 90
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-03-04)
 ## Current Position
 
 Phase: 2 of 5 (Module Extraction)
-Plan: 4 of 6 in current phase
+Plan: 6 of 6 in current phase
 Status: In progress
-Last activity: 2026-03-06 — Completed 02-03 chemical mapper extraction plan
+Last activity: 2026-03-06 — Completed 02-05 orchestrator replacement plan
 
-Progress: [███████░░░] 70%
+Progress: [█████████░] 90%
 
 ## Performance Metrics
 
@@ -55,6 +55,7 @@ Progress: [███████░░░] 70%
 | Phase 01 P03 | 2 | 2 tasks | 6 files |
 | Phase 02 P02 | 4 | 2 tasks | 3 files |
 | Phase 02 P03 | 4 | 2 tasks | 3 files |
+| Phase 02 P05 | 8 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -81,6 +82,9 @@ Recent decisions affecting current work:
 - [Phase 02]: False positive filter constants promoted to module-level for testability
 - [Phase 02]: Lazy import in parser for chemical_mapper to avoid circular dependency between parser and mapping packages
 - [Phase 02]: Chemical mapper reads CAS from chedict property rather than re-parsing XML
+- [Phase 02]: Orchestrator parses XML separately to provide xml_root to mapping stages (ParsedEntities lacks root/ns fields)
+- [Phase 02]: Chemical identifier lists reconstructed from chedict since ParsedEntities does not expose them
+- [Phase 02]: parse_aopwiki_xml called with config=None to skip internal promapping, deferring to protein_ontology module
 
 ### Pending Todos
 
@@ -93,6 +97,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-06T15:05:34Z
-Stopped at: Completed 02-03-PLAN.md
+Last session: 2026-03-06T15:35:00Z
+Stopped at: Completed 02-05-PLAN.md
 Resume file: None
