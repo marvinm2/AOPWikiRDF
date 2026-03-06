@@ -1898,7 +1898,6 @@ def main(config: PipelineConfig | None = None) -> None:
     keyhitcount = {}
     logger.info("Starting gene mapping on Key Events (this may take a minute)...")
 
-    import time
     ke_start_time = time.time()
     ke_list = root.findall(aopxml + 'key-event')
     total_kes = len(ke_list)
