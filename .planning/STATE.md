@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-02-PLAN.md
-last_updated: "2026-03-04T18:32:31.730Z"
-last_activity: 2026-03-04 — Completed 01-02 XML parser extraction plan
+stopped_at: Completed 02-01-PLAN.md
+last_updated: "2026-03-06T15:05:53.904Z"
+last_activity: 2026-03-06 — Completed 02-02 gene mapper extraction plan
 progress:
   total_phases: 5
   completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
-  percent: 100
+  total_plans: 10
+  completed_plans: 6
+  percent: 60
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-04)
 
 **Core value:** Produce accurate, well-structured RDF from AOP-Wiki XML every week — reliably and with traceable provenance for pure vs enriched content.
-**Current focus:** Phase 1 — Foundation
+**Current focus:** Phase 2 — Module Extraction
 
 ## Current Position
 
-Phase: 1 of 5 (Foundation)
-Plan: 1 of 3 in current phase
+Phase: 2 of 5 (Module Extraction)
+Plan: 3 of 6 in current phase
 Status: In progress
-Last activity: 2026-03-04 — Completed 01-02 XML parser extraction plan
+Last activity: 2026-03-06 — Completed 02-02 gene mapper extraction plan
 
-Progress: [██████████] 100%
+Progress: [██████░░░░] 60%
 
 ## Performance Metrics
 
@@ -53,6 +53,7 @@ Progress: [██████████] 100%
 | Phase 01 P01 | 3 | 2 tasks | 9 files |
 | Phase 01 P02 | 4 | 2 tasks | 6 files |
 | Phase 01 P03 | 2 | 2 tasks | 6 files |
+| Phase 02 P02 | 4 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -72,6 +73,11 @@ Recent decisions affecting current work:
 - [Phase 01]: download_hgnc_data takes individual parameters not PipelineConfig for decoupling
 - [Phase 01]: Config optional for parse_aopwiki_xml: when None, network calls skipped for offline testing
 - [Phase 01]: celldict/organdict populated from KE cell-term/organ-term for standalone access
+- [Phase 02]: Generic batch_xrefs pattern factored from gene/chemical BridgeDb implementations with parse_fn + fallback_fn injection
+- [Phase 02]: Protein ontology return keys prefixed pro_ (pro_hgnclist) to prevent confusion with gene-mapping hgnclist
+- [Phase 02]: GENES_PREFIXES and VOID_PREFIXES stored as exact string constants for byte-identical RDF output
+- [Phase 02]: BridgeDb batch logic inlined in gene_mapper rather than importing from bridgedb.py (parallel wave)
+- [Phase 02]: False positive filter constants promoted to module-level for testability
 
 ### Pending Todos
 
@@ -84,6 +90,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-04T18:32:31.721Z
-Stopped at: Completed 01-02-PLAN.md
+Last session: 2026-03-06T15:05:53.897Z
+Stopped at: Completed 02-01-PLAN.md
 Resume file: None
