@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 02-06-PLAN.md (Phase 2 complete)
-last_updated: "2026-03-06T19:13:53.452Z"
+status: in-progress
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-03-07T08:44:08.054Z"
 last_activity: 2026-03-06 — Completed 02-06 regression test plan (Phase 2 acceptance gate passed)
 progress:
   total_phases: 5
   completed_phases: 2
-  total_plans: 10
-  completed_plans: 10
+  total_plans: 13
+  completed_plans: 11
   percent: 100
 ---
 
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-04)
 
 **Core value:** Produce accurate, well-structured RDF from AOP-Wiki XML every week — reliably and with traceable provenance for pure vs enriched content.
-**Current focus:** Phase 2 — Module Extraction
+**Current focus:** Phase 3 — Predicate Correction
 
 ## Current Position
 
-Phase: 2 of 5 (Module Extraction) -- COMPLETE
-Plan: 6 of 6 in current phase -- COMPLETE
-Status: Phase 2 complete
-Last activity: 2026-03-06 — Completed 02-06 regression test plan (Phase 2 acceptance gate passed)
+Phase: 3 of 5 (Predicate Correction)
+Plan: 1 of 3 in current phase -- COMPLETE
+Status: Phase 3 in progress
+Last activity: 2026-03-07 — Completed 03-01 gene mapper re-keying to numeric HGNC IDs
 
-Progress: [██████████] 100%
+Progress: [████████░░] 85%
 
 ## Performance Metrics
 
@@ -57,6 +57,7 @@ Progress: [██████████] 100%
 | Phase 02 P03 | 4 | 2 tasks | 3 files |
 | Phase 02 P05 | 8 | 2 tasks | 3 files |
 | Phase 02 P06 | 52 | 2 tasks | 2 files |
+| Phase 03 P01 | 4 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -88,6 +89,8 @@ Recent decisions affecting current work:
 - [Phase 02]: parse_aopwiki_xml called with config=None to skip internal promapping, deferring to protein_ontology module
 - [Phase 02]: Regression test normalizes file:// URIs, blank nodes, ISO dates, and ctime dates before NTriples comparison
 - [Phase 02]: Redundant local import time in monolith removed to fix UnboundLocalError scoping bug
+- [Phase 03]: Keep BridgeDb system code H (symbol) with symbol_lookup reverse mapping instead of switching to Hac
+- [Phase 03]: Gene dicts re-keyed from symbol to numeric HGNC ID with symbol_lookup flowing through pipeline context
 
 ### Pending Todos
 
@@ -100,6 +103,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-06T18:20:00Z
-Stopped at: Completed 02-06-PLAN.md (Phase 2 complete)
+Last session: 2026-03-07T08:44:08.049Z
+Stopped at: Completed 03-01-PLAN.md
 Resume file: None
