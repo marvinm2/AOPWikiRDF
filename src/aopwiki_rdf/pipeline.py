@@ -203,7 +203,7 @@ def _stage_gene_mapping(config, context):
     logger.info("HGNC data last modified: %s", hgnc_mod_time)
 
     # Build gene dictionaries
-    genedict1, genedict2 = build_gene_dicts(hgnc_filepath)
+    genedict1, genedict2, symbol_lookup = build_gene_dicts(hgnc_filepath)
 
     # Map genes in KE/KER text
     kedict, kerdict, gene_hgnclist = map_genes_in_entities(
@@ -220,6 +220,7 @@ def _stage_gene_mapping(config, context):
         gene_hgnclist,
         bridgedb_url=config.bridgedb_url,
         timeout=config.request_timeout,
+        symbol_lookup=symbol_lookup,
     )
 
     context["gene_kedict"] = kedict
@@ -227,6 +228,7 @@ def _stage_gene_mapping(config, context):
     context["gene_hgnclist"] = gene_hgnclist
     context["gene_xref_result"] = xref_result
     context["hgnc_modification_time"] = hgnc_mod_time
+    context["gene_symbol_lookup"] = symbol_lookup
 
 
 def _stage_write_aop_rdf(config, context):
