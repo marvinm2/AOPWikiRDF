@@ -65,7 +65,12 @@ Plans:
   2. Gene triples use numeric HGNC IDs for identifier URIs and retain gene symbols as `rdfs:label` or `skos:prefLabel` — a SPARQL query for a known gene symbol returns the correct gene node
   3. A documented inventory of `skos:exactMatch`-dependent queries in `aopwiki-snorql-extended` exists, with each query marked as updated or confirmed unaffected
   4. The existing three-stage precision filtering (screening, precision matching, false positive filtering) is preserved and unit-tested in the isolated gene mapper module
-**Plans**: TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Re-key gene mapper to numeric HGNC IDs with symbol_lookup, update tests
+- [ ] 03-02-PLAN.md — Predicate correction (owl:sameAs), dual-predicate config flag, gene rdfs:label
+- [ ] 03-03-PLAN.md — SNORQL audit: update SPARQL queries, create GitHub issue for external repo
 
 ### Phase 4: Output Separation
 **Goal**: Pure AOP-Wiki source triples and pipeline-enriched triples live in distinct TTL files with VoID subset declarations linking them; downstream consumers can load either or both files
@@ -99,6 +104,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Foundation | 4/4 | Complete | 2026-03-05 |
 | 2. Module Extraction | 6/6 | Complete   | 2026-03-06 |
-| 3. Predicate Correction | 0/TBD | Not started | - |
+| 3. Predicate Correction | 0/3 | Not started | - |
 | 4. Output Separation | 0/TBD | Not started | - |
 | 5. Validation and Documentation | 0/TBD | Not started | - |
