@@ -20,8 +20,8 @@ logger = logging.getLogger(__name__)
 # Section A: Gene dictionary building
 # ---------------------------------------------------------------------------
 
-def build_gene_dicts(hgnc_file_path: str) -> tuple[dict, dict]:
-    """Parse HGNC file into genedict1 (screening) and genedict2 (precision).
+def build_gene_dicts(hgnc_file_path: str) -> tuple[dict, dict, dict]:
+    """Parse HGNC file into genedict1 (screening), genedict2 (precision), and symbol_lookup.
 
     Parameters
     ----------
@@ -30,10 +30,11 @@ def build_gene_dicts(hgnc_file_path: str) -> tuple[dict, dict]:
 
     Returns
     -------
-    tuple[dict, dict]
-        (genedict1, genedict2) where:
-        - genedict1 maps gene_symbol -> [symbol, name, prev_symbols, aliases]
-        - genedict2 maps gene_symbol -> punctuation-delimited variants
+    tuple[dict, dict, dict]
+        (genedict1, genedict2, symbol_lookup) where:
+        - genedict1 maps numeric_hgnc_id -> [symbol, name, prev_symbols, aliases]
+        - genedict2 maps numeric_hgnc_id -> punctuation-delimited variants
+        - symbol_lookup maps numeric_hgnc_id -> approved gene symbol
     """
     try:
         hgnc_file = open(hgnc_file_path, 'r', encoding='utf-8')
@@ -44,31 +45,44 @@ def build_gene_dicts(hgnc_file_path: str) -> tuple[dict, dict]:
     symbols = [' ', '(', ')', '[', ']', ',', '.']
     genedict1 = {}
     genedict2 = {}
+    symbol_lookup = {}
+
+    _hgnc_id_pattern = re.compile(r'^HGNC:(\d+)$')
 
     for line in hgnc_file:
         # Skip header line
         if 'HGNC ID' in line and 'Approved symbol' in line:
             continue
         a = line[:-1].split('\t')
-        if '@' not in a[1]:  # gene clusters contain '@', filter them out
-            genedict1[a[1]] = []
-            genedict2[a[1]] = []
-            genedict1[a[1]].append(a[1])
+
+        # Validate column 0 matches HGNC:NNNN pattern
+        m = _hgnc_id_pattern.match(a[0])
+        if not m:
+            logger.warning(f"Skipping line with invalid HGNC ID in column 0: {a[0]!r}")
+            continue
+        hgnc_id = m.group(1)  # numeric ID, e.g. "5"
+        gene_symbol = a[1]
+
+        if '@' not in gene_symbol:  # gene clusters contain '@', filter them out
+            symbol_lookup[hgnc_id] = gene_symbol
+            genedict1[hgnc_id] = []
+            genedict2[hgnc_id] = []
+            genedict1[hgnc_id].append(gene_symbol)
             if not a[2] == '':
-                genedict1[a[1]].append(a[2])
+                genedict1[hgnc_id].append(a[2])
             for item in a[3:]:
                 if not item == '':
                     for name in item.split(', '):
-                        genedict1[a[1]].append(name)
-            for item in genedict1[a[1]]:
+                        genedict1[hgnc_id].append(name)
+            for item in genedict1[hgnc_id]:
                 for s1 in symbols:
                     for s2 in symbols:
-                        genedict2[a[1]].append((s1 + item + s2))
+                        genedict2[hgnc_id].append((s1 + item + s2))
 
     hgnc_file.close()
     logger.info(f"Gene mapping setup: {len(genedict2)} genes included for mappings")
     logger.info(f"Gene mapping setup: {len(genedict1)} genes included for mappings")
-    return genedict1, genedict2
+    return genedict1, genedict2, symbol_lookup
 
 
 # ---------------------------------------------------------------------------
@@ -84,9 +98,19 @@ SINGLE_LETTER_ALIASES = {
 ROMAN_NUMERAL_PATTERN = re.compile(r'\b[IVX]+\b')
 
 
-def _is_false_positive(gene_symbol: str, matched_alias: str,
+def _is_false_positive(gene_key: str, matched_alias: str,
                        matched_text_context: str) -> tuple[bool, str | None]:
-    """Filter out known false positive patterns."""
+    """Filter out known false positive patterns.
+
+    Parameters
+    ----------
+    gene_key : str
+        Gene dictionary key (numeric HGNC ID, e.g. "1100").
+    matched_alias : str
+        The alias text that was matched.
+    matched_text_context : str
+        Surrounding text context for pattern analysis.
+    """
     # Filter 1: Single letter aliases (too ambiguous)
     if matched_alias.strip() in SINGLE_LETTER_ALIASES:
         return True, f"single letter alias '{matched_alias.strip()}'"
@@ -100,16 +124,16 @@ def _is_false_positive(gene_symbol: str, matched_alias: str,
     if len(stripped) <= 2 and any(char in matched_text_context for char in '()[]{}'):
         return True, f"short symbol '{stripped}' in parentheses/brackets context"
 
-    # Filter 4: Gene-specific false positive patterns
-    if gene_symbol == 'IV' and (
+    # Filter 4: Gene-specific false positive patterns (match on alias, not key)
+    if stripped == 'IV' and (
         'Complex I' in matched_text_context or '(I\u2013V)' in matched_text_context
     ):
-        return True, "IV gene matching complex numbering"
+        return True, "IV alias matching complex numbering"
 
-    if (gene_symbol == 'GCNT2' and matched_alias.strip() == 'II'
+    if (stripped == 'II'
             and ('(I\u2013V)' in matched_text_context
                  or 'complexes' in matched_text_context.lower())):
-        return True, "GCNT2 alias 'II' matching complex numbering"
+        return True, "alias 'II' matching complex numbering"
 
     return False, None
 
@@ -127,16 +151,16 @@ def _map_genes_in_text(text: str, genedict1: dict, hgnc_list: list,
     text : str
         Text to scan for gene mentions.
     genedict1 : dict
-        Screening dictionary (gene_symbol -> [symbol, name, aliases...]).
+        Screening dictionary (numeric_hgnc_id -> [symbol, name, aliases...]).
     hgnc_list : list
         Global list of found HGNC IDs (mutated in place).
     genedict2 : dict, optional
-        Precision dictionary (gene_symbol -> punctuation-delimited variants).
+        Precision dictionary (numeric_hgnc_id -> punctuation-delimited variants).
 
     Returns
     -------
     list[str]
-        List of found HGNC IDs (e.g., ['hgnc:BRCA1']).
+        List of found HGNC IDs (e.g., ['hgnc:1100']).
     """
     if not text or not genedict1:
         return []
@@ -372,19 +396,22 @@ def map_genes_in_entities(kedict: dict, kerdict: dict, genedict1: dict,
 
 def _batch_xrefs_bridgedb(gene_list: list[str], bridgedb_url: str,
                           timeout: int = 30,
-                          chunk_size: int = 100) -> dict:
+                          chunk_size: int = 100,
+                          symbol_lookup: dict | None = None) -> dict:
     """Map genes using BridgeDb batch xrefs API.
 
     Parameters
     ----------
     gene_list : list[str]
-        List of HGNC gene IDs (e.g., ['hgnc:BRCA2']).
+        List of HGNC gene IDs (e.g., ['hgnc:1100']).
     bridgedb_url : str
         Base URL for BridgeDb service.
     timeout : int
         Request timeout in seconds.
     chunk_size : int
         Number of genes per batch request.
+    symbol_lookup : dict, optional
+        Mapping of numeric HGNC ID -> gene symbol for BridgeDb queries.
 
     Returns
     -------
@@ -394,12 +421,24 @@ def _batch_xrefs_bridgedb(gene_list: list[str], bridgedb_url: str,
     results = {}
     total_chunks = (len(gene_list) + chunk_size - 1) // chunk_size
 
+    # Build reverse lookup: symbol -> numeric ID for response mapping
+    reverse_lookup = {}
+    if symbol_lookup:
+        for numeric_id, sym in symbol_lookup.items():
+            reverse_lookup[sym] = numeric_id
+
     for chunk_idx in range(0, len(gene_list), chunk_size):
         chunk = gene_list[chunk_idx:chunk_idx + chunk_size]
         chunk_num = chunk_idx // chunk_size + 1
 
         try:
-            gene_symbols = [gene[5:] for gene in chunk]  # Remove 'hgnc:' prefix
+            # Convert numeric IDs to symbols for BridgeDb H system code queries
+            gene_symbols = []
+            for gene in chunk:
+                numeric = gene[5:]  # Remove 'hgnc:' prefix -> "1100"
+                symbol = symbol_lookup.get(numeric, numeric) if symbol_lookup else numeric
+                gene_symbols.append(symbol)
+
             batch_data = '\n'.join(gene_symbols)
             batch_url = bridgedb_url + 'xrefsBatch/H'
             headers = {'Content-Type': 'text/plain'}
@@ -417,7 +456,9 @@ def _batch_xrefs_bridgedb(gene_list: list[str], bridgedb_url: str,
                     parts = line.split('\t')
                     if len(parts) >= 3:
                         gene_symbol = parts[0]
-                        gene_id = f'hgnc:{gene_symbol}'
+                        # Map response symbol back to numeric ID
+                        numeric_id = reverse_lookup.get(gene_symbol, gene_symbol)
+                        gene_id = f'hgnc:{numeric_id}'
                         xrefs_str = parts[2]
 
                         if xrefs_str != 'N/A':
@@ -462,9 +503,11 @@ def _batch_xrefs_bridgedb(gene_list: list[str], bridgedb_url: str,
                 f"falling back to individual calls: {e}"
             )
             for gene in chunk:
+                numeric = gene[5:]
+                symbol = symbol_lookup.get(numeric, numeric) if symbol_lookup else numeric
                 try:
                     response = requests.get(
-                        bridgedb_url + 'xrefs/H/' + gene[5:],
+                        bridgedb_url + 'xrefs/H/' + symbol,
                         timeout=timeout,
                     )
                     response.raise_for_status()
@@ -487,17 +530,21 @@ def _batch_xrefs_bridgedb(gene_list: list[str], bridgedb_url: str,
 
 
 def build_gene_xrefs(hgnclist: list, bridgedb_url: str,
-                     timeout: int = 30) -> dict:
+                     timeout: int = 30,
+                     symbol_lookup: dict | None = None) -> dict:
     """Map HGNC IDs to Entrez/Ensembl/UniProt via BridgeDb.
 
     Parameters
     ----------
     hgnclist : list
-        List of HGNC gene IDs (e.g., ['hgnc:BRCA1', 'hgnc:TP53']).
+        List of HGNC gene IDs (e.g., ['hgnc:1100', 'hgnc:11998']).
     bridgedb_url : str
         Base URL for BridgeDb service.
     timeout : int
         Request timeout in seconds.
+    symbol_lookup : dict, optional
+        Mapping of numeric HGNC ID -> gene symbol for BridgeDb queries.
+        Required for converting numeric IDs back to symbols (system code H).
 
     Returns
     -------
@@ -512,7 +559,8 @@ def build_gene_xrefs(hgnclist: list, bridgedb_url: str,
     total_genes = len(hgnclist)
 
     batch_results = _batch_xrefs_bridgedb(
-        hgnclist, bridgedb_url, timeout=timeout, chunk_size=100
+        hgnclist, bridgedb_url, timeout=timeout, chunk_size=100,
+        symbol_lookup=symbol_lookup,
     )
 
     geneiddict = {}
