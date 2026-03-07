@@ -55,9 +55,9 @@ select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a cheminf:CHEMINF_000
 select (COUNT (distinct ?s) as ?Subjects) where {?s ?p ?o; a cheminf:CHEMINF_000408}
 
 Genes mapped with PR
-select (COUNT (distinct ?s2) as ?Subjects) where {?s a pato:PATO_0001241; skos:exactMatch ?s2. ?s2 ?p ?o; a edam:data_2298}
-select (COUNT (distinct ?s2) as ?Subjects) where {?s a pato:PATO_0001241; skos:exactMatch ?s2. ?s2 ?p ?o; a edam:data_1027}
-select (COUNT (distinct ?s2) as ?Subjects) where {?s a pato:PATO_0001241; skos:exactMatch ?s2. ?s2 ?p ?o; a edam:data_2291}
+select (COUNT (distinct ?s2) as ?Subjects) where {?s a pato:PATO_0001241; owl:sameAs ?s2. ?s2 ?p ?o; a edam:data_2298}
+select (COUNT (distinct ?s2) as ?Subjects) where {?s a pato:PATO_0001241; owl:sameAs ?s2. ?s2 ?p ?o; a edam:data_1027}
+select (COUNT (distinct ?s2) as ?Subjects) where {?s a pato:PATO_0001241; owl:sameAs ?s2. ?s2 ?p ?o; a edam:data_2291}
 
 KEs with genes mapped to text
 select (COUNT (distinct ?s) as ?Subjects) where {?s a aopo:KeyEvent; edam:data_1025 ?s2.}
@@ -65,9 +65,9 @@ select (COUNT (distinct ?s) as ?Subjects) where {?s a aopo:KeyEventRelationship;
 
 Gene ids
 select (COUNT (distinct ?o) as ?Objects) where {?s edam:data_1025 ?o.}
-select (COUNT (distinct ?o2) as ?Objects) where {?s edam:data_1025 ?o. ?o skos:exactMatch ?o2. ?o2 a edam:data_1027}
-select (COUNT (distinct ?o2) as ?Objects) where {?s edam:data_1025 ?o. ?o skos:exactMatch ?o2. ?o2 a edam:data_1033}
-select (COUNT (distinct ?o2) as ?Objects) where {?s edam:data_1025 ?o. ?o skos:exactMatch ?o2. ?o2 a edam:data_2291}
+select (COUNT (distinct ?o2) as ?Objects) where {?s edam:data_1025 ?o. ?o owl:sameAs ?o2. ?o2 a edam:data_1027}
+select (COUNT (distinct ?o2) as ?Objects) where {?s edam:data_1025 ?o. ?o owl:sameAs ?o2. ?o2 a edam:data_1033}
+select (COUNT (distinct ?o2) as ?Objects) where {?s edam:data_1025 ?o. ?o owl:sameAs ?o2. ?o2 a edam:data_2291}
 
 
 

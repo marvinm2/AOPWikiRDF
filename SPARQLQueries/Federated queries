@@ -87,7 +87,7 @@ WHERE {
         rdfs:label ?aop_id;
         aopo:has_key_event ?ke.
     ?ke pato:0001241 ?object; dc:title ?ketitle; rdfs:label ?keid.
-    ?object dc:title ?objectname; skos:exactMatch ?prot.
+    ?object dc:title ?objectname; owl:sameAs ?prot.
     ?prot a edam:data_1027.
 SERVICE <https://aopdb.rdf.bigcat-bioinformatics.org/sparql> {
 ?prot mmo:0000441 ?assay.
