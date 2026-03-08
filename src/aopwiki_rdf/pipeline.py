@@ -23,7 +23,7 @@ from aopwiki_rdf.hgnc import download_hgnc_data
 from aopwiki_rdf.mapping.gene_mapper import build_gene_dicts, map_genes_in_entities, build_gene_xrefs
 from aopwiki_rdf.mapping.chemical_mapper import map_chemicals
 from aopwiki_rdf.mapping.protein_ontology import download_and_parse_promapping
-from aopwiki_rdf.rdf.writer import write_aop_rdf, write_genes_rdf, write_void_rdf
+from aopwiki_rdf.rdf.writer import write_aop_rdf, write_enriched_rdf, write_genes_rdf, write_void_rdf
 
 logger = logging.getLogger(__name__)
 
@@ -70,6 +70,16 @@ def _download_with_retry(url, filename, timeout=30, max_retries=3):
                 raise
             time.sleep(2 ** attempt)
     return False
+
+
+def _count_triples(filepath):
+    """Count triples in a Turtle file using rdflib."""
+    from rdflib import Graph
+    g = Graph()
+    g.parse(filepath, format='turtle')
+    count = len(g)
+    logger.info("Triple count for %s: %d", filepath, count)
+    return count
 
 
 # ---------------------------------------------------------------------------
@@ -271,7 +281,25 @@ def _stage_write_aop_rdf(config, context):
 
     prefix_csv = "prefixes.csv"
     write_aop_rdf(filepath + "AOPWikiRDF.ttl", writer_entities, prefix_csv, config=config)
+    context["triple_count_main"] = _count_triples(filepath + "AOPWikiRDF.ttl")
     logger.info("RDF file created: %sAOPWikiRDF.ttl", filepath)
+
+
+def _stage_write_enriched_rdf(config, context):
+    """Write AOPWikiRDF-Enriched.ttl with cross-reference triples."""
+    filepath = context["filepath"]
+    entities = context["entities"]
+    pro_result = context["pro_result"]
+    chem_result = context["chemical_result"]
+
+    enrichment_data = {
+        "chedict": chem_result["chedict"],
+        "bioobjdict": entities.bodict,
+        "prodict": pro_result["prodict"],
+    }
+
+    write_enriched_rdf(filepath + "AOPWikiRDF-Enriched.ttl", enrichment_data, config=config)
+    context["triple_count_enriched"] = _count_triples(filepath + "AOPWikiRDF-Enriched.ttl")
 
 
 def _stage_write_genes_rdf(config, context):
@@ -291,6 +319,7 @@ def _stage_write_genes_rdf(config, context):
     }
 
     write_genes_rdf(filepath + "AOPWikiRDF-Genes.ttl", gene_data, config=config)
+    context["triple_count_genes"] = _count_triples(filepath + "AOPWikiRDF-Genes.ttl")
 
 
 def _stage_write_void_rdf(config, context):
@@ -339,6 +368,13 @@ def _stage_write_void_rdf(config, context):
         "service_desc_filepath": filepath + "ServiceDescription.ttl",
     }
 
+    metadata["triple_counts"] = {
+        "main": context.get("triple_count_main", 0),
+        "enriched": context.get("triple_count_enriched", 0),
+        "genes": context.get("triple_count_genes", 0),
+    }
+    metadata["bridgedb_url"] = config.bridgedb_url
+
     write_void_rdf(filepath + "AOPWikiRDF-Void.ttl", metadata)
 
 
@@ -353,6 +389,7 @@ STAGES = [
     ("Protein Ontology Mapping", _stage_protein_ontology),
     ("HGNC Gene Mapping", _stage_gene_mapping),
     ("Write Main RDF", _stage_write_aop_rdf),
+    ("Write Enriched RDF", _stage_write_enriched_rdf),
     ("Write Genes RDF", _stage_write_genes_rdf),
     ("Write VoID RDF", _stage_write_void_rdf),
 ]
