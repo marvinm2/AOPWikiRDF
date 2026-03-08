@@ -52,8 +52,8 @@
 
 - [ ] **DOC-01**: Write schema documentation covering RDF structure, namespaces, and entity types
 - [ ] **DOC-02**: Document conversion process and mapping strategy (gene mapping, chemical mapping, precision filtering)
-- [ ] **DOC-03**: Enrich VoID metadata with `void:triples`, `dcterms:license`, `pav:importedFrom` for BridgeDb enrichment
-- [ ] **DOC-04**: Add `void:exampleResource` entries for discoverability
+- [x] **DOC-03**: Enrich VoID metadata with `void:triples`, `dcterms:license`, `pav:importedFrom` for BridgeDb enrichment
+- [x] **DOC-04**: Add `void:exampleResource` entries for discoverability
 
 ## v2 Requirements
 
@@ -104,8 +104,8 @@
 | SEP-01 | Phase 4 | Complete |
 | SEP-02 | Phase 4 | Complete |
 | SEP-03 | Phase 4 | Complete |
-| DOC-03 | Phase 4 | Pending |
-| DOC-04 | Phase 4 | Pending |
+| DOC-03 | Phase 4 | Complete |
+| DOC-04 | Phase 4 | Complete |
 | VAL-01 | Phase 5 | Pending |
 | VAL-02 | Phase 5 | Pending |
 | VAL-03 | Phase 5 | Pending |
