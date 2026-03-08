@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Phase 5 planned — 4 plans in 2 waves
-last_updated: "2026-03-08T21:31:34.895Z"
-last_activity: 2026-03-08 — Completed 04-04 verification gap closure
+status: executing
+stopped_at: Completed 05-01-PLAN.md
+last_updated: "2026-03-08T21:54:19.767Z"
+last_activity: 2026-03-08 — Completed 05-01 property audit and SHACL validation
 progress:
   total_phases: 5
   completed_phases: 4
   total_plans: 21
-  completed_plans: 17
+  completed_plans: 19
   percent: 100
 ---
 
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-03-04)
 ## Current Position
 
 Phase: 5 of 5 (Validation and Documentation)
-Plan: 3 of 4 in current phase
+Plan: 4 of 4 in current phase
 Status: executing
-Last activity: 2026-03-08 — Completed 05-03 documentation plan
+Last activity: 2026-03-08 — Completed 05-01 property audit and SHACL validation
 
 Progress: [██████████] 100%
 
@@ -65,6 +65,7 @@ Progress: [██████████] 100%
 | Phase 04 P02 | 2 | 2 tasks | 3 files |
 | Phase 04 P04 | 1 | 2 tasks | 2 files |
 | Phase 05 P03 | 4 | 2 tasks | 4 files |
+| Phase 05 P01 | 9 | 2 tasks | 16 files |
 
 ## Accumulated Context
 
@@ -112,6 +113,9 @@ Recent decisions affecting current work:
 - [Phase 05]: Property tables in schema docs derived directly from writer.py source, not guessed
 - [Phase 05]: SPARQL examples adapted for current schema (owl:sameAs, numeric HGNC IDs)
 - [Phase 05]: Documentation completeness enforced via pytest tests (10 assertions)
+- [Phase 05]: Violation threshold set to 100% population to guarantee zero violations on current data
+- [Phase 05]: Per-file SHACL validation targeting to avoid cross-file shape conflicts
+- [Phase 05]: Untyped subjects in enriched TTL targeted via sh:targetSubjectsOf owl:sameAs
 
 ### Pending Todos
 
@@ -124,6 +128,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-08T21:47:55Z
-Stopped at: Completed 05-03 documentation plan
-Resume file: .planning/phases/05-validation-and-documentation/05-04-PLAN.md
+Last session: 2026-03-08T21:54:19.763Z
+Stopped at: Completed 05-01-PLAN.md
+Resume file: None
