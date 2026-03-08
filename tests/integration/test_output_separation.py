@@ -17,17 +17,18 @@ PAV = Namespace("http://purl.org/pav/")
 AOPWIKI = Namespace("http://aopwiki.org/")
 
 # Cross-reference target namespaces that should NOT appear in the pure file
+# These must match the NS_* constants in src/aopwiki_rdf/rdf/namespaces.py
 ENRICHED_OBJECT_PREFIXES = [
-    "http://identifiers.org/chebi/",
-    "http://rdf.chemspider.com/",
-    "http://www.wikidata.org/entity/",
-    "http://identifiers.org/chembl.compound/",
-    "http://identifiers.org/pubchem.compound/",
-    "http://identifiers.org/drugbank/",
-    "http://identifiers.org/kegg.compound/",
-    "http://identifiers.org/lipidmaps/",
-    "http://identifiers.org/hmdb/",
-    "http://purl.obolibrary.org/obo/PR_",
+    "https://identifiers.org/chebi/",           # NS_CHEBI
+    "https://identifiers.org/chemspider/",      # NS_CHEMSPIDER
+    "https://identifiers.org/wikidata/",        # NS_WIKIDATA
+    "https://identifiers.org/chembl.compound/", # NS_CHEMBL_COMPOUND
+    "https://identifiers.org/pubchem.compound/",# NS_PUBCHEM_COMPOUND
+    "https://identifiers.org/drugbank/",        # NS_DRUGBANK
+    "https://identifiers.org/kegg.compound/",   # NS_KEGG_COMPOUND
+    "https://identifiers.org/lipidmaps/",       # NS_LIPIDMAPS
+    "https://identifiers.org/hmdb/",            # NS_HMDB
+    "http://purl.obolibrary.org/obo/PR_",       # NS_PR (correct as-is)
 ]
 
 DATA_DIR = "data"
