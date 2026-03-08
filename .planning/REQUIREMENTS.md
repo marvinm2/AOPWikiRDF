@@ -39,7 +39,7 @@
 
 - [x] **SEP-01**: Separate pure AOP-Wiki RDF (source-derived triples only) into its own TTL file
 - [x] **SEP-02**: Separate enriched/associated content (gene mappings, chemical cross-references) into distinct TTL file(s)
-- [ ] **SEP-03**: Add `void:subset` declarations linking separated files in VoID metadata
+- [x] **SEP-03**: Add `void:subset` declarations linking separated files in VoID metadata
 
 ### Validation
 
@@ -103,7 +103,7 @@
 | GENE-04 | Phase 3 | Complete |
 | SEP-01 | Phase 4 | Complete |
 | SEP-02 | Phase 4 | Complete |
-| SEP-03 | Phase 4 | Pending |
+| SEP-03 | Phase 4 | Complete |
 | DOC-03 | Phase 4 | Pending |
 | DOC-04 | Phase 4 | Pending |
 | VAL-01 | Phase 5 | Pending |
