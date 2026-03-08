@@ -555,6 +555,8 @@ def write_enriched_rdf(filepath, enrichment_data, config=None):
 
     with open(filepath, 'w', encoding='utf-8') as g:
         # Header comment and prefixes
+        g.write(f"# Generated: {datetime.date.today()}\n")
+        g.write("# Load alongside AOPWikiRDF.ttl for full cross-reference capability\n")
         g.write(ENRICHED_PREFIXES + '\n')
 
         # --- Chemical cross-reference triples ---
