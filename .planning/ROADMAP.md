@@ -99,7 +99,13 @@ Plans:
   3. SHACL validation runs in a separate triggered GitHub Actions workflow (not inline with RDF generation) and completes within GitHub Actions time limits
   4. Schema documentation describes the RDF structure, namespaces, and entity types; conversion documentation covers the gene mapping algorithm, chemical mapping strategy, and precision filtering
   5. A BioBERT NER prototype has been run on a subset of Key Event descriptions and produced a documented precision/recall comparison against the current HGNC regex-based approach with a written feasibility assessment
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 05-01-PLAN.md — Property population audit and SHACL shape definitions
+- [ ] 05-02-PLAN.md — SHACL validation GitHub Actions workflow and badge
+- [ ] 05-03-PLAN.md — Schema and conversion documentation with SPARQL examples
+- [ ] 05-04-PLAN.md — BioBERT NER prototype with precision/recall comparison and feasibility report
 
 ## Progress
 
@@ -112,4 +118,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Module Extraction | 6/6 | Complete   | 2026-03-06 |
 | 3. Predicate Correction | 2/3 | In Progress|  |
 | 4. Output Separation | 3/4 | In Progress|  |
-| 5. Validation and Documentation | 0/TBD | Not started | - |
+| 5. Validation and Documentation | 0/4 | Not started | - |
