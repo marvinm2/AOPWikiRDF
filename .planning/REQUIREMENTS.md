@@ -50,8 +50,8 @@
 
 ### Documentation & VoID
 
-- [ ] **DOC-01**: Write schema documentation covering RDF structure, namespaces, and entity types
-- [ ] **DOC-02**: Document conversion process and mapping strategy (gene mapping, chemical mapping, precision filtering)
+- [x] **DOC-01**: Write schema documentation covering RDF structure, namespaces, and entity types
+- [x] **DOC-02**: Document conversion process and mapping strategy (gene mapping, chemical mapping, precision filtering)
 - [x] **DOC-03**: Enrich VoID metadata with `void:triples`, `dcterms:license`, `pav:importedFrom` for BridgeDb enrichment
 - [x] **DOC-04**: Add `void:exampleResource` entries for discoverability
 
@@ -110,8 +110,8 @@
 | VAL-02 | Phase 5 | Pending |
 | VAL-03 | Phase 5 | Pending |
 | VAL-04 | Phase 5 | Pending |
-| DOC-01 | Phase 5 | Pending |
-| DOC-02 | Phase 5 | Pending |
+| DOC-01 | Phase 5 | Complete |
+| DOC-02 | Phase 5 | Complete |
 | BIO-01 | Phase 5 | Pending |
 | BIO-02 | Phase 5 | Pending |
 | BIO-03 | Phase 5 | Pending |
