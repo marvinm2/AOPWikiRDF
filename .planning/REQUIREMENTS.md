@@ -19,7 +19,7 @@
 
 - [ ] **PRED-01**: Replace `skos:exactMatch` with `owl:sameAs` for all cross-database identifier links (chemicals and genes)
 - [x] **PRED-02**: Fix HGNC namespace usage — use numeric HGNC IDs for identifier URIs, retain symbols as queryable properties (e.g. `rdfs:label` or `skos:prefLabel`)
-- [ ] **PRED-03**: Audit downstream SNORQL SPARQL queries for `skos:exactMatch` usage and document required changes
+- [x] **PRED-03**: Audit downstream SNORQL SPARQL queries for `skos:exactMatch` usage and document required changes
 - [ ] **PRED-04**: Ensure HGNC gene symbols remain queryable in the RDF after ID/predicate corrections
 
 ### Gene Mapping Rework
@@ -97,7 +97,7 @@
 | MOD-07 | Phase 2 | Complete |
 | PRED-01 | Phase 3 | Pending |
 | PRED-02 | Phase 3 | Complete |
-| PRED-03 | Phase 3 | Pending |
+| PRED-03 | Phase 3 | Complete |
 | PRED-04 | Phase 3 | Pending |
 | GENE-03 | Phase 3 | Complete |
 | GENE-04 | Phase 3 | Complete |
