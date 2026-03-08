@@ -29,6 +29,9 @@ data/test.ttl
 *.ttl
 data/*.ttl
 
+# Exception: SHACL shape definitions (version-controlled)
+!shapes/*.ttl
+
 # Local development guide (not for repository)
 CLAUDE.md
 

@@ -91,7 +91,7 @@
         "http://aopkb.org/aop_ontology#has_key_event": {
           "count": 528,
           "percentage": 91.0,
-          "severity": "sh:Violation",
+          "severity": "sh:Warning",
           "total": 580
         },
         "http://aopkb.org/aop_ontology#has_key_event_relationship": {
@@ -893,7 +893,7 @@
         "http://semanticscience.org/resource/CHEMINF_000059": {
           "count": 395,
           "percentage": 95.9,
-          "severity": "sh:Violation",
+          "severity": "sh:Warning",
           "total": 412
         },
         "http://semanticscience.org/resource/CHEMINF_000446": {
@@ -1155,7 +1155,7 @@
         "http://semanticscience.org/resource/CHEMINF_000059": {
           "count": 395,
           "percentage": 95.9,
-          "severity": "sh:Violation",
+          "severity": "sh:Warning",
           "total": 412
         },
         "http://semanticscience.org/resource/CHEMINF_000446": {
