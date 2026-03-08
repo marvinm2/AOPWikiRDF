@@ -116,6 +116,35 @@ GENES_PREFIXES = (
 )
 
 # ---------------------------------------------------------------------------
+# Enriched RDF prefixes (cross-reference triples for AOPWikiRDF-Enriched.ttl)
+# ---------------------------------------------------------------------------
+
+ENRICHED_PREFIXES = (
+    "# AOPWikiRDF-Enriched.ttl\n"
+    "# Cross-reference enrichment triples for AOP-Wiki RDF\n"
+    "#\n"
+    "@prefix owl: <http://www.w3.org/2002/07/owl#> .\n"
+    "@prefix skos: <http://www.w3.org/2004/02/skos/core#> .\n"
+    "@prefix cas: <https://identifiers.org/cas/> .\n"
+    "@prefix pr: <http://purl.obolibrary.org/obo/PR_> .\n"
+    "@prefix chebi: <https://identifiers.org/chebi/> .\n"
+    "@prefix chemspider: <https://identifiers.org/chemspider/> .\n"
+    "@prefix wikidata: <https://identifiers.org/wikidata/> .\n"
+    "@prefix chembl.compound: <https://identifiers.org/chembl.compound/> .\n"
+    "@prefix pubchem.compound: <https://identifiers.org/pubchem.compound/> .\n"
+    "@prefix drugbank: <https://identifiers.org/drugbank/> .\n"
+    "@prefix kegg.compound: <https://identifiers.org/kegg.compound/> .\n"
+    "@prefix lipidmaps: <https://identifiers.org/lipidmaps/> .\n"
+    "@prefix hmdb: <https://identifiers.org/hmdb/> .\n"
+    "@prefix hgnc: <https://identifiers.org/hgnc/> .\n"
+    "@prefix uniprot: <https://identifiers.org/uniprot/> .\n"
+    "@prefix ncbigene: <https://identifiers.org/ncbigene/> .\n"
+    "@prefix cheminf: <http://semanticscience.org/resource/CHEMINF_> .\n"
+    "@prefix inchikey: <https://identifiers.org/inchikey/> .\n"
+    "@prefix comptox: <https://identifiers.org/comptox/> .\n"
+)
+
+# ---------------------------------------------------------------------------
 # VoID RDF prefixes (hardcoded, matching pipeline.py line 2279)
 # ---------------------------------------------------------------------------
 
