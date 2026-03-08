@@ -63,7 +63,7 @@ jobs:
       # Step 5: Run Validation and Create QC Status File in /data
       - name: Run Turtle Validation
         timeout-minutes: 15
-        run: python validate_ttl.py data/AOPWikiRDF.ttl data/AOPWikiRDF-Genes.ttl data/AOPWikiRDF-Void.ttl
+        run: python validate_ttl.py data/AOPWikiRDF.ttl data/AOPWikiRDF-Enriched.ttl data/AOPWikiRDF-Genes.ttl data/AOPWikiRDF-Void.ttl
 
       # Step 6: Commit and Push QC Status File to /data
       - name: Commit and Push QC Status
