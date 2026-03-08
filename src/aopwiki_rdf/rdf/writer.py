@@ -64,7 +64,7 @@ def _safe_write_simple(fh, predicate, value, quote=True):
 # ---------------------------------------------------------------------------
 
 
-def write_aop_rdf(filepath, entities, prefix_csv_path):
+def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
     """Write AOPWikiRDF.ttl from entity dictionaries.
 
     Parameters
@@ -77,8 +77,13 @@ def write_aop_rdf(filepath, entities, prefix_csv_path):
         'bioprodict', 'bioactdict', 'prodict',
         'hgnclist', 'ncbigenelist', 'uniprotlist',
         plus chemical identifier lists: 'listofcas', 'listofchebi', etc.
+        Optional 'symbol_lookup' for gene rdfs:label generation.
     prefix_csv_path : str
         Path to prefixes.csv.
+    config : PipelineConfig, optional
+        Pipeline configuration. When None, only owl:sameAs is emitted.
+        When config.emit_legacy_predicates is True, both skos:exactMatch
+        and owl:sameAs are emitted.
     """
     # Unpack entities
     aopdict = entities['aopdict']
@@ -366,7 +371,10 @@ def write_aop_rdf(filepath, entities, prefix_csv_path):
             if obj is not None and "N/A" not in bioobjdict[obj]['dc:identifier'] and 'TAIR' not in bioobjdict[obj]['dc:identifier']:
                 g.write(bioobjdict[obj]['dc:identifier'] + '\ta\tpato:0001241 ;\n\tdc:identifier\t' + bioobjdict[obj]['dc:identifier'] + ' ;\n\tdc:title\t' + bioobjdict[obj]['dc:title'] + ' ;\n\tdc:source\t' + bioobjdict[obj]['dc:source'])
                 if bioobjdict[obj]['dc:identifier'] in prodict:
-                    g.write(' ;\n\tskos:exactMatch\t' + ','.join(prodict[bioobjdict[obj]['dc:identifier']]))
+                    identifiers = ','.join(prodict[bioobjdict[obj]['dc:identifier']])
+                    if config and config.emit_legacy_predicates:
+                        g.write(' ;\n\tskos:exactMatch\t' + identifiers)
+                    g.write(' ;\n\towl:sameAs\t' + identifiers)
                 g.write('. \n\n')
         logger.info("Section completed")
 
@@ -418,7 +426,9 @@ def write_aop_rdf(filepath, entities, prefix_csv_path):
             for key in cheminf_keys:
                 exact_matches.extend(che_data.get(key, []))
 
-            _write_multivalue_triple(g, 'skos:exactMatch', exact_matches)
+            if config and config.emit_legacy_predicates:
+                _write_multivalue_triple(g, 'skos:exactMatch', exact_matches)
+            _write_multivalue_triple(g, 'owl:sameAs', exact_matches)
 
             if 'dcterms:alternative' in che_data:
                 _write_multivalue_triple(g, 'dcterms:alternative', che_data['dcterms:alternative'], quote=True)
@@ -490,8 +500,15 @@ def write_aop_rdf(filepath, entities, prefix_csv_path):
         logger.info("Section completed")
 
         # --- Mapped Gene identifiers ---
+        symbol_lookup = entities.get('symbol_lookup', {})
         for hgnc in hgnclist:
-            g.write(hgnc + '\ta\tedam:data_2298, edam:data_1025 ;\n\tedam:data_2298\t"' + hgnc[5:] + '";\n\tdc:identifier\t"' + hgnc + '";\n\tdc:source\t"HGNC".\n\n')
+            numeric_id = hgnc[5:]
+            symbol = symbol_lookup.get(numeric_id, numeric_id)
+            g.write(hgnc + '\ta\tedam:data_2298, edam:data_1025')
+            g.write(f' ;\n\trdfs:label\t"{symbol}"')
+            g.write(' ;\n\tedam:data_2298\t"' + numeric_id + '"')
+            g.write(' ;\n\tdc:identifier\t"' + hgnc + '"')
+            g.write(' ;\n\tdc:source\t"HGNC".\n\n')
 
         for entrez in ncbigenelist:
             g.write(entrez + '\ta\tedam:data_1027, edam:data_1025 ;\n\tedam:data_1027\t"' + entrez[9:] + '";\n\tdc:identifier\t"' + entrez + '";\n\tdc:source\t"Entrez Gene".\n\n')
@@ -529,7 +546,7 @@ def write_aop_rdf(filepath, entities, prefix_csv_path):
 # ---------------------------------------------------------------------------
 
 
-def write_genes_rdf(filepath, gene_data):
+def write_genes_rdf(filepath, gene_data, config=None):
     """Write AOPWikiRDF-Genes.ttl from gene mapping results.
 
     Parameters
@@ -539,6 +556,9 @@ def write_genes_rdf(filepath, gene_data):
     gene_data : dict
         Dict with keys: 'kedict', 'kerdict', 'hgnclist',
         'geneiddict', 'listofentrez', 'listofensembl', 'listofuniprot'.
+        Optional 'symbol_lookup' for gene rdfs:label generation.
+    config : PipelineConfig, optional
+        Pipeline configuration. When None, only owl:sameAs is emitted.
     """
     kedict = gene_data['kedict']
     kerdict = gene_data['kerdict']
@@ -570,10 +590,20 @@ def write_genes_rdf(filepath, gene_data):
         logger.info(f"Key Event Relationship gene mapping output: {n} relationships with mapped genes")
 
         # Gene identifier triples
+        symbol_lookup = gene_data.get('symbol_lookup', {})
         for hgnc in hgnclist:
-            g.write(hgnc + '\ta\tedam:data_2298, edam:data_1025 ;\n\tedam:data_2298\t"' + hgnc[5:] + '";\n\tdc:identifier\t"' + hgnc + '";\n\tdc:source\t"HGNC"')
+            numeric_id = hgnc[5:]
+            symbol = symbol_lookup.get(numeric_id, numeric_id)
+            g.write(hgnc + '\ta\tedam:data_2298, edam:data_1025')
+            g.write(f' ;\n\trdfs:label\t"{symbol}"')
+            g.write(' ;\n\tedam:data_2298\t"' + numeric_id + '"')
+            g.write(' ;\n\tdc:identifier\t"' + hgnc + '"')
+            g.write(' ;\n\tdc:source\t"HGNC"')
             if not geneiddict[hgnc] == []:
-                g.write(' ;\n\tskos:exactMatch\t' + ','.join(geneiddict[hgnc]))
+                xrefs = ','.join(geneiddict[hgnc])
+                if config and config.emit_legacy_predicates:
+                    g.write(' ;\n\tskos:exactMatch\t' + xrefs)
+                g.write(' ;\n\towl:sameAs\t' + xrefs)
             g.write('.\n\n')
         logger.info(f"{len(hgnclist)} HGNC triples written")
 

@@ -24,15 +24,16 @@ def test_write_genes_rdf_minimal():
         'kedict': {
             '1': {
                 'dc:identifier': 'aop.events:1',
-                'edam:data_1025': ['hgnc:TP53'],
+                'edam:data_1025': ['hgnc:11998'],
             }
         },
         'kerdict': {},
-        'hgnclist': ['hgnc:TP53'],
-        'geneiddict': {'hgnc:TP53': ['ncbigene:7157']},
+        'hgnclist': ['hgnc:11998'],
+        'geneiddict': {'hgnc:11998': ['ncbigene:7157']},
         'listofentrez': ['ncbigene:7157'],
         'listofensembl': ['ensembl:ENSG00000141510'],
         'listofuniprot': ['uniprot:P04637'],
+        'symbol_lookup': {'11998': 'TP53'},
     }
 
     with tempfile.TemporaryDirectory() as tmpdir:
