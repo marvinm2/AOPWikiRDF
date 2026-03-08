@@ -1,0 +1,177 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix aopo: <http://aopkb.org/aop_ontology#> .
+@prefix nci: <http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#> .
+@prefix cheminf: <http://semanticscience.org/resource/CHEMINF_> .
+@prefix edam: <http://edamontology.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix ncbitaxon: <http://purl.bioontology.org/ontology/NCBITAXON/> .
+@prefix pato: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix go: <http://purl.obolibrary.org/obo/GO_> .
+@prefix mmo: <http://purl.obolibrary.org/obo/MMO_> .
+@prefix hgnc: <https://identifiers.org/hgnc/> .
+@prefix uniprot: <https://identifiers.org/uniprot/> .
+@prefix ncbigene: <https://identifiers.org/ncbigene/> .
+@prefix ensembl: <https://identifiers.org/ensembl/> .
+
+@prefix shapes: <https://aopwiki.rdf.bigcat-bioinformatics.org/shapes/> .
+
+# SHACL Shape for Adverse Outcome Pathway
+# Generated from property population audit
+# Instances: 580
+
+shapes:AOPShape
+    a sh:NodeShape ;
+    sh:targetClass aopo:AdverseOutcomePathway ;
+    sh:name "Adverse Outcome Pathway" ;
+    sh:property [
+        sh:path dc:identifier ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "dc:identifier (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path dc:source ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "dc:source (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path dc:title ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "dc:title (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path dcterms:alternative ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "dcterms:alternative (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path dcterms:created ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "dcterms:created (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path dcterms:modified ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "dcterms:modified (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "rdfs:label (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path rdfs:seeAlso ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "rdfs:seeAlso (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path foaf:page ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "foaf:page (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path aopo:has_key_event ;
+        sh:severity sh:Warning ;
+        sh:name "aopo:has_key_event (91.0%)" ;
+    ] ;
+    sh:property [
+        sh:path aopo:has_adverse_outcome ;
+        sh:severity sh:Warning ;
+        sh:name "aopo:has_adverse_outcome (85.9%)" ;
+    ] ;
+    sh:property [
+        sh:path aopo:has_molecular_initiating_event ;
+        sh:severity sh:Warning ;
+        sh:name "aopo:has_molecular_initiating_event (82.8%)" ;
+    ] ;
+    sh:property [
+        sh:path aopo:has_key_event_relationship ;
+        sh:severity sh:Warning ;
+        sh:name "aopo:has_key_event_relationship (80.7%)" ;
+    ] ;
+    sh:property [
+        sh:path dc:creator ;
+        sh:severity sh:Warning ;
+        sh:name "dc:creator (75.2%)" ;
+    ] ;
+    sh:property [
+        sh:path dc:description ;
+        sh:severity sh:Warning ;
+        sh:name "dc:description (67.4%)" ;
+    ] ;
+    sh:property [
+        sh:path dcterms:abstract ;
+        sh:severity sh:Warning ;
+        sh:name "dcterms:abstract (58.8%)" ;
+    ] ;
+    sh:property [
+        sh:path ncbitaxon:131567 ;
+        sh:severity sh:Warning ;
+        sh:name "ncbitaxon:131567 (57.6%)" ;
+    ] ;
+    sh:property [
+        sh:path pato:0000047 ;
+        sh:severity sh:Warning ;
+        sh:name "pato:0000047 (50.5%)" ;
+    ] ;
+    sh:property [
+        sh:path aopo:LifeStageContext ;
+        sh:severity sh:Warning ;
+        sh:name "aopo:LifeStageContext (49.0%)" ;
+    ] ;
+    sh:property [
+        sh:path nci:C54571 ;
+        sh:severity sh:Warning ;
+        sh:name "nci:C54571 (42.6%)" ;
+    ] ;
+    sh:property [
+        sh:path aopo:AopContext ;
+        sh:severity sh:Warning ;
+        sh:name "aopo:AopContext (36.9%)" ;
+    ] ;
+    sh:property [
+        sh:path nci:C48192 ;
+        sh:severity sh:Warning ;
+        sh:name "nci:C48192 (34.5%)" ;
+    ] ;
+    sh:property [
+        sh:path aopo:has_evidence ;
+        sh:severity sh:Warning ;
+        sh:name "aopo:has_evidence (33.6%)" ;
+    ] ;
+    sh:property [
+        sh:path nci:C25217 ;
+        sh:severity sh:Warning ;
+        sh:name "nci:C25217 (31.7%)" ;
+    ] ;
+    sh:property [
+        sh:path edam:operation_3799 ;
+        sh:severity sh:Warning ;
+        sh:name "edam:operation_3799 (27.6%)" ;
+    ] ;
+    sh:property [
+        sh:path nci:C25725 ;
+        sh:severity sh:Warning ;
+        sh:name "nci:C25725 (25.3%)" ;
+    ] ;
+    sh:property [
+        sh:path nci:C25688 ;
+        sh:severity sh:Warning ;
+        sh:name "nci:C25688 (25.2%)" ;
+    ] ;
+    .

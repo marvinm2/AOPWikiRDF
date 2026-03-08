@@ -1,0 +1,75 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix aopo: <http://aopkb.org/aop_ontology#> .
+@prefix nci: <http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#> .
+@prefix cheminf: <http://semanticscience.org/resource/CHEMINF_> .
+@prefix edam: <http://edamontology.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix ncbitaxon: <http://purl.bioontology.org/ontology/NCBITAXON/> .
+@prefix pato: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix go: <http://purl.obolibrary.org/obo/GO_> .
+@prefix mmo: <http://purl.obolibrary.org/obo/MMO_> .
+@prefix hgnc: <https://identifiers.org/hgnc/> .
+@prefix uniprot: <https://identifiers.org/uniprot/> .
+@prefix ncbigene: <https://identifiers.org/ncbigene/> .
+@prefix ensembl: <https://identifiers.org/ensembl/> .
+
+@prefix shapes: <https://aopwiki.rdf.bigcat-bioinformatics.org/shapes/> .
+
+# SHACL Shape for Gene Association
+# Generated from property population audit
+# Instances: 742
+
+shapes:GeneAssociationShape
+    a sh:NodeShape ;
+    sh:targetClass edam:data_1025 ;
+    sh:name "Gene Association" ;
+    sh:property [
+        sh:path dc:identifier ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "dc:identifier (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path dc:source ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "dc:source (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path edam:data_2291 ;
+        sh:severity sh:Warning ;
+        sh:name "edam:data_2291 (77.1%)" ;
+    ] ;
+    sh:property [
+        sh:path rdfs:seeAlso ;
+        sh:severity sh:Warning ;
+        sh:name "rdfs:seeAlso (77.1%)" ;
+    ] ;
+    sh:property [
+        sh:path owl:sameAs ;
+        sh:severity sh:Warning ;
+        sh:name "owl:sameAs (77.1%)" ;
+    ] ;
+    sh:property [
+        sh:path edam:data_2298 ;
+        sh:severity sh:Warning ;
+        sh:name "edam:data_2298 (17.0%)" ;
+    ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:severity sh:Warning ;
+        sh:name "rdfs:label (17.0%)" ;
+    ] ;
+    sh:property [
+        sh:path edam:data_1027 ;
+        sh:severity sh:Warning ;
+        sh:name "edam:data_1027 (5.9%)" ;
+    ] ;
+    .

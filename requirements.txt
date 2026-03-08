@@ -18,3 +18,6 @@ requests==2.32.3
 # RDF and SPARQL handling
 rdflib==6.3.2
 SPARQLWrapper==2.0.0
+
+# SHACL validation
+pyshacl>=0.26.0

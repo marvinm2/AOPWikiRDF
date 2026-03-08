@@ -1,0 +1,142 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix aopo: <http://aopkb.org/aop_ontology#> .
+@prefix nci: <http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#> .
+@prefix cheminf: <http://semanticscience.org/resource/CHEMINF_> .
+@prefix edam: <http://edamontology.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix ncbitaxon: <http://purl.bioontology.org/ontology/NCBITAXON/> .
+@prefix pato: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix go: <http://purl.obolibrary.org/obo/GO_> .
+@prefix mmo: <http://purl.obolibrary.org/obo/MMO_> .
+@prefix hgnc: <https://identifiers.org/hgnc/> .
+@prefix uniprot: <https://identifiers.org/uniprot/> .
+@prefix ncbigene: <https://identifiers.org/ncbigene/> .
+@prefix ensembl: <https://identifiers.org/ensembl/> .
+
+@prefix shapes: <https://aopwiki.rdf.bigcat-bioinformatics.org/shapes/> .
+
+# SHACL Shape for Key Event
+# Generated from property population audit
+# Instances: 1570
+
+shapes:KeyEventShape
+    a sh:NodeShape ;
+    sh:targetClass aopo:KeyEvent ;
+    sh:name "Key Event" ;
+    sh:property [
+        sh:path nci:C25664 ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "nci:C25664 (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path dc:identifier ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "dc:identifier (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path dc:source ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "dc:source (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path dc:title ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "dc:title (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path dcterms:alternative ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "dcterms:alternative (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path dcterms:isPartOf ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "dcterms:isPartOf (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "rdfs:label (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path rdfs:seeAlso ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "rdfs:seeAlso (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path foaf:page ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "foaf:page (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path aopo:hasBiologicalEvent ;
+        sh:severity sh:Warning ;
+        sh:name "aopo:hasBiologicalEvent (56.1%)" ;
+    ] ;
+    sh:property [
+        sh:path pato:0000001 ;
+        sh:severity sh:Warning ;
+        sh:name "pato:0000001 (56.1%)" ;
+    ] ;
+    sh:property [
+        sh:path go:0008150 ;
+        sh:severity sh:Warning ;
+        sh:name "go:0008150 (48.3%)" ;
+    ] ;
+    sh:property [
+        sh:path pato:0001241 ;
+        sh:severity sh:Warning ;
+        sh:name "pato:0001241 (41.4%)" ;
+    ] ;
+    sh:property [
+        sh:path dc:description ;
+        sh:severity sh:Warning ;
+        sh:name "dc:description (39.8%)" ;
+    ] ;
+    sh:property [
+        sh:path mmo:0000000 ;
+        sh:severity sh:Warning ;
+        sh:name "mmo:0000000 (37.5%)" ;
+    ] ;
+    sh:property [
+        sh:path ncbitaxon:131567 ;
+        sh:severity sh:Warning ;
+        sh:name "ncbitaxon:131567 (33.5%)" ;
+    ] ;
+    sh:property [
+        sh:path pato:0000047 ;
+        sh:severity sh:Warning ;
+        sh:name "pato:0000047 (28.3%)" ;
+    ] ;
+    sh:property [
+        sh:path aopo:LifeStageContext ;
+        sh:severity sh:Warning ;
+        sh:name "aopo:LifeStageContext (27.7%)" ;
+    ] ;
+    sh:property [
+        sh:path aopo:CellTypeContext ;
+        sh:severity sh:Warning ;
+        sh:name "aopo:CellTypeContext (27.1%)" ;
+    ] ;
+    sh:property [
+        sh:path aopo:OrganContext ;
+        sh:severity sh:Warning ;
+        sh:name "aopo:OrganContext (21.9%)" ;
+    ] ;
+    .
