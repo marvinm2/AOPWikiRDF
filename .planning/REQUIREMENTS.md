@@ -45,7 +45,7 @@
 
 - [x] **VAL-01**: Audit current RDF output to determine which properties are required vs optional per entity type
 - [x] **VAL-02**: Define SHACL shapes for core entity types: AOP, Key Event, KER, Stressor, Chemical
-- [ ] **VAL-03**: Integrate SHACL validation as a triggered GitHub Actions workflow (separate from generation)
+- [x] **VAL-03**: Integrate SHACL validation as a triggered GitHub Actions workflow (separate from generation)
 - [x] **VAL-04**: SHACL validation completes within GitHub Actions time limits on full RDF output
 
 ### Documentation & VoID
@@ -108,7 +108,7 @@
 | DOC-04 | Phase 4 | Complete |
 | VAL-01 | Phase 5 | Complete |
 | VAL-02 | Phase 5 | Complete |
-| VAL-03 | Phase 5 | Pending |
+| VAL-03 | Phase 5 | Complete |
 | VAL-04 | Phase 5 | Complete |
 | DOC-01 | Phase 5 | Complete |
 | DOC-02 | Phase 5 | Complete |
