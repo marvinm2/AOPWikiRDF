@@ -266,8 +266,11 @@ def _stage_write_aop_rdf(config, context):
                 "listofwikidata"):
         writer_entities[key] = chem_result.get(key, [])
 
+    # Pass symbol_lookup for gene rdfs:label in main RDF
+    writer_entities["symbol_lookup"] = context.get("gene_symbol_lookup", {})
+
     prefix_csv = "prefixes.csv"
-    write_aop_rdf(filepath + "AOPWikiRDF.ttl", writer_entities, prefix_csv)
+    write_aop_rdf(filepath + "AOPWikiRDF.ttl", writer_entities, prefix_csv, config=config)
     logger.info("RDF file created: %sAOPWikiRDF.ttl", filepath)
 
 
@@ -284,9 +287,10 @@ def _stage_write_genes_rdf(config, context):
         "listofentrez": xref_result["listofentrez"],
         "listofensembl": xref_result["listofensembl"],
         "listofuniprot": xref_result["listofuniprot"],
+        "symbol_lookup": context.get("gene_symbol_lookup", {}),
     }
 
-    write_genes_rdf(filepath + "AOPWikiRDF-Genes.ttl", gene_data)
+    write_genes_rdf(filepath + "AOPWikiRDF-Genes.ttl", gene_data, config=config)
 
 
 def _stage_write_void_rdf(config, context):
