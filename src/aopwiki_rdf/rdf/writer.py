@@ -701,7 +701,9 @@ def write_void_rdf(filepath, metadata):
     metadata : dict
         Dict with keys: 'aopwikixmlfilename', 'date', 'datetime_obj',
         'HGNCmodificationTime', 'PromodificationTime',
-        'bridgedb_info', 'service_desc_filepath'.
+        'service_desc_filepath'.
+        Optional: 'triple_counts' dict with 'main', 'enriched', 'genes' keys,
+        'bridgedb_url' string.
     """
     aopwikixmlfilename = metadata['aopwikixmlfilename']
     x = metadata['datetime_obj']
@@ -709,12 +711,73 @@ def write_void_rdf(filepath, metadata):
     HGNCmodificationTime = metadata['HGNCmodificationTime']
     PromodificationTime = metadata['PromodificationTime']
     service_desc_filepath = metadata.get('service_desc_filepath')
+    triple_counts = metadata.get('triple_counts', {})
+    bridgedb_url = metadata.get('bridgedb_url', 'https://webservice.bridgedb.org/Human/')
 
     logger.info(f"Writing VoID RDF file: {filepath}")
 
     with open(filepath, 'w', encoding='utf-8') as g:
         g.write(VOID_PREFIXES)
-        g.write('\n:AOPWikiRDF.ttl\ta\tvoid:Dataset ;\n\tdc:description\t"AOP-Wiki RDF data from the AOP-Wiki database" ;\n\tpav:createdOn\t"' + y + '"^^xsd:date;\n\tdcterms:modified\t"' + y + '"^^xsd:date ;\n\tpav:createdWith\t"' + str(aopwikixmlfilename) + '", :Promapping ;\n\tpav:createdBy\t<https://zenodo.org/badge/latestdoi/146466058> ;\n\tfoaf:homepage\t<https://aopwiki.org> ;\n\tdcterms:accuralPeriodicity  freq:quarterly ;\n\tdcat:downloadURL\t<https://aopwiki.org/downloads/' + str(aopwikixmlfilename) + '> .\n\n:AOPWikiRDF-Genes.ttl\ta\tvoid:Dataset ;\n\tdc:description\t"AOP-Wiki RDF extension with gene mappings based on approved names and symbols" ;\n\tpav:createdOn\t"' + str(x) + '" ;\n\tpav:createdWith\t"' + str(aopwikixmlfilename) + '", :HGNCgenes ;\n\tpav:createdBy\t<https://zenodo.org/badge/latestdoi/146466058> ;\n\tdcterms:accuralPeriodicity  freq:quarterly ;\n\tfoaf:homepage\t<https://aopwiki.org> ;\n\tdcat:downloadURL\t<https://aopwiki.org/downloads/' + str(aopwikixmlfilename) + '>, <https://www.genenames.org/download/custom/> . \n\n:HGNCgenes.txt\ta\tvoid:Dataset, void:Linkset ;\n\tdc:description\t"HGNC approved symbols and names for genes" ;\n\tdcat:downloadURL\t<https://www.genenames.org/download/custom/> ;\n\tpav:importedOn\t"' + HGNCmodificationTime + '" .\n\n<https://proconsortium.org/download/current/promapping.txt>\ta\tvoid:Dataset, void:Linkset;\n\tdc:description\t"PRotein ontology mappings to protein database identifiers";\n\tdcat:downloadURL\t<https://proconsortium.org/download/current/promapping.txt>;\n\tpav:importedOn\t"' + PromodificationTime + '".')
+
+        # --- Parent dataset ---
+        g.write('\n\n:AOPWikiRDF\ta\tvoid:Dataset')
+        g.write(' ;\n\tdc:description\t"AOP-Wiki RDF -- complete dataset"')
+        g.write(' ;\n\tdcterms:license\t<http://creativecommons.org/licenses/by/4.0/>')
+        g.write(' ;\n\tvoid:subset\t:AOPWikiRDF.ttl, :AOPWikiRDF-Enriched.ttl, :AOPWikiRDF-Genes.ttl')
+        g.write(' ;\n\tvoid:exampleResource\taop:1, aop.events:1, aop.relationships:1, cas:83-79-4, aop.stressor:1')
+        g.write(' ;\n\tpav:createdOn\t"' + y + '"^^xsd:date')
+        g.write(' ;\n\tfoaf:homepage\t<https://aopwiki.org>')
+        g.write(' ;\n\tpav:createdBy\t<https://zenodo.org/badge/latestdoi/146466058>')
+        g.write(' .\n')
+
+        # --- Pure source subset ---
+        g.write('\n:AOPWikiRDF.ttl\ta\tvoid:Dataset')
+        g.write(' ;\n\tdc:description\t"AOP-Wiki source-derived triples"')
+        if triple_counts.get('main', 0) > 0:
+            g.write(f' ;\n\tvoid:triples\t{triple_counts["main"]}')
+        g.write(' ;\n\tdcterms:license\t<http://creativecommons.org/licenses/by/4.0/>')
+        g.write(' ;\n\tpav:createdOn\t"' + y + '"^^xsd:date')
+        g.write(' ;\n\tpav:createdWith\t"' + str(aopwikixmlfilename) + '", :Promapping')
+        g.write(' ;\n\tfoaf:homepage\t<https://aopwiki.org>')
+        g.write(' ;\n\tdcterms:accuralPeriodicity\tfreq:quarterly')
+        g.write(' ;\n\tdcat:downloadURL\t<https://aopwiki.org/downloads/' + str(aopwikixmlfilename) + '>')
+        g.write(' .\n')
+
+        # --- Enriched subset ---
+        g.write('\n:AOPWikiRDF-Enriched.ttl\ta\tvoid:Dataset')
+        g.write(' ;\n\tdc:description\t"Chemical and protein cross-reference enrichment triples"')
+        if triple_counts.get('enriched', 0) > 0:
+            g.write(f' ;\n\tvoid:triples\t{triple_counts["enriched"]}')
+        g.write(' ;\n\tdcterms:license\t<http://creativecommons.org/licenses/by/4.0/>')
+        g.write(' ;\n\tpav:importedFrom\t<' + bridgedb_url + '>')
+        g.write(' ;\n\tpav:createdOn\t"' + y + '"^^xsd:date')
+        g.write(' .\n')
+
+        # --- Genes subset ---
+        g.write('\n:AOPWikiRDF-Genes.ttl\ta\tvoid:Dataset')
+        g.write(' ;\n\tdc:description\t"Gene mapping enrichment triples"')
+        if triple_counts.get('genes', 0) > 0:
+            g.write(f' ;\n\tvoid:triples\t{triple_counts["genes"]}')
+        g.write(' ;\n\tpav:createdOn\t"' + y + '"^^xsd:date')
+        g.write(' ;\n\tpav:createdWith\t"' + str(aopwikixmlfilename) + '", :HGNCgenes')
+        g.write(' ;\n\tfoaf:homepage\t<https://aopwiki.org>')
+        g.write(' ;\n\tdcterms:accuralPeriodicity\tfreq:quarterly')
+        g.write(' ;\n\tdcat:downloadURL\t<https://aopwiki.org/downloads/' + str(aopwikixmlfilename) + '>, <https://www.genenames.org/download/custom/>')
+        g.write(' .\n')
+
+        # --- HGNC linkset ---
+        g.write('\n:HGNCgenes.txt\ta\tvoid:Dataset, void:Linkset')
+        g.write(' ;\n\tdc:description\t"HGNC approved symbols and names for genes"')
+        g.write(' ;\n\tdcat:downloadURL\t<https://www.genenames.org/download/custom/>')
+        g.write(' ;\n\tpav:importedOn\t"' + HGNCmodificationTime + '"')
+        g.write(' .\n')
+
+        # --- Promapping linkset ---
+        g.write('\n<https://proconsortium.org/download/current/promapping.txt>\ta\tvoid:Dataset, void:Linkset')
+        g.write(' ;\n\tdc:description\t"PRotein ontology mappings to protein database identifiers"')
+        g.write(' ;\n\tdcat:downloadURL\t<https://proconsortium.org/download/current/promapping.txt>')
+        g.write(' ;\n\tpav:importedOn\t"' + PromodificationTime + '"')
+        g.write(' .\n')
 
     logger.info("VoID file created successfully")
 
