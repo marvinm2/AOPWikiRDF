@@ -13,7 +13,7 @@ import re
 
 import pandas as pd
 
-from aopwiki_rdf.rdf.namespaces import get_main_prefixes, GENES_PREFIXES, VOID_PREFIXES
+from aopwiki_rdf.rdf.namespaces import get_main_prefixes, GENES_PREFIXES, VOID_PREFIXES, ENRICHED_PREFIXES
 from aopwiki_rdf.utils import clean_html_tags
 
 logger = logging.getLogger(__name__)
@@ -370,11 +370,6 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
         for obj in bioobjdict:
             if obj is not None and "N/A" not in bioobjdict[obj]['dc:identifier'] and 'TAIR' not in bioobjdict[obj]['dc:identifier']:
                 g.write(bioobjdict[obj]['dc:identifier'] + '\ta\tpato:0001241 ;\n\tdc:identifier\t' + bioobjdict[obj]['dc:identifier'] + ' ;\n\tdc:title\t' + bioobjdict[obj]['dc:title'] + ' ;\n\tdc:source\t' + bioobjdict[obj]['dc:source'])
-                if bioobjdict[obj]['dc:identifier'] in prodict:
-                    identifiers = ','.join(prodict[bioobjdict[obj]['dc:identifier']])
-                    if config and config.emit_legacy_predicates:
-                        g.write(' ;\n\tskos:exactMatch\t' + identifiers)
-                    g.write(' ;\n\towl:sameAs\t' + identifiers)
                 g.write('. \n\n')
         logger.info("Section completed")
 
@@ -417,18 +412,6 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
 
             if 'cheminf:000568' in che_data:
                 g.write(f' ;\n\tcheminf:000568\t{che_data["cheminf:000568"]}')
-
-            cheminf_keys = [
-                'cheminf:000407', 'cheminf:000405', 'cheminf:000567', 'cheminf:000412',
-                'cheminf:000140', 'cheminf:000406', 'cheminf:000408', 'cheminf:000409', 'cheminf:000564'
-            ]
-            exact_matches = []
-            for key in cheminf_keys:
-                exact_matches.extend(che_data.get(key, []))
-
-            if config and config.emit_legacy_predicates:
-                _write_multivalue_triple(g, 'skos:exactMatch', exact_matches)
-            _write_multivalue_triple(g, 'owl:sameAs', exact_matches)
 
             if 'dcterms:alternative' in che_data:
                 _write_multivalue_triple(g, 'dcterms:alternative', che_data['dcterms:alternative'], quote=True)
@@ -539,6 +522,87 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
     logger.info(f"Total KERs processed: {len(kerdict)}")
     logger.info(f"Total Chemicals processed: {len(chedict)}")
     logger.info(f"RDF file created: {filepath}")
+
+
+# ---------------------------------------------------------------------------
+# Enriched RDF file writer (cross-reference triples)
+# ---------------------------------------------------------------------------
+
+
+def write_enriched_rdf(filepath, enrichment_data, config=None):
+    """Write AOPWikiRDF-Enriched.ttl with cross-reference triples.
+
+    This file contains owl:sameAs (and optionally skos:exactMatch) triples
+    that link AOP-Wiki entities to external identifiers via BridgeDb and
+    protein ontology mappings.
+
+    Parameters
+    ----------
+    filepath : str
+        Output file path (full path including filename).
+    enrichment_data : dict
+        Dict with keys: 'chedict', 'bioobjdict', 'prodict'.
+    config : PipelineConfig, optional
+        Pipeline configuration. When None, only owl:sameAs is emitted.
+        When config.emit_legacy_predicates is True, both skos:exactMatch
+        and owl:sameAs are emitted.
+    """
+    chedict = enrichment_data['chedict']
+    bioobjdict = enrichment_data['bioobjdict']
+    prodict = enrichment_data['prodict']
+
+    logger.info(f"Writing enriched RDF file: {filepath}")
+
+    with open(filepath, 'w', encoding='utf-8') as g:
+        # Header comment and prefixes
+        g.write(ENRICHED_PREFIXES + '\n')
+
+        # --- Chemical cross-reference triples ---
+        chem_count = 0
+        for che in chedict:
+            che_data = chedict[che]
+            if 'dc:identifier' not in che_data or '"' in che_data['dc:identifier']:
+                continue
+
+            cheminf_keys = [
+                'cheminf:000407', 'cheminf:000405', 'cheminf:000567', 'cheminf:000412',
+                'cheminf:000140', 'cheminf:000406', 'cheminf:000408', 'cheminf:000409', 'cheminf:000564'
+            ]
+            exact_matches = []
+            for key in cheminf_keys:
+                exact_matches.extend(che_data.get(key, []))
+
+            if not exact_matches:
+                continue
+
+            g.write(f"\n{che_data['dc:identifier']}")
+            if config and config.emit_legacy_predicates:
+                _write_multivalue_triple(g, 'skos:exactMatch', exact_matches)
+            _write_multivalue_triple(g, 'owl:sameAs', exact_matches)
+            g.write(' .\n\n')
+            chem_count += 1
+
+        logger.info(f"Chemical cross-references written: {chem_count}")
+
+        # --- Protein ontology cross-reference triples ---
+        pro_count = 0
+        for obj in bioobjdict:
+            if obj is None:
+                continue
+            if "N/A" in bioobjdict[obj]['dc:identifier'] or 'TAIR' in bioobjdict[obj]['dc:identifier']:
+                continue
+            if bioobjdict[obj]['dc:identifier'] in prodict:
+                identifiers = ','.join(prodict[bioobjdict[obj]['dc:identifier']])
+                g.write(f"\n{bioobjdict[obj]['dc:identifier']}")
+                if config and config.emit_legacy_predicates:
+                    g.write(' ;\n\tskos:exactMatch\t' + identifiers)
+                g.write(' ;\n\towl:sameAs\t' + identifiers)
+                g.write(' .\n\n')
+                pro_count += 1
+
+        logger.info(f"Protein ontology cross-references written: {pro_count}")
+
+    logger.info(f"Enriched RDF file created: {filepath}")
 
 
 # ---------------------------------------------------------------------------
