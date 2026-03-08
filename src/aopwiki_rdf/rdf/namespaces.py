@@ -158,5 +158,11 @@ VOID_PREFIXES = (
     "@prefix dcat:  <http://www.w3.org/ns/dcat#> .\n"
     "@prefix foaf:  <http://xmlns.com/foaf/0.1/> .\n"
     "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n"
-    "@prefix freq:  <http://purl.org/cld/freq/> ."
+    "@prefix freq:  <http://purl.org/cld/freq/> .\n"
+    "@prefix aop: <https://identifiers.org/aop/> .\n"
+    "@prefix aop.events: <https://identifiers.org/aop.events/> .\n"
+    "@prefix aop.relationships: <https://identifiers.org/aop.relationships/> .\n"
+    "@prefix aop.stressor: <https://identifiers.org/aop.stressor/> .\n"
+    "@prefix cas: <https://identifiers.org/cas/> .\n"
+    "@prefix owl: <http://www.w3.org/2002/07/owl#> ."
 )
