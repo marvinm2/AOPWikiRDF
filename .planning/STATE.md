@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Phase 4 context gathered
-last_updated: "2026-03-08T15:37:21.402Z"
+stopped_at: Completed 04-01-PLAN.md
+last_updated: "2026-03-08T16:00:28.172Z"
 last_activity: 2026-03-08 — Completed 03-02 predicate correction
 progress:
   total_phases: 5
   completed_phases: 3
-  total_plans: 13
-  completed_plans: 13
+  total_plans: 16
+  completed_plans: 14
   percent: 100
 ---
 
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-04)
 
 **Core value:** Produce accurate, well-structured RDF from AOP-Wiki XML every week — reliably and with traceable provenance for pure vs enriched content.
-**Current focus:** Phase 3 — Predicate Correction
+**Current focus:** Phase 4 — Output Separation
 
 ## Current Position
 
-Phase: 3 of 5 (Predicate Correction)
-Plan: 3 of 3 in current phase (all complete)
-Status: Phase 3 complete
-Last activity: 2026-03-08 — Completed 03-02 predicate correction
+Phase: 4 of 5 (Output Separation)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-03-08 — Completed 04-01 output separation writers
 
-Progress: [██████████] 100%
+Progress: [█████████░] 88%
 
 ## Performance Metrics
 
@@ -60,6 +60,7 @@ Progress: [██████████] 100%
 | Phase 03 P01 | 4 | 2 tasks | 4 files |
 | Phase 03 P03 | 4 | 2 tasks | 3 files |
 | Phase 03 P02 | 5 | 2 tasks | 4 files |
+| Phase 04 P01 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -97,6 +98,8 @@ Recent decisions affecting current work:
 - [Phase 03]: GitHub issue approach for tracking external aopwiki-snorql-extended repo updates
 - [Phase 03]: config=None defaults to owl:sameAs only for safe backward compatibility
 - [Phase 03]: rdfs:label on gene nodes uses symbol_lookup with fallback to numeric ID
+- [Phase 04]: Enriched file emits ONLY owl:sameAs cross-references -- no type declarations or base properties on subjects
+- [Phase 04]: Mapped identifier sections stay in write_aop_rdf as entity descriptions, not cross-references
 
 ### Pending Todos
 
@@ -109,6 +112,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-08T15:37:21.396Z
-Stopped at: Phase 4 context gathered
-Resume file: .planning/phases/04-output-separation/04-CONTEXT.md
+Last session: 2026-03-08T16:00:28.166Z
+Stopped at: Completed 04-01-PLAN.md
+Resume file: None

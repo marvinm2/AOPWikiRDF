@@ -37,8 +37,8 @@
 
 ### Output Separation
 
-- [ ] **SEP-01**: Separate pure AOP-Wiki RDF (source-derived triples only) into its own TTL file
-- [ ] **SEP-02**: Separate enriched/associated content (gene mappings, chemical cross-references) into distinct TTL file(s)
+- [x] **SEP-01**: Separate pure AOP-Wiki RDF (source-derived triples only) into its own TTL file
+- [x] **SEP-02**: Separate enriched/associated content (gene mappings, chemical cross-references) into distinct TTL file(s)
 - [ ] **SEP-03**: Add `void:subset` declarations linking separated files in VoID metadata
 
 ### Validation
@@ -101,8 +101,8 @@
 | PRED-04 | Phase 3 | Complete |
 | GENE-03 | Phase 3 | Complete |
 | GENE-04 | Phase 3 | Complete |
-| SEP-01 | Phase 4 | Pending |
-| SEP-02 | Phase 4 | Pending |
+| SEP-01 | Phase 4 | Complete |
+| SEP-02 | Phase 4 | Complete |
 | SEP-03 | Phase 4 | Pending |
 | DOC-03 | Phase 4 | Pending |
 | DOC-04 | Phase 4 | Pending |
