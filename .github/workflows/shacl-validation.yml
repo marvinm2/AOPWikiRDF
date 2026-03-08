@@ -1,0 +1,112 @@
+name: SHACL Validation
+
+on:
+  workflow_run:
+    workflows: [RDF Generation]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  shacl-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      # Step 3: Install dependencies
+      - name: Install Dependencies
+        run: pip install rdflib pyshacl
+
+      # Step 4: Run SHACL validation
+      - name: Run SHACL Validation
+        run: python scripts/run_shacl_validation.py
+
+      # Step 5: Upload validation artifacts
+      - name: Upload Validation Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shacl-validation-reports-${{ github.run_number }}
+          path: |
+            shacl-report.ttl
+            shacl-summary.json
+          retention-days: 30
+
+      # Step 6: Generate badge from validation results
+      - name: Generate SHACL Badge
+        if: always()
+        run: |
+          python - << 'PYEOF'
+          import json
+          import os
+
+          # Read validation summary
+          status = "unknown"
+          color = "lightgrey"
+          try:
+              with open("shacl-summary.json") as f:
+                  summary = json.load(f)
+              if summary.get("status") == "PASS":
+                  status = "passing"
+                  color = "#4c1"
+              else:
+                  status = "failing"
+                  color = "#e05d44"
+          except Exception:
+              status = "unknown"
+              color = "#9f9f9f"
+
+          # Generate SVG badge
+          label = "SHACL"
+          label_width = 50
+          value_width = 62
+          total_width = label_width + value_width
+
+          svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{total_width}" height="20">
+            <linearGradient id="b" x2="0" y2="100%">
+              <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+              <stop offset="1" stop-opacity=".1"/>
+            </linearGradient>
+            <mask id="a">
+              <rect width="{total_width}" height="20" rx="3" fill="#fff"/>
+            </mask>
+            <g mask="url(#a)">
+              <rect width="{label_width}" height="20" fill="#555"/>
+              <rect x="{label_width}" width="{value_width}" height="20" fill="{color}"/>
+              <rect width="{total_width}" height="20" fill="url(#b)"/>
+            </g>
+            <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+              <text x="{label_width/2}" y="15" fill="#010101" fill-opacity=".3">{label}</text>
+              <text x="{label_width/2}" y="14">{label}</text>
+              <text x="{label_width + value_width/2}" y="15" fill="#010101" fill-opacity=".3">{status}</text>
+              <text x="{label_width + value_width/2}" y="14">{status}</text>
+            </g>
+          </svg>'''
+
+          os.makedirs("badges", exist_ok=True)
+          with open("badges/shacl-validation.svg", "w") as f:
+              f.write(svg)
+          print(f"Badge generated: SHACL | {status}")
+          PYEOF
+
+      # Step 7: Commit and push badge
+      - name: Commit and Push Badge
+        if: always()
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add badges/shacl-validation.svg
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update SHACL validation badge" && git push)
