@@ -208,8 +208,8 @@ def test_combined_triple_count():
     print(f"  TOTAL: {total:,} triples")
 
     # Regression threshold: combined output should be substantial
-    # Current estimates: ~124,901 main + ~75,099 genes + cross-refs
-    assert total > 150_000, (
-        f"Combined triple count {total:,} is below regression threshold of 150,000. "
+    # Main ~123k + enriched ~8k = ~131k minimum; genes vary (0 without BridgeDb/HGNC)
+    assert total > 120_000, (
+        f"Combined triple count {total:,} is below regression threshold of 120,000. "
         f"This may indicate missing data or broken separation."
     )
