@@ -81,7 +81,7 @@ Plans:
   2. A separate enriched TTL file contains all gene associations and chemical cross-references with provenance — loading only this file alongside `AOPWikiRDF.ttl` restores the full joined query capability
   3. The VoID metadata file declares `void:subset` relationships between the pure and enriched files, and includes `void:triples`, `dcterms:license`, and `pav:importedFrom` for the BridgeDb enrichment
   4. `void:exampleResource` entries are present in VoID for each core entity type (AOP, Key Event, KER, Chemical)
-**Plans:** 3 plans
+**Plans:** 2/3 plans executed
 
 Plans:
 - [ ] 04-01-PLAN.md — Split writer: ENRICHED_PREFIXES, write_enriched_rdf, remove cross-refs from write_aop_rdf
@@ -110,5 +110,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Foundation | 4/4 | Complete | 2026-03-05 |
 | 2. Module Extraction | 6/6 | Complete   | 2026-03-06 |
 | 3. Predicate Correction | 2/3 | In Progress|  |
-| 4. Output Separation | 0/3 | Not started | - |
+| 4. Output Separation | 2/3 | In Progress|  |
 | 5. Validation and Documentation | 0/TBD | Not started | - |
