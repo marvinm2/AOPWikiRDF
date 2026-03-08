@@ -91,7 +91,8 @@ jobs:
           # Define expected files
           expected_files = [
               'data/AOPWikiRDF.ttl',
-              'data/AOPWikiRDF-Genes.ttl', 
+              'data/AOPWikiRDF-Enriched.ttl',
+              'data/AOPWikiRDF-Genes.ttl',
               'data/AOPWikiRDF-Void.ttl'
           ]
           
