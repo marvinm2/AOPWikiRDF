@@ -1,0 +1,1240 @@
+{
+  "AOPWikiRDF-Enriched.ttl": {
+    "_untyped_subjects": {
+      "instances": 563,
+      "properties": {
+        "http://www.w3.org/2002/07/owl#sameAs": {
+          "count": 563,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 563
+        },
+        "http://www.w3.org/2004/02/skos/core#exactMatch": {
+          "count": 563,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 563
+        }
+      }
+    }
+  },
+  "AOPWikiRDF-Genes.ttl": {},
+  "AOPWikiRDF.ttl": {
+    "_untyped_subjects": {
+      "instances": 942,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/description": {
+          "count": 18,
+          "percentage": 1.9,
+          "severity": "sh:Warning",
+          "total": 942
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 815,
+          "percentage": 86.5,
+          "severity": "sh:Warning",
+          "total": 942
+        },
+        "http://www.w3.org/2000/01/rdf-schema#label": {
+          "count": 27,
+          "percentage": 2.9,
+          "severity": "sh:Warning",
+          "total": 942
+        },
+        "http://www.w3.org/ns/shacl#declare": {
+          "count": 50,
+          "percentage": 5.3,
+          "severity": "sh:Warning",
+          "total": 942
+        },
+        "http://www.w3.org/ns/shacl#namespace": {
+          "count": 50,
+          "percentage": 5.3,
+          "severity": "sh:Warning",
+          "total": 942
+        },
+        "http://www.w3.org/ns/shacl#prefix": {
+          "count": 50,
+          "percentage": 5.3,
+          "severity": "sh:Warning",
+          "total": 942
+        }
+      }
+    },
+    "http://aopkb.org/aop_ontology#AdverseOutcomePathway": {
+      "instances": 580,
+      "properties": {
+        "http://aopkb.org/aop_ontology#AopContext": {
+          "count": 214,
+          "percentage": 36.9,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://aopkb.org/aop_ontology#LifeStageContext": {
+          "count": 284,
+          "percentage": 49.0,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://aopkb.org/aop_ontology#has_adverse_outcome": {
+          "count": 498,
+          "percentage": 85.9,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://aopkb.org/aop_ontology#has_evidence": {
+          "count": 195,
+          "percentage": 33.6,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://aopkb.org/aop_ontology#has_key_event": {
+          "count": 528,
+          "percentage": 91.0,
+          "severity": "sh:Violation",
+          "total": 580
+        },
+        "http://aopkb.org/aop_ontology#has_key_event_relationship": {
+          "count": 468,
+          "percentage": 80.7,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://aopkb.org/aop_ontology#has_molecular_initiating_event": {
+          "count": 480,
+          "percentage": 82.8,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://edamontology.org/operation_3799": {
+          "count": 160,
+          "percentage": 27.6,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25217": {
+          "count": 184,
+          "percentage": 31.7,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25688": {
+          "count": 146,
+          "percentage": 25.2,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25725": {
+          "count": 147,
+          "percentage": 25.3,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C48192": {
+          "count": 200,
+          "percentage": 34.5,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571": {
+          "count": 247,
+          "percentage": 42.6,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://purl.bioontology.org/ontology/NCBITAXON/131567": {
+          "count": 334,
+          "percentage": 57.6,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://purl.obolibrary.org/obo/PATO_0000047": {
+          "count": 293,
+          "percentage": 50.5,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://purl.org/dc/elements/1.1/creator": {
+          "count": 436,
+          "percentage": 75.2,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://purl.org/dc/elements/1.1/description": {
+          "count": 391,
+          "percentage": 67.4,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 580,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 580
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 580,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 580
+        },
+        "http://purl.org/dc/elements/1.1/title": {
+          "count": 580,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 580
+        },
+        "http://purl.org/dc/terms/abstract": {
+          "count": 341,
+          "percentage": 58.8,
+          "severity": "sh:Warning",
+          "total": 580
+        },
+        "http://purl.org/dc/terms/alternative": {
+          "count": 580,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 580
+        },
+        "http://purl.org/dc/terms/created": {
+          "count": 580,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 580
+        },
+        "http://purl.org/dc/terms/modified": {
+          "count": 580,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 580
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 580,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 580
+        },
+        "http://www.w3.org/2000/01/rdf-schema#label": {
+          "count": 580,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 580
+        },
+        "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
+          "count": 580,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 580
+        },
+        "http://xmlns.com/foaf/0.1/page": {
+          "count": 580,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 580
+        }
+      }
+    },
+    "http://aopkb.org/aop_ontology#BiologicalEvent": {
+      "instances": 1111,
+      "properties": {
+        "http://aopkb.org/aop_ontology#hasAction": {
+          "count": 1111,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 1111
+        },
+        "http://aopkb.org/aop_ontology#hasObject": {
+          "count": 799,
+          "percentage": 71.9,
+          "severity": "sh:Warning",
+          "total": 1111
+        },
+        "http://aopkb.org/aop_ontology#hasProcess": {
+          "count": 945,
+          "percentage": 85.1,
+          "severity": "sh:Warning",
+          "total": 1111
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 1111,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 1111
+        }
+      }
+    },
+    "http://aopkb.org/aop_ontology#CellTypeContext": {
+      "instances": 68,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 68,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 68
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 68,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 68
+        },
+        "http://purl.org/dc/elements/1.1/title": {
+          "count": 68,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 68
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 68,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 68
+        }
+      }
+    },
+    "http://aopkb.org/aop_ontology#KeyEvent": {
+      "instances": 1570,
+      "properties": {
+        "http://aopkb.org/aop_ontology#CellTypeContext": {
+          "count": 426,
+          "percentage": 27.1,
+          "severity": "sh:Warning",
+          "total": 1570
+        },
+        "http://aopkb.org/aop_ontology#LifeStageContext": {
+          "count": 435,
+          "percentage": 27.7,
+          "severity": "sh:Warning",
+          "total": 1570
+        },
+        "http://aopkb.org/aop_ontology#OrganContext": {
+          "count": 344,
+          "percentage": 21.9,
+          "severity": "sh:Warning",
+          "total": 1570
+        },
+        "http://aopkb.org/aop_ontology#hasBiologicalEvent": {
+          "count": 880,
+          "percentage": 56.1,
+          "severity": "sh:Warning",
+          "total": 1570
+        },
+        "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25664": {
+          "count": 1570,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 1570
+        },
+        "http://purl.bioontology.org/ontology/NCBITAXON/131567": {
+          "count": 526,
+          "percentage": 33.5,
+          "severity": "sh:Warning",
+          "total": 1570
+        },
+        "http://purl.obolibrary.org/obo/GO_0008150": {
+          "count": 758,
+          "percentage": 48.3,
+          "severity": "sh:Warning",
+          "total": 1570
+        },
+        "http://purl.obolibrary.org/obo/MMO_0000000": {
+          "count": 588,
+          "percentage": 37.5,
+          "severity": "sh:Warning",
+          "total": 1570
+        },
+        "http://purl.obolibrary.org/obo/PATO_0000001": {
+          "count": 880,
+          "percentage": 56.1,
+          "severity": "sh:Warning",
+          "total": 1570
+        },
+        "http://purl.obolibrary.org/obo/PATO_0000047": {
+          "count": 444,
+          "percentage": 28.3,
+          "severity": "sh:Warning",
+          "total": 1570
+        },
+        "http://purl.obolibrary.org/obo/PATO_0001241": {
+          "count": 650,
+          "percentage": 41.4,
+          "severity": "sh:Warning",
+          "total": 1570
+        },
+        "http://purl.org/dc/elements/1.1/description": {
+          "count": 625,
+          "percentage": 39.8,
+          "severity": "sh:Warning",
+          "total": 1570
+        },
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 1570,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 1570
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 1570,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 1570
+        },
+        "http://purl.org/dc/elements/1.1/title": {
+          "count": 1570,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 1570
+        },
+        "http://purl.org/dc/terms/alternative": {
+          "count": 1570,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 1570
+        },
+        "http://purl.org/dc/terms/isPartOf": {
+          "count": 1570,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 1570
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 1570,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 1570
+        },
+        "http://www.w3.org/2000/01/rdf-schema#label": {
+          "count": 1570,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 1570
+        },
+        "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
+          "count": 1570,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 1570
+        },
+        "http://xmlns.com/foaf/0.1/page": {
+          "count": 1570,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 1570
+        }
+      }
+    },
+    "http://aopkb.org/aop_ontology#KeyEventRelationship": {
+      "instances": 2291,
+      "properties": {
+        "http://aopkb.org/aop_ontology#has_downstream_key_event": {
+          "count": 2291,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 2291
+        },
+        "http://aopkb.org/aop_ontology#has_upstream_key_event": {
+          "count": 2291,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 2291
+        },
+        "http://edamontology.org/data_2042": {
+          "count": 680,
+          "percentage": 29.7,
+          "severity": "sh:Warning",
+          "total": 2291
+        },
+        "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C71478": {
+          "count": 562,
+          "percentage": 24.5,
+          "severity": "sh:Warning",
+          "total": 2291
+        },
+        "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C80263": {
+          "count": 697,
+          "percentage": 30.4,
+          "severity": "sh:Warning",
+          "total": 2291
+        },
+        "http://purl.org/dc/elements/1.1/description": {
+          "count": 702,
+          "percentage": 30.6,
+          "severity": "sh:Warning",
+          "total": 2291
+        },
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 2291,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 2291
+        },
+        "http://purl.org/dc/terms/created": {
+          "count": 2291,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 2291
+        },
+        "http://purl.org/dc/terms/isPartOf": {
+          "count": 2291,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 2291
+        },
+        "http://purl.org/dc/terms/modified": {
+          "count": 2291,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 2291
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 2291,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 2291
+        },
+        "http://www.w3.org/2000/01/rdf-schema#label": {
+          "count": 2291,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 2291
+        },
+        "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
+          "count": 2291,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 2291
+        },
+        "http://xmlns.com/foaf/0.1/page": {
+          "count": 2291,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 2291
+        }
+      }
+    },
+    "http://aopkb.org/aop_ontology#OrganContext": {
+      "instances": 98,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 98,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 98
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 98,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 98
+        },
+        "http://purl.org/dc/elements/1.1/title": {
+          "count": 98,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 98
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 98,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 98
+        }
+      }
+    },
+    "http://edamontology.org/data_1025": {
+      "instances": 742,
+      "properties": {
+        "http://edamontology.org/data_1027": {
+          "count": 44,
+          "percentage": 5.9,
+          "severity": "sh:Warning",
+          "total": 742
+        },
+        "http://edamontology.org/data_2291": {
+          "count": 572,
+          "percentage": 77.1,
+          "severity": "sh:Warning",
+          "total": 742
+        },
+        "http://edamontology.org/data_2298": {
+          "count": 126,
+          "percentage": 17.0,
+          "severity": "sh:Warning",
+          "total": 742
+        },
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 742,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 742
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 742,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 742
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 742,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 742
+        },
+        "http://www.w3.org/2000/01/rdf-schema#label": {
+          "count": 126,
+          "percentage": 17.0,
+          "severity": "sh:Warning",
+          "total": 742
+        },
+        "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
+          "count": 572,
+          "percentage": 77.1,
+          "severity": "sh:Warning",
+          "total": 742
+        },
+        "http://www.w3.org/2002/07/owl#sameAs": {
+          "count": 572,
+          "percentage": 77.1,
+          "severity": "sh:Warning",
+          "total": 742
+        }
+      }
+    },
+    "http://edamontology.org/data_1027": {
+      "instances": 44,
+      "properties": {
+        "http://edamontology.org/data_1027": {
+          "count": 44,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 44
+        },
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 44,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 44
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 44,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 44
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 44,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 44
+        }
+      }
+    },
+    "http://edamontology.org/data_2291": {
+      "instances": 572,
+      "properties": {
+        "http://edamontology.org/data_2291": {
+          "count": 572,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 572
+        },
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 572,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 572
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 572,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 572
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 572,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 572
+        },
+        "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
+          "count": 572,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 572
+        },
+        "http://www.w3.org/2002/07/owl#sameAs": {
+          "count": 572,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 572
+        }
+      }
+    },
+    "http://edamontology.org/data_2298": {
+      "instances": 126,
+      "properties": {
+        "http://edamontology.org/data_2298": {
+          "count": 126,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 126
+        },
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 126,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 126
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 126,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 126
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 126,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 126
+        },
+        "http://www.w3.org/2000/01/rdf-schema#label": {
+          "count": 126,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 126
+        }
+      }
+    },
+    "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571": {
+      "instances": 736,
+      "properties": {
+        "http://aopkb.org/aop_ontology#has_chemical_entity": {
+          "count": 421,
+          "percentage": 57.2,
+          "severity": "sh:Warning",
+          "total": 736
+        },
+        "http://purl.org/dc/elements/1.1/description": {
+          "count": 17,
+          "percentage": 2.3,
+          "severity": "sh:Warning",
+          "total": 736
+        },
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 736,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 736
+        },
+        "http://purl.org/dc/elements/1.1/title": {
+          "count": 736,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 736
+        },
+        "http://purl.org/dc/terms/created": {
+          "count": 736,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 736
+        },
+        "http://purl.org/dc/terms/isPartOf": {
+          "count": 510,
+          "percentage": 69.3,
+          "severity": "sh:Warning",
+          "total": 736
+        },
+        "http://purl.org/dc/terms/modified": {
+          "count": 736,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 736
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 736,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 736
+        },
+        "http://www.w3.org/2000/01/rdf-schema#label": {
+          "count": 736,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 736
+        },
+        "http://xmlns.com/foaf/0.1/page": {
+          "count": 736,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 736
+        }
+      }
+    },
+    "http://purl.bioontology.org/ontology/NCBITAXON/131567": {
+      "instances": 183,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 183,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 183
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 183,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 183
+        },
+        "http://purl.org/dc/elements/1.1/title": {
+          "count": 183,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 183
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 183,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 183
+        }
+      }
+    },
+    "http://purl.obolibrary.org/obo/GO_0008150": {
+      "instances": 553,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 553,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 553
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 553,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 553
+        },
+        "http://purl.org/dc/elements/1.1/title": {
+          "count": 553,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 553
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 553,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 553
+        }
+      }
+    },
+    "http://purl.obolibrary.org/obo/PATO_0001241": {
+      "instances": 491,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 491,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 491
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 491,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 491
+        },
+        "http://purl.org/dc/elements/1.1/title": {
+          "count": 491,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 491
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 491,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 491
+        }
+      }
+    },
+    "http://semanticscience.org/resource/CHEMINF_000000": {
+      "instances": 412,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 412,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 412
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 412,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 412
+        },
+        "http://purl.org/dc/elements/1.1/title": {
+          "count": 412,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 412
+        },
+        "http://purl.org/dc/terms/alternative": {
+          "count": 342,
+          "percentage": 83.0,
+          "severity": "sh:Warning",
+          "total": 412
+        },
+        "http://purl.org/dc/terms/isPartOf": {
+          "count": 412,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 412
+        },
+        "http://semanticscience.org/resource/CHEMINF_000059": {
+          "count": 395,
+          "percentage": 95.9,
+          "severity": "sh:Violation",
+          "total": 412
+        },
+        "http://semanticscience.org/resource/CHEMINF_000446": {
+          "count": 412,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 412
+        },
+        "http://semanticscience.org/resource/CHEMINF_000568": {
+          "count": 412,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 412
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 412,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 412
+        }
+      }
+    },
+    "http://semanticscience.org/resource/CHEMINF_000140": {
+      "instances": 423,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 423,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 423
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 423,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 423
+        },
+        "http://semanticscience.org/resource/CHEMINF_000140": {
+          "count": 423,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 423
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 423,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 423
+        }
+      }
+    },
+    "http://semanticscience.org/resource/CHEMINF_000405": {
+      "instances": 426,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 426,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 426
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 426,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 426
+        },
+        "http://semanticscience.org/resource/CHEMINF_000405": {
+          "count": 426,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 426
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 426,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 426
+        }
+      }
+    },
+    "http://semanticscience.org/resource/CHEMINF_000406": {
+      "instances": 219,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 219,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 219
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 219,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 219
+        },
+        "http://semanticscience.org/resource/CHEMINF_000406": {
+          "count": 219,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 219
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 219,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 219
+        }
+      }
+    },
+    "http://semanticscience.org/resource/CHEMINF_000407": {
+      "instances": 440,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 440,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 440
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 440,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 440
+        },
+        "http://semanticscience.org/resource/CHEMINF_000407": {
+          "count": 440,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 440
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 440,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 440
+        }
+      }
+    },
+    "http://semanticscience.org/resource/CHEMINF_000408": {
+      "instances": 426,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 426,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 426
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 426,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 426
+        },
+        "http://semanticscience.org/resource/CHEMINF_000408": {
+          "count": 426,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 426
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 426,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 426
+        }
+      }
+    },
+    "http://semanticscience.org/resource/CHEMINF_000409": {
+      "instances": 475,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 475,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 475
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 475,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 475
+        },
+        "http://semanticscience.org/resource/CHEMINF_000409": {
+          "count": 475,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 475
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 475,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 475
+        }
+      }
+    },
+    "http://semanticscience.org/resource/CHEMINF_000412": {
+      "instances": 350,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 350,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 350
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 350,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 350
+        },
+        "http://semanticscience.org/resource/CHEMINF_000412": {
+          "count": 350,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 350
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 350,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 350
+        }
+      }
+    },
+    "http://semanticscience.org/resource/CHEMINF_000446": {
+      "instances": 412,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 412,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 412
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 412,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 412
+        },
+        "http://purl.org/dc/elements/1.1/title": {
+          "count": 412,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 412
+        },
+        "http://purl.org/dc/terms/alternative": {
+          "count": 342,
+          "percentage": 83.0,
+          "severity": "sh:Warning",
+          "total": 412
+        },
+        "http://purl.org/dc/terms/isPartOf": {
+          "count": 412,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 412
+        },
+        "http://semanticscience.org/resource/CHEMINF_000059": {
+          "count": 395,
+          "percentage": 95.9,
+          "severity": "sh:Violation",
+          "total": 412
+        },
+        "http://semanticscience.org/resource/CHEMINF_000446": {
+          "count": 412,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 412
+        },
+        "http://semanticscience.org/resource/CHEMINF_000568": {
+          "count": 412,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 412
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 412,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 412
+        }
+      }
+    },
+    "http://semanticscience.org/resource/CHEMINF_000564": {
+      "instances": 35,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 35,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 35
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 35,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 35
+        },
+        "http://semanticscience.org/resource/CHEMINF_000564": {
+          "count": 35,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 35
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 35,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 35
+        }
+      }
+    },
+    "http://semanticscience.org/resource/CHEMINF_000567": {
+      "instances": 423,
+      "properties": {
+        "http://purl.org/dc/elements/1.1/identifier": {
+          "count": 423,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 423
+        },
+        "http://purl.org/dc/elements/1.1/source": {
+          "count": 423,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 423
+        },
+        "http://semanticscience.org/resource/CHEMINF_000567": {
+          "count": 423,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 423
+        },
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+          "count": 423,
+          "percentage": 100.0,
+          "severity": "sh:Violation",
+          "total": 423
+        }
+      }
+    }
+  }
+}
