@@ -31,9 +31,9 @@
 
 ### BioBERT Exploration
 
-- [ ] **BIO-01**: Build prototype NER pipeline using BioBERT (or similar biomedical model) on a subset of Key Event descriptions
-- [ ] **BIO-02**: Compare BioBERT precision and recall against current HGNC regex-based mapping
-- [ ] **BIO-03**: Document findings, feasibility assessment, and integration path for future adoption
+- [x] **BIO-01**: Build prototype NER pipeline using BioBERT (or similar biomedical model) on a subset of Key Event descriptions
+- [x] **BIO-02**: Compare BioBERT precision and recall against current HGNC regex-based mapping
+- [x] **BIO-03**: Document findings, feasibility assessment, and integration path for future adoption
 
 ### Output Separation
 
@@ -112,9 +112,9 @@
 | VAL-04 | Phase 5 | Complete |
 | DOC-01 | Phase 5 | Complete |
 | DOC-02 | Phase 5 | Complete |
-| BIO-01 | Phase 5 | Pending |
-| BIO-02 | Phase 5 | Pending |
-| BIO-03 | Phase 5 | Pending |
+| BIO-01 | Phase 5 | Complete |
+| BIO-02 | Phase 5 | Complete |
+| BIO-03 | Phase 5 | Complete |
 
 **Coverage:**
 - v1 requirements: 29 total
