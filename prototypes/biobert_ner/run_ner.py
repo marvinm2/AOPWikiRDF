@@ -201,14 +201,14 @@ def build_gene_dicts() -> tuple[dict, dict, dict]:
     genedict2: dict[str, list[str]] = {}
     symbol_lookup: dict[str, str] = {}
 
-    hgnc_id_pattern = re.compile(r"^HGNC:(\d+)$")
+    hgnc_id_pattern = re.compile(r"^(?:HGNC:)?(\d+)$")
 
     with open(HGNC_FILE, "r", encoding="utf-8") as f:
         for line in f:
             if "HGNC ID" in line and "Approved symbol" in line:
                 continue
             parts = line.rstrip("\n").split("\t")
-            m = hgnc_id_pattern.match(parts[0])
+            m = hgnc_id_pattern.match(parts[0].strip())
             if not m:
                 continue
             hgnc_id = m.group(1)

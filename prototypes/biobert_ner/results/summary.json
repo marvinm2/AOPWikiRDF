@@ -1,0 +1,30 @@
+{
+  "total_ke_descriptions": 100,
+  "total_genes_found_by_biobert": 213,
+  "total_genes_found_by_regex": 258,
+  "genes_found_by_both": 13,
+  "genes_found_by_biobert_only": 200,
+  "genes_found_by_regex_only": 245,
+  "biobert_metrics_vs_regex_baseline": {
+    "precision": 0.061,
+    "recall": 0.0504,
+    "f1": 0.0552,
+    "note": "Precision/recall computed using regex results as proxy ground truth. For true metrics, manual annotation is needed."
+  },
+  "regex_metrics_self": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "note": "Trivially 1.0 since regex is used as its own baseline."
+  },
+  "disagreement_count": 72,
+  "agreement_rate": 0.28,
+  "runtime": {
+    "biobert_total_seconds": 12.08,
+    "biobert_per_ke_seconds": 0.1208,
+    "regex_total_seconds": 21.86,
+    "regex_per_ke_seconds": 0.2186,
+    "regex_includes_dict_build": false,
+    "note": "BioBERT time includes model loading on first call."
+  }
+}
