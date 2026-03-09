@@ -1,0 +1,1791 @@
+[
+  {
+    "ke_uri": "https://identifiers.org/aop.events/888",
+    "title": "Binding of inhibitor, NADH-ubiquinone oxidoreductase (complex I)",
+    "biobert_genes": [
+      "HUMAN",
+      "I & NDASH ; V",
+      "NADH - UBIQUINONE OXIDOREDUCTASE",
+      "ND1",
+      "ND2",
+      "ND3"
+    ],
+    "regex_genes": [
+      "FMN1",
+      "IVNS1ABP",
+      "MT-ND1",
+      "MT-ND2",
+      "MT-ND3",
+      "MT-ND4",
+      "MT-ND4L",
+      "MT-ND5",
+      "MT-ND6"
+    ],
+    "both": [],
+    "biobert_only": [
+      "HUMAN",
+      "I & NDASH ; V",
+      "NADH - UBIQUINONE OXIDOREDUCTASE",
+      "ND1",
+      "ND2",
+      "ND3"
+    ],
+    "regex_only": [
+      "FMN1",
+      "IVNS1ABP",
+      "MT-ND1",
+      "MT-ND2",
+      "MT-ND3",
+      "MT-ND4",
+      "MT-ND4L",
+      "MT-ND5",
+      "MT-ND6"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/896",
+    "title": "Parkinsonian motor deficits",
+    "biobert_genes": [],
+    "regex_genes": [
+      "AOX1",
+      "EEF1A2",
+      "LMOD1",
+      "MSN",
+      "STATH"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "AOX1",
+      "EEF1A2",
+      "LMOD1",
+      "MSN",
+      "STATH"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/998",
+    "title": "Binding of antagonist, PPAR alpha",
+    "biobert_genes": [
+      "PEROXISOME PROLIFERATOR - ACTIVATED RECEPTOR & ALPHA ;",
+      "PPAR & ALPHA",
+      "PPAR & ALPHA ;",
+      "SILENCING MEDIATOR FOR RETINOID AN"
+    ],
+    "regex_genes": [
+      "NCOR1",
+      "NCOR2"
+    ],
+    "both": [],
+    "biobert_only": [
+      "PEROXISOME PROLIFERATOR - ACTIVATED RECEPTOR & ALPHA ;",
+      "PPAR & ALPHA",
+      "PPAR & ALPHA ;",
+      "SILENCING MEDIATOR FOR RETINOID AN"
+    ],
+    "regex_only": [
+      "NCOR1",
+      "NCOR2"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/864",
+    "title": "Decreased, Body Weight",
+    "biobert_genes": [],
+    "regex_genes": [
+      "PPARA"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "PPARA"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/405",
+    "title": "disrupted, ovarian cycle",
+    "biobert_genes": [],
+    "regex_genes": [
+      "CYP19A1",
+      "GNRH1"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "CYP19A1",
+      "GNRH1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/667",
+    "title": "Binding at picrotoxin site, iGABAR chloride channel",
+    "biobert_genes": [
+      "GABAA RECEPTOR",
+      "GABAA RECEPTORS",
+      "IONOTROPIC GABA RECEPTORS"
+    ],
+    "regex_genes": [],
+    "both": [],
+    "biobert_only": [
+      "GABAA RECEPTOR",
+      "GABAA RECEPTORS",
+      "IONOTROPIC GABA RECEPTORS"
+    ],
+    "regex_only": []
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/201",
+    "title": "Binding of antagonist, NMDA receptors",
+    "biobert_genes": [
+      "2 - CARBOXY - 3 - CARBOXYMETHYL - 4 -",
+      "AMPA RECEPTORS",
+      "GLU RECEPTORS",
+      "KAINATE RECEPTORS",
+      "OPROPENYLPYRROLID"
+    ],
+    "regex_genes": [
+      "GRIN1",
+      "GRIN2A",
+      "GRIN2B",
+      "GRIN2C",
+      "GRIN2D",
+      "NDOR1"
+    ],
+    "both": [],
+    "biobert_only": [
+      "2 - CARBOXY - 3 - CARBOXYMETHYL - 4 -",
+      "AMPA RECEPTORS",
+      "GLU RECEPTORS",
+      "KAINATE RECEPTORS",
+      "OPROPENYLPYRROLID"
+    ],
+    "regex_only": [
+      "GRIN1",
+      "GRIN2A",
+      "GRIN2B",
+      "GRIN2C",
+      "GRIN2D",
+      "NDOR1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/352",
+    "title": "N/A, Neurodegeneration",
+    "biobert_genes": [],
+    "regex_genes": [
+      "BDNF",
+      "CYREN",
+      "NEFL",
+      "SARS1",
+      "SARS2"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "BDNF",
+      "CYREN",
+      "NEFL",
+      "SARS1",
+      "SARS2"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/12",
+    "title": "Acetylcholinesterase (AchE) Inhibition",
+    "biobert_genes": [
+      "ACETYLCHOLINESTERASE",
+      "ACH",
+      "MUSCARINIC AND NICOTINIC RECEPTORS"
+    ],
+    "regex_genes": [],
+    "both": [],
+    "biobert_only": [
+      "ACETYLCHOLINESTERASE",
+      "ACH",
+      "MUSCARINIC AND NICOTINIC RECEPTORS"
+    ],
+    "regex_only": []
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1487",
+    "title": "Binding, Thiol/seleno-proteins involved in protection against oxidative stress",
+    "biobert_genes": [
+      "PEROXIDASE"
+    ],
+    "regex_genes": [
+      "TXN"
+    ],
+    "both": [],
+    "biobert_only": [
+      "PEROXIDASE"
+    ],
+    "regex_only": [
+      "TXN"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/227",
+    "title": "Activation, PPARα",
+    "biobert_genes": [
+      "CPT1B",
+      "CYP4A1",
+      "PPAR & ALPHA",
+      "PPAR & ALPHA ;"
+    ],
+    "regex_genes": [],
+    "both": [],
+    "biobert_only": [
+      "CPT1B",
+      "CYP4A1",
+      "PPAR & ALPHA",
+      "PPAR & ALPHA ;"
+    ],
+    "regex_only": []
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/348",
+    "title": "Malformation, Male reproductive tract",
+    "biobert_genes": [],
+    "regex_genes": [
+      "AR"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "AR"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/26",
+    "title": "Antagonism, Androgen receptor",
+    "biobert_genes": [
+      "ANDROGEN RECEPTOR",
+      "AR",
+      "STEROID HORMONE NUCLEAR RECEPTOR FAMILY",
+      "THE AR"
+    ],
+    "regex_genes": [],
+    "both": [],
+    "biobert_only": [
+      "ANDROGEN RECEPTOR",
+      "AR",
+      "STEROID HORMONE NUCLEAR RECEPTOR FAMILY",
+      "THE AR"
+    ],
+    "regex_only": []
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/18",
+    "title": "Activation, AhR",
+    "biobert_genes": [
+      "AHR",
+      "AHR NUCLEAR TRANSLOCATOR",
+      "AHR RECEPTOR",
+      "ARNT",
+      "ARYL HYDROCARBON RECEPTOR",
+      "BASIC HELIX - LOOP - HELIX PER",
+      "BHLH - PAS",
+      "PER",
+      "SI",
+      "SIM",
+      "SINGLE - MINDED"
+    ],
+    "regex_genes": [
+      "AHR",
+      "AIP",
+      "ARNT",
+      "AURKAIP1",
+      "CYP2A13",
+      "CYP2A6",
+      "CYP2A7",
+      "DCTN6",
+      "H3P17",
+      "H3P23",
+      "NCOA2",
+      "NCOA3",
+      "NRIP1",
+      "PSMD9",
+      "PTGES3",
+      "SRC",
+      "TMED10",
+      "ZNRD2"
+    ],
+    "both": [
+      "AHR",
+      "ARNT"
+    ],
+    "biobert_only": [
+      "AHR NUCLEAR TRANSLOCATOR",
+      "AHR RECEPTOR",
+      "ARYL HYDROCARBON RECEPTOR",
+      "BASIC HELIX - LOOP - HELIX PER",
+      "BHLH - PAS",
+      "PER",
+      "SI",
+      "SIM",
+      "SINGLE - MINDED"
+    ],
+    "regex_only": [
+      "AIP",
+      "AURKAIP1",
+      "CYP2A13",
+      "CYP2A6",
+      "CYP2A7",
+      "DCTN6",
+      "H3P17",
+      "H3P23",
+      "NCOA2",
+      "NCOA3",
+      "NRIP1",
+      "PSMD9",
+      "PTGES3",
+      "SRC",
+      "TMED10",
+      "ZNRD2"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/25",
+    "title": "Agonism, Androgen receptor",
+    "biobert_genes": [
+      "AR"
+    ],
+    "regex_genes": [
+      "AKR1B1",
+      "AR",
+      "AREG",
+      "FDXR"
+    ],
+    "both": [
+      "AR"
+    ],
+    "biobert_only": [],
+    "regex_only": [
+      "AKR1B1",
+      "AREG",
+      "FDXR"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/36",
+    "title": "Inhibition, Aromatase",
+    "biobert_genes": [
+      "AROMA",
+      "AROMATASE",
+      "CYP19",
+      "CYP19A1A",
+      "CYP19A1B",
+      "CYTOCHROME P450 AROMATASE",
+      "FISH"
+    ],
+    "regex_genes": [
+      "CYP19A1"
+    ],
+    "both": [],
+    "biobert_only": [
+      "AROMA",
+      "AROMATASE",
+      "CYP19",
+      "CYP19A1A",
+      "CYP19A1B",
+      "CYTOCHROME P450 AROMATASE",
+      "FISH"
+    ],
+    "regex_only": [
+      "CYP19A1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/79",
+    "title": "Inhibition, Cyclooxygenase activity",
+    "biobert_genes": [
+      "COX",
+      "COX -",
+      "COX ISOFORMS",
+      "CYCLOOXYGENASE SITE",
+      "KEGG ID E. C. 1. 14. 99. 1",
+      "PEROXIDASE ACTIVE SITE",
+      "PROSTAGLANDIN - ENDOPEROXIDE SYNTHASE",
+      "PTGS"
+    ],
+    "regex_genes": [
+      "COX8A",
+      "PTGER2"
+    ],
+    "both": [],
+    "biobert_only": [
+      "COX",
+      "COX -",
+      "COX ISOFORMS",
+      "CYCLOOXYGENASE SITE",
+      "KEGG ID E. C. 1. 14. 99. 1",
+      "PEROXIDASE ACTIVE SITE",
+      "PROSTAGLANDIN - ENDOPEROXIDE SYNTHASE",
+      "PTGS"
+    ],
+    "regex_only": [
+      "COX8A",
+      "PTGER2"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/228",
+    "title": "peroxisome proliferator activated receptor promoter demethylation",
+    "biobert_genes": [
+      "NR1C",
+      "PEROXISOME PROLIFERATOR ACTIVATED RECEPTOR & GAMMA ;",
+      "PEROXISOME PROLIFERATOR ACTIVATED RECEPTORS",
+      "PPAR & GAMMA ;",
+      "PPAR & GAMMA ; GENE",
+      "PPAR - & GAMMA ; 1 AND & GAMMA ; 3",
+      "PPAR - & GAMMA ; 1 PROT",
+      "PPAR - & GAMMA ; 1, 2 AND 3",
+      "PPARS",
+      "STEROID / THYROID / RETINOID RECEPTOR SUPERFAMILY",
+      "TRANSCRIPTION"
+    ],
+    "regex_genes": [
+      "INS"
+    ],
+    "both": [],
+    "biobert_only": [
+      "NR1C",
+      "PEROXISOME PROLIFERATOR ACTIVATED RECEPTOR & GAMMA ;",
+      "PEROXISOME PROLIFERATOR ACTIVATED RECEPTORS",
+      "PPAR & GAMMA ;",
+      "PPAR & GAMMA ; GENE",
+      "PPAR - & GAMMA ; 1 AND & GAMMA ; 3",
+      "PPAR - & GAMMA ; 1 PROT",
+      "PPAR - & GAMMA ; 1, 2 AND 3",
+      "PPARS",
+      "STEROID / THYROID / RETINOID RECEPTOR SUPERFAMILY",
+      "TRANSCRIPTION"
+    ],
+    "regex_only": [
+      "INS"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/459",
+    "title": "Increase, Liver steatosis",
+    "biobert_genes": [],
+    "regex_genes": [
+      "BRIP1",
+      "CP",
+      "FXN",
+      "INS",
+      "SPI1"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "BRIP1",
+      "CP",
+      "FXN",
+      "INS",
+      "SPI1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/344",
+    "title": "Increase, Liver fibrosis",
+    "biobert_genes": [
+      "COLLAGENS"
+    ],
+    "regex_genes": [
+      "MMRN1"
+    ],
+    "both": [],
+    "biobert_only": [
+      "COLLAGENS"
+    ],
+    "regex_only": [
+      "MMRN1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/396",
+    "title": "Covalent Binding, Protein",
+    "biobert_genes": [],
+    "regex_genes": [
+      "ALB"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "ALB"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/827",
+    "title": "sensitisation, skin",
+    "biobert_genes": [],
+    "regex_genes": [
+      "ACD"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "ACD"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/279",
+    "title": "Thyroperoxidase, Inhibition",
+    "biobert_genes": [
+      "TG",
+      "THYROGLOBULIN",
+      "THYROPEROXIDASE",
+      "TPO"
+    ],
+    "regex_genes": [
+      "SLC25A5",
+      "SLC5A5",
+      "TG",
+      "THPO",
+      "TPO"
+    ],
+    "both": [
+      "TG",
+      "TPO"
+    ],
+    "biobert_only": [
+      "THYROGLOBULIN",
+      "THYROPEROXIDASE"
+    ],
+    "regex_only": [
+      "SLC25A5",
+      "SLC5A5",
+      "THPO"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/402",
+    "title": "Cognitive function, decreased ",
+    "biobert_genes": [],
+    "regex_genes": [
+      "FREY1",
+      "TBATA"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "FREY1",
+      "TBATA"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/305",
+    "title": "Inhibition, VegfR2",
+    "biobert_genes": [
+      "CLASS IV TRANSMEMBRANE RECEPTOR TYROSINE KINASES",
+      "RTKS",
+      "VASCULAR ENDOTHELIAL GROWTH FACTOR RECEPTORS",
+      "VEGF",
+      "VEGFR",
+      "VEGFR1",
+      "VEGFR2",
+      "VEGFR3"
+    ],
+    "regex_genes": [
+      "FLT1",
+      "FLT4",
+      "KDR",
+      "VEGFA"
+    ],
+    "both": [],
+    "biobert_only": [
+      "CLASS IV TRANSMEMBRANE RECEPTOR TYROSINE KINASES",
+      "RTKS",
+      "VASCULAR ENDOTHELIAL GROWTH FACTOR RECEPTORS",
+      "VEGF",
+      "VEGFR",
+      "VEGFR1",
+      "VEGFR2",
+      "VEGFR3"
+    ],
+    "regex_only": [
+      "FLT1",
+      "FLT4",
+      "KDR",
+      "VEGFA"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/373",
+    "title": "Formation, Pro-mutagenic DNA Adducts",
+    "biobert_genes": [],
+    "regex_genes": [
+      "SLC38A5"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "SLC38A5"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/378",
+    "title": "Tumorigenesis, Hepatocellular carcinoma",
+    "biobert_genes": [],
+    "regex_genes": [
+      "AOX1",
+      "HMOX1",
+      "HYCC1",
+      "TP53"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "AOX1",
+      "HMOX1",
+      "HYCC1",
+      "TP53"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/875",
+    "title": "Binding of agonist, Ionotropic glutamate receptors",
+    "biobert_genes": [
+      "AMPAR",
+      "KA",
+      "KA / AMPAR",
+      "NMDARS"
+    ],
+    "regex_genes": [
+      "GRIN1",
+      "GRIN2A",
+      "GRIN2B",
+      "GRIN2C",
+      "GRIN2D",
+      "NDOR1"
+    ],
+    "both": [],
+    "biobert_only": [
+      "AMPAR",
+      "KA",
+      "KA / AMPAR",
+      "NMDARS"
+    ],
+    "regex_only": [
+      "GRIN1",
+      "GRIN2A",
+      "GRIN2B",
+      "GRIN2C",
+      "GRIN2D",
+      "NDOR1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/424",
+    "title": "Inhibition, Na+/I- symporter (NIS)",
+    "biobert_genes": [
+      "SODIUM / IODIDE SYMPORTER"
+    ],
+    "regex_genes": [
+      "CD4",
+      "SLC5A5"
+    ],
+    "both": [],
+    "biobert_only": [
+      "SODIUM / IODIDE SYMPORTER"
+    ],
+    "regex_only": [
+      "CD4",
+      "SLC5A5"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/559",
+    "title": "Activation, Nicotinic acetylcholine receptor",
+    "biobert_genes": [
+      "NACHR",
+      "NICOTINIC ACETYLCHOLINE RECEPTOR",
+      "NICOTINIC ACETYLCHOLINE RECEPTORS"
+    ],
+    "regex_genes": [],
+    "both": [],
+    "biobert_only": [
+      "NACHR",
+      "NICOTINIC ACETYLCHOLINE RECEPTOR",
+      "NICOTINIC ACETYLCHOLINE RECEPTORS"
+    ],
+    "regex_only": []
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/718",
+    "title": "Binding, Tubulin",
+    "biobert_genes": [
+      "& ALPHA ; - AND & BETA ; - TUBULIN",
+      "& ALPHA ; AND & BETA ; TUBULIN",
+      ", & DELTA ;",
+      "ILON ;",
+      "TUBULIN",
+      "TUBULIN HOMOLOGUES",
+      "TUBULINS"
+    ],
+    "regex_genes": [],
+    "both": [],
+    "biobert_only": [
+      "& ALPHA ; - AND & BETA ; - TUBULIN",
+      "& ALPHA ; AND & BETA ; TUBULIN",
+      ", & DELTA ;",
+      "ILON ;",
+      "TUBULIN",
+      "TUBULIN HOMOLOGUES",
+      "TUBULINS"
+    ],
+    "regex_only": []
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/715",
+    "title": "Activation, Constitutive androstane receptor",
+    "biobert_genes": [
+      "ANDROSTANE RECEPTOR",
+      "CAR",
+      "HEAT SHOCK PROTEIN 90",
+      "HSP90",
+      "NR1I3"
+    ],
+    "regex_genes": [
+      "CXADR",
+      "CXADRP1",
+      "EGF",
+      "NR1I3",
+      "SPG7"
+    ],
+    "both": [
+      "NR1I3"
+    ],
+    "biobert_only": [
+      "ANDROSTANE RECEPTOR",
+      "CAR",
+      "HEAT SHOCK PROTEIN 90",
+      "HSP90"
+    ],
+    "regex_only": [
+      "CXADR",
+      "CXADRP1",
+      "EGF",
+      "SPG7"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/369",
+    "title": "Uroporphyria",
+    "biobert_genes": [],
+    "regex_genes": [
+      "UROD"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "UROD"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/867",
+    "title": "Decrease, Intracellular pH",
+    "biobert_genes": [
+      "NA + / H + ANTIPORTOR",
+      "VACUOLAR PROTON PUMP"
+    ],
+    "regex_genes": [],
+    "both": [],
+    "biobert_only": [
+      "NA + / H + ANTIPORTOR",
+      "VACUOLAR PROTON PUMP"
+    ],
+    "regex_only": []
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/941",
+    "title": "Activation, EGFR",
+    "biobert_genes": [
+      "EGFR",
+      "EPIDERMAL GROWTH FACTOR RECEPTOR",
+      "ERBB FAMILY",
+      "ERBB1",
+      "ERBB2",
+      "ERBB3",
+      "ERBB4",
+      "HER1",
+      "HER2",
+      "HER3",
+      "HER4",
+      "NEU",
+      "RECEPTOR TYROSINE KINASES",
+      "YROSINE KINASE DOMAIN"
+    ],
+    "regex_genes": [
+      "AKT1",
+      "AREG",
+      "EGF",
+      "EGFR",
+      "IRF6",
+      "PIK3CA",
+      "PTPN1",
+      "ROS1"
+    ],
+    "both": [
+      "EGFR"
+    ],
+    "biobert_only": [
+      "EPIDERMAL GROWTH FACTOR RECEPTOR",
+      "ERBB FAMILY",
+      "ERBB1",
+      "ERBB2",
+      "ERBB3",
+      "ERBB4",
+      "HER1",
+      "HER2",
+      "HER3",
+      "HER4",
+      "NEU",
+      "RECEPTOR TYROSINE KINASES",
+      "YROSINE KINASE DOMAIN"
+    ],
+    "regex_only": [
+      "AKT1",
+      "AREG",
+      "EGF",
+      "IRF6",
+      "PIK3CA",
+      "PTPN1",
+      "ROS1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1250",
+    "title": "Decrease, Lung function",
+    "biobert_genes": [],
+    "regex_genes": [
+      "ARCN1"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "ARCN1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/957",
+    "title": "Binding, Transthyretin in serum",
+    "biobert_genes": [
+      "TRANSTHYRETIN",
+      "TTR"
+    ],
+    "regex_genes": [
+      "ALB",
+      "DENR",
+      "SCARNA10",
+      "SERPINA7",
+      "SLC25A5",
+      "TTR",
+      "UTRN"
+    ],
+    "both": [
+      "TTR"
+    ],
+    "biobert_only": [
+      "TRANSTHYRETIN"
+    ],
+    "regex_only": [
+      "ALB",
+      "DENR",
+      "SCARNA10",
+      "SERPINA7",
+      "SLC25A5",
+      "UTRN"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/980",
+    "title": "Inhibition, Calcineurin Activity",
+    "biobert_genes": [
+      "CALCINEURIN",
+      "CALMODULIN",
+      "CN",
+      "CNA",
+      "CNB",
+      "CNI",
+      "IMMUNOPHILIN - CN INHIBITOR",
+      "IMMUNOPHILINS",
+      "PEPTIDYL - PROPYL ISOMERASE",
+      "PPIASE",
+      "SERINE - THREONINE PHOSPHATASE DOMAIN"
+    ],
+    "regex_genes": [
+      "FKBP1B",
+      "FKBP2",
+      "FKBP5",
+      "FKBP6",
+      "PPIB"
+    ],
+    "both": [],
+    "biobert_only": [
+      "CALCINEURIN",
+      "CALMODULIN",
+      "CN",
+      "CNA",
+      "CNB",
+      "CNI",
+      "IMMUNOPHILIN - CN INHIBITOR",
+      "IMMUNOPHILINS",
+      "PEPTIDYL - PROPYL ISOMERASE",
+      "PPIASE",
+      "SERINE - THREONINE PHOSPHATASE DOMAIN"
+    ],
+    "regex_only": [
+      "FKBP1B",
+      "FKBP2",
+      "FKBP5",
+      "FKBP6",
+      "PPIB"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/984",
+    "title": "Impairment, T-cell dependent antibody response",
+    "biobert_genes": [
+      "IL - 2 RECEPTORS",
+      "IL - 4",
+      "IM",
+      "INTERLEUKIN ( IL ) - 2",
+      "MUNOGLOBULIN",
+      "T - CELL & NDASH"
+    ],
+    "regex_genes": [
+      "BID",
+      "CAVIN3",
+      "CD2",
+      "IL2",
+      "IL4",
+      "IRF6",
+      "RPS19"
+    ],
+    "both": [],
+    "biobert_only": [
+      "IL - 2 RECEPTORS",
+      "IL - 4",
+      "IM",
+      "INTERLEUKIN ( IL ) - 2",
+      "MUNOGLOBULIN",
+      "T - CELL & NDASH"
+    ],
+    "regex_only": [
+      "BID",
+      "CAVIN3",
+      "CD2",
+      "IL2",
+      "IL4",
+      "IRF6",
+      "RPS19"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1002",
+    "title": "Inhibition, Deiodinase 2",
+    "biobert_genes": [],
+    "regex_genes": [
+      "CD4",
+      "DIDO1",
+      "DIO1",
+      "DIO2",
+      "DIO3",
+      "THPO",
+      "TPO",
+      "TXN"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "CD4",
+      "DIDO1",
+      "DIO1",
+      "DIO2",
+      "DIO3",
+      "THPO",
+      "TPO",
+      "TXN"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1009",
+    "title": "Inhibition, Deiodinase 1",
+    "biobert_genes": [],
+    "regex_genes": [
+      "CD4",
+      "DIDO1",
+      "DIO1",
+      "DIO2",
+      "DIO3",
+      "THPO",
+      "TPO",
+      "TXN"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "CD4",
+      "DIDO1",
+      "DIO1",
+      "DIO2",
+      "DIO3",
+      "THPO",
+      "TPO",
+      "TXN"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1495",
+    "title": "Substance interaction with the lung resident cell membrane components",
+    "biobert_genes": [],
+    "regex_genes": [
+      "ATP6AP2",
+      "MARCO",
+      "NECTIN1",
+      "TLR4"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "ATP6AP2",
+      "MARCO",
+      "NECTIN1",
+      "TLR4"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1101",
+    "title": "Altered, Amphibian metamorphosis",
+    "biobert_genes": [],
+    "regex_genes": [
+      "TH"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "TH"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1193",
+    "title": "N/A, Breast Cancer",
+    "biobert_genes": [],
+    "regex_genes": [
+      "ATM",
+      "BRAF",
+      "CDK4",
+      "CDKN2B",
+      "CHEK2",
+      "DDT",
+      "DES",
+      "EGFR",
+      "ERBB2",
+      "GATA3",
+      "NXT1",
+      "PIK3CA",
+      "QRSL1",
+      "RB1",
+      "STK11",
+      "TP53"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "ATM",
+      "BRAF",
+      "CDK4",
+      "CDKN2B",
+      "CHEK2",
+      "DDT",
+      "DES",
+      "EGFR",
+      "ERBB2",
+      "GATA3",
+      "NXT1",
+      "PIK3CA",
+      "QRSL1",
+      "RB1",
+      "STK11",
+      "TP53"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1252",
+    "title": "Binding to (interferes with) topoisomerase II enzyme",
+    "biobert_genes": [
+      "TYPE II TOPOISOMERASES"
+    ],
+    "regex_genes": [
+      "KMT2A",
+      "TOP2A"
+    ],
+    "both": [],
+    "biobert_only": [
+      "TYPE II TOPOISOMERASES"
+    ],
+    "regex_only": [
+      "KMT2A",
+      "TOP2A"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1254",
+    "title": "Infant leukaemia",
+    "biobert_genes": [],
+    "regex_genes": [
+      "BCR",
+      "IFNA1",
+      "KMT2A",
+      "PSMA7"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "BCR",
+      "IFNA1",
+      "KMT2A",
+      "PSMA7"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1502",
+    "title": "Histone deacetylase inhibition",
+    "biobert_genes": [
+      "CORE HISTONE",
+      "CORE HISTONES",
+      "H2B",
+      "H3",
+      "H4",
+      "HDAC",
+      "HDACS",
+      "HISTONE DEACETYLASES",
+      "HISTONE H2A"
+    ],
+    "regex_genes": [
+      "H2AC20",
+      "H2BC21",
+      "HDAC11",
+      "HDAC6",
+      "HDAC8",
+      "HDAC9",
+      "PRDX2"
+    ],
+    "both": [],
+    "biobert_only": [
+      "CORE HISTONE",
+      "CORE HISTONES",
+      "H2B",
+      "H3",
+      "H4",
+      "HDAC",
+      "HDACS",
+      "HISTONE DEACETYLASES",
+      "HISTONE H2A"
+    ],
+    "regex_only": [
+      "H2AC20",
+      "H2BC21",
+      "HDAC11",
+      "HDAC6",
+      "HDAC8",
+      "HDAC9",
+      "PRDX2"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1346",
+    "title": "Increased, depression",
+    "biobert_genes": [],
+    "regex_genes": [
+      "BDNF"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "BDNF"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1686",
+    "title": "Deposition of Energy",
+    "biobert_genes": [],
+    "regex_genes": [
+      "TBATA"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "TBATA"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1386",
+    "title": "CYP7B activity, inhibition",
+    "biobert_genes": [
+      "CYP7B",
+      "CYTOCHROME P450 FAMILY"
+    ],
+    "regex_genes": [],
+    "both": [],
+    "biobert_only": [
+      "CYP7B",
+      "CYTOCHROME P450 FAMILY"
+    ],
+    "regex_only": []
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1395",
+    "title": "Liver Cancer",
+    "biobert_genes": [],
+    "regex_genes": [
+      "HYCC1"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "HYCC1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1443",
+    "title": "Atherosclerosis",
+    "biobert_genes": [
+      "LOW DENSITY LIPOPROTEIN ( LDL"
+    ],
+    "regex_genes": [],
+    "both": [],
+    "biobert_only": [
+      "LOW DENSITY LIPOPROTEIN ( LDL"
+    ],
+    "regex_only": []
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1446",
+    "title": "Decrease, Coupling of oxidative phosphorylation",
+    "biobert_genes": [],
+    "regex_genes": [
+      "PRB1",
+      "WDTC1"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "PRB1",
+      "WDTC1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1700",
+    "title": "Impaired IL-1R1 signaling in T cell",
+    "biobert_genes": [
+      "IL - 1",
+      "IL - 1 & BETA",
+      "PRO - IL - 1 & BETA",
+      "PROINFLAMMATORY CYTOKINES"
+    ],
+    "regex_genes": [
+      "ATP6AP2",
+      "CXCL8",
+      "IL6",
+      "IL6R",
+      "IRAK1",
+      "IRAK4",
+      "IRF6",
+      "MAP3K7",
+      "MYD88",
+      "NECTIN1",
+      "NR2C2",
+      "RELA",
+      "TICAM1",
+      "TICAM2",
+      "TIRAP",
+      "TLR4",
+      "TNF",
+      "TRAF6",
+      "TRAM1"
+    ],
+    "both": [],
+    "biobert_only": [
+      "IL - 1",
+      "IL - 1 & BETA",
+      "PRO - IL - 1 & BETA",
+      "PROINFLAMMATORY CYTOKINES"
+    ],
+    "regex_only": [
+      "ATP6AP2",
+      "CXCL8",
+      "IL6",
+      "IL6R",
+      "IRAK1",
+      "IRAK4",
+      "IRF6",
+      "MAP3K7",
+      "MYD88",
+      "NECTIN1",
+      "NR2C2",
+      "RELA",
+      "TICAM1",
+      "TICAM2",
+      "TIRAP",
+      "TLR4",
+      "TNF",
+      "TRAF6",
+      "TRAM1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1609",
+    "title": "Inhibition, Cytochrome P450 enzyme (CYP17A1) activity",
+    "biobert_genes": [
+      "& NBSP",
+      "17, 20 - LYASE",
+      "CYP17A1",
+      "CYTOCHROME B5",
+      "LYASE",
+      "P450 OXIDOREDUCTASE"
+    ],
+    "regex_genes": [
+      "CRCP",
+      "CYP17A1",
+      "CYTL1",
+      "RTKN"
+    ],
+    "both": [
+      "CYP17A1"
+    ],
+    "biobert_only": [
+      "& NBSP",
+      "17, 20 - LYASE",
+      "CYTOCHROME B5",
+      "LYASE",
+      "P450 OXIDOREDUCTASE"
+    ],
+    "regex_only": [
+      "CRCP",
+      "CYTL1",
+      "RTKN"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1632",
+    "title": "Increase in reactive oxygen and nitrogen species (RONS)",
+    "biobert_genes": [],
+    "regex_genes": [
+      "HDAC4",
+      "PTEN",
+      "ROS1"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "HDAC4",
+      "PTEN",
+      "ROS1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1634",
+    "title": "Increase, Oxidative DNA damage",
+    "biobert_genes": [],
+    "regex_genes": [
+      "C5",
+      "C6",
+      "PSMA7",
+      "ROS1"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "C5",
+      "C6",
+      "PSMA7",
+      "ROS1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1651",
+    "title": "Treatment-resistant gastric cancer",
+    "biobert_genes": [],
+    "regex_genes": [
+      "ITK",
+      "SLC22A3"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "ITK",
+      "SLC22A3"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1672",
+    "title": "Inhibition of lung surfactant function",
+    "biobert_genes": [
+      "ALBUMIN"
+    ],
+    "regex_genes": [
+      "ALB"
+    ],
+    "both": [],
+    "biobert_only": [
+      "ALBUMIN"
+    ],
+    "regex_only": [
+      "ALB"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1688",
+    "title": "anogenital distance (AGD), decreased",
+    "biobert_genes": [
+      "AR"
+    ],
+    "regex_genes": [],
+    "both": [],
+    "biobert_only": [
+      "AR"
+    ],
+    "regex_only": []
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1709",
+    "title": "Psoriatic skin disease",
+    "biobert_genes": [
+      "IFN - & ALPHA",
+      "TNF - & ALPHA"
+    ],
+    "regex_genes": [
+      "CD4",
+      "CD8A",
+      "IFNG",
+      "IL17A",
+      "IL22",
+      "IL23A",
+      "MFAP1",
+      "TLR7"
+    ],
+    "both": [],
+    "biobert_only": [
+      "IFN - & ALPHA",
+      "TNF - & ALPHA"
+    ],
+    "regex_only": [
+      "CD4",
+      "CD8A",
+      "IFNG",
+      "IL17A",
+      "IL22",
+      "IL23A",
+      "MFAP1",
+      "TLR7"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1710",
+    "title": "Binding to estrogen receptor (ER)-α in immune cells",
+    "biobert_genes": [
+      "& N",
+      "& NBSP",
+      "ER & ALPHA ;"
+    ],
+    "regex_genes": [],
+    "both": [],
+    "biobert_only": [
+      "& N",
+      "& NBSP",
+      "ER & ALPHA ;"
+    ],
+    "regex_only": []
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1714",
+    "title": "Exacerbation of systemic lupus erythematosus (SLE)",
+    "biobert_genes": [],
+    "regex_genes": [
+      "BTG3"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "BTG3"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1719",
+    "title": "Impairment of T-cell dependent antibody response",
+    "biobert_genes": [
+      "IL - 2",
+      "IL - 4"
+    ],
+    "regex_genes": [
+      "IL2",
+      "IL4",
+      "PPARA"
+    ],
+    "both": [],
+    "biobert_only": [
+      "IL - 2",
+      "IL - 4"
+    ],
+    "regex_only": [
+      "IL2",
+      "IL4",
+      "PPARA"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1720",
+    "title": "Trypsin inhibition",
+    "biobert_genes": [
+      "& ALPHA ; - TRYPSIN",
+      "& BETA ; - TRYPSIN",
+      "ENTEROKINASE",
+      "TRYPSIN",
+      "TRYPSINOGEN"
+    ],
+    "regex_genes": [
+      "CCK",
+      "SPINK1"
+    ],
+    "both": [],
+    "biobert_only": [
+      "& ALPHA ; - TRYPSIN",
+      "& BETA ; - TRYPSIN",
+      "ENTEROKINASE",
+      "TRYPSIN",
+      "TRYPSINOGEN"
+    ],
+    "regex_only": [
+      "CCK",
+      "SPINK1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1739",
+    "title": "Binding to ACE2",
+    "biobert_genes": [
+      "ACE2",
+      "ANGIOTENSIN - CONVERTING ENZYME 2",
+      "MACE2",
+      "SACE2"
+    ],
+    "regex_genes": [
+      "ACE2",
+      "AGT",
+      "AGTR1",
+      "SLC3A1"
+    ],
+    "both": [
+      "ACE2"
+    ],
+    "biobert_only": [
+      "ANGIOTENSIN - CONVERTING ENZYME 2",
+      "MACE2",
+      "SACE2"
+    ],
+    "regex_only": [
+      "AGT",
+      "AGTR1",
+      "SLC3A1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1522",
+    "title": "Inhibition, Chitin synthase 1",
+    "biobert_genes": [
+      "CHITIN SYNTHASE",
+      "CHITIN SYNTHASE ISOFORM 2",
+      "CHITIN SYNTHASES",
+      "CHS1",
+      "CUTICULAR"
+    ],
+    "regex_genes": [
+      "LYST",
+      "VPS13B"
+    ],
+    "both": [],
+    "biobert_only": [
+      "CHITIN SYNTHASE",
+      "CHITIN SYNTHASE ISOFORM 2",
+      "CHITIN SYNTHASES",
+      "CHS1",
+      "CUTICULAR"
+    ],
+    "regex_only": [
+      "LYST",
+      "VPS13B"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1846",
+    "title": "Thrombosis and Disseminated Intravascular Coagulation",
+    "biobert_genes": [
+      "FIBRIN",
+      "THROMBIN"
+    ],
+    "regex_genes": [
+      "SLC25A10"
+    ],
+    "both": [],
+    "biobert_only": [
+      "FIBRIN",
+      "THROMBIN"
+    ],
+    "regex_only": [
+      "SLC25A10"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1866",
+    "title": "Fibrinolysis, decreased",
+    "biobert_genes": [
+      "& NBS",
+      "BRIN STRANDS",
+      "FI",
+      "FIBRIN",
+      "FIBRINOLYSIN",
+      "PLASMIN",
+      "PLASMINOGEN"
+    ],
+    "regex_genes": [
+      "A2M",
+      "ACE2",
+      "F12",
+      "OTOR",
+      "PLAT",
+      "PLAU",
+      "PLG",
+      "SERPINE1",
+      "SERPINF2",
+      "SERPING1",
+      "SLC25A10"
+    ],
+    "both": [],
+    "biobert_only": [
+      "& NBS",
+      "BRIN STRANDS",
+      "FI",
+      "FIBRIN",
+      "FIBRINOLYSIN",
+      "PLASMIN",
+      "PLASMINOGEN"
+    ],
+    "regex_only": [
+      "A2M",
+      "ACE2",
+      "F12",
+      "OTOR",
+      "PLAT",
+      "PLAU",
+      "PLG",
+      "SERPINE1",
+      "SERPINF2",
+      "SERPING1",
+      "SLC25A10"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1867",
+    "title": "Bradykinin system, hyperactivated",
+    "biobert_genes": [
+      "BK",
+      "BRADYKININ",
+      "KALLIKREIN",
+      "KININ"
+    ],
+    "regex_genes": [
+      "ACE",
+      "ACE2",
+      "F12",
+      "KNG1",
+      "MT-CO2",
+      "NFKB1",
+      "SERPING1"
+    ],
+    "both": [],
+    "biobert_only": [
+      "BK",
+      "BRADYKININ",
+      "KALLIKREIN",
+      "KININ"
+    ],
+    "regex_only": [
+      "ACE",
+      "ACE2",
+      "F12",
+      "KNG1",
+      "MT-CO2",
+      "NFKB1",
+      "SERPING1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1884",
+    "title": "Inhibition of Fyna",
+    "biobert_genes": [
+      "BLK",
+      "CELL & NDASH",
+      "CELL ADHESION RECEPTORS",
+      "FGR",
+      "FYN",
+      "GROWTH FACTOR RECEPTORS",
+      "HCK",
+      "INTEGRINS",
+      "LCK",
+      "LYN",
+      "SFKS",
+      "SRC",
+      "SRC FAMILY KINASES",
+      "STEROID HORMONE RECEPTORS",
+      "YES",
+      "YRK"
+    ],
+    "regex_genes": [
+      "FYN",
+      "YES1"
+    ],
+    "both": [
+      "FYN"
+    ],
+    "biobert_only": [
+      "BLK",
+      "CELL & NDASH",
+      "CELL ADHESION RECEPTORS",
+      "FGR",
+      "GROWTH FACTOR RECEPTORS",
+      "HCK",
+      "INTEGRINS",
+      "LCK",
+      "LYN",
+      "SFKS",
+      "SRC",
+      "SRC FAMILY KINASES",
+      "STEROID HORMONE RECEPTORS",
+      "YES",
+      "YRK"
+    ],
+    "regex_only": [
+      "YES1"
+    ]
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1939",
+    "title": "Viral infection and host-to-host transmission, proliferated",
+    "biobert_genes": [],
+    "regex_genes": [
+      "ACE2",
+      "AMH",
+      "IFNA1"
+    ],
+    "both": [],
+    "biobert_only": [],
+    "regex_only": [
+      "ACE2",
+      "AMH",
+      "IFNA1"
+    ]
+  }
+]
