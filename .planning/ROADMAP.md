@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Module Extraction** - Extract gene/chemical/RDF writer modules and create thin orchestrator with triple-for-triple regression baseline (completed 2026-03-06)
 - [ ] **Phase 3: Predicate Correction** - Fix skos:exactMatch, HGNC ID/symbol distinction, and SNORQL audit with dual-predicate transition
 - [ ] **Phase 4: Output Separation** - Separate pure AOP-Wiki RDF from enriched content and enrich VoID with subset declarations
-- [ ] **Phase 5: Validation and Documentation** - SHACL shapes, full VoID enrichment, schema documentation, BioBERT exploration
+- [x] **Phase 5: Validation and Documentation** - SHACL shapes, full VoID enrichment, schema documentation, BioBERT exploration (completed 2026-03-09)
 
 ## Phase Details
 
@@ -99,7 +99,7 @@ Plans:
   3. SHACL validation runs in a separate triggered GitHub Actions workflow (not inline with RDF generation) and completes within GitHub Actions time limits
   4. Schema documentation describes the RDF structure, namespaces, and entity types; conversion documentation covers the gene mapping algorithm, chemical mapping strategy, and precision filtering
   5. A BioBERT NER prototype has been run on a subset of Key Event descriptions and produced a documented precision/recall comparison against the current HGNC regex-based approach with a written feasibility assessment
-**Plans:** 4 plans
+**Plans:** 4/4 plans complete
 
 Plans:
 - [ ] 05-01-PLAN.md — Property population audit and SHACL shape definitions
@@ -118,4 +118,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Module Extraction | 6/6 | Complete   | 2026-03-06 |
 | 3. Predicate Correction | 2/3 | In Progress|  |
 | 4. Output Separation | 3/4 | In Progress|  |
-| 5. Validation and Documentation | 0/4 | Not started | - |
+| 5. Validation and Documentation | 4/4 | Complete   | 2026-03-09 |
