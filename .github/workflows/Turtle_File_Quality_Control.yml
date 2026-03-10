@@ -28,42 +28,86 @@ jobs:
         with:
           python-version: '3.11'
 
-      # Step 3: Install RDFLib
-      - name: Install RDFLib
-        run: pip install rdflib
-
-      # Step 4: Create Validation Script
-      - name: Create Validation Script
+      # Step 3: Install dependencies
+      - name: Install dependencies
         run: |
-          echo "
+          pip install rdflib
+          sudo apt-get update && sudo apt-get install -y raptor2-utils
+
+      # Step 4: Strict validation with rapper (Raptor)
+      - name: Validate with rapper (strict)
+        run: |
+          echo "=== Strict Turtle Validation (rapper) ==="
+          all_valid=true
+          for file in data/AOPWikiRDF.ttl data/AOPWikiRDF-Enriched.ttl data/AOPWikiRDF-Genes.ttl data/AOPWikiRDF-Void.ttl; do
+            if [ ! -f "$file" ]; then
+              echo "MISSING: $file"
+              all_valid=false
+              continue
+            fi
+            output=$(rapper -i turtle -c "$file" 2>&1)
+            triples=$(echo "$output" | grep -oP 'returned \K\d+')
+            if echo "$output" | grep -q "Error"; then
+              echo "FAIL: $file"
+              echo "$output" | grep "Error"
+              all_valid=false
+            else
+              echo "OK: $file ($triples triples)"
+            fi
+          done
+          if [ "$all_valid" = false ]; then
+            echo "Strict validation failed"
+            exit 1
+          fi
+
+      # Step 5: Validation with rdflib + triple count checks
+      - name: Validate with rdflib
+        timeout-minutes: 15
+        run: |
+          cat > validate_ttl.py << 'PYEOF'
           import sys
           from rdflib import Graph
+
+          MIN_TRIPLES = {
+              'data/AOPWikiRDF.ttl': 50000,
+              'data/AOPWikiRDF-Enriched.ttl': 1000,
+              'data/AOPWikiRDF-Genes.ttl': 10000,
+              'data/AOPWikiRDF-Void.ttl': 10,
+          }
 
           def validate_turtle(file_path):
               try:
                   g = Graph()
                   g.parse(file_path, format='turtle')
-                  print(f'File {file_path} is valid.')
-                  return True
+                  count = len(g)
+                  min_expected = MIN_TRIPLES.get(file_path, 0)
+                  if count < min_expected:
+                      print(f'WARN: {file_path}: only {count:,} triples (expected >= {min_expected:,})', file=sys.stderr)
+                      return False, count
+                  print(f'{file_path}: valid ({count:,} triples)')
+                  return True, count
               except Exception as e:
-                  print(f'Error in {file_path}: {e}', file=sys.stderr)
-                  return False
+                  print(f'ERROR: {file_path}: {e}', file=sys.stderr)
+                  return False, 0
 
           if __name__ == '__main__':
               files = sys.argv[1:]
-              all_valid = all(validate_turtle(file) for file in files)
+              total = 0
+              all_valid = True
+              for f in files:
+                  valid, count = validate_turtle(f)
+                  total += count
+                  all_valid = all_valid and valid
+
+              print(f'\nTotal triples: {total:,}')
 
               with open('data/qc-status.txt', 'w') as f:
                   f.write('valid' if all_valid else 'not valid')
 
               if not all_valid:
                   sys.exit(1)
-          " > validate_ttl.py
-
-      # Step 5: Run Validation and Create QC Status File in /data
-      - name: Run Turtle Validation
-        timeout-minutes: 15
-        run: python validate_ttl.py data/AOPWikiRDF.ttl data/AOPWikiRDF-Enriched.ttl data/AOPWikiRDF-Genes.ttl data/AOPWikiRDF-Void.ttl
+          PYEOF
+          python validate_ttl.py data/AOPWikiRDF.ttl data/AOPWikiRDF-Enriched.ttl data/AOPWikiRDF-Genes.ttl data/AOPWikiRDF-Void.ttl
 
       # Step 6: Commit and Push QC Status File to /data
       - name: Commit and Push QC Status
