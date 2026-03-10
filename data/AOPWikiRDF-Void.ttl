@@ -43,6 +43,7 @@
 
 :AOPWikiRDF-Genes.ttl	a	void:Dataset ;
 	dc:description	"Gene mapping enrichment triples" ;
+	void:triples	88588 ;
 	pav:createdOn	"2026-03-10"^^xsd:date ;
 	pav:createdWith	"aop-wiki-xml-2026-03-10", :HGNCgenes ;
 	foaf:homepage	<https://aopwiki.org> ;
@@ -52,9 +53,9 @@
 :HGNCgenes.txt	a	void:Dataset, void:Linkset ;
 	dc:description	"HGNC approved symbols and names for genes" ;
 	dcat:downloadURL	<https://www.genenames.org/download/custom/> ;
-	pav:importedOn	"Tue Mar 10 08:03:35 2026" .
+	pav:importedOn	"Tue Mar 10 09:46:16 2026" .
 
 <https://proconsortium.org/download/current/promapping.txt>	a	void:Dataset, void:Linkset ;
 	dc:description	"PRotein ontology mappings to protein database identifiers" ;
 	dcat:downloadURL	<https://proconsortium.org/download/current/promapping.txt> ;
-	pav:importedOn	"Tue Mar 10 08:03:32 2026" .
+	pav:importedOn	"Tue Mar 10 09:46:13 2026" .

@@ -47,7 +47,7 @@ def build_gene_dicts(hgnc_file_path: str) -> tuple[dict, dict, dict]:
     genedict2 = {}
     symbol_lookup = {}
 
-    _hgnc_id_pattern = re.compile(r'^HGNC:(\d+)$')
+    _hgnc_id_pattern = re.compile(r'^(?:HGNC:)?(\d+)$')
 
     for line in hgnc_file:
         # Skip header line
@@ -55,12 +55,12 @@ def build_gene_dicts(hgnc_file_path: str) -> tuple[dict, dict, dict]:
             continue
         a = line[:-1].split('\t')
 
-        # Validate column 0 matches HGNC:NNNN pattern
+        # Validate column 0 is a numeric HGNC ID (with or without "HGNC:" prefix)
         m = _hgnc_id_pattern.match(a[0])
         if not m:
             logger.warning(f"Skipping line with invalid HGNC ID in column 0: {a[0]!r}")
             continue
-        hgnc_id = m.group(1)  # numeric ID, e.g. "5"
+        hgnc_id = m.group(1)  # numeric ID, e.g. "569"
         gene_symbol = a[1]
 
         if '@' not in gene_symbol:  # gene clusters contain '@', filter them out
