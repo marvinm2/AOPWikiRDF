@@ -8,31 +8,53 @@
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix freq:  <http://purl.org/cld/freq/> .
-:AOPWikiRDF.ttl	a	void:Dataset ;
-	dc:description	"AOP-Wiki RDF data from the AOP-Wiki database" ;
-	pav:createdOn	"2026-03-07"^^xsd:date;
-	dcterms:modified	"2026-03-07"^^xsd:date ;
-	pav:createdWith	"aop-wiki-xml-2026-03-07", :Promapping ;
-	pav:createdBy	<https://zenodo.org/badge/latestdoi/146466058> ;
+@prefix aop: <https://identifiers.org/aop/> .
+@prefix aop.events: <https://identifiers.org/aop.events/> .
+@prefix aop.relationships: <https://identifiers.org/aop.relationships/> .
+@prefix aop.stressor: <https://identifiers.org/aop.stressor/> .
+@prefix cas: <https://identifiers.org/cas/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:AOPWikiRDF	a	void:Dataset ;
+	dc:description	"AOP-Wiki RDF -- complete dataset" ;
+	dcterms:license	<http://creativecommons.org/licenses/by/4.0/> ;
+	void:subset	:AOPWikiRDF.ttl, :AOPWikiRDF-Enriched.ttl, :AOPWikiRDF-Genes.ttl ;
+	void:exampleResource	aop:1, aop.events:1, aop.relationships:1, cas:83-79-4, aop.stressor:1 ;
+	pav:createdOn	"2026-03-08"^^xsd:date ;
 	foaf:homepage	<https://aopwiki.org> ;
-	dcterms:accuralPeriodicity  freq:quarterly ;
-	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-03-07> .
+	pav:createdBy	<https://zenodo.org/badge/latestdoi/146466058> .
+
+:AOPWikiRDF.ttl	a	void:Dataset ;
+	dc:description	"AOP-Wiki source-derived triples" ;
+	void:triples	122947 ;
+	dcterms:license	<http://creativecommons.org/licenses/by/4.0/> ;
+	pav:createdOn	"2026-03-08"^^xsd:date ;
+	pav:createdWith	"aop-wiki-xml-2026-03-08", :Promapping ;
+	foaf:homepage	<https://aopwiki.org> ;
+	dcterms:accuralPeriodicity	freq:quarterly ;
+	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-03-08> .
+
+:AOPWikiRDF-Enriched.ttl	a	void:Dataset ;
+	dc:description	"Chemical and protein cross-reference enrichment triples" ;
+	void:triples	7918 ;
+	dcterms:license	<http://creativecommons.org/licenses/by/4.0/> ;
+	pav:importedFrom	<https://webservice.bridgedb.org/Human/> ;
+	pav:createdOn	"2026-03-08"^^xsd:date .
 
 :AOPWikiRDF-Genes.ttl	a	void:Dataset ;
-	dc:description	"AOP-Wiki RDF extension with gene mappings based on approved names and symbols" ;
-	pav:createdOn	"2026-03-07 08:41:22.791657" ;
-	pav:createdWith	"aop-wiki-xml-2026-03-07", :HGNCgenes ;
-	pav:createdBy	<https://zenodo.org/badge/latestdoi/146466058> ;
-	dcterms:accuralPeriodicity  freq:quarterly ;
+	dc:description	"Gene mapping enrichment triples" ;
+	pav:createdOn	"2026-03-08"^^xsd:date ;
+	pav:createdWith	"aop-wiki-xml-2026-03-08", :HGNCgenes ;
 	foaf:homepage	<https://aopwiki.org> ;
-	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-03-07>, <https://www.genenames.org/download/custom/> . 
+	dcterms:accuralPeriodicity	freq:quarterly ;
+	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-03-08>, <https://www.genenames.org/download/custom/> .
 
 :HGNCgenes.txt	a	void:Dataset, void:Linkset ;
 	dc:description	"HGNC approved symbols and names for genes" ;
 	dcat:downloadURL	<https://www.genenames.org/download/custom/> ;
-	pav:importedOn	"Sat Mar  7 08:34:55 2026" .
+	pav:importedOn	"Sun Mar  8 21:00:46 2026" .
 
-<https://proconsortium.org/download/current/promapping.txt>	a	void:Dataset, void:Linkset;
-	dc:description	"PRotein ontology mappings to protein database identifiers";
-	dcat:downloadURL	<https://proconsortium.org/download/current/promapping.txt>;
-	pav:importedOn	"Sat Mar  7 08:35:31 2026".
+<https://proconsortium.org/download/current/promapping.txt>	a	void:Dataset, void:Linkset ;
+	dc:description	"PRotein ontology mappings to protein database identifiers" ;
+	dcat:downloadURL	<https://proconsortium.org/download/current/promapping.txt> ;
+	pav:importedOn	"Sun Mar  8 21:00:44 2026" .

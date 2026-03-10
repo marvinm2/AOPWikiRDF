@@ -150,16 +150,9 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
           git add -A
-          
-          # Create commit message
-          commit_msg="Weekly RDF update (Python script generation)
 
-          Generated via Python script with enhanced precision filtering.
-          
-          🤖 Generated with [Claude Code](https://claude.ai/code)
-          
-          Co-Authored-By: Claude <noreply@anthropic.com>"
-          
+          commit_msg="Weekly RDF update (Python script generation)"
+
           git commit -m "$commit_msg"
           git push origin HEAD
           

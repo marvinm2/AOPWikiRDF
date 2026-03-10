@@ -29,6 +29,13 @@ data/test.ttl
 *.ttl
 data/*.ttl
 
+# Exception: production RDF output files (version-controlled)
+!data/AOPWikiRDF.ttl
+!data/AOPWikiRDF-Enriched.ttl
+!data/AOPWikiRDF-Genes.ttl
+!data/AOPWikiRDF-Void.ttl
+!data/ServiceDescription.ttl
+
 # Exception: SHACL shape definitions (version-controlled)
 !shapes/*.ttl
 
