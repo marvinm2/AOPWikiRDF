@@ -53,9 +53,9 @@
 :HGNCgenes.txt	a	void:Dataset, void:Linkset ;
 	dc:description	"HGNC approved symbols and names for genes" ;
 	dcat:downloadURL	<https://www.genenames.org/download/custom/> ;
-	pav:importedOn	"Tue Mar 10 09:46:16 2026" .
+	pav:importedOn	"Tue Mar 10 09:03:58 2026" .
 
 <https://proconsortium.org/download/current/promapping.txt>	a	void:Dataset, void:Linkset ;
 	dc:description	"PRotein ontology mappings to protein database identifiers" ;
 	dcat:downloadURL	<https://proconsortium.org/download/current/promapping.txt> ;
-	pav:importedOn	"Tue Mar 10 09:46:13 2026" .
+	pav:importedOn	"Tue Mar 10 09:03:55 2026" .
