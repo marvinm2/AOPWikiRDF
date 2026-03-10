@@ -23,12 +23,13 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 
-def _write_multivalue_triple(fh, predicate, values, quote=False):
+def _write_multivalue_triple(fh, predicate, values, quote=False, first=False):
     """Write multiple values for a single predicate."""
     if not values:
         return
+    sep = '\n\t' if first else ' ;\n\t'
     formatted = [f'"{v}"' if quote else v for v in values]
-    fh.write(f' ;\n\t{predicate}\t' + ', '.join(formatted))
+    fh.write(f'{sep}{predicate}\t' + ', '.join(formatted))
 
 
 def _write_triple(fh, subject, predicate, obj, end_char=';'):
@@ -579,8 +580,10 @@ def write_enriched_rdf(filepath, enrichment_data, config=None):
 
             g.write(f"\n{che_data['dc:identifier']}")
             if config and config.emit_legacy_predicates:
-                _write_multivalue_triple(g, 'skos:exactMatch', exact_matches)
-            _write_multivalue_triple(g, 'owl:sameAs', exact_matches)
+                _write_multivalue_triple(g, 'skos:exactMatch', exact_matches, first=True)
+                _write_multivalue_triple(g, 'owl:sameAs', exact_matches)
+            else:
+                _write_multivalue_triple(g, 'owl:sameAs', exact_matches, first=True)
             g.write(' .\n\n')
             chem_count += 1
 
@@ -597,8 +600,10 @@ def write_enriched_rdf(filepath, enrichment_data, config=None):
                 identifiers = ','.join(prodict[bioobjdict[obj]['dc:identifier']])
                 g.write(f"\n{bioobjdict[obj]['dc:identifier']}")
                 if config and config.emit_legacy_predicates:
-                    g.write(' ;\n\tskos:exactMatch\t' + identifiers)
-                g.write(' ;\n\towl:sameAs\t' + identifiers)
+                    g.write('\n\tskos:exactMatch\t' + identifiers)
+                    g.write(' ;\n\towl:sameAs\t' + identifiers)
+                else:
+                    g.write('\n\towl:sameAs\t' + identifiers)
                 g.write(' .\n\n')
                 pro_count += 1
 
