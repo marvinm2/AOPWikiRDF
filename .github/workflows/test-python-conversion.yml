@@ -48,7 +48,9 @@ jobs:
             
       # Step 4: Install Python dependencies
       - name: Install Python dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          pip install -e .
 
       # Step 5: Backup production files and create test directory
       - name: Backup Production Files and Setup Test Directory
