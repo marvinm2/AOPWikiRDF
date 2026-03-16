@@ -26,6 +26,19 @@ AOPXML_NS = '{http://www.aopkb.org/aop-xml}'
 HTML_TAG_PATTERN = re.compile(r'<[^>]+>')
 
 
+def _get_ke_id(element):
+    """Resolve key event ID from element regardless of XML schema version.
+
+    Pre-2022-07-01 XML uses 'id' attribute for key-event elements inside
+    AOP sections. Post-2022-07-01 uses 'key-event-id'. Standalone key-event
+    elements always use 'id' across all versions.
+    """
+    ke_id = element.get('key-event-id')
+    if ke_id is None:
+        ke_id = element.get('id')
+    return ke_id
+
+
 @dataclass
 class ParsedEntities:
     """Container for all entity dictionaries extracted from AOP-Wiki XML."""
@@ -46,7 +59,7 @@ class ParsedEntities:
 
 # --- Main parser function ---
 
-def parse_aopwiki_xml(xml_path: str, config: PipelineConfig = None) -> ParsedEntities:
+def parse_aopwiki_xml(xml_path: str, config: PipelineConfig = None, version_date: Optional[str] = None) -> ParsedEntities:
     """Parse AOP-Wiki XML file and return all entity dictionaries.
 
     Args:
@@ -54,10 +67,14 @@ def parse_aopwiki_xml(xml_path: str, config: PipelineConfig = None) -> ParsedEnt
         config: Optional PipelineConfig for network-dependent operations
                 (BridgeDb chemical mapping, promapping.txt download).
                 If None, chemical BridgeDb mapping and protein mapping are skipped.
+        version_date: Optional version date string (e.g. "2018-04-01") for
+                      version-aware conditional logic and logging.
 
     Returns:
         ParsedEntities dataclass with all 13 entity dictionaries.
     """
+    if version_date:
+        logger.info(f"Parsing version {version_date}")
     aopxml = AOPXML_NS
 
     # Resolve config values
@@ -116,26 +133,39 @@ def parse_aopwiki_xml(xml_path: str, config: PipelineConfig = None) -> ParsedEnt
         aopdict[AOP.get('id')]['dc:identifier'] = 'aop:' + refs['AOP'][AOP.get('id')]
         aopdict[AOP.get('id')]['rdfs:label'] = '"AOP ' + refs['AOP'][AOP.get('id')] + '"'
         aopdict[AOP.get('id')]['foaf:page'] = '<https://identifiers.org/aop/' + refs['AOP'][AOP.get('id')] + '>'
-        aopdict[AOP.get('id')]['dc:title'] = '"' + AOP.find(aopxml + 'title').text + '"'
-        aopdict[AOP.get('id')]['dcterms:alternative'] = AOP.find(aopxml + 'short-name').text
+        title_elem = AOP.find(aopxml + 'title')
+        aopdict[AOP.get('id')]['dc:title'] = '"' + (title_elem.text if title_elem is not None and title_elem.text else '') + '"'
+        short_name_elem = AOP.find(aopxml + 'short-name')
+        aopdict[AOP.get('id')]['dcterms:alternative'] = short_name_elem.text if short_name_elem is not None else None
         aopdict[AOP.get('id')]['dc:description'] = []
         if AOP.find(aopxml + 'background') is not None:
             if AOP.find(aopxml + 'background').text is not None:
                 aopdict[AOP.get('id')]['dc:description'].append('"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'background').text) + '"""')
-        if AOP.find(aopxml + 'authors').text is not None:
-            aopdict[AOP.get('id')]['dc:creator'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'authors').text) + '"""'
-        if AOP.find(aopxml + 'abstract').text is not None:
-            aopdict[AOP.get('id')]['dcterms:abstract'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'abstract').text) + '"""'
-        if AOP.find(aopxml + 'status').find(aopxml + 'wiki-status') is not None:
-            aopdict[AOP.get('id')]['dcterms:accessRights'] = '"' + AOP.find(aopxml + 'status').find(aopxml + 'wiki-status').text + '"'
-        if AOP.find(aopxml + 'status').find(aopxml + 'oecd-status') is not None:
-            aopdict[AOP.get('id')]['oecd-status'] = '"' + AOP.find(aopxml + 'status').find(aopxml + 'oecd-status').text + '"'
-        if AOP.find(aopxml + 'status').find(aopxml + 'saaop-status') is not None:
-            aopdict[AOP.get('id')]['saaop-status'] = '"' + AOP.find(aopxml + 'status').find(aopxml + 'saaop-status').text + '"'
-        aopdict[AOP.get('id')]['oecd-project'] = AOP.find(aopxml + 'oecd-project').text
-        aopdict[AOP.get('id')]['dc:source'] = AOP.find(aopxml + 'source').text
-        aopdict[AOP.get('id')]['dcterms:created'] = AOP.find(aopxml + 'creation-timestamp').text
-        aopdict[AOP.get('id')]['dcterms:modified'] = AOP.find(aopxml + 'last-modification-timestamp').text
+        authors_elem = AOP.find(aopxml + 'authors')
+        if authors_elem is not None and authors_elem.text is not None:
+            aopdict[AOP.get('id')]['dc:creator'] = '"""' + HTML_TAG_PATTERN.sub('', authors_elem.text) + '"""'
+        abstract_elem = AOP.find(aopxml + 'abstract')
+        if abstract_elem is not None and abstract_elem.text is not None:
+            aopdict[AOP.get('id')]['dcterms:abstract'] = '"""' + HTML_TAG_PATTERN.sub('', abstract_elem.text) + '"""'
+        status_elem = AOP.find(aopxml + 'status')
+        if status_elem is not None:
+            wiki_status = status_elem.find(aopxml + 'wiki-status')
+            if wiki_status is not None:
+                aopdict[AOP.get('id')]['dcterms:accessRights'] = '"' + wiki_status.text + '"'
+            oecd_status = status_elem.find(aopxml + 'oecd-status')
+            if oecd_status is not None:
+                aopdict[AOP.get('id')]['oecd-status'] = '"' + oecd_status.text + '"'
+            saaop_status = status_elem.find(aopxml + 'saaop-status')
+            if saaop_status is not None:
+                aopdict[AOP.get('id')]['saaop-status'] = '"' + saaop_status.text + '"'
+        oecd_proj_elem = AOP.find(aopxml + 'oecd-project')
+        aopdict[AOP.get('id')]['oecd-project'] = oecd_proj_elem.text if oecd_proj_elem is not None else None
+        source_elem = AOP.find(aopxml + 'source')
+        aopdict[AOP.get('id')]['dc:source'] = source_elem.text if source_elem is not None else None
+        created_elem = AOP.find(aopxml + 'creation-timestamp')
+        aopdict[AOP.get('id')]['dcterms:created'] = created_elem.text if created_elem is not None else None
+        modified_elem = AOP.find(aopxml + 'last-modification-timestamp')
+        aopdict[AOP.get('id')]['dcterms:modified'] = modified_elem.text if modified_elem is not None else None
         for appl in AOP.findall(aopxml + 'applicability'):
             for sex in appl.findall(aopxml + 'sex'):
                 if 'pato:0000047' not in aopdict[AOP.get('id')]:
@@ -150,8 +180,12 @@ def parse_aopwiki_xml(xml_path: str, config: PipelineConfig = None) -> ParsedEnt
         aopdict[AOP.get('id')]['aopo:has_key_event'] = {}
         if AOP.find(aopxml + 'key-events') is not None:
             for KE in AOP.find(aopxml + 'key-events').findall(aopxml + 'key-event'):
-                aopdict[AOP.get('id')]['aopo:has_key_event'][KE.get('key-event-id')] = {}
-                aopdict[AOP.get('id')]['aopo:has_key_event'][KE.get('key-event-id')]['dc:identifier'] = 'aop.events:' + refs['KE'][KE.get('key-event-id')]
+                ke_id = _get_ke_id(KE)
+                if ke_id is None or ke_id not in refs['KE']:
+                    logger.warning(f"Skipping KE with unresolvable ID in AOP {AOP.get('id')}")
+                    continue
+                aopdict[AOP.get('id')]['aopo:has_key_event'][ke_id] = {}
+                aopdict[AOP.get('id')]['aopo:has_key_event'][ke_id]['dc:identifier'] = 'aop.events:' + refs['KE'][ke_id]
         aopdict[AOP.get('id')]['aopo:has_key_event_relationship'] = {}
         if AOP.find(aopxml + 'key-event-relationships') is not None:
             for KER in AOP.find(aopxml + 'key-event-relationships').findall(aopxml + 'relationship'):
@@ -162,40 +196,58 @@ def parse_aopwiki_xml(xml_path: str, config: PipelineConfig = None) -> ParsedEnt
                 aopdict[AOP.get('id')]['aopo:has_key_event_relationship'][KER.get('id')]['aopo:has_evidence'] = KER.find(aopxml + 'evidence').text
         aopdict[AOP.get('id')]['aopo:has_molecular_initiating_event'] = {}
         for MIE in AOP.findall(aopxml + 'molecular-initiating-event'):
-            aopdict[AOP.get('id')]['aopo:has_molecular_initiating_event'][MIE.get('key-event-id')] = {}
-            aopdict[AOP.get('id')]['aopo:has_molecular_initiating_event'][MIE.get('key-event-id')]['dc:identifier'] = 'aop.events:' + refs['KE'][MIE.get('key-event-id')]
-            aopdict[AOP.get('id')]['aopo:has_key_event'][MIE.get('key-event-id')] = {}
-            aopdict[AOP.get('id')]['aopo:has_key_event'][MIE.get('key-event-id')]['dc:identifier'] = 'aop.events:' + refs['KE'][MIE.get('key-event-id')]
-            if MIE.find(aopxml + 'evidence-supporting-chemical-initiation').text is not None:
-                kedict[MIE.get('key-event-id')] = {}
-                aopdict[AOP.get('id')]['dc:description'].append('"""' + HTML_TAG_PATTERN.sub('', MIE.find(aopxml + 'evidence-supporting-chemical-initiation').text) + '"""')
+            mie_id = _get_ke_id(MIE)
+            if mie_id is None or mie_id not in refs['KE']:
+                logger.warning(f"Skipping MIE with unresolvable ID in AOP {AOP.get('id')}")
+                continue
+            aopdict[AOP.get('id')]['aopo:has_molecular_initiating_event'][mie_id] = {}
+            aopdict[AOP.get('id')]['aopo:has_molecular_initiating_event'][mie_id]['dc:identifier'] = 'aop.events:' + refs['KE'][mie_id]
+            aopdict[AOP.get('id')]['aopo:has_key_event'][mie_id] = {}
+            aopdict[AOP.get('id')]['aopo:has_key_event'][mie_id]['dc:identifier'] = 'aop.events:' + refs['KE'][mie_id]
+            esc_elem = MIE.find(aopxml + 'evidence-supporting-chemical-initiation')
+            if esc_elem is not None and esc_elem.text is not None:
+                kedict[mie_id] = {}
+                aopdict[AOP.get('id')]['dc:description'].append('"""' + HTML_TAG_PATTERN.sub('', esc_elem.text) + '"""')
         aopdict[AOP.get('id')]['aopo:has_adverse_outcome'] = {}
         for AO in AOP.findall(aopxml + 'adverse-outcome'):
-            aopdict[AOP.get('id')]['aopo:has_adverse_outcome'][AO.get('key-event-id')] = {}
-            aopdict[AOP.get('id')]['aopo:has_adverse_outcome'][AO.get('key-event-id')]['dc:identifier'] = 'aop.events:' + refs['KE'][AO.get('key-event-id')]
-            aopdict[AOP.get('id')]['aopo:has_key_event'][AO.get('key-event-id')] = {}
-            aopdict[AOP.get('id')]['aopo:has_key_event'][AO.get('key-event-id')]['dc:identifier'] = 'aop.events:' + refs['KE'][AO.get('key-event-id')]
-            if AO.find(aopxml + 'examples').text is not None:
-                kedict[AO.get('key-event-id')] = {}
-                aopdict[AOP.get('id')]['dc:description'].append('"""' + HTML_TAG_PATTERN.sub('', AO.find(aopxml + 'examples').text) + '"""')
+            ao_id = _get_ke_id(AO)
+            if ao_id is None or ao_id not in refs['KE']:
+                logger.warning(f"Skipping AO with unresolvable ID in AOP {AOP.get('id')}")
+                continue
+            aopdict[AOP.get('id')]['aopo:has_adverse_outcome'][ao_id] = {}
+            aopdict[AOP.get('id')]['aopo:has_adverse_outcome'][ao_id]['dc:identifier'] = 'aop.events:' + refs['KE'][ao_id]
+            aopdict[AOP.get('id')]['aopo:has_key_event'][ao_id] = {}
+            aopdict[AOP.get('id')]['aopo:has_key_event'][ao_id]['dc:identifier'] = 'aop.events:' + refs['KE'][ao_id]
+            examples_elem = AO.find(aopxml + 'examples')
+            if examples_elem is not None and examples_elem.text is not None:
+                kedict[ao_id] = {}
+                aopdict[AOP.get('id')]['dc:description'].append('"""' + HTML_TAG_PATTERN.sub('', examples_elem.text) + '"""')
         aopdict[AOP.get('id')]['nci:C54571'] = {}
         if AOP.find(aopxml + 'aop-stressors') is not None:
             for stressor in AOP.find(aopxml + 'aop-stressors').findall(aopxml + 'aop-stressor'):
                 aopdict[AOP.get('id')]['nci:C54571'][stressor.get('stressor-id')] = {}
                 aopdict[AOP.get('id')]['nci:C54571'][stressor.get('stressor-id')]['dc:identifier'] = 'aop.stressor:' + refs['Stressor'][stressor.get('stressor-id')]
                 aopdict[AOP.get('id')]['nci:C54571'][stressor.get('stressor-id')]['aopo:has_evidence'] = stressor.find(aopxml + 'evidence').text
-        if AOP.find(aopxml + 'overall-assessment').find(aopxml + 'description').text is not None:
-            aopdict[AOP.get('id')]['nci:C25217'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'overall-assessment').find(aopxml + 'description').text) + '"""'
-        if AOP.find(aopxml + 'overall-assessment').find(aopxml + 'key-event-essentiality-summary').text is not None:
-            aopdict[AOP.get('id')]['nci:C48192'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'overall-assessment').find(aopxml + 'key-event-essentiality-summary').text) + '"""'
-        if AOP.find(aopxml + 'overall-assessment').find(aopxml + 'applicability').text is not None:
-            aopdict[AOP.get('id')]['aopo:AopContext'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'overall-assessment').find(aopxml + 'applicability').text) + '"""'
-        if AOP.find(aopxml + 'overall-assessment').find(aopxml + 'weight-of-evidence-summary').text is not None:
-            aopdict[AOP.get('id')]['aopo:has_evidence'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'overall-assessment').find(aopxml + 'weight-of-evidence-summary').text) + '"""'
-        if AOP.find(aopxml + 'overall-assessment').find(aopxml + 'quantitative-considerations').text is not None:
-            aopdict[AOP.get('id')]['edam:operation_3799'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'overall-assessment').find(aopxml + 'quantitative-considerations').text) + '"""'
-        if AOP.find(aopxml + 'potential-applications').text is not None:
-            aopdict[AOP.get('id')]['nci:C25725'] = '"""' + HTML_TAG_PATTERN.sub('', AOP.find(aopxml + 'potential-applications').text) + '"""'
+        overall_assessment = AOP.find(aopxml + 'overall-assessment')
+        if overall_assessment is not None:
+            oa_desc = overall_assessment.find(aopxml + 'description')
+            if oa_desc is not None and oa_desc.text is not None:
+                aopdict[AOP.get('id')]['nci:C25217'] = '"""' + HTML_TAG_PATTERN.sub('', oa_desc.text) + '"""'
+            oa_ke_ess = overall_assessment.find(aopxml + 'key-event-essentiality-summary')
+            if oa_ke_ess is not None and oa_ke_ess.text is not None:
+                aopdict[AOP.get('id')]['nci:C48192'] = '"""' + HTML_TAG_PATTERN.sub('', oa_ke_ess.text) + '"""'
+            oa_appl = overall_assessment.find(aopxml + 'applicability')
+            if oa_appl is not None and oa_appl.text is not None:
+                aopdict[AOP.get('id')]['aopo:AopContext'] = '"""' + HTML_TAG_PATTERN.sub('', oa_appl.text) + '"""'
+            oa_woe = overall_assessment.find(aopxml + 'weight-of-evidence-summary')
+            if oa_woe is not None and oa_woe.text is not None:
+                aopdict[AOP.get('id')]['aopo:has_evidence'] = '"""' + HTML_TAG_PATTERN.sub('', oa_woe.text) + '"""'
+            oa_quant = overall_assessment.find(aopxml + 'quantitative-considerations')
+            if oa_quant is not None and oa_quant.text is not None:
+                aopdict[AOP.get('id')]['edam:operation_3799'] = '"""' + HTML_TAG_PATTERN.sub('', oa_quant.text) + '"""'
+        pot_appl_elem = AOP.find(aopxml + 'potential-applications')
+        if pot_appl_elem is not None and pot_appl_elem.text is not None:
+            aopdict[AOP.get('id')]['nci:C25725'] = '"""' + HTML_TAG_PATTERN.sub('', pot_appl_elem.text) + '"""'
     logger.info(f'Completed AOP parsing: {len(aopdict)} Adverse Outcome Pathways processed')
 
     # Validate AOP required fields
