@@ -1,4 +1,4 @@
-# Generated: 2026-03-28
+# Generated: 2026-04-04
 # Load alongside AOPWikiRDF.ttl for full cross-reference capability
 # AOPWikiRDF-Enriched.ttl
 # Cross-reference enrichment triples for AOP-Wiki RDF
@@ -1922,6 +1922,16 @@ cas:304909-07-7
 cas:329196-48-7
 	skos:exactMatch	wikidata:Q72445276, chembl.compound:CHEMBL514344, pubchem.compound:1367095 ;
 	owl:sameAs	wikidata:Q72445276, chembl.compound:CHEMBL514344, pubchem.compound:1367095 .
+
+
+cas:61825-94-3
+	skos:exactMatch	chebi:31941, chebi:31941, chebi:343124, chebi:343124, chemspider:8062727, chemspider:39881, wikidata:Q422327, chembl.compound:CHEMBL414804, pubchem.compound:43805, pubchem.compound:11947679, drugbank:DB00526, hmdb:HMDB14667, hmdb:HMDB0014667, kegg.compound:D01790 ;
+	owl:sameAs	chebi:31941, chebi:31941, chebi:343124, chebi:343124, chemspider:8062727, chemspider:39881, wikidata:Q422327, chembl.compound:CHEMBL414804, pubchem.compound:43805, pubchem.compound:11947679, drugbank:DB00526, hmdb:HMDB14667, hmdb:HMDB0014667, kegg.compound:D01790 .
+
+
+cas:41575-94-4
+	skos:exactMatch	chebi:31355, chebi:31355, chemspider:436073, chemspider:8514637, chemspider:19204876, wikidata:Q415588, chembl.compound:CHEMBL1351, pubchem.compound:10339178, drugbank:DB00958, hmdb:HMDB0015093, hmdb:HMDB15093, kegg.compound:D01363 ;
+	owl:sameAs	chebi:31355, chebi:31355, chemspider:436073, chemspider:8514637, chemspider:19204876, wikidata:Q415588, chembl.compound:CHEMBL1351, pubchem.compound:10339178, drugbank:DB00958, hmdb:HMDB0015093, hmdb:HMDB15093, kegg.compound:D01363 .
 
 
 cas:188425-85-6
