@@ -185,8 +185,6 @@ Two licences apply to material in this repository:
 
 The dataset is a derivative re-expression of the [AOP-Wiki](https://aopwiki.org/); downstream users reusing AOP-derived content should also consult the upstream AOP-Wiki terms of use.
 
-Companion AOP-Wiki RDF service repositories (`aopwiki-snorql-extended`, `AOP-Wiki-Snorql-UI`, `AOPWikiSNORQL`) use GPL-3.0 because their codebase derives from the GPL-3.0-licensed Snorql / SNORQL UI lineage. The MIT licence is retained here for the conversion code, which has no GPL-derived ancestry.
-
 ## Citation
 
 If you use this software or the RDF dataset, please cite the underlying paper and the dataset DOI. See [`CITATION.cff`](CITATION.cff) for the canonical citation.
