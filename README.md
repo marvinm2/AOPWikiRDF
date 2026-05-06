@@ -171,10 +171,10 @@ The container is running with loaded RDF, available through http://localhost:889
 
 ## Maintainers
 
-- **Lead maintainer:** Marvin Martens — Department of Translational Genomics, Maastricht University — [ORCID 0000-0003-2230-0840](https://orcid.org/0000-0003-2230-0840) — marvin.martens@maastrichtuniversity.nl
-- **Backup maintainer:** Egon Willighagen — Department of Translational Genomics, Maastricht University — [ORCID 0000-0001-7542-0286](https://orcid.org/0000-0001-7542-0286) — egon.willighagen@maastrichtuniversity.nl
+- **Lead maintainer:** Marvin Martens — Department of Translational Genomics, Maastricht University — [ORCID 0000-0003-2230-0840](https://orcid.org/0000-0003-2230-0840)
+- **Backup maintainer:** Egon Willighagen — Department of Translational Genomics, Maastricht University — [ORCID 0000-0001-7542-0286](https://orcid.org/0000-0001-7542-0286)
 
-Issues, questions, and feature requests are tracked via [GitHub Issues](https://github.com/marvinm2/AOPWikiRDF/issues).
+For questions, bug reports, and feature requests please open a [GitHub Issue](https://github.com/marvinm2/AOPWikiRDF/issues).
 
 ## Licensing
 
