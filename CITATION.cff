@@ -1,12 +1,33 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
+message: "If you use this software or the AOP-Wiki RDF dataset, please cite both the underlying paper and the Zenodo dataset DOI."
+title: AOP-Wiki XML to RDF conversion
+type: software
 authors:
   - family-names: Martens
     given-names: Marvin
-title: AOP-Wiki XML to RDF conversion
-version: v1.3
-date-released: 2020-11-26
+    orcid: "https://orcid.org/0000-0003-2230-0840"
+    affiliation: "Department of Translational Genomics, Maastricht University"
+  - family-names: Willighagen
+    given-names: Egon L.
+    orcid: "https://orcid.org/0000-0001-7542-0286"
+    affiliation: "Department of Translational Genomics, Maastricht University"
+version: "2026.05"
+date-released: "2026-05-06"
 url: "https://github.com/marvinm2/AOPWikiRDF"
+repository-code: "https://github.com/marvinm2/AOPWikiRDF"
+license: MIT
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.13353286"
+    description: "Concept DOI for the AOP-Wiki RDF dataset (resolves to the latest version)."
+keywords:
+  - adverse outcome pathway
+  - AOP-Wiki
+  - RDF
+  - semantic web
+  - SPARQL
+  - toxicology
+  - FAIR
 preferred-citation:
   type: article
   authors:
@@ -21,5 +42,9 @@ preferred-citation:
   month: 2
   day: 25
   journal: Applied In Vitro Toxicology
+  volume: 8
+  issue: 1
+  start: 2
+  end: 13
   doi: 10.1089/aivt.2021.0010
   url: https://doi.org/10.1089/aivt.2021.0010
