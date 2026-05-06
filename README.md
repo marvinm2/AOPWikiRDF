@@ -169,6 +169,13 @@ quit;
 ### Step 8 - Enter the Virtuoso service with loaded AOP-Wiki RDF
 The container is running with loaded RDF, available through http://localhost:8890, or enter the SPARQL endpoint directly through http://localhost:8890/sparql/.
 
+## Maintainers
+
+- **Lead maintainer:** Marvin Martens — Department of Translational Genomics, Maastricht University — [ORCID 0000-0003-2230-0840](https://orcid.org/0000-0003-2230-0840) — marvin.martens@maastrichtuniversity.nl
+- **Backup maintainer:** Egon Willighagen — Department of Translational Genomics, Maastricht University — [ORCID 0000-0001-7542-0286](https://orcid.org/0000-0001-7542-0286) — egon.willighagen@maastrichtuniversity.nl
+
+Issues, questions, and feature requests are tracked via [GitHub Issues](https://github.com/marvinm2/AOPWikiRDF/issues).
+
 ## Licensing
 
 Two licences apply to material in this repository:
