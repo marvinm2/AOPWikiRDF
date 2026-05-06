@@ -1,6 +1,6 @@
 # AOP-Wiki XML to RDF Conversion Tool
 
-[![DOI](https://zenodo.org/badge/146466058.svg)](https://zenodo.org/badge/latestdoi/146466058)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13353286.svg)](https://doi.org/10.5281/zenodo.13353286)
 [![RDF generation](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/rdfgeneration.yml/badge.svg)](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/rdfgeneration.yml)
 [![Turtle File Quality Control](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/Turtle_File_Quality_Control.yml/badge.svg)](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/Turtle_File_Quality_Control.yml)
 [![URI Resolvability Check](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/uri-resolvability-check.yml/badge.svg)](https://github.com/marvinm2/AOPWikiRDF/actions/workflows/uri-resolvability-check.yml)
