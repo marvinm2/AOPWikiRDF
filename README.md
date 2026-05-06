@@ -168,3 +168,21 @@ quit;
 
 ### Step 8 - Enter the Virtuoso service with loaded AOP-Wiki RDF
 The container is running with loaded RDF, available through http://localhost:8890, or enter the SPARQL endpoint directly through http://localhost:8890/sparql/.
+
+## Licensing
+
+Two licences apply to material in this repository:
+
+- **Conversion code** (Python package, scripts, notebooks, Actions workflows, tests, documentation): MIT — see [`LICENSE`](LICENSE).
+- **Generated RDF dataset** (`data/*.ttl`, including `AOPWikiRDF.ttl`, `AOPWikiRDF-Genes.ttl`, `AOPWikiRDF-Enriched.ttl`, `AOPWikiRDF-Void.ttl`, `ServiceDescription.ttl`): Creative Commons Attribution 4.0 International (CC-BY 4.0) — see [`data/LICENSE-DATA`](data/LICENSE-DATA).
+
+The dataset is a derivative re-expression of the [AOP-Wiki](https://aopwiki.org/); downstream users reusing AOP-derived content should also consult the upstream AOP-Wiki terms of use.
+
+Companion AOP-Wiki RDF service repositories (`aopwiki-snorql-extended`, `AOP-Wiki-Snorql-UI`, `AOPWikiSNORQL`) use GPL-3.0 because their codebase derives from the GPL-3.0-licensed Snorql / SNORQL UI lineage. The MIT licence is retained here for the conversion code, which has no GPL-derived ancestry.
+
+## Citation
+
+If you use this software or the RDF dataset, please cite the underlying paper and the dataset DOI. See [`CITATION.cff`](CITATION.cff) for the canonical citation.
+
+- Paper: Martens M., Evelo C.T., Willighagen E.L. (2022). *Providing Adverse Outcome Pathways from the AOP-Wiki in a Semantic Web Format to Increase Usability and Accessibility of the Content.* Applied In Vitro Toxicology 8(1):2–13. [doi:10.1089/aivt.2021.0010](https://doi.org/10.1089/aivt.2021.0010)
+- Dataset releases (concept DOI, all versions): [10.5281/zenodo.13353286](https://doi.org/10.5281/zenodo.13353286)

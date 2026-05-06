@@ -1,0 +1,40 @@
+AOP-Wiki RDF dataset — Licence
+==============================
+
+The RDF dataset files in this directory (AOPWikiRDF.ttl, AOPWikiRDF-Genes.ttl,
+AOPWikiRDF-Enriched.ttl, AOPWikiRDF-Void.ttl, ServiceDescription.ttl) are
+released under the Creative Commons Attribution 4.0 International licence
+(CC-BY 4.0).
+
+You are free to:
+  - Share — copy and redistribute the material in any medium or format
+  - Adapt — remix, transform, and build upon the material for any purpose,
+            even commercially
+
+Under the following terms:
+  - Attribution — You must give appropriate credit, provide a link to the
+                  licence, and indicate if changes were made. You may do so
+                  in any reasonable manner, but not in any way that suggests
+                  the licensor endorses you or your use.
+
+Full licence text: https://creativecommons.org/licenses/by/4.0/legalcode
+Human-readable summary: https://creativecommons.org/licenses/by/4.0/
+
+How to cite:
+  Martens M., Evelo C.T., Willighagen E.L. (2022). Providing Adverse
+  Outcome Pathways from the AOP-Wiki in a Semantic Web Format to Increase
+  Usability and Accessibility of the Content. Applied In Vitro Toxicology
+  8(1):2-13. https://doi.org/10.1089/aivt.2021.0010
+
+Dataset DOI (concept, all versions):
+  https://doi.org/10.5281/zenodo.13353286
+
+Note: the conversion code (Python scripts, Jupyter notebooks, GitHub
+Actions workflows, tests, documentation) in this repository is licensed
+under the MIT License — see the top-level LICENSE file. The CC-BY 4.0
+licence above applies only to the generated RDF dataset files in this
+directory.
+
+Source content note: this dataset is a derivative re-expression of the
+AOP-Wiki (https://aopwiki.org/). Downstream users reusing the AOP-derived
+content should also consult the upstream AOP-Wiki terms of use.
