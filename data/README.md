@@ -19,8 +19,9 @@ This directory holds the RDF outputs produced by the conversion scripts in the p
 ## Licence
 
 The generated RDF files in this directory (`*.ttl`) are released under
-**Creative Commons Attribution 4.0 International (CC-BY 4.0)**. See `LICENSE-DATA`
-for the full statement and citation guidance.
+**Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-SA 4.0)**,
+matching the upstream AOP-Wiki content licence. See `LICENSE-DATA` for the
+full statement, the upstream-licence acknowledgment, and citation guidance.
 
 The conversion code in the parent repository is licensed under MIT — see the
 top-level `LICENSE` file.

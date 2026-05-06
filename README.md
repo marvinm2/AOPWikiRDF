@@ -181,9 +181,9 @@ For questions, bug reports, and feature requests please open a [GitHub Issue](ht
 Two licences apply to material in this repository:
 
 - **Conversion code** (Python package, scripts, notebooks, Actions workflows, tests, documentation): MIT — see [`LICENSE`](LICENSE).
-- **Generated RDF dataset** (`data/*.ttl`, including `AOPWikiRDF.ttl`, `AOPWikiRDF-Genes.ttl`, `AOPWikiRDF-Enriched.ttl`, `AOPWikiRDF-Void.ttl`, `ServiceDescription.ttl`): Creative Commons Attribution 4.0 International (CC-BY 4.0) — see [`data/LICENSE-DATA`](data/LICENSE-DATA).
+- **Generated RDF dataset** (`data/*.ttl`, including `AOPWikiRDF.ttl`, `AOPWikiRDF-Genes.ttl`, `AOPWikiRDF-Enriched.ttl`, `AOPWikiRDF-Void.ttl`, `ServiceDescription.ttl`): Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-SA 4.0) — see [`data/LICENSE-DATA`](data/LICENSE-DATA).
 
-The dataset is a derivative re-expression of the [AOP-Wiki](https://aopwiki.org/); downstream users reusing AOP-derived content should also consult the upstream AOP-Wiki terms of use.
+The dataset is a derivative re-expression of the [AOP-Wiki](https://aopwiki.org/), which has been default-licensed under CC-BY-SA 4.0 since [Release 2.6 (2023-04-29)](https://aopwiki.org/info_pages/3). The dataset adopts the same licence to honour the upstream Share-Alike obligation.
 
 ## Citation
 
