@@ -18,9 +18,21 @@ import pytest
 # ---------------------------------------------------------------------------
 
 def _bern2_response(annotations: list[dict]) -> MagicMock:
-    """Build a MagicMock that mimics requests.Response.json()."""
+    """Build a MagicMock mimicking a requests.Response with a .text body.
+
+    _bern2_post parses ``r.text`` (not ``r.json()``) so it can handle the
+    bare ``NaN`` BERN2 emits; the mock therefore sets ``.text``.
+    """
     resp = MagicMock()
-    resp.json = MagicMock(return_value={"annotations": annotations})
+    resp.text = json.dumps({"annotations": annotations})
+    resp.raise_for_status = MagicMock()
+    return resp
+
+
+def _bern2_raw_response(body: str) -> MagicMock:
+    """Mock a requests.Response with an arbitrary raw ``.text`` body."""
+    resp = MagicMock()
+    resp.text = body
     resp.raise_for_status = MagicMock()
     return resp
 
@@ -215,28 +227,65 @@ class TestQueryBern2:
         assert len(r1["annotations"]) == 1
         assert m.call_count == 1, "Cache should serve the second call"
 
-    def test_chunking_fallback_on_truncated_json(self, tmp_path):
-        """When a single call raises JSONDecodeError, the fallback chunks
-        the text by sentences and merges sub-responses."""
+    def test_nan_in_prob_field_is_handled(self, tmp_path):
+        """BERN2 emits bare NaN for prob; _loads_bern2 must accept it.
+
+        Regression test: NaN is not valid JSON, so r.json() rejects it.
+        Parsing with parse_constant collapses NaN to None instead.
+        """
         from aopwiki_rdf.mapping.ner_el_mapper import query_bern2
 
-        # First call: simulate truncated JSON. Subsequent (chunked) calls
-        # return clean responses, one each.
-        good_resp_1 = _bern2_response([TP53_ANN])
-        good_resp_2 = _bern2_response([ACHE_ANN])
-        truncated = MagicMock()
-        truncated.raise_for_status = MagicMock()
-        truncated.json = MagicMock(
-            side_effect=json.JSONDecodeError("truncated", "doc", 0)
+        # A realistic BERN2 body with a NaN prob (neural-normalised entity).
+        body = (
+            '{"annotations": [{"id": ["NCBIGene:7157"], '
+            '"is_neural_normalized": true, "mention": "TP53", '
+            '"obj": "gene", "prob": NaN, "span": {"begin": 0, "end": 4}}]}'
         )
+        with patch(
+            "aopwiki_rdf.mapping.ner_el_mapper.requests.post",
+            return_value=_bern2_raw_response(body),
+        ):
+            result = query_bern2("TP53 here.", "http://b2", tmp_path)
 
-        sequence = iter([truncated, good_resp_1, good_resp_2])
+        assert "_error" not in result
+        ann = result["annotations"][0]
+        assert ann["mention"] == "TP53"
+        assert ann["prob"] is None  # NaN collapsed to None
+        assert ann["id"] == ["NCBIGene:7157"]
+
+    def test_retry_recovers_transient_json_failure(self, tmp_path):
+        """A genuinely malformed (truncated) body is retried; the single
+        call succeeds on the second attempt without falling to chunking."""
+        from aopwiki_rdf.mapping.ner_el_mapper import query_bern2
+
+        good = _bern2_response([TP53_ANN])
+        truncated = _bern2_raw_response('{"annotations": [')  # cut off
+        # attempt 1 fails, attempt 2 succeeds -> no chunking needed.
+        sequence = iter([truncated, good])
         with patch(
             "aopwiki_rdf.mapping.ner_el_mapper.requests.post",
             side_effect=lambda *a, **kw: next(sequence),
-        ):
-            # Build text long enough to force two-chunk split (> 1500 chars).
-            # The chunking fallback splits by sentence boundary.
+        ), patch("aopwiki_rdf.mapping.ner_el_mapper.time.sleep"):
+            result = query_bern2("TP53 here.", "http://b2", tmp_path)
+
+        assert result["annotations"][0]["mention"] == "TP53"
+
+    def test_chunking_fallback_when_single_call_exhausts_retries(self, tmp_path):
+        """When the full-text call fails every retry, the fallback chunks
+        the text by sentences and merges sub-responses."""
+        from aopwiki_rdf.mapping.ner_el_mapper import query_bern2
+
+        good_resp_1 = _bern2_response([TP53_ANN])
+        good_resp_2 = _bern2_response([ACHE_ANN])
+        truncated = _bern2_raw_response('{"annotations": [')  # cut off
+
+        # Single call: 3 retries all truncated. Then 2 chunks each succeed.
+        sequence = iter([truncated, truncated, truncated,
+                         good_resp_1, good_resp_2])
+        with patch(
+            "aopwiki_rdf.mapping.ner_el_mapper.requests.post",
+            side_effect=lambda *a, **kw: next(sequence),
+        ), patch("aopwiki_rdf.mapping.ner_el_mapper.time.sleep"):
             sentence_a = "TP53 is a tumor suppressor gene. " + ("filler " * 200)
             sentence_b = ("Acetylcholinesterase is an enzyme. "
                           + ("more filler " * 200))
@@ -254,7 +303,7 @@ class TestQueryBern2:
         with patch(
             "aopwiki_rdf.mapping.ner_el_mapper.requests.post",
             side_effect=requests.ConnectionError("net down"),
-        ):
+        ), patch("aopwiki_rdf.mapping.ner_el_mapper.time.sleep"):
             result = query_bern2("Any text.", "http://b2", tmp_path)
 
         assert "_error" in result

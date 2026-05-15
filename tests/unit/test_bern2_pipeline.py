@@ -88,6 +88,44 @@ class TestMapNerGenesInKes:
         assert "First part" in captured["text"]
         assert "TP53 part" in captured["text"]
 
+    def test_sleep_after_threads_through(self, tmp_path):
+        """The cold-start politeness delay reaches find_hgnc_ids_via_ner_el."""
+        from aopwiki_rdf.mapping.ner_el_mapper import map_ner_genes_in_kes
+
+        kedict = {"100": {"dc:description": "TP53 here."}}
+        captured = {}
+
+        def fake_find(text, **kw):
+            captured["sleep_after"] = kw.get("sleep_after")
+            return set()
+
+        with patch(
+            "aopwiki_rdf.mapping.ner_el_mapper.find_hgnc_ids_via_ner_el",
+            side_effect=fake_find,
+        ):
+            map_ner_genes_in_kes(kedict, self._config(tmp_path), sleep_after=0.5)
+
+        assert captured["sleep_after"] == 0.5
+
+    def test_sleep_after_defaults_zero(self, tmp_path):
+        """Production path uses no delay unless explicitly requested."""
+        from aopwiki_rdf.mapping.ner_el_mapper import map_ner_genes_in_kes
+
+        kedict = {"100": {"dc:description": "TP53 here."}}
+        captured = {}
+
+        def fake_find(text, **kw):
+            captured["sleep_after"] = kw.get("sleep_after")
+            return set()
+
+        with patch(
+            "aopwiki_rdf.mapping.ner_el_mapper.find_hgnc_ids_via_ner_el",
+            side_effect=fake_find,
+        ):
+            map_ner_genes_in_kes(kedict, self._config(tmp_path))
+
+        assert captured["sleep_after"] == 0.0
+
 
 # ---------------------------------------------------------------------------
 # _apply_bern2_enrichment

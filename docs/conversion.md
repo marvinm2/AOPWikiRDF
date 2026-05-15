@@ -95,6 +95,73 @@ The false positive filtering system achieved a **14.6% reduction** in false posi
 | PPIB | "B" | 134 | 4 | 97% |
 | IV | "IV" | 37 | 4 | 89% |
 
+## BERN2 NER+EL Gene Enrichment
+
+The regex algorithm can only match text that uses a canonical HGNC symbol
+or a known alias. It misses genes named descriptively -- *"nicotinic
+acetylcholine receptor"*, *"protein kinase B"*, *"calmodulin"* -- which
+AOP-Wiki authors use heavily in Key Event descriptions. **BERN2**
+(DMIS-Lab), a Named Entity Recognition + Entity Linking model, closes
+that gap: it recognises descriptive gene mentions and normalises them to
+NCBI Gene IDs in one pass.
+
+This enrichment is opt-in via `PipelineConfig.enable_bern2` (default
+`False`). The weekly `rdfgeneration.yml` workflow enables it with the
+`--enable-bern2` flag on `run_conversion.py`.
+
+### How it works
+
+1. For each Key Event description, the text is sent to the BERN2 hosted
+   API (`http://bern2.korea.ac.kr/plain`).
+2. BERN2 returns gene entities annotated with NCBI Gene IDs.
+3. NCBI Gene -> HGNC is resolved via the BridgeDb batch API (system
+   code `L`), the same service the chemical and regex-gene mappers use.
+4. The resulting HGNC IDs are unioned with the regex mapper's output.
+
+Scope is **KE descriptions only** -- Key Event Relationships stay
+regex-only. BERN2's per-method evidence and a feasibility comparison
+against the regex baseline are in `prototypes/ner_el_spike/REPORT.md`
+(95.98% of detected genes normalise to HGNC; +232 HGNC IDs over regex
+on a 100-KE sample).
+
+### Provenance predicates
+
+When enrichment is active, `AOPWikiRDF-Genes.ttl` records which method
+found each gene. `edam:data_1025` stays the **union** of both methods
+(so existing queries are unaffected); two extra predicates carry the
+per-method subsets:
+
+```turtle
+aop.events:888
+    edam:data_1025        hgnc:A, hgnc:B, hgnc:C ;
+    :geneDetectedByRegex  hgnc:A, hgnc:B ;
+    :geneDetectedByNER    hgnc:B, hgnc:C .
+```
+
+A consumer wanting a regex-only view queries `:geneDetectedByRegex`; a
+high-confidence (both-methods) view intersects the two predicates. An
+empty subset omits its predicate -- KERs never carry `:geneDetectedByNER`.
+
+### Response cache and the cold start
+
+Every BERN2 and BridgeDb response is cached on disk under
+`data/cache/bern2/`, keyed by the SHA of its input text. The weekly run
+therefore only hits the network for KE descriptions that *changed* since
+the previous run -- typically a handful.
+
+Before enabling the flag in production, the cache must be warmed for the
+full corpus (the **cold start**):
+
+```bash
+python scripts/warm_bern2_cache.py --xml data/aop-wiki-xml-YYYY-MM-DD
+```
+
+The cold start is resumable -- re-running it skips everything already
+cached, so it is safe to interrupt. The BERN2 hosted API emits bare
+`NaN` for the `prob` field of neural-normalised entities (not valid
+JSON); the client parses responses with an explicit `parse_constant`
+handler so this does not break decoding.
+
 ## Chemical Mapping Strategy
 
 ### CAS Identifier Extraction
@@ -154,6 +221,8 @@ The main RDF file is built by writing Turtle triples directly as strings (not us
 ### AOPWikiRDF-Genes.ttl
 
 The genes file contains KE-to-gene and KER-to-gene mapping triples (using `edam:data_1025`), followed by gene identifier triples with `owl:sameAs` cross-references to Entrez, Ensembl, and UniProt.
+
+When BERN2 enrichment is active (see *BERN2 NER+EL Gene Enrichment* above), each KE/KER block additionally carries `:geneDetectedByRegex` and `:geneDetectedByNER` provenance predicates; `edam:data_1025` remains the union of both methods.
 
 ### AOPWikiRDF-Enriched.ttl
 

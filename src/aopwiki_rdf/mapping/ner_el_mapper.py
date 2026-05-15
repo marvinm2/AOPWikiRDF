@@ -60,15 +60,40 @@ def _write_json_cache(path: Path, data: dict) -> None:
 # BERN2 client
 # ---------------------------------------------------------------------------
 
-def _bern2_post(text: str, url: str, timeout: int) -> dict:
-    """One BERN2 POST. Returns parsed JSON or ``{"_error": ...}``."""
-    try:
-        r = requests.post(url, json={"text": text}, timeout=timeout)
-        r.raise_for_status()
-        return r.json()
-    except (requests.RequestException, json.JSONDecodeError) as e:
-        status = getattr(r, "status_code", None) if "r" in dir() else None
-        return {"_error": str(e), "_status": status}
+def _loads_bern2(response_text: str) -> dict:
+    """Parse a BERN2 response body into a dict.
+
+    BERN2 emits bare ``NaN`` for the ``prob`` field of neural-normalised
+    entities. ``NaN`` is not valid JSON, so ``requests.Response.json()``
+    rejects it outright. Parsing with an explicit ``parse_constant`` maps
+    ``NaN`` / ``Infinity`` / ``-Infinity`` to ``None`` so the rest of the
+    (otherwise well-formed) response decodes. The ``prob`` field is not
+    used downstream, so collapsing it to ``None`` is harmless.
+    """
+    return json.loads(response_text, parse_constant=lambda _c: None)
+
+
+def _bern2_post(text: str, url: str, timeout: int, max_retries: int = 3) -> dict:
+    """One BERN2 POST, with retry on transient failure.
+
+    Retries up to ``max_retries`` times with exponential backoff (1s, 2s,
+    4s) on genuine network errors or malformed responses. The common
+    ``NaN``-in-``prob`` case is handled by :func:`_loads_bern2` and is
+    *not* an error.
+
+    Returns parsed JSON, or ``{"_error": ...}`` if every attempt failed.
+    """
+    last_error = "unknown"
+    for attempt in range(max_retries):
+        try:
+            r = requests.post(url, json={"text": text}, timeout=timeout)
+            r.raise_for_status()
+            return _loads_bern2(r.text)
+        except (requests.RequestException, json.JSONDecodeError) as e:
+            last_error = str(e)
+            if attempt < max_retries - 1:
+                time.sleep(2 ** attempt)
+    return {"_error": last_error}
 
 
 def query_bern2(
@@ -322,7 +347,9 @@ def find_hgnc_ids_via_ner_el(
     return set(ncbi_to_hgnc.values())
 
 
-def map_ner_genes_in_kes(kedict: dict, config) -> dict[str, set[str]]:
+def map_ner_genes_in_kes(
+    kedict: dict, config, sleep_after: float = 0.0,
+) -> dict[str, set[str]]:
     """Run BERN2 NER+EL over every Key Event description in ``kedict``.
 
     This is the pipeline-facing entry point. Iterates KEs that carry a
@@ -338,6 +365,11 @@ def map_ner_genes_in_kes(kedict: dict, config) -> dict[str, set[str]]:
     config:
         PipelineConfig. Reads ``bern2_url``, ``bridgedb_url``,
         ``ner_cache_dir``, and ``request_timeout``.
+    sleep_after:
+        Optional per-call delay (seconds). Defaults to 0 for the
+        production weekly run, which only annotates a handful of changed
+        KEs. A cold-start cache-warming run over the full corpus should
+        pass a small value (e.g. 0.5) to be polite to the hosted API.
 
     Returns
     -------
@@ -372,6 +404,7 @@ def map_ner_genes_in_kes(kedict: dict, config) -> dict[str, set[str]]:
             bridgedb_url=config.bridgedb_url,
             cache_dir=config.ner_cache_dir,
             timeout=config.request_timeout,
+            sleep_after=sleep_after,
         )
         if hgnc_numeric:
             results[ke_id] = {f"hgnc:{n}" for n in hgnc_numeric}

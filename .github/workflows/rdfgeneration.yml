@@ -48,8 +48,11 @@ jobs:
           echo "=== Running Python Script RDF Generation ==="
           echo "Start time: $(date -u)"
           
-          # Run Python conversion script with production output
-          python run_conversion.py --output-dir data/ --log-level INFO
+          # Run Python conversion script with production output.
+          # --enable-bern2 adds BERN2 NER+EL gene enrichment; the warm
+          # cache at data/cache/bern2/ means only changed KE descriptions
+          # hit the network, so the weekly run stays within the time budget.
+          python run_conversion.py --output-dir data/ --log-level INFO --enable-bern2
           
           echo "End time: $(date -u)"
           echo "Generated files:"
