@@ -29,7 +29,17 @@ class PipelineConfig:
     emit_legacy_predicates: bool = True
     filter_arr_aops: bool = False
 
+    # BERN2 NER+EL gene mapping (Phase A: code only, flag off).
+    # When enable_bern2 is True, the pipeline supplements the regex
+    # gene_mapper with BERN2-derived HGNC IDs from KE/KER descriptions.
+    # See prototypes/ner_el_spike/REPORT.md for the feasibility evidence.
+    enable_bern2: bool = False
+    bern2_url: str = "http://bern2.korea.ac.kr/plain"
+    ner_cache_dir: Path = field(default_factory=lambda: Path("data/cache/bern2/"))
+
     def __post_init__(self):
-        """Ensure data_dir is a Path object."""
+        """Ensure path-typed fields are Path objects."""
         if isinstance(self.data_dir, str):
             self.data_dir = Path(self.data_dir)
+        if isinstance(self.ner_cache_dir, str):
+            self.ner_cache_dir = Path(self.ner_cache_dir)
