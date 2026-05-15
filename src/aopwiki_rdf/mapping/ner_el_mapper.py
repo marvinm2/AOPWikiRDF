@@ -320,3 +320,70 @@ def find_hgnc_ids_via_ner_el(
         sleep_after=sleep_after,
     )
     return set(ncbi_to_hgnc.values())
+
+
+def map_ner_genes_in_kes(kedict: dict, config) -> dict[str, set[str]]:
+    """Run BERN2 NER+EL over every Key Event description in ``kedict``.
+
+    This is the pipeline-facing entry point. Iterates KEs that carry a
+    ``dc:description``, queries BERN2 + BridgeDb per description, and
+    returns the HGNC IDs found. Scope is KE descriptions only -- KERs are
+    left to the regex mapper (a deliberate Phase B scoping decision).
+
+    Parameters
+    ----------
+    kedict:
+        Key Event dictionary (ke_id -> properties), as produced by the
+        XML parser. KEs with a non-empty ``dc:description`` are scanned.
+    config:
+        PipelineConfig. Reads ``bern2_url``, ``bridgedb_url``,
+        ``ner_cache_dir``, and ``request_timeout``.
+
+    Returns
+    -------
+    dict
+        ``{ke_id: set_of_hgnc_uri_strings}`` -- e.g.
+        ``{"888": {"hgnc:11998", "hgnc:108"}}``. KEs with no detections
+        are absent from the result. HGNC IDs are formatted as ``hgnc:N``
+        URI-prefix strings to match the regex mapper's output convention.
+    """
+    results: dict[str, set[str]] = {}
+    ke_ids = [
+        ke_id for ke_id, props in kedict.items()
+        if props.get("dc:description")
+    ]
+    total = len(ke_ids)
+    logger.info("BERN2 NER+EL: scanning %d Key Event descriptions", total)
+
+    for idx, ke_id in enumerate(ke_ids, 1):
+        description = kedict[ke_id]["dc:description"]
+        # dc:description can be a list of triple-quoted strings (parser
+        # appends MIE/AO example text); join into one block for the model.
+        if isinstance(description, list):
+            text = " ".join(str(d).strip('"') for d in description)
+        else:
+            text = str(description).strip('"')
+        if not text.strip():
+            continue
+
+        hgnc_numeric = find_hgnc_ids_via_ner_el(
+            text,
+            bern2_url=config.bern2_url,
+            bridgedb_url=config.bridgedb_url,
+            cache_dir=config.ner_cache_dir,
+            timeout=config.request_timeout,
+        )
+        if hgnc_numeric:
+            results[ke_id] = {f"hgnc:{n}" for n in hgnc_numeric}
+
+        if idx % 100 == 0 or idx == total:
+            logger.info(
+                "BERN2 NER+EL progress: %d/%d KEs (%d with gene hits)",
+                idx, total, len(results),
+            )
+
+    logger.info(
+        "BERN2 NER+EL complete: %d/%d KEs had gene detections",
+        len(results), total,
+    )
+    return results

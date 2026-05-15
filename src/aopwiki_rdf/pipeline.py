@@ -21,6 +21,7 @@ from aopwiki_rdf.config import PipelineConfig
 from aopwiki_rdf.parser.xml_parser import parse_aopwiki_xml, AOPXML_NS
 from aopwiki_rdf.hgnc import download_hgnc_data
 from aopwiki_rdf.mapping.gene_mapper import build_gene_dicts, map_genes_in_entities, build_gene_xrefs
+from aopwiki_rdf.mapping.ner_el_mapper import map_ner_genes_in_kes
 from aopwiki_rdf.mapping.chemical_mapper import map_chemicals
 from aopwiki_rdf.mapping.protein_ontology import download_and_parse_promapping
 from aopwiki_rdf.rdf.writer import write_aop_rdf, write_enriched_rdf, write_genes_rdf, write_void_rdf
@@ -210,6 +211,48 @@ def _stage_protein_ontology(config, context):
     context["pro_result"] = pro_result
 
 
+def _apply_bern2_enrichment(kedict, kerdict, gene_hgnclist, config):
+    """Union BERN2 NER+EL gene detections into the regex gene mapping.
+
+    Mutates ``kedict``, ``kerdict``, and ``gene_hgnclist`` in place:
+
+    - Each KE/KER touched gets ``_genes_regex`` and ``_genes_ner`` lists
+      recording per-method provenance for the writer.
+    - ``edam:data_1025`` becomes the union (regex order preserved,
+      NER-only IDs appended sorted).
+    - ``gene_hgnclist`` is extended with BERN2-discovered HGNC IDs so they
+      flow through BridgeDb cross-referencing and gene-identifier triples.
+
+    BERN2 scope is KE descriptions only; KERs keep their regex genes and
+    get an empty ``_genes_ner`` list (the writer then emits
+    :geneDetectedByRegex but not :geneDetectedByNER for them).
+    """
+    ner_results = map_ner_genes_in_kes(kedict, config)
+    existing_hgnc = set(gene_hgnclist)
+
+    for ke_id, props in kedict.items():
+        regex_genes = list(props.get("edam:data_1025", []))
+        ner_genes = sorted(ner_results.get(ke_id, set()))
+        if not regex_genes and not ner_genes:
+            continue
+        props["_genes_regex"] = regex_genes
+        props["_genes_ner"] = ner_genes
+        union = list(regex_genes)
+        for g in ner_genes:
+            if g not in union:
+                union.append(g)
+        props["edam:data_1025"] = union
+        for g in ner_genes:
+            if g not in existing_hgnc:
+                gene_hgnclist.append(g)
+                existing_hgnc.add(g)
+
+    for ker_id, props in kerdict.items():
+        if "edam:data_1025" in props:
+            props["_genes_regex"] = list(props["edam:data_1025"])
+            props["_genes_ner"] = []
+
+
 def _stage_gene_mapping(config, context):
     """Download HGNC data, build gene dicts, map genes, build xrefs."""
     entities = context["entities"]
@@ -248,7 +291,16 @@ def _stage_gene_mapping(config, context):
         aopxml_ns,
     )
 
-    # Build cross-references via BridgeDb
+    # Optional BERN2 NER+EL enrichment (Phase B). When config.enable_bern2
+    # is True, BERN2 scans KE descriptions for descriptive-name gene
+    # mentions regex cannot match. Results are unioned into edam:data_1025
+    # and the per-method provenance is recorded in _genes_regex/_genes_ner
+    # for the writer to emit as :geneDetectedByRegex / :geneDetectedByNER.
+    if config.enable_bern2:
+        _apply_bern2_enrichment(kedict, kerdict, gene_hgnclist, config)
+
+    # Build cross-references via BridgeDb (gene_hgnclist now includes any
+    # BERN2-discovered HGNC IDs appended by _apply_bern2_enrichment)
     xref_result = build_gene_xrefs(
         gene_hgnclist,
         bridgedb_url=config.bridgedb_url,

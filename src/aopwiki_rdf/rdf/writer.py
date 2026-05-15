@@ -13,7 +13,10 @@ import re
 
 import pandas as pd
 
-from aopwiki_rdf.rdf.namespaces import get_main_prefixes, GENES_PREFIXES, VOID_PREFIXES, ENRICHED_PREFIXES
+from aopwiki_rdf.rdf.namespaces import (
+    get_main_prefixes, GENES_PREFIXES, GENES_PROVENANCE_PREFIX,
+    VOID_PREFIXES, ENRICHED_PREFIXES,
+)
 from aopwiki_rdf.utils import clean_html_tags
 
 logger = logging.getLogger(__name__)
@@ -67,6 +70,40 @@ def _safe_write_simple(fh, predicate, value, quote=True):
     if value is not None and str(value).strip():
         formatted_value = f'"{value}"' if quote else str(value)
         fh.write(f' ;\n\t{predicate}\t{formatted_value}')
+
+
+def _write_gene_block(fh, entity: dict, provenance: bool) -> None:
+    """Write one KE/KER gene-association block to the genes RDF file.
+
+    When ``provenance`` is False, emits the legacy single-predicate form::
+
+        SUBJECT  edam:data_1025  hgnc:A,hgnc:B .
+
+    When True (Phase B BERN2 enrichment active), emits the union under
+    ``edam:data_1025`` plus per-method provenance predicates::
+
+        SUBJECT  edam:data_1025        hgnc:A,hgnc:B,hgnc:C ;
+                 :geneDetectedByRegex  hgnc:A,hgnc:B ;
+                 :geneDetectedByNER    hgnc:B,hgnc:C .
+
+    Provenance predicates are omitted when their gene list is empty
+    (e.g. KERs always have an empty :geneDetectedByNER list).
+    """
+    subject = entity['dc:identifier']
+    union = entity['edam:data_1025']
+
+    if not provenance:
+        fh.write(f'{subject}\tedam:data_1025\t' + ','.join(union) + ' .\n\n')
+        return
+
+    lines = [f'{subject}\tedam:data_1025\t' + ','.join(union)]
+    regex_genes = entity.get('_genes_regex', [])
+    ner_genes = entity.get('_genes_ner', [])
+    if regex_genes:
+        lines.append('\t:geneDetectedByRegex\t' + ','.join(regex_genes))
+    if ner_genes:
+        lines.append('\t:geneDetectedByNER\t' + ','.join(ner_genes))
+    fh.write(' ;\n'.join(lines) + ' .\n\n')
 
 
 # ---------------------------------------------------------------------------
@@ -655,7 +692,15 @@ def write_genes_rdf(filepath, gene_data, config=None):
 
     logger.info(f"Writing genes RDF file: {filepath}")
 
+    # Phase B: when BERN2 enrichment is active, gene blocks carry
+    # per-method provenance predicates and the header needs the base
+    # ':' prefix. When the flag is off the output is byte-identical to
+    # the pre-Phase-B genes file.
+    genes_provenance = bool(config and getattr(config, 'enable_bern2', False))
+
     with open(filepath, 'w', encoding='utf-8') as g:
+        if genes_provenance:
+            g.write(GENES_PROVENANCE_PREFIX)
         g.write(GENES_PREFIXES + '\n')
 
         # KE gene mappings
@@ -663,7 +708,7 @@ def write_genes_rdf(filepath, gene_data, config=None):
         for ke in kedict:
             if 'edam:data_1025' in kedict[ke]:
                 n += 1
-                g.write(kedict[ke]['dc:identifier'] + '\tedam:data_1025\t' + ','.join(kedict[ke]['edam:data_1025']) + ' .\n\n')
+                _write_gene_block(g, kedict[ke], genes_provenance)
         logger.info(f"Key Event gene mapping output: {n} events with mapped genes")
 
         # KER gene mappings
@@ -671,7 +716,7 @@ def write_genes_rdf(filepath, gene_data, config=None):
         for ker in kerdict:
             if 'edam:data_1025' in kerdict[ker]:
                 n += 1
-                g.write(kerdict[ker]['dc:identifier'] + '\tedam:data_1025\t' + ','.join(kerdict[ker]['edam:data_1025']) + ' .\n\n')
+                _write_gene_block(g, kerdict[ker], genes_provenance)
         logger.info(f"Key Event Relationship gene mapping output: {n} relationships with mapped genes")
 
         # Gene identifier triples

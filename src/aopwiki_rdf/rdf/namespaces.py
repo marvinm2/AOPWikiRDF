@@ -115,6 +115,14 @@ GENES_PREFIXES = (
     "@prefix owl: <http://www.w3.org/2002/07/owl#>.\n"
 )
 
+# Base namespace declaration for the BERN2 provenance predicates
+# (:geneDetectedByRegex, :geneDetectedByNER). Prepended to the genes
+# RDF header only when config.enable_bern2 is True, so the file is
+# byte-identical to the pre-Phase-B output when the flag is off.
+GENES_PROVENANCE_PREFIX = (
+    "@prefix : <https://aopwiki.rdf.bigcat-bioinformatics.org/> .\n"
+)
+
 # ---------------------------------------------------------------------------
 # Enriched RDF prefixes (cross-reference triples for AOPWikiRDF-Enriched.ttl)
 # ---------------------------------------------------------------------------
