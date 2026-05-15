@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["NCBIGene:4780", "2551"], "is_neural_normalized": true, "mention": "Nrf2-related genes", "obj": "gene", "prob": 0.947373628616333, "span": {"begin": 30, "end": 48}}], "text": "This key event is mediated by Nrf2-related genes.", "timestamp": "Fri May 15 21:37:01 +0000 2026"}

@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["NCBIGene:1571"], "is_neural_normalized": false, "mention": "Cyp2e1", "obj": "gene", "prob": 0.9897559285163879, "span": {"begin": 38, "end": 44}}], "text": "This key event can be associated with Cyp2e1-mediated bioactivation.", "timestamp": "Fri May 15 21:36:59 +0000 2026"}

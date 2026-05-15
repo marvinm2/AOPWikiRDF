@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["NCBIGene:8989"], "is_neural_normalized": false, "mention": "TRPA1", "obj": "gene", "prob": 0.9862181544303894, "span": {"begin": 66, "end": 71}}], "text": "In tesponse to tissue damage&nbsp;lipid peroxidation can activate TRPA1 (Bautista et al., 2013).", "timestamp": "Fri May 15 22:02:43 +0000 2026"}

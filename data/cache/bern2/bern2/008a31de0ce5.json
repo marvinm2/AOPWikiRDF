@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["CL:0000000"], "is_neural_normalized": false, "mention": "cell", "obj": "cell_type", "prob": 0.4306787848472595, "span": {"begin": 129, "end": 133}}], "text": "Reductions in cellular pH that exceed homeostatic controls  leads to denatured/dysfunctional cellular apparatus (enzymes)[1] and cell death[2].", "timestamp": "Fri May 15 21:36:46 +0000 2026"}

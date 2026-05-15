@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["NCBIGene:100682260"], "is_neural_normalized": false, "mention": "HPPD", "obj": "gene", "prob": 0.9939125776290894, "span": {"begin": 41, "end": 45}}], "text": "This key event commonly operates through HPPD inhibitors.", "timestamp": "Fri May 15 21:36:56 +0000 2026"}

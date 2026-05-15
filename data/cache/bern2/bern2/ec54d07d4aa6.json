@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["CUI-less"], "is_neural_normalized": false, "mention": "Wrongly differentiated cells", "obj": "cell_type", "prob": 0.7070953249931335, "span": {"begin": 0, "end": 28}}], "text": "Wrongly differentiated cells may not be able to perform the process of neural tube closure.", "timestamp": "Fri May 15 21:44:01 +0000 2026"}
