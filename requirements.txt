@@ -2,7 +2,7 @@
 # Pinned versions for reproducible builds
 
 # Core Jupyter environment
-jupyterlab==4.0.11
+jupyterlab==4.5.7
 nbclient==0.8.0
 ipython==8.25.0
 
@@ -13,7 +13,7 @@ pandas==2.2.2
 pyvis==0.3.2
 
 # HTTP requests
-requests==2.32.3
+requests==2.33.0
 
 # RDF and SPARQL handling
 rdflib==6.3.2
