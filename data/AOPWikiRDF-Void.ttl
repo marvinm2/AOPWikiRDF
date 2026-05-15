@@ -17,7 +17,7 @@
 
 :AOPWikiRDF	a	void:Dataset ;
 	dc:description	"AOP-Wiki RDF -- complete dataset" ;
-	dcterms:license	<http://creativecommons.org/licenses/by/4.0/> ;
+	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	void:subset	:AOPWikiRDF.ttl, :AOPWikiRDF-Enriched.ttl, :AOPWikiRDF-Genes.ttl ;
 	void:exampleResource	aop:1, aop.events:1, aop.relationships:1, cas:83-79-4, aop.stressor:1 ;
 	pav:createdOn	"2026-05-09"^^xsd:date ;
@@ -27,7 +27,7 @@
 :AOPWikiRDF.ttl	a	void:Dataset ;
 	dc:description	"AOP-Wiki source-derived triples" ;
 	void:triples	124174 ;
-	dcterms:license	<http://creativecommons.org/licenses/by/4.0/> ;
+	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	pav:createdOn	"2026-05-09"^^xsd:date ;
 	pav:createdWith	"aop-wiki-xml-2026-05-09", :Promapping ;
 	foaf:homepage	<https://aopwiki.org> ;
@@ -37,13 +37,14 @@
 :AOPWikiRDF-Enriched.ttl	a	void:Dataset ;
 	dc:description	"Chemical and protein cross-reference enrichment triples" ;
 	void:triples	7964 ;
-	dcterms:license	<http://creativecommons.org/licenses/by/4.0/> ;
+	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	pav:importedFrom	<https://webservice.bridgedb.org/Human/> ;
 	pav:createdOn	"2026-05-09"^^xsd:date .
 
 :AOPWikiRDF-Genes.ttl	a	void:Dataset ;
 	dc:description	"Gene mapping enrichment triples" ;
 	void:triples	88634 ;
+	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	pav:createdOn	"2026-05-09"^^xsd:date ;
 	pav:createdWith	"aop-wiki-xml-2026-05-09", :HGNCgenes ;
 	foaf:homepage	<https://aopwiki.org> ;

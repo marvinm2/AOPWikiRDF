@@ -743,7 +743,7 @@ def write_void_rdf(filepath, metadata):
         # --- Parent dataset ---
         g.write('\n\n:AOPWikiRDF\ta\tvoid:Dataset')
         g.write(' ;\n\tdc:description\t"AOP-Wiki RDF -- complete dataset"')
-        g.write(' ;\n\tdcterms:license\t<http://creativecommons.org/licenses/by/4.0/>')
+        g.write(' ;\n\tdcterms:license\t<https://creativecommons.org/licenses/by-sa/4.0/>')
         g.write(' ;\n\tvoid:subset\t:AOPWikiRDF.ttl, :AOPWikiRDF-Enriched.ttl, :AOPWikiRDF-Genes.ttl')
         g.write(' ;\n\tvoid:exampleResource\taop:1, aop.events:1, aop.relationships:1, cas:83-79-4, aop.stressor:1')
         g.write(' ;\n\tpav:createdOn\t"' + y + '"^^xsd:date')
@@ -756,7 +756,7 @@ def write_void_rdf(filepath, metadata):
         g.write(' ;\n\tdc:description\t"AOP-Wiki source-derived triples"')
         if triple_counts.get('main', 0) > 0:
             g.write(f' ;\n\tvoid:triples\t{triple_counts["main"]}')
-        g.write(' ;\n\tdcterms:license\t<http://creativecommons.org/licenses/by/4.0/>')
+        g.write(' ;\n\tdcterms:license\t<https://creativecommons.org/licenses/by-sa/4.0/>')
         g.write(' ;\n\tpav:createdOn\t"' + y + '"^^xsd:date')
         g.write(' ;\n\tpav:createdWith\t"' + str(aopwikixmlfilename) + '", :Promapping')
         g.write(' ;\n\tfoaf:homepage\t<https://aopwiki.org>')
@@ -769,7 +769,7 @@ def write_void_rdf(filepath, metadata):
         g.write(' ;\n\tdc:description\t"Chemical and protein cross-reference enrichment triples"')
         if triple_counts.get('enriched', 0) > 0:
             g.write(f' ;\n\tvoid:triples\t{triple_counts["enriched"]}')
-        g.write(' ;\n\tdcterms:license\t<http://creativecommons.org/licenses/by/4.0/>')
+        g.write(' ;\n\tdcterms:license\t<https://creativecommons.org/licenses/by-sa/4.0/>')
         g.write(' ;\n\tpav:importedFrom\t<' + bridgedb_url + '>')
         g.write(' ;\n\tpav:createdOn\t"' + y + '"^^xsd:date')
         g.write(' .\n')
@@ -779,6 +779,7 @@ def write_void_rdf(filepath, metadata):
         g.write(' ;\n\tdc:description\t"Gene mapping enrichment triples"')
         if triple_counts.get('genes', 0) > 0:
             g.write(f' ;\n\tvoid:triples\t{triple_counts["genes"]}')
+        g.write(' ;\n\tdcterms:license\t<https://creativecommons.org/licenses/by-sa/4.0/>')
         g.write(' ;\n\tpav:createdOn\t"' + y + '"^^xsd:date')
         g.write(' ;\n\tpav:createdWith\t"' + str(aopwikixmlfilename) + '", :HGNCgenes')
         g.write(' ;\n\tfoaf:homepage\t<https://aopwiki.org>')

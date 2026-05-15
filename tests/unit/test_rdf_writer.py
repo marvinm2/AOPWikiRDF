@@ -77,6 +77,48 @@ def test_write_void_rdf_minimal():
         assert len(g) > 0
 
 
+def test_write_void_rdf_emits_cc_by_sa_license():
+    """VoID file must declare dcterms:license CC-BY-SA 4.0 on every subset.
+
+    Matches upstream AOP-Wiki licence (CC-BY-SA 4.0 by default since
+    Release 2.6, 2023-04-29); replaces the prior CC-BY 4.0 declaration
+    which was incompatible with the upstream Share-Alike obligation.
+    """
+    from aopwiki_rdf.rdf.writer import write_void_rdf
+    from rdflib import Graph, URIRef, Namespace
+
+    DCTERMS = Namespace('http://purl.org/dc/terms/')
+    cc_by_sa = URIRef('https://creativecommons.org/licenses/by-sa/4.0/')
+
+    now = datetime.datetime.now()
+    metadata = {
+        'aopwikixmlfilename': 'aop-wiki-xml-2025-01-01.gz',
+        'date': now.strftime('%Y-%m-%d'),
+        'datetime_obj': now,
+        'HGNCmodificationTime': '2025-01-01',
+        'PromodificationTime': '2025-01-01',
+        'bridgedb_info': {},
+        'service_desc_filepath': None,
+        'triple_counts': {'main': 1000, 'enriched': 500, 'genes': 200},
+    }
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        out = os.path.join(tmpdir, 'AOPWikiRDF-Void.ttl')
+        write_void_rdf(out, metadata)
+        g = Graph()
+        g.parse(out, format='turtle')
+
+        licence_subjects = {s for s, _, _ in g.triples((None, DCTERMS.license, cc_by_sa))}
+        # Parent dataset + 3 content subsets (Main, Enriched, Genes)
+        assert len(licence_subjects) >= 4, (
+            f"Expected CC-BY-SA on parent + 3 subsets, got {len(licence_subjects)}: "
+            f"{licence_subjects}"
+        )
+        # No stale CC-BY URI should remain anywhere in the VoID file
+        content = open(out).read()
+        assert 'creativecommons.org/licenses/by/4.0' not in content
+
+
 def test_write_void_rdf_with_service_desc():
     """Write VoID with ServiceDescription and verify both files."""
     from aopwiki_rdf.rdf.writer import write_void_rdf

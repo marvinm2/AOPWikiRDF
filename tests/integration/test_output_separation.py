@@ -150,11 +150,11 @@ def test_void_enrichment():
     g = Graph()
     g.parse(VOID_FILE, format="turtle")
 
-    # Check for CC-BY 4.0 license
-    cc_by = URIRef("http://creativecommons.org/licenses/by/4.0/")
-    license_triples = list(g.triples((None, DCTERMS.license, cc_by)))
+    # Check for CC-BY-SA 4.0 license (matches upstream AOP-Wiki licence)
+    cc_by_sa = URIRef("https://creativecommons.org/licenses/by-sa/4.0/")
+    license_triples = list(g.triples((None, DCTERMS.license, cc_by_sa)))
     assert len(license_triples) > 0, (
-        "VoID must declare dcterms:license with CC-BY 4.0"
+        "VoID must declare dcterms:license with CC-BY-SA 4.0"
     )
 
     # Check for pav:importedFrom on enriched subset (BridgeDb provenance)
