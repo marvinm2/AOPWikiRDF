@@ -1,0 +1,67 @@
+{
+  "methods": [
+    "regex",
+    "bern2",
+    "pubtator"
+  ],
+  "total_ke_descriptions": 100,
+  "aggregate_stats": {
+    "regex": {
+      "total_hgnc_ids_found": 299
+    },
+    "bern2": {
+      "total_hgnc_ids_found": 358,
+      "total_ncbi_entities_detected": 373,
+      "hgnc_yield_pct": 95.98
+    },
+    "pubtator": {
+      "total_hgnc_ids_found": 0,
+      "total_ncbi_entities_detected": 0,
+      "hgnc_yield_pct": 0.0
+    }
+  },
+  "pairwise_overlap": {
+    "regex_bern2": 126,
+    "regex_pubtator": 0,
+    "bern2_pubtator": 0,
+    "all_three": 0,
+    "regex_only": 173,
+    "bern2_only": 232,
+    "pubtator_only": 0
+  },
+  "per_method_pr_f1": {
+    "regex": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "note": "Trivially 1.0; regex is the baseline."
+    },
+    "bern2": {
+      "precision": 0.352,
+      "recall": 0.4214,
+      "f1": 0.3836,
+      "note": "vs regex baseline."
+    },
+    "pubtator": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "note": "vs regex baseline."
+    }
+  },
+  "disagreement_count": 78,
+  "agreement_rate": 0.22,
+  "runtime": {
+    "regex_total_seconds": 32.46,
+    "bern2_total_seconds": 392.12,
+    "pubtator_total_seconds": 0.0,
+    "per_ke_seconds": {
+      "regex": 0.3246,
+      "bern2": 3.9212,
+      "pubtator": 0.0
+    },
+    "note": "NER+EL times include hosted-API latency + 1s rate-limit sleep."
+  },
+  "bern2_error_count": 8,
+  "pubtator_error_count": 100
+}

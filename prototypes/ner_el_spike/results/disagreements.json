@@ -1,0 +1,3492 @@
+[
+  {
+    "ke_uri": "https://identifiers.org/aop.events/10",
+    "title": "Acetylcholine accumulation in synapses",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "108",
+      "1955"
+    ],
+    "bern2_symbols": [
+      "ACHE",
+      "CHRNA1"
+    ],
+    "bern2_mentions": [
+      "nicotinic and muscarinic receptors",
+      "AChE",
+      "muscarinic and nicotinic receptors"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1000",
+    "title": "stabilization, PPAR alpha co-repressor",
+    "regex_hgnc": [
+      "7672",
+      "7673"
+    ],
+    "regex_symbols": [
+      "NCOR1",
+      "NCOR2"
+    ],
+    "bern2_hgnc": [
+      "7672",
+      "7673",
+      "9232"
+    ],
+    "bern2_symbols": [
+      "NCOR1",
+      "NCOR2",
+      "PPARA"
+    ],
+    "bern2_mentions": [
+      "silencing mediator for retinoid and thyroid hormone receptors",
+      "SMRT",
+      "nuclear receptor co-repressor",
+      "N-CoR",
+      "PPAR&alpha",
+      "PPAR",
+      "PPAR&alpha;",
+      "PPAR&alpha; signaling complex"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1002",
+    "title": "Inhibition, Deiodinase 2",
+    "regex_hgnc": [
+      "11795",
+      "12015",
+      "12435",
+      "1678",
+      "2680",
+      "2883",
+      "2884",
+      "2885"
+    ],
+    "regex_symbols": [
+      "CD4",
+      "DIDO1",
+      "DIO1",
+      "DIO2",
+      "DIO3",
+      "THPO",
+      "TPO",
+      "TXN"
+    ],
+    "bern2_hgnc": [
+      "11785",
+      "12015",
+      "12435",
+      "2883",
+      "2884",
+      "2885"
+    ],
+    "bern2_symbols": [
+      "DIO1",
+      "DIO2",
+      "DIO3",
+      "THBS1",
+      "TPO",
+      "TXN"
+    ],
+    "bern2_mentions": [
+      "thyroperoxidase",
+      "TPO",
+      "deiodinase",
+      "DIO",
+      "THs",
+      "iodothyronine deiodinases",
+      "DIO",
+      "deiodinases",
+      "DIO1-3",
+      "deiodinases",
+      "thioredoxin superfamily",
+      "Type I deiodinase",
+      "DIO1",
+      "DIO1",
+      "DIO2",
+      "Type II deiodinase",
+      "DIO2",
+      "DIO3",
+      "DIO2"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1003",
+    "title": "Decreased, Triiodothyronine (T3)",
+    "regex_hgnc": [
+      "10923",
+      "10991",
+      "11583",
+      "11727",
+      "11782",
+      "11795",
+      "11799",
+      "11867",
+      "12015",
+      "12298",
+      "12405",
+      "13819",
+      "1678",
+      "18155",
+      "2355",
+      "3537",
+      "399"
+    ],
+    "regex_symbols": [
+      "ALB",
+      "CD4",
+      "CRH",
+      "F2R",
+      "SERPINA7",
+      "SLC16A2",
+      "SLC25A5",
+      "SLCO1C1",
+      "TERC",
+      "TH",
+      "THPO",
+      "THRB",
+      "TMEFF2",
+      "TPO",
+      "TRH",
+      "TTR",
+      "TXNRD2"
+    ],
+    "bern2_hgnc": [
+      "11583",
+      "11785",
+      "12405",
+      "2418",
+      "2883",
+      "2884",
+      "2885",
+      "399",
+      "7960",
+      "9021"
+    ],
+    "bern2_symbols": [
+      "ALB",
+      "CRYM",
+      "DIO1",
+      "DIO2",
+      "DIO3",
+      "NR0B1",
+      "PKM",
+      "SERPINA7",
+      "THBS1",
+      "TTR"
+    ],
+    "bern2_mentions": [
+      "Dio1",
+      "Dio2",
+      "Dio3",
+      "Deiodinase",
+      "THs",
+      "TBG",
+      "thyroxine binding globulin",
+      "TTR",
+      "transthyretin",
+      "albumin",
+      "thyroid-binding proteins",
+      "thyroid nuclear receptors",
+      "TRa",
+      "TRb",
+      "TH binding sites"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1009",
+    "title": "Inhibition, Deiodinase 1",
+    "regex_hgnc": [
+      "11795",
+      "12015",
+      "12435",
+      "1678",
+      "2680",
+      "2883",
+      "2884",
+      "2885"
+    ],
+    "regex_symbols": [
+      "CD4",
+      "DIDO1",
+      "DIO1",
+      "DIO2",
+      "DIO3",
+      "THPO",
+      "TPO",
+      "TXN"
+    ],
+    "bern2_hgnc": [
+      "11785",
+      "12015",
+      "12435",
+      "2883",
+      "2884",
+      "2885"
+    ],
+    "bern2_symbols": [
+      "DIO1",
+      "DIO2",
+      "DIO3",
+      "THBS1",
+      "TPO",
+      "TXN"
+    ],
+    "bern2_mentions": [
+      "thyroperoxidase",
+      "TPO",
+      "deiodinase",
+      "DIO",
+      "THs",
+      "iodothyronine deiodinases",
+      "DIO",
+      "deiodinases",
+      "DIO1-3",
+      "deiodinases",
+      "thioredoxin superfamily",
+      "Type I deiodinase",
+      "DIO1",
+      "DIO1",
+      "DIO2",
+      "Type II deiodinase",
+      "DIO2",
+      "DIO3",
+      "DIO1"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1046",
+    "title": "Suppression, Estrogen receptor (ER) activity",
+    "regex_hgnc": [
+      "3467",
+      "3468"
+    ],
+    "regex_symbols": [
+      "ESR1",
+      "ESR2"
+    ],
+    "bern2_hgnc": [
+      "19719",
+      "3467",
+      "3468",
+      "4419"
+    ],
+    "bern2_symbols": [
+      "ESR1",
+      "ESR2",
+      "GNRH1",
+      "LGR6"
+    ],
+    "bern2_mentions": [
+      "Estrogen receptors",
+      "hypothalamic Estrogen Receptors",
+      "Estrogen Receptor &alpha",
+      "Estrogen Receptor &beta",
+      "gonadotropins hormone",
+      "GnRH",
+      "Estrogen Receptor &alpha;",
+      "ER&alpha",
+      "NR3A1",
+      "ESR1",
+      "Estrogen Receptor &beta;",
+      "ER&beta;",
+      "NR3A2",
+      "ESR2",
+      "I ER&beta",
+      "ER&alpha;"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1047",
+    "title": "Increased, secretion of GnRH from hypothalamus",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "4419"
+    ],
+    "bern2_symbols": [
+      "GNRH1"
+    ],
+    "bern2_mentions": [
+      "Gonadotropin-releasing hormone",
+      "GnRH",
+      "Gonadotropin-releasing hormone",
+      "GnRH"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/105",
+    "title": "Inhibition, Mitochondrial Electron Transport Chain Complexes",
+    "regex_hgnc": [
+      "10261",
+      "11179"
+    ],
+    "regex_symbols": [
+      "ROS1",
+      "SOD1"
+    ],
+    "bern2_hgnc": [
+      "19986",
+      "611",
+      "7701",
+      "7716"
+    ],
+    "bern2_symbols": [
+      "APOC4",
+      "CYCS",
+      "NDUFB6",
+      "NDUFV1"
+    ],
+    "bern2_mentions": [
+      "Respiratory complexes CI",
+      "CIII",
+      "CII",
+      "Complex I",
+      "CIV",
+      "cytochrome c"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1065",
+    "title": "Activation, estrogen receptor alpha",
+    "regex_hgnc": [
+      "11205",
+      "11283",
+      "11998",
+      "3225",
+      "3236",
+      "7670",
+      "8975"
+    ],
+    "regex_symbols": [
+      "EFNA5",
+      "EGFR",
+      "NCOA3",
+      "PIK3CA",
+      "SP1",
+      "SRC",
+      "TP53"
+    ],
+    "bern2_hgnc": [],
+    "bern2_symbols": [],
+    "bern2_mentions": [],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": "Expecting value: line 1 column 116 (char 115); Expecting value: line 1 column 122 (char 121); Expecting value: line 1 column 122 (char 121)",
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1066",
+    "title": "Promotion, Sine oculis homeobox 1 positive progenitor cells in endometrium",
+    "regex_hgnc": [
+      "10887"
+    ],
+    "regex_symbols": [
+      "SIX1"
+    ],
+    "bern2_hgnc": [
+      "10887"
+    ],
+    "bern2_symbols": [
+      "SIX1"
+    ],
+    "bern2_mentions": [
+      "SIX1"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1075",
+    "title": "prolonged, estrus cycle",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "1103",
+      "9081"
+    ],
+    "bern2_symbols": [
+      "BRD2",
+      "PLOD1"
+    ],
+    "bern2_mentions": [
+      "Luteinizing Hormone",
+      "Follicle-Stimulating Hormone",
+      "luteinizing hormone"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/110",
+    "title": "Impairment, Endothelial network",
+    "regex_hgnc": [
+      "12680",
+      "8800"
+    ],
+    "regex_symbols": [
+      "PDGFB",
+      "VEGFA"
+    ],
+    "bern2_hgnc": [
+      "11724",
+      "11766",
+      "12680",
+      "2910",
+      "324",
+      "3665",
+      "484",
+      "7678",
+      "7881",
+      "8799",
+      "8800"
+    ],
+    "bern2_symbols": [
+      "AGPAT1",
+      "ANGPT1",
+      "DLL4",
+      "FGF1",
+      "NDP",
+      "NOTCH1",
+      "PDGFA",
+      "PDGFB",
+      "TEK",
+      "TGFB1",
+      "VEGFA"
+    ],
+    "bern2_mentions": [
+      "VEGFA",
+      "PDGFB",
+      "Notch",
+      "DLL4",
+      "AGPNT",
+      "Norrin",
+      "TGF-&beta;",
+      "VEGF",
+      "FGF",
+      "angiopoietin",
+      "Tie2",
+      "PDGF",
+      "TGF-&beta"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1101",
+    "title": "Altered, Amphibian metamorphosis",
+    "regex_hgnc": [
+      "11782"
+    ],
+    "regex_symbols": [
+      "TH"
+    ],
+    "bern2_hgnc": [
+      "12015",
+      "12373",
+      "2680",
+      "2883"
+    ],
+    "bern2_symbols": [
+      "DIDO1",
+      "DIO1",
+      "TPO",
+      "TSHR"
+    ],
+    "bern2_mentions": [
+      "thyroperoxidase",
+      "thyroid receptor",
+      "deiodinase",
+      "DIO",
+      "DIO enzymes",
+      "dio gene"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1107",
+    "title": "Weakened, Colony",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "1955"
+    ],
+    "bern2_symbols": [
+      "CHRNA1"
+    ],
+    "bern2_mentions": [
+      "nicotinic acetylcholine receptor"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1108",
+    "title": "Abnormal, Role change within caste",
+    "regex_hgnc": [
+      "4887"
+    ],
+    "regex_symbols": [
+      "HJV"
+    ],
+    "bern2_hgnc": [
+      "1955"
+    ],
+    "bern2_symbols": [
+      "CHRNA1"
+    ],
+    "bern2_mentions": [
+      "nicotinic acetylcholine receptor",
+      "Vtg"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/111",
+    "title": "Agonism, Estrogen receptor",
+    "regex_hgnc": [
+      "3225"
+    ],
+    "regex_symbols": [
+      "EFNA5"
+    ],
+    "bern2_hgnc": [],
+    "bern2_symbols": [],
+    "bern2_mentions": [],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": "Expecting value: line 1 column 1572 (char 1571); Expecting value: line 1 column 278 (char 277)",
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1115",
+    "title": "Increase, Reactive oxygen species",
+    "regex_hgnc": [
+      "10261",
+      "7660",
+      "7661"
+    ],
+    "regex_symbols": [
+      "NCF1",
+      "NCF2",
+      "ROS1"
+    ],
+    "bern2_hgnc": [
+      "11179"
+    ],
+    "bern2_symbols": [
+      "SOD1"
+    ],
+    "bern2_mentions": [
+      "superoxide dismutase",
+      "SOD"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1116",
+    "title": "Decreased, Triiodothyronine (T3) in tissues",
+    "regex_hgnc": [
+      "2680",
+      "2883",
+      "2884"
+    ],
+    "regex_symbols": [
+      "DIDO1",
+      "DIO1",
+      "DIO2"
+    ],
+    "bern2_hgnc": [],
+    "bern2_symbols": [],
+    "bern2_mentions": [],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": "Expecting value: line 1 column 1408 (char 1407)",
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/112",
+    "title": "Antagonism, Estrogen receptor",
+    "regex_hgnc": [
+      "3443",
+      "3467"
+    ],
+    "regex_symbols": [
+      "EREG",
+      "ESR1"
+    ],
+    "bern2_hgnc": [],
+    "bern2_symbols": [],
+    "bern2_mentions": [],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": "Expecting value: line 1 column 923 (char 922)",
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/115",
+    "title": "Increase, Fatty acid influx",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "1663"
+    ],
+    "bern2_symbols": [
+      "CD36"
+    ],
+    "bern2_mentions": [
+      "CD36"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/116",
+    "title": "Activation, FAS",
+    "regex_hgnc": [
+      "11289",
+      "11920",
+      "3594"
+    ],
+    "regex_symbols": [
+      "FAS",
+      "FASN",
+      "SREBF1"
+    ],
+    "bern2_hgnc": [
+      "11289",
+      "11920",
+      "12744",
+      "3594",
+      "7966"
+    ],
+    "bern2_symbols": [
+      "FAS",
+      "FASN",
+      "MLXIPL",
+      "NR1H3",
+      "SREBF1"
+    ],
+    "bern2_mentions": [
+      "LXR",
+      "fatty acid synthase",
+      "FAS",
+      "SREBP-1c",
+      "FAS",
+      "SREBP-1c",
+      "ChREBP",
+      "LXR"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1171",
+    "title": "Increase, Clonal Expansion of Altered Hepatic Foci",
+    "regex_hgnc": [
+      "4250",
+      "4251"
+    ],
+    "regex_symbols": [
+      "GGT1",
+      "GGT2P"
+    ],
+    "bern2_hgnc": [
+      "11920",
+      "16437",
+      "4056",
+      "4638",
+      "9232"
+    ],
+    "bern2_symbols": [
+      "FAS",
+      "G6PC1",
+      "GGTLC1",
+      "GSTP1",
+      "PPARA"
+    ],
+    "bern2_mentions": [
+      "gamma-glutamyltranspeptidase",
+      "GGT",
+      "placental glutathione transferase",
+      "APTase",
+      "glucose-6-phosphase",
+      "PPARa",
+      "PPARa",
+      "PPAR"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1172",
+    "title": "Increased activation, Nuclear factor kappa B (NF-kB)",
+    "regex_hgnc": [
+      "10261"
+    ],
+    "regex_symbols": [
+      "ROS1"
+    ],
+    "bern2_hgnc": [
+      "14552",
+      "5992",
+      "7794",
+      "7797",
+      "7889"
+    ],
+    "bern2_symbols": [
+      "IKBKE",
+      "IL1B",
+      "NFKB1",
+      "NFKBIA",
+      "NOX1"
+    ],
+    "bern2_mentions": [
+      "NF-kB",
+      "NF-kB family",
+      "IL-1beta",
+      "NF-kB",
+      "NADPH oxidase",
+      "NOX",
+      "IKK complex",
+      "IkBa",
+      "IKK enhancer"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1182",
+    "title": "Increase, Cell Proliferation (Epithelial Cells)",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "11766"
+    ],
+    "bern2_symbols": [
+      "TGFB1"
+    ],
+    "bern2_mentions": [
+      "TGF-&beta;"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/119",
+    "title": "N/A, Gap",
+    "regex_hgnc": [
+      "7981"
+    ],
+    "regex_symbols": [
+      "NR4A2"
+    ],
+    "bern2_hgnc": [],
+    "bern2_symbols": [],
+    "bern2_mentions": [],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1190",
+    "title": "Increased, Migration (Endothelial Cells)",
+    "regex_hgnc": [
+      "12680"
+    ],
+    "regex_symbols": [
+      "VEGFA"
+    ],
+    "bern2_hgnc": [
+      "12680",
+      "16961",
+      "54872",
+      "6525"
+    ],
+    "bern2_symbols": [
+      "ACTG1P25",
+      "CD226",
+      "LCN1",
+      "VEGFA"
+    ],
+    "bern2_mentions": [
+      "integrins",
+      "actin",
+      "VEGG",
+      "integrins",
+      "vascular endothelial growth factor",
+      "VEGF"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1193",
+    "title": "N/A, Breast Cancer",
+    "regex_hgnc": [
+      "1097",
+      "11389",
+      "11998",
+      "15913",
+      "16627",
+      "1773",
+      "1788",
+      "21020",
+      "2732",
+      "2770",
+      "3236",
+      "3430",
+      "4172",
+      "795",
+      "8975",
+      "9884"
+    ],
+    "regex_symbols": [
+      "ATM",
+      "BRAF",
+      "CDK4",
+      "CDKN2B",
+      "CHEK2",
+      "DDT",
+      "DES",
+      "EGFR",
+      "ERBB2",
+      "GATA3",
+      "NXT1",
+      "PIK3CA",
+      "QRSL1",
+      "RB1",
+      "STK11",
+      "TP53"
+    ],
+    "bern2_hgnc": [
+      "10447",
+      "1097",
+      "11389",
+      "11998",
+      "16627",
+      "1773",
+      "1788",
+      "21020",
+      "3236",
+      "3238",
+      "3430",
+      "4172",
+      "795",
+      "8975",
+      "9884"
+    ],
+    "bern2_symbols": [
+      "ATM",
+      "BRAF",
+      "CDK4",
+      "CDKN2B",
+      "CHEK2",
+      "EGFR",
+      "EGR1",
+      "ERBB2",
+      "GATA3",
+      "PIK3CA",
+      "QRSL1",
+      "RB1",
+      "RRAS",
+      "STK11",
+      "TP53"
+    ],
+    "bern2_mentions": [
+      "BRAF",
+      "EGRF",
+      "RAS",
+      "PI3K",
+      "STK11",
+      "ATM",
+      "TP53",
+      "CHEK2",
+      "CDKN2B",
+      "P15",
+      "CDK4",
+      "TP53",
+      "PI3K",
+      "GATA3",
+      "RB1",
+      "HER2",
+      "EGFR receptor",
+      "HER2",
+      "EGFR",
+      "HER2",
+      "BRAF",
+      "RAS",
+      "PI3K",
+      "EGFR",
+      "PI3K",
+      "RB1",
+      "GATA"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1194",
+    "title": "Increase, DNA damage",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "1499"
+    ],
+    "bern2_symbols": [
+      "CASP1"
+    ],
+    "bern2_mentions": [
+      "DNA repair genes",
+      "caspases"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1196",
+    "title": "Increased, Invasion",
+    "regex_hgnc": [
+      "12680",
+      "7178"
+    ],
+    "regex_symbols": [
+      "MMRN1",
+      "VEGFA"
+    ],
+    "bern2_hgnc": [
+      "12680",
+      "16961",
+      "1748",
+      "54872",
+      "7155"
+    ],
+    "bern2_symbols": [
+      "ACTG1P25",
+      "CD226",
+      "CDH1",
+      "MMP1",
+      "VEGFA"
+    ],
+    "bern2_mentions": [
+      "VEGF",
+      "integrins",
+      "cadherins",
+      "matrix metalloproteinases",
+      "MMPs",
+      "actin"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/12",
+    "title": "Acetylcholinesterase (AchE) Inhibition",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "108",
+      "11025",
+      "1955",
+      "3690"
+    ],
+    "bern2_symbols": [
+      "ACHE",
+      "CHRNA1",
+      "FGFR3",
+      "SLC3A1"
+    ],
+    "bern2_mentions": [
+      "Acetylcholinesterase",
+      "ACh",
+      "muscarinic and nicotinic receptors",
+      "Acetylcholinesterase",
+      "AChE",
+      "AChE",
+      "ACHE",
+      "EC 3.1.1"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1202",
+    "title": "Suppression, IL-2 and IL-4 production",
+    "regex_hgnc": [
+      "1050",
+      "3796",
+      "3797",
+      "5417",
+      "5981",
+      "6001",
+      "6008",
+      "6014",
+      "6016",
+      "6130",
+      "6204",
+      "6206"
+    ],
+    "regex_symbols": [
+      "BID",
+      "FOS",
+      "FOSB",
+      "IFNA1",
+      "IL17A",
+      "IL2",
+      "IL2RA",
+      "IL4",
+      "IL5",
+      "ISG20",
+      "JUN",
+      "JUND"
+    ],
+    "bern2_hgnc": [
+      "10883",
+      "1116",
+      "1673",
+      "25896",
+      "5438",
+      "5981",
+      "6001",
+      "6008",
+      "6009",
+      "6014",
+      "6015",
+      "6016",
+      "6204",
+      "6344",
+      "7776",
+      "9317",
+      "9338"
+    ],
+    "bern2_symbols": [
+      "BSG",
+      "CD3D",
+      "IFNG",
+      "IL17A",
+      "IL2",
+      "IL2RA",
+      "IL2RB",
+      "IL4",
+      "IL4R",
+      "IL5",
+      "JUN",
+      "KL",
+      "NFATC2",
+      "ORAI1",
+      "PPP3R1",
+      "PRB2",
+      "SIM2"
+    ],
+    "bern2_mentions": [
+      "Interleukin (IL)-2",
+      "IL-4",
+      "NFAT",
+      "AP-1",
+      "NFAT",
+      "AP-1",
+      "IL-2",
+      "IL-4 promoters",
+      "IL-2",
+      "IL-4",
+      "IL-2",
+      "NFAT proteins",
+      "IL-2 gene",
+      "NFAT",
+      "AP-1",
+      "IL-2 gene",
+      "IL-4",
+      "NFAT sites",
+      "IL-4 promoter",
+      "NFAT",
+      "AP-1",
+      "IL-2",
+      "IL-2 receptor",
+      "IL-2R",
+      "CD25",
+      "IL-2R",
+      "Basiliximab",
+      "Simulect",
+      "anti-CD25 antibody",
+      "Basiliximab",
+      "IL-2R",
+      "IL-2",
+      "basiliximab",
+      "basiliximab",
+      "Calcineurin",
+      "NFAT",
+      "AP-1",
+      "NFAT",
+      "NFAT",
+      "AP-1",
+      "IL-2 gene",
+      "IL-2",
+      "IL-4",
+      "IL-2",
+      "CD3",
+      "IL-2",
+      "IL-4",
+      "Interferon (IFN)-&gamma;",
+      "IL-2",
+      "IL-4",
+      "IFN-&gamma; mRNA",
+      "IL-2",
+      "IL-2",
+      "IL-2",
+      "IL-2",
+      "IL-2",
+      "KLH",
+      "IL-2",
+      "Concanavalin A",
+      "human anti-ORAI1 monoclonal antibody",
+      "IL-2",
+      "IL-4",
+      "IL-5",
+      "IL-17",
+      "IL-2",
+      "IL-4"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1214",
+    "title": "Altered gene expression specific to CAR activation, Hepatocytes",
+    "regex_hgnc": [
+      "10477",
+      "10944",
+      "11237",
+      "12530",
+      "23770",
+      "2559",
+      "2615",
+      "2616",
+      "2637",
+      "37236",
+      "4626",
+      "4627",
+      "53",
+      "6352",
+      "7968",
+      "7969"
+    ],
+    "regex_symbols": [
+      "ABCC2",
+      "CXADR",
+      "CXADRP1",
+      "CYP2B6",
+      "CYP2B7P",
+      "CYP3A4",
+      "GSTA1",
+      "GSTA2",
+      "KLHL1",
+      "NR1I2",
+      "NR1I3",
+      "RXRA",
+      "SLC1A6",
+      "SPG7",
+      "SYCE1L",
+      "UGT1A1"
+    ],
+    "bern2_hgnc": [
+      "10477",
+      "10944",
+      "12388",
+      "12530",
+      "1514",
+      "2615",
+      "2621",
+      "2637",
+      "4096",
+      "4626",
+      "4627",
+      "53",
+      "644",
+      "7107",
+      "7873",
+      "7968",
+      "7969"
+    ],
+    "bern2_symbols": [
+      "ABCC2",
+      "AR",
+      "CASR",
+      "CYP2B6",
+      "CYP2C19",
+      "CYP3A4",
+      "GADD45B",
+      "GSTA1",
+      "GSTA2",
+      "MKI67",
+      "NOS2",
+      "NR1I2",
+      "NR1I3",
+      "RXRA",
+      "SLC1A6",
+      "TST",
+      "UGT1A1"
+    ],
+    "bern2_mentions": [
+      "androstane receptor transcription factor",
+      "CAR",
+      "NR1I3",
+      "CAR",
+      "CAR",
+      "CAR",
+      "CAR",
+      "CAR",
+      "retinoid X receptor alpha",
+      "RXR&alpha",
+      "CAR",
+      "RXR",
+      "CAR",
+      "CAR",
+      "CAR",
+      "CAR-responsive genes",
+      "CAR",
+      "pregnane X receptor",
+      "PXR",
+      "PXR",
+      "CAR",
+      "RXR&alpha",
+      "CAR",
+      "CAR",
+      "hepatic",
+      "CAR",
+      "CAR",
+      "CAR",
+      "cytochrome P450 CYP2B",
+      "CYP3A subfamilies",
+      "Cyp2b10",
+      "Cyp3a11",
+      "Cyp2b1/2",
+      "Cyp3a1",
+      "CYP2B6",
+      "CYP3A4",
+      "PXR",
+      "CYP2B",
+      "CYP3A isoforms",
+      "CAR",
+      "PXR",
+      "CYP3A isoforms",
+      "CYP2B isoforms",
+      "CAR",
+      "UGT1A1",
+      "MRP2",
+      "SLC1A6",
+      "GSTA1",
+      "GSTA2",
+      "sulfotransferase enzymes",
+      "CAR",
+      "Ki67",
+      "Gadd45b",
+      "CAR",
+      "CAR",
+      "Gadd45b",
+      "Ki67",
+      "CAR",
+      "CAR"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/122",
+    "title": "Increase, Glucocorticoid receptor activation",
+    "regex_hgnc": [
+      "7978"
+    ],
+    "regex_symbols": [
+      "NR3C1"
+    ],
+    "bern2_hgnc": [],
+    "bern2_symbols": [],
+    "bern2_mentions": [],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": "Expecting value: line 1 column 1765 (char 1764)",
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1238",
+    "title": "Activation of oxidative stress pathway",
+    "regex_hgnc": [
+      "497"
+    ],
+    "regex_symbols": [
+      "TRPA1"
+    ],
+    "bern2_hgnc": [
+      "497"
+    ],
+    "bern2_symbols": [
+      "TRPA1"
+    ],
+    "bern2_mentions": [
+      "TRPA1"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1239",
+    "title": "Altered, Gene Expression",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "4762"
+    ],
+    "bern2_symbols": [
+      "H2BC12L"
+    ],
+    "bern2_mentions": [
+      "histone"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1241",
+    "title": "Increased, Motility",
+    "regex_hgnc": [
+      "10967",
+      "6171",
+      "7178"
+    ],
+    "regex_symbols": [
+      "ITK",
+      "MMRN1",
+      "SLC22A3"
+    ],
+    "bern2_hgnc": [
+      "16961",
+      "23212",
+      "24361",
+      "26935",
+      "54872",
+      "7155"
+    ],
+    "bern2_symbols": [
+      "ACTG1P25",
+      "CD226",
+      "MMP1",
+      "MYH14",
+      "RTCB",
+      "WASHC1"
+    ],
+    "bern2_mentions": [
+      "actin",
+      "actomyosin",
+      "Actin",
+      "actin",
+      "actin",
+      "actin polymerization factors",
+      "focal adhesion proteins",
+      "myosin motors",
+      "Integrins",
+      "Matrix Metalloproteinases",
+      "MMPs",
+      "MMPs"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1243",
+    "title": "Altered, Ca2+-calmodulin activated signal transduction",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "1449",
+      "14542",
+      "1463",
+      "1955",
+      "1958",
+      "232",
+      "2345",
+      "6871",
+      "6877",
+      "735",
+      "784",
+      "9380"
+    ],
+    "bern2_symbols": [
+      "ADCY1",
+      "ASAH1",
+      "ATF2",
+      "CALM3",
+      "CAMK2G",
+      "CHRNA1",
+      "CHRNA4",
+      "CREB1",
+      "MAPK1",
+      "MAPK3",
+      "PRKACA",
+      "WNK2"
+    ],
+    "bern2_mentions": [
+      "nicotinic acetylcholine receptor",
+      "nAChR",
+      "calmodulin",
+      "CaM",
+      "adenylyl cyclase",
+      "AC",
+      "PKA",
+      "Ca2+-CaM kinase II",
+      "CaMKII",
+      "PKA",
+      "CaMKII",
+      "extracellular signal-related protein kinase",
+      "mitogenactivated protein kinase",
+      "ERK",
+      "MAPK",
+      "cAMP response element (CRE) binding protein",
+      "CREB"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1250",
+    "title": "Decrease, Lung function",
+    "regex_hgnc": [
+      "649"
+    ],
+    "regex_symbols": [
+      "ARCN1"
+    ],
+    "bern2_hgnc": [],
+    "bern2_symbols": [],
+    "bern2_mentions": [],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1252",
+    "title": "Binding to (interferes with) topoisomerase II enzyme",
+    "regex_hgnc": [
+      "11989",
+      "7132"
+    ],
+    "regex_symbols": [
+      "KMT2A",
+      "TOP2A"
+    ],
+    "bern2_hgnc": [
+      "11989",
+      "11990",
+      "4204",
+      "7132"
+    ],
+    "bern2_symbols": [
+      "GCNT2",
+      "KMT2A",
+      "TOP2A",
+      "TOP2B"
+    ],
+    "bern2_mentions": [
+      "topoisomerase II-",
+      "type II enzymes",
+      "topoisomerase II",
+      "TopoII enzymes",
+      "TOP2",
+      "TOP2-DNA cleavage complexes",
+      "DNA topoisomerase (Top) II enzyme",
+      "TopoII enzyme",
+      "TopoII",
+      "MLL locus",
+      "topo II"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1253",
+    "title": " MLL chromosomal translocation",
+    "regex_hgnc": [
+      "7132"
+    ],
+    "regex_symbols": [
+      "KMT2A"
+    ],
+    "bern2_hgnc": [
+      "11990",
+      "4378",
+      "4762",
+      "4932",
+      "5100",
+      "7132",
+      "7134",
+      "7138",
+      "7652"
+    ],
+    "bern2_symbols": [
+      "GMPS",
+      "H2BC12L",
+      "HLA-B",
+      "HOXA10",
+      "KMT2A",
+      "MLLT1",
+      "MLLT6",
+      "NBN",
+      "TOP2B"
+    ],
+    "bern2_mentions": [
+      "mixed-lineage leukaemia",
+      "(MLL) gene",
+      "MLL",
+      "TopoII",
+      "MLL",
+      "Drosophila trithorax gene",
+      "MLL",
+      "Trithorax",
+      "HOX&nbsp",
+      "MLL protein",
+      "HOX",
+      "&nbsp;MLL",
+      "nbsp;",
+      "&nbsp;",
+      "MLL",
+      "&nbsp;HOX&nbsp",
+      "MLL",
+      "&nbsp",
+      "MLL&nbsp;mutant",
+      "MLL",
+      "MLL",
+      "As",
+      "HOX",
+      "MLL",
+      "HOX&",
+      "HOX",
+      "MLL",
+      "MLL protein",
+      "histone",
+      "MLL protein",
+      "MLL product",
+      "MLL fusion"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1254",
+    "title": "Infant leukaemia",
+    "regex_hgnc": [
+      "1014",
+      "5417",
+      "7132",
+      "9536"
+    ],
+    "regex_symbols": [
+      "BCR",
+      "IFNA1",
+      "KMT2A",
+      "PSMA7"
+    ],
+    "bern2_hgnc": [
+      "7132",
+      "9536"
+    ],
+    "bern2_symbols": [
+      "KMT2A",
+      "PSMA7"
+    ],
+    "bern2_mentions": [
+      "MLL-",
+      "MLL&nbsp;gene on",
+      "MLL",
+      "HSPC"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1262",
+    "title": "Apoptosis",
+    "regex_hgnc": [
+      "11616",
+      "11998",
+      "1784",
+      "42982",
+      "4852",
+      "7794",
+      "9353",
+      "990"
+    ],
+    "regex_symbols": [
+      "BCL2",
+      "CDKN1A",
+      "H3P16",
+      "HDAC1",
+      "NFKB1",
+      "PRDX2",
+      "TCEAL1",
+      "TP53"
+    ],
+    "bern2_hgnc": [
+      "11998",
+      "1499",
+      "1582",
+      "17868",
+      "20510",
+      "23014",
+      "4852",
+      "5466",
+      "7794",
+      "949",
+      "959",
+      "990",
+      "992",
+      "994"
+    ],
+    "bern2_symbols": [
+      "BAK1",
+      "BAX",
+      "BBC3",
+      "BCL2",
+      "BCL2L1",
+      "BCL2L11",
+      "CASP1",
+      "CCND1",
+      "CYB561A3",
+      "H4C16",
+      "HDAC1",
+      "IGF2",
+      "NFKB1",
+      "TP53"
+    ],
+    "bern2_mentions": [
+      "p53",
+      "p21",
+      "histone H4",
+      "histone deacetylase",
+      "HDAC1-/-",
+      "HDAC1",
+      "p21",
+      "NF-kappaB",
+      "caspase",
+      "Bcl-",
+      "Bax",
+      "Bak",
+      "Bcl2",
+      "Bax",
+      "Bak",
+      "cytochrome&nbsp;c",
+      "caspase",
+      "Bcl-2",
+      "Bcl-xL",
+      "TP53 tumor suppressor",
+      "Igf1/2",
+      "Bax",
+      "Bim",
+      "Puma",
+      "Bcl2",
+      "TP53"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1269",
+    "title": "Increase, COX-2 expression",
+    "regex_hgnc": [
+      "2294",
+      "9594"
+    ],
+    "regex_symbols": [
+      "COX8A",
+      "PTGER2"
+    ],
+    "bern2_hgnc": [
+      "2294",
+      "26359",
+      "7419",
+      "7421",
+      "9604"
+    ],
+    "bern2_symbols": [
+      "COX8A",
+      "MT-CO1",
+      "MT-CO2",
+      "PTGS1",
+      "PXDNL"
+    ],
+    "bern2_mentions": [
+      "COX",
+      "Prostaglandin-endoperoxide synthase",
+      "PTGS",
+      "Cyclooxygenase site",
+      "COX",
+      "Peroxidase",
+      "COX-1",
+      "COX-2",
+      "COX-2",
+      "COX",
+      "COX",
+      "COX",
+      "COX-2"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1270",
+    "title": "Inactivation of PPARγ",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "9232"
+    ],
+    "bern2_symbols": [
+      "PPARA"
+    ],
+    "bern2_mentions": [
+      "PPAR"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/129",
+    "title": "Reduction, Gonadotropins, circulating concentrations",
+    "regex_hgnc": [
+      "24029",
+      "3971"
+    ],
+    "regex_symbols": [
+      "FST",
+      "INHBE"
+    ],
+    "bern2_hgnc": [],
+    "bern2_symbols": [],
+    "bern2_mentions": [],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": "Expecting value: line 1 column 1 (char 0)",
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1320",
+    "title": "Increased, extracellular serotonin",
+    "regex_hgnc": [
+      "11050"
+    ],
+    "regex_symbols": [
+      "SLC6A4"
+    ],
+    "bern2_hgnc": [
+      "11050"
+    ],
+    "bern2_symbols": [
+      "SLC6A4"
+    ],
+    "bern2_mentions": [
+      "serotonin reuptake transporter",
+      "SERT",
+      "5-hydroxytryptamine transporter",
+      "5-HTT",
+      "serotonin reuptake",
+      "serotonin reuptake transporter"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1330",
+    "title": "Decreased, neuroplasticity",
+    "regex_hgnc": [
+      "14301"
+    ],
+    "regex_symbols": [
+      "XIRP1"
+    ],
+    "bern2_hgnc": [],
+    "bern2_symbols": [],
+    "bern2_mentions": [],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1335",
+    "title": "Reduced, BDNF (Brain-derived neurotrophic factor)",
+    "regex_hgnc": [
+      "1033"
+    ],
+    "regex_symbols": [
+      "BDNF"
+    ],
+    "bern2_hgnc": [
+      "1033",
+      "16824",
+      "1736",
+      "391",
+      "54872",
+      "667",
+      "8032"
+    ],
+    "bern2_symbols": [
+      "ACTG1P25",
+      "AKT1",
+      "BDNF",
+      "CDC42",
+      "HCAR3",
+      "NTRK2",
+      "RHOA"
+    ],
+    "bern2_mentions": [
+      "brain-derived neurotrophic factor",
+      "BDNF",
+      "BDNF",
+      "neurotrophin family",
+      "BDNF",
+      "neurotrophin",
+      "BDNF",
+      "BDNF gene",
+      "pro-BDNF protein",
+      "BDNF gene",
+      "BDNF gene",
+      "BDNF",
+      "BDNF",
+      "BDNF",
+      "BDNF",
+      "BDNF mRNA",
+      "BDNF",
+      "TrkB receptors",
+      "GTPases",
+      "RhoA",
+      "Rac",
+      "Cdc42",
+      "actin",
+      "Rac",
+      "Cdc42",
+      "BDNF",
+      "TrkB receptors",
+      "BDNF",
+      "TrkB receptor"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1339",
+    "title": "Increase, intracellular calcium",
+    "regex_hgnc": [
+      "4620",
+      "8022"
+    ],
+    "regex_symbols": [
+      "GSN",
+      "NT5C2"
+    ],
+    "bern2_hgnc": [
+      "10514",
+      "1459",
+      "2345",
+      "2696",
+      "391",
+      "4584",
+      "4620",
+      "54872",
+      "7794",
+      "9498",
+      "9612"
+    ],
+    "bern2_symbols": [
+      "ACTG1P25",
+      "AKT1",
+      "CAMK1",
+      "CREB1",
+      "DBNL",
+      "GRIN1",
+      "GSN",
+      "NFKB1",
+      "PSAP",
+      "PTK2B",
+      "SAA2"
+    ],
+    "bern2_mentions": [
+      "protein kinase B",
+      "PKB",
+      "Akt",
+      "calcium/calmodulin-dependent protein kinase",
+      "cyclic-AMP response element-binding protein",
+      "CREB",
+      "actin",
+      "gelsolin",
+      "actin",
+      "NMDA (N-methyl-d-aspartate) receptors",
+      "actin-binding proteins",
+      "NMDA receptor",
+      "secreted amyloid precursor protein-&alpha;",
+      "sAPP-&alpha;",
+      "NF-&kappa;B"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/134",
+    "title": "Increase, Kupffer cell activation",
+    "regex_hgnc": [
+      "10261",
+      "10618",
+      "11925",
+      "11936",
+      "2434",
+      "4012"
+    ],
+    "regex_symbols": [
+      "CCL2",
+      "CSF2",
+      "FASLG",
+      "FUT1",
+      "ROS1",
+      "TNFSF10"
+    ],
+    "bern2_hgnc": [
+      "10618",
+      "11892",
+      "11904",
+      "11925",
+      "11936",
+      "2434",
+      "5438",
+      "5991",
+      "7794",
+      "8804",
+      "9236",
+      "9652"
+    ],
+    "bern2_symbols": [
+      "CCL2",
+      "CSF2",
+      "FASLG",
+      "IFNG",
+      "IL1A",
+      "NFKB1",
+      "PDGFRB",
+      "PPARG",
+      "PTPN22",
+      "TNF",
+      "TNFRSF10A",
+      "TNFSF10"
+    ],
+    "bern2_mentions": [
+      "NF-&kappa;B",
+      "PPAR-&gamma;",
+      "TNF-&alpha;",
+      "Tumor Necrosis Factor-alpha",
+      "IL-1",
+      "Interleukin-1",
+      "MCP-1",
+      "monocyte-chemoattractant protein-1",
+      "PDGF receptors",
+      "TRAIL",
+      "TNF-related apoptosis-inducing ligand",
+      "FasL",
+      "Fas Ligand",
+      "Interferon gamma",
+      "IFN&gamma",
+      "granulocyte macrophage colony-stimulating factor",
+      "GM-CSF",
+      "TNF-&alpha;)",
+      "Ly-"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1346",
+    "title": "Increased, depression",
+    "regex_hgnc": [
+      "1033"
+    ],
+    "regex_symbols": [
+      "BDNF"
+    ],
+    "bern2_hgnc": [
+      "1033"
+    ],
+    "bern2_symbols": [
+      "BDNF"
+    ],
+    "bern2_mentions": [
+      "BDNF"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1350",
+    "title": "Increased, glutamate",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "4584"
+    ],
+    "bern2_symbols": [
+      "GRIN1"
+    ],
+    "bern2_mentions": [
+      "NMDA receptors"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1353",
+    "title": "Binding to voltage-gated sodium channel",
+    "regex_hgnc": [
+      "56822"
+    ],
+    "regex_symbols": [
+      "DHCR7-DT"
+    ],
+    "bern2_hgnc": [
+      "10588",
+      "10590",
+      "1073",
+      "22944"
+    ],
+    "bern2_symbols": [
+      "BMP6",
+      "NLRP6",
+      "SCN2A",
+      "SCN3A"
+    ],
+    "bern2_mentions": [
+      "voltage-gated sodium channels",
+      "VGSC",
+      "NaV",
+      "VGSC",
+      "rat brain VGSC &alpha; subunits",
+      "VGSC",
+      "VGSC",
+      "VGSC",
+      "VGSCs",
+      "VGSCs"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1376",
+    "title": "Increase, angiogenesis",
+    "regex_hgnc": [
+      "12680"
+    ],
+    "regex_symbols": [
+      "VEGFA"
+    ],
+    "bern2_hgnc": [
+      "12680",
+      "3665"
+    ],
+    "bern2_symbols": [
+      "FGF1",
+      "VEGFA"
+    ],
+    "bern2_mentions": [
+      "VEGF",
+      "FGF"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1386",
+    "title": "CYP7B activity, inhibition",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "2615",
+      "2652"
+    ],
+    "bern2_symbols": [
+      "CYP2B6",
+      "CYP7B1"
+    ],
+    "bern2_mentions": [
+      "CYP7B",
+      "CYP7B",
+      "cytochrome P450 family",
+      "CYP7B",
+      "CYP7B"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1387",
+    "title": "7α-hydroxypregnenolone synthesis in the brain, decreased",
+    "regex_hgnc": [
+      "2590",
+      "9445"
+    ],
+    "regex_symbols": [
+      "CYP11A1",
+      "PRL"
+    ],
+    "bern2_hgnc": [
+      "2590",
+      "2652",
+      "9445"
+    ],
+    "bern2_symbols": [
+      "CYP11A1",
+      "CYP7B1",
+      "PRL"
+    ],
+    "bern2_mentions": [
+      "CYP7B",
+      "CYP11A",
+      "prolactin"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1388",
+    "title": "Dopamine release in the brain, decreased",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "277",
+      "3020"
+    ],
+    "bern2_symbols": [
+      "ADRA1A",
+      "DRD1"
+    ],
+    "bern2_mentions": [
+      "G protein receptor",
+      "D1 and D2 receptors"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1391",
+    "title": "Activation of Cyp2E1",
+    "regex_hgnc": [
+      "2631"
+    ],
+    "regex_symbols": [
+      "CYP2E1"
+    ],
+    "bern2_hgnc": [
+      "18795",
+      "2631",
+      "2646"
+    ],
+    "bern2_symbols": [
+      "CYP2E1",
+      "CYP4F3",
+      "UBD"
+    ],
+    "bern2_mentions": [
+      "Cyp2E1",
+      "CYP2E1",
+      "CYP2E1",
+      "cytochrome P450 enzymes",
+      "Cyp2E1",
+      "Cyp2E1 enzyme",
+      "Cyp2E1",
+      "Cyp2E1",
+      "ubiquitin",
+      "hsp"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1392",
+    "title": "Increase, Oxidative Stress ",
+    "regex_hgnc": [
+      "10261",
+      "1516",
+      "29175",
+      "9030"
+    ],
+    "regex_symbols": [
+      "CAT",
+      "PLA2G1B",
+      "ROS1",
+      "WDTC1"
+    ],
+    "bern2_hgnc": [
+      "11179",
+      "1516",
+      "23177",
+      "4553",
+      "4623",
+      "7782"
+    ],
+    "bern2_symbols": [
+      "CAT",
+      "GPX1",
+      "GSR",
+      "KEAP1",
+      "NFE2L2",
+      "SOD1"
+    ],
+    "bern2_mentions": [
+      "Nrf2",
+      "Keap1",
+      "superoxide dismutase",
+      "catalase",
+      "glutathione peroxidase",
+      "glutathione reductase"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1393",
+    "title": "Hepatocytotoxicity",
+    "regex_hgnc": [
+      "10019",
+      "10021",
+      "12587",
+      "7467",
+      "9841"
+    ],
+    "regex_symbols": [
+      "MTTP",
+      "RALBP1",
+      "RIPK1",
+      "RIPK3",
+      "UQCRFS1"
+    ],
+    "bern2_hgnc": [
+      "10019",
+      "10021",
+      "11916",
+      "1499",
+      "1509",
+      "19986",
+      "6866",
+      "6871",
+      "6877",
+      "9437",
+      "959"
+    ],
+    "bern2_symbols": [
+      "BAX",
+      "CASP1",
+      "CASP8",
+      "CYCS",
+      "EIF2AK2",
+      "MAP4K4",
+      "MAPK1",
+      "MAPK3",
+      "RIPK1",
+      "RIPK3",
+      "TNFRSF1A"
+    ],
+    "bern2_mentions": [
+      "Tumor Necrosis Factor Receptor",
+      "TNFR",
+      "caspase",
+      "TNFR",
+      "receptor protein kinases 1 and 3",
+      "RIP1",
+      "RIP3",
+      "TNFR",
+      "caspase-8",
+      "RIP1",
+      "RIP3",
+      "caspase-8",
+      "RIP1",
+      "RIP3",
+      "mitogen activated protein kinase",
+      "MAPK",
+      "ASK1MKK4JNK",
+      "Bcl-2-associated X protein",
+      "Bax",
+      "Bax",
+      "cytochrome c",
+      "caspase"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1394",
+    "title": "Induction, persistent proliferation/sustained proliferation",
+    "regex_hgnc": [
+      "11639",
+      "11640",
+      "11641",
+      "12687",
+      "1582",
+      "17113",
+      "1773",
+      "2514",
+      "2891",
+      "3084",
+      "3796",
+      "3797",
+      "3818",
+      "4910",
+      "51639",
+      "583",
+      "6204",
+      "6206",
+      "6502",
+      "6692",
+      "6881",
+      "7531",
+      "7553",
+      "7794",
+      "903",
+      "904",
+      "9555",
+      "9664",
+      "9884"
+    ],
+    "regex_symbols": [
+      "APC",
+      "AXIN1",
+      "AXIN2",
+      "CCND1",
+      "CDK4",
+      "CTNNB1",
+      "DKK1",
+      "DVL1",
+      "FOS",
+      "FOSB",
+      "FOXM1",
+      "HIF1A",
+      "HIF1AN",
+      "JUN",
+      "JUND",
+      "LRP1",
+      "MAPK8",
+      "MVP",
+      "MYC",
+      "NFKB1",
+      "PSMD10",
+      "PTPRA",
+      "RB1",
+      "RPSA",
+      "TCF7",
+      "TCF7L1",
+      "TCF7L2",
+      "VHL",
+      "WSPAR"
+    ],
+    "bern2_hgnc": [
+      "11639",
+      "11640",
+      "11641",
+      "12774",
+      "1582",
+      "1722",
+      "1773",
+      "2514",
+      "3084",
+      "3818",
+      "4038",
+      "4616",
+      "5024",
+      "583",
+      "6204",
+      "6551",
+      "6697",
+      "6698",
+      "6871",
+      "6881",
+      "7553",
+      "7794",
+      "8729",
+      "903",
+      "904",
+      "9884"
+    ],
+    "bern2_symbols": [
+      "APC",
+      "AXIN1",
+      "AXIN2",
+      "CCND1",
+      "CDK1",
+      "CDK4",
+      "CTNNB1",
+      "DVL1",
+      "FOXM1",
+      "FZD1",
+      "GSK3A",
+      "HNF4A",
+      "JUN",
+      "LEF1",
+      "LRP5",
+      "LRP6",
+      "MAPK1",
+      "MAPK8",
+      "MYC",
+      "NFKB1",
+      "PCNA",
+      "RB1",
+      "TCF7",
+      "TCF7L1",
+      "TCF7L2",
+      "WNT1"
+    ],
+    "bern2_mentions": [
+      "AP-1",
+      "c-Jun monomer",
+      "NF-kappaB",
+      "AP-1",
+      "NF-kappaB",
+      "NF-kappaB",
+      "c-Jun",
+      "AP-1",
+      "WNT",
+      "Wnt ligands",
+      "Wnt proteins",
+      "Wnt",
+      "Wnt signaling ligands",
+      "Frizzled",
+      "FZD family",
+      "Low-density lipoprotein receptor-related proteins 5 and 6",
+      "LRP5/6",
+      "Dishevelled",
+      "DVL1",
+      "scaffold protein Axin",
+      "Axin",
+      "AXIN1",
+      "AXIN2",
+      "beta-catenin",
+      "AXIN1",
+      "AXIN2",
+      "adenomatosis polyposis",
+      "beta-catenin",
+      "CTNNB1",
+      "glycogen synthase kinase 3",
+      "GSK3",
+      "beta-catenin",
+      "beta-catenin",
+      "transcription factor 7",
+      "lymphoid enhancer-binding factor",
+      "TCF",
+      "LEF",
+      "TF7",
+      "TCF7L1",
+      "TCF7L2",
+      "LEF1",
+      "TCF",
+      "LEF",
+      "beta-catenin",
+      "MYC proto-oncogene",
+      "MYC",
+      "cyclin D1",
+      "CCND1",
+      "Wnt",
+      "GSK3",
+      "forkhead box M1",
+      "FOXM1",
+      "CCND1",
+      "MYC",
+      "FOXM1",
+      "MYC",
+      "MAPK8",
+      "mitogen-activated protein kinase",
+      "JNK1",
+      "MAPK8",
+      "CCND1",
+      "MYC",
+      "cyclin-dependent kinase 4",
+      "CDK4",
+      "CDK4",
+      "CCND1 complex",
+      "cyclin",
+      "CDK",
+      "retinoblastoma",
+      "RB1",
+      "RB1",
+      "FOXM1",
+      "MYC"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1395",
+    "title": "Liver Cancer",
+    "regex_hgnc": [
+      "24587"
+    ],
+    "regex_symbols": [
+      "HYCC1"
+    ],
+    "bern2_hgnc": [],
+    "bern2_symbols": [],
+    "bern2_mentions": [],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1438",
+    "title": "Transcription of genes encoding acute phase proteins, Increased",
+    "regex_hgnc": [
+      "10513",
+      "2367",
+      "5141",
+      "620",
+      "9264"
+    ],
+    "regex_symbols": [
+      "APP",
+      "CRP",
+      "HP",
+      "PPIAP10",
+      "SAA1"
+    ],
+    "bern2_hgnc": [
+      "10513",
+      "10514",
+      "10516",
+      "2367",
+      "2527",
+      "5141",
+      "584",
+      "620",
+      "6204"
+    ],
+    "bern2_symbols": [
+      "APCS",
+      "APP",
+      "CRP",
+      "CTSB",
+      "HP",
+      "JUN",
+      "SAA1",
+      "SAA2",
+      "SAA4"
+    ],
+    "bern2_mentions": [
+      "Acute phase proteins",
+      "APPs",
+      "APPs",
+      "C reactive protein",
+      "CRP",
+      "serum amyloid A",
+      "SAA",
+      "APPs",
+      "SAA",
+      "haptoglobin",
+      "serum amyloid P",
+      "APPs",
+      "APPs",
+      "APP genes",
+      "APPs",
+      "SAA isoforms",
+      "Saa1",
+      "Saa2",
+      "Saa3",
+      "Saa4",
+      "Saa3",
+      "CRP",
+      "Saa3 isoform",
+      "APP gene",
+      "Saa1 gene"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1439",
+    "title": "Systemic acute phase response",
+    "regex_hgnc": [
+      "10513",
+      "2367",
+      "5141",
+      "620",
+      "6692",
+      "9108",
+      "9264"
+    ],
+    "regex_symbols": [
+      "APP",
+      "CRP",
+      "HP",
+      "LRP1",
+      "PMAIP1",
+      "PPIAP10",
+      "SAA1"
+    ],
+    "bern2_hgnc": [
+      "10513",
+      "2367",
+      "2527",
+      "5141",
+      "584"
+    ],
+    "bern2_symbols": [
+      "APCS",
+      "CRP",
+      "CTSB",
+      "HP",
+      "SAA1"
+    ],
+    "bern2_mentions": [
+      "APPs",
+      "C-reactive protein",
+      "CRP",
+      "serum amyloid A",
+      "SAA",
+      "APPs",
+      "APPs",
+      "SAA",
+      "haptoglobin",
+      "serum amyloid P"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1443",
+    "title": "Atherosclerosis",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "6547",
+      "8133"
+    ],
+    "bern2_symbols": [
+      "LDLR",
+      "OLR1"
+    ],
+    "bern2_mentions": [
+      "low density lipoprotein",
+      "LDL",
+      "oxLDL",
+      "oxLDL"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1446",
+    "title": "Decrease, Coupling of oxidative phosphorylation",
+    "regex_hgnc": [
+      "29175",
+      "9337"
+    ],
+    "regex_symbols": [
+      "PRB1",
+      "WDTC1"
+    ],
+    "bern2_hgnc": [
+      "9337"
+    ],
+    "bern2_symbols": [
+      "PRB1"
+    ],
+    "bern2_mentions": [
+      "PMF"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1457",
+    "title": "Epithelial Mesenchymal Transition",
+    "regex_hgnc": [
+      "10494",
+      "10967",
+      "11128",
+      "11187",
+      "11231",
+      "11642",
+      "12428",
+      "12692",
+      "21411",
+      "2597",
+      "2770",
+      "3229",
+      "3393",
+      "3801",
+      "4893",
+      "6018",
+      "6171",
+      "6871",
+      "7029",
+      "7178",
+      "8975"
+    ],
+    "regex_symbols": [
+      "AIFM2",
+      "ATL1",
+      "CYP1B1",
+      "DES",
+      "EGF",
+      "EPHB2",
+      "FOXC2",
+      "HGF",
+      "IL6",
+      "ITK",
+      "MAPK1",
+      "MET",
+      "MMRN1",
+      "PIK3CA",
+      "S100A4",
+      "SLC22A3",
+      "SNAI1",
+      "SOS1",
+      "TWIST1",
+      "VIM",
+      "ZEB1"
+    ],
+    "bern2_hgnc": [
+      "11128",
+      "11205",
+      "11231",
+      "11642",
+      "11766",
+      "12428",
+      "12692",
+      "12774",
+      "12784",
+      "129",
+      "2514",
+      "2597",
+      "2770",
+      "29012",
+      "4764",
+      "4793",
+      "6171"
+    ],
+    "bern2_symbols": [
+      "ACTA1",
+      "ATL1",
+      "CTNNB1",
+      "CYP1B1",
+      "DES",
+      "H3-3A",
+      "H4C9",
+      "ITK",
+      "KDM6B",
+      "SNAI1",
+      "SP1",
+      "TGFB1",
+      "TWIST1",
+      "VIM",
+      "WNT1",
+      "WNT5A",
+      "ZEB1"
+    ],
+    "bern2_mentions": [
+      "Jumonji-family histone demethylase",
+      "histone H3",
+      "H3K4",
+      "zinc finger E-box-binding homeobox 1",
+      "ZEB1",
+      "EMT",
+      "Wnt5a",
+      "Wnt",
+      "beta-catenin",
+      "TGFbeta",
+      "ZEB",
+      "SNAI1",
+      "Snail",
+      "Snail1",
+      "Wnt",
+      "SNAI1",
+      "TWIST1",
+      "Sp1",
+      "cytochrome P450 1B1",
+      "CYP1B1",
+      "&alpha;-SMA",
+      "FSP1",
+      "vimentin",
+      "desmin"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1458",
+    "title": "Pulmonary fibrosis",
+    "regex_hgnc": [
+      "3327"
+    ],
+    "regex_symbols": [
+      "ELN"
+    ],
+    "bern2_hgnc": [
+      "2200",
+      "3327"
+    ],
+    "bern2_symbols": [
+      "COL2A1",
+      "ELN"
+    ],
+    "bern2_mentions": [
+      "elastin",
+      "collagen",
+      "collagen",
+      "collagen",
+      "collagen"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1461",
+    "title": "Increase, DNA double-strand breaks",
+    "regex_hgnc": [
+      "13918",
+      "2412",
+      "24836",
+      "5172"
+    ],
+    "regex_symbols": [
+      "CRYGEP",
+      "HR",
+      "KIAA1549L",
+      "PRRC2A"
+    ],
+    "bern2_hgnc": [],
+    "bern2_symbols": [],
+    "bern2_mentions": [
+      "DNA-",
+      "polymerase"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1475",
+    "title": "Decrease, Photosynthesis",
+    "regex_hgnc": [],
+    "regex_symbols": [],
+    "bern2_hgnc": [
+      "12586",
+      "7696"
+    ],
+    "bern2_symbols": [
+      "NDUFB10",
+      "UQCRC2"
+    ],
+    "bern2_mentions": [
+      "photosystem II",
+      "PSII"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1477",
+    "title": "Oxidative phosphorylation, decreased",
+    "regex_hgnc": [
+      "10261"
+    ],
+    "regex_symbols": [
+      "ROS1"
+    ],
+    "bern2_hgnc": [],
+    "bern2_symbols": [],
+    "bern2_mentions": [],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": "Expecting value: line 1 column 1820 (char 1819)",
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1487",
+    "title": "Binding, Thiol/seleno-proteins involved in protection against oxidative stress",
+    "regex_hgnc": [
+      "12435"
+    ],
+    "regex_symbols": [
+      "TXN"
+    ],
+    "bern2_hgnc": [],
+    "bern2_symbols": [],
+    "bern2_mentions": [],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": "Expecting value: line 1 column 899 (char 898)",
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1488",
+    "title": "Glutamate dyshomeostasis",
+    "regex_hgnc": [
+      "1033",
+      "10940",
+      "10941",
+      "10943",
+      "11066",
+      "12749",
+      "13447",
+      "13448",
+      "16608",
+      "18044",
+      "4232",
+      "4331",
+      "52460"
+    ],
+    "regex_symbols": [
+      "BDNF",
+      "GDNF",
+      "GLS",
+      "LAT2",
+      "LINC01672",
+      "PYCARD",
+      "SLC1A2",
+      "SLC1A3",
+      "SLC1A5",
+      "SLC38A1",
+      "SLC38A2",
+      "SLC38A3",
+      "SLC7A8"
+    ],
+    "bern2_hgnc": [
+      "1033",
+      "10939",
+      "10940",
+      "10941",
+      "10942",
+      "10944",
+      "4232",
+      "4571",
+      "4584"
+    ],
+    "bern2_symbols": [
+      "BDNF",
+      "GDNF",
+      "GRIA1",
+      "GRIN1",
+      "SLC1A1",
+      "SLC1A2",
+      "SLC1A3",
+      "SLC1A4",
+      "SLC1A6"
+    ],
+    "bern2_mentions": [
+      "N-methyl D-aspartate (NMDA) receptors",
+      "brain-derived neurotrophic factor",
+      "BDNF",
+      "GDNF",
+      "glutamate transporters",
+      "Glu transporters",
+      "glutamate receptors",
+      "glutamate aspartate transporter",
+      "GLAST",
+      "Glu transporter-1",
+      "GLT-1",
+      "excitatory amino acid transporter",
+      "(EAAT) 1 and 2 in",
+      "EAAT2",
+      "EAAT1-3"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/149",
+    "title": "Increase, Inflammation",
+    "regex_hgnc": [
+      "10261",
+      "10967",
+      "11892",
+      "12680",
+      "435",
+      "5986",
+      "6018",
+      "6025",
+      "6171",
+      "7178",
+      "9594"
+    ],
+    "regex_symbols": [
+      "ALOX5",
+      "CXCL8",
+      "IL18",
+      "IL6",
+      "ITK",
+      "MMRN1",
+      "PTGER2",
+      "ROS1",
+      "SLC22A3",
+      "TNF",
+      "VEGFA"
+    ],
+    "bern2_hgnc": [
+      "11892",
+      "12680",
+      "15564",
+      "435",
+      "5986",
+      "5991",
+      "5992",
+      "6018",
+      "6025",
+      "7176",
+      "7421"
+    ],
+    "bern2_symbols": [
+      "ALOX5",
+      "CXCL8",
+      "IL18",
+      "IL1A",
+      "IL1B",
+      "IL36B",
+      "IL6",
+      "MMP9",
+      "MT-CO2",
+      "TNF",
+      "VEGFA"
+    ],
+    "bern2_mentions": [
+      "TNF-&alpha",
+      "interleukines",
+      "TNF",
+      "IL-1alpha",
+      "IL-1beta",
+      "IL-6",
+      "IL-8",
+      "IL-18",
+      "MMP-9",
+      "VEGF",
+      "COX-2",
+      "5-LOX"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1492",
+    "title": "Tissue resident cell activation",
+    "regex_hgnc": [
+      "10261",
+      "11848",
+      "11850",
+      "11892",
+      "1705",
+      "2714",
+      "29175",
+      "5973",
+      "5986",
+      "6014",
+      "6018",
+      "6692",
+      "7228"
+    ],
+    "regex_symbols": [
+      "CD86",
+      "DCX",
+      "IL13",
+      "IL18",
+      "IL4",
+      "IL6",
+      "LRP1",
+      "MRC1",
+      "ROS1",
+      "TLR2",
+      "TLR4",
+      "TNF",
+      "WDTC1"
+    ],
+    "bern2_hgnc": [],
+    "bern2_symbols": [],
+    "bern2_mentions": [],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1493",
+    "title": "Increased Pro-inflammatory mediators",
+    "regex_hgnc": [
+      "10261",
+      "10618",
+      "10967",
+      "123",
+      "12680",
+      "17272",
+      "1834",
+      "18449",
+      "2412",
+      "2505",
+      "48649",
+      "5331",
+      "5981",
+      "6001",
+      "6014",
+      "6018",
+      "6025",
+      "6121",
+      "6171",
+      "8947"
+    ],
+    "regex_symbols": [
+      "ACP2",
+      "CCL2",
+      "CEBPB",
+      "CPAP",
+      "CRYGEP",
+      "CTLA4",
+      "CXCL8",
+      "IL17A",
+      "IL2",
+      "IL4",
+      "IL6",
+      "IRF6",
+      "ITK",
+      "LAP3",
+      "MRLN",
+      "NOD2",
+      "PI3",
+      "ROS1",
+      "SLC22A3",
+      "VEGFA"
+    ],
+    "bern2_hgnc": [
+      "11766",
+      "11772",
+      "11773",
+      "25939",
+      "6371",
+      "6767"
+    ],
+    "bern2_symbols": [
+      "BORCS6",
+      "KLKB1",
+      "SMAD1",
+      "TGFB1",
+      "TGFBR1",
+      "TGFBR2"
+    ],
+    "bern2_mentions": [
+      "kinin",
+      "lysosomal",
+      "TGF-&beta;1",
+      "TGF-&beta;",
+      "Transforming growth factor &beta;",
+      "TGF-&beta",
+      "TGF-&beta; receptor II",
+      "TGF-&beta;RII",
+      "TGF-&beta;RI",
+      "Smad molecules"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1494",
+    "title": "Leukocyte recruitment/activation",
+    "regex_hgnc": [
+      "17757"
+    ],
+    "regex_symbols": [
+      "TNMD"
+    ],
+    "bern2_hgnc": [
+      "10718",
+      "10720",
+      "4962"
+    ],
+    "bern2_symbols": [
+      "HLA-E",
+      "SELE",
+      "SELL"
+    ],
+    "bern2_mentions": [
+      "endothelial E- and P-selectins",
+      "L-selectin",
+      "selectin",
+      "MHC"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  },
+  {
+    "ke_uri": "https://identifiers.org/aop.events/1495",
+    "title": "Substance interaction with the lung resident cell membrane components",
+    "regex_hgnc": [
+      "11850",
+      "18305",
+      "6895",
+      "9706"
+    ],
+    "regex_symbols": [
+      "ATP6AP2",
+      "MARCO",
+      "NECTIN1",
+      "TLR4"
+    ],
+    "bern2_hgnc": [
+      "11847",
+      "11850",
+      "17032",
+      "2334",
+      "6895",
+      "7968",
+      "9706"
+    ],
+    "bern2_symbols": [
+      "CR1",
+      "MARCO",
+      "NECTIN1",
+      "NR1I2",
+      "TLR1",
+      "TLR4",
+      "VSIG4"
+    ],
+    "bern2_mentions": [
+      "PRRs",
+      "PRRs",
+      "PRR",
+      "PRRs",
+      "immunoglobulins",
+      "complement proteins",
+      "Toll-like receptors",
+      "TLRs",
+      "TLR-4",
+      "TLRs",
+      "TLRs",
+      "MARCO"
+    ],
+    "pubtator_hgnc": [],
+    "pubtator_symbols": [],
+    "pubtator_mentions": [],
+    "bern2_error": null,
+    "pubtator_error": "skipped"
+  }
+]

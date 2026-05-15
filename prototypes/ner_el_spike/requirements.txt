@@ -1,0 +1,3 @@
+# NER + EL spike — isolated deps, do NOT mix with production requirements.txt
+requests>=2.33.0
+rdflib>=6.3.0
