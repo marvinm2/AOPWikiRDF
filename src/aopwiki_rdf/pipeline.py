@@ -139,6 +139,29 @@ def _stage_parse(config, context):
     context["aopwikixmlfilename"] = aopwikixmlfilename
 
 
+def _stage_filter_arr_aops(config, context):
+    """Optionally drop ARR-licensed AOPs from the aopdict.
+
+    Opt-in via config.filter_arr_aops (default False). The primary licence
+    mechanism is per-AOP dcterms:license emission in the writer; this stage
+    is a defensive filter for strict CC-BY-SA-only release builds.
+    Scope is AOP-only -- KEs/KERs/Stressors are kept regardless, since
+    upstream asserts licence at AOP level only.
+    """
+    if not config.filter_arr_aops:
+        return
+    entities = context["entities"]
+    aopdict = entities.aopdict
+    arr_ids = [aop_id for aop_id, aop in aopdict.items()
+               if aop.get("_wiki_license") == "ARR"]
+    for aop_id in arr_ids:
+        del aopdict[aop_id]
+    logger.info(
+        "Filtered %d ARR-licensed AOPs (%d remaining)",
+        len(arr_ids), len(aopdict),
+    )
+
+
 def _stage_chemicals(config, context):
     """Map chemicals via BridgeDb batch API."""
     entities = context["entities"]
@@ -385,6 +408,7 @@ def _stage_write_void_rdf(config, context):
 STAGES = [
     ("Setup & Static Files", _stage_setup),
     ("XML Download & Parse", _stage_parse),
+    ("Filter ARR-licensed AOPs", _stage_filter_arr_aops),
     ("Chemical Mapping", _stage_chemicals),
     ("Protein Ontology Mapping", _stage_protein_ontology),
     ("HGNC Gene Mapping", _stage_gene_mapping),

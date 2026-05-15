@@ -199,3 +199,45 @@ WHERE {
 ORDER BY ?ke
 LIMIT 50
 ```
+
+## 11. Filter AOPs by Per-AOP Licence
+
+Each AOP carries a `dcterms:license` URI derived from the upstream `<wiki-license>` field. `<https://creativecommons.org/licenses/by-sa/4.0/>` marks AOPs published under CC-BY-SA 4.0; `<https://rightsstatements.org/page/InC/1.0/>` marks AOPs still under All Rights Reserved during their grace period.
+
+### 11a. List only CC-BY-SA-licensed AOPs
+
+```sparql
+SELECT ?aop ?title
+WHERE {
+  ?aop a aopo:AdverseOutcomePathway ;
+       dc:title ?title ;
+       dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> .
+}
+ORDER BY ?aop
+```
+
+### 11b. Count AOPs by licence
+
+```sparql
+SELECT ?licence (COUNT(?aop) AS ?count)
+WHERE {
+  ?aop a aopo:AdverseOutcomePathway ;
+       dcterms:license ?licence .
+}
+GROUP BY ?licence
+ORDER BY DESC(?count)
+```
+
+### 11c. Find AOPs without a declared licence
+
+Useful for spotting AOPs from older XML snapshots where the `<wiki-license>` element was not yet present upstream (pre-Release 2.6, 2023-04-29).
+
+```sparql
+SELECT ?aop ?title
+WHERE {
+  ?aop a aopo:AdverseOutcomePathway ;
+       dc:title ?title .
+  FILTER NOT EXISTS { ?aop dcterms:license ?licence }
+}
+ORDER BY ?aop
+```

@@ -18,6 +18,15 @@ from aopwiki_rdf.utils import clean_html_tags
 
 logger = logging.getLogger(__name__)
 
+# Map AOP-Wiki wiki-license codes to stable rights URIs for dcterms:license.
+# BY-SA  → CC-BY-SA 4.0 (creativecommons.org canonical URI)
+# ARR    → rightsstatements.org "In Copyright" — a machine-readable Resource
+#          identifier used by Europeana/DPLA-class aggregators.
+LICENCE_URI_MAP = {
+    'BY-SA': '<https://creativecommons.org/licenses/by-sa/4.0/>',
+    'ARR': '<https://rightsstatements.org/page/InC/1.0/>',
+}
+
 # ---------------------------------------------------------------------------
 # Helper functions (extracted from pipeline.py lines 1247-1278)
 # ---------------------------------------------------------------------------
@@ -161,6 +170,11 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
                 g.write(' ;\n\tnci:C25688\t' + aopdict[aop]['oecd-status'])
             if 'saaop-status' in aopdict[aop]:
                 g.write(' ;\n\tnci:C25688\t' + aopdict[aop]['saaop-status'])
+
+            if '_wiki_license' in aopdict[aop]:
+                licence_uri = LICENCE_URI_MAP.get(aopdict[aop]['_wiki_license'])
+                if licence_uri:
+                    g.write(f' ;\n\tdcterms:license\t{licence_uri}')
 
             _write_multivalue_triple(g, 'aopo:has_key_event', [aopdict[aop]['aopo:has_key_event'][ke]['dc:identifier'] for ke in aopdict[aop].get('aopo:has_key_event', {})])
             _write_multivalue_triple(g, 'aopo:has_key_event_relationship', [aopdict[aop]['aopo:has_key_event_relationship'][ker]['dc:identifier'] for ker in aopdict[aop].get('aopo:has_key_event_relationship', {})])

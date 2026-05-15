@@ -132,6 +132,9 @@ def parse_aopwiki_xml(xml_path: str, config: PipelineConfig = None) -> ParsedEnt
             aopdict[AOP.get('id')]['oecd-status'] = '"' + AOP.find(aopxml + 'status').find(aopxml + 'oecd-status').text + '"'
         if AOP.find(aopxml + 'status').find(aopxml + 'saaop-status') is not None:
             aopdict[AOP.get('id')]['saaop-status'] = '"' + AOP.find(aopxml + 'status').find(aopxml + 'saaop-status').text + '"'
+        wiki_license_el = AOP.find(aopxml + 'status').find(aopxml + 'wiki-license')
+        if wiki_license_el is not None and wiki_license_el.text:
+            aopdict[AOP.get('id')]['_wiki_license'] = wiki_license_el.text
         aopdict[AOP.get('id')]['oecd-project'] = AOP.find(aopxml + 'oecd-project').text
         aopdict[AOP.get('id')]['dc:source'] = AOP.find(aopxml + 'source').text
         aopdict[AOP.get('id')]['dcterms:created'] = AOP.find(aopxml + 'creation-timestamp').text

@@ -13,6 +13,33 @@ The conversion pipeline transforms AOP-Wiki XML exports into four RDF/Turtle fil
 5. **Protein ontology mapping** -- Biological objects are mapped to Protein Ontology identifiers using the promapping.txt file from the PRO Consortium.
 6. **RDF generation** -- Four Turtle files are written: `AOPWikiRDF.ttl` (core entities), `AOPWikiRDF-Genes.ttl` (gene associations), `AOPWikiRDF-Enriched.ttl` (cross-references), and `AOPWikiRDF-Void.ttl` (VoID metadata).
 
+## Per-AOP Licence Metadata
+
+Each AOP in the source XML carries a `<wiki-license>` element inside its `<status>` block, with one of two codes:
+
+- `BY-SA` -- the AOP has been published under Creative Commons Attribution-ShareAlike 4.0 (CC-BY-SA 4.0). This is the default since AOP-Wiki Release 2.6 (2023-04-29).
+- `ARR` -- the AOP is still under All Rights Reserved during its 30-day grace period. Upstream activated automatic ARR-to-CC-BY-SA conversion on 2026-04-30.
+
+The parser captures this value and the RDF writer emits a `dcterms:license` triple per AOP, mapping to a stable rights URI:
+
+| `<wiki-license>` code | Emitted `dcterms:license` URI |
+|---|---|
+| `BY-SA` | `<https://creativecommons.org/licenses/by-sa/4.0/>` |
+| `ARR`   | `<https://rightsstatements.org/page/InC/1.0/>` |
+
+Older XML snapshots that predate Release 2.6 omit the `<wiki-license>` element entirely; for those AOPs no `dcterms:license` triple is emitted. Downstream consumers can filter or partition AOPs by licence using simple SPARQL queries (see `docs/sparql-examples.md`, query 11).
+
+### Optional ARR filter
+
+For strict CC-BY-SA-only release builds, the pipeline supports an opt-in filter:
+
+```python
+from aopwiki_rdf.config import PipelineConfig
+config = PipelineConfig(filter_arr_aops=True)
+```
+
+When enabled, ARR-licensed AOPs are dropped from the AOP dictionary between the parse and write stages. The filter is **AOP-only**: Key Events, KERs, and Stressors are left untouched, because the upstream schema asserts licence at AOP level only. Default is `False` -- the primary mechanism is per-AOP `dcterms:license` transparency, not exclusion.
+
 ## Gene Mapping Algorithm
 
 The gene mapping system uses a three-stage algorithm to find gene mentions in Key Event and Key Event Relationship text fields. The algorithm processes description text, biological plausibility, and empirical support fields.

@@ -63,3 +63,32 @@ def test_handles_empty_optional_elements(sample_xml_path):
     # parser should not crash and should still have basic fields
     assert '101' in result.kedict
     assert 'dc:identifier' in result.kedict['101']
+
+
+def test_parses_wiki_license_by_sa(sample_xml_path):
+    """AOP with <wiki-license>BY-SA</wiki-license> populates _wiki_license."""
+    from aopwiki_rdf.parser.xml_parser import parse_aopwiki_xml
+    result = parse_aopwiki_xml(sample_xml_path)
+    assert result.aopdict['1'].get('_wiki_license') == 'BY-SA'
+
+
+def test_parses_wiki_license_arr(sample_xml_path):
+    """AOP with <wiki-license>ARR</wiki-license> populates _wiki_license."""
+    from aopwiki_rdf.parser.xml_parser import parse_aopwiki_xml
+    result = parse_aopwiki_xml(sample_xml_path)
+    assert result.aopdict['2'].get('_wiki_license') == 'ARR'
+
+
+def test_missing_wiki_license_absent(sample_xml_path, tmp_path):
+    """AOP without <wiki-license> does not populate _wiki_license (no KeyError)."""
+    import shutil
+    from aopwiki_rdf.parser.xml_parser import parse_aopwiki_xml
+
+    src = tmp_path / "no_licence.xml"
+    text = open(sample_xml_path).read()
+    text = text.replace('<wiki-license>BY-SA</wiki-license>', '')
+    text = text.replace('<wiki-license>ARR</wiki-license>', '')
+    src.write_text(text)
+    result = parse_aopwiki_xml(str(src))
+    assert '_wiki_license' not in result.aopdict['1']
+    assert '_wiki_license' not in result.aopdict['2']

@@ -174,4 +174,11 @@ shapes:AOPShape
         sh:severity sh:Warning ;
         sh:name "nci:C25688 (25.2%)" ;
     ] ;
+    sh:property [
+        sh:path dcterms:license ;
+        sh:nodeKind sh:IRI ;
+        sh:maxCount 1 ;
+        sh:severity sh:Warning ;
+        sh:name "dcterms:license (per-AOP licence URI)" ;
+    ] ;
     .

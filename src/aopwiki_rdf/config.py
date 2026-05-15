@@ -27,6 +27,7 @@ class PipelineConfig:
     log_level: str = "INFO"
     hgnc_min_genes: int = 19000
     emit_legacy_predicates: bool = True
+    filter_arr_aops: bool = False
 
     def __post_init__(self):
         """Ensure data_dir is a Path object."""

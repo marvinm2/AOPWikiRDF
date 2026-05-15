@@ -423,3 +423,122 @@ class TestDualPredicateChemicalsAndProteinOntology:
             write_aop_rdf(out, entities, prefix_csv, config=config)
             content = open(out).read()
             assert 'rdfs:label\t"BRCA1"' in content
+
+
+# ---------------------------------------------------------------------------
+# dcterms:license emission tests
+# ---------------------------------------------------------------------------
+
+def _minimal_aop(identifier='aop:1', licence_code=None):
+    """Build a minimal AOP dict acceptable to write_aop_rdf."""
+    aop = {
+        'dc:identifier': identifier,
+        'rdfs:label': '"AOP 1"',
+        'foaf:page': '<https://aopwiki.org/aops/1>',
+        'dc:title': '"Test AOP"',
+        'dcterms:alternative': 'Short AOP',
+        'dc:source': 'AOPWiki',
+        'dcterms:created': '2020-01-01T00:00:00',
+        'dcterms:modified': '2024-01-01T00:00:00',
+    }
+    if licence_code is not None:
+        aop['_wiki_license'] = licence_code
+    return aop
+
+
+def _minimal_entities_with_aops(aopdict):
+    """Minimal entities skeleton for write_aop_rdf with given aopdict."""
+    return {
+        'aopdict': aopdict, 'kedict': {}, 'kerdict': {}, 'strdict': {},
+        'taxdict': {}, 'bioobjdict': {}, 'bioprodict': {}, 'bioactdict': {},
+        'prodict': {}, 'chedict': {},
+        'hgnclist': [], 'ncbigenelist': [], 'uniprotlist': [],
+        'listofcas': [], 'listofinchikey': [], 'listofcomptox': [],
+        'listofchebi': [], 'listofchemspider': [], 'listofwikidata': [],
+        'listofchembl': [], 'listofpubchem': [], 'listofdrugbank': [],
+        'listofkegg': [], 'listoflipidmaps': [], 'listofhmdb': [],
+        'symbol_lookup': {},
+    }
+
+
+def _write_minimal_prefixes(path):
+    with open(path, 'w') as f:
+        f.write('prefix,uri\n')
+        f.write('dc,http://purl.org/dc/elements/1.1/\n')
+        f.write('dcterms,http://purl.org/dc/terms/\n')
+        f.write('rdfs,http://www.w3.org/2000/01/rdf-schema#\n')
+        f.write('foaf,http://xmlns.com/foaf/0.1/\n')
+        f.write('aop,https://identifiers.org/aop/\n')
+        f.write('aopo,http://aopkb.org/aop_ontology#\n')
+        f.write('skos,http://www.w3.org/2004/02/skos/core#\n')
+        f.write('owl,http://www.w3.org/2002/07/owl#\n')
+        f.write('sh,http://www.w3.org/ns/shacl#\n')
+        f.write('xsd,http://www.w3.org/2001/XMLSchema#\n')
+
+
+def test_aop_emits_dcterms_license_by_sa():
+    """An AOP with wiki-license BY-SA emits the CC-BY-SA 4.0 URI."""
+    from aopwiki_rdf.rdf.writer import write_aop_rdf
+    from rdflib import Graph
+
+    entities = _minimal_entities_with_aops({
+        '1': _minimal_aop(identifier='aop:1', licence_code='BY-SA'),
+    })
+    with tempfile.TemporaryDirectory() as tmpdir:
+        prefix_csv = os.path.join(tmpdir, 'prefixes.csv')
+        _write_minimal_prefixes(prefix_csv)
+        out = os.path.join(tmpdir, 'AOPWikiRDF.ttl')
+        write_aop_rdf(out, entities, prefix_csv)
+        content = open(out).read()
+        assert 'dcterms:license\t<https://creativecommons.org/licenses/by-sa/4.0/>' in content
+        Graph().parse(out, format='turtle')
+
+
+def test_aop_emits_dcterms_license_arr():
+    """An AOP with wiki-license ARR emits the rightsstatements.org InC URI."""
+    from aopwiki_rdf.rdf.writer import write_aop_rdf
+    from rdflib import Graph
+
+    entities = _minimal_entities_with_aops({
+        '2': _minimal_aop(identifier='aop:2', licence_code='ARR'),
+    })
+    with tempfile.TemporaryDirectory() as tmpdir:
+        prefix_csv = os.path.join(tmpdir, 'prefixes.csv')
+        _write_minimal_prefixes(prefix_csv)
+        out = os.path.join(tmpdir, 'AOPWikiRDF.ttl')
+        write_aop_rdf(out, entities, prefix_csv)
+        content = open(out).read()
+        assert 'dcterms:license\t<https://rightsstatements.org/page/InC/1.0/>' in content
+        Graph().parse(out, format='turtle')
+
+
+def test_aop_no_licence_field_no_triple():
+    """An AOP without _wiki_license emits no dcterms:license triple."""
+    from aopwiki_rdf.rdf.writer import write_aop_rdf
+
+    entities = _minimal_entities_with_aops({
+        '3': _minimal_aop(identifier='aop:3', licence_code=None),
+    })
+    with tempfile.TemporaryDirectory() as tmpdir:
+        prefix_csv = os.path.join(tmpdir, 'prefixes.csv')
+        _write_minimal_prefixes(prefix_csv)
+        out = os.path.join(tmpdir, 'AOPWikiRDF.ttl')
+        write_aop_rdf(out, entities, prefix_csv)
+        content = open(out).read()
+        assert 'dcterms:license' not in content
+
+
+def test_aop_unknown_licence_code_skipped():
+    """An AOP with an unrecognised licence code emits no triple (no crash)."""
+    from aopwiki_rdf.rdf.writer import write_aop_rdf
+
+    entities = _minimal_entities_with_aops({
+        '4': _minimal_aop(identifier='aop:4', licence_code='SOME-FUTURE-CODE'),
+    })
+    with tempfile.TemporaryDirectory() as tmpdir:
+        prefix_csv = os.path.join(tmpdir, 'prefixes.csv')
+        _write_minimal_prefixes(prefix_csv)
+        out = os.path.join(tmpdir, 'AOPWikiRDF.ttl')
+        write_aop_rdf(out, entities, prefix_csv)
+        content = open(out).read()
+        assert 'dcterms:license' not in content

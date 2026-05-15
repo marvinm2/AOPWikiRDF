@@ -112,6 +112,7 @@ Together these files provide a complete semantic web representation of AOP-Wiki 
 | `dcterms:accessRights` | Literal | 0..1 | Access rights |
 | `dcterms:abstract` | Literal | 0..1 | Abstract |
 | `nci:C25688` | Literal | 0..n | OECD/SAAOP status |
+| `dcterms:license` | URI | 0..1 | Per-AOP licence URI. Derived from the upstream `<wiki-license>` XML element. Values: `<https://creativecommons.org/licenses/by-sa/4.0/>` for AOPs published under CC-BY-SA 4.0, or `<https://rightsstatements.org/page/InC/1.0/>` for AOPs still under All Rights Reserved during their 30-day grace period (auto-conversion to CC-BY-SA activated upstream on 2026-04-30). |
 | `pato:0000047` | Literal | 0..n | Sex applicability |
 | `aopo:LifeStageContext` | Literal | 0..n | Life stage applicability |
 | `ncbitaxon:131567` | URI | 0..n | Taxonomic applicability |
