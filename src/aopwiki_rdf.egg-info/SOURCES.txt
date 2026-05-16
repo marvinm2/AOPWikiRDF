@@ -18,6 +18,7 @@ src/aopwiki_rdf/mapping/__init__.py
 src/aopwiki_rdf/mapping/bridgedb.py
 src/aopwiki_rdf/mapping/chemical_mapper.py
 src/aopwiki_rdf/mapping/gene_mapper.py
+src/aopwiki_rdf/mapping/ner_el_mapper.py
 src/aopwiki_rdf/mapping/protein_ontology.py
 src/aopwiki_rdf/parser/__init__.py
 src/aopwiki_rdf/parser/xml_parser.py
