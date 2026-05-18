@@ -183,15 +183,32 @@ def query_bern2(
     return result
 
 
-def extract_ncbi_gene_ids(bern2_response: dict) -> set[str]:
+def extract_ncbi_gene_ids(bern2_response: dict, min_prob: float = 0.0) -> set[str]:
     """Pull all NCBI Gene numeric IDs from a BERN2 response.
 
     Accepts both ``NCBIGene:N`` and the older ``EntrezGene:N`` ID prefixes.
     Skips ``CUI-less`` and other non-resolving identifiers.
+
+    Parameters
+    ----------
+    bern2_response:
+        Parsed BERN2 JSON with an ``"annotations"`` list.
+    min_prob:
+        Minimum BERN2 confidence (``prob``) for a gene annotation to be
+        kept. Annotations scoring below this are dropped: the low-prob
+        tail is dominated by entity-linking errors (HTML entities, drug
+        names, generic-word mislinks). The default ``0.0`` keeps every
+        annotation. An annotation whose ``prob`` is absent or ``None``
+        -- BERN2 emits bare ``NaN`` for some neural-normalised entities,
+        which :func:`_loads_bern2` collapses to ``None`` -- is *kept*: a
+        missing score is not evidence of an error.
     """
     ids: set[str] = set()
     for ann in bern2_response.get("annotations", []) or []:
         if ann.get("obj") != "gene":
+            continue
+        prob = ann.get("prob")
+        if isinstance(prob, (int, float)) and prob < min_prob:
             continue
         for raw in (ann.get("id") or []):
             if not isinstance(raw, str):
@@ -297,13 +314,16 @@ def find_hgnc_ids_via_ner_el(
     cache_dir: Path,
     timeout: int = 120,
     sleep_after: float = 0.0,
+    min_prob: float = 0.0,
 ) -> set[str]:
     """Find HGNC numeric IDs in ``text`` via BERN2 + BridgeDb.
 
     Composes :func:`query_bern2`, :func:`extract_ncbi_gene_ids`, and
     :func:`map_ncbi_to_hgnc`. The cache is split into two subdirectories
     under ``cache_dir``: ``cache_dir/bern2/`` for BERN2 responses and
-    ``cache_dir/bridgedb/`` for BridgeDb responses.
+    ``cache_dir/bridgedb/`` for BridgeDb responses. ``min_prob`` is the
+    BERN2 confidence cutoff for gene annotations (see
+    :func:`extract_ncbi_gene_ids`); the default ``0.0`` disables it.
 
     Returns
     -------
@@ -333,7 +353,7 @@ def find_hgnc_ids_via_ner_el(
         logger.warning("BERN2 query failed: %s", bern2_response["_error"])
         return set()
 
-    ncbi_ids = extract_ncbi_gene_ids(bern2_response)
+    ncbi_ids = extract_ncbi_gene_ids(bern2_response, min_prob=min_prob)
     if not ncbi_ids:
         return set()
 
@@ -364,7 +384,7 @@ def map_ner_genes_in_kes(
         XML parser. KEs with a non-empty ``dc:description`` are scanned.
     config:
         PipelineConfig. Reads ``bern2_url``, ``bridgedb_url``,
-        ``ner_cache_dir``, and ``request_timeout``.
+        ``ner_cache_dir``, ``ner_min_prob``, and ``request_timeout``.
     sleep_after:
         Optional per-call delay (seconds). Defaults to 0 for the
         production weekly run, which only annotates a handful of changed
@@ -405,6 +425,7 @@ def map_ner_genes_in_kes(
             cache_dir=config.ner_cache_dir,
             timeout=config.request_timeout,
             sleep_after=sleep_after,
+            min_prob=config.ner_min_prob,
         )
         if hgnc_numeric:
             results[ke_id] = {f"hgnc:{n}" for n in hgnc_numeric}

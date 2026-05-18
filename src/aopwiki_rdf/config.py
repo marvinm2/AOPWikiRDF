@@ -36,6 +36,12 @@ class PipelineConfig:
     enable_bern2: bool = False
     bern2_url: str = "http://bern2.korea.ac.kr/plain"
     ner_cache_dir: Path = field(default_factory=lambda: Path("data/cache/bern2/"))
+    # Minimum BERN2 confidence (prob) for a gene annotation to be kept.
+    # The low-prob tail is dominated by entity-linking errors (HTML
+    # entities, drug names, generic-word mislinks); 0.70 removes ~3% of
+    # NER-only gene associations at ~90% precision. Annotations with no
+    # prob are kept. Set to 0.0 to disable filtering.
+    ner_min_prob: float = 0.70
 
     def __post_init__(self):
         """Ensure path-typed fields are Path objects."""

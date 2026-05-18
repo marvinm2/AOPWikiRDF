@@ -115,6 +115,46 @@ class TestExtractNcbiGeneIds:
         assert extract_ncbi_gene_ids({"annotations": []}) == set()
         assert extract_ncbi_gene_ids({"annotations": None}) == set()
 
+    def test_min_prob_default_keeps_all(self):
+        """Default min_prob=0.0 keeps every gene annotation, including
+        low-confidence ones -- preserves the pre-threshold behaviour."""
+        from aopwiki_rdf.mapping.ner_el_mapper import extract_ncbi_gene_ids
+        low = {"obj": "gene", "mention": "&nbsp;", "id": ["NCBIGene:1"],
+               "prob": 0.42}
+        result = extract_ncbi_gene_ids({"annotations": [TP53_ANN, low]})
+        assert result == {"7157", "1"}
+
+    def test_min_prob_drops_low_confidence(self):
+        """Annotations scoring below min_prob are dropped."""
+        from aopwiki_rdf.mapping.ner_el_mapper import extract_ncbi_gene_ids
+        low = {"obj": "gene", "mention": "ixekizumab", "id": ["NCBIGene:1"],
+               "prob": 0.50}
+        result = extract_ncbi_gene_ids(
+            {"annotations": [TP53_ANN, low]}, min_prob=0.70,
+        )
+        assert result == {"7157"}  # TP53 (0.99) kept, low (0.50) dropped
+
+    def test_min_prob_boundary_is_inclusive(self):
+        """An annotation scoring exactly at the threshold is kept (>=)."""
+        from aopwiki_rdf.mapping.ner_el_mapper import extract_ncbi_gene_ids
+        edge = {"obj": "gene", "mention": "X", "id": ["NCBIGene:1"],
+                "prob": 0.70}
+        result = extract_ncbi_gene_ids({"annotations": [edge]}, min_prob=0.70)
+        assert result == {"1"}
+
+    def test_min_prob_keeps_annotations_without_prob(self):
+        """A None or absent prob is kept -- a missing score is not
+        evidence of an error (BERN2 emits bare NaN -> None for some
+        neural-normalised entities)."""
+        from aopwiki_rdf.mapping.ner_el_mapper import extract_ncbi_gene_ids
+        none_prob = {"obj": "gene", "mention": "X", "id": ["NCBIGene:1"],
+                     "prob": None}
+        no_prob = {"obj": "gene", "mention": "Y", "id": ["NCBIGene:2"]}
+        result = extract_ncbi_gene_ids(
+            {"annotations": [none_prob, no_prob]}, min_prob=0.90,
+        )
+        assert result == {"1", "2"}
+
 
 # ---------------------------------------------------------------------------
 # map_ncbi_to_hgnc -- via BridgeDb
@@ -396,6 +436,41 @@ class TestFindHgncIdsViaNerEl:
         assert result == set()
         assert m.call_count == 1
 
+    def test_min_prob_filters_low_confidence_end_to_end(self, tmp_path):
+        """min_prob passed to find_hgnc_ids_via_ner_el filters BERN2 gene
+        annotations before the BridgeDb hop -- a low-prob gene is not
+        even submitted to BridgeDb."""
+        from aopwiki_rdf.mapping.ner_el_mapper import find_hgnc_ids_via_ner_el
+
+        # NCBIGene:43 scored low -- should be dropped at min_prob=0.70.
+        low_conf = {"obj": "gene", "mention": "&nbsp;",
+                    "id": ["NCBIGene:43"], "prob": 0.40}
+        bern2_call = _bern2_response([TP53_ANN, low_conf])
+        bridgedb_call = _bridgedb_response(BRIDGEDB_REAL_ROW_TP53)
+
+        posts = []
+
+        def post_side_effect(url, *a, **kw):
+            posts.append((url, kw.get("data")))
+            return bern2_call if len(posts) == 1 else bridgedb_call
+
+        with patch(
+            "aopwiki_rdf.mapping.ner_el_mapper.requests.post",
+            side_effect=post_side_effect,
+        ):
+            result = find_hgnc_ids_via_ner_el(
+                "TP53 mentioned here.",
+                bern2_url="http://b2",
+                bridgedb_url="https://example.org/Human/",
+                cache_dir=tmp_path,
+                min_prob=0.70,
+            )
+        assert result == {"11998"}
+        # The low-prob gene (43) must not have reached the BridgeDb call.
+        bridgedb_body = posts[1][1].split("\n")
+        assert "43" not in bridgedb_body
+        assert "7157" in bridgedb_body
+
 
 # ---------------------------------------------------------------------------
 # PipelineConfig wiring (Phase A flag defaults)
@@ -420,3 +495,8 @@ class TestPipelineConfigFields:
         from aopwiki_rdf.config import PipelineConfig
         cfg = PipelineConfig(ner_cache_dir="my/cache")
         assert isinstance(cfg.ner_cache_dir, Path)
+
+    def test_ner_min_prob_default(self):
+        """ner_min_prob defaults to the 0.70 hygiene threshold."""
+        from aopwiki_rdf.config import PipelineConfig
+        assert PipelineConfig().ner_min_prob == 0.70
