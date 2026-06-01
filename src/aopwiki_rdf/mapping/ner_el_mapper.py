@@ -967,6 +967,16 @@ def union_ner_into_entities(
       / ``_genes_ner`` record per-method provenance for the writer, and any new
       HGNC IDs are appended to ``gene_hgnclist`` (``existing_hgnc`` dedupes).
 
+    The union is regex-baseline-then-NER-additive BY DESIGN. This is consistent
+    with the ``:isFeaturedMethod true`` claim on ``:BERN2NERMapping`` (see
+    ``namespaces.GENES_PROVENANCE_ACTIVITIES``): "featured" denotes the
+    recall-EXTENDING method, not a precedence that overrides regex. There is no
+    conflict-resolution step -- NER can only ADD genes, never reorder or remove
+    regex genes. Do NOT invert the seeding to "NER-first" to match a naive
+    reading of "primary method": that would change flag-on RDF order/semantics
+    and break the graceful-degradation recall floor (a BERN2 outage must never
+    thin the regex baseline).
+
     Mutates ``entdict`` props, ``gene_hgnclist``, and ``existing_hgnc`` in place.
     Returns ``(ok, degraded)`` counts.
     """

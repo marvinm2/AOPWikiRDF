@@ -131,9 +131,25 @@ GENES_PROVENANCE_PREFIX = (
 # Design (Phase 7 / 07-03, D-01..D-07):
 #   * Two prov:Activity resources declared ONCE in the header (activity-level
 #     provenance only -- never per KE/KER subject, never reified associations).
-#   * BERN2 marked :isFeaturedMethod true (machine-readable primacy, GENE-05/07).
+#   * BERN2 marked :isFeaturedMethod true (machine-readable, GENE-05/07).
+#     SEMANTICS (important, see WR-02): "featured" denotes the
+#     recall-EXTENDING / featured-for-discovery method, NOT a precedence that
+#     overrides regex in the edam:data_1025 union. The union in
+#     union_ner_into_entities is deliberately regex-baseline + NER-additive
+#     (graceful degradation: a BERN2 outage never thins the regex genes), so
+#     regex genes seed and order the list and NER can only ADD members. A
+#     SPARQL consumer must read :isFeaturedMethod as "the canonical method to
+#     surface/discover new gene links," not as "the method whose detections win
+#     on conflict" (there is no conflict-resolution step -- the union is purely
+#     additive). The rdfs:label on each activity spells this out.
 #   * :minConfidence "0.70"^^xsd:decimal records the 0.70 NER threshold in the
-#     RDF itself (GENE-08), not only in docs.
+#     RDF itself (GENE-08), not only in docs. IMPORTANT: this is the floor
+#     applied to *scored* annotations only. BERN2 emits bare NaN (collapsed to
+#     None by _loads_bern2) for some neural-normalised entities, and those
+#     unscored annotations are deliberately RETAINED (a missing score is not
+#     evidence of error -- see extract_ncbi_gene_ids). The activity rdfs:label
+#     spells out this carve-out so a SPARQL consumer reading :minConfidence is
+#     not misled into believing EVERY retained link scored >= 0.70.
 #   * prov:wasGeneratedBy attached to the :geneDetectedBy* PREDICATES so a
 #     SPARQL consumer can resolve the canonical method without reading docs.
 #   * All literals are static -- no wall-clock timestamp, no runtime version
@@ -149,14 +165,19 @@ GENES_PROVENANCE_ACTIVITIES = (
     "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n"
     "\n"
     ":BERN2NERMapping a prov:Activity ;\n"
-    '\trdfs:label "BERN2 NER+EL gene mapping" ;\n'
+    '\trdfs:label "BERN2 NER+EL gene mapping -- featured recall-extending '
+    'method (additive to the regex baseline, not an override; scored '
+    'annotations filtered at minConfidence, unscored neural-normalised '
+    'entities retained)" ;\n'
     "\t:isFeaturedMethod true ;\n"
     '\t:minConfidence "0.70"^^xsd:decimal ;\n'
     "\tprov:used <http://bern2.korea.ac.kr/plain> ;\n"
     "\tprov:wasDerivedFrom :AOPWikiXMLSource .\n"
     "\n"
     ":RegexGeneMapping a prov:Activity ;\n"
-    '\trdfs:label "HGNC dictionary regex gene mapping" ;\n'
+    '\trdfs:label "HGNC dictionary regex gene mapping -- baseline method that '
+    'seeds and orders the edam:data_1025 union (never thinned on BERN2 '
+    'outage)" ;\n'
     "\t:isFeaturedMethod false ;\n"
     "\tprov:used <https://www.genenames.org/> ;\n"
     "\tprov:wasDerivedFrom :AOPWikiXMLSource .\n"
