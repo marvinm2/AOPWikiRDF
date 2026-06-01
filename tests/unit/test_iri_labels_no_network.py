@@ -45,6 +45,23 @@ def test_gene_map_build_no_network(explode_on_http):
     assert m["ncbigene:7157"] == "TP53"
 
 
+def test_gene_map_skips_symbol_less_gene(explode_on_http):
+    """A gene whose numeric HGNC id is absent from symbol_lookup contributes
+    NO entry to the label map -- its xref IRIs stay unlabeled rather than being
+    given the all-digit HGNC id as a pseudo-label (D-02, WR-02)."""
+    symbol_lookup = {"1100": "BRCA1"}  # 11998 deliberately absent
+    geneiddict = {
+        "hgnc:1100": ["ncbigene:672"],
+        "hgnc:11998": ["ncbigene:7157", "uniprot:P04637"],
+    }
+    m = build_gene_label_map(geneiddict, symbol_lookup)
+    assert m["ncbigene:672"] == "BRCA1"
+    # The symbol-less gene's xref IRIs are absent (not labeled with "11998").
+    assert "ncbigene:7157" not in m
+    assert "uniprot:P04637" not in m
+    assert "11998" not in m.values()
+
+
 def test_chem_map_build_no_network(explode_on_http):
     chedict = {
         "chem-1": {

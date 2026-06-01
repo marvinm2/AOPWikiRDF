@@ -87,7 +87,12 @@ def build_gene_label_map(geneiddict, symbol_lookup):
     symbol_lookup:
         ``{numeric_id: symbol}`` (e.g. ``{'1100': 'BRCA1'}``). Built by
         ``gene_mapper.build_gene_dicts``. The human symbol for ``hgnc:1100`` is
-        ``symbol_lookup['1100']``; if absent we fall back to the numeric id.
+        ``symbol_lookup['1100']``. When a gene has no symbol here we DO NOT
+        fall back to the numeric HGNC id: an all-digit id (e.g. ``"1100"``) is
+        not a human-readable name, and D-02 requires an unmapped xref IRI to be
+        left unlabeled rather than given an all-digit pseudo-label. Symbol-less
+        genes therefore contribute no entry to the map and their xref IRIs stay
+        unlabeled.
 
     Returns
     -------
@@ -99,7 +104,11 @@ def build_gene_label_map(geneiddict, symbol_lookup):
     label_map: dict[str, str] = {}
     for hgnc_key, xref_iris in sorted(geneiddict.items()):
         # hgnc_key is 'hgnc:<numeric>'; the symbol lives under the numeric id.
-        symbol = symbol_lookup.get(hgnc_key[5:], hgnc_key[5:])
+        # No symbol -> leave the xref IRI unlabeled (D-02: never emit an
+        # all-digit HGNC id as a pseudo-label).
+        symbol = symbol_lookup.get(hgnc_key[5:])
+        if not symbol:
+            continue
         for iri in xref_iris:
             _assign(label_map, iri, symbol)
     return label_map
