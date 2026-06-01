@@ -454,16 +454,22 @@ def _stage_write_void_rdf(config, context):
     info = {}
     for item in lines:
         parts = item.split("\t")
+        # Only ``key\tvalue`` rows are meaningful. Blank lines, HTML error
+        # pages, or any unexpected response shape (which split to a single
+        # field) are skipped so they never pollute ``info`` with an
+        # empty-string key or a key holding an empty value list.
+        if len(parts) != 2:
+            continue
         if parts[0] not in info:
             info[parts[0]] = []
-        if len(parts) == 2:
-            info[parts[0]].append(parts[1])
+        info[parts[0]].append(parts[1])
 
     if "DATASOURCENAME" in info and "DATASOURCEVERSION" in info:
         names, versions = info["DATASOURCENAME"], info["DATASOURCEVERSION"]
         logger.info(
             "BridgeDb versions - Gene/Proteins: %s:%s, Chemicals: %s:%s",
-            names[0], versions[0],
+            names[0] if names else "?",
+            versions[0] if versions else "?",
             names[5] if len(names) > 5 else "?",
             versions[5] if len(versions) > 5 else "?",
         )
