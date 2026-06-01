@@ -35,6 +35,67 @@ LICENCE_URI_MAP = {
 # ---------------------------------------------------------------------------
 
 
+def _turtle_escape(value):
+    """Escape a string for safe embedding inside a Turtle double-quoted literal.
+
+    Minimal, value-only escaping (T-08-04): a stray ``"`` / ``\\`` / newline in a
+    label string must not break Turtle syntax or inject extra triples. Backslash
+    is escaped first so the escapes we add are not themselves re-escaped. Carriage
+    returns and tabs are escaped too so a multi-line/whitespace name stays on one
+    physical line inside the literal.
+    """
+    return (
+        str(value)
+        .replace('\\', '\\\\')
+        .replace('"', '\\"')
+        .replace('\n', '\\n')
+        .replace('\r', '\\r')
+        .replace('\t', '\\t')
+    )
+
+
+def _iri_label_clause(emit_labels, iri, label_map):
+    """Return the gated ``;\\n\\trdfs:label\\t"<name>"`` clause string, or ``''``.
+
+    Returns the empty string (so flag-off output is byte-identical, COMPAT-01)
+    when ``emit_labels`` is False, when ``label_map`` is falsy, or when the IRI
+    has no non-empty name in the map (D-02: an unmapped IRI is left unlabeled,
+    never given an all-digit pseudo-label). The clause is spliced immediately
+    before a block's terminal ``.`` so it co-locates with ``dc:source``.
+    """
+    if not emit_labels or not label_map:
+        return ''
+    name = label_map.get(iri)
+    if not name:
+        return ''
+    return ' ;\n\trdfs:label\t"' + _turtle_escape(name) + '"'
+
+
+def _component_label_clause(emit_labels, title_literal):
+    """Return the gated label clause for a component IRI from its local dc:title.
+
+    Component IRIs (taxonomy / go: / pato: / cell / organ) already carry a
+    ``dc:title`` whose value is the human-readable name. D-04 fills the missing
+    ``rdfs:label`` by mirroring that local title verbatim. ``title_literal`` is
+    the exact string the block writes for ``dc:title`` and may be either an
+    already-quoted literal (e.g. ``'"Mus musculus"'``) or a bare inner string
+    (e.g. ``'Mus musculus'`` written by the block as ``... dc:title "<value>"``).
+    The inner text is extracted (stripping one pair of surrounding quotes if
+    present) and re-escaped so the emitted label is always a well-formed literal.
+    Returns ``''`` when flag-off or the title is empty.
+    """
+    if not emit_labels:
+        return ''
+    if title_literal is None:
+        return ''
+    inner = str(title_literal)
+    if len(inner) >= 2 and inner[0] == '"' and inner[-1] == '"':
+        inner = inner[1:-1]
+    if not inner:
+        return ''
+    return ' ;\n\trdfs:label\t"' + _turtle_escape(inner) + '"'
+
+
 def _write_multivalue_triple(fh, predicate, values, quote=False, first=False):
     """Write multiple values for a single predicate."""
     if not values:
@@ -160,6 +221,17 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
     listofkegg = entities.get('listofkegg', [])
     listoflipidmaps = entities.get('listoflipidmaps', [])
     listofhmdb = entities.get('listofhmdb', [])
+
+    # Phase 8: external-IRI labelling. When enable_iri_labels is on, splice a
+    # single untagged rdfs:label (co-located with dc:source) onto every external
+    # numeric-identifier IRI (chemical xrefs, CAS/InChIKey/CompTox, gene xrefs)
+    # and every component IRI. Null-safe (config is None in tests). Flag-off
+    # leaves output byte-identical (COMPAT-01) because the clause helpers return
+    # '' when emit_labels is False. The label maps (xref-IRI -> name) are threaded
+    # in by the pipeline (Plan 08-01); absent in unit tests, defaulting to {}.
+    emit_labels = bool(config and getattr(config, 'enable_iri_labels', False))
+    chem_label_by_iri = entities.get('chem_label_by_iri', {})
+    gene_label_by_iri = entities.get('gene_label_by_iri', {})
 
     logger.info(f"Writing main RDF file: {filepath}")
 
@@ -367,7 +439,9 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
                     g.write(taxdict[tax]['dc:identifier'] + '\n\ta\tncbitaxon:131567 ;\n\tdc:identifier\t' + taxdict[tax]['dc:identifier'] + ' ;\n\tdc:title\t"' + taxdict[tax]['dc:title'])
                     if taxdict[tax]['dc:source'] is not None:
                         g.write('" ;\n\tdc:source\t"' + taxdict[tax]['dc:source'])
-                    g.write('" .\n\n')
+                    # Close the open literal, splice the gated rdfs:label (D-04,
+                    # mirroring the local dc:title), then the terminal '.'.
+                    g.write('"' + _component_label_clause(emit_labels, taxdict[tax]['dc:title']) + ' .\n\n')
         logger.info("Section completed")
 
         # --- Stressor triples ---
@@ -415,13 +489,13 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
         # --- Biological Process triples ---
         for pro in bioprodict:
             if pro is not None:
-                g.write(bioprodict[pro]['dc:identifier'] + '\ta\tgo:0008150 ;\n\tdc:identifier\t' + bioprodict[pro]['dc:identifier'] + ' ;\n\tdc:title\t' + bioprodict[pro]['dc:title'] + ' ;\n\tdc:source\t' + bioprodict[pro]['dc:source'] + ' . \n\n')
+                g.write(bioprodict[pro]['dc:identifier'] + '\ta\tgo:0008150 ;\n\tdc:identifier\t' + bioprodict[pro]['dc:identifier'] + ' ;\n\tdc:title\t' + bioprodict[pro]['dc:title'] + ' ;\n\tdc:source\t' + bioprodict[pro]['dc:source'] + _component_label_clause(emit_labels, bioprodict[pro]['dc:title']) + ' . \n\n')
         logger.info("Section completed")
 
         # --- Biological Object triples ---
         for obj in bioobjdict:
             if obj is not None and "N/A" not in bioobjdict[obj]['dc:identifier'] and 'TAIR' not in bioobjdict[obj]['dc:identifier']:
-                g.write(bioobjdict[obj]['dc:identifier'] + '\ta\tpato:0001241 ;\n\tdc:identifier\t' + bioobjdict[obj]['dc:identifier'] + ' ;\n\tdc:title\t' + bioobjdict[obj]['dc:title'] + ' ;\n\tdc:source\t' + bioobjdict[obj]['dc:source'])
+                g.write(bioobjdict[obj]['dc:identifier'] + '\ta\tpato:0001241 ;\n\tdc:identifier\t' + bioobjdict[obj]['dc:identifier'] + ' ;\n\tdc:title\t' + bioobjdict[obj]['dc:title'] + ' ;\n\tdc:source\t' + bioobjdict[obj]['dc:source'] + _component_label_clause(emit_labels, bioobjdict[obj]['dc:title']))
                 g.write('. \n\n')
         logger.info("Section completed")
 
@@ -429,19 +503,19 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
         for act in bioactdict:
             if act is not None:
                 if '"' not in bioactdict[act]['dc:identifier']:
-                    g.write(bioactdict[act]['dc:identifier'] + '\ta\tpato:0000001 ;\n\tdc:identifier\t' + bioactdict[act]['dc:identifier'] + ' ;\n\tdc:title\t' + bioactdict[act]['dc:title'] + ' ;\n\tdc:source\t' + bioactdict[act]['dc:source'] + ' . \n\n')
+                    g.write(bioactdict[act]['dc:identifier'] + '\ta\tpato:0000001 ;\n\tdc:identifier\t' + bioactdict[act]['dc:identifier'] + ' ;\n\tdc:title\t' + bioactdict[act]['dc:title'] + ' ;\n\tdc:source\t' + bioactdict[act]['dc:source'] + _component_label_clause(emit_labels, bioactdict[act]['dc:title']) + ' . \n\n')
         logger.info("Section completed")
 
         # --- Cell term triples ---
         for item in cterm:
             if '"' not in item:
-                g.write(item + '\ta\taopo:CellTypeContext ;\n\tdc:identifier\t' + item + ' ;\n\tdc:title\t' + cterm[item]['dc:title'] + ' ;\n\tdc:source\t' + cterm[item]['dc:source'] + ' .\n\n')
+                g.write(item + '\ta\taopo:CellTypeContext ;\n\tdc:identifier\t' + item + ' ;\n\tdc:title\t' + cterm[item]['dc:title'] + ' ;\n\tdc:source\t' + cterm[item]['dc:source'] + _component_label_clause(emit_labels, cterm[item]['dc:title']) + ' .\n\n')
         logger.info("Section completed")
 
         # --- Organ term triples ---
         for item in oterm:
             if '"' not in item:
-                g.write(item + '\ta\taopo:OrganContext ;\n\tdc:identifier\t' + item + ' ;\n\tdc:title\t' + oterm[item]['dc:title'] + ' ;\n\tdc:source\t' + oterm[item]['dc:source'] + ' .\n\n')
+                g.write(item + '\ta\taopo:OrganContext ;\n\tdc:identifier\t' + item + ' ;\n\tdc:title\t' + oterm[item]['dc:title'] + ' ;\n\tdc:source\t' + oterm[item]['dc:source'] + _component_label_clause(emit_labels, oterm[item]['dc:title']) + ' .\n\n')
         logger.info("Section completed")
 
         # --- Chemical triples ---
@@ -481,55 +555,59 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
         logger.info("Section completed")
 
         # --- Mapped Chemical identifiers ---
+        # Each chemical-xref block ends `dc:source\t"<DB>".\n\n`. When the flag
+        # is on, splice a single rdfs:label (looked up by the loop-variable IRI in
+        # chem_label_by_iri) before the terminal '.', co-located with dc:source.
+        # Flag-off (clause == '') keeps the exact existing bytes (COMPAT-01).
         n = 0
         for cas in listofcas:
-            g.write(cas + '\tdc:source\t"CAS".\n\n')
+            g.write(cas + '\tdc:source\t"CAS"' + _iri_label_clause(emit_labels, cas, chem_label_by_iri) + '.\n\n')
             n += 1
         logger.debug(f"Counter: {n}")
         for inchikey in listofinchikey:
-            g.write(inchikey + '\tdc:source\t"InChIKey".\n\n')
+            g.write(inchikey + '\tdc:source\t"InChIKey"' + _iri_label_clause(emit_labels, inchikey, chem_label_by_iri) + '.\n\n')
             n += 1
         logger.debug(f"Counter: {n}")
 
         for comptox in listofcomptox:
-            g.write(comptox + '\tdc:source\t"CompTox".\n\n')
+            g.write(comptox + '\tdc:source\t"CompTox"' + _iri_label_clause(emit_labels, comptox, chem_label_by_iri) + '.\n\n')
             n += 1
         logger.debug(f"Counter: {n}")
 
         for chebi in listofchebi:
-            g.write(chebi + '\ta\tcheminf:000407 ;\n\tcheminf:000407\t"' + chebi[6:] + '";\n\tdc:identifier\t"' + chebi + '";\n\tdc:source\t"ChEBI".\n\n')
+            g.write(chebi + '\ta\tcheminf:000407 ;\n\tcheminf:000407\t"' + chebi[6:] + '";\n\tdc:identifier\t"' + chebi + '";\n\tdc:source\t"ChEBI"' + _iri_label_clause(emit_labels, chebi, chem_label_by_iri) + '.\n\n')
             n += 1
         logger.debug(f"Counter: {n}")
         for chemspider in listofchemspider:
-            g.write(chemspider + '\ta\tcheminf:000405 ;\n\tcheminf:000405\t"' + chemspider[11:] + '";\n\tdc:identifier\t"' + chemspider + '";\n\tdc:source\t"ChemSpider".\n\n')
+            g.write(chemspider + '\ta\tcheminf:000405 ;\n\tcheminf:000405\t"' + chemspider[11:] + '";\n\tdc:identifier\t"' + chemspider + '";\n\tdc:source\t"ChemSpider"' + _iri_label_clause(emit_labels, chemspider, chem_label_by_iri) + '.\n\n')
             n += 1
         logger.debug(f"Counter: {n}")
         for wd in listofwikidata:
-            g.write(wd + '\ta\tcheminf:000567 ;\n\tcheminf:000567\t"' + wd[9:] + '";\n\tdc:identifier\t"' + wd + '";\n\tdc:source\t"Wikidata".\n\n')
+            g.write(wd + '\ta\tcheminf:000567 ;\n\tcheminf:000567\t"' + wd[9:] + '";\n\tdc:identifier\t"' + wd + '";\n\tdc:source\t"Wikidata"' + _iri_label_clause(emit_labels, wd, chem_label_by_iri) + '.\n\n')
             n += 1
         logger.debug(f"Counter: {n}")
         for chembl in listofchembl:
-            g.write(chembl + '\ta\tcheminf:000412 ;\n\tcheminf:000412\t"' + chembl[16:] + '";\n\tdc:identifier\t"' + chembl + '";\n\tdc:source\t"ChEMBL".\n\n')
+            g.write(chembl + '\ta\tcheminf:000412 ;\n\tcheminf:000412\t"' + chembl[16:] + '";\n\tdc:identifier\t"' + chembl + '";\n\tdc:source\t"ChEMBL"' + _iri_label_clause(emit_labels, chembl, chem_label_by_iri) + '.\n\n')
             n += 1
         logger.debug(f"Counter: {n}")
         for pubchem in listofpubchem:
-            g.write(pubchem + '\ta\tcheminf:000140 ;\n\tcheminf:000140\t"' + pubchem[17:] + '";\n\tdc:identifier\t"' + pubchem + '";\n\tdc:source\t"PubChem".\n\n')
+            g.write(pubchem + '\ta\tcheminf:000140 ;\n\tcheminf:000140\t"' + pubchem[17:] + '";\n\tdc:identifier\t"' + pubchem + '";\n\tdc:source\t"PubChem"' + _iri_label_clause(emit_labels, pubchem, chem_label_by_iri) + '.\n\n')
             n += 1
         logger.debug(f"Counter: {n}")
         for drugbank in listofdrugbank:
-            g.write(drugbank + '\ta\tcheminf:000406 ;\n\tcheminf:000406\t"' + drugbank[9:] + '";\n\tdc:identifier\t"' + drugbank + '";\n\tdc:source\t"DrugBank".\n\n')
+            g.write(drugbank + '\ta\tcheminf:000406 ;\n\tcheminf:000406\t"' + drugbank[9:] + '";\n\tdc:identifier\t"' + drugbank + '";\n\tdc:source\t"DrugBank"' + _iri_label_clause(emit_labels, drugbank, chem_label_by_iri) + '.\n\n')
             n += 1
         logger.debug(f"Counter: {n}")
         for kegg in listofkegg:
-            g.write(kegg + '\ta\tcheminf:000409 ;\n\tcheminf:000409\t"' + kegg[14:] + '";\n\tdc:identifier\t"' + kegg + '";\n\tdc:source\t"KEGG".\n\n')
+            g.write(kegg + '\ta\tcheminf:000409 ;\n\tcheminf:000409\t"' + kegg[14:] + '";\n\tdc:identifier\t"' + kegg + '";\n\tdc:source\t"KEGG"' + _iri_label_clause(emit_labels, kegg, chem_label_by_iri) + '.\n\n')
             n += 1
         logger.debug(f"Counter: {n}")
         for lipidmaps in listoflipidmaps:
-            g.write(lipidmaps + '\ta\tcheminf:000564 ;\n\tcheminf:000564\t"' + lipidmaps[10:] + '";\n\tdc:identifier\t"' + lipidmaps + '";\n\tdc:source\t"LIPID MAPS".\n\n')
+            g.write(lipidmaps + '\ta\tcheminf:000564 ;\n\tcheminf:000564\t"' + lipidmaps[10:] + '";\n\tdc:identifier\t"' + lipidmaps + '";\n\tdc:source\t"LIPID MAPS"' + _iri_label_clause(emit_labels, lipidmaps, chem_label_by_iri) + '.\n\n')
             n += 1
         logger.debug(f"Counter: {n}")
         for hmdb in listofhmdb:
-            g.write(hmdb + '\ta\tcheminf:000408 ;\n\tcheminf:000408\t"' + hmdb[5:] + '";\n\tdc:identifier\t"' + hmdb + '";\n\tdc:source\t"HMDB".\n\n')
+            g.write(hmdb + '\ta\tcheminf:000408 ;\n\tcheminf:000408\t"' + hmdb[5:] + '";\n\tdc:identifier\t"' + hmdb + '";\n\tdc:source\t"HMDB"' + _iri_label_clause(emit_labels, hmdb, chem_label_by_iri) + '.\n\n')
             n += 1
         logger.debug(f"Counter: {n}")
         logger.info("Section completed")
@@ -546,10 +624,10 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
             g.write(' ;\n\tdc:source\t"HGNC".\n\n')
 
         for entrez in ncbigenelist:
-            g.write(entrez + '\ta\tedam:data_1027, edam:data_1025 ;\n\tedam:data_1027\t"' + entrez[9:] + '";\n\tdc:identifier\t"' + entrez + '";\n\tdc:source\t"Entrez Gene".\n\n')
+            g.write(entrez + '\ta\tedam:data_1027, edam:data_1025 ;\n\tedam:data_1027\t"' + entrez[9:] + '";\n\tdc:identifier\t"' + entrez + '";\n\tdc:source\t"Entrez Gene"' + _iri_label_clause(emit_labels, entrez, gene_label_by_iri) + '.\n\n')
 
         for uniprot in uniprotlist:
-            g.write(uniprot + '\ta\tedam:data_2291, edam:data_1025 ;\n\trdfs:seeAlso <http://purl.uniprot.org/uniprot/' + uniprot[8:] + '>;\n\towl:sameAs <http://purl.uniprot.org/uniprot/' + uniprot[8:] + '>;\n\tedam:data_2291\t"' + uniprot[8:] + '";\n\tdc:identifier\t"' + uniprot + '";\n\tdc:source\t"UniProt".\n\n')
+            g.write(uniprot + '\ta\tedam:data_2291, edam:data_1025 ;\n\trdfs:seeAlso <http://purl.uniprot.org/uniprot/' + uniprot[8:] + '>;\n\towl:sameAs <http://purl.uniprot.org/uniprot/' + uniprot[8:] + '>;\n\tedam:data_2291\t"' + uniprot[8:] + '";\n\tdc:identifier\t"' + uniprot + '";\n\tdc:source\t"UniProt"' + _iri_label_clause(emit_labels, uniprot, gene_label_by_iri) + '.\n\n')
 
         logger.info("Section completed")
 
@@ -698,6 +776,14 @@ def write_genes_rdf(filepath, gene_data, config=None):
     # the pre-Phase-B genes file.
     genes_provenance = bool(config and getattr(config, 'enable_bern2', False))
 
+    # Phase 8: external-IRI labelling for the genes file's own gene xrefs
+    # (Pitfall 3 — this writer emits Entrez/Ensembl/UniProt separately from the
+    # main writer and MUST be patched too). Null-safe; flag-off output is
+    # byte-identical. gene_label_by_iri (xref-IRI -> HGNC symbol) is threaded by
+    # the pipeline (Plan 08-01); absent in unit tests, defaulting to {}.
+    emit_labels = bool(config and getattr(config, 'enable_iri_labels', False))
+    gene_label_by_iri = gene_data.get('gene_label_by_iri', {})
+
     with open(filepath, 'w', encoding='utf-8') as g:
         if genes_provenance:
             g.write(GENES_PROVENANCE_PREFIX)
@@ -745,15 +831,15 @@ def write_genes_rdf(filepath, gene_data, config=None):
         logger.info(f"{len(hgnclist)} HGNC triples written")
 
         for entrez in listofentrez:
-            g.write(entrez + '\ta\tedam:data_1027, edam:data_1025 ;\n\tedam:data_1027\t"' + entrez[9:] + '";\n\tdc:identifier\t"' + entrez + '";\n\tdc:source\t"Entrez Gene".\n\n')
+            g.write(entrez + '\ta\tedam:data_1027, edam:data_1025 ;\n\tedam:data_1027\t"' + entrez[9:] + '";\n\tdc:identifier\t"' + entrez + '";\n\tdc:source\t"Entrez Gene"' + _iri_label_clause(emit_labels, entrez, gene_label_by_iri) + '.\n\n')
         logger.info(f"{len(listofentrez)} Entrez gene triples written")
 
         for ensembl in listofensembl:
-            g.write(ensembl + '\ta\tedam:data_1033, edam:data_1025 ;\n\tedam:data_1033\t"' + ensembl[8:] + '";\n\tdc:identifier\t"' + ensembl + '";\n\tdc:source\t"Ensembl".\n\n')
+            g.write(ensembl + '\ta\tedam:data_1033, edam:data_1025 ;\n\tedam:data_1033\t"' + ensembl[8:] + '";\n\tdc:identifier\t"' + ensembl + '";\n\tdc:source\t"Ensembl"' + _iri_label_clause(emit_labels, ensembl, gene_label_by_iri) + '.\n\n')
         logger.info(f"{len(listofensembl)} Ensembl triples written")
 
         for uniprot in listofuniprot:
-            g.write(uniprot + '\ta\tedam:data_2291, edam:data_1025 ;\n\tedam:data_2291\t"' + uniprot[8:] + '";\n\tdc:identifier\t"' + uniprot + '";\n\tdc:source\t"UniProt".\n\n')
+            g.write(uniprot + '\ta\tedam:data_2291, edam:data_1025 ;\n\tedam:data_2291\t"' + uniprot[8:] + '";\n\tdc:identifier\t"' + uniprot + '";\n\tdc:source\t"UniProt"' + _iri_label_clause(emit_labels, uniprot, gene_label_by_iri) + '.\n\n')
         logger.info(f"{len(listofuniprot)} UniProt triples written")
 
     logger.info("AOP-Wiki RDF Genes file created successfully")

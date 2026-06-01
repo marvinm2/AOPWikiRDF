@@ -584,3 +584,183 @@ def test_aop_unknown_licence_code_skipped():
         write_aop_rdf(out, entities, prefix_csv)
         content = open(out).read()
         assert 'dcterms:license' not in content
+
+
+# ---------------------------------------------------------------------------
+# External-IRI labelling tests (Plan 08-02, LABEL-01 / LABEL-03)
+# ---------------------------------------------------------------------------
+
+# A lightweight flag-on config stand-in. ``enable_iri_labels`` is introduced on
+# PipelineConfig by the parallel Plan 08-01; this writer reads the flag via the
+# null-safe ``getattr(config, 'enable_iri_labels', False)`` idiom, so a duck-typed
+# namespace exercises the writer's label path without coupling this test to the
+# config change landing in a separate worktree. ``enable_bern2`` is included so
+# the genes writer's provenance gate stays off (byte-stable genes output).
+def _labels_on_config():
+    import types
+    return types.SimpleNamespace(
+        enable_iri_labels=True,
+        emit_legacy_predicates=False,
+        enable_bern2=False,
+    )
+
+
+def _write_label_prefixes(path):
+    with open(path, 'w') as f:
+        f.write('prefix,uri\n')
+        for p, u in (
+            ('dc', 'http://purl.org/dc/elements/1.1/'),
+            ('dcterms', 'http://purl.org/dc/terms/'),
+            ('rdfs', 'http://www.w3.org/2000/01/rdf-schema#'),
+            ('owl', 'http://www.w3.org/2002/07/owl#'),
+            ('cheminf', 'http://semanticscience.org/resource/CHEMINF_'),
+            ('chebi', 'https://identifiers.org/chebi/'),
+            ('cas', 'https://identifiers.org/cas/'),
+            ('edam', 'http://edamontology.org/'),
+            ('ncbigene', 'https://identifiers.org/ncbigene/'),
+            ('uniprot', 'https://identifiers.org/uniprot/'),
+            ('ncbitaxon', 'http://purl.obolibrary.org/obo/NCBITaxon_'),
+            ('go', 'http://purl.obolibrary.org/obo/GO_'),
+            ('aopo', 'http://aopkb.org/aop_ontology#'),
+            ('sh', 'http://www.w3.org/ns/shacl#'),
+            ('xsd', 'http://www.w3.org/2001/XMLSchema#'),
+        ):
+            f.write(f'{p},{u}\n')
+
+
+def _label_entities():
+    """Minimal main-file entities with a mapped ChEBI, a mapped Entrez, a
+    component (GO process), plus one UNMAPPED ChEBI (no name in the map)."""
+    return {
+        'aopdict': {}, 'kedict': {}, 'kerdict': {}, 'strdict': {},
+        'taxdict': {}, 'bioactdict': {}, 'bioobjdict': {}, 'prodict': {},
+        'chedict': {},
+        'bioprodict': {
+            'p1': {
+                'dc:identifier': 'go:0008150',
+                'dc:title': '"biological_process"',
+                'dc:source': '"GO"',
+            }
+        },
+        'hgnclist': [], 'ncbigenelist': ['ncbigene:7157'], 'uniprotlist': [],
+        'listofcas': [], 'listofinchikey': [], 'listofcomptox': [],
+        'listofchebi': ['chebi:16842', 'chebi:99999'],  # second is unmapped
+        'listofchemspider': [], 'listofwikidata': [],
+        'listofchembl': [], 'listofpubchem': [], 'listofdrugbank': [],
+        'listofkegg': [], 'listoflipidmaps': [], 'listofhmdb': [],
+        'symbol_lookup': {},
+        'chem_label_by_iri': {'chebi:16842': 'Formaldehyde'},
+        'gene_label_by_iri': {'ncbigene:7157': 'TP53'},
+    }
+
+
+class TestExternalIriLabelsFlagOn:
+    """Flag-on assertions for external-xref + component rdfs:label emission."""
+
+    def test_chebi_and_entrez_and_component_each_labeled_once(self):
+        """A mapped ChEBI, a mapped Entrez, and a GO component each carry
+        exactly one rdfs:label with the expected name when the flag is on."""
+        from aopwiki_rdf.rdf.writer import write_aop_rdf
+        from rdflib import Graph, Namespace, URIRef
+
+        RDFS = Namespace('http://www.w3.org/2000/01/rdf-schema#')
+        chebi_iri = URIRef('https://identifiers.org/chebi/16842')
+        entrez_iri = URIRef('https://identifiers.org/ncbigene/7157')
+        go_iri = URIRef('http://purl.obolibrary.org/obo/GO_0008150')
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            prefix_csv = os.path.join(tmpdir, 'prefixes.csv')
+            _write_label_prefixes(prefix_csv)
+            out = os.path.join(tmpdir, 'AOPWikiRDF.ttl')
+            write_aop_rdf(out, _label_entities(), prefix_csv, config=_labels_on_config())
+
+            g = Graph()
+            g.parse(out, format='turtle')
+
+            chebi_labels = list(g.objects(chebi_iri, RDFS.label))
+            entrez_labels = list(g.objects(entrez_iri, RDFS.label))
+            go_labels = list(g.objects(go_iri, RDFS.label))
+
+            assert len(chebi_labels) == 1 and str(chebi_labels[0]) == 'Formaldehyde'
+            assert len(entrez_labels) == 1 and str(entrez_labels[0]) == 'TP53'
+            assert len(go_labels) == 1 and str(go_labels[0]) == 'biological_process'
+
+    def test_unmapped_xref_iri_has_no_label(self):
+        """An xref IRI absent from the label map carries NO rdfs:label (D-02,
+        no all-digit pseudo-label) even when the flag is on."""
+        from aopwiki_rdf.rdf.writer import write_aop_rdf
+        from rdflib import Graph, Namespace, URIRef
+
+        RDFS = Namespace('http://www.w3.org/2000/01/rdf-schema#')
+        unmapped_iri = URIRef('https://identifiers.org/chebi/99999')
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            prefix_csv = os.path.join(tmpdir, 'prefixes.csv')
+            _write_label_prefixes(prefix_csv)
+            out = os.path.join(tmpdir, 'AOPWikiRDF.ttl')
+            write_aop_rdf(out, _label_entities(), prefix_csv, config=_labels_on_config())
+
+            g = Graph()
+            g.parse(out, format='turtle')
+            assert list(g.objects(unmapped_iri, RDFS.label)) == []
+
+    def test_genes_file_gene_xrefs_labeled_flag_on(self):
+        """Entrez/Ensembl/UniProt in the genes file each carry one rdfs:label
+        when the flag is on (Pitfall 3 — separate writer)."""
+        from aopwiki_rdf.rdf.writer import write_genes_rdf
+        from rdflib import Graph, Namespace, URIRef
+
+        RDFS = Namespace('http://www.w3.org/2000/01/rdf-schema#')
+        gene_data = {
+            'kedict': {}, 'kerdict': {}, 'hgnclist': [],
+            'geneiddict': {}, 'listofentrez': ['ncbigene:7157'],
+            'listofensembl': ['ensembl:ENSG00000141510'],
+            'listofuniprot': ['uniprot:P04637'],
+            'symbol_lookup': {},
+            'gene_label_by_iri': {
+                'ncbigene:7157': 'TP53',
+                'ensembl:ENSG00000141510': 'TP53',
+                'uniprot:P04637': 'TP53',
+            },
+        }
+        with tempfile.TemporaryDirectory() as tmpdir:
+            out = os.path.join(tmpdir, 'Genes.ttl')
+            write_genes_rdf(out, gene_data, config=_labels_on_config())
+            g = Graph()
+            g.parse(out, format='turtle')
+
+            for ns, local in (
+                ('https://identifiers.org/ncbigene/', '7157'),
+                ('https://identifiers.org/uniprot/', 'P04637'),
+            ):
+                labels = list(g.objects(URIRef(ns + local), RDFS.label))
+                assert len(labels) == 1 and str(labels[0]) == 'TP53'
+            # Ensembl prefix is declared in GENES_PREFIXES; assert via raw text
+            content = open(out).read()
+            assert 'ensembl:ENSG00000141510' in content
+            assert content.count('rdfs:label\t"TP53"') == 3
+
+    def test_quote_bearing_label_is_turtle_escaped(self):
+        """A label containing a double-quote does not break rdflib parsing
+        (T-08-04 escaping) and round-trips to the original name."""
+        from aopwiki_rdf.rdf.writer import write_aop_rdf
+        from rdflib import Graph, Namespace, URIRef
+
+        RDFS = Namespace('http://www.w3.org/2000/01/rdf-schema#')
+        chebi_iri = URIRef('https://identifiers.org/chebi/16842')
+
+        entities = _label_entities()
+        entities['listofchebi'] = ['chebi:16842']
+        entities['chem_label_by_iri'] = {'chebi:16842': 'weird "quoted" name'}
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            prefix_csv = os.path.join(tmpdir, 'prefixes.csv')
+            _write_label_prefixes(prefix_csv)
+            out = os.path.join(tmpdir, 'AOPWikiRDF.ttl')
+            write_aop_rdf(out, entities, prefix_csv, config=_labels_on_config())
+
+            g = Graph()
+            g.parse(out, format='turtle')  # must not raise
+            labels = list(g.objects(chebi_iri, RDFS.label))
+            assert len(labels) == 1
+            assert str(labels[0]) == 'weird "quoted" name'
