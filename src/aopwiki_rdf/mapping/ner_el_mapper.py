@@ -57,6 +57,121 @@ def _write_json_cache(path: Path, data: dict) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Description normalisation + cache-coverage probe (NER-03)
+# ---------------------------------------------------------------------------
+
+def _description_text(props_description) -> str:
+    """Normalise a parser ``dc:description`` value into one annotation block.
+
+    The XML parser stores descriptions wrapped in triple double-quotes and,
+    for KEs, occasionally as a list of such blocks. The pipeline annotates the
+    *unwrapped, space-joined* text, so cache keys must be computed from the
+    same string or the coverage probe reports false misses. This helper is the
+    single source of truth for that normalisation, shared by
+    :func:`map_ner_genes_in_kes`, :func:`is_cached`, and
+    :func:`report_cache_coverage`.
+
+    Parameters
+    ----------
+    props_description:
+        A ``dc:description`` value: either a ``"``-wrapped string or a list of
+        such strings.
+
+    Returns
+    -------
+    str
+        List inputs are joined with single spaces after stripping ``"``;
+        scalar inputs are coerced to ``str`` and stripped of ``"``.
+    """
+    if isinstance(props_description, list):
+        return " ".join(str(d).strip('"') for d in props_description)
+    return str(props_description).strip('"')
+
+
+def is_cached(text: str, ner_cache_dir) -> bool:
+    """Return True iff ``text`` has a usable BERN2 cache entry.
+
+    Pure disk probe -- never touches the network. A cache entry counts as
+    present only if the file exists, parses as JSON, and carries no
+    ``_error`` key (mirroring the check in :func:`query_bern2`). Corrupt JSON
+    is treated as a miss; note that :func:`_read_json_cache` deletes corrupt
+    files as a side effect (re-warmable), which is the desired tamper
+    response (threat T-06-01).
+
+    Parameters
+    ----------
+    text:
+        The text to probe. Callers should pass the SAME normalised text the
+        pipeline annotates (see :func:`_description_text`).
+    ner_cache_dir:
+        The configured ``ner_cache_dir``; BERN2 responses live under
+        ``{ner_cache_dir}/bern2/{_cache_key(text)}.json`` (matching
+        :func:`find_hgnc_ids_via_ner_el`).
+    """
+    cache_path = Path(ner_cache_dir) / "bern2" / f"{_cache_key(text)}.json"
+    cached = _read_json_cache(cache_path)
+    return cached is not None and "_error" not in cached
+
+
+def report_cache_coverage(*entity_dicts, config) -> dict:
+    """Measure BERN2 cache coverage across one or more entity dictionaries.
+
+    Counts entities carrying a non-empty ``dc:description`` (whitespace-only
+    descriptions are skipped, matching the pipeline's
+    ``if not text.strip(): continue``), and classifies each as cached or
+    uncached via :func:`is_cached`. Pure disk probe -- no network I/O and no
+    mutation of the passed dicts.
+
+    Parameters
+    ----------
+    *entity_dicts:
+        One or more ``{entity_id: properties}`` dicts (e.g. ``kedict``,
+        ``kerdict``).
+    config:
+        PipelineConfig; only ``ner_cache_dir`` is read.
+
+    Returns
+    -------
+    dict
+        ``{"total": int, "cached": int, "uncached_ids": list[str]}`` where
+        ``uncached_ids`` is sorted. Emits one INFO summary line and, when any
+        IDs are uncached, one INFO line listing them (truncated to the first
+        50 with a ``+N more`` suffix; threat T-06-02 bounds log volume).
+    """
+    total = 0
+    cached = 0
+    uncached_ids: list[str] = []
+
+    for entity_dict in entity_dicts:
+        for entity_id, props in entity_dict.items():
+            description = props.get("dc:description")
+            if not description:
+                continue
+            text = _description_text(description)
+            if not text.strip():
+                continue
+            total += 1
+            if is_cached(text, config.ner_cache_dir):
+                cached += 1
+            else:
+                uncached_ids.append(entity_id)
+
+    uncached_ids.sort()
+    n_uncached = len(uncached_ids)
+    pct = (100.0 * cached / total) if total else 0.0
+    logger.info(
+        "BERN2 cache coverage: %d/%d (%.1f%%); %d uncached",
+        cached, total, pct, n_uncached,
+    )
+    if uncached_ids:
+        head = uncached_ids[:50]
+        suffix = f" (+{n_uncached - len(head)} more)" if n_uncached > len(head) else ""
+        logger.info("BERN2 uncached IDs: %s%s", ", ".join(head), suffix)
+
+    return {"total": total, "cached": cached, "uncached_ids": uncached_ids}
+
+
+# ---------------------------------------------------------------------------
 # BERN2 client
 # ---------------------------------------------------------------------------
 
@@ -408,13 +523,11 @@ def map_ner_genes_in_kes(
     logger.info("BERN2 NER+EL: scanning %d Key Event descriptions", total)
 
     for idx, ke_id in enumerate(ke_ids, 1):
-        description = kedict[ke_id]["dc:description"]
         # dc:description can be a list of triple-quoted strings (parser
-        # appends MIE/AO example text); join into one block for the model.
-        if isinstance(description, list):
-            text = " ".join(str(d).strip('"') for d in description)
-        else:
-            text = str(description).strip('"')
+        # appends MIE/AO example text); _description_text joins into one
+        # block for the model -- the single source of truth for the
+        # normalisation, so cache keys match the coverage probe.
+        text = _description_text(kedict[ke_id]["dc:description"])
         if not text.strip():
             continue
 
