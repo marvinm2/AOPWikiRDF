@@ -18,12 +18,40 @@ import json
 import logging
 import re
 import time
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Iterable
 
 import requests
 
 logger = logging.getLogger(__name__)
+
+
+@dataclass
+class NerResult:
+    """Outcome of a single BERN2 NER+EL gene lookup.
+
+    Makes a BERN2 *failure* observable to the merge step (NER-04). Today an
+    empty ``set()`` is ambiguous -- it could mean "BERN2 ran and found no
+    genes" OR "BERN2 was unreachable". This object disambiguates:
+
+    Attributes
+    ----------
+    hgnc_ids:
+        HGNC numeric IDs found (e.g. ``{"11998"}``). Empty on both a clean
+        no-hit run and a failure.
+    failed:
+        ``True`` only when the BERN2 call itself failed (``query_bern2``
+        returned ``_error`` -- unreachable / all retries exhausted /
+        truncation-fallback all-failed). A successful call that found zero
+        genes is ``failed=False``.
+    error:
+        The error message when ``failed`` is ``True``; otherwise ``None``.
+    """
+
+    hgnc_ids: set[str] = field(default_factory=set)
+    failed: bool = False
+    error: str | None = None
 
 # Default chunk size for the JSON-truncation fallback. Empirically, BERN2's
 # hosted API returns truncated JSON past ~5170 characters of response. Splitting
@@ -422,6 +450,64 @@ def map_ncbi_to_hgnc(
 # Public API
 # ---------------------------------------------------------------------------
 
+def find_hgnc_ids_via_ner_el_result(
+    text: str,
+    bern2_url: str,
+    bridgedb_url: str,
+    cache_dir: Path,
+    timeout: int = 120,
+    sleep_after: float = 0.0,
+    min_prob: float = 0.0,
+) -> NerResult:
+    """Find HGNC numeric IDs in ``text``, signalling BERN2 failure (NER-04).
+
+    Same composition as :func:`find_hgnc_ids_via_ner_el` -- :func:`query_bern2`,
+    :func:`extract_ncbi_gene_ids`, :func:`map_ncbi_to_hgnc` -- but returns a
+    :class:`NerResult` so callers can distinguish a BERN2 *failure* from a
+    successful run that found no genes:
+
+    * ``query_bern2`` returns ``_error`` (unreachable / all retries failed /
+      truncation-fallback all-failed) -> ``NerResult(set(), failed=True,
+      error=<msg>)``. This is the ONLY failure case.
+    * BERN2 ran fine but emitted no gene annotations, or BridgeDb mapped
+      none of them -> ``NerResult(set(), failed=False, error=None)``.
+    * BERN2 ran fine with mappable genes -> ``NerResult({hgnc...},
+      failed=False, error=None)``.
+
+    The cache layout, knobs, and network behaviour are identical to
+    :func:`find_hgnc_ids_via_ner_el`; this adds no network calls.
+    """
+    cache_dir = Path(cache_dir)
+    bern2_cache = cache_dir / "bern2"
+    bridgedb_cache = cache_dir / "bridgedb"
+
+    bern2_response = query_bern2(
+        text,
+        bern2_url=bern2_url,
+        cache_dir=bern2_cache,
+        timeout=timeout,
+        sleep_after=sleep_after,
+    )
+    if "_error" in bern2_response:
+        # The only failure boundary: BERN2 itself could not be reached / all
+        # retries and the chunking fallback failed. NOT a clean no-hit run.
+        logger.warning("BERN2 query failed: %s", bern2_response["_error"])
+        return NerResult(set(), failed=True, error=bern2_response["_error"])
+
+    ncbi_ids = extract_ncbi_gene_ids(bern2_response, min_prob=min_prob)
+    if not ncbi_ids:
+        return NerResult(set(), failed=False, error=None)
+
+    ncbi_to_hgnc = map_ncbi_to_hgnc(
+        ncbi_ids,
+        bridgedb_url=bridgedb_url,
+        cache_dir=bridgedb_cache,
+        timeout=timeout,
+        sleep_after=sleep_after,
+    )
+    return NerResult(set(ncbi_to_hgnc.values()), failed=False, error=None)
+
+
 def find_hgnc_ids_via_ner_el(
     text: str,
     bern2_url: str,
@@ -432,6 +518,11 @@ def find_hgnc_ids_via_ner_el(
     min_prob: float = 0.0,
 ) -> set[str]:
     """Find HGNC numeric IDs in ``text`` via BERN2 + BridgeDb.
+
+    Thin wrapper over :func:`find_hgnc_ids_via_ner_el_result` returning only
+    the ``hgnc_ids`` set, so its ``set[str]`` contract is unchanged for every
+    existing caller -- byte-identical behaviour to before NER-04 for any input
+    (an empty set is still returned on both a no-hit run and a BERN2 failure).
 
     Composes :func:`query_bern2`, :func:`extract_ncbi_gene_ids`, and
     :func:`map_ncbi_to_hgnc`. The cache is split into two subdirectories
@@ -451,35 +542,19 @@ def find_hgnc_ids_via_ner_el(
     -----
     This is the unit a Phase B caller invokes per KE/KER description. The
     caller is responsible for unioning the result with the regex-derived
-    HGNC IDs and emitting RDF triples with appropriate provenance.
+    HGNC IDs and emitting RDF triples with appropriate provenance. Callers
+    that need to react to a BERN2 outage (regex fallback) should use
+    :func:`find_hgnc_ids_via_ner_el_result` instead.
     """
-    cache_dir = Path(cache_dir)
-    bern2_cache = cache_dir / "bern2"
-    bridgedb_cache = cache_dir / "bridgedb"
-
-    bern2_response = query_bern2(
+    return find_hgnc_ids_via_ner_el_result(
         text,
         bern2_url=bern2_url,
-        cache_dir=bern2_cache,
-        timeout=timeout,
-        sleep_after=sleep_after,
-    )
-    if "_error" in bern2_response:
-        logger.warning("BERN2 query failed: %s", bern2_response["_error"])
-        return set()
-
-    ncbi_ids = extract_ncbi_gene_ids(bern2_response, min_prob=min_prob)
-    if not ncbi_ids:
-        return set()
-
-    ncbi_to_hgnc = map_ncbi_to_hgnc(
-        ncbi_ids,
         bridgedb_url=bridgedb_url,
-        cache_dir=bridgedb_cache,
+        cache_dir=cache_dir,
         timeout=timeout,
         sleep_after=sleep_after,
-    )
-    return set(ncbi_to_hgnc.values())
+        min_prob=min_prob,
+    ).hgnc_ids
 
 
 def map_ner_genes_in_kes(
@@ -552,6 +627,81 @@ def map_ner_genes_in_kes(
     logger.info(
         "BERN2 NER+EL complete: %d/%d KEs had gene detections",
         len(results), total,
+    )
+    return results
+
+
+def map_ner_genes_in_kes_result(
+    kedict: dict, config, sleep_after: float = 0.0,
+) -> dict[str, NerResult]:
+    """Run BERN2 NER+EL over every KE description, signalling per-KE failure.
+
+    Result-returning counterpart to :func:`map_ner_genes_in_kes` (NER-04).
+    Iterates KEs that carry a non-empty ``dc:description`` and returns a
+    :class:`NerResult` *per scanned KE* (not just those with hits) so the
+    merge step can see exactly WHICH descriptions degraded and fall back to
+    their regex genes. Reuses :func:`_description_text` so cache keys match
+    the coverage probe and the existing KE pass.
+
+    Parameters
+    ----------
+    kedict:
+        Key Event dictionary (ke_id -> properties) from the XML parser. KEs
+        with a non-empty ``dc:description`` are scanned.
+    config:
+        PipelineConfig. Reads ``bern2_url``, ``bridgedb_url``,
+        ``ner_cache_dir``, ``ner_min_prob``, and ``request_timeout``.
+    sleep_after:
+        Optional per-call delay (seconds).
+
+    Returns
+    -------
+    dict
+        ``{ke_id: NerResult}`` for every scanned KE. ``NerResult.hgnc_ids``
+        are formatted as ``hgnc:N`` URI-prefix strings to match the regex
+        mapper's output convention. KEs with blank descriptions are absent.
+    """
+    results: dict[str, NerResult] = {}
+    ke_ids = [
+        ke_id for ke_id, props in kedict.items()
+        if props.get("dc:description")
+    ]
+    total = len(ke_ids)
+    logger.info("BERN2 NER+EL: scanning %d Key Event descriptions", total)
+
+    n_failed = 0
+    for idx, ke_id in enumerate(ke_ids, 1):
+        text = _description_text(kedict[ke_id]["dc:description"])
+        if not text.strip():
+            continue
+
+        result = find_hgnc_ids_via_ner_el_result(
+            text,
+            bern2_url=config.bern2_url,
+            bridgedb_url=config.bridgedb_url,
+            cache_dir=config.ner_cache_dir,
+            timeout=config.request_timeout,
+            sleep_after=sleep_after,
+            min_prob=config.ner_min_prob,
+        )
+        # Re-format HGNC numeric IDs as hgnc:N to match the regex mapper.
+        results[ke_id] = NerResult(
+            hgnc_ids={f"hgnc:{n}" for n in result.hgnc_ids},
+            failed=result.failed,
+            error=result.error,
+        )
+        if result.failed:
+            n_failed += 1
+
+        if idx % 100 == 0 or idx == total:
+            logger.info(
+                "BERN2 NER+EL progress: %d/%d KEs (%d failed)",
+                idx, total, n_failed,
+            )
+
+    logger.info(
+        "BERN2 NER+EL complete: %d/%d KEs scanned, %d failed",
+        len(results), total, n_failed,
     )
     return results
 
