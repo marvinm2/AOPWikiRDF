@@ -249,11 +249,17 @@ def _apply_bern2_enrichment(kedict, kerdict, gene_hgnclist, config):
 
     # KE branch: union BERN2 NER detections into KE gene mappings.
     ner_results = map_ner_genes_in_kes_result(kedict, config)
-    ok, degraded = union_ner_into_entities(
+    ok, degraded, skipped = union_ner_into_entities(
         kedict, ner_results, gene_hgnclist, existing_hgnc,
         fallback_on_failure=config.ner_fallback_on_failure,
     )
-    total = ok + degraded
+    # The three buckets partition kedict exactly (WR-03): total is the number
+    # of KEs considered, not just ok + degraded. "skipped" are KEs the mapper
+    # returned no NER result for (e.g. blank/unscanned descriptions).
+    total = len(kedict)
+    assert ok + degraded + skipped == total, (
+        f"KE NER bucket invariant violated: {ok}+{degraded}+{skipped} != {total}"
+    )
     if degraded > 0:
         logger.error(
             "BERN2 degraded for %d/%d KE descriptions; fell back to regex "
@@ -261,8 +267,8 @@ def _apply_bern2_enrichment(kedict, kerdict, gene_hgnclist, config):
             degraded, total,
         )
     logger.info(
-        "BERN2 enrichment coverage: %d ok, %d degraded, %d total",
-        ok, degraded, total,
+        "BERN2 enrichment coverage: %d ok, %d degraded, %d skipped, %d total",
+        ok, degraded, skipped, total,
     )
 
     # KER branch (D-08): mirror the KE union via the same shared helper. KER
@@ -272,11 +278,18 @@ def _apply_bern2_enrichment(kedict, kerdict, gene_hgnclist, config):
     # the KER subject (the writer emits it automatically whenever _genes_ner is
     # set).
     ker_ner_results = map_ner_genes_in_kers_result(kerdict, config)
-    ker_ok, ker_degraded = union_ner_into_entities(
+    ker_ok, ker_degraded, ker_skipped = union_ner_into_entities(
         kerdict, ker_ner_results, gene_hgnclist, existing_hgnc,
         fallback_on_failure=config.ner_fallback_on_failure,
     )
-    ker_total = ker_ok + ker_degraded
+    # WR-03: KERs without NER text are common (map_ner_genes_in_kers_result only
+    # returns entries for KERs with text), so most KERs land in "skipped".
+    # Reporting total as len(kerdict) keeps the coverage metric honest.
+    ker_total = len(kerdict)
+    assert ker_ok + ker_degraded + ker_skipped == ker_total, (
+        f"KER NER bucket invariant violated: "
+        f"{ker_ok}+{ker_degraded}+{ker_skipped} != {ker_total}"
+    )
     if ker_degraded > 0:
         logger.error(
             "BERN2 degraded for %d/%d KER descriptions; fell back to regex "
@@ -284,8 +297,8 @@ def _apply_bern2_enrichment(kedict, kerdict, gene_hgnclist, config):
             ker_degraded, ker_total,
         )
     logger.info(
-        "BERN2 KER enrichment coverage: %d ok, %d degraded, %d total",
-        ker_ok, ker_degraded, ker_total,
+        "BERN2 KER enrichment coverage: %d ok, %d degraded, %d skipped, %d total",
+        ker_ok, ker_degraded, ker_skipped, ker_total,
     )
 
 

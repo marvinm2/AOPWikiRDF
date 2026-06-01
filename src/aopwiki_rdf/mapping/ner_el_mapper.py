@@ -978,15 +978,35 @@ def union_ner_into_entities(
     thin the regex baseline).
 
     Mutates ``entdict`` props, ``gene_hgnclist``, and ``existing_hgnc`` in place.
-    Returns ``(ok, degraded)`` counts.
+    Returns ``(ok, degraded, skipped)`` counts. The three buckets partition
+    ``entdict`` exactly: ``ok + degraded + skipped == len(entdict)``. ``skipped``
+    counts entities the mapper never returned an NER result for (e.g. a KER with
+    no NER text, or a KE whose blank description was not scanned) -- these are
+    neither successful NER scans nor BERN2 degradations, so an operator metric
+    must report them separately rather than rolling them silently out of the
+    denominator (see WR-03).
     """
     ok = 0
     degraded = 0
+    skipped = 0
     for ent_id, props in entdict.items():
         regex_genes = list(props.get("edam:data_1025", []))
         result = ner_results.get(ent_id)
 
-        if result is not None and result.failed and fallback_on_failure:
+        # No NER result for this entity at all (not scanned / no NER text).
+        # Not an ok scan and not a degradation -- count it as skipped so the
+        # buckets partition entdict.
+        if result is None:
+            skipped += 1
+            if not regex_genes:
+                continue
+            # Preserve the existing regex baseline so the writer still emits
+            # the gene association (matches prior behaviour for this path).
+            props["_genes_regex"] = regex_genes
+            props["_genes_ner"] = []
+            continue
+
+        if result.failed and fallback_on_failure:
             # BERN2 outage: degrade to the regex genes already held.
             # edam:data_1025 stays >= regex baseline; no NER contributed.
             degraded += 1
@@ -997,11 +1017,10 @@ def union_ner_into_entities(
             props["_ner_degraded"] = True
             continue
 
-        # Normal additive path: success (with or without hits), or fallback
-        # disabled. A failed result with fallback off unions an empty NER set.
-        ner_genes = sorted(result.hgnc_ids) if result is not None else []
-        if result is not None:
-            ok += 1
+        # Normal additive path: success (with or without hits), or a failed
+        # result with fallback disabled (unions an empty NER set).
+        ner_genes = sorted(result.hgnc_ids)
+        ok += 1
         if not regex_genes and not ner_genes:
             continue
         props["_genes_regex"] = regex_genes
@@ -1015,4 +1034,4 @@ def union_ner_into_entities(
             if g not in existing_hgnc:
                 gene_hgnclist.append(g)
                 existing_hgnc.add(g)
-    return ok, degraded
+    return ok, degraded, skipped
