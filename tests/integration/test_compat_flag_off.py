@@ -110,3 +110,104 @@ def test_flag_off_genes_write_emits_no_phase7_prov():
         assert forbidden not in content, (
             f"flag-off genes write leaked Phase-7 token {forbidden!r}"
         )
+
+
+def test_flag_off_emits_no_iri_labels():
+    """A flag-off write must emit NO new external-IRI rdfs:label (Phase 8).
+
+    Always-on COMPAT-01 guard (no backup needed): builds small literal
+    entities/gene_data whose chemical-xref, gene-xref, and component lists are
+    populated, writes both the main and genes files with ``config=None`` (flag
+    off), and asserts that NO ``rdfs:label`` appears on any external-xref or
+    component subject. The pre-existing HGNC/Stressor/typelabels labels
+    legitimately exist when the flag is off; this test populates ONLY subjects
+    that must stay unlabeled when off (no HGNC list, no typelabels.txt, no
+    stressors), so the flag-off baseline for these subjects is exactly zero
+    ``rdfs:label`` occurrences. The byte-identity invariant is therefore a
+    clean ``rdfs:label`` count of 0 on the produced output.
+    """
+    from aopwiki_rdf.rdf.writer import write_aop_rdf, write_genes_rdf
+
+    with tempfile.TemporaryDirectory() as tmp:
+        prefix_csv = os.path.join(tmp, "prefixes.csv")
+        with open(prefix_csv, "w") as f:
+            f.write("prefix,uri\n")
+            for p, u in (
+                ("dc", "http://purl.org/dc/elements/1.1/"),
+                ("dcterms", "http://purl.org/dc/terms/"),
+                ("rdfs", "http://www.w3.org/2000/01/rdf-schema#"),
+                ("owl", "http://www.w3.org/2002/07/owl#"),
+                ("cheminf", "http://semanticscience.org/resource/CHEMINF_"),
+                ("chebi", "https://identifiers.org/chebi/"),
+                ("cas", "https://identifiers.org/cas/"),
+                ("edam", "http://edamontology.org/"),
+                ("ncbigene", "https://identifiers.org/ncbigene/"),
+                ("uniprot", "https://identifiers.org/uniprot/"),
+                ("ncbitaxon", "http://purl.obolibrary.org/obo/NCBITaxon_"),
+                ("go", "http://purl.obolibrary.org/obo/GO_"),
+                ("aopo", "http://aopkb.org/aop_ontology#"),
+                ("sh", "http://www.w3.org/ns/shacl#"),
+                ("xsd", "http://www.w3.org/2001/XMLSchema#"),
+            ):
+                f.write(f"{p},{u}\n")
+
+        # Main file: chemical + gene xrefs + a taxonomy + a biological-process
+        # component, but NO hgnclist (whose rdfs:label is always-on) and no
+        # typelabels.txt on disk (its class labels are always-on).
+        entities = {
+            "aopdict": {}, "kedict": {}, "kerdict": {}, "strdict": {},
+            "taxdict": {
+                "9606": {
+                    "dc:identifier": "ncbitaxon:9606",
+                    "dc:title": "Homo sapiens",
+                    "dc:source": "NCBI",
+                }
+            },
+            "bioprodict": {
+                "p1": {
+                    "dc:identifier": "go:0008150",
+                    "dc:title": '"biological_process"',
+                    "dc:source": '"GO"',
+                }
+            },
+            "bioobjdict": {}, "bioactdict": {}, "prodict": {}, "chedict": {},
+            "hgnclist": [], "ncbigenelist": ["ncbigene:7157"],
+            "uniprotlist": ["uniprot:P04637"],
+            "listofcas": ["cas:50-00-0"], "listofinchikey": [], "listofcomptox": [],
+            "listofchebi": ["chebi:16842"], "listofchemspider": [], "listofwikidata": [],
+            "listofchembl": [], "listofpubchem": [], "listofdrugbank": [],
+            "listofkegg": [], "listoflipidmaps": [], "listofhmdb": [],
+            "symbol_lookup": {},
+            # Maps present but the flag is OFF -> must be ignored entirely.
+            "chem_label_by_iri": {"chebi:16842": "Formaldehyde", "cas:50-00-0": "Formaldehyde"},
+            "gene_label_by_iri": {"ncbigene:7157": "TP53", "uniprot:P04637": "TP53"},
+        }
+        main_out = os.path.join(tmp, "AOPWikiRDF.ttl")
+        write_aop_rdf(main_out, entities, prefix_csv)  # config=None -> flag off
+        main_content = open(main_out).read()
+
+        gene_data = {
+            "kedict": {}, "kerdict": {}, "hgnclist": [],
+            "geneiddict": {}, "listofentrez": ["ncbigene:7157"],
+            "listofensembl": ["ensembl:ENSG00000141510"],
+            "listofuniprot": ["uniprot:P04637"],
+            "symbol_lookup": {},
+            "gene_label_by_iri": {
+                "ncbigene:7157": "TP53",
+                "ensembl:ENSG00000141510": "TP53",
+                "uniprot:P04637": "TP53",
+            },
+        }
+        genes_out = os.path.join(tmp, "AOPWikiRDF-Genes.ttl")
+        write_genes_rdf(genes_out, gene_data)  # config=None -> flag off
+        genes_content = open(genes_out).read()
+
+    # These outputs populate ONLY subjects that are unlabeled when the flag is
+    # off (no hgnclist, no typelabels.txt, no stressors). So the flag-off
+    # baseline is exactly zero rdfs:label occurrences.
+    assert "rdfs:label" not in main_content, (
+        "flag-off main write leaked an rdfs:label on an external/component subject"
+    )
+    assert "rdfs:label" not in genes_content, (
+        "flag-off genes write leaked an rdfs:label on a gene-xref subject"
+    )
