@@ -78,7 +78,20 @@ def prop_to_prefixed(uri):
     return f"<{uri}>"
 
 
-def generate_property_shapes(properties, exclude_rdf_type=True):
+# rdfs:label is FLAG-GATED (Phase 8 enable_iri_labels) on the EXTERNAL-xref
+# subject classes (chemical xrefs cheminf:000407, gene xrefs): present at 100%
+# in the flag-on fixture but ABSENT on those same classes in flag-off production
+# data/. A Violation+minCount rdfs:label constraint on such a class would fail
+# flag-off production validation (test_no_violations_on_current_data) even
+# though the fixture conforms. Callers that build shapes for a flag-gated-label
+# class pass label_flag_gated=True to relax rdfs:label to a non-blocking
+# sh:Warning (no sh:minCount). The unconditional-label classes (AOP/KE/KER,
+# whose rdfs:label comes from the entity title regardless of the flag) keep the
+# default so their genuine 100% rdfs:label stays a Violation.
+RDFS_LABEL_URI = "http://www.w3.org/2000/01/rdf-schema#label"
+
+
+def generate_property_shapes(properties, exclude_rdf_type=True, label_flag_gated=False):
     """Generate sh:property blocks from audit property data."""
     lines = []
     for prop_uri, prop_data in sorted(
@@ -92,10 +105,16 @@ def generate_property_shapes(properties, exclude_rdf_type=True):
         severity = prop_data["severity"]
         pct = prop_data["percentage"]
 
+        # Relax ONLY flag-gated rdfs:label (external-xref classes) to a
+        # non-blocking Warning so flag-off production data conforms.
+        relax_label = label_flag_gated and prop_uri == RDFS_LABEL_URI
+        if relax_label:
+            severity = "sh:Warning"
+
         lines.append(f"    sh:property [")
         lines.append(f"        sh:path {prefixed} ;")
 
-        if severity == "sh:Violation" and pct >= 90.0:
+        if not relax_label and severity == "sh:Violation" and pct >= 90.0:
             lines.append(f"        sh:minCount 1 ;")
 
         lines.append(f"        sh:severity {severity} ;")
@@ -181,7 +200,11 @@ def generate_gene_association_shape(fixture_audit):
     # 1. Typed gene-association subjects (edam:data_1025).
     ga_type = fixture_audit.get("http://edamontology.org/data_1025")
     if ga_type:
-        props = generate_property_shapes(ga_type["properties"])
+        # label_flag_gated: gene-xref rdfs:label is flag-on-only -- keep it a
+        # non-blocking Warning so flag-off production gene subjects conform.
+        props = generate_property_shapes(
+            ga_type["properties"], label_flag_gated=True,
+        )
         blocks.append(_node_shape_block(
             "GeneAssociationShape",
             "sh:targetClass edam:data_1025",
@@ -234,6 +257,89 @@ def generate_gene_association_shape(fixture_audit):
     )
 
 
+def generate_chemical_shape(main_audit, label_fixture_audit):
+    """Build chemical-shape.ttl: the chemical-entity shape + a chemical-xref shape.
+
+    Two node shapes are emitted into one file:
+
+      1. ChemicalShape      -- sh:targetClass cheminf:000000
+         (the chemical-substance entities; dc:identifier/dc:title/dc:source/...).
+         Sourced from the production main audit (AOPWikiRDF.ttl) exactly as
+         before, so its non-label constraints are unchanged.
+      2. ChemicalXrefShape  -- sh:targetClass cheminf:000407 (ChEBI xref subjects)
+         Sourced from the FLAG-ON label fixture (D-09): these subjects carry the
+         rdfs:label the production flag-off data/ files do not, so the rdfs:label
+         sh:property constraint enters the shape only via this fixture audit.
+         pyshacl conforms green against the flag-on fixture; production data has
+         no cheminf:000407 subjects so the shape is inert against data/.
+    """
+    blocks = []
+
+    # 1. Chemical-substance entities (from the production main audit).
+    chem_type = main_audit.get(
+        "http://semanticscience.org/resource/CHEMINF_000000"
+    )
+    if chem_type:
+        props = generate_property_shapes(chem_type["properties"])
+        blocks.append(_node_shape_block(
+            "ChemicalShape",
+            "sh:targetClass cheminf:000000",
+            "Chemical Substance",
+            props,
+            chem_type["instances"],
+            note="Chemical-substance entities (production main audit)",
+        ))
+
+    # 2. ChEBI xref subjects carrying rdfs:label (from the flag-on fixture).
+    xref_type = label_fixture_audit.get(
+        "http://semanticscience.org/resource/CHEMINF_000407"
+    )
+    if xref_type:
+        # label_flag_gated: rdfs:label is flag-on-only on ChEBI xref subjects, so
+        # keep it a non-blocking Warning (flag-off production ChEBI subjects have
+        # no rdfs:label and must still conform).
+        props = generate_property_shapes(
+            xref_type["properties"], label_flag_gated=True,
+        )
+        blocks.append(_node_shape_block(
+            "ChemicalXrefShape",
+            "sh:targetClass cheminf:000407",
+            "Chemical Cross-Reference (ChEBI, flag-on rdfs:label)",
+            props,
+            xref_type["instances"],
+            note=(
+                "ChEBI xref subjects; carries the flag-on rdfs:label constraint "
+                "(sourced from data-test/iri-label-fixture.ttl, D-09)"
+            ),
+        ))
+    else:
+        # The flag-on label fixture audit is missing -- the rdfs:label constraint
+        # would silently never enter the chemical shape (D-09 / LABEL-04). Make
+        # the degradation loud rather than shipping an unlabeled chemical shape.
+        print(
+            "WARNING: iri-label-fixture.ttl audit is absent from "
+            "audit-results.json; the chemical shape will NOT carry the "
+            "rdfs:label constraint. Re-run property_audit.py with the fixture "
+            "present (data-test/iri-label-fixture.ttl) before relying on the "
+            "chemical shape.",
+            file=sys.stderr,
+        )
+
+    if not blocks:
+        return None
+
+    body = "\n\n".join(blocks)
+    return (
+        f"{COMMON_PREFIXES}\n"
+        f"@prefix shapes: <{SHAPES_NS}> .\n\n"
+        "# SHACL Shapes for Chemical Substance + chemical-xref rdfs:label\n"
+        "# Chemical entity from the production main audit; the rdfs:label\n"
+        "# constraint from the flag-on label fixture "
+        "(data-test/iri-label-fixture.ttl)\n"
+        f"{body}\n"
+    )
+
+
 def main():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     audit_path = os.path.join(base_dir, "scripts", "audit-results.json")
@@ -248,6 +354,11 @@ def main():
     # Flag-on fixture audit: the only input carrying the Phase-7 BERN2
     # provenance predicates (see property_audit.py extra_files / Pitfall 5).
     gene_fixture_audit = audit.get("gene-association-provenance-fixture.ttl", {})
+    # Phase 8 flag-on label fixture audit: the only input carrying rdfs:label on
+    # chemical-xref / gene-xref / component subjects + external/minted predicates
+    # (D-09). Used to add the rdfs:label sh:property constraint to the chemical
+    # shape, which the flag-off production data/ files cannot supply.
+    label_fixture_audit = audit.get("iri-label-fixture.ttl", {})
 
     # 1. AOP Shape
     content = generate_typed_shape(
@@ -285,12 +396,10 @@ def main():
     if content:
         write_shape_file(os.path.join(shapes_dir, "stressor-shape.ttl"), content)
 
-    # 5. Chemical Shape (CHEMINF_000000 is the main chemical class)
-    content = generate_typed_shape(
-        "ChemicalShape", "cheminf:000000",
-        "http://semanticscience.org/resource/CHEMINF_000000",
-        main_audit, "Chemical Substance"
-    )
+    # 5. Chemical Shape (CHEMINF_000000 is the main chemical class) + a
+    #    Chemical-Xref shape (cheminf:000407 ChEBI) carrying the rdfs:label
+    #    constraint sourced from the flag-on label fixture (D-09 / LABEL-04).
+    content = generate_chemical_shape(main_audit, label_fixture_audit)
     if content:
         write_shape_file(os.path.join(shapes_dir, "chemical-shape.ttl"), content)
 

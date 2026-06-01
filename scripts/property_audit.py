@@ -221,6 +221,15 @@ def main():
         os.path.join(
             base_dir, "data-test", "gene-association-provenance-fixture.ttl"
         ),
+        # Phase 8 / Plan 08-03 (D-09): the flag-on label fixture carries the
+        # rdfs:label triples on chemical-xref (cheminf:000407), gene-xref, and
+        # component subjects plus the external + minted predicate labels. The
+        # production data/ files have NO rdfs:label on those subjects when the
+        # flag is off, so the chemical + gene-association shapes MUST be
+        # generated against this fixture or the rdfs:label constraint never
+        # enters the shapes. Stored under its basename key (iri-label-fixture.ttl)
+        # so generate_shapes.py can read it explicitly.
+        os.path.join(base_dir, "data-test", "iri-label-fixture.ttl"),
     ]
 
     all_results = {}

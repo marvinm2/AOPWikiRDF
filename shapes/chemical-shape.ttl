@@ -19,12 +19,16 @@
 @prefix uniprot: <https://identifiers.org/uniprot/> .
 @prefix ncbigene: <https://identifiers.org/ncbigene/> .
 @prefix ensembl: <https://identifiers.org/ensembl/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix : <https://aopwiki.rdf.bigcat-bioinformatics.org/> .
 
 @prefix shapes: <https://aopwiki.rdf.bigcat-bioinformatics.org/shapes/> .
 
-# SHACL Shape for Chemical Substance
-# Generated from property population audit
-# Instances: 412
+# SHACL Shapes for Chemical Substance + chemical-xref rdfs:label
+# Chemical entity from the production main audit; the rdfs:label
+# constraint from the flag-on label fixture (data-test/iri-label-fixture.ttl)
+# Chemical-substance entities (production main audit)
+# Instances: 414
 
 shapes:ChemicalShape
     a sh:NodeShape ;
@@ -74,6 +78,38 @@ shapes:ChemicalShape
     sh:property [
         sh:path dcterms:alternative ;
         sh:severity sh:Warning ;
-        sh:name "dcterms:alternative (83.0%)" ;
+        sh:name "dcterms:alternative (83.1%)" ;
+    ] ;
+    .
+
+# ChEBI xref subjects; carries the flag-on rdfs:label constraint (sourced from data-test/iri-label-fixture.ttl, D-09)
+# Instances: 1
+
+shapes:ChemicalXrefShape
+    a sh:NodeShape ;
+    sh:targetClass cheminf:000407 ;
+    sh:name "Chemical Cross-Reference (ChEBI, flag-on rdfs:label)" ;
+    sh:property [
+        sh:path dc:identifier ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "dc:identifier (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path dc:source ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "dc:source (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path cheminf:000407 ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "cheminf:000407 (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:severity sh:Warning ;
+        sh:name "rdfs:label (100.0%)" ;
     ] ;
     .
