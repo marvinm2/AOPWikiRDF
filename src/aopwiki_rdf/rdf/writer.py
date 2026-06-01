@@ -15,7 +15,7 @@ import pandas as pd
 
 from aopwiki_rdf.rdf.namespaces import (
     get_main_prefixes, GENES_PREFIXES, GENES_PROVENANCE_PREFIX,
-    VOID_PREFIXES, ENRICHED_PREFIXES,
+    GENES_PROVENANCE_ACTIVITIES, VOID_PREFIXES, ENRICHED_PREFIXES,
 )
 from aopwiki_rdf.utils import clean_html_tags
 
@@ -702,6 +702,13 @@ def write_genes_rdf(filepath, gene_data, config=None):
         if genes_provenance:
             g.write(GENES_PROVENANCE_PREFIX)
         g.write(GENES_PREFIXES + '\n')
+        if genes_provenance:
+            # PROV-O activity layer + primacy flag + 0.70 confidence policy.
+            # Gated identically to the prefix above so flag-off output stays
+            # byte-identical to production-rdf-backup/ (COMPAT-01). Emitted
+            # after GENES_PREFIXES so rdfs: (used by the activity labels) is
+            # already declared.
+            g.write(GENES_PROVENANCE_ACTIVITIES)
 
         # KE gene mappings
         n = 0
