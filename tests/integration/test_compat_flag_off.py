@@ -112,6 +112,56 @@ def test_flag_off_genes_write_emits_no_phase7_prov():
         )
 
 
+def test_bern2_on_labels_off_emits_no_minted_predicate_labels():
+    """bern2-ON / labels-OFF: the provenance block is emitted but the minted
+    predicate rdfs:label rows are NOT (double-gate, WR-03).
+
+    GENES_MINTED_PREDICATE_LABELS is double-gated (``if genes_provenance:``
+    then ``if emit_labels:``). A production run with ``enable_bern2=True`` but
+    ``enable_iri_labels=False`` must stay byte-identical to the bern2-on/labels-off
+    baseline: the provenance activity block (``:BERN2NERMapping`` etc.) is present,
+    but none of the minted-predicate label rows leak in. Guards against a future
+    edit that accidentally un-nests the ``emit_labels`` check.
+    """
+    import types
+
+    from aopwiki_rdf.rdf.writer import write_genes_rdf
+
+    config = types.SimpleNamespace(
+        enable_bern2=True,
+        enable_iri_labels=False,
+        emit_legacy_predicates=False,
+    )
+
+    gene_data = {
+        "kedict": {}, "kerdict": {}, "hgnclist": [],
+        "geneiddict": {}, "listofentrez": [], "listofensembl": [],
+        "listofuniprot": [], "symbol_lookup": {},
+    }
+
+    with tempfile.TemporaryDirectory() as tmp:
+        out = os.path.join(tmp, "AOPWikiRDF-Genes.ttl")
+        write_genes_rdf(out, gene_data, config=config)
+        content = open(out).read()
+
+    # The provenance activity layer IS emitted (bern2 is on).
+    assert ":BERN2NERMapping" in content, (
+        "bern2-on genes write must still emit the PROV-O activity block"
+    )
+
+    # The minted-PREDICATE rdfs:label rows must NOT appear (labels flag is off).
+    for forbidden in (
+        ":geneDetectedByNER rdfs:label",
+        ":geneDetectedByRegex rdfs:label",
+        ":isFeaturedMethod rdfs:label",
+        ":minConfidence rdfs:label",
+    ):
+        assert forbidden not in content, (
+            f"bern2-on/labels-off genes write leaked minted predicate label "
+            f"{forbidden!r} (double-gate breach, WR-03)"
+        )
+
+
 def test_flag_off_emits_no_iri_labels():
     """A flag-off write must emit NO new external-IRI rdfs:label (Phase 8).
 
