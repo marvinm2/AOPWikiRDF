@@ -275,3 +275,37 @@ def report_label_coverage(all_iris_by_source, label_map_combined, *, report_path
         fh.write("\n")
 
     return result
+
+
+# Chemical per-source IRI list keys on chem_result, and gene per-source IRI list
+# keys on xref_result, used to assemble the coverage report's per-source buckets.
+_CHEM_RESULT_LIST_KEYS = (
+    "listofchebi",
+    "listofchemspider",
+    "listofwikidata",
+    "listofchembl",
+    "listofpubchem",
+    "listofdrugbank",
+    "listofkegg",
+    "listoflipidmaps",
+    "listofhmdb",
+)
+_GENE_RESULT_LIST_KEYS = ("listofentrez", "listofensembl", "listofuniprot")
+
+
+def report_label_coverage_from_results(
+    chem_result, xref_result, chem_label_by_iri, gene_label_by_iri, *, report_path
+):
+    """Assemble per-source IRI lists from the pipeline results and report coverage.
+
+    Thin orchestration wrapper around :func:`report_label_coverage` so the
+    pipeline stays a thin orchestrator: it gathers the chemical and gene xref
+    list-of-IRIs from *chem_result* / *xref_result*, merges the two label maps,
+    and delegates. Returns the coverage dict.
+    """
+    combined = {**chem_label_by_iri, **gene_label_by_iri}
+    per_source_iri_lists = [chem_result.get(k, []) for k in _CHEM_RESULT_LIST_KEYS]
+    per_source_iri_lists += [xref_result.get(k, []) for k in _GENE_RESULT_LIST_KEYS]
+    return report_label_coverage(
+        per_source_iri_lists, combined, report_path=report_path
+    )

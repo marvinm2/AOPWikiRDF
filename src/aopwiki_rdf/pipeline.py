@@ -27,6 +27,11 @@ from aopwiki_rdf.mapping.ner_el_mapper import (
     union_ner_into_entities,
 )
 from aopwiki_rdf.mapping.chemical_mapper import map_chemicals
+from aopwiki_rdf.mapping.iri_labels import (
+    build_chem_label_map,
+    build_gene_label_map,
+    report_label_coverage_from_results,
+)
 from aopwiki_rdf.mapping.protein_ontology import download_and_parse_promapping
 from aopwiki_rdf.rdf.writer import write_aop_rdf, write_enriched_rdf, write_genes_rdf, write_void_rdf
 
@@ -364,6 +369,25 @@ def _stage_gene_mapping(config, context):
     context["hgnc_modification_time"] = hgnc_mod_time
     context["gene_symbol_lookup"] = symbol_lookup
 
+    # Build the inverted xref_iri -> name label maps ONCE (both upstream stages
+    # have run). Byte-stable, order-independent, network-free (LABEL-02 / D-03);
+    # the writer (Plan 08-02) consumes them by loop variable like symbol_lookup.
+    # Building runs unconditionally; only EMISSION is flag-gated (byte-stable off).
+    gene_label_by_iri = build_gene_label_map(xref_result["geneiddict"], symbol_lookup)
+    chem_label_by_iri = build_chem_label_map(context["chemical_result"]["chedict"])
+    context["gene_label_by_iri"] = gene_label_by_iri
+    context["chem_label_by_iri"] = chem_label_by_iri
+
+    # Honest coverage report (LABEL-04 / D-07): only when the flag is on (a
+    # flag-off run writes no artifact and stays byte-identical). Records the
+    # per-source labeled/unlabeled counts + sorted opaque IRIs (D-02).
+    if config.enable_iri_labels:
+        report_label_coverage_from_results(
+            context["chemical_result"], xref_result,
+            chem_label_by_iri, gene_label_by_iri,
+            report_path=context["filepath"] + "label-coverage-report.json",
+        )
+
 
 def _stage_write_aop_rdf(config, context):
     """Write AOPWikiRDF.ttl from assembled entity data."""
@@ -403,6 +427,11 @@ def _stage_write_aop_rdf(config, context):
     # Pass symbol_lookup for gene rdfs:label in main RDF
     writer_entities["symbol_lookup"] = context.get("gene_symbol_lookup", {})
 
+    # Thread the inverted xref_iri -> name label maps into the main-file writer,
+    # like symbol_lookup (writer reads them by loop variable when the flag is on).
+    writer_entities["gene_label_by_iri"] = context.get("gene_label_by_iri", {})
+    writer_entities["chem_label_by_iri"] = context.get("chem_label_by_iri", {})
+
     prefix_csv = "prefixes.csv"
     write_aop_rdf(filepath + "AOPWikiRDF.ttl", writer_entities, prefix_csv, config=config)
     context["triple_count_main"] = _count_triples(filepath + "AOPWikiRDF.ttl")
@@ -440,6 +469,9 @@ def _stage_write_genes_rdf(config, context):
         "listofensembl": xref_result["listofensembl"],
         "listofuniprot": xref_result["listofuniprot"],
         "symbol_lookup": context.get("gene_symbol_lookup", {}),
+        # Same label maps into the genes-file writer (both writers emit gene xrefs).
+        "gene_label_by_iri": context.get("gene_label_by_iri", {}),
+        "chem_label_by_iri": context.get("chem_label_by_iri", {}),
     }
 
     write_genes_rdf(filepath + "AOPWikiRDF-Genes.ttl", gene_data, config=config)
