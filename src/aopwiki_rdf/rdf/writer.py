@@ -15,7 +15,8 @@ import pandas as pd
 
 from aopwiki_rdf.rdf.namespaces import (
     get_main_prefixes, GENES_PREFIXES, GENES_PROVENANCE_PREFIX,
-    GENES_PROVENANCE_ACTIVITIES, VOID_PREFIXES, ENRICHED_PREFIXES,
+    GENES_PROVENANCE_ACTIVITIES, GENES_MINTED_PREDICATE_LABELS,
+    VOID_PREFIXES, ENRICHED_PREFIXES,
 )
 from aopwiki_rdf.utils import clean_html_tags
 
@@ -29,6 +30,81 @@ LICENCE_URI_MAP = {
     'BY-SA': '<https://creativecommons.org/licenses/by-sa/4.0/>',
     'ARR': '<https://rightsstatements.org/page/InC/1.0/>',
 }
+
+# ---------------------------------------------------------------------------
+# D-06: curated rdfs:label text for the REUSED EXTERNAL ontology PREDICATES the
+# main file asserts. Emitted ONLY inside the flag-gated block below — never via
+# the unconditional typelabels.txt loop (Pitfall 2: growing that loop or those
+# 28 rows would change flag-off bytes). The cheminf:* xref-type predicates and
+# the edam:data_* identifier types are DELIBERATELY ABSENT here because
+# typelabels.txt already labels them as class/identifier resources; re-emitting
+# them would duplicate the rdfs:label triple. The audit in Task 2 is the
+# authoritative "did we miss a predicate" check. Keys are the exact prefixed
+# CURIEs the writer emits; the iteration order is insertion order so flag-on
+# bytes stay deterministic.
+EXTERNAL_PREDICATE_LABELS = {
+    # Dublin Core elements + terms (descriptive predicates)
+    'dc:identifier': 'identifier',
+    'dc:title': 'title',
+    'dc:source': 'source',
+    'dc:description': 'description',
+    'dc:creator': 'creator',
+    'dcterms:abstract': 'abstract',
+    'dcterms:alternative': 'alternative title',
+    'dcterms:created': 'date created',
+    'dcterms:modified': 'date modified',
+    'dcterms:license': 'license',
+    'dcterms:accessRights': 'access rights',
+    'dcterms:isPartOf': 'is part of',
+    # OWL / RDFS linking predicates
+    'owl:sameAs': 'same as',
+    'rdfs:seeAlso': 'see also',
+    'rdfs:label': 'label',
+    # FOAF
+    'foaf:page': 'page',
+    # EDAM operation (gene-mapping provenance on AOPs/KEs)
+    'edam:operation_3799': 'gene functional annotation',
+    # AOP Ontology relationship + structural predicates
+    'aopo:has_key_event': 'has key event',
+    'aopo:has_key_event_relationship': 'has key event relationship',
+    'aopo:has_molecular_initiating_event': 'has molecular initiating event',
+    'aopo:has_adverse_outcome': 'has adverse outcome',
+    'aopo:has_upstream_key_event': 'has upstream key event',
+    'aopo:has_downstream_key_event': 'has downstream key event',
+    'aopo:has_chemical_entity': 'has chemical entity',
+    'aopo:has_evidence': 'has evidence',
+    'aopo:hasBiologicalEvent': 'has biological event',
+    'aopo:hasObject': 'has object',
+    'aopo:hasProcess': 'has process',
+    'aopo:hasAction': 'has action',
+}
+
+
+def _external_predicate_label_block(emit_labels, known_prefixes=None):
+    """Return the flag-gated Turtle block of ``<predicate> rdfs:label "…" .`` rows.
+
+    D-06: every reused external ontology predicate the main file asserts carries
+    its own ``rdfs:label`` so a SPARQL consumer can resolve predicate names
+    without an out-of-band vocabulary. Returns ``''`` when ``emit_labels`` is
+    False so flag-off output is byte-identical (COMPAT-01); the block is emitted
+    after the unconditional ``typelabels.txt`` loop and never touches it.
+
+    ``known_prefixes`` is the set of prefix strings declared in the file's
+    ``@prefix`` header (from prefixes.csv). A predicate-label row is emitted only
+    when its CURIE prefix is declared, so the block can never reference an
+    unbound prefix (production declares all of these; a minimal test prefix set
+    simply emits fewer rows). When ``known_prefixes`` is None, all rows emit
+    (back-compat for callers that do not pass the set).
+    """
+    if not emit_labels:
+        return ''
+    rows = ['\n\n# External predicate labels (flag-gated, D-06)']
+    for predicate, label in EXTERNAL_PREDICATE_LABELS.items():
+        prefix = predicate.split(':', 1)[0]
+        if known_prefixes is not None and prefix not in known_prefixes:
+            continue
+        rows.append(predicate + '\trdfs:label\t"' + _turtle_escape(label) + '" .')
+    return '\n'.join(rows)
 
 # ---------------------------------------------------------------------------
 # Helper functions (extracted from pipeline.py lines 1247-1278)
@@ -645,6 +721,18 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
         except FileNotFoundError:
             logger.warning(f"typelabels.txt not found at {typelabels_path}, skipping class labels")
 
+        # --- External predicate labels (D-06, flag-gated) ---
+        # A NEW block (NOT an extension of the unconditional typelabels loop --
+        # Pitfall 2) emitting rdfs:label rows for the reused external ontology
+        # PREDICATES the file asserts. URIs already labeled by typelabels.txt
+        # (the cheminf:* / edam:data_* identifier types) are intentionally
+        # excluded from EXTERNAL_PREDICATE_LABELS to avoid duplicate triples.
+        # '' when flag-off -> byte-identical output (COMPAT-01). Rows are gated
+        # on declared prefixes so the block never references an unbound prefix.
+        g.write(_external_predicate_label_block(
+            emit_labels, set(prefixes['prefix'].astype(str)),
+        ))
+
     logger.info("AOP-Wiki RDF conversion completed successfully!")
     logger.info("=== Conversion Summary ===")
     logger.info(f"Total AOPs processed: {len(aopdict)}")
@@ -795,6 +883,11 @@ def write_genes_rdf(filepath, gene_data, config=None):
             # after GENES_PREFIXES so rdfs: (used by the activity labels) is
             # already declared.
             g.write(GENES_PROVENANCE_ACTIVITIES)
+            # D-06: rdfs:label for the minted ':' PREDICATES, DOUBLE-gated on
+            # genes_provenance (already true here) AND emit_labels so the
+            # labels-off-but-bern2-on production run stays byte-identical.
+            if emit_labels:
+                g.write(GENES_MINTED_PREDICATE_LABELS)
 
         # KE gene mappings
         n = 0

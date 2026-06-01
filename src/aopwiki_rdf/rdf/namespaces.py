@@ -190,6 +190,28 @@ GENES_PROVENANCE_ACTIVITIES = (
     "\n"
 )
 
+# D-06 (genes file): rdfs:label rows for the MINTED ':' PREDICATES. The block
+# above labels the prov:Activity RESOURCES (:BERN2NERMapping etc.) but NOT the
+# minted predicates themselves. These rows are DOUBLE-gated -- emitted only when
+# enable_bern2 AND enable_iri_labels are both on (RESEARCH Open Q2) -- so both
+# the bern2-off byte-identity (the ':' predicates do not exist without bern2)
+# AND the labels-off byte-identity (production runs with bern2 on but labels off
+# stay unchanged) contracts hold. Co-located with GENES_PROVENANCE_ACTIVITIES so
+# the prov:/xsd:/rdfs: prefixes it relies on are already declared; rdfs: is
+# carried by GENES_PREFIXES. The prov: prefix carve-out (NOT in prefixes.csv) is
+# preserved -- this constant adds no prefixes.
+GENES_MINTED_PREDICATE_LABELS = (
+    ":geneDetectedByNER rdfs:label "
+    '"gene detected by BERN2 NER+EL (featured recall-extending method)" .\n'
+    ":geneDetectedByRegex rdfs:label "
+    '"gene detected by HGNC dictionary regex (baseline method)" .\n'
+    ":isFeaturedMethod rdfs:label "
+    '"is featured method (BERN2 primacy flag)" .\n'
+    ":minConfidence rdfs:label "
+    '"minimum BERN2 annotation confidence retained" .\n'
+    "\n"
+)
+
 # ---------------------------------------------------------------------------
 # Enriched RDF prefixes (cross-reference triples for AOPWikiRDF-Enriched.ttl)
 # ---------------------------------------------------------------------------
