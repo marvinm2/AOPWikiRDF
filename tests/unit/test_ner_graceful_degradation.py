@@ -390,3 +390,56 @@ class TestNerFallbackOnFailureConfig:
         cfg = PipelineConfig()
         assert cfg.enable_bern2 is False
         assert cfg.ner_fallback_on_failure is True
+
+
+# ---------------------------------------------------------------------------
+# Task 3: COMPAT-01 -- default production run unchanged, wrapper contract held
+# ---------------------------------------------------------------------------
+
+class TestCompatFlagOff:
+    """Per-plan COMPAT-01 guard: the default run is untouched by this plan.
+
+    The new ner_fallback_on_failure flag must not alter the default code path,
+    and the pre-existing set[]-returning find_hgnc_ids_via_ner_el wrapper must
+    return the SAME set as before this plan for the canonical TP53 fixture.
+
+    Note: the authoritative end-to-end byte-identical-vs-production-rdf-backup
+    check is the Phase 10 COMPAT-01 closing gate; this is the per-plan guard.
+    """
+
+    def test_default_config_keeps_enable_bern2_false(self):
+        """With defaults, _apply_bern2_enrichment is never invoked: the
+        _stage_gene_mapping guard (pipeline.py) only calls it when
+        enable_bern2 is True, which defaults False."""
+        from aopwiki_rdf.config import PipelineConfig
+        cfg = PipelineConfig()
+        assert cfg.enable_bern2 is False
+        # The new flag exists but is inert with enable_bern2 off.
+        assert cfg.ner_fallback_on_failure is True
+
+    def test_wrapper_set_contract_unchanged_for_tp53(self, tmp_path):
+        """find_hgnc_ids_via_ner_el (set[] wrapper) returns the SAME set as
+        before this plan for the TP53 fixture -- the contract is locked."""
+        from aopwiki_rdf.mapping.ner_el_mapper import find_hgnc_ids_via_ner_el
+
+        call_count = {"n": 0}
+
+        def post_side_effect(url, *a, **kw):
+            call_count["n"] += 1
+            if call_count["n"] == 1:
+                return _bern2_response([TP53_ANN])
+            return _bridgedb_response(BRIDGEDB_REAL_ROW_TP53)
+
+        with patch(
+            "aopwiki_rdf.mapping.ner_el_mapper.requests.post",
+            side_effect=post_side_effect,
+        ):
+            result = find_hgnc_ids_via_ner_el(
+                "TP53 and acetylcholinesterase are mentioned here.",
+                bern2_url="http://b2",
+                bridgedb_url="https://example.org/Human/",
+                cache_dir=tmp_path,
+            )
+        # Same value test_ner_el_mapper asserts pre-plan: numeric HGNC set.
+        assert result == {"11998"}
+        assert isinstance(result, set)
