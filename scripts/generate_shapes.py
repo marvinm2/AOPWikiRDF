@@ -270,8 +270,18 @@ def generate_chemical_shape(main_audit, label_fixture_audit):
          Sourced from the FLAG-ON label fixture (D-09): these subjects carry the
          rdfs:label the production flag-off data/ files do not, so the rdfs:label
          sh:property constraint enters the shape only via this fixture audit.
-         pyshacl conforms green against the flag-on fixture; production data has
-         no cheminf:000407 subjects so the shape is inert against data/.
+         pyshacl conforms green against the flag-on fixture.
+
+         NOTE: cheminf:000407 DOES exist in production data/ -- the main writer
+         emits `a cheminf:000407` on every ChEBI xref block (writer.py), ~443
+         subjects in the current data/AOPWikiRDF.ttl. This shape therefore
+         targets all of those production subjects on every flag-off run; it is
+         NOT inert against data/. Flag-off production stays conformant only
+         because rdfs:label is relaxed to sh:Warning (no minCount) below, and the
+         remaining minCount properties (dc:identifier/dc:source/cheminf:000407)
+         are 100%-populated in production too. Do NOT add a fixture-only minCount
+         property here, and do NOT promote rdfs:label to sh:Violation, or flag-off
+         production validation (test_no_violations_on_current_data) will break.
     """
     blocks = []
 
