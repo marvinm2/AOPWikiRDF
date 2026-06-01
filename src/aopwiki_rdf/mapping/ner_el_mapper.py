@@ -944,3 +944,65 @@ def map_ner_genes_in_kers_result(
         len(results), total, n_failed,
     )
     return results
+
+
+def union_ner_into_entities(
+    entdict, ner_results, gene_hgnclist, existing_hgnc, *, fallback_on_failure
+):
+    """Union NER gene detections into each entity's ``edam:data_1025`` in place.
+
+    Shared by the KE and KER branches of the pipeline's BERN2 enrichment
+    (:func:`aopwiki_rdf.pipeline._apply_bern2_enrichment`) so the additive-union
+    and graceful-degradation contract lives in exactly one place rather than
+    being duplicated per entity type.
+
+    For each entity (KE or KER) in ``entdict``:
+
+    - On a BERN2 outage (``result.failed``) with ``fallback_on_failure`` True,
+      degrade to the regex genes already held: ``edam:data_1025`` is left at the
+      regex baseline (never thinned), ``_ner_degraded`` is flagged, and no NER
+      genes are contributed.
+    - Otherwise take the additive path: ``edam:data_1025`` becomes the union of
+      regex genes (order preserved) and sorted NER-only genes, ``_genes_regex``
+      / ``_genes_ner`` record per-method provenance for the writer, and any new
+      HGNC IDs are appended to ``gene_hgnclist`` (``existing_hgnc`` dedupes).
+
+    Mutates ``entdict`` props, ``gene_hgnclist``, and ``existing_hgnc`` in place.
+    Returns ``(ok, degraded)`` counts.
+    """
+    ok = 0
+    degraded = 0
+    for ent_id, props in entdict.items():
+        regex_genes = list(props.get("edam:data_1025", []))
+        result = ner_results.get(ent_id)
+
+        if result is not None and result.failed and fallback_on_failure:
+            # BERN2 outage: degrade to the regex genes already held.
+            # edam:data_1025 stays >= regex baseline; no NER contributed.
+            degraded += 1
+            if not regex_genes:
+                continue
+            props["_genes_regex"] = regex_genes
+            props["_genes_ner"] = []
+            props["_ner_degraded"] = True
+            continue
+
+        # Normal additive path: success (with or without hits), or fallback
+        # disabled. A failed result with fallback off unions an empty NER set.
+        ner_genes = sorted(result.hgnc_ids) if result is not None else []
+        if result is not None:
+            ok += 1
+        if not regex_genes and not ner_genes:
+            continue
+        props["_genes_regex"] = regex_genes
+        props["_genes_ner"] = ner_genes
+        union = list(regex_genes)
+        for g in ner_genes:
+            if g not in union:
+                union.append(g)
+        props["edam:data_1025"] = union
+        for g in ner_genes:
+            if g not in existing_hgnc:
+                gene_hgnclist.append(g)
+                existing_hgnc.add(g)
+    return ok, degraded

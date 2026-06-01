@@ -24,6 +24,7 @@ from aopwiki_rdf.mapping.gene_mapper import build_gene_dicts, map_genes_in_entit
 from aopwiki_rdf.mapping.ner_el_mapper import (
     map_ner_genes_in_kers_result,
     map_ner_genes_in_kes_result,
+    union_ner_into_entities,
 )
 from aopwiki_rdf.mapping.chemical_mapper import map_chemicals
 from aopwiki_rdf.mapping.protein_ontology import download_and_parse_promapping
@@ -244,47 +245,14 @@ def _apply_bern2_enrichment(kedict, kerdict, gene_hgnclist, config):
     function only runs when ``config.enable_bern2`` is True, so it is inert in
     the default production run.
     """
-    ner_results = map_ner_genes_in_kes_result(kedict, config)
     existing_hgnc = set(gene_hgnclist)
 
-    degraded = 0
-    ok = 0
-    for ke_id, props in kedict.items():
-        regex_genes = list(props.get("edam:data_1025", []))
-        result = ner_results.get(ke_id)
-
-        if result is not None and result.failed and config.ner_fallback_on_failure:
-            # BERN2 outage for this KE: degrade to the regex genes we already
-            # hold. Keep edam:data_1025 untouched (>= regex baseline), record
-            # the degradation for the writer/QC, contribute no NER genes.
-            degraded += 1
-            if not regex_genes:
-                continue
-            props["_genes_regex"] = regex_genes
-            props["_genes_ner"] = []
-            props["_ner_degraded"] = True
-            # edam:data_1025 stays as-is (the regex result); no union, no drop.
-            continue
-
-        # Normal additive path: success (with or without hits), or fallback
-        # disabled. A failed result with fallback off unions an empty NER set.
-        ner_genes = sorted(result.hgnc_ids) if result is not None else []
-        if result is not None:
-            ok += 1
-        if not regex_genes and not ner_genes:
-            continue
-        props["_genes_regex"] = regex_genes
-        props["_genes_ner"] = ner_genes
-        union = list(regex_genes)
-        for g in ner_genes:
-            if g not in union:
-                union.append(g)
-        props["edam:data_1025"] = union
-        for g in ner_genes:
-            if g not in existing_hgnc:
-                gene_hgnclist.append(g)
-                existing_hgnc.add(g)
-
+    # KE branch: union BERN2 NER detections into KE gene mappings.
+    ner_results = map_ner_genes_in_kes_result(kedict, config)
+    ok, degraded = union_ner_into_entities(
+        kedict, ner_results, gene_hgnclist, existing_hgnc,
+        fallback_on_failure=config.ner_fallback_on_failure,
+    )
     total = ok + degraded
     if degraded > 0:
         logger.error(
@@ -297,46 +265,17 @@ def _apply_bern2_enrichment(kedict, kerdict, gene_hgnclist, config):
         ok, degraded, total,
     )
 
-    # KER branch (D-08): mirror the KE union above. KER NER now scans three
-    # text fields (dc:description + nci:C80263 + edam:data_2042) for method
-    # parity with regex; each KER's edam:data_1025 becomes the regex union NER
-    # union, with NER-detected genes populating :geneDetectedByNER on the KER
-    # subject (the writer emits it automatically whenever _genes_ner is set).
+    # KER branch (D-08): mirror the KE union via the same shared helper. KER
+    # NER scans three text fields (dc:description + nci:C80263 + edam:data_2042)
+    # for method parity with regex; each KER's edam:data_1025 becomes the regex
+    # union NER union, with NER-detected genes populating :geneDetectedByNER on
+    # the KER subject (the writer emits it automatically whenever _genes_ner is
+    # set).
     ker_ner_results = map_ner_genes_in_kers_result(kerdict, config)
-    ker_degraded = 0
-    ker_ok = 0
-    for ker_id, props in kerdict.items():
-        regex_genes = list(props.get("edam:data_1025", []))
-        result = ker_ner_results.get(ker_id)
-
-        if result is not None and result.failed and config.ner_fallback_on_failure:
-            # BERN2 outage for this KER: degrade to the regex genes already
-            # held. edam:data_1025 stays >= regex baseline; no NER contributed.
-            ker_degraded += 1
-            if not regex_genes:
-                continue
-            props["_genes_regex"] = regex_genes
-            props["_genes_ner"] = []
-            props["_ner_degraded"] = True
-            continue
-
-        ner_genes = sorted(result.hgnc_ids) if result is not None else []
-        if result is not None:
-            ker_ok += 1
-        if not regex_genes and not ner_genes:
-            continue
-        props["_genes_regex"] = regex_genes
-        props["_genes_ner"] = ner_genes
-        union = list(regex_genes)
-        for g in ner_genes:
-            if g not in union:
-                union.append(g)
-        props["edam:data_1025"] = union
-        for g in ner_genes:
-            if g not in existing_hgnc:
-                gene_hgnclist.append(g)
-                existing_hgnc.add(g)
-
+    ker_ok, ker_degraded = union_ner_into_entities(
+        kerdict, ker_ner_results, gene_hgnclist, existing_hgnc,
+        fallback_on_failure=config.ner_fallback_on_failure,
+    )
     ker_total = ker_ok + ker_degraded
     if ker_degraded > 0:
         logger.error(
