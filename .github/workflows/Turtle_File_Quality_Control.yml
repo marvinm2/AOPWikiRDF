@@ -109,6 +109,20 @@ jobs:
           PYEOF
           python validate_ttl.py data/AOPWikiRDF.ttl data/AOPWikiRDF-Enriched.ttl data/AOPWikiRDF-Genes.ttl data/AOPWikiRDF-Void.ttl
 
+      # Step 5b: Week-over-week gene/triple delta guard (QC-01)
+      # Compares the freshly generated data/*.ttl against the last-known-good
+      # production-rdf-backup/ TTLs. Syntax validation above cannot catch a run
+      # that parses fine but silently lost gene associations (e.g. a BERN2
+      # outage) or suffered a silent triple drop. This guard aborts the run --
+      # and therefore the qc-status=valid commit in Step 6 -- if the
+      # gene-association (edam:data_1025) count or the total-triple count drops
+      # more than 5% vs the backup. A non-zero exit fails the job (default bash
+      # behavior; no continue-on-error). rdflib is installed in Step 3.
+      - name: Gene/triple delta guard vs production backup
+        run: |
+          echo "=== Gene/triple delta guard (QC-01) ==="
+          python scripts/qc_delta_guard.py --new-dir data/ --baseline-dir production-rdf-backup/ --drop-pct 0.05
+
       # Step 6: Commit and Push QC Status File to /data
       - name: Commit and Push QC Status
         run: |
