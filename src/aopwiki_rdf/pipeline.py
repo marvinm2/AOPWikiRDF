@@ -21,7 +21,10 @@ from aopwiki_rdf.config import PipelineConfig
 from aopwiki_rdf.parser.xml_parser import parse_aopwiki_xml, AOPXML_NS
 from aopwiki_rdf.hgnc import download_hgnc_data
 from aopwiki_rdf.mapping.gene_mapper import build_gene_dicts, map_genes_in_entities, build_gene_xrefs
-from aopwiki_rdf.mapping.ner_el_mapper import map_ner_genes_in_kes_result
+from aopwiki_rdf.mapping.ner_el_mapper import (
+    map_ner_genes_in_kers_result,
+    map_ner_genes_in_kes_result,
+)
 from aopwiki_rdf.mapping.chemical_mapper import map_chemicals
 from aopwiki_rdf.mapping.protein_ontology import download_and_parse_promapping
 from aopwiki_rdf.rdf.writer import write_aop_rdf, write_enriched_rdf, write_genes_rdf, write_void_rdf
@@ -233,9 +236,11 @@ def _apply_bern2_enrichment(kedict, kerdict, gene_hgnclist, config):
     coverage metric. A successful-but-empty BERN2 result is NOT a failure and
     follows the normal additive union path.
 
-    BERN2 scope is KE descriptions only; KERs keep their regex genes and
-    get an empty ``_genes_ner`` list (the writer then emits
-    :geneDetectedByRegex but not :geneDetectedByNER for them). This whole
+    BERN2 now covers BOTH KEs and KERs (D-08). KER NER scans three text fields
+    (``dc:description`` + ``nci:C80263`` + ``edam:data_2042``) for method
+    parity with regex; each KER's ``edam:data_1025`` becomes the regex union
+    NER union, with the same graceful-degradation guarantee as KEs (a BERN2
+    KER outage falls back to the regex genes, never thins them). This whole
     function only runs when ``config.enable_bern2`` is True, so it is inert in
     the default production run.
     """
@@ -292,10 +297,57 @@ def _apply_bern2_enrichment(kedict, kerdict, gene_hgnclist, config):
         ok, degraded, total,
     )
 
+    # KER branch (D-08): mirror the KE union above. KER NER now scans three
+    # text fields (dc:description + nci:C80263 + edam:data_2042) for method
+    # parity with regex; each KER's edam:data_1025 becomes the regex union NER
+    # union, with NER-detected genes populating :geneDetectedByNER on the KER
+    # subject (the writer emits it automatically whenever _genes_ner is set).
+    ker_ner_results = map_ner_genes_in_kers_result(kerdict, config)
+    ker_degraded = 0
+    ker_ok = 0
     for ker_id, props in kerdict.items():
-        if "edam:data_1025" in props:
-            props["_genes_regex"] = list(props["edam:data_1025"])
+        regex_genes = list(props.get("edam:data_1025", []))
+        result = ker_ner_results.get(ker_id)
+
+        if result is not None and result.failed and config.ner_fallback_on_failure:
+            # BERN2 outage for this KER: degrade to the regex genes already
+            # held. edam:data_1025 stays >= regex baseline; no NER contributed.
+            ker_degraded += 1
+            if not regex_genes:
+                continue
+            props["_genes_regex"] = regex_genes
             props["_genes_ner"] = []
+            props["_ner_degraded"] = True
+            continue
+
+        ner_genes = sorted(result.hgnc_ids) if result is not None else []
+        if result is not None:
+            ker_ok += 1
+        if not regex_genes and not ner_genes:
+            continue
+        props["_genes_regex"] = regex_genes
+        props["_genes_ner"] = ner_genes
+        union = list(regex_genes)
+        for g in ner_genes:
+            if g not in union:
+                union.append(g)
+        props["edam:data_1025"] = union
+        for g in ner_genes:
+            if g not in existing_hgnc:
+                gene_hgnclist.append(g)
+                existing_hgnc.add(g)
+
+    ker_total = ker_ok + ker_degraded
+    if ker_degraded > 0:
+        logger.error(
+            "BERN2 degraded for %d/%d KER descriptions; fell back to regex "
+            "(canonical gene coverage preserved)",
+            ker_degraded, ker_total,
+        )
+    logger.info(
+        "BERN2 KER enrichment coverage: %d ok, %d degraded, %d total",
+        ker_ok, ker_degraded, ker_total,
+    )
 
 
 def _stage_gene_mapping(config, context):

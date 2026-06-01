@@ -116,6 +116,45 @@ def _description_text(props_description) -> str:
     return str(props_description).strip('"')
 
 
+# KER NER text sources (D-09a): method parity with the regex mapper, which
+# scans the relationship description PLUS the weight-of-evidence
+# biological-plausibility (nci:C80263) and empirical-support (edam:data_2042)
+# fields. The parser stores all three per KER (xml_parser.py ~L597-600); only
+# the NER iteration was previously narrow (dc:description only).
+_KER_NER_FIELDS = ("dc:description", "nci:C80263", "edam:data_2042")
+
+
+def _ker_ner_texts(props) -> list[str]:
+    """Normalised, non-empty NER text blocks for one KER (parity with regex).
+
+    Single source of truth for "what KER text gets annotated", shared by
+    :func:`map_ner_genes_in_kers`, :func:`map_ner_genes_in_kers_result`, and
+    :func:`report_cache_coverage` so cache keys always agree. Each present,
+    non-blank field is normalised through :func:`_description_text` (the one
+    normaliser) and collected; empty/missing fields are skipped.
+
+    Parameters
+    ----------
+    props:
+        A KER properties dict from the XML parser.
+
+    Returns
+    -------
+    list[str]
+        One normalised text block per non-empty field in ``_KER_NER_FIELDS``,
+        in field order. Empty list when the KER carries no NER text.
+    """
+    texts: list[str] = []
+    for fieldname in _KER_NER_FIELDS:
+        val = props.get(fieldname)
+        if not val:
+            continue
+        text = _description_text(val)
+        if text.strip():
+            texts.append(text)
+    return texts
+
+
 def is_cached(text: str, ner_cache_dir) -> bool:
     """Return True iff ``text`` has a usable BERN2 cache entry.
 
@@ -148,11 +187,20 @@ def is_cached(text: str, ner_cache_dir) -> bool:
 def report_cache_coverage(*entity_dicts, config) -> dict:
     """Measure BERN2 cache coverage across one or more entity dictionaries.
 
-    Counts entities carrying a non-empty ``dc:description`` (whitespace-only
-    descriptions are skipped, matching the pipeline's
-    ``if not text.strip(): continue``), and classifies each as cached or
-    uncached via :func:`is_cached`. Pure disk probe -- no network I/O and no
-    mutation of the passed dicts.
+    For Key Events, counts the single non-empty ``dc:description`` (whitespace-
+    only descriptions are skipped, matching the pipeline's
+    ``if not text.strip(): continue``). For Key Event Relationships, counts
+    EACH of the three NER text fields (:data:`_KER_NER_FIELDS`:
+    ``dc:description`` + ``nci:C80263`` + ``edam:data_2042``) as its own cache
+    entry (D-09b), so the probe agrees with the 3-field KER NER scan and the
+    weekly run never hits uncached KER plausibility/empirical text. A KER is
+    classified "cached" only when ALL of its field texts are cached. Pure disk
+    probe -- no network I/O and no mutation of the passed dicts.
+
+    An entity is treated as a KER (multi-field) iff it carries any of the
+    extra KER NER fields (``nci:C80263`` / ``edam:data_2042``); otherwise it is
+    treated as a KE (single ``dc:description``), so the KE counting is
+    byte-unchanged.
 
     Parameters
     ----------
@@ -166,9 +214,11 @@ def report_cache_coverage(*entity_dicts, config) -> dict:
     -------
     dict
         ``{"total": int, "cached": int, "uncached_ids": list[str]}`` where
-        ``uncached_ids`` is sorted. Emits one INFO summary line and, when any
-        IDs are uncached, one INFO line listing them (truncated to the first
-        50 with a ``+N more`` suffix; threat T-06-02 bounds log volume).
+        ``uncached_ids`` is sorted. ``total`` counts text entries (a KER
+        contributes one per non-empty NER field). Emits one INFO summary line
+        and, when any IDs are uncached, one INFO line listing them (truncated
+        to the first 50 with a ``+N more`` suffix; threat T-06-02 bounds log
+        volume).
     """
     total = 0
     cached = 0
@@ -176,6 +226,22 @@ def report_cache_coverage(*entity_dicts, config) -> dict:
 
     for entity_dict in entity_dicts:
         for entity_id, props in entity_dict.items():
+            # KER (multi-field): any weight-of-evidence NER field present.
+            if props.get("nci:C80263") or props.get("edam:data_2042"):
+                texts = _ker_ner_texts(props)
+                if not texts:
+                    continue
+                total += len(texts)
+                n_cached = sum(
+                    1 for text in texts if is_cached(text, config.ner_cache_dir)
+                )
+                cached += n_cached
+                # A KER is "fully cached" only when ALL its texts are cached.
+                if n_cached < len(texts):
+                    uncached_ids.append(entity_id)
+                continue
+
+            # KE (single dc:description) -- byte-unchanged counting.
             description = props.get("dc:description")
             if not description:
                 continue
@@ -725,19 +791,22 @@ def map_ner_genes_in_kes_result(
 def map_ner_genes_in_kers(
     kerdict: dict, config, sleep_after: float = 0.0,
 ) -> dict[str, set[str]]:
-    """Run BERN2 NER+EL over every Key Event Relationship description.
+    """Run BERN2 NER+EL over every Key Event Relationship (3-field, D-09a).
 
-    Symmetric counterpart to :func:`map_ner_genes_in_kes`, iterating KERs that
-    carry a ``dc:description``. Reuses :func:`_description_text` so the cache
-    keys it warms match what the coverage probe (and a future Phase 7 KER
-    detector) will look up. Honours the same caching/short-circuit semantics
-    as the KE pass, so a warming run over both corpora is resumable.
+    Symmetric counterpart to :func:`map_ner_genes_in_kes`, but for method
+    parity with the regex mapper it scans the THREE KER NER text fields
+    (:data:`_KER_NER_FIELDS`: ``dc:description`` + ``nci:C80263`` +
+    ``edam:data_2042``) via the shared :func:`_ker_ner_texts` helper, unioning
+    the per-text HGNC sets per KER. Reuses :func:`_description_text` (through
+    the helper) so the cache keys it warms match the coverage probe and the
+    warmer. Honours the same caching/short-circuit semantics as the KE pass,
+    so a warming run over both corpora is resumable.
 
     Parameters
     ----------
     kerdict:
         Key Event Relationship dictionary (ker_id -> properties) from the XML
-        parser. KERs with a non-empty ``dc:description`` are scanned.
+        parser. KERs carrying any non-empty NER text field are scanned.
     config:
         PipelineConfig. Reads ``bern2_url``, ``bridgedb_url``,
         ``ner_cache_dir``, ``ner_min_prob``, and ``request_timeout``.
@@ -747,33 +816,33 @@ def map_ner_genes_in_kers(
     Returns
     -------
     dict
-        ``{ker_id: set_of_hgnc_uri_strings}``. KERs with no detections are
-        absent. HGNC IDs are formatted as ``hgnc:N`` to match the KE pass.
+        ``{ker_id: set_of_hgnc_uri_strings}`` -- the union of detections across
+        all of the KER's NER text fields. KERs with no detections are absent.
+        HGNC IDs are formatted as ``hgnc:N`` to match the KE pass.
     """
     results: dict[str, set[str]] = {}
     ker_ids = [
         ker_id for ker_id, props in kerdict.items()
-        if props.get("dc:description")
+        if _ker_ner_texts(props)
     ]
     total = len(ker_ids)
-    logger.info("BERN2 NER+EL: scanning %d Key Event Relationship descriptions", total)
+    logger.info("BERN2 NER+EL: scanning %d Key Event Relationships (3 fields each)", total)
 
     for idx, ker_id in enumerate(ker_ids, 1):
-        text = _description_text(kerdict[ker_id]["dc:description"])
-        if not text.strip():
-            continue
-
-        hgnc_numeric = find_hgnc_ids_via_ner_el(
-            text,
-            bern2_url=config.bern2_url,
-            bridgedb_url=config.bridgedb_url,
-            cache_dir=config.ner_cache_dir,
-            timeout=config.request_timeout,
-            sleep_after=sleep_after,
-            min_prob=config.ner_min_prob,
-        )
-        if hgnc_numeric:
-            results[ker_id] = {f"hgnc:{n}" for n in hgnc_numeric}
+        hgnc_union: set[str] = set()
+        for text in _ker_ner_texts(kerdict[ker_id]):
+            hgnc_numeric = find_hgnc_ids_via_ner_el(
+                text,
+                bern2_url=config.bern2_url,
+                bridgedb_url=config.bridgedb_url,
+                cache_dir=config.ner_cache_dir,
+                timeout=config.request_timeout,
+                sleep_after=sleep_after,
+                min_prob=config.ner_min_prob,
+            )
+            hgnc_union |= hgnc_numeric
+        if hgnc_union:
+            results[ker_id] = {f"hgnc:{n}" for n in hgnc_union}
 
         if idx % 100 == 0 or idx == total:
             logger.info(
@@ -784,5 +853,94 @@ def map_ner_genes_in_kers(
     logger.info(
         "BERN2 NER+EL complete: %d/%d KERs had gene detections",
         len(results), total,
+    )
+    return results
+
+
+def map_ner_genes_in_kers_result(
+    kerdict: dict, config, sleep_after: float = 0.0,
+) -> dict[str, "NerResult"]:
+    """Run BERN2 NER+EL over every KER (3-field), signalling per-KER failure.
+
+    Result-returning counterpart to :func:`map_ner_genes_in_kers`, mirroring
+    :func:`map_ner_genes_in_kes_result` (NER-04) so a BERN2 outage on a KER
+    degrades to regex rather than silently contributing empty NER (degradation
+    parity, RESEARCH A3 / threat T-07-05). Scans the same three KER NER fields
+    via :func:`_ker_ner_texts`.
+
+    Failure semantics across the multi-field union: a KER's ``NerResult`` is
+    ``failed=True`` only when EVERY one of its field lookups failed (a true
+    BERN2 outage for that KER). If at least one field succeeded, the KER keeps
+    the genes found and is ``failed=False`` -- the additive union is real and
+    must not trigger a regex-only degradation just because one field's call
+    glitched (this composes with the Plan-01 ``_partial`` semantics).
+
+    Parameters
+    ----------
+    kerdict:
+        Key Event Relationship dictionary (ker_id -> properties) from the XML
+        parser. KERs carrying any non-empty NER text field are scanned.
+    config:
+        PipelineConfig. Reads ``bern2_url``, ``bridgedb_url``,
+        ``ner_cache_dir``, ``ner_min_prob``, and ``request_timeout``.
+    sleep_after:
+        Optional per-call delay (seconds).
+
+    Returns
+    -------
+    dict
+        ``{ker_id: NerResult}`` for every scanned KER. ``NerResult.hgnc_ids``
+        are formatted as ``hgnc:N`` URI-prefix strings. KERs with no NER text
+        are absent.
+    """
+    results: dict[str, NerResult] = {}
+    ker_ids = [
+        ker_id for ker_id, props in kerdict.items()
+        if _ker_ner_texts(props)
+    ]
+    total = len(ker_ids)
+    logger.info("BERN2 NER+EL: scanning %d Key Event Relationships (3 fields each)", total)
+
+    n_failed = 0
+    for idx, ker_id in enumerate(ker_ids, 1):
+        texts = _ker_ner_texts(kerdict[ker_id])
+        hgnc_union: set[str] = set()
+        n_field_failed = 0
+        last_error: str | None = None
+        for text in texts:
+            result = find_hgnc_ids_via_ner_el_result(
+                text,
+                bern2_url=config.bern2_url,
+                bridgedb_url=config.bridgedb_url,
+                cache_dir=config.ner_cache_dir,
+                timeout=config.request_timeout,
+                sleep_after=sleep_after,
+                min_prob=config.ner_min_prob,
+            )
+            if result.failed:
+                n_field_failed += 1
+                last_error = result.error
+            else:
+                hgnc_union |= result.hgnc_ids
+
+        # failed only when EVERY field's lookup failed (true KER outage).
+        ker_failed = bool(texts) and n_field_failed == len(texts)
+        results[ker_id] = NerResult(
+            hgnc_ids={f"hgnc:{n}" for n in hgnc_union},
+            failed=ker_failed,
+            error=last_error if ker_failed else None,
+        )
+        if ker_failed:
+            n_failed += 1
+
+        if idx % 100 == 0 or idx == total:
+            logger.info(
+                "BERN2 NER+EL progress: %d/%d KERs (%d failed)",
+                idx, total, n_failed,
+            )
+
+    logger.info(
+        "BERN2 NER+EL complete: %d/%d KERs scanned, %d failed",
+        len(results), total, n_failed,
     )
     return results
