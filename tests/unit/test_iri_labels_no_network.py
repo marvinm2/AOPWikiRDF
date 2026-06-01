@@ -59,9 +59,25 @@ def test_chem_map_build_no_network(explode_on_http):
 
 
 def test_module_does_not_import_requests_at_top_level():
-    """The label-map module must not pull in the HTTP stack to build maps."""
-    src = iri_labels.__file__
-    with open(src, encoding="utf-8") as fh:
-        text = fh.read()
-    assert "import requests" not in text
-    assert "bridgedb" not in text.lower()
+    """The label-map module must not pull in the HTTP stack to build maps.
+
+    Parses the module AST and asserts neither ``requests`` nor the BridgeDb
+    mapper is imported (prose mentions of these names in docstrings are fine --
+    we forbid the *import*, which is what would enable a network call).
+    """
+    import ast
+
+    with open(iri_labels.__file__, encoding="utf-8") as fh:
+        tree = ast.parse(fh.read())
+
+    imported_modules = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                imported_modules.add(alias.name.split(".")[0])
+        elif isinstance(node, ast.ImportFrom):
+            if node.module:
+                imported_modules.add(node.module)
+
+    assert "requests" not in imported_modules
+    assert not any("bridgedb" in m.lower() for m in imported_modules)

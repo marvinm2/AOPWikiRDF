@@ -53,6 +53,16 @@ class PipelineConfig:
     # behaviour on failure.
     ner_fallback_on_failure: bool = True
 
+    # External-IRI labeling (Phase 8: infrastructure first, flag off).
+    # When enable_iri_labels is True, the writer emits a single untagged
+    # rdfs:label co-located with dc:source on external/component IRIs and on
+    # minted+external predicates, sourced from the in-memory label maps
+    # (no new network calls -- LABEL-02), and the pipeline writes the honest
+    # label-coverage-report.json artifact (LABEL-04 / D-07). Default False
+    # reproduces the prior output bytes exactly (COMPAT-01) and is NOT flipped
+    # in production this phase.
+    enable_iri_labels: bool = False
+
     def __post_init__(self):
         """Ensure path-typed fields are Path objects."""
         if isinstance(self.data_dir, str):
