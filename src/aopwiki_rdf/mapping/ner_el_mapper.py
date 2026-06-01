@@ -138,7 +138,11 @@ def is_cached(text: str, ner_cache_dir) -> bool:
     """
     cache_path = Path(ner_cache_dir) / "bern2" / f"{_cache_key(text)}.json"
     cached = _read_json_cache(cache_path)
-    return cached is not None and "_error" not in cached
+    return (
+        cached is not None
+        and "_error" not in cached
+        and not cached.get("_partial")
+    )
 
 
 def report_cache_coverage(*entity_dicts, config) -> dict:
@@ -273,7 +277,7 @@ def query_bern2(
     """
     cache_path = Path(cache_dir) / f"{_cache_key(text)}.json"
     cached = _read_json_cache(cache_path)
-    if cached is not None and "_error" not in cached:
+    if cached is not None and "_error" not in cached and not cached.get("_partial"):
         return cached
 
     # First attempt: single call
@@ -319,8 +323,20 @@ def query_bern2(
             merged.append(ann)
 
     if not merged and errors:
+        # All chunks failed: unreachable / all retries exhausted. Cached as a
+        # re-warmable miss (find_hgnc_ids_via_ner_el_result keys failed=True
+        # off "_error" only).
         result = {"_error": "; ".join(errors[:3])}
+    elif errors:
+        # Mixed outcome (D-11): some chunks succeeded, some errored. Keep the
+        # genes we DID find (additive) but mark the entry "_partial" so both
+        # cache gates treat it as a miss and the failed chunk is retried next
+        # run. A "_partial" still carries "annotations" and no "_error", so it
+        # composes with NerResult as failed=False -- never a regex-only
+        # degradation trigger.
+        result = {"annotations": merged, "_partial": True, "_errors": errors[:3]}
     else:
+        # Clean all-success chunked outcome -- byte-unchanged.
         result = {"annotations": merged}
     _write_json_cache(cache_path, result)
     return result
