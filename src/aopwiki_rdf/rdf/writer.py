@@ -779,6 +779,11 @@ def write_void_rdf(filepath, metadata):
     service_desc_filepath = metadata.get('service_desc_filepath')
     triple_counts = metadata.get('triple_counts', {})
     bridgedb_url = metadata.get('bridgedb_url', 'https://webservice.bridgedb.org/Human/')
+    # SPARQL endpoint + RDF dump location advertised in the VoID. Overridable so
+    # the same writer can describe other deployments (e.g. the multi-version
+    # endpoint); defaults describe the production single-snapshot service.
+    sparql_endpoint = metadata.get('sparql_endpoint', 'https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/')
+    data_dump_base = metadata.get('data_dump_base', 'https://raw.githubusercontent.com/marvinm2/AOPWikiRDF/master/data')
 
     logger.info(f"Writing VoID RDF file: {filepath}")
 
@@ -786,9 +791,12 @@ def write_void_rdf(filepath, metadata):
         g.write(VOID_PREFIXES)
 
         # --- Parent dataset ---
-        g.write('\n\n:AOPWikiRDF\ta\tvoid:Dataset')
+        g.write('\n\n:AOPWikiRDF\ta\tvoid:Dataset, dcat:Dataset')
         g.write(' ;\n\tdc:description\t"AOP-Wiki RDF -- complete dataset"')
         g.write(' ;\n\tdcterms:license\t<https://creativecommons.org/licenses/by-sa/4.0/>')
+        g.write(' ;\n\tvoid:sparqlEndpoint\t<' + sparql_endpoint + '>')
+        g.write(' ;\n\tvoid:dataDump\t<' + data_dump_base + '/AOPWikiRDF.ttl>, <' + data_dump_base + '/AOPWikiRDF-Enriched.ttl>, <' + data_dump_base + '/AOPWikiRDF-Genes.ttl>')
+        g.write(' ;\n\tdcat:accrualPeriodicity\tfreq:quarterly')
         g.write(' ;\n\tvoid:subset\t:AOPWikiRDF.ttl, :AOPWikiRDF-Enriched.ttl, :AOPWikiRDF-Genes.ttl')
         g.write(' ;\n\tvoid:exampleResource\taop:1, aop.events:1, aop.relationships:1, cas:83-79-4, aop.stressor:1')
         g.write(' ;\n\tpav:createdOn\t"' + y + '"^^xsd:date')
@@ -805,7 +813,7 @@ def write_void_rdf(filepath, metadata):
         g.write(' ;\n\tpav:createdOn\t"' + y + '"^^xsd:date')
         g.write(' ;\n\tpav:createdWith\t"' + str(aopwikixmlfilename) + '", :Promapping')
         g.write(' ;\n\tfoaf:homepage\t<https://aopwiki.org>')
-        g.write(' ;\n\tdcterms:accuralPeriodicity\tfreq:quarterly')
+        g.write(' ;\n\tdcat:accrualPeriodicity\tfreq:quarterly')
         g.write(' ;\n\tdcat:downloadURL\t<https://aopwiki.org/downloads/' + str(aopwikixmlfilename) + '>')
         g.write(' .\n')
 
@@ -828,7 +836,7 @@ def write_void_rdf(filepath, metadata):
         g.write(' ;\n\tpav:createdOn\t"' + y + '"^^xsd:date')
         g.write(' ;\n\tpav:createdWith\t"' + str(aopwikixmlfilename) + '", :HGNCgenes')
         g.write(' ;\n\tfoaf:homepage\t<https://aopwiki.org>')
-        g.write(' ;\n\tdcterms:accuralPeriodicity\tfreq:quarterly')
+        g.write(' ;\n\tdcat:accrualPeriodicity\tfreq:quarterly')
         g.write(' ;\n\tdcat:downloadURL\t<https://aopwiki.org/downloads/' + str(aopwikixmlfilename) + '>, <https://www.genenames.org/download/custom/>')
         g.write(' .\n')
 
