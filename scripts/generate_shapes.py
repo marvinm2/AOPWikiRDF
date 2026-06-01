@@ -7,6 +7,7 @@ population rates.
 
 import json
 import os
+import sys
 import textwrap
 
 # Common prefixes for all shape files
@@ -300,6 +301,21 @@ def main():
     #    absent (e.g. an older audit-results.json).
     content = generate_gene_association_shape(gene_fixture_audit)
     if not content:
+        # The flag-on fixture audit is missing or empty. Falling back to the
+        # typed-only main-audit shape would silently drop EXACTLY the Phase-7
+        # BERN2 predicates this shape exists to validate (:geneDetectedByNER,
+        # :geneDetectedByRegex, :isFeaturedMethod, :minConfidence, the
+        # prov:Activity block) -- the T-07-07 threat. Make the degradation loud
+        # rather than shipping an unguarded gene shape.
+        print(
+            "WARNING: gene-association-provenance-fixture.ttl audit is absent "
+            "from audit-results.json; falling back to the typed-only gene shape. "
+            "The Phase-7 BERN2 provenance predicates will NOT be validated. "
+            "Re-run property_audit.py with the fixture present "
+            "(data-test/gene-association-provenance-fixture.ttl) before relying "
+            "on the gene-association shape.",
+            file=sys.stderr,
+        )
         content = generate_typed_shape(
             "GeneAssociationShape", "edam:data_1025",
             "http://edamontology.org/data_1025",
