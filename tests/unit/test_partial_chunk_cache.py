@@ -81,25 +81,28 @@ class TestPartialChunkCache:
     """A mixed success/error chunk run is cached _partial, not complete."""
 
     def _mixed_post(self):
-        """First chunk POST returns TP53 annotations; the second errors.
+        """Branch on the POSTed text, not a call counter.
 
-        The first single-call attempt always errors (forces the chunking
-        fallback). Then chunk 1 succeeds, chunk 2 errors.
+        ``_bern2_post`` retries up to 3 times per logical call, so a global
+        counter does not align with chunk boundaries. We key off the text:
+
+          * the full ``MIXED_TEXT`` (initial single-call attempt) -> error,
+            which forces the sentence-bounded chunking fallback;
+          * any chunk containing the chunk-1 marker -> success with TP53;
+          * any other chunk (chunk 2) -> error.
         """
-        state = {"n": 0}
-
         def side_effect(url, *a, **kw):
-            state["n"] += 1
-            if state["n"] == 1:
+            sent = (kw.get("json") or {}).get("text", "")
+            if sent == MIXED_TEXT:
                 # Initial single-call attempt: error -> triggers chunking.
                 raise requests.ConnectionError("force chunking")
-            if state["n"] == 2:
-                # Chunk 1: success with TP53.
+            if "first sentence" in sent:
+                # Chunk 1 carries TP53.
                 return _bern2_response([TP53_ANN])
             # Chunk 2 (and any retries of it): error.
             raise requests.ConnectionError("chunk 2 down")
 
-        return side_effect, state
+        return side_effect, {}
 
     def test_mixed_chunk_writes_partial_marker(self, tmp_path):
         """Test 1: cache JSON has _partial true AND keeps chunk-1 annotations."""
@@ -166,21 +169,19 @@ class TestPartialChunkCache:
     def test_partial_composes_with_ner_result(self, tmp_path):
         """Test 4: find_hgnc_ids_via_ner_el_result over a _partial returns
         failed=False and includes the gene(s) that succeeded (additive)."""
-        state = {"n": 0}
-
         def side_effect(url, *a, **kw):
-            state["n"] += 1
-            if state["n"] == 1:
+            if "json" not in kw:
+                # BridgeDb reverse-map call (uses data=, not json=).
+                return _bridgedb_response(BRIDGEDB_REAL_ROW_TP53)
+            sent = (kw.get("json") or {}).get("text", "")
+            if sent == MIXED_TEXT:
                 # Initial single-call attempt: error -> chunking.
                 raise requests.ConnectionError("force chunking")
-            if state["n"] == 2:
+            if "first sentence" in sent:
                 # Chunk 1: TP53 gene.
                 return _bern2_response([TP53_ANN])
-            if state["n"] == 3:
-                # Chunk 2: error.
-                raise requests.ConnectionError("chunk 2 down")
-            # BridgeDb reverse-map call for NCBIGene:7157 -> HGNC:11998.
-            return _bridgedb_response(BRIDGEDB_REAL_ROW_TP53)
+            # Chunk 2: error.
+            raise requests.ConnectionError("chunk 2 down")
 
         with patch(
             "aopwiki_rdf.mapping.ner_el_mapper.requests.post",
@@ -225,11 +226,10 @@ class TestUnchangedPaths:
         """Test 6: a clean chunked all-success writes annotations, no _partial,
         and is_cached True."""
         bern2_dir = tmp_path / "bern2"
-        state = {"n": 0}
 
         def side_effect(url, *a, **kw):
-            state["n"] += 1
-            if state["n"] == 1:
+            sent = (kw.get("json") or {}).get("text", "")
+            if sent == MIXED_TEXT:
                 # Initial single-call attempt: error -> chunking fallback.
                 raise requests.ConnectionError("force chunking")
             # Every chunk succeeds.
