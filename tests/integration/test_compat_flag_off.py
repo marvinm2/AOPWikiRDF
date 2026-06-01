@@ -6,14 +6,22 @@ stays ``False`` in production this phase, so the genes and main TTL files
 MUST stay byte-identical to the last-known-good ``production-rdf-backup/``.
 
 This test byte-compares the committed flag-off output in ``data/`` against
-``production-rdf-backup/``. It is skipped (not failed) when the backup
-directory is absent, matching the repo's skipif convention for
-environment-dependent tests (see ``tests/unit/test_qc_delta_guard.py``).
+``production-rdf-backup/``. The backup is a gitignored, manually-refreshed
+local snapshot, so the byte-diff is only meaningful when it was captured from
+the *same* XML release as the current ``data/`` -- otherwise normal weekly
+growth (new AOPs/genes) makes the files legitimately differ. The guard is
+therefore **opt-in**: it runs only when the operator both has the backup on
+disk AND sets ``COMPAT_CHECK_BACKUP=1`` to assert the backup is a current,
+same-release snapshot. It skips (never spuriously fails) otherwise, matching
+the repo's skipif convention for environment-dependent tests
+(see ``tests/unit/test_qc_delta_guard.py``).
 
-It also re-derives a flag-off genes file from the same gene data via
-``write_genes_rdf`` (config=None) and asserts the new Phase-7 prov/primacy
-strings never leak into a flag-off write -- this part runs unconditionally
-(no backup needed) so the gate is enforced even on CI without the backup.
+The always-on COMPAT-01 guarantee is enforced by
+``test_flag_off_genes_write_emits_no_phase7_prov`` below: it re-derives a
+flag-off genes file from the same gene data via ``write_genes_rdf``
+(config=None) and asserts the new Phase-7 prov/primacy strings never leak
+into a flag-off write. That part runs unconditionally (no backup needed), so
+the code-level gate holds on every environment including CI.
 """
 
 import os
@@ -31,9 +39,18 @@ BACKUP_DIR = os.path.join(PROJECT_ROOT, "production-rdf-backup")
 COMPAT_FILES = ("AOPWikiRDF-Genes.ttl", "AOPWikiRDF.ttl")
 
 
+# Opt-in: the byte-diff is valid only against a same-release backup snapshot.
+# Require both the backup on disk AND an explicit operator opt-in, since the
+# backup is gitignored local state that drifts from data/ on every weekly run.
+_backup_present = os.path.exists(os.path.join(BACKUP_DIR, "AOPWikiRDF-Genes.ttl"))
+_backup_opt_in = os.environ.get("COMPAT_CHECK_BACKUP") == "1"
+
 requires_backup = pytest.mark.skipif(
-    not os.path.exists(os.path.join(BACKUP_DIR, "AOPWikiRDF-Genes.ttl")),
-    reason="production-rdf-backup/ absent; byte-diff guard is environment-dependent",
+    not (_backup_present and _backup_opt_in),
+    reason=(
+        "byte-diff guard is opt-in: set COMPAT_CHECK_BACKUP=1 with a current, "
+        "same-release production-rdf-backup/ snapshot on disk to enable it"
+    ),
 )
 
 
