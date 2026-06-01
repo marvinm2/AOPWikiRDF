@@ -209,6 +209,20 @@ def main():
         "AOPWikiRDF-Enriched.ttl",
     ]
 
+    # Extra audit inputs that do not live under data/. The flag-on genes
+    # fixture (enable_bern2=True) carries the BERN2 provenance predicates
+    # (:geneDetectedByNER/:geneDetectedByRegex, the prov:* activity block,
+    # :isFeaturedMethod, :minConfidence) that the production data/ files do
+    # NOT contain when the flag is off, so the gene-association shape MUST be
+    # generated against this fixture or the new predicates never enter the
+    # shape (RESEARCH Pitfall 5 / T-07-07). Stored under its basename key so
+    # generate_shapes.py can read it explicitly.
+    extra_files = [
+        os.path.join(
+            base_dir, "data-test", "gene-association-provenance-fixture.ttl"
+        ),
+    ]
+
     all_results = {}
 
     for filename in files:
@@ -230,6 +244,23 @@ def main():
             file_results.update(untyped_results)
 
         all_results[filename] = file_results
+
+    for filepath in extra_files:
+        if not os.path.exists(filepath):
+            print(f"WARNING: {filepath} not found, skipping")
+            continue
+
+        key = os.path.basename(filepath)
+        print(f"Auditing {key}...", file=sys.stderr)
+
+        typed_results = audit_file(filepath)
+        untyped_results = audit_untyped_subjects(filepath)
+
+        file_results = typed_results
+        if untyped_results:
+            file_results.update(untyped_results)
+
+        all_results[key] = file_results
 
     # Print human-readable report
     print_report(all_results)

@@ -32,6 +32,8 @@ COMMON_PREFIXES = """\
 @prefix uniprot: <https://identifiers.org/uniprot/> .
 @prefix ncbigene: <https://identifiers.org/ncbigene/> .
 @prefix ensembl: <https://identifiers.org/ensembl/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix : <https://aopwiki.rdf.bigcat-bioinformatics.org/> .
 """
 
 # Shape namespace
@@ -61,6 +63,13 @@ def prop_to_prefixed(uri):
         "https://identifiers.org/uniprot/": "uniprot:",
         "https://identifiers.org/ncbigene/": "ncbigene:",
         "https://identifiers.org/ensembl/": "ensembl:",
+        "http://www.w3.org/ns/prov#": "prov:",
+        # Base ':' namespace for the BERN2 provenance predicates
+        # (:geneDetectedByNER, :geneDetectedByRegex, :isFeaturedMethod,
+        # :minConfidence). Listed last so any longer-specific namespace above
+        # wins first; the shapes namespace itself never appears as a data
+        # predicate, so there is no ':shapes/...' collision in practice.
+        "https://aopwiki.rdf.bigcat-bioinformatics.org/": ":",
     }
     for ns, prefix in prefix_map.items():
         if uri.startswith(ns):
@@ -127,6 +136,103 @@ shapes:{shape_name}
     return content
 
 
+def _node_shape_block(shape_name, target_line, label, props, instances, note=None):
+    """Render a single sh:NodeShape block (no prefix header)."""
+    lines = []
+    if note:
+        lines.append(f"# {note}")
+    lines.append(f"# Instances: {instances}")
+    lines.append("")
+    lines.append(f"shapes:{shape_name}")
+    lines.append("    a sh:NodeShape ;")
+    lines.append(f"    {target_line} ;")
+    lines.append(f'    sh:name "{label}" ;')
+    if props:
+        lines.append(props)
+    lines.append("    .")
+    return "\n".join(lines)
+
+
+def generate_gene_association_shape(fixture_audit):
+    """Build gene-association-shape.ttl from the flag-on fixture audit.
+
+    The fixture (enable_bern2=True) is the only audit input that contains the
+    Phase-7 BERN2 provenance predicates, so the shape is generated against it
+    rather than the flag-off production data (RESEARCH Pitfall 5 / T-07-07).
+
+    Three node shapes are emitted into one file:
+
+      1. GeneAssociationShape  -- sh:targetClass edam:data_1025
+         (the typed gene-identifier subjects; the legacy shape's home).
+      2. GeneMethodProvenanceShape -- sh:targetSubjectsOf :geneDetectedByNER
+         and :geneDetectedByRegex (the KE/KER union subjects are UNTYPED in the
+         genes file, so sh:targetClass cannot reach them; mirrors the
+         EnrichedXref sh:targetSubjectsOf precedent).
+      3. MethodActivityShape   -- sh:targetClass prov:Activity
+         (the :BERN2NERMapping / :RegexGeneMapping resources carrying
+         :isFeaturedMethod, :minConfidence, prov:used, prov:wasDerivedFrom).
+    """
+    if not fixture_audit:
+        return None
+
+    blocks = []
+
+    # 1. Typed gene-association subjects (edam:data_1025).
+    ga_type = fixture_audit.get("http://edamontology.org/data_1025")
+    if ga_type:
+        props = generate_property_shapes(ga_type["properties"])
+        blocks.append(_node_shape_block(
+            "GeneAssociationShape",
+            "sh:targetClass edam:data_1025",
+            "Gene Association",
+            props,
+            ga_type["instances"],
+            note="Typed gene-identifier subjects",
+        ))
+
+    # 2. Untyped KE/KER union subjects carrying the BERN2 method predicates.
+    untyped = fixture_audit.get("_untyped_subjects")
+    if untyped:
+        props = generate_property_shapes(untyped["properties"], exclude_rdf_type=False)
+        blocks.append(_node_shape_block(
+            "GeneMethodProvenanceShape",
+            "sh:targetSubjectsOf :geneDetectedByRegex ;\n    sh:targetSubjectsOf :geneDetectedByNER",
+            "Gene Method Provenance (NER + regex union subjects)",
+            props,
+            untyped["instances"],
+            note=(
+                "Untyped KE/KER union subjects; targeted via "
+                ":geneDetectedBy* (no rdf:type in the genes file)"
+            ),
+        ))
+
+    # 3. prov:Activity resources (method primacy + confidence policy).
+    activity = fixture_audit.get("http://www.w3.org/ns/prov#Activity")
+    if activity:
+        props = generate_property_shapes(activity["properties"])
+        blocks.append(_node_shape_block(
+            "MethodActivityShape",
+            "sh:targetClass prov:Activity",
+            "Gene Mapping Method Activity",
+            props,
+            activity["instances"],
+            note=":isFeaturedMethod primacy + :minConfidence policy",
+        ))
+
+    if not blocks:
+        return None
+
+    body = "\n\n".join(blocks)
+    return (
+        f"{COMMON_PREFIXES}\n"
+        f"@prefix shapes: <{SHAPES_NS}> .\n\n"
+        "# SHACL Shapes for Gene Association + BERN2 method provenance\n"
+        "# Generated from the flag-on fixture audit "
+        "(data-test/gene-association-provenance-fixture.ttl)\n"
+        f"{body}\n"
+    )
+
+
 def main():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     audit_path = os.path.join(base_dir, "scripts", "audit-results.json")
@@ -138,6 +244,9 @@ def main():
 
     main_audit = audit.get("AOPWikiRDF.ttl", {})
     enriched_audit = audit.get("AOPWikiRDF-Enriched.ttl", {})
+    # Flag-on fixture audit: the only input carrying the Phase-7 BERN2
+    # provenance predicates (see property_audit.py extra_files / Pitfall 5).
+    gene_fixture_audit = audit.get("gene-association-provenance-fixture.ttl", {})
 
     # 1. AOP Shape
     content = generate_typed_shape(
@@ -184,12 +293,18 @@ def main():
     if content:
         write_shape_file(os.path.join(shapes_dir, "chemical-shape.ttl"), content)
 
-    # 6. Gene Association Shape (edam:data_1025)
-    content = generate_typed_shape(
-        "GeneAssociationShape", "edam:data_1025",
-        "http://edamontology.org/data_1025",
-        main_audit, "Gene Association"
-    )
+    # 6. Gene Association Shape + BERN2 method provenance (edam:data_1025,
+    #    untyped :geneDetectedBy* union subjects, prov:Activity). Generated
+    #    against the flag-on fixture so the Phase-7 predicates are covered;
+    #    falls back to the typed-only main-audit shape if the fixture audit is
+    #    absent (e.g. an older audit-results.json).
+    content = generate_gene_association_shape(gene_fixture_audit)
+    if not content:
+        content = generate_typed_shape(
+            "GeneAssociationShape", "edam:data_1025",
+            "http://edamontology.org/data_1025",
+            main_audit, "Gene Association"
+        )
     if content:
         write_shape_file(os.path.join(shapes_dir, "gene-association-shape.ttl"), content)
 

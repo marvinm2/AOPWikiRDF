@@ -14,6 +14,20 @@ import pytest
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 SHAPES_DIR = os.path.join(PROJECT_ROOT, "shapes")
+GENE_SHAPE = os.path.join(SHAPES_DIR, "gene-association-shape.ttl")
+GENE_FIXTURE = os.path.join(
+    PROJECT_ROOT, "data-test", "gene-association-provenance-fixture.ttl"
+)
+
+# The four Phase-7 predicate paths the regenerated gene-association shape must
+# cover so the new BERN2 provenance triples ship validated (GENE-06 / PROV-01,
+# threat T-07-07).
+NEW_PREDICATE_PATHS = [
+    ":geneDetectedByNER",
+    ":geneDetectedByRegex",
+    ":isFeaturedMethod",
+    "prov:",
+]
 
 
 def _has_pyshacl():
@@ -88,6 +102,62 @@ def test_no_violations_on_current_data():
         capture_output=True, text=True, timeout=300,
     )
     assert result.returncode == 0, f"Validation failed:\n{result.stderr}\n{result.stdout}"
+
+
+def _has_gene_fixture():
+    return os.path.exists(GENE_FIXTURE) and os.path.exists(GENE_SHAPE)
+
+
+requires_gene_fixture = pytest.mark.skipif(
+    not _has_gene_fixture(),
+    reason="flag-on gene fixture or regenerated gene-association shape missing",
+)
+
+
+@requires_gene_fixture
+def test_gene_shape_covers_new_bern2_predicates():
+    """Regenerated gene-association shape references the four Phase-7 predicate paths.
+
+    Guards T-07-07: a shape regenerated against a flag-OFF genes file would
+    silently omit these, letting the new predicates ship unvalidated.
+    """
+    content = open(GENE_SHAPE).read()
+    for path in NEW_PREDICATE_PATHS:
+        assert path in content, (
+            f"gene-association-shape.ttl is missing the new predicate path "
+            f"'{path}' -- was it regenerated against the flag-ON fixture?"
+        )
+    # The new predicates must render prefixed (not as full <URI>).
+    assert "<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedBy" not in content
+    assert "<http://www.w3.org/ns/prov#" not in content.split("@prefix")[-1]
+
+
+@requires_pyshacl
+@requires_gene_fixture
+def test_flag_on_fixture_conforms_to_gene_shape():
+    """pyshacl validates the flag-on fixture green against the regenerated shape."""
+    import pyshacl
+    from rdflib import Graph, Namespace
+
+    data = Graph().parse(GENE_FIXTURE, format="turtle")
+    shapes = Graph().parse(GENE_SHAPE, format="turtle")
+
+    conforms, results_graph, results_text = pyshacl.validate(
+        data, shacl_graph=shapes, inference=None, abort_on_first=False,
+    )
+
+    SH = Namespace("http://www.w3.org/ns/shacl#")
+    RDF = Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
+    violations = 0
+    for result in results_graph.subjects(RDF.type, SH.ValidationResult):
+        for _, _, sev in results_graph.triples((result, SH.resultSeverity, None)):
+            if "Violation" in str(sev):
+                violations += 1
+
+    assert violations == 0, (
+        f"flag-on fixture produced {violations} violation(s) against the "
+        f"regenerated gene-association shape:\n{results_text}"
+    )
 
 
 @requires_pyshacl
