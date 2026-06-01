@@ -132,3 +132,7 @@ Both tasks followed RED → GREEN. RED commits (`7570b3a`, `eaf335c`) precede GR
 - `tests/unit/test_orchestrator.py` (line-count guard) + `tests/unit/test_pipeline_no_exec.py` — all pass.
 
 Note: tests were run with `PYTHONPATH=<worktree>/src` to override the shared editable install (`.pth` points at the main-repo `src` — the documented shared editable-install gotcha for this worktree).
+
+## Self-Check: PASSED
+
+All created files present and all 5 commits (4 task + 1 docs) verified in git history.
