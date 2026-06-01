@@ -9,6 +9,11 @@ jobs:
   update-zenodo-record:
     runs-on: ubuntu-latest
 
+    env:
+      # Retry transient Zenodo errors (HTTP 408/429/500/502/503/504 and timeouts).
+      # curl treats these as transient and backs off between attempts.
+      CURL_RETRY: "--retry 5 --retry-delay 15 --retry-connrefused"
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -30,31 +35,56 @@ jobs:
       - name: Install curl and jq
         run: sudo apt-get install -y curl jq
 
-      - name: Discard Current Draft
+      - name: Discard Any Existing Draft
         run: |
-          discard_response=$(curl -s -X POST -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
-                              "https://zenodo.org/api/deposit/depositions/${{ secrets.ZENODO_DEPOSITION_ID }}/actions/discard")
-          echo "Discard Response: $discard_response"
-          if echo "$discard_response" | grep -q '"status": 403'; then
-            echo "Failed to discard the draft. The draft might be locked or in an invalid state."
+          AUTH="Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}"
+          # Resolve the concept record id so we can find drafts on ANY version, not
+          # just the configured deposition. A new-version draft lives under a new
+          # deposition id, so discarding the static id alone never cleans it up
+          # (e.g. an orphaned draft left behind when a newversion POST times out at
+          # the gateway after Zenodo already created it).
+          dep=$(curl -s $CURL_RETRY -H "$AUTH" \
+                "https://zenodo.org/api/deposit/depositions/${{ secrets.ZENODO_DEPOSITION_ID }}")
+          conceptrecid=$(echo "$dep" | jq -r '.conceptrecid' 2>/dev/null)
+          if [[ "$conceptrecid" == "null" || -z "$conceptrecid" ]]; then
+            echo "Could not resolve conceptrecid. Deposition response was: $dep"
             exit 1
+          fi
+          echo "Concept record id: $conceptrecid"
+          # Find every unsubmitted draft across all versions of this concept.
+          drafts=$(curl -s $CURL_RETRY -H "$AUTH" \
+                   "https://zenodo.org/api/deposit/depositions?all_versions=true&q=conceptrecid:${conceptrecid}&size=100" \
+                   | jq -r '.[] | select(.submitted == false) | .id' 2>/dev/null)
+          if [[ -z "$drafts" ]]; then
+            echo "No existing drafts to discard."
+          else
+            for draft_id in $drafts; do
+              echo "Discarding draft deposition $draft_id"
+              discard_response=$(curl -s $CURL_RETRY -X POST -H "$AUTH" \
+                                 "https://zenodo.org/api/deposit/depositions/${draft_id}/actions/discard")
+              echo "Discard Response: $discard_response"
+              if echo "$discard_response" | grep -q '"status": 403'; then
+                echo "Failed to discard draft $draft_id. It might be locked or in an invalid state."
+                exit 1
+              fi
+            done
           fi
 
       - name: Create a New Version of the Deposition
         id: new_version
         run: |
-          response=$(curl -s -X POST -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
+          response=$(curl -s $CURL_RETRY -X POST -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
                         "https://zenodo.org/api/deposit/depositions/${{ secrets.ZENODO_DEPOSITION_ID }}/actions/newversion")
           echo "Response: $response"
-          new_draft_url=$(echo "$response" | jq -r '.links.latest_draft')
+          new_draft_url=$(echo "$response" | jq -r '.links.latest_draft' 2>/dev/null)
           if [[ "$new_draft_url" == "null" || -z "$new_draft_url" ]]; then
             echo "Failed to retrieve the latest draft URL. Response was: $response"
             exit 1
           fi
-          new_draft_response=$(curl -s -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" "$new_draft_url")
+          new_draft_response=$(curl -s $CURL_RETRY -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" "$new_draft_url")
           echo "New Draft Response: $new_draft_response"
-          new_deposition_id=$(echo "$new_draft_response" | jq -r '.id')
-          new_bucket_url=$(echo "$new_draft_response" | jq -r '.links.bucket')
+          new_deposition_id=$(echo "$new_draft_response" | jq -r '.id' 2>/dev/null)
+          new_bucket_url=$(echo "$new_draft_response" | jq -r '.links.bucket' 2>/dev/null)
           if [[ "$new_deposition_id" == "null" || -z "$new_deposition_id" ]]; then
             echo "Failed to retrieve the new deposition ID. New draft response was: $new_draft_response"
             exit 1
@@ -67,7 +97,7 @@ jobs:
       - name: Upload files to Zenodo
         run: |
           for file in data/*.ttl; do
-            curl --progress-bar -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
+            curl --progress-bar $CURL_RETRY -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
                   --upload-file $file "$new_bucket_url/$(basename $file)"
           done
 
@@ -103,12 +133,12 @@ jobs:
                                 upload_type: $upload_type
                               }
                             }')
-          curl -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
+          curl -s $CURL_RETRY -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
                -H "Content-Type: application/json" \
                -X PUT --data "$metadata" "https://zenodo.org/api/deposit/depositions/$new_deposition_id"
 
       - name: Publish Updated Zenodo Record
         run: |
-          curl -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
+          curl -s $CURL_RETRY -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
                -H "Content-Type: application/json" \
                -X POST "https://zenodo.org/api/deposit/depositions/$new_deposition_id/actions/publish"
