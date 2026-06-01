@@ -150,14 +150,15 @@ class TestApplyBern2Enrichment:
         }
         gene_hgnclist = ["hgnc:A", "hgnc:B", "hgnc:X"]
 
+        from aopwiki_rdf.mapping.ner_el_mapper import NerResult
         ner_results = {
-            "100": {"hgnc:B", "hgnc:C"},   # B overlaps, C is new
-            "101": {"hgnc:D"},             # BERN2-only KE
+            "100": NerResult({"hgnc:B", "hgnc:C"}),  # B overlaps, C is new
+            "101": NerResult({"hgnc:D"}),            # BERN2-only KE
         }
         config = PipelineConfig(enable_bern2=True, ner_cache_dir=tmp_path)
 
         with patch(
-            "aopwiki_rdf.pipeline.map_ner_genes_in_kes",
+            "aopwiki_rdf.pipeline.map_ner_genes_in_kes_result",
             return_value=ner_results,
         ):
             _apply_bern2_enrichment(kedict, kerdict, gene_hgnclist, config)
@@ -189,7 +190,7 @@ class TestApplyBern2Enrichment:
         kerdict = {}
         gene_hgnclist = []
 
-        with patch("aopwiki_rdf.pipeline.map_ner_genes_in_kes", return_value={}):
+        with patch("aopwiki_rdf.pipeline.map_ner_genes_in_kes_result", return_value={}):
             _apply_bern2_enrichment(
                 kedict, kerdict, gene_hgnclist,
                 PipelineConfig(enable_bern2=True, ner_cache_dir=tmp_path),

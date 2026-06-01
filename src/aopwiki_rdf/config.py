@@ -42,6 +42,16 @@ class PipelineConfig:
     # NER-only gene associations at ~90% precision. Annotations with no
     # prob are kept. Set to 0.0 to disable filtering.
     ner_min_prob: float = 0.70
+    # When a BERN2 lookup fails for a KE description (the hosted API is
+    # unreachable / all retries exhausted), degrade gracefully to the regex
+    # genes already present in edam:data_1025 rather than unioning an empty
+    # NER set (NER-04). The degraded KE keeps its regex genes intact, is
+    # flagged _ner_degraded for audit, and the run logs a loud ERROR plus a
+    # coverage metric. INERT unless enable_bern2 is True -- and enable_bern2
+    # itself defaults False, so the default production run is byte-identical
+    # regardless of this flag. Set False to restore the prior union-with-empty
+    # behaviour on failure.
+    ner_fallback_on_failure: bool = True
 
     def __post_init__(self):
         """Ensure path-typed fields are Path objects."""

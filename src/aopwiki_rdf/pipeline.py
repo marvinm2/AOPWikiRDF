@@ -21,7 +21,7 @@ from aopwiki_rdf.config import PipelineConfig
 from aopwiki_rdf.parser.xml_parser import parse_aopwiki_xml, AOPXML_NS
 from aopwiki_rdf.hgnc import download_hgnc_data
 from aopwiki_rdf.mapping.gene_mapper import build_gene_dicts, map_genes_in_entities, build_gene_xrefs
-from aopwiki_rdf.mapping.ner_el_mapper import map_ner_genes_in_kes
+from aopwiki_rdf.mapping.ner_el_mapper import map_ner_genes_in_kes_result
 from aopwiki_rdf.mapping.chemical_mapper import map_chemicals
 from aopwiki_rdf.mapping.protein_ontology import download_and_parse_promapping
 from aopwiki_rdf.rdf.writer import write_aop_rdf, write_enriched_rdf, write_genes_rdf, write_void_rdf
@@ -223,16 +223,49 @@ def _apply_bern2_enrichment(kedict, kerdict, gene_hgnclist, config):
     - ``gene_hgnclist`` is extended with BERN2-discovered HGNC IDs so they
       flow through BridgeDb cross-referencing and gene-identifier triples.
 
+    Graceful degradation (NER-04): when BERN2 *fails* for a KE description
+    (the hosted API is unreachable / all retries exhausted), and
+    ``config.ner_fallback_on_failure`` is True, that KE keeps the regex genes
+    already in ``edam:data_1025`` -- they are NEVER thinned or emptied. The KE
+    is flagged ``_ner_degraded`` for audit, ``_genes_ner`` is left empty, and a
+    per-run ``degraded`` counter is incremented. After the loop, if any KE
+    degraded, a single loud ``logger.error`` line is emitted plus an INFO
+    coverage metric. A successful-but-empty BERN2 result is NOT a failure and
+    follows the normal additive union path.
+
     BERN2 scope is KE descriptions only; KERs keep their regex genes and
     get an empty ``_genes_ner`` list (the writer then emits
-    :geneDetectedByRegex but not :geneDetectedByNER for them).
+    :geneDetectedByRegex but not :geneDetectedByNER for them). This whole
+    function only runs when ``config.enable_bern2`` is True, so it is inert in
+    the default production run.
     """
-    ner_results = map_ner_genes_in_kes(kedict, config)
+    ner_results = map_ner_genes_in_kes_result(kedict, config)
     existing_hgnc = set(gene_hgnclist)
 
+    degraded = 0
+    ok = 0
     for ke_id, props in kedict.items():
         regex_genes = list(props.get("edam:data_1025", []))
-        ner_genes = sorted(ner_results.get(ke_id, set()))
+        result = ner_results.get(ke_id)
+
+        if result is not None and result.failed and config.ner_fallback_on_failure:
+            # BERN2 outage for this KE: degrade to the regex genes we already
+            # hold. Keep edam:data_1025 untouched (>= regex baseline), record
+            # the degradation for the writer/QC, contribute no NER genes.
+            degraded += 1
+            if not regex_genes:
+                continue
+            props["_genes_regex"] = regex_genes
+            props["_genes_ner"] = []
+            props["_ner_degraded"] = True
+            # edam:data_1025 stays as-is (the regex result); no union, no drop.
+            continue
+
+        # Normal additive path: success (with or without hits), or fallback
+        # disabled. A failed result with fallback off unions an empty NER set.
+        ner_genes = sorted(result.hgnc_ids) if result is not None else []
+        if result is not None:
+            ok += 1
         if not regex_genes and not ner_genes:
             continue
         props["_genes_regex"] = regex_genes
@@ -246,6 +279,18 @@ def _apply_bern2_enrichment(kedict, kerdict, gene_hgnclist, config):
             if g not in existing_hgnc:
                 gene_hgnclist.append(g)
                 existing_hgnc.add(g)
+
+    total = ok + degraded
+    if degraded > 0:
+        logger.error(
+            "BERN2 degraded for %d/%d KE descriptions; fell back to regex "
+            "(canonical gene coverage preserved)",
+            degraded, total,
+        )
+    logger.info(
+        "BERN2 enrichment coverage: %d ok, %d degraded, %d total",
+        ok, degraded, total,
+    )
 
     for ker_id, props in kerdict.items():
         if "edam:data_1025" in props:

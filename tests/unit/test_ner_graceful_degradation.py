@@ -221,3 +221,172 @@ class TestMapNerGenesInKesResult:
             results = map_ner_genes_in_kes_result(kedict, self._config(tmp_path))
         assert results == {}
         m.assert_not_called()
+
+
+# ---------------------------------------------------------------------------
+# Task 2: regex fallback + ERROR + metric + provenance in the merge step
+# ---------------------------------------------------------------------------
+
+class TestApplyBern2EnrichmentDegradation:
+    """_apply_bern2_enrichment degrades to regex on BERN2 failure (NER-04)."""
+
+    def _config(self, tmp_path):
+        from aopwiki_rdf.config import PipelineConfig
+        return PipelineConfig(
+            enable_bern2=True, ner_cache_dir=tmp_path / "cache",
+        )
+
+    def test_all_down_falls_back_to_regex(self, tmp_path, caplog):
+        """Success criterion 4: a simulated all-down BERN2 run yields gene
+        associations >= the regex baseline via fallback, marks every degraded
+        KE, logs a single ERROR, and emits a coverage metric."""
+        from aopwiki_rdf.pipeline import _apply_bern2_enrichment
+
+        # Two KEs with known regex genes already in edam:data_1025.
+        kedict = {
+            "111": {
+                "dc:description": '"""KE one mentions a gene."""',
+                "edam:data_1025": ["hgnc:11998", "hgnc:108"],
+            },
+            "222": {
+                "dc:description": '"""KE two mentions a gene."""',
+                "edam:data_1025": ["hgnc:5"],
+            },
+        }
+        kerdict = {}
+        gene_hgnclist = ["hgnc:11998", "hgnc:108", "hgnc:5"]
+        baseline = {ke: len(p["edam:data_1025"]) for ke, p in kedict.items()}
+
+        # EVERY BERN2 description fails (network down for all calls).
+        with patch(
+            "aopwiki_rdf.mapping.ner_el_mapper.requests.post",
+            side_effect=requests.ConnectionError("net down"),
+        ), patch("aopwiki_rdf.mapping.ner_el_mapper.time.sleep"), \
+                caplog.at_level("ERROR"):
+            _apply_bern2_enrichment(
+                kedict, kerdict, gene_hgnclist, self._config(tmp_path),
+            )
+
+        # (1) canonical gene associations >= regex baseline (never thinned).
+        for ke_id, props in kedict.items():
+            assert len(props["edam:data_1025"]) >= baseline[ke_id]
+        # The regex genes survive intact.
+        assert kedict["111"]["edam:data_1025"] == ["hgnc:11998", "hgnc:108"]
+        assert kedict["222"]["edam:data_1025"] == ["hgnc:5"]
+
+        # (2) every touched KE marked degraded, empty NER provenance.
+        for props in kedict.values():
+            assert props["_ner_degraded"] is True
+            assert props["_genes_ner"] == []
+            assert props["_genes_regex"]  # regex provenance preserved
+
+        # (3) a single ERROR was logged.
+        error_records = [r for r in caplog.records if r.levelname == "ERROR"]
+        assert len(error_records) == 1
+        assert "degraded" in error_records[0].getMessage()
+
+    def test_success_uses_union_path_no_degradation(self, tmp_path):
+        """A non-failed BERN2 result follows today's union path; no
+        _ner_degraded flag, NER genes unioned into edam:data_1025."""
+        from aopwiki_rdf.pipeline import _apply_bern2_enrichment
+
+        kedict = {
+            "888": {
+                "dc:description": '"""TP53 is involved here."""',
+                "edam:data_1025": ["hgnc:5"],
+            },
+        }
+        kerdict = {}
+        gene_hgnclist = ["hgnc:5"]
+
+        call_count = {"n": 0}
+
+        def post_side_effect(url, *a, **kw):
+            call_count["n"] += 1
+            if call_count["n"] == 1:
+                return _bern2_response([TP53_ANN])
+            return _bridgedb_response(BRIDGEDB_REAL_ROW_TP53)
+
+        with patch(
+            "aopwiki_rdf.mapping.ner_el_mapper.requests.post",
+            side_effect=post_side_effect,
+        ):
+            _apply_bern2_enrichment(
+                kedict, kerdict, gene_hgnclist, self._config(tmp_path),
+            )
+
+        props = kedict["888"]
+        assert props.get("_ner_degraded") is not True
+        assert "hgnc:11998" in props["edam:data_1025"]
+        assert "hgnc:5" in props["edam:data_1025"]
+        assert props["_genes_ner"] == ["hgnc:11998"]
+        assert "hgnc:11998" in gene_hgnclist
+
+    def test_degraded_ke_does_not_grow_hgnclist(self, tmp_path):
+        """A degraded KE contributes no NER genes, so gene_hgnclist is
+        unchanged by the fallback (no empty/garbage IDs leak in)."""
+        from aopwiki_rdf.pipeline import _apply_bern2_enrichment
+
+        kedict = {
+            "111": {
+                "dc:description": '"""KE one."""',
+                "edam:data_1025": ["hgnc:11998"],
+            },
+        }
+        gene_hgnclist = ["hgnc:11998"]
+        before = list(gene_hgnclist)
+
+        with patch(
+            "aopwiki_rdf.mapping.ner_el_mapper.requests.post",
+            side_effect=requests.ConnectionError("net down"),
+        ), patch("aopwiki_rdf.mapping.ner_el_mapper.time.sleep"):
+            _apply_bern2_enrichment(
+                kedict, {}, gene_hgnclist, self._config(tmp_path),
+            )
+        assert gene_hgnclist == before
+
+    def test_fallback_flag_off_uses_union_even_on_failure(self, tmp_path):
+        """ner_fallback_on_failure=False reverts to the old union path even
+        on a BERN2 failure (empty NER set unioned, no _ner_degraded)."""
+        from aopwiki_rdf.config import PipelineConfig
+        from aopwiki_rdf.pipeline import _apply_bern2_enrichment
+
+        config = PipelineConfig(
+            enable_bern2=True,
+            ner_fallback_on_failure=False,
+            ner_cache_dir=tmp_path / "cache",
+        )
+        kedict = {
+            "111": {
+                "dc:description": '"""KE one."""',
+                "edam:data_1025": ["hgnc:11998"],
+            },
+        }
+        with patch(
+            "aopwiki_rdf.mapping.ner_el_mapper.requests.post",
+            side_effect=requests.ConnectionError("net down"),
+        ), patch("aopwiki_rdf.mapping.ner_el_mapper.time.sleep"):
+            _apply_bern2_enrichment(
+                kedict, {}, ["hgnc:11998"], config,
+            )
+        props = kedict["111"]
+        # Old behaviour: regex genes kept, NER empty, no degradation marker.
+        assert props["edam:data_1025"] == ["hgnc:11998"]
+        assert props["_genes_ner"] == []
+        assert props.get("_ner_degraded") is not True
+
+
+class TestNerFallbackOnFailureConfig:
+    """The new ner_fallback_on_failure flag (Task 2)."""
+
+    def test_defaults_true(self):
+        from aopwiki_rdf.config import PipelineConfig
+        assert PipelineConfig().ner_fallback_on_failure is True
+
+    def test_inert_when_enable_bern2_off(self):
+        """Default config: enable_bern2 False means the whole fallback path
+        is never reached regardless of ner_fallback_on_failure."""
+        from aopwiki_rdf.config import PipelineConfig
+        cfg = PipelineConfig()
+        assert cfg.enable_bern2 is False
+        assert cfg.ner_fallback_on_failure is True
