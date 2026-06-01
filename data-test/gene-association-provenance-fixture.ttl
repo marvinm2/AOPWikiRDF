@@ -1,0 +1,77 @@
+@prefix : <https://aopwiki.rdf.bigcat-bioinformatics.org/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix aop.events: <https://identifiers.org/aop.events/> .
+@prefix aop.relationships: <https://identifiers.org/aop.relationships/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> . 
+@prefix ensembl: <https://identifiers.org/ensembl/> .
+@prefix edam: <http://edamontology.org/> .
+@prefix hgnc: <https://identifiers.org/hgnc/>.
+@prefix ncbigene: <https://identifiers.org/ncbigene/>.
+@prefix uniprot: <https://identifiers.org/uniprot/>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:BERN2NERMapping a prov:Activity ;
+	rdfs:label "BERN2 NER+EL gene mapping" ;
+	:isFeaturedMethod true ;
+	:minConfidence "0.70"^^xsd:decimal ;
+	prov:used <http://bern2.korea.ac.kr/plain> ;
+	prov:wasDerivedFrom :AOPWikiXMLSource .
+
+:RegexGeneMapping a prov:Activity ;
+	rdfs:label "HGNC dictionary regex gene mapping" ;
+	:isFeaturedMethod false ;
+	prov:used <https://www.genenames.org/> ;
+	prov:wasDerivedFrom :AOPWikiXMLSource .
+
+:AOPWikiXMLSource a prov:Entity ;
+	rdfs:label "AOP-Wiki XML export" .
+
+:geneDetectedByNER prov:wasGeneratedBy :BERN2NERMapping .
+:geneDetectedByRegex prov:wasGeneratedBy :RegexGeneMapping .
+
+aop.events:100	edam:data_1025	hgnc:11998,hgnc:108,hgnc:1097 ;
+	:geneDetectedByRegex	hgnc:11998,hgnc:108 ;
+	:geneDetectedByNER	hgnc:108,hgnc:1097 .
+
+aop.relationships:50	edam:data_1025	hgnc:11998 ;
+	:geneDetectedByRegex	hgnc:11998 .
+
+hgnc:11998	a	edam:data_2298, edam:data_1025 ;
+	rdfs:label	"TP53" ;
+	edam:data_2298	"11998" ;
+	dc:identifier	"hgnc:11998" ;
+	dc:source	"HGNC" ;
+	skos:exactMatch	ncbigene:7157,uniprot:P04637 ;
+	owl:sameAs	ncbigene:7157,uniprot:P04637.
+
+hgnc:108	a	edam:data_2298, edam:data_1025 ;
+	rdfs:label	"ACE" ;
+	edam:data_2298	"108" ;
+	dc:identifier	"hgnc:108" ;
+	dc:source	"HGNC".
+
+hgnc:1097	a	edam:data_2298, edam:data_1025 ;
+	rdfs:label	"BRAF" ;
+	edam:data_2298	"1097" ;
+	dc:identifier	"hgnc:1097" ;
+	dc:source	"HGNC".
+
+ncbigene:7157	a	edam:data_1027, edam:data_1025 ;
+	edam:data_1027	"7157";
+	dc:identifier	"ncbigene:7157";
+	dc:source	"Entrez Gene".
+
+ensembl:ENSG00000141510	a	edam:data_1033, edam:data_1025 ;
+	edam:data_1033	"ENSG00000141510";
+	dc:identifier	"ensembl:ENSG00000141510";
+	dc:source	"Ensembl".
+
+uniprot:P04637	a	edam:data_2291, edam:data_1025 ;
+	edam:data_2291	"P04637";
+	dc:identifier	"uniprot:P04637";
+	dc:source	"UniProt".
+

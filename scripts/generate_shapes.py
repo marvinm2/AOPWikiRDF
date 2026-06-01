@@ -32,6 +32,8 @@ COMMON_PREFIXES = """\
 @prefix uniprot: <https://identifiers.org/uniprot/> .
 @prefix ncbigene: <https://identifiers.org/ncbigene/> .
 @prefix ensembl: <https://identifiers.org/ensembl/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix : <https://aopwiki.rdf.bigcat-bioinformatics.org/> .
 """
 
 # Shape namespace
@@ -61,6 +63,13 @@ def prop_to_prefixed(uri):
         "https://identifiers.org/uniprot/": "uniprot:",
         "https://identifiers.org/ncbigene/": "ncbigene:",
         "https://identifiers.org/ensembl/": "ensembl:",
+        "http://www.w3.org/ns/prov#": "prov:",
+        # Base ':' namespace for the BERN2 provenance predicates
+        # (:geneDetectedByNER, :geneDetectedByRegex, :isFeaturedMethod,
+        # :minConfidence). Listed last so any longer-specific namespace above
+        # wins first; the shapes namespace itself never appears as a data
+        # predicate, so there is no ':shapes/...' collision in practice.
+        "https://aopwiki.rdf.bigcat-bioinformatics.org/": ":",
     }
     for ns, prefix in prefix_map.items():
         if uri.startswith(ns):
