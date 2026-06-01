@@ -1180,7 +1180,9 @@ for ker in root.findall(aopxml + 'key-event-relationship'):
     kerdict[ker.get('id')]['aopo:has_downstream_key_event'] = {}
     kerdict[ker.get('id')]['aopo:has_downstream_key_event']['id'] = ker.find(aopxml + 'title').find(aopxml + 'downstream-id').text
     kerdict[ker.get('id')]['aopo:has_downstream_key_event']['dc:identifier'] = 'aop.events:' + refs['KE'][ker.find(aopxml + 'title').find(aopxml + 'downstream-id').text]
-    for appl in ker.findall(aopxml + 'taxonomic-applicability'):
+    # AOP-Wiki renamed <taxonomic-applicability> to <applicability> on KERs in the
+    # 2022-Q3 XML schema. Both names are accepted so historical snapshots round-trip.
+    for appl in (ker.findall(aopxml + 'applicability') + ker.findall(aopxml + 'taxonomic-applicability')):
         for sex in appl.findall(aopxml + 'sex'):
             if 'pato:0000047' not in kerdict[ker.get('id')]:
                 kerdict[ker.get('id')]['pato:0000047'] = [[sex.find(aopxml + 'evidence').text, sex.find(aopxml + 'sex').text]]
