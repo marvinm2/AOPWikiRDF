@@ -554,3 +554,69 @@ def map_ner_genes_in_kes(
         len(results), total,
     )
     return results
+
+
+def map_ner_genes_in_kers(
+    kerdict: dict, config, sleep_after: float = 0.0,
+) -> dict[str, set[str]]:
+    """Run BERN2 NER+EL over every Key Event Relationship description.
+
+    Symmetric counterpart to :func:`map_ner_genes_in_kes`, iterating KERs that
+    carry a ``dc:description``. Reuses :func:`_description_text` so the cache
+    keys it warms match what the coverage probe (and a future Phase 7 KER
+    detector) will look up. Honours the same caching/short-circuit semantics
+    as the KE pass, so a warming run over both corpora is resumable.
+
+    Parameters
+    ----------
+    kerdict:
+        Key Event Relationship dictionary (ker_id -> properties) from the XML
+        parser. KERs with a non-empty ``dc:description`` are scanned.
+    config:
+        PipelineConfig. Reads ``bern2_url``, ``bridgedb_url``,
+        ``ner_cache_dir``, ``ner_min_prob``, and ``request_timeout``.
+    sleep_after:
+        Optional per-call delay (seconds).
+
+    Returns
+    -------
+    dict
+        ``{ker_id: set_of_hgnc_uri_strings}``. KERs with no detections are
+        absent. HGNC IDs are formatted as ``hgnc:N`` to match the KE pass.
+    """
+    results: dict[str, set[str]] = {}
+    ker_ids = [
+        ker_id for ker_id, props in kerdict.items()
+        if props.get("dc:description")
+    ]
+    total = len(ker_ids)
+    logger.info("BERN2 NER+EL: scanning %d Key Event Relationship descriptions", total)
+
+    for idx, ker_id in enumerate(ker_ids, 1):
+        text = _description_text(kerdict[ker_id]["dc:description"])
+        if not text.strip():
+            continue
+
+        hgnc_numeric = find_hgnc_ids_via_ner_el(
+            text,
+            bern2_url=config.bern2_url,
+            bridgedb_url=config.bridgedb_url,
+            cache_dir=config.ner_cache_dir,
+            timeout=config.request_timeout,
+            sleep_after=sleep_after,
+            min_prob=config.ner_min_prob,
+        )
+        if hgnc_numeric:
+            results[ker_id] = {f"hgnc:{n}" for n in hgnc_numeric}
+
+        if idx % 100 == 0 or idx == total:
+            logger.info(
+                "BERN2 NER+EL progress: %d/%d KERs (%d with gene hits)",
+                idx, total, len(results),
+            )
+
+    logger.info(
+        "BERN2 NER+EL complete: %d/%d KERs had gene detections",
+        len(results), total,
+    )
+    return results
