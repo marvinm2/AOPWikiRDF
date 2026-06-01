@@ -740,6 +740,92 @@ class TestExternalIriLabelsFlagOn:
             assert 'ensembl:ENSG00000141510' in content
             assert content.count('rdfs:label\t"TP53"') == 3
 
+    def test_all_component_dicts_each_labeled_once_flag_on(self):
+        """The four under-tested component blocks (bioobjdict / bioactdict /
+        cterm / oterm) each emit exactly one rdfs:label mirroring their
+        dc:title when the flag is on (WR-04). Output must parse as valid
+        Turtle (the bare dc:source concatenation relies on already-quoted
+        upstream values, exercised here with quoted '"..."' sources)."""
+        from aopwiki_rdf.rdf.writer import write_aop_rdf
+        from rdflib import Graph, Namespace, URIRef
+
+        RDFS = Namespace('http://www.w3.org/2000/01/rdf-schema#')
+
+        entities = _label_entities()
+        # Empty the chemical/gene xref lists so this test isolates components.
+        entities['ncbigenelist'] = []
+        entities['listofchebi'] = []
+        entities['chem_label_by_iri'] = {}
+        entities['gene_label_by_iri'] = {}
+        entities['bioprodict'] = {}
+        entities['bioobjdict'] = {
+            'o1': {
+                'dc:identifier': 'pr:000003676',
+                'dc:title': '"androgen receptor"',
+                'dc:source': '"PR"',
+            }
+        }
+        entities['bioactdict'] = {
+            'a1': {
+                'dc:identifier': 'go:0003700',
+                'dc:title': '"DNA-binding transcription factor activity"',
+                'dc:source': '"GO"',
+            }
+        }
+        # cterm / oterm are NOT passed directly: the writer derives them from a
+        # KE carrying aopo:CellTypeContext / aopo:OrganContext. Drive both via a
+        # minimal-but-complete KE so their flag-on label paths are exercised.
+        entities['kedict'] = {
+            'ke1': {
+                'dc:identifier': 'aop.events:1',
+                'rdfs:label': '"KE 1"',
+                'foaf:page': '<https://identifiers.org/aop.events/1>',
+                'dc:title': '"Key Event 1"',
+                'dcterms:alternative': 'KE1',
+                'dc:source': 'AOP-Wiki',
+                'aopo:CellTypeContext': {
+                    'dc:identifier': ['cl:0000182'],
+                    'dc:title': '"hepatocyte"',
+                    'dc:source': '"CL"',
+                },
+                'aopo:OrganContext': {
+                    'dc:identifier': ['uberon:0002107'],
+                    'dc:title': '"liver"',
+                    'dc:source': '"UBERON"',
+                },
+            }
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            prefix_csv = os.path.join(tmpdir, 'prefixes.csv')
+            _write_label_prefixes(prefix_csv)
+            with open(prefix_csv, 'a') as f:
+                f.write('pato,http://purl.obolibrary.org/obo/PATO_\n')
+                f.write('pr,http://purl.obolibrary.org/obo/PR_\n')
+                f.write('cl,http://purl.obolibrary.org/obo/CL_\n')
+                f.write('uberon,http://purl.obolibrary.org/obo/UBERON_\n')
+                f.write('aop.events,https://identifiers.org/aop.events/\n')
+                f.write('foaf,http://xmlns.com/foaf/0.1/\n')
+            out = os.path.join(tmpdir, 'AOPWikiRDF.ttl')
+            write_aop_rdf(out, entities, prefix_csv, config=_labels_on_config())
+
+            g = Graph()
+            g.parse(out, format='turtle')  # must not raise
+
+            cases = (
+                ('http://purl.obolibrary.org/obo/PR_000003676', 'androgen receptor'),
+                ('http://purl.obolibrary.org/obo/GO_0003700',
+                 'DNA-binding transcription factor activity'),
+                ('http://purl.obolibrary.org/obo/CL_0000182', 'hepatocyte'),
+                ('http://purl.obolibrary.org/obo/UBERON_0002107', 'liver'),
+            )
+            for iri, expected in cases:
+                labels = list(g.objects(URIRef(iri), RDFS.label))
+                assert len(labels) == 1, (
+                    f'{iri} expected exactly one rdfs:label, got {labels}'
+                )
+                assert str(labels[0]) == expected
+
     def test_quote_bearing_label_is_turtle_escaped(self):
         """A label containing a double-quote does not break rdflib parsing
         (T-08-04 escaping) and round-trips to the original name."""
