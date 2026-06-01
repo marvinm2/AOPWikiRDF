@@ -123,6 +123,52 @@ GENES_PROVENANCE_PREFIX = (
     "@prefix : <https://aopwiki.rdf.bigcat-bioinformatics.org/> .\n"
 )
 
+# PROV-O activity layer + machine-readable method primacy + confidence policy.
+# Emitted into the genes RDF header ONLY when config.enable_bern2 is True,
+# immediately after GENES_PROVENANCE_PREFIX, so the file stays byte-identical
+# to the pre-Phase-7 output when the flag is off (COMPAT-01).
+#
+# Design (Phase 7 / 07-03, D-01..D-07):
+#   * Two prov:Activity resources declared ONCE in the header (activity-level
+#     provenance only -- never per KE/KER subject, never reified associations).
+#   * BERN2 marked :isFeaturedMethod true (machine-readable primacy, GENE-05/07).
+#   * :minConfidence "0.70"^^xsd:decimal records the 0.70 NER threshold in the
+#     RDF itself (GENE-08), not only in docs.
+#   * prov:wasGeneratedBy attached to the :geneDetectedBy* PREDICATES so a
+#     SPARQL consumer can resolve the canonical method without reading docs.
+#   * All literals are static -- no wall-clock timestamp, no runtime version
+#     lookup -- to preserve byte-stable diffs against production-rdf-backup/.
+#
+# COMPAT carve-out: the prov: prefix lives ONLY here, NOT in prefixes.csv.
+# prefixes.csv is iterated into unconditional sh:declare lines in the MAIN
+# AOPWikiRDF.ttl, so adding prov there would break flag-off byte-identity.
+# The xsd: prefix is declared here too because GENES_PREFIXES does not carry
+# it and "0.70"^^xsd:decimal must parse.
+GENES_PROVENANCE_ACTIVITIES = (
+    "@prefix prov: <http://www.w3.org/ns/prov#> .\n"
+    "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n"
+    "\n"
+    ":BERN2NERMapping a prov:Activity ;\n"
+    '\trdfs:label "BERN2 NER+EL gene mapping" ;\n'
+    "\t:isFeaturedMethod true ;\n"
+    '\t:minConfidence "0.70"^^xsd:decimal ;\n'
+    "\tprov:used <http://bern2.korea.ac.kr/plain> ;\n"
+    "\tprov:wasDerivedFrom :AOPWikiXMLSource .\n"
+    "\n"
+    ":RegexGeneMapping a prov:Activity ;\n"
+    '\trdfs:label "HGNC dictionary regex gene mapping" ;\n'
+    "\t:isFeaturedMethod false ;\n"
+    "\tprov:used <https://www.genenames.org/> ;\n"
+    "\tprov:wasDerivedFrom :AOPWikiXMLSource .\n"
+    "\n"
+    ":AOPWikiXMLSource a prov:Entity ;\n"
+    '\trdfs:label "AOP-Wiki XML export" .\n'
+    "\n"
+    ":geneDetectedByNER prov:wasGeneratedBy :BERN2NERMapping .\n"
+    ":geneDetectedByRegex prov:wasGeneratedBy :RegexGeneMapping .\n"
+    "\n"
+)
+
 # ---------------------------------------------------------------------------
 # Enriched RDF prefixes (cross-reference triples for AOPWikiRDF-Enriched.ttl)
 # ---------------------------------------------------------------------------

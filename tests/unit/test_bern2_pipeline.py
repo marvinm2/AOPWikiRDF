@@ -283,8 +283,11 @@ class TestWriteGenesRdfProvenance:
             Graph().parse(out, format="turtle")
 
         assert ":geneDetectedByRegex\thgnc:X" in content
-        # Empty NER list -> no :geneDetectedByNER predicate emitted.
-        assert ":geneDetectedByNER" not in content
+        # Empty NER list -> no subject-level :geneDetectedByNER block emitted.
+        # (The Phase-7 header carries a predicate-level
+        # ":geneDetectedByNER prov:wasGeneratedBy ..." link unconditionally;
+        # match the tab-delimited block form to assert the per-KER emission.)
+        assert "\t:geneDetectedByNER\t" not in content
 
     def test_flag_on_ke_with_only_ner_genes(self):
         """A KE regex missed entirely still emits a valid block."""
@@ -309,4 +312,8 @@ class TestWriteGenesRdfProvenance:
 
         assert "edam:data_1025\thgnc:D" in content
         assert ":geneDetectedByNER\thgnc:D" in content
-        assert ":geneDetectedByRegex" not in content
+        # No subject-level :geneDetectedByRegex block (regex list empty).
+        # The Phase-7 header still declares the predicate-level
+        # ":geneDetectedByRegex prov:wasGeneratedBy ..." link unconditionally,
+        # so match the tab-delimited block form here.
+        assert "\t:geneDetectedByRegex\t" not in content
