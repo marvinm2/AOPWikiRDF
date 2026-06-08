@@ -194,7 +194,7 @@ def _fmt_pct(value):
 def print_report(report):
     """Print a human-readable old-vs-new table to stdout."""
     print("=" * 78)
-    print("QC delta guard: new data vs production-rdf-backup")
+    print("QC delta guard: new data vs baseline")
     print("=" * 78)
     for entry in report["files"]:
         print(f"\nFile: {entry['file']}")
