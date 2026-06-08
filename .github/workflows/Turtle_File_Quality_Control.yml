@@ -21,6 +21,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          # Need HEAD~1 so the delta guard (Step 5b) can use the previous
+          # committed data/*.ttl as its week-over-week baseline.
+          fetch-depth: 2
 
       # Step 2: Set up Python
       - name: Set up Python
@@ -110,18 +113,39 @@ jobs:
           python validate_ttl.py data/AOPWikiRDF.ttl data/AOPWikiRDF-Enriched.ttl data/AOPWikiRDF-Genes.ttl data/AOPWikiRDF-Void.ttl
 
       # Step 5b: Week-over-week gene/triple delta guard (QC-01)
-      # Compares the freshly generated data/*.ttl against the last-known-good
-      # production-rdf-backup/ TTLs. Syntax validation above cannot catch a run
-      # that parses fine but silently lost gene associations (e.g. a BERN2
+      # Compares the freshly generated data/*.ttl against the PREVIOUS committed
+      # version (HEAD~1) of those files. Syntax validation above cannot catch a
+      # run that parses fine but silently lost gene associations (e.g. a BERN2
       # outage) or suffered a silent triple drop. This guard aborts the run --
       # and therefore the qc-status=valid commit in Step 6 -- if the
       # gene-association (edam:data_1025) count or the total-triple count drops
-      # more than 5% vs the backup. A non-zero exit fails the job (default bash
-      # behavior; no continue-on-error). rdflib is installed in Step 3.
-      - name: Gene/triple delta guard vs production backup
+      # more than 5% vs the baseline. A non-zero exit fails the job (default
+      # bash behavior; no continue-on-error). rdflib is installed in Step 3.
+      #
+      # The baseline is materialized from git history rather than from
+      # production-rdf-backup/, which is NOT committed to the repo -- a fresh CI
+      # checkout never had it, so the guard hard-failed every run on a missing
+      # baseline (first such failure: weekly run on 2026-06-06). Using HEAD~1
+      # gives a true week-over-week baseline with no large files in the repo and
+      # no manual maintenance. Requires fetch-depth >= 2 on the checkout above.
+      - name: Gene/triple delta guard vs previous commit
         run: |
           echo "=== Gene/triple delta guard (QC-01) ==="
-          python scripts/qc_delta_guard.py --new-dir data/ --baseline-dir production-rdf-backup/ --drop-pct 0.05
+          mkdir -p delta-baseline
+          missing=false
+          for f in AOPWikiRDF.ttl AOPWikiRDF-Genes.ttl; do
+            if git cat-file -e "HEAD~1:data/$f" 2>/dev/null; then
+              git show "HEAD~1:data/$f" > "delta-baseline/$f"
+            else
+              echo "No HEAD~1:data/$f in history; cannot establish a baseline."
+              missing=true
+            fi
+          done
+          if [ "$missing" = true ]; then
+            echo "::warning::Skipping delta guard -- no previous data/ commit to compare against (first run?)."
+            exit 0
+          fi
+          python scripts/qc_delta_guard.py --new-dir data/ --baseline-dir delta-baseline/ --drop-pct 0.05
 
       # Step 6: Commit and Push QC Status File to /data
       - name: Commit and Push QC Status

@@ -19,12 +19,15 @@
 @prefix uniprot: <https://identifiers.org/uniprot/> .
 @prefix ncbigene: <https://identifiers.org/ncbigene/> .
 @prefix ensembl: <https://identifiers.org/ensembl/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix : <https://aopwiki.rdf.bigcat-bioinformatics.org/> .
 
 @prefix shapes: <https://aopwiki.rdf.bigcat-bioinformatics.org/shapes/> .
 
-# SHACL Shape for Gene Association
-# Generated from property population audit
-# Instances: 742
+# SHACL Shapes for Gene Association + BERN2 method provenance
+# Generated from the flag-on fixture audit (data-test/gene-association-provenance-fixture.ttl)
+# Typed gene-identifier subjects
+# Instances: 6
 
 shapes:GeneAssociationShape
     a sh:NodeShape ;
@@ -43,33 +46,106 @@ shapes:GeneAssociationShape
         sh:name "dc:source (100.0%)" ;
     ] ;
     sh:property [
-        sh:path edam:data_2291 ;
-        sh:severity sh:Warning ;
-        sh:name "edam:data_2291 (77.1%)" ;
-    ] ;
-    sh:property [
-        sh:path rdfs:seeAlso ;
-        sh:severity sh:Warning ;
-        sh:name "rdfs:seeAlso (77.1%)" ;
-    ] ;
-    sh:property [
-        sh:path owl:sameAs ;
-        sh:severity sh:Warning ;
-        sh:name "owl:sameAs (77.1%)" ;
-    ] ;
-    sh:property [
         sh:path edam:data_2298 ;
         sh:severity sh:Warning ;
-        sh:name "edam:data_2298 (17.0%)" ;
+        sh:name "edam:data_2298 (50.0%)" ;
     ] ;
     sh:property [
         sh:path rdfs:label ;
         sh:severity sh:Warning ;
-        sh:name "rdfs:label (17.0%)" ;
+        sh:name "rdfs:label (50.0%)" ;
     ] ;
     sh:property [
         sh:path edam:data_1027 ;
         sh:severity sh:Warning ;
-        sh:name "edam:data_1027 (5.9%)" ;
+        sh:name "edam:data_1027 (16.7%)" ;
+    ] ;
+    sh:property [
+        sh:path edam:data_1033 ;
+        sh:severity sh:Warning ;
+        sh:name "edam:data_1033 (16.7%)" ;
+    ] ;
+    sh:property [
+        sh:path edam:data_2291 ;
+        sh:severity sh:Warning ;
+        sh:name "edam:data_2291 (16.7%)" ;
+    ] ;
+    sh:property [
+        sh:path owl:sameAs ;
+        sh:severity sh:Warning ;
+        sh:name "owl:sameAs (16.7%)" ;
+    ] ;
+    sh:property [
+        sh:path skos:exactMatch ;
+        sh:severity sh:Warning ;
+        sh:name "skos:exactMatch (16.7%)" ;
+    ] ;
+    .
+
+# Untyped KE/KER union subjects; targeted via :geneDetectedBy* (no rdf:type in the genes file)
+# Instances: 4
+
+shapes:GeneMethodProvenanceShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf :geneDetectedByRegex ;
+    sh:targetSubjectsOf :geneDetectedByNER ;
+    sh:name "Gene Method Provenance (NER + regex union subjects)" ;
+    sh:property [
+        sh:path edam:data_1025 ;
+        sh:severity sh:Warning ;
+        sh:name "edam:data_1025 (50.0%)" ;
+    ] ;
+    sh:property [
+        sh:path prov:wasGeneratedBy ;
+        sh:severity sh:Warning ;
+        sh:name "prov:wasGeneratedBy (50.0%)" ;
+    ] ;
+    sh:property [
+        sh:path :geneDetectedByRegex ;
+        sh:severity sh:Warning ;
+        sh:name ":geneDetectedByRegex (50.0%)" ;
+    ] ;
+    sh:property [
+        sh:path :geneDetectedByNER ;
+        sh:severity sh:Warning ;
+        sh:name ":geneDetectedByNER (25.0%)" ;
+    ] ;
+    .
+
+# :isFeaturedMethod primacy + :minConfidence policy
+# Instances: 2
+
+shapes:MethodActivityShape
+    a sh:NodeShape ;
+    sh:targetClass prov:Activity ;
+    sh:name "Gene Mapping Method Activity" ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "rdfs:label (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path prov:used ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "prov:used (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path prov:wasDerivedFrom ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name "prov:wasDerivedFrom (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path :isFeaturedMethod ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:name ":isFeaturedMethod (100.0%)" ;
+    ] ;
+    sh:property [
+        sh:path :minConfidence ;
+        sh:severity sh:Warning ;
+        sh:name ":minConfidence (50.0%)" ;
     ] ;
     .

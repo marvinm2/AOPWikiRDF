@@ -123,6 +123,95 @@ GENES_PROVENANCE_PREFIX = (
     "@prefix : <https://aopwiki.rdf.bigcat-bioinformatics.org/> .\n"
 )
 
+# PROV-O activity layer + machine-readable method primacy + confidence policy.
+# Emitted into the genes RDF header ONLY when config.enable_bern2 is True,
+# immediately after GENES_PROVENANCE_PREFIX, so the file stays byte-identical
+# to the pre-Phase-7 output when the flag is off (COMPAT-01).
+#
+# Design (Phase 7 / 07-03, D-01..D-07):
+#   * Two prov:Activity resources declared ONCE in the header (activity-level
+#     provenance only -- never per KE/KER subject, never reified associations).
+#   * BERN2 marked :isFeaturedMethod true (machine-readable, GENE-05/07).
+#     SEMANTICS (important, see WR-02): "featured" denotes the
+#     recall-EXTENDING / featured-for-discovery method, NOT a precedence that
+#     overrides regex in the edam:data_1025 union. The union in
+#     union_ner_into_entities is deliberately regex-baseline + NER-additive
+#     (graceful degradation: a BERN2 outage never thins the regex genes), so
+#     regex genes seed and order the list and NER can only ADD members. A
+#     SPARQL consumer must read :isFeaturedMethod as "the canonical method to
+#     surface/discover new gene links," not as "the method whose detections win
+#     on conflict" (there is no conflict-resolution step -- the union is purely
+#     additive). The rdfs:label on each activity spells this out.
+#   * :minConfidence "0.70"^^xsd:decimal records the 0.70 NER threshold in the
+#     RDF itself (GENE-08), not only in docs. IMPORTANT: this is the floor
+#     applied to *scored* annotations only. BERN2 emits bare NaN (collapsed to
+#     None by _loads_bern2) for some neural-normalised entities, and those
+#     unscored annotations are deliberately RETAINED (a missing score is not
+#     evidence of error -- see extract_ncbi_gene_ids). The activity rdfs:label
+#     spells out this carve-out so a SPARQL consumer reading :minConfidence is
+#     not misled into believing EVERY retained link scored >= 0.70.
+#   * prov:wasGeneratedBy attached to the :geneDetectedBy* PREDICATES so a
+#     SPARQL consumer can resolve the canonical method without reading docs.
+#   * All literals are static -- no wall-clock timestamp, no runtime version
+#     lookup -- to preserve byte-stable diffs against production-rdf-backup/.
+#
+# COMPAT carve-out: the prov: prefix lives ONLY here, NOT in prefixes.csv.
+# prefixes.csv is iterated into unconditional sh:declare lines in the MAIN
+# AOPWikiRDF.ttl, so adding prov there would break flag-off byte-identity.
+# The xsd: prefix is declared here too because GENES_PREFIXES does not carry
+# it and "0.70"^^xsd:decimal must parse.
+GENES_PROVENANCE_ACTIVITIES = (
+    "@prefix prov: <http://www.w3.org/ns/prov#> .\n"
+    "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n"
+    "\n"
+    ":BERN2NERMapping a prov:Activity ;\n"
+    '\trdfs:label "BERN2 NER+EL gene mapping -- featured recall-extending '
+    'method (additive to the regex baseline, not an override; scored '
+    'annotations filtered at minConfidence, unscored neural-normalised '
+    'entities retained)" ;\n'
+    "\t:isFeaturedMethod true ;\n"
+    '\t:minConfidence "0.70"^^xsd:decimal ;\n'
+    "\tprov:used <http://bern2.korea.ac.kr/plain> ;\n"
+    "\tprov:wasDerivedFrom :AOPWikiXMLSource .\n"
+    "\n"
+    ":RegexGeneMapping a prov:Activity ;\n"
+    '\trdfs:label "HGNC dictionary regex gene mapping -- baseline method that '
+    'seeds and orders the edam:data_1025 union (never thinned on BERN2 '
+    'outage)" ;\n'
+    "\t:isFeaturedMethod false ;\n"
+    "\tprov:used <https://www.genenames.org/> ;\n"
+    "\tprov:wasDerivedFrom :AOPWikiXMLSource .\n"
+    "\n"
+    ":AOPWikiXMLSource a prov:Entity ;\n"
+    '\trdfs:label "AOP-Wiki XML export" .\n'
+    "\n"
+    ":geneDetectedByNER prov:wasGeneratedBy :BERN2NERMapping .\n"
+    ":geneDetectedByRegex prov:wasGeneratedBy :RegexGeneMapping .\n"
+    "\n"
+)
+
+# D-06 (genes file): rdfs:label rows for the MINTED ':' PREDICATES. The block
+# above labels the prov:Activity RESOURCES (:BERN2NERMapping etc.) but NOT the
+# minted predicates themselves. These rows are DOUBLE-gated -- emitted only when
+# enable_bern2 AND enable_iri_labels are both on (RESEARCH Open Q2) -- so both
+# the bern2-off byte-identity (the ':' predicates do not exist without bern2)
+# AND the labels-off byte-identity (production runs with bern2 on but labels off
+# stay unchanged) contracts hold. Co-located with GENES_PROVENANCE_ACTIVITIES so
+# the prov:/xsd:/rdfs: prefixes it relies on are already declared; rdfs: is
+# carried by GENES_PREFIXES. The prov: prefix carve-out (NOT in prefixes.csv) is
+# preserved -- this constant adds no prefixes.
+GENES_MINTED_PREDICATE_LABELS = (
+    ":geneDetectedByNER rdfs:label "
+    '"gene detected by BERN2 NER+EL (featured recall-extending method)" .\n'
+    ":geneDetectedByRegex rdfs:label "
+    '"gene detected by HGNC dictionary regex (baseline method)" .\n'
+    ":isFeaturedMethod rdfs:label "
+    '"is featured method (BERN2 primacy flag)" .\n'
+    ":minConfidence rdfs:label "
+    '"minimum BERN2 annotation confidence retained" .\n'
+    "\n"
+)
+
 # ---------------------------------------------------------------------------
 # Enriched RDF prefixes (cross-reference triples for AOPWikiRDF-Enriched.ttl)
 # ---------------------------------------------------------------------------

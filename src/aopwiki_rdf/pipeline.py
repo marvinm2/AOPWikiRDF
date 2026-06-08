@@ -21,8 +21,17 @@ from aopwiki_rdf.config import PipelineConfig
 from aopwiki_rdf.parser.xml_parser import parse_aopwiki_xml, AOPXML_NS
 from aopwiki_rdf.hgnc import download_hgnc_data
 from aopwiki_rdf.mapping.gene_mapper import build_gene_dicts, map_genes_in_entities, build_gene_xrefs
-from aopwiki_rdf.mapping.ner_el_mapper import map_ner_genes_in_kes_result
+from aopwiki_rdf.mapping.ner_el_mapper import (
+    map_ner_genes_in_kers_result,
+    map_ner_genes_in_kes_result,
+    union_ner_into_entities,
+)
 from aopwiki_rdf.mapping.chemical_mapper import map_chemicals
+from aopwiki_rdf.mapping.iri_labels import (
+    build_chem_label_map,
+    build_gene_label_map,
+    report_label_coverage_from_results,
+)
 from aopwiki_rdf.mapping.protein_ontology import download_and_parse_promapping
 from aopwiki_rdf.rdf.writer import write_aop_rdf, write_enriched_rdf, write_genes_rdf, write_void_rdf
 
@@ -233,54 +242,29 @@ def _apply_bern2_enrichment(kedict, kerdict, gene_hgnclist, config):
     coverage metric. A successful-but-empty BERN2 result is NOT a failure and
     follows the normal additive union path.
 
-    BERN2 scope is KE descriptions only; KERs keep their regex genes and
-    get an empty ``_genes_ner`` list (the writer then emits
-    :geneDetectedByRegex but not :geneDetectedByNER for them). This whole
+    BERN2 now covers BOTH KEs and KERs (D-08). KER NER scans three text fields
+    (``dc:description`` + ``nci:C80263`` + ``edam:data_2042``) for method
+    parity with regex; each KER's ``edam:data_1025`` becomes the regex union
+    NER union, with the same graceful-degradation guarantee as KEs (a BERN2
+    KER outage falls back to the regex genes, never thins them). This whole
     function only runs when ``config.enable_bern2`` is True, so it is inert in
     the default production run.
     """
-    ner_results = map_ner_genes_in_kes_result(kedict, config)
     existing_hgnc = set(gene_hgnclist)
 
-    degraded = 0
-    ok = 0
-    for ke_id, props in kedict.items():
-        regex_genes = list(props.get("edam:data_1025", []))
-        result = ner_results.get(ke_id)
-
-        if result is not None and result.failed and config.ner_fallback_on_failure:
-            # BERN2 outage for this KE: degrade to the regex genes we already
-            # hold. Keep edam:data_1025 untouched (>= regex baseline), record
-            # the degradation for the writer/QC, contribute no NER genes.
-            degraded += 1
-            if not regex_genes:
-                continue
-            props["_genes_regex"] = regex_genes
-            props["_genes_ner"] = []
-            props["_ner_degraded"] = True
-            # edam:data_1025 stays as-is (the regex result); no union, no drop.
-            continue
-
-        # Normal additive path: success (with or without hits), or fallback
-        # disabled. A failed result with fallback off unions an empty NER set.
-        ner_genes = sorted(result.hgnc_ids) if result is not None else []
-        if result is not None:
-            ok += 1
-        if not regex_genes and not ner_genes:
-            continue
-        props["_genes_regex"] = regex_genes
-        props["_genes_ner"] = ner_genes
-        union = list(regex_genes)
-        for g in ner_genes:
-            if g not in union:
-                union.append(g)
-        props["edam:data_1025"] = union
-        for g in ner_genes:
-            if g not in existing_hgnc:
-                gene_hgnclist.append(g)
-                existing_hgnc.add(g)
-
-    total = ok + degraded
+    # KE branch: union BERN2 NER detections into KE gene mappings.
+    ner_results = map_ner_genes_in_kes_result(kedict, config)
+    ok, degraded, skipped = union_ner_into_entities(
+        kedict, ner_results, gene_hgnclist, existing_hgnc,
+        fallback_on_failure=config.ner_fallback_on_failure,
+    )
+    # The three buckets partition kedict exactly (WR-03): total is the number
+    # of KEs considered, not just ok + degraded. "skipped" are KEs the mapper
+    # returned no NER result for (e.g. blank/unscanned descriptions).
+    total = len(kedict)
+    assert ok + degraded + skipped == total, (
+        f"KE NER bucket invariant violated: {ok}+{degraded}+{skipped} != {total}"
+    )
     if degraded > 0:
         logger.error(
             "BERN2 degraded for %d/%d KE descriptions; fell back to regex "
@@ -288,14 +272,39 @@ def _apply_bern2_enrichment(kedict, kerdict, gene_hgnclist, config):
             degraded, total,
         )
     logger.info(
-        "BERN2 enrichment coverage: %d ok, %d degraded, %d total",
-        ok, degraded, total,
+        "BERN2 enrichment coverage: %d ok, %d degraded, %d skipped, %d total",
+        ok, degraded, skipped, total,
     )
 
-    for ker_id, props in kerdict.items():
-        if "edam:data_1025" in props:
-            props["_genes_regex"] = list(props["edam:data_1025"])
-            props["_genes_ner"] = []
+    # KER branch (D-08): mirror the KE union via the same shared helper. KER
+    # NER scans three text fields (dc:description + nci:C80263 + edam:data_2042)
+    # for method parity with regex; each KER's edam:data_1025 becomes the regex
+    # union NER union, with NER-detected genes populating :geneDetectedByNER on
+    # the KER subject (the writer emits it automatically whenever _genes_ner is
+    # set).
+    ker_ner_results = map_ner_genes_in_kers_result(kerdict, config)
+    ker_ok, ker_degraded, ker_skipped = union_ner_into_entities(
+        kerdict, ker_ner_results, gene_hgnclist, existing_hgnc,
+        fallback_on_failure=config.ner_fallback_on_failure,
+    )
+    # WR-03: KERs without NER text are common (map_ner_genes_in_kers_result only
+    # returns entries for KERs with text), so most KERs land in "skipped".
+    # Reporting total as len(kerdict) keeps the coverage metric honest.
+    ker_total = len(kerdict)
+    assert ker_ok + ker_degraded + ker_skipped == ker_total, (
+        f"KER NER bucket invariant violated: "
+        f"{ker_ok}+{ker_degraded}+{ker_skipped} != {ker_total}"
+    )
+    if ker_degraded > 0:
+        logger.error(
+            "BERN2 degraded for %d/%d KER descriptions; fell back to regex "
+            "(canonical gene coverage preserved)",
+            ker_degraded, ker_total,
+        )
+    logger.info(
+        "BERN2 KER enrichment coverage: %d ok, %d degraded, %d skipped, %d total",
+        ker_ok, ker_degraded, ker_skipped, ker_total,
+    )
 
 
 def _stage_gene_mapping(config, context):
@@ -360,6 +369,25 @@ def _stage_gene_mapping(config, context):
     context["hgnc_modification_time"] = hgnc_mod_time
     context["gene_symbol_lookup"] = symbol_lookup
 
+    # Build the inverted xref_iri -> name label maps ONCE (both upstream stages
+    # have run). Byte-stable, order-independent, network-free (LABEL-02 / D-03);
+    # the writer (Plan 08-02) consumes them by loop variable like symbol_lookup.
+    # Building runs unconditionally; only EMISSION is flag-gated (byte-stable off).
+    gene_label_by_iri = build_gene_label_map(xref_result["geneiddict"], symbol_lookup)
+    chem_label_by_iri = build_chem_label_map(context["chemical_result"]["chedict"])
+    context["gene_label_by_iri"] = gene_label_by_iri
+    context["chem_label_by_iri"] = chem_label_by_iri
+
+    # Honest coverage report (LABEL-04 / D-07): only when the flag is on (a
+    # flag-off run writes no artifact and stays byte-identical). Records the
+    # per-source labeled/unlabeled counts + sorted opaque IRIs (D-02).
+    if config.enable_iri_labels:
+        report_label_coverage_from_results(
+            context["chemical_result"], xref_result,
+            chem_label_by_iri, gene_label_by_iri,
+            report_path=context["filepath"] + "label-coverage-report.json",
+        )
+
 
 def _stage_write_aop_rdf(config, context):
     """Write AOPWikiRDF.ttl from assembled entity data."""
@@ -399,6 +427,11 @@ def _stage_write_aop_rdf(config, context):
     # Pass symbol_lookup for gene rdfs:label in main RDF
     writer_entities["symbol_lookup"] = context.get("gene_symbol_lookup", {})
 
+    # Thread the inverted xref_iri -> name label maps into the main-file writer,
+    # like symbol_lookup (writer reads them by loop variable when the flag is on).
+    writer_entities["gene_label_by_iri"] = context.get("gene_label_by_iri", {})
+    writer_entities["chem_label_by_iri"] = context.get("chem_label_by_iri", {})
+
     prefix_csv = "prefixes.csv"
     write_aop_rdf(filepath + "AOPWikiRDF.ttl", writer_entities, prefix_csv, config=config)
     context["triple_count_main"] = _count_triples(filepath + "AOPWikiRDF.ttl")
@@ -436,6 +469,9 @@ def _stage_write_genes_rdf(config, context):
         "listofensembl": xref_result["listofensembl"],
         "listofuniprot": xref_result["listofuniprot"],
         "symbol_lookup": context.get("gene_symbol_lookup", {}),
+        # Same label maps into the genes-file writer (both writers emit gene xrefs).
+        "gene_label_by_iri": context.get("gene_label_by_iri", {}),
+        "chem_label_by_iri": context.get("chem_label_by_iri", {}),
     }
 
     write_genes_rdf(filepath + "AOPWikiRDF-Genes.ttl", gene_data, config=config)
@@ -463,16 +499,22 @@ def _stage_write_void_rdf(config, context):
     info = {}
     for item in lines:
         parts = item.split("\t")
+        # Only ``key\tvalue`` rows are meaningful. Blank lines, HTML error
+        # pages, or any unexpected response shape (which split to a single
+        # field) are skipped so they never pollute ``info`` with an
+        # empty-string key or a key holding an empty value list.
+        if len(parts) != 2:
+            continue
         if parts[0] not in info:
             info[parts[0]] = []
-        if len(parts) == 2:
-            info[parts[0]].append(parts[1])
+        info[parts[0]].append(parts[1])
 
     if "DATASOURCENAME" in info and "DATASOURCEVERSION" in info:
         names, versions = info["DATASOURCENAME"], info["DATASOURCEVERSION"]
         logger.info(
             "BridgeDb versions - Gene/Proteins: %s:%s, Chemicals: %s:%s",
-            names[0], versions[0],
+            names[0] if names else "?",
+            versions[0] if versions else "?",
             names[5] if len(names) > 5 else "?",
             versions[5] if len(versions) > 5 else "?",
         )

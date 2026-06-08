@@ -21,6 +21,8 @@ def download_and_parse_promapping(
     promapping_url: str,
     data_dir: Path,
     prolist: list,
+    max_retries: int = 3,
+    fallback_paths: list | None = None,
 ) -> dict:
     """Download promapping.txt and parse protein-to-identifier mappings.
 
@@ -34,6 +36,17 @@ def download_and_parse_promapping(
     prolist:
         List of protein ontology keys (e.g. ``['pr:000001', ...]``) used to
         filter which mappings are retained.
+    max_retries:
+        Number of download attempts before degrading to a local copy. The
+        proconsortium.org host is an unreliable external dependency; a single
+        transient failure (e.g. ``Errno 111 Connection refused``) must not
+        abort the whole conversion.
+    fallback_paths:
+        Ordered list of local copies to fall back to when every download
+        attempt fails. Defaults to the bundled ``data/promapping.txt`` shipped
+        in the repository. The output-dir copy (a cached prior download) is
+        always tried first. Only when no usable local copy exists does the run
+        hard-fail.
 
     Returns
     -------
@@ -56,14 +69,60 @@ def download_and_parse_promapping(
     pro_filename = "promapping.txt"
     filepath = str(data_dir / pro_filename)
 
-    # Download ------------------------------------------------------------------
-    try:
-        logger.info("Downloading protein mapping file from %s", promapping_url)
-        urllib.request.urlretrieve(promapping_url, filepath)
-        logger.info("Successfully downloaded %s", pro_filename)
-    except Exception as exc:
-        logger.error("Failed to download protein mapping file: %s", exc)
-        raise SystemExit(1) from exc
+    if fallback_paths is None:
+        # Bundled copy committed in the repository (resolved from the cwd, which
+        # is the repo root in every workflow). Used as the last-known-good
+        # source when the live download is unreachable.
+        fallback_paths = [Path("data") / pro_filename]
+
+    # Download (retry, then degrade to a local copy) ----------------------------
+    downloaded = False
+    last_exc: Exception | None = None
+    for attempt in range(1, max(1, max_retries) + 1):
+        try:
+            logger.info(
+                "Downloading protein mapping file from %s (attempt %d/%d)",
+                promapping_url,
+                attempt,
+                max(1, max_retries),
+            )
+            urllib.request.urlretrieve(promapping_url, filepath)
+            logger.info("Successfully downloaded %s", pro_filename)
+            downloaded = True
+            break
+        except Exception as exc:  # noqa: BLE001 -- network errors are heterogeneous
+            last_exc = exc
+            logger.warning(
+                "Protein mapping download attempt %d/%d failed: %s",
+                attempt,
+                max(1, max_retries),
+                exc,
+            )
+            if attempt < max(1, max_retries):
+                time.sleep(2 * attempt)
+
+    if not downloaded:
+        # Degrade to an existing local copy: the output-dir cache first (a
+        # prior good download), then any explicit fallback (the bundled repo
+        # file). Hard-fail only when no usable copy exists anywhere.
+        candidates = [Path(filepath)] + [Path(p) for p in fallback_paths]
+        fallback = next(
+            (p for p in candidates if p.is_file() and p.stat().st_size > 0),
+            None,
+        )
+        if fallback is None:
+            logger.error(
+                "Failed to download protein mapping file and no local fallback "
+                "available: %s",
+                last_exc,
+            )
+            raise SystemExit(1) from last_exc
+        logger.error(
+            "Protein mapping download failed (%s); degrading to local copy %s",
+            last_exc,
+            fallback,
+        )
+        filepath = str(fallback)
 
     # File modification time ----------------------------------------------------
     try:

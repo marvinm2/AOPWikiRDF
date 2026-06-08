@@ -7,6 +7,7 @@ population rates.
 
 import json
 import os
+import sys
 import textwrap
 
 # Common prefixes for all shape files
@@ -32,6 +33,8 @@ COMMON_PREFIXES = """\
 @prefix uniprot: <https://identifiers.org/uniprot/> .
 @prefix ncbigene: <https://identifiers.org/ncbigene/> .
 @prefix ensembl: <https://identifiers.org/ensembl/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix : <https://aopwiki.rdf.bigcat-bioinformatics.org/> .
 """
 
 # Shape namespace
@@ -61,6 +64,13 @@ def prop_to_prefixed(uri):
         "https://identifiers.org/uniprot/": "uniprot:",
         "https://identifiers.org/ncbigene/": "ncbigene:",
         "https://identifiers.org/ensembl/": "ensembl:",
+        "http://www.w3.org/ns/prov#": "prov:",
+        # Base ':' namespace for the BERN2 provenance predicates
+        # (:geneDetectedByNER, :geneDetectedByRegex, :isFeaturedMethod,
+        # :minConfidence). Listed last so any longer-specific namespace above
+        # wins first; the shapes namespace itself never appears as a data
+        # predicate, so there is no ':shapes/...' collision in practice.
+        "https://aopwiki.rdf.bigcat-bioinformatics.org/": ":",
     }
     for ns, prefix in prefix_map.items():
         if uri.startswith(ns):
@@ -68,7 +78,20 @@ def prop_to_prefixed(uri):
     return f"<{uri}>"
 
 
-def generate_property_shapes(properties, exclude_rdf_type=True):
+# rdfs:label is FLAG-GATED (Phase 8 enable_iri_labels) on the EXTERNAL-xref
+# subject classes (chemical xrefs cheminf:000407, gene xrefs): present at 100%
+# in the flag-on fixture but ABSENT on those same classes in flag-off production
+# data/. A Violation+minCount rdfs:label constraint on such a class would fail
+# flag-off production validation (test_no_violations_on_current_data) even
+# though the fixture conforms. Callers that build shapes for a flag-gated-label
+# class pass label_flag_gated=True to relax rdfs:label to a non-blocking
+# sh:Warning (no sh:minCount). The unconditional-label classes (AOP/KE/KER,
+# whose rdfs:label comes from the entity title regardless of the flag) keep the
+# default so their genuine 100% rdfs:label stays a Violation.
+RDFS_LABEL_URI = "http://www.w3.org/2000/01/rdf-schema#label"
+
+
+def generate_property_shapes(properties, exclude_rdf_type=True, label_flag_gated=False):
     """Generate sh:property blocks from audit property data."""
     lines = []
     for prop_uri, prop_data in sorted(
@@ -82,10 +105,16 @@ def generate_property_shapes(properties, exclude_rdf_type=True):
         severity = prop_data["severity"]
         pct = prop_data["percentage"]
 
+        # Relax ONLY flag-gated rdfs:label (external-xref classes) to a
+        # non-blocking Warning so flag-off production data conforms.
+        relax_label = label_flag_gated and prop_uri == RDFS_LABEL_URI
+        if relax_label:
+            severity = "sh:Warning"
+
         lines.append(f"    sh:property [")
         lines.append(f"        sh:path {prefixed} ;")
 
-        if severity == "sh:Violation" and pct >= 90.0:
+        if not relax_label and severity == "sh:Violation" and pct >= 90.0:
             lines.append(f"        sh:minCount 1 ;")
 
         lines.append(f"        sh:severity {severity} ;")
@@ -127,6 +156,200 @@ shapes:{shape_name}
     return content
 
 
+def _node_shape_block(shape_name, target_line, label, props, instances, note=None):
+    """Render a single sh:NodeShape block (no prefix header)."""
+    lines = []
+    if note:
+        lines.append(f"# {note}")
+    lines.append(f"# Instances: {instances}")
+    lines.append("")
+    lines.append(f"shapes:{shape_name}")
+    lines.append("    a sh:NodeShape ;")
+    lines.append(f"    {target_line} ;")
+    lines.append(f'    sh:name "{label}" ;')
+    if props:
+        lines.append(props)
+    lines.append("    .")
+    return "\n".join(lines)
+
+
+def generate_gene_association_shape(fixture_audit):
+    """Build gene-association-shape.ttl from the flag-on fixture audit.
+
+    The fixture (enable_bern2=True) is the only audit input that contains the
+    Phase-7 BERN2 provenance predicates, so the shape is generated against it
+    rather than the flag-off production data (RESEARCH Pitfall 5 / T-07-07).
+
+    Three node shapes are emitted into one file:
+
+      1. GeneAssociationShape  -- sh:targetClass edam:data_1025
+         (the typed gene-identifier subjects; the legacy shape's home).
+      2. GeneMethodProvenanceShape -- sh:targetSubjectsOf :geneDetectedByNER
+         and :geneDetectedByRegex (the KE/KER union subjects are UNTYPED in the
+         genes file, so sh:targetClass cannot reach them; mirrors the
+         EnrichedXref sh:targetSubjectsOf precedent).
+      3. MethodActivityShape   -- sh:targetClass prov:Activity
+         (the :BERN2NERMapping / :RegexGeneMapping resources carrying
+         :isFeaturedMethod, :minConfidence, prov:used, prov:wasDerivedFrom).
+    """
+    if not fixture_audit:
+        return None
+
+    blocks = []
+
+    # 1. Typed gene-association subjects (edam:data_1025).
+    ga_type = fixture_audit.get("http://edamontology.org/data_1025")
+    if ga_type:
+        # label_flag_gated: gene-xref rdfs:label is flag-on-only -- keep it a
+        # non-blocking Warning so flag-off production gene subjects conform.
+        props = generate_property_shapes(
+            ga_type["properties"], label_flag_gated=True,
+        )
+        blocks.append(_node_shape_block(
+            "GeneAssociationShape",
+            "sh:targetClass edam:data_1025",
+            "Gene Association",
+            props,
+            ga_type["instances"],
+            note="Typed gene-identifier subjects",
+        ))
+
+    # 2. Untyped KE/KER union subjects carrying the BERN2 method predicates.
+    untyped = fixture_audit.get("_untyped_subjects")
+    if untyped:
+        props = generate_property_shapes(untyped["properties"], exclude_rdf_type=False)
+        blocks.append(_node_shape_block(
+            "GeneMethodProvenanceShape",
+            "sh:targetSubjectsOf :geneDetectedByRegex ;\n    sh:targetSubjectsOf :geneDetectedByNER",
+            "Gene Method Provenance (NER + regex union subjects)",
+            props,
+            untyped["instances"],
+            note=(
+                "Untyped KE/KER union subjects; targeted via "
+                ":geneDetectedBy* (no rdf:type in the genes file)"
+            ),
+        ))
+
+    # 3. prov:Activity resources (method primacy + confidence policy).
+    activity = fixture_audit.get("http://www.w3.org/ns/prov#Activity")
+    if activity:
+        props = generate_property_shapes(activity["properties"])
+        blocks.append(_node_shape_block(
+            "MethodActivityShape",
+            "sh:targetClass prov:Activity",
+            "Gene Mapping Method Activity",
+            props,
+            activity["instances"],
+            note=":isFeaturedMethod primacy + :minConfidence policy",
+        ))
+
+    if not blocks:
+        return None
+
+    body = "\n\n".join(blocks)
+    return (
+        f"{COMMON_PREFIXES}\n"
+        f"@prefix shapes: <{SHAPES_NS}> .\n\n"
+        "# SHACL Shapes for Gene Association + BERN2 method provenance\n"
+        "# Generated from the flag-on fixture audit "
+        "(data-test/gene-association-provenance-fixture.ttl)\n"
+        f"{body}\n"
+    )
+
+
+def generate_chemical_shape(main_audit, label_fixture_audit):
+    """Build chemical-shape.ttl: the chemical-entity shape + a chemical-xref shape.
+
+    Two node shapes are emitted into one file:
+
+      1. ChemicalShape      -- sh:targetClass cheminf:000000
+         (the chemical-substance entities; dc:identifier/dc:title/dc:source/...).
+         Sourced from the production main audit (AOPWikiRDF.ttl) exactly as
+         before, so its non-label constraints are unchanged.
+      2. ChemicalXrefShape  -- sh:targetClass cheminf:000407 (ChEBI xref subjects)
+         Sourced from the FLAG-ON label fixture (D-09): these subjects carry the
+         rdfs:label the production flag-off data/ files do not, so the rdfs:label
+         sh:property constraint enters the shape only via this fixture audit.
+         pyshacl conforms green against the flag-on fixture.
+
+         NOTE: cheminf:000407 DOES exist in production data/ -- the main writer
+         emits `a cheminf:000407` on every ChEBI xref block (writer.py), ~443
+         subjects in the current data/AOPWikiRDF.ttl. This shape therefore
+         targets all of those production subjects on every flag-off run; it is
+         NOT inert against data/. Flag-off production stays conformant only
+         because rdfs:label is relaxed to sh:Warning (no minCount) below, and the
+         remaining minCount properties (dc:identifier/dc:source/cheminf:000407)
+         are 100%-populated in production too. Do NOT add a fixture-only minCount
+         property here, and do NOT promote rdfs:label to sh:Violation, or flag-off
+         production validation (test_no_violations_on_current_data) will break.
+    """
+    blocks = []
+
+    # 1. Chemical-substance entities (from the production main audit).
+    chem_type = main_audit.get(
+        "http://semanticscience.org/resource/CHEMINF_000000"
+    )
+    if chem_type:
+        props = generate_property_shapes(chem_type["properties"])
+        blocks.append(_node_shape_block(
+            "ChemicalShape",
+            "sh:targetClass cheminf:000000",
+            "Chemical Substance",
+            props,
+            chem_type["instances"],
+            note="Chemical-substance entities (production main audit)",
+        ))
+
+    # 2. ChEBI xref subjects carrying rdfs:label (from the flag-on fixture).
+    xref_type = label_fixture_audit.get(
+        "http://semanticscience.org/resource/CHEMINF_000407"
+    )
+    if xref_type:
+        # label_flag_gated: rdfs:label is flag-on-only on ChEBI xref subjects, so
+        # keep it a non-blocking Warning (flag-off production ChEBI subjects have
+        # no rdfs:label and must still conform).
+        props = generate_property_shapes(
+            xref_type["properties"], label_flag_gated=True,
+        )
+        blocks.append(_node_shape_block(
+            "ChemicalXrefShape",
+            "sh:targetClass cheminf:000407",
+            "Chemical Cross-Reference (ChEBI, flag-on rdfs:label)",
+            props,
+            xref_type["instances"],
+            note=(
+                "ChEBI xref subjects; carries the flag-on rdfs:label constraint "
+                "(sourced from data-test/iri-label-fixture.ttl, D-09)"
+            ),
+        ))
+    else:
+        # The flag-on label fixture audit is missing -- the rdfs:label constraint
+        # would silently never enter the chemical shape (D-09 / LABEL-04). Make
+        # the degradation loud rather than shipping an unlabeled chemical shape.
+        print(
+            "WARNING: iri-label-fixture.ttl audit is absent from "
+            "audit-results.json; the chemical shape will NOT carry the "
+            "rdfs:label constraint. Re-run property_audit.py with the fixture "
+            "present (data-test/iri-label-fixture.ttl) before relying on the "
+            "chemical shape.",
+            file=sys.stderr,
+        )
+
+    if not blocks:
+        return None
+
+    body = "\n\n".join(blocks)
+    return (
+        f"{COMMON_PREFIXES}\n"
+        f"@prefix shapes: <{SHAPES_NS}> .\n\n"
+        "# SHACL Shapes for Chemical Substance + chemical-xref rdfs:label\n"
+        "# Chemical entity from the production main audit; the rdfs:label\n"
+        "# constraint from the flag-on label fixture "
+        "(data-test/iri-label-fixture.ttl)\n"
+        f"{body}\n"
+    )
+
+
 def main():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     audit_path = os.path.join(base_dir, "scripts", "audit-results.json")
@@ -138,6 +361,14 @@ def main():
 
     main_audit = audit.get("AOPWikiRDF.ttl", {})
     enriched_audit = audit.get("AOPWikiRDF-Enriched.ttl", {})
+    # Flag-on fixture audit: the only input carrying the Phase-7 BERN2
+    # provenance predicates (see property_audit.py extra_files / Pitfall 5).
+    gene_fixture_audit = audit.get("gene-association-provenance-fixture.ttl", {})
+    # Phase 8 flag-on label fixture audit: the only input carrying rdfs:label on
+    # chemical-xref / gene-xref / component subjects + external/minted predicates
+    # (D-09). Used to add the rdfs:label sh:property constraint to the chemical
+    # shape, which the flag-off production data/ files cannot supply.
+    label_fixture_audit = audit.get("iri-label-fixture.ttl", {})
 
     # 1. AOP Shape
     content = generate_typed_shape(
@@ -175,21 +406,40 @@ def main():
     if content:
         write_shape_file(os.path.join(shapes_dir, "stressor-shape.ttl"), content)
 
-    # 5. Chemical Shape (CHEMINF_000000 is the main chemical class)
-    content = generate_typed_shape(
-        "ChemicalShape", "cheminf:000000",
-        "http://semanticscience.org/resource/CHEMINF_000000",
-        main_audit, "Chemical Substance"
-    )
+    # 5. Chemical Shape (CHEMINF_000000 is the main chemical class) + a
+    #    Chemical-Xref shape (cheminf:000407 ChEBI) carrying the rdfs:label
+    #    constraint sourced from the flag-on label fixture (D-09 / LABEL-04).
+    content = generate_chemical_shape(main_audit, label_fixture_audit)
     if content:
         write_shape_file(os.path.join(shapes_dir, "chemical-shape.ttl"), content)
 
-    # 6. Gene Association Shape (edam:data_1025)
-    content = generate_typed_shape(
-        "GeneAssociationShape", "edam:data_1025",
-        "http://edamontology.org/data_1025",
-        main_audit, "Gene Association"
-    )
+    # 6. Gene Association Shape + BERN2 method provenance (edam:data_1025,
+    #    untyped :geneDetectedBy* union subjects, prov:Activity). Generated
+    #    against the flag-on fixture so the Phase-7 predicates are covered;
+    #    falls back to the typed-only main-audit shape if the fixture audit is
+    #    absent (e.g. an older audit-results.json).
+    content = generate_gene_association_shape(gene_fixture_audit)
+    if not content:
+        # The flag-on fixture audit is missing or empty. Falling back to the
+        # typed-only main-audit shape would silently drop EXACTLY the Phase-7
+        # BERN2 predicates this shape exists to validate (:geneDetectedByNER,
+        # :geneDetectedByRegex, :isFeaturedMethod, :minConfidence, the
+        # prov:Activity block) -- the T-07-07 threat. Make the degradation loud
+        # rather than shipping an unguarded gene shape.
+        print(
+            "WARNING: gene-association-provenance-fixture.ttl audit is absent "
+            "from audit-results.json; falling back to the typed-only gene shape. "
+            "The Phase-7 BERN2 provenance predicates will NOT be validated. "
+            "Re-run property_audit.py with the fixture present "
+            "(data-test/gene-association-provenance-fixture.ttl) before relying "
+            "on the gene-association shape.",
+            file=sys.stderr,
+        )
+        content = generate_typed_shape(
+            "GeneAssociationShape", "edam:data_1025",
+            "http://edamontology.org/data_1025",
+            main_audit, "Gene Association"
+        )
     if content:
         write_shape_file(os.path.join(shapes_dir, "gene-association-shape.ttl"), content)
 
