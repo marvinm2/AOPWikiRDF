@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["NCBIGene:1734"], "is_neural_normalized": false, "mention": "DIO2", "obj": "gene", "prob": 0.968142032623291, "span": {"begin": 14, "end": 18}}], "text": "Inhibition of DIO2 activity is widely accepted to directly decrease T3 levels, since the conversion of T4 to T3 is inhibited.", "timestamp": "Mon Jun 08 14:54:54 +0000 2026"}

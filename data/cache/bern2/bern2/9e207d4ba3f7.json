@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["CUI-less"], "is_neural_normalized": false, "mention": "DNA", "obj": "DNA", "prob": 0.4593006372451782, "span": {"begin": 44, "end": 47}}], "text": "High. Biological plausibility is high since DNA damage generates inflammatory signals (DAMPS).", "timestamp": "Mon Jun 08 15:18:42 +0000 2026"}

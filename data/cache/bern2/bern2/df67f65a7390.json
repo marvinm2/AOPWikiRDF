@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["CUI-less"], "is_neural_normalized": false, "mention": "unfolded protein", "obj": "RNA", "prob": 0.5128068923950195, "span": {"begin": 49, "end": 65}}], "text": "There is a link between oxidative stress and the unfolded protein response, but the mechanism is not well understood.", "timestamp": "Mon Jun 08 15:06:03 +0000 2026"}

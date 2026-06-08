@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["CUI-less"], "is_neural_normalized": false, "mention": "Endothelial network", "obj": "cell_type", "prob": 0.6929917335510254, "span": {"begin": 0, "end": 19}}], "text": "Endothelial network formation is dependent on proper regulation of angiogenic sprouting.", "timestamp": "Mon Jun 08 14:40:02 +0000 2026"}

@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["mesh:D011166"], "is_neural_normalized": false, "mention": "porphyrins", "obj": "drug", "prob": 0.9998724460601807, "span": {"begin": 23, "end": 33}}], "text": "The mechanism by which porphyrins cause tissue damage is well understood[1][2]", "timestamp": "Mon Jun 08 14:49:40 +0000 2026"}

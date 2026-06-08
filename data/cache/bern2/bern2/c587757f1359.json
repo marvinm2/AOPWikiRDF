@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["NCBIGene:1649"], "is_neural_normalized": false, "mention": "CHOP", "obj": "gene", "prob": 0.9908661246299744, "span": {"begin": 60, "end": 64}}], "text": "After UPR activation the downstream target of this pathway, CHOP, triggers apoptosis.", "timestamp": "Mon Jun 08 15:16:28 +0000 2026"}

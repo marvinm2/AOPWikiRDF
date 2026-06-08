@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["mesh:D007249"], "is_neural_normalized": false, "mention": "inflammatory reactions", "obj": "disease", "prob": 0.5676391124725342, "span": {"begin": 41, "end": 63}}], "text": "Damage of the airway epithelium leads to inflammatory reactions.", "timestamp": "Mon Jun 08 15:15:08 +0000 2026"}

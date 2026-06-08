@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["NCBIGene:8989"], "is_neural_normalized": false, "mention": "TRPA1", "obj": "gene", "prob": 0.9840496778488159, "span": {"begin": 22, "end": 27}}], "text": "The basic function of TRPA1 is known and is concordant with existing biological knowledge.", "timestamp": "Mon Jun 08 14:59:39 +0000 2026"}

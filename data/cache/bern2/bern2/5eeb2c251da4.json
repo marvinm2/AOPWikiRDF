@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["mesh:D019465"], "is_neural_normalized": true, "mention": "facial prominence", "obj": "disease", "prob": 0.9943759441375732, "span": {"begin": 89, "end": 106}}], "text": "There is a high biological plausibility that increased apoptosis would lead to decreased facial prominence outgrowth.", "timestamp": "Mon Jun 08 15:50:30 +0000 2026"}

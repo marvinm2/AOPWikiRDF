@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["CHEBI:39099"], "is_neural_normalized": false, "mention": "Ca++", "obj": "drug", "prob": 0.9993295669555664, "span": {"begin": 72, "end": 76}}], "text": "Mitochondrial electron transport chain disruption follows intracellular Ca++ dysregulation [1]", "timestamp": "Mon Jun 08 14:34:53 +0000 2026"}

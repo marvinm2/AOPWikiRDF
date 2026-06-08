@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["mim:114480", "mesh:D001943"], "is_neural_normalized": false, "mention": "breast cancer", "obj": "disease", "prob": 0.9924314022064209, "span": {"begin": 48, "end": 61}}], "text": "Pro-inflammatory mediators increase the risk of breast cancer.", "timestamp": "Mon Jun 08 15:18:45 +0000 2026"}

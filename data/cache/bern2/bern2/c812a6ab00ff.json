@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["mesh:D005198", "mim:134600"], "is_neural_normalized": true, "mention": "renal tubular hyperplasia", "obj": "disease", "prob": 0.9999986290931702, "span": {"begin": 55, "end": 80}}], "text": "Sustained regenerative proliferation directly leads to renal tubular hyperplasia.", "timestamp": "Mon Jun 08 14:48:12 +0000 2026"}

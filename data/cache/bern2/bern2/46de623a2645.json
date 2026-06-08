@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["mesh:D056486"], "is_neural_normalized": true, "mention": "liver injury", "obj": "disease", "prob": 0.9653239846229553, "span": {"begin": 72, "end": 84}}], "text": "The activation of the UPR is well documented and known to be related to liver injury.", "timestamp": "Mon Jun 08 15:16:24 +0000 2026"}

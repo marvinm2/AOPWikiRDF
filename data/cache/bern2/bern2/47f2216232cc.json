@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["CHEBI:58968"], "is_neural_normalized": false, "mention": "HNE", "obj": "drug", "prob": 0.9934324026107788, "span": {"begin": 47, "end": 50}}], "text": "It is known that protein adducts are formed by HNE after lipid peroxidation, so it is biological plausible.&nbsp;", "timestamp": "Mon Jun 08 15:05:59 +0000 2026"}

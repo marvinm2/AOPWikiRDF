@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["NCBIGene:2735"], "is_neural_normalized": true, "mention": "GLI1/2 target gene", "obj": "gene", "prob": 0.9670068621635437, "span": {"begin": 58, "end": 76}}], "text": "There is a high biological probability that disruption of GLI1/2 target gene expression leads to an increase in apoptosis. &nbsp;", "timestamp": "Mon Jun 08 15:50:35 +0000 2026"}

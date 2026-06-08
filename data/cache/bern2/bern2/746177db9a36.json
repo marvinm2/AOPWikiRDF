@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["CUI-less"], "is_neural_normalized": false, "mention": "cells", "obj": "cell_type", "prob": 0.4592268168926239, "span": {"begin": 76, "end": 81}}], "text": "It is biological plausible that lipid peroxidation can lead to apoptosis of cells.", "timestamp": "Mon Jun 08 15:06:06 +0000 2026"}

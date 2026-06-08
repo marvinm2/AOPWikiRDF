@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["CHEBI:30616"], "is_neural_normalized": false, "mention": "ATP", "obj": "drug", "prob": 0.768215537071228, "span": {"begin": 83, "end": 86}}], "text": "The mitochondrial electron transport chain facilitates the efficient production of ATP [1]", "timestamp": "Mon Jun 08 14:34:54 +0000 2026"}

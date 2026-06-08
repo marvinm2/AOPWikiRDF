@@ -1,0 +1,1 @@
+{"annotations": [{"id": ["NCBIGene:43"], "is_neural_normalized": false, "mention": "AChE", "obj": "gene", "prob": 0.9847519993782043, "span": {"begin": 0, "end": 4}}], "text": "AChE inhibition at the individual level may lead to a declining population trajectory.", "timestamp": "Mon Jun 08 14:30:00 +0000 2026"}
