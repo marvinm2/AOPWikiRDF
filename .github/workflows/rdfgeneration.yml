@@ -132,6 +132,37 @@ jobs:
           echo "Remaining files in data/:"
           ls -la data/ | head -10
 
+      # Step 7b: Publish gate -- block degraded data from reaching master (QC-02)
+      # The pipeline degrades BERN2 NER to regex when the BERN2 host is down
+      # (ner_fallback_on_failure), which can silently halve gene associations.
+      # Generation would otherwise commit that degraded output before the
+      # post-commit QC delta guard ever runs. This gate compares the freshly
+      # generated data/ against the CURRENTLY committed data (HEAD:data/, i.e.
+      # last week's known-good) and FAILS the job BEFORE the commit step if the
+      # gene-association or total-triple count drops more than 5%. On breach,
+      # "Commit and Push" is skipped and master retains the good data until
+      # BERN2 recovers. Reuses scripts/qc_delta_guard.py (rdflib is installed
+      # in Step 4). HEAD:data/ is available at default fetch-depth.
+      - name: Publish gate (delta vs current master)
+        run: |
+          echo "=== Publish gate (QC-02): new data/ vs committed HEAD:data/ ==="
+          mkdir -p publish-baseline
+          missing=false
+          for f in AOPWikiRDF.ttl AOPWikiRDF-Genes.ttl; do
+            if git cat-file -e "HEAD:data/$f" 2>/dev/null; then
+              git show "HEAD:data/$f" > "publish-baseline/$f"
+            else
+              echo "No HEAD:data/$f committed; cannot gate on it."
+              missing=true
+            fi
+          done
+          if [ "$missing" = true ]; then
+            echo "::warning::Skipping publish gate -- no committed baseline (first run?)."
+            exit 0
+          fi
+          python scripts/qc_delta_guard.py --new-dir data/ --baseline-dir publish-baseline/ --drop-pct 0.05
+          rm -rf publish-baseline
+
       # Step 8: Check if there are changes
       - id: check_changes
         name: Check for Changes
