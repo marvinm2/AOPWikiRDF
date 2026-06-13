@@ -1,0 +1,28 @@
+{
+  "baseline_dir": "publish-baseline/",
+  "breached": false,
+  "drop_pct": 0.05,
+  "files": [
+    {
+      "baseline_total": 127781,
+      "breached": false,
+      "file": "AOPWikiRDF.ttl",
+      "new_total": 127795,
+      "reasons": [],
+      "total_delta_pct": 0.00010956245451201665
+    },
+    {
+      "baseline_genes": 12390,
+      "baseline_total": 190033,
+      "breached": false,
+      "file": "AOPWikiRDF-Genes.ttl",
+      "gene_delta_pct": 0.0,
+      "new_genes": 12390,
+      "new_total": 190033,
+      "reasons": [],
+      "total_delta_pct": 0.0
+    }
+  ],
+  "new_dir": "data/",
+  "reasons": []
+}
