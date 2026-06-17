@@ -153,4 +153,8 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add data/qc-status.txt
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update QC status" && git push)
+          # Commit iff qc-status.txt itself changed. Scope the guard to the
+          # staged path -- an unrelated dirty file (e.g. the regenerated
+          # qc-delta-report.json) must not trigger a commit with nothing staged,
+          # which exits non-zero and fails the job.
+          git diff --staged --quiet || (git commit -m "Update QC status" && git push)
