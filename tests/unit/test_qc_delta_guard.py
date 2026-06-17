@@ -205,3 +205,64 @@ def test_real_backup_self_comparison_passes(tmp_path):
         "--report-path", str(tmp_path / "real2.json"),
     ])
     assert rc == 0
+
+
+# ---------------------------------------------------------------------------
+# Phase 9 (XML-03) extensions: per-element relative-floor mode + --warn-only.
+# Laid down in Wave 0 with real assertions, xfail-marked until Plan 04 adds the
+# per-element guard mode and the --warn-only flag. strict=False so an early
+# xpass does not fail CI.
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.xfail(
+    reason="per-element relative-floor mode not yet implemented — Plan 04",
+    strict=False,
+)
+def test_per_element_relative_floor(tmp_path):
+    """Per-element guard uses a HEAD~1 relative floor, not an absolute one (D-10).
+
+    A per-predicate drop beyond the relative floor breaches; the threshold is
+    relative to the baseline count (1 - drop_pct), matching the gene/total
+    relative-floor math the existing guard already uses.
+    """
+    new_dir, baseline_dir = _write_pair(
+        tmp_path, baseline_genes=100, new_genes=100,
+        baseline_main=100, new_main=100,
+    )
+    # Plan 04 sources the element->predicate map from
+    # coverage-ratchet-baseline.json and applies the same relative-floor check
+    # per element. A 50% drop in any tracked element predicate must breach.
+    report = guard.run(
+        new_dir, baseline_dir, drop_pct=0.05,
+        report_path=str(tmp_path / "r.json"),
+        per_element=True,
+        element_predicates={
+            "key-event-relationship": "http://example.org/p",
+        },
+    )
+    # Baseline 100 -> new 50 for the tracked predicate breaches the floor.
+    assert "per_element" in report
+    assert report["per_element"]["key-event-relationship"]["breached"] is True
+
+
+@pytest.mark.xfail(
+    reason="--warn-only flag not yet implemented — Plan 04",
+    strict=False,
+)
+def test_warn_only_exits_zero(tmp_path, capsys):
+    """``--warn-only`` exits 0 and emits ``::warning::`` even on a breach (D-08).
+
+    Weekly posture: a transient upstream hiccup must not stall the data
+    release, so the publish-gate runs the guard in warn-only mode.
+    """
+    new_dir, baseline_dir = _write_pair(tmp_path, baseline_genes=100, new_genes=50)
+    rc = guard.main([
+        "--new-dir", new_dir,
+        "--baseline-dir", baseline_dir,
+        "--report-path", str(tmp_path / "r.json"),
+        "--warn-only",
+    ])
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "::warning::" in out
