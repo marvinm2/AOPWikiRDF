@@ -14,6 +14,15 @@ qc-delta-report.json
 aop-wiki-xml*
 data/aop-wiki-xml*
 
+# Exception: vendored, pinned AOP-XML schema directory (version-controlled).
+# The blanket aop-wiki-xml* rule above matches data/schema/aop-wiki-xml.xsd,
+# but the vendored XSD + its provenance pin + the coverage allowlist are
+# tracked source artifacts, not transient snapshot downloads. Raw
+# data/aop-wiki-xml* snapshot downloads stay ignored by the rule above.
+!data/schema/
+!data/schema/aop-wiki-xml.xsd
+!data/schema/aop-wiki-xml.xsd.SOURCE
+
 # Python cache and compiled files
 __pycache__/
 *.pyc
