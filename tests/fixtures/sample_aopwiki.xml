@@ -157,6 +157,7 @@
     <biological-organization-level>Molecular</biological-organization-level>
     <description>Description of receptor activation event.</description>
     <measurement-methodology>Measurement methods described here.</measurement-methodology>
+    <evidence-supporting-taxonomic-applicability>Mammalian models support this molecular event.</evidence-supporting-taxonomic-applicability>
     <source>AOPWiki</source>
     <applicability>
       <sex>
@@ -208,6 +209,7 @@
       <downstream-id>101</downstream-id>
     </title>
     <description>Relationship description between KE100 and KE101.</description>
+    <evidence-collection-strategy>Systematic literature review of in vitro and in vivo studies.</evidence-collection-strategy>
     <source>AOPWiki</source>
     <creation-timestamp>2020-06-01T00:00:00</creation-timestamp>
     <last-modification-timestamp>2024-06-01T00:00:00</last-modification-timestamp>
@@ -216,6 +218,14 @@
       <emperical-support-linkage>Empirical support text.</emperical-support-linkage>
       <uncertainties-or-inconsistencies>Uncertainties text.</uncertainties-or-inconsistencies>
     </weight-of-evidence>
+    <known-modulating-factors>Co-exposure to inducing agents modulates the response.</known-modulating-factors>
+    <quantitative-understanding>
+      <description>Quantitative understanding of the relationship is moderate.</description>
+      <response-response-relationship>A monotonic increase relates upstream and downstream measures.</response-response-relationship>
+      <time-scale>Response develops over hours to days.</time-scale>
+      <feedforward-feedback-loops>A negative feedback loop dampens the downstream response.</feedforward-feedback-loops>
+    </quantitative-understanding>
+    <evidence-supporting-taxonomic-applicability>Evidence is strongest in rodent species.</evidence-supporting-taxonomic-applicability>
     <taxonomic-applicability>
       <taxonomy taxonomy-id="5">
         <evidence>High</evidence>
