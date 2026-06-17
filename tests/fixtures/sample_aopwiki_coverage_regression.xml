@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Coverage-audit REGRESSION fixture (Phase 9) — the critical Nyquist sample.
+  Byte-for-byte identical to sample_aopwiki_coverage.xml EXCEPT the covered
+  description element of the key-event-relationship has been DROPPED. A coverage
+  ratchet that cannot be shown to fail is not validated; this fixture is the
+  negative sample that drops a currently-covered element so the ratchet MUST
+  breach (exit 1).
+-->
+<data xmlns="http://www.aopkb.org/aop-xml">
+  <vendor-specific>
+    <aop-reference id="1" aop-wiki-id="10"/>
+    <key-event-reference id="100" aop-wiki-id="200"/>
+    <key-event-reference id="101" aop-wiki-id="201"/>
+    <key-event-relationship-reference id="50" aop-wiki-id="500"/>
+    <stressor-reference id="30" aop-wiki-id="300"/>
+  </vendor-specific>
+
+  <!-- Allowlisted element: bibliographic citation list, intentionally unmapped (D-09). -->
+  <references>
+    <reference>Doe J et al. 2024. A test reference with no controlled vocabulary.</reference>
+  </references>
+
+  <aop id="1">
+    <title>Coverage Test Adverse Outcome Pathway</title>
+    <short-name>Coverage AOP</short-name>
+    <abstract>Abstract used by the coverage-audit fixture.</abstract>
+    <authors>Test Author</authors>
+    <status>
+      <wiki-status>Open for citation &amp; comment</wiki-status>
+      <wiki-license>BY-SA</wiki-license>
+    </status>
+    <source>AOPWiki</source>
+    <creation-timestamp>2020-01-01T00:00:00</creation-timestamp>
+    <last-modification-timestamp>2024-06-15T12:00:00</last-modification-timestamp>
+    <key-events>
+      <key-event key-event-id="100"/>
+      <key-event key-event-id="101"/>
+    </key-events>
+    <molecular-initiating-event key-event-id="100"/>
+    <adverse-outcome key-event-id="101"/>
+    <overall-assessment>
+      <description>Overall assessment description.</description>
+    </overall-assessment>
+  </aop>
+
+  <stressor id="30">
+    <name>Formaldehyde exposure</name>
+    <description>Stressor description for formaldehyde.</description>
+  </stressor>
+
+  <key-event id="100">
+    <title>Activation of receptor</title>
+    <short-name>Receptor activation</short-name>
+    <biological-organization-level>Molecular</biological-organization-level>
+    <description>Description of receptor activation event.</description>
+    <source>AOPWiki</source>
+    <!-- Gap candidate: currently uncovered, a likely Plan 03 fix. -->
+    <evidence-collection-strategy>Strategy text describing how evidence was gathered.</evidence-collection-strategy>
+  </key-event>
+
+  <key-event id="101">
+    <title>Cell death</title>
+    <short-name>Apoptosis</short-name>
+    <biological-organization-level>Cellular</biological-organization-level>
+    <description>Description of cell death.</description>
+    <source>AOPWiki</source>
+  </key-event>
+
+  <key-event-relationship id="50">
+    <title>
+      <upstream-id>100</upstream-id>
+      <downstream-id>101</downstream-id>
+    </title>
+    <!-- REGRESSION: the covered key-event-relationship description element is DROPPED here. -->
+    <source>AOPWiki</source>
+    <creation-timestamp>2020-06-01T00:00:00</creation-timestamp>
+    <last-modification-timestamp>2024-06-01T00:00:00</last-modification-timestamp>
+    <weight-of-evidence>
+      <biological-plausibility>Plausibility text.</biological-plausibility>
+    </weight-of-evidence>
+    <!-- Gap candidate: currently uncovered, a likely Plan 03 fix. -->
+    <time-scale>hours to days</time-scale>
+  </key-event-relationship>
+</data>

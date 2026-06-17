@@ -1,0 +1,8 @@
+{
+  "data": "Document root element; structural container only, carries no controlled vocabulary to map.",
+  "link_source": "External-links plumbing; identifies the provider of an outbound link, not AOP semantic content.",
+  "references": "Bibliographic citation lists with free-text references; no controlled vocabulary to map to RDF.",
+  "url": "External-links plumbing; raw href string for an outbound link, not AOP semantic content.",
+  "url_link": "External-links plumbing; display wrapper around an outbound link, not AOP semantic content.",
+  "value": "Untyped weight-of-evidence child carried inside already-mapped parent elements; no standalone semantics."
+}
