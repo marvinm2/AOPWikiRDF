@@ -27,8 +27,6 @@ import importlib.util
 import json
 import os
 
-import pytest
-
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 AUDIT_PATH = os.path.join(PROJECT_ROOT, "scripts", "coverage_audit.py")
 FIXTURE = os.path.join(PROJECT_ROOT, "tests", "fixtures", "sample_aopwiki_coverage.xml")
@@ -87,10 +85,6 @@ def test_covered_set(tmp_path):
         assert attr_id not in gaps, f"{attr_id} falsely reported as a gap"
 
 
-@pytest.mark.xfail(
-    reason="graceful historical-walk skip wired in Plan 02 Task 2",
-    strict=False,
-)
 def test_no_snapshots_dir_skips(tmp_path):
     """Historical snapshot walk skips gracefully when the dir is absent (D-04)."""
     audit = _load_audit()
