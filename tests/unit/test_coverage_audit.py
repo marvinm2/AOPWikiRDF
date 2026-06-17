@@ -34,13 +34,6 @@ AUDIT_PATH = os.path.join(PROJECT_ROOT, "scripts", "coverage_audit.py")
 FIXTURE = os.path.join(PROJECT_ROOT, "tests", "fixtures", "sample_aopwiki_coverage.xml")
 ALLOWLIST = os.path.join(PROJECT_ROOT, "data", "schema", "coverage-allowlist.json")
 
-# Not-yet-implemented until Plan 02. xfail keeps Wave 0 green while the
-# assertions below are real (strict=False so an early xpass does not fail CI).
-pytestmark = pytest.mark.xfail(
-    reason="scripts/coverage_audit.py not yet implemented — Plan 02",
-    strict=False,
-)
-
 
 def _load_audit():
     """Import scripts/coverage_audit.py as a module (it lives outside a package).
@@ -94,6 +87,10 @@ def test_covered_set(tmp_path):
         assert attr_id not in gaps, f"{attr_id} falsely reported as a gap"
 
 
+@pytest.mark.xfail(
+    reason="graceful historical-walk skip wired in Plan 02 Task 2",
+    strict=False,
+)
 def test_no_snapshots_dir_skips(tmp_path):
     """Historical snapshot walk skips gracefully when the dir is absent (D-04)."""
     audit = _load_audit()
