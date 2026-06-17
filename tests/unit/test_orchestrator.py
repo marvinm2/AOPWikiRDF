@@ -49,13 +49,13 @@ def test_orchestrator_line_count():
 
     The limit is a regression guard, not a hard architectural rule -- the
     monolith (pipeline_monolith.py) is ~2,300 lines. The orchestrator has
-    grown with added stages (ARR filter, BERN2 enrichment); 600 lines
-    leaves headroom for a few more while still catching a real slide back
-    toward monolithic logic.
+    grown with added stages (ARR filter, BERN2 enrichment, VoID endpoint
+    overrides); 625 lines leaves headroom for a few more while still catching
+    a real slide back toward monolithic logic.
     """
     src = inspect.getsource(pipeline)
     line_count = len(src.splitlines())
-    assert line_count < 600, f"pipeline.py has {line_count} lines (limit: 600)"
+    assert line_count < 625, f"pipeline.py has {line_count} lines (limit: 625)"
 
 
 def test_monolith_preserved():
