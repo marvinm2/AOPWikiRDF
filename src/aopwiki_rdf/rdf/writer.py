@@ -399,7 +399,11 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
             if 'dc:description' in kedict[ke]:
                 g.write(' ;\n\tdc:description\t' + kedict[ke]['dc:description'])
 
-            for predicate in ['mmo:0000000', 'nci:C25664']:
+            # nci:C17469 = evidence-supporting-taxonomic-applicability
+            # (Plan 09-03 coverage gap-fix, XML-02; also emitted on KER).
+            # Conditional + additive: KE stays byte-identical when the XML
+            # omits the element.
+            for predicate in ['mmo:0000000', 'nci:C25664', 'nci:C17469']:
                 if predicate in kedict[ke]:
                     g.write(f' ;\n\t{predicate}\t' + kedict[ke][predicate])
 
@@ -485,7 +489,21 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
             if 'dc:description' in kerdict[ker]:
                 g.write(' ;\n\tdc:description\t' + kerdict[ker]['dc:description'])
 
-            for predicate in ['nci:C80263', 'edam:data_2042', 'nci:C71478']:
+            # nci:C80263/edam:data_2042/nci:C71478 = WoE (biological-plausibility,
+            # emperical-support-linkage, uncertainties-or-inconsistencies).
+            # The remaining predicates are the Plan 09-03 coverage gap-fixes
+            # (XML-02): evidence-collection-strategy (nci:C103159),
+            # known-modulating-factors (nci:C68821),
+            # evidence-supporting-taxonomic-applicability (nci:C17469),
+            # quantitative-understanding/description (edam:operation_3799),
+            # response-response-relationship (edam:operation_3438),
+            # time-scale (nci:C25207), feedforward-feedback-loops (nci:C25343).
+            # All conditional + additive (the KER stays byte-identical when the
+            # XML omits the element).
+            for predicate in ['nci:C80263', 'edam:data_2042', 'nci:C71478',
+                              'nci:C103159', 'nci:C68821', 'nci:C17469',
+                              'edam:operation_3799', 'edam:operation_3438',
+                              'nci:C25207', 'nci:C25343']:
                 if predicate in kerdict[ker]:
                     value = kerdict[ker][predicate].replace("\\", "")
                     g.write(f' ;\n\t{predicate}\t{value}')
