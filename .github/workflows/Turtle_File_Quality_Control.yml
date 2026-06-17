@@ -18,7 +18,7 @@ jobs:
     steps:
       # Step 1: Check out the repository
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           # Need HEAD~1 so the delta guard (Step 5b) can use the previous
@@ -27,7 +27,7 @@ jobs:
 
       # Step 2: Set up Python
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
@@ -153,4 +153,8 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add data/qc-status.txt
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update QC status" && git push)
+          # Commit iff qc-status.txt itself changed. Scope the guard to the
+          # staged path -- an unrelated dirty file (e.g. the regenerated
+          # qc-delta-report.json) must not trigger a commit with nothing staged,
+          # which exits non-zero and fails the job.
+          git diff --staged --quiet || (git commit -m "Update QC status" && git push)

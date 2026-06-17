@@ -28,14 +28,14 @@ jobs:
       # Step 1: Checkout repository
       - id: repo
         name: Repo Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # Step 2: Set up Python
       - id: python
         name: Python Setup
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           

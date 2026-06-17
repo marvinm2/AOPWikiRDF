@@ -5,6 +5,11 @@ mygraph.html
 TargetsinMIEs
 *.log
 
+# CI delta-guard report (transient artifact, regenerated on every run by
+# scripts/qc_delta_guard.py). Not committed -- when tracked it dirtied the
+# working tree and broke the QC commit step.
+qc-delta-report.json
+
 # Downloaded XML data (temporary)
 aop-wiki-xml*
 data/aop-wiki-xml*
@@ -80,4 +85,7 @@ validate_test_ttl.py
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db.planning/
+Thumbs.db
+
+# GSD/AI planning artifacts (local development aids, not for repository)
+.planning/
