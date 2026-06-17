@@ -18,7 +18,7 @@ jobs:
     steps:
       # Step 1: Check out the repository
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           # Need HEAD~1 so the delta guard (Step 5b) can use the previous
@@ -27,7 +27,7 @@ jobs:
 
       # Step 2: Set up Python
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
