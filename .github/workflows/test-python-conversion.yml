@@ -41,7 +41,7 @@ jobs:
           
       # Step 3: Cache pip dependencies
       - name: Cache pip dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
@@ -227,7 +227,7 @@ jobs:
 
       # Step 10: Upload test artifacts
       - name: Upload Test Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-rdf-files
           path: |
@@ -239,7 +239,7 @@ jobs:
       # Step 11: Upload production backup for comparison
       - name: Upload Production Backup Files
         if: ${{ inputs.compare_with_production == 'true' || github.event_name == 'schedule' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: production-rdf-backup
           path: |
@@ -294,7 +294,7 @@ jobs:
       # Step 13: Upload comparison report
       - name: Upload Comparison Report
         if: ${{ inputs.compare_with_production == 'true' || github.event_name == 'schedule' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: comparison-report
           path: comparison_report.md
