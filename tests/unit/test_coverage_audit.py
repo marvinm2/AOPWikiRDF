@@ -27,19 +27,10 @@ import importlib.util
 import json
 import os
 
-import pytest
-
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 AUDIT_PATH = os.path.join(PROJECT_ROOT, "scripts", "coverage_audit.py")
 FIXTURE = os.path.join(PROJECT_ROOT, "tests", "fixtures", "sample_aopwiki_coverage.xml")
 ALLOWLIST = os.path.join(PROJECT_ROOT, "data", "schema", "coverage-allowlist.json")
-
-# Not-yet-implemented until Plan 02. xfail keeps Wave 0 green while the
-# assertions below are real (strict=False so an early xpass does not fail CI).
-pytestmark = pytest.mark.xfail(
-    reason="scripts/coverage_audit.py not yet implemented — Plan 02",
-    strict=False,
-)
 
 
 def _load_audit():
