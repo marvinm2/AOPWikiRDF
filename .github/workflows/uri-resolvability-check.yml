@@ -36,7 +36,7 @@ jobs:
       
       # Step 3: Cache pip dependencies
       - name: Cache pip dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
@@ -133,7 +133,7 @@ jobs:
       
       # Step 8: Upload artifacts
       - name: Upload Test Reports
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: uri-test-reports-${{ github.run_number }}
           path: |
