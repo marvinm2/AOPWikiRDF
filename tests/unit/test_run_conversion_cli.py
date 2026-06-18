@@ -92,8 +92,13 @@ def _stub_downstream_parse(monkeypatch, recorder):
     never on full XML parsing and never on the network.
     """
 
-    def _record_download(*args, **kwargs):
+    def _record_download(url, filename, *args, **kwargs):
+        # Record the call and write a tiny valid .gz at the requested filename
+        # so the unchanged flag-off extract step can gunzip it (no network).
         recorder["download_called"] = True
+        with gzip.open(filename, "wb") as f:
+            f.write(_MINIMAL_XML.encode("utf-8"))
+        recorder["downloaded_files"].append(filename)
         return True
 
     class _FakeTree:
@@ -113,10 +118,13 @@ def test_xml_file_flag_off_neutral(tmp_path, monkeypatch):
     Asserts the default-None path is byte-neutral (still downloads) and the
     pinned-snapshot path reads the committed file with no network access.
     """
+    # Contain the flag-off branch's intermediate download file (written to the
+    # cwd-relative aop-wiki-xml-<today> name) inside tmp_path.
+    monkeypatch.chdir(tmp_path)
     filepath = str(tmp_path) + "/"
 
     # --- flag-off: download IS reached ---
-    recorder_off = {"download_called": False}
+    recorder_off = {"download_called": False, "downloaded_files": []}
     _stub_downstream_parse(monkeypatch, recorder_off)
     config_off = PipelineConfig(data_dir=tmp_path, xml_file=None)
     context_off = {"filepath": filepath}
@@ -128,7 +136,7 @@ def test_xml_file_flag_off_neutral(tmp_path, monkeypatch):
     with gzip.open(gz_path, "wb") as f:
         f.write(_MINIMAL_XML.encode("utf-8"))
 
-    recorder_on = {"download_called": False}
+    recorder_on = {"download_called": False, "downloaded_files": []}
     _stub_downstream_parse(monkeypatch, recorder_on)
     config_on = PipelineConfig(data_dir=tmp_path, xml_file=gz_path)
     context_on = {"filepath": filepath}
