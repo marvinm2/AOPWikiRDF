@@ -1,0 +1,51 @@
+name: COMPAT Closing Gate
+
+# Manual/milestone-only gate (D-06). NEVER wired to push/schedule/workflow_run:
+# a full-corpus flags-off + flags-on regeneration takes 28-90 min and must not
+# block weekly releases if mis-triggered. Run this by hand before the Phase 12
+# production flip; a green run is the COMPAT-01 phase gate.
+on:
+  workflow_dispatch:
+
+jobs:
+  compat-gate:
+    runs-on: ubuntu-latest
+    # Full-corpus regen runs twice (off + on); 120-min cap bounds the run (D-06).
+    timeout-minutes: 120
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout Repository
+        uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      # Step 3: Install dependencies. The gate imports the full pipeline for the
+      # off/on regeneration, so install the package (not the narrow rdflib-only
+      # set the SHACL job uses).
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -e .
+
+      # Step 4: Run the COMPAT closing gate against the pinned snapshot.
+      - name: Run COMPAT Gate
+        run: |
+          python scripts/compat_check.py \
+            --golden-dir data/compat-golden/ \
+            --xml-file data/compat-golden/aop-wiki-xml-2026-06-18.gz
+
+      # Step 5: On failure, upload the per-subject diff report for inspection.
+      - name: Upload Diff Report
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: compat-diff-report-${{ github.run_number }}
+          path: compat-diff-report.txt
+          retention-days: 30
