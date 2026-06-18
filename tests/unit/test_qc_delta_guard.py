@@ -209,30 +209,29 @@ def test_real_backup_self_comparison_passes(tmp_path):
 
 # ---------------------------------------------------------------------------
 # Phase 9 (XML-03) extensions: per-element relative-floor mode + --warn-only.
-# Laid down in Wave 0 with real assertions, xfail-marked until Plan 04 adds the
-# per-element guard mode and the --warn-only flag. strict=False so an early
-# xpass does not fail CI.
+# Plan 04 implements the per-element guard mode and the --warn-only flag, so
+# these tests now run as real (non-xfail) assertions.
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    reason="per-element relative-floor mode not yet implemented — Plan 04",
-    strict=False,
-)
 def test_per_element_relative_floor(tmp_path):
     """Per-element guard uses a HEAD~1 relative floor, not an absolute one (D-10).
 
     A per-predicate drop beyond the relative floor breaches; the threshold is
     relative to the baseline count (1 - drop_pct), matching the gene/total
-    relative-floor math the existing guard already uses.
+    relative-floor math the existing guard already uses. ``_main_ttl`` emits
+    each arbitrary triple with predicate ``http://example.org/p``, so the main
+    TTL's per-predicate count equals ``baseline_main`` / ``new_main`` — a real
+    drop in that count exercises the relative floor (NOT an absolute one).
     """
+    # Over-threshold: 100 -> 50 for the tracked predicate (50% drop) breaches.
     new_dir, baseline_dir = _write_pair(
         tmp_path, baseline_genes=100, new_genes=100,
-        baseline_main=100, new_main=100,
+        baseline_main=100, new_main=50,
     )
     # Plan 04 sources the element->predicate map from
     # coverage-ratchet-baseline.json and applies the same relative-floor check
-    # per element. A 50% drop in any tracked element predicate must breach.
+    # per element.
     report = guard.run(
         new_dir, baseline_dir, drop_pct=0.05,
         report_path=str(tmp_path / "r.json"),
@@ -241,15 +240,30 @@ def test_per_element_relative_floor(tmp_path):
             "key-event-relationship": "http://example.org/p",
         },
     )
-    # Baseline 100 -> new 50 for the tracked predicate breaches the floor.
     assert "per_element" in report
-    assert report["per_element"]["key-event-relationship"]["breached"] is True
+    entry = report["per_element"]["key-event-relationship"]
+    assert entry["baseline_count"] == 100
+    assert entry["new_count"] == 50
+    assert entry["breached"] is True
+    assert report["breached"] is True
+
+    # Within-threshold: a 3% drop (100 -> 97) stays under the 5% relative floor
+    # and must NOT breach — proving the floor is relative, not an absolute count.
+    within_root = tmp_path / "within"
+    within_root.mkdir()
+    within_new, within_base = _write_pair(
+        within_root, baseline_genes=100, new_genes=100,
+        baseline_main=100, new_main=97,
+    )
+    within_report = guard.run(
+        within_new, within_base, drop_pct=0.05,
+        report_path=str(tmp_path / "within" / "r.json"),
+        per_element=True,
+        element_predicates={"key-event-relationship": "http://example.org/p"},
+    )
+    assert within_report["per_element"]["key-event-relationship"]["breached"] is False
 
 
-@pytest.mark.xfail(
-    reason="--warn-only flag not yet implemented — Plan 04",
-    strict=False,
-)
 def test_warn_only_exits_zero(tmp_path, capsys):
     """``--warn-only`` exits 0 and emits ``::warning::`` even on a breach (D-08).
 
