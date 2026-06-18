@@ -105,34 +105,59 @@ def _stage_setup(config, context):
 
 
 def _stage_parse(config, context):
-    """Download AOP-Wiki XML, extract, and parse into entity dicts."""
+    """Download AOP-Wiki XML, extract, and parse into entity dicts.
+
+    When config.xml_file is set (COMPAT-01), read that pinned committed
+    snapshot instead of downloading -- gunzip if .gz, otherwise copy in place.
+    When it is None (the default), the network download path below is
+    character-for-character unchanged, keeping flag-off output byte-identical
+    to prior production output (A1).
+    """
     filepath = context["filepath"]
-    today = date.today()
-    aopwikixmlfilename = f"aop-wiki-xml-{today}"
 
-    # Download
-    try:
-        _download_with_retry(
-            config.aopwiki_xml_url,
-            aopwikixmlfilename,
-            timeout=config.request_timeout,
-            max_retries=config.max_retries,
-        )
-    except requests.RequestException as e:
-        logger.error("Failed to download AOP-Wiki XML: %s", e)
-        raise SystemExit(1)
+    if config.xml_file is not None:
+        # COMPAT: read the pinned committed snapshot; skip the download (A1).
+        src = Path(config.xml_file)
+        aopwikixmlfilename = src.name.removesuffix(".gz")
+        dest = filepath + aopwikixmlfilename
+        try:
+            if src.suffix == ".gz":
+                with gzip.open(src, "rb") as f_in, open(dest, "wb") as f_out:
+                    shutil.copyfileobj(f_in, f_out)
+            else:
+                shutil.copy2(str(src), dest)
+            logger.info("Read pinned XML snapshot %s -> %s", src, dest)
+        except (FileNotFoundError, gzip.BadGzipFile, IOError) as e:
+            logger.error("Failed to read pinned XML snapshot %s: %s", src, e)
+            raise SystemExit(1)
+        xml_path = dest
+    else:
+        today = date.today()
+        aopwikixmlfilename = f"aop-wiki-xml-{today}"
 
-    # Extract gzipped XML
-    try:
-        with gzip.open(aopwikixmlfilename, "rb") as f_in:
-            with open(filepath + aopwikixmlfilename, "wb") as f_out:
-                shutil.copyfileobj(f_in, f_out)
-        logger.info("Extracted XML to %s", filepath + aopwikixmlfilename)
-    except (FileNotFoundError, gzip.BadGzipFile, IOError) as e:
-        logger.error("Failed to extract XML file: %s", e)
-        raise SystemExit(1)
+        # Download
+        try:
+            _download_with_retry(
+                config.aopwiki_xml_url,
+                aopwikixmlfilename,
+                timeout=config.request_timeout,
+                max_retries=config.max_retries,
+            )
+        except requests.RequestException as e:
+            logger.error("Failed to download AOP-Wiki XML: %s", e)
+            raise SystemExit(1)
 
-    xml_path = filepath + aopwikixmlfilename
+        # Extract gzipped XML
+        try:
+            with gzip.open(aopwikixmlfilename, "rb") as f_in:
+                with open(filepath + aopwikixmlfilename, "wb") as f_out:
+                    shutil.copyfileobj(f_in, f_out)
+            logger.info("Extracted XML to %s", filepath + aopwikixmlfilename)
+        except (FileNotFoundError, gzip.BadGzipFile, IOError) as e:
+            logger.error("Failed to extract XML file: %s", e)
+            raise SystemExit(1)
+
+        xml_path = filepath + aopwikixmlfilename
 
     # Parse XML to get root for mapping stages
     tree = parse(xml_path)
