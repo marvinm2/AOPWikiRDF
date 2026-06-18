@@ -59,6 +59,7 @@ import argparse
 import difflib
 import os
 import re
+import shutil
 import sys
 import tempfile
 
@@ -166,17 +167,27 @@ def subject_blocks(masked):
 
 
 def first_subject(block):
-    """Return the leading subject IRI token of a subject block.
+    """Return the leading subject IRI token of a subject block, or None.
 
     The first whitespace-delimited token of the first non-comment line is the
     subject. Falls back to the first token of the block when no non-comment
     line exists.
+
+    @prefix preamble blocks are file-level headers, NOT AOP data subjects
+    (11-REVIEW.md CR-02): when the first non-comment line's leading token is
+    ``b"@prefix"`` this returns ``None`` so callers can skip the block instead
+    of keying a subject dict on the colliding ``b"@prefix"`` token (which would
+    false-breach when flags-on adds GENES_PROVENANCE_PREFIX to
+    AOPWikiRDF-Genes.ttl). Callers MUST guard for a None key.
     """
     for line in block.split(b"\n"):
         stripped = line.strip()
         if not stripped or stripped.startswith(b"#"):
             continue
-        return stripped.split()[0]
+        token = stripped.split()[0]
+        if token == b"@prefix":
+            return None
+        return token
     tokens = block.split()
     return tokens[0] if tokens else b""
 
@@ -208,10 +219,16 @@ def diff_report(golden, fresh, fname, max_blocks=DEFAULT_MAX_BLOCKS):
 
     golden_by_subj = {}
     for block in subject_blocks(golden):
-        golden_by_subj.setdefault(first_subject(block), block)
+        key = first_subject(block)
+        if key is None:  # @prefix preamble -- not a data subject (CR-02)
+            continue
+        golden_by_subj.setdefault(key, block)
     fresh_by_subj = {}
     for block in subject_blocks(fresh):
-        fresh_by_subj.setdefault(first_subject(block), block)
+        key = first_subject(block)
+        if key is None:  # @prefix preamble -- not a data subject (CR-02)
+            continue
+        fresh_by_subj.setdefault(key, block)
 
     all_subjects = list(golden_by_subj)
     for subj in fresh_by_subj:
@@ -317,9 +334,13 @@ def _compare_dirs(expected_dir, actual_dir, mode, max_blocks):
 
         if expected is None:
             reasons.append(f"missing expected file: {os.path.join(expected_dir, filename)}")
+            # WR-03: emit an informative chunk so the diff artifact is not empty
+            # on a missing-file breach.
+            report_chunks.append(f"# {filename}: expected file missing from {expected_dir}")
             continue
         if actual is None:
             reasons.append(f"missing actual file: {os.path.join(actual_dir, filename)}")
+            report_chunks.append(f"# {filename}: actual file missing from {actual_dir}")
             continue
 
         if mode == "identity":
@@ -343,25 +364,77 @@ def _compare_dirs(expected_dir, actual_dir, mode, max_blocks):
     return breached, reasons, report_text
 
 
-def _additive_violations(expected, actual):
-    """Return the subjects from ``expected`` missing-or-changed in ``actual``.
+def _predicate_lines(block):
+    """Return the set of terminator-normalized predicate lines of a block.
 
-    Additive-subset semantics: a subject in ``actual`` but not ``expected`` is
-    fine (a flag-gated addition); a subject in ``expected`` is a violation when
-    it is ABSENT from ``actual`` or its block CHANGED. Returns the list of
-    offending subject IRIs (empty when additive-only).
+    Each Turtle statement line ends with a ``;`` (predicate continues) or ``.``
+    (subject ends). Appending a predicate to an existing subject flips the
+    FORMER-last line's terminator from ``.`` to ``;`` while adding new lines --
+    that terminator flip is NOT a dropped predicate. We therefore strip a single
+    trailing ``;`` / ``.`` statement terminator (and surrounding whitespace) from
+    each stripped non-empty line so an unchanged predicate compares equal
+    regardless of whether it is now mid-block or block-final. Comparison stays
+    line-granular otherwise, so a genuinely dropped/changed predicate still
+    differs.
+    """
+    lines = set()
+    for raw in block.split(b"\n"):
+        stripped = raw.strip()
+        if not stripped:
+            continue
+        if stripped.endswith(b";") or stripped.endswith(b"."):
+            stripped = stripped[:-1].rstrip()
+        lines.add(stripped)
+    return lines
+
+
+def _additive_violations(expected, actual):
+    """Return the subjects from ``expected`` missing-or-shrunk in ``actual``.
+
+    Additive-subset semantics at PREDICATE-LINE granularity (11-REVIEW.md
+    CR-01): flags-on may legitimately ADD whole subjects AND ADD predicate
+    lines to an existing subject (e.g. an ``rdfs:label`` line when
+    ``enable_iri_labels=True``). A subject in ``expected`` is a violation ONLY
+    when:
+      * its subject block is ABSENT from ``actual``, OR
+      * a flag-off predicate line is missing from the flag-on block
+        (``exp_lines.issubset(act_lines)`` is False).
+
+    Lines are compared with the trailing Turtle statement terminator
+    (``;``/``.``) normalized away (see ``_predicate_lines``) so that appending a
+    predicate -- which flips the former-last line's ``.`` to ``;`` -- does not
+    register the unchanged predicate as dropped. A gained line does not breach
+    but a dropped/changed line does (test_gate_fails_on_injected_diff stays
+    green). @prefix preamble blocks key to None via first_subject and are
+    skipped (CR-02): a gained @prefix line in the Genes preamble does not
+    breach. Returns the list of offending subject IRIs (empty when
+    additive-only).
     """
     expected_by_subj = {}
     for block in subject_blocks(expected):
-        expected_by_subj.setdefault(first_subject(block), block)
+        key = first_subject(block)
+        if key is None:  # @prefix preamble -- not a data subject (CR-02)
+            continue
+        expected_by_subj.setdefault(key, block)
     actual_by_subj = {}
     for block in subject_blocks(actual):
-        actual_by_subj.setdefault(first_subject(block), block)
+        key = first_subject(block)
+        if key is None:  # @prefix preamble -- not a data subject (CR-02)
+            continue
+        actual_by_subj.setdefault(key, block)
 
     violations = []
-    for subj, block in expected_by_subj.items():
-        actual_block = actual_by_subj.get(subj)
-        if actual_block is None or actual_block != block:
+    for subj, exp_block in expected_by_subj.items():
+        act_block = actual_by_subj.get(subj)
+        if act_block is None:
+            violations.append(subj)
+            continue
+        if act_block == exp_block:  # fast path: byte-identical block
+            continue
+        # Predicate-line subset: every flag-off line must appear in flags-on.
+        exp_lines = _predicate_lines(exp_block)
+        act_lines = _predicate_lines(act_block)
+        if not exp_lines.issubset(act_lines):
             violations.append(subj)
     return violations
 
@@ -399,42 +472,49 @@ def run(golden_dir, xml_file, mode="both", report_path=DEFAULT_REPORT_PATH,
     need_off = off_dir is None
     need_on = on_dir is None and mode in ("off-vs-on", "both")
 
+    # WR-02: the regen tempdir (~44 MB of TTLs) is created inside a try/finally
+    # so it is ALWAYS cleaned up, even when a comparison raises. All comparisons
+    # run while off_dir/on_dir still exist (i.e. before the finally).
     tmp = None
     if need_off or need_on:
         tmp = tempfile.mkdtemp(prefix="compat-regen-")
 
-    if need_off:
-        off_dir = os.path.join(tmp, "off")
-        regenerate(xml_file, off_dir, enable_flags=False)
-    if need_on:
-        on_dir = os.path.join(tmp, "on")
-        regenerate(xml_file, on_dir, enable_flags=True)
+    try:
+        if need_off:
+            off_dir = os.path.join(tmp, "off")
+            regenerate(xml_file, off_dir, enable_flags=False)
+        if need_on:
+            on_dir = os.path.join(tmp, "on")
+            regenerate(xml_file, on_dir, enable_flags=True)
 
-    reasons = []
-    advisory_reasons = []
-    report_chunks = []
+        reasons = []
+        advisory_reasons = []
+        report_chunks = []
 
-    # HARD gate: off-vs-on additive-subset (D-01). Decides the exit code.
-    if mode in ("off-vs-on", "both"):
-        breached, hard_reasons, hard_report = _compare_dirs(
-            off_dir, on_dir, mode="additive", max_blocks=max_blocks
-        )
-        reasons.extend(hard_reasons)
-        if hard_report:
-            report_chunks.append("# off-vs-on (HARD) diff\n" + hard_report)
+        # HARD gate: off-vs-on additive-subset (D-01). Decides the exit code.
+        if mode in ("off-vs-on", "both"):
+            breached, hard_reasons, hard_report = _compare_dirs(
+                off_dir, on_dir, mode="additive", max_blocks=max_blocks
+            )
+            reasons.extend(hard_reasons)
+            if hard_report:
+                report_chunks.append("# off-vs-on (HARD) diff\n" + hard_report)
 
-    # Advisory: off-vs-golden full byte-identity (D-01). Never sets breached.
-    if mode in ("off-vs-golden", "both"):
-        _, adv_reasons, adv_report = _compare_dirs(
-            golden_dir, off_dir, mode="identity", max_blocks=max_blocks
-        )
-        advisory_reasons.extend(adv_reasons)
-        if adv_report:
-            report_chunks.append("# off-vs-golden (ADVISORY) diff\n" + adv_report)
+        # Advisory: off-vs-golden full byte-identity (D-01). Never sets breached.
+        if mode in ("off-vs-golden", "both"):
+            _, adv_reasons, adv_report = _compare_dirs(
+                golden_dir, off_dir, mode="identity", max_blocks=max_blocks
+            )
+            advisory_reasons.extend(adv_reasons)
+            if adv_report:
+                report_chunks.append("# off-vs-golden (ADVISORY) diff\n" + adv_report)
 
-    report_text = "\n\n".join(report_chunks)
-    with open(report_path, "w", encoding="utf-8") as fh:
-        fh.write(report_text)
+        report_text = "\n\n".join(report_chunks)
+        with open(report_path, "w", encoding="utf-8") as fh:
+            fh.write(report_text)
+    finally:
+        if tmp is not None:
+            shutil.rmtree(tmp, ignore_errors=True)
 
     return {
         "breached": bool(reasons),
