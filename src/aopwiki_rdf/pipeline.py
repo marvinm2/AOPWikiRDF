@@ -124,6 +124,11 @@ def _stage_parse(config, context):
             if src.suffix == ".gz":
                 with gzip.open(src, "rb") as f_in, open(dest, "wb") as f_out:
                     shutil.copyfileobj(f_in, f_out)
+            elif Path(src).resolve() == Path(dest).resolve():
+                # IN-01: pinned plain-.xml snapshot already sits at the
+                # destination; shutil.copy2 would raise SameFileError. Skip the
+                # copy instead of surfacing a misleading SystemExit(1).
+                logger.info("Pinned XML snapshot already at destination, skipping copy")
             else:
                 shutil.copy2(str(src), dest)
             logger.info("Read pinned XML snapshot %s -> %s", src, dest)
