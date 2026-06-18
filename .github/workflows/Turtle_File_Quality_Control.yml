@@ -147,6 +147,35 @@ jobs:
           fi
           python scripts/qc_delta_guard.py --new-dir data/ --baseline-dir delta-baseline/ --drop-pct 0.05
 
+      # Step 5c: Per-element coverage ratchet guard vs previous commit (XML-03).
+      # The gene/total delta guard (Step 5b) cannot catch a silent drop in a
+      # SPECIFIC fixed-gap predicate (e.g. evidence-collection-strategy) that is
+      # small relative to the whole graph. This step counts each element's
+      # predicate (from scripts/coverage-ratchet-baseline.json) in the new data/
+      # vs the HEAD~1 baseline and applies the same relative floor. STRICT mode:
+      # the guard runs in default (blocking) mode so a per-element coverage
+      # regression FAILS the PR/push QC job (D-08 hard-fail posture). Reuses the
+      # HEAD~1 baseline
+      # materialization idiom of Step 5b; requires fetch-depth >= 2.
+      - name: Per-element coverage ratchet guard vs previous commit
+        run: |
+          echo "=== Per-element coverage ratchet guard (XML-03) ==="
+          mkdir -p delta-baseline
+          missing=false
+          for f in AOPWikiRDF.ttl AOPWikiRDF-Genes.ttl; do
+            if git cat-file -e "HEAD~1:data/$f" 2>/dev/null; then
+              git show "HEAD~1:data/$f" > "delta-baseline/$f"
+            else
+              echo "No HEAD~1:data/$f in history; cannot establish a baseline."
+              missing=true
+            fi
+          done
+          if [ "$missing" = true ]; then
+            echo "::warning::Skipping per-element ratchet guard -- no previous data/ commit to compare against (first run?)."
+            exit 0
+          fi
+          python scripts/qc_delta_guard.py --new-dir data/ --baseline-dir delta-baseline/ --coverage-baseline scripts/coverage-ratchet-baseline.json --drop-pct 0.05
+
       # Step 6: Commit and Push QC Status File to /data
       - name: Commit and Push QC Status
         run: |
