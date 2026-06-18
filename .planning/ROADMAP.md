@@ -1,121 +1,137 @@
 # Roadmap: AOPWikiRDF Pipeline Modernization
 
-## Overview
+> **GSD milestone labels are independent of git tags.** The `v1.0`–`v1.3` git tags are
+> unrelated 2019–2020 script versions; GSD v1.0 carries git tag `v2.0`. Milestone work
+> ships on `master`. Full per-milestone detail lives in `.planning/milestones/`.
 
-The pipeline starts as a 2,281-line monolith with an exec()-based config antipattern, semantically incorrect predicates, no structural validation, and no formal separation between source-derived and enriched triples. The modernization works through five sequential phases, each unblocking the next: the exec() replacement and module scaffold come first (nothing else is safely testable without them), then the remaining module extractions and regression baseline, then coordinated predicate correction and gene mapper rework (must precede SHACL shapes), then pure/enriched file separation and VoID subset declarations, and finally structural validation, documentation, and BioBERT exploration.
+## Milestones
+
+- ✅ **v1.0 Pipeline Modernization** — Phases 1–5 (shipped 2026-03-09)
+- ✅ **v1.1 BERN2 NER Gene Enrichment** — Phases A–C (shipped 2026-05-18, tracked retrospectively)
+- ✅ **v1.2 BERN2-Primary Gene Mapping & IRI Labels** — Phases 6–8 (shipped 2026-06-17)
+- 📋 **v1.3 XML Coverage, COMPAT Gate & Production Promotion** — Phases 9–12 (planned)
 
 ## Phases
 
-**Phase Numbering:**
-- Integer phases (1, 2, 3): Planned milestone work
-- Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
+<details>
+<summary>✅ v1.0 Pipeline Modernization (Phases 1–5) — SHIPPED 2026-03-09</summary>
 
-Decimal phases appear between their surrounding integers in numeric order.
+- [x] Phase 1: Foundation (4/4 plans) — completed 2026-03-05
+- [x] Phase 2: Module Extraction (6/6 plans) — completed 2026-03-06
+- [x] Phase 3: Predicate Correction (3/3 plans) — completed 2026-03-08
+- [x] Phase 4: Output Separation (4/4 plans) — completed 2026-03-09
+- [x] Phase 5: Validation and Documentation (4/4 plans) — completed 2026-03-09
 
-- [ ] **Phase 1: Foundation** - Replace exec() config, extract XML parser, add dynamic HGNC download
-- [x] **Phase 2: Module Extraction** - Extract gene/chemical/RDF writer modules and create thin orchestrator with triple-for-triple regression baseline (completed 2026-03-06)
-- [ ] **Phase 3: Predicate Correction** - Fix skos:exactMatch, HGNC ID/symbol distinction, and SNORQL audit with dual-predicate transition
-- [ ] **Phase 4: Output Separation** - Separate pure AOP-Wiki RDF from enriched content and enrich VoID with subset declarations
-- [x] **Phase 5: Validation and Documentation** - SHACL shapes, full VoID enrichment, schema documentation, BioBERT exploration (completed 2026-03-09)
+Replace exec()/monolith with a modular package; extract gene/chemical/RDF-writer modules and
+thin orchestrator with triple-for-triple regression; correct predicates (owl:sameAs) and
+numeric HGNC IDs; separate pure/enriched RDF with VoID subset metadata; add SHACL shapes +
+CI + docs; BioBERT feasibility (do-not-integrate). See `milestones/v1.0-ROADMAP.md`.
+
+</details>
+
+<details>
+<summary>✅ v1.1 BERN2 NER Gene Enrichment (Phases A–C) — SHIPPED 2026-05-18</summary>
+
+- [x] Spike: NER+EL feasibility (BERN2 + PubTator3 vs regex baseline)
+- [x] Phase A: `ner_el_mapper.py` mapper module (off by default)
+- [x] Phase B: Pipeline integration with provenance
+- [x] Phase C: Production enablement (`--enable-bern2` in weekly workflow)
+- [x] Hardening: warmed cache + `ner_min_prob=0.70`
+
+BERN2 NER+EL added as an *additive* enrichment layer alongside the regex mapper (hosted API,
+warmed cache, confidence threshold). Tracked retrospectively. See `milestones/v1.1-bern2-ROADMAP.md`.
+
+</details>
+
+<details>
+<summary>✅ v1.2 BERN2-Primary Gene Mapping & IRI Labels (Phases 6–8) — SHIPPED 2026-06-17</summary>
+
+- [x] Phase 6: BERN2 Hardening + QC Delta-Guard (3/3 plans) — NER-03, NER-04, QC-01
+- [x] Phase 7: Promote BERN2 to Primary, union preserved (4/4 plans) — GENE-05/06/07/08, NER-02, PROV-01
+- [x] Phase 8: External-IRI Labeling (3/3 plans) — LABEL-01/02/03/04
+
+BERN2 promoted to featured/primary gene mapping (regex retained as provenance-tagged
+secondary; canonical predicate keeps the union); PROV-O provenance; cache pre-warm + graceful
+degradation; QC gene/triple delta-guard; flag-gated `rdfs:label` on all numeric IRIs.
+Re-scoped from planned phases 6–10 — phases 9 (XML) & 10 (COMPAT) deferred to v1.3.
+See `milestones/v1.2-ROADMAP.md` and `milestones/v1.2-MILESTONE-AUDIT.md`.
+
+</details>
+
+### 📋 v1.3 XML Coverage, COMPAT Gate & Production Promotion (Phases 9–12)
+
+- [x] **Phase 9: XML→RDF Coverage Audit, Gap Fixes & Coverage Ratchet** — Re-runnable JSON coverage report, fix high-value instance-present gaps, coverage-ratchet test + per-element triple-count QC guards (completed 2026-06-18)
+- [x] **Phase 10: `--enable-iri-labels` CLI Flag Wiring** — Mechanical CLI→PipelineConfig plumbing, off by default, mirrors `--enable-bern2`; precondition for the flip (completed 2026-06-18)
+- [ ] **Phase 11: COMPAT Closing Gate** — Full-corpus, date-masked byte-identity check on a pinned in-repo flags-off golden, proven green before the flip
+- [ ] **Phase 12: Production Flag Flip (BERN2-Primary + IRI Labels)** — Flip flags in both weekly + regression workflows, gated on green COMPAT, downstream queries pre-flighted
+
+> Self-hosted BERN2 (NER-05) was evaluated and **dropped** from v1.3 (infeasible on current
+> cluster hardware — see PROJECT.md Out of Scope / REQUIREMENTS.md Future). No phase for it.
 
 ## Phase Details
 
-### Phase 1: Foundation
-**Goal**: The pipeline runs from a typed config dataclass, the XML parser is an isolated testable module, and HGNC gene data is downloaded dynamically at startup
-**Depends on**: Nothing (first phase)
-**Requirements**: MOD-01, MOD-02, GENE-01, GENE-02
+### Phase 9: XML→RDF Coverage Audit, Gap Fixes & Coverage Ratchet
+**Goal**: A maintainer can see exactly which AOP-Wiki XML elements the parser drops, the high-value gaps are closed, and the build fails if coverage ever regresses.
+**Depends on**: Nothing within v1.3 (fully independent of flags / endpoints / COMPAT — lands first)
+**Requirements**: XML-01, XML-02, XML-03
 **Success Criteria** (what must be TRUE):
-  1. The pipeline can be started by constructing a `PipelineConfig` dataclass — no `exec()` or string-replacement config injection exists anywhere in the codebase
-  2. `src/aopwiki_rdf/parser/xml_parser.py` can be imported and called independently with an XML file path, returning typed entity objects, without running the full pipeline
-  3. HGNC gene data is fetched from the BioMart HTTP endpoint at pipeline startup; a `len(genedict) < 19000` assertion guards against a failed or empty download
-  4. When the BioMart download fails, the pipeline falls back to the cached static `HGNCgenes.txt` and logs a warning
-**Plans:** 4 plans
+  1. A maintainer can run one re-runnable script that emits machine-readable JSON listing each XML element/attribute, whether the parser emits it, per-element occurrence counts, and snapshot-over-snapshot deltas.
+  2. Coverage gaps are computed against actual quarterly-snapshot instance data (not bare XSD declarations), so the report surfaces real dropped content rather than optional/empty elements.
+  3. High-value gaps (elements present in instance data but absent from the RDF), ranked by occurrence-count × semantic value, are fixed in the parser/writer and now appear in the output.
+  4. A coverage-ratchet regression test plus per-element triple-count QC guards fail the build when coverage drops below the post-fix baseline, extending the existing `HEAD~1` delta-guard pattern.
+**Plans**: 4 plans
+- [x] 09-01-PLAN.md — Wave 0: vendor pinned XSD + provenance, fix gitignore swallow, allowlist (D-09), Nyquist test stubs + regression fixture
+- [x] 09-02-PLAN.md — XML-01: re-runnable coverage_audit.py + committed coverage-report.json (instance vs covered, both axes, graceful historical skip)
+- [x] 09-03-PLAN.md — XML-02: maintainer-selected high-value gap fixes in parser/writer (additive), prefix registration
+- [x] 09-04-PLAN.md — XML-03: freeze post-fix ratchet baseline (D-11), per-element guard + --warn-only, CI two-posture wiring
 
-Plans:
-- [ ] 01-01-PLAN.md — Package scaffold, PipelineConfig dataclass, rewrite run_conversion.py
-- [ ] 01-02-PLAN.md — Extract XML parser into standalone module with tests
-- [ ] 01-03-PLAN.md — Dynamic HGNC download with fallback and HGNC TSV parser
-- [ ] 01-04-PLAN.md — Gap closure: eliminate exec() from pipeline.py, wire HGNC download into execution path
-
-### Phase 2: Module Extraction
-**Goal**: All pipeline logic lives in isolated modules with defined contracts; a thin orchestrator wires them together; the modularized output is verified triple-for-triple against the current monolithic script
-**Depends on**: Phase 1
-**Requirements**: MOD-03, MOD-04, MOD-05, MOD-06, MOD-07
+### Phase 10: `--enable-iri-labels` CLI Flag Wiring
+**Goal**: A maintainer can toggle IRI labels from the command line, with the flag wired through to the pipeline config and off by default — making the production flip a one-line workflow change.
+**Depends on**: Nothing within v1.3 (mechanical; can land any time before Phase 12)
+**Requirements**: LABEL-05
 **Success Criteria** (what must be TRUE):
-  1. `mapping/gene_mapper.py`, `mapping/chemical_mapper.py`, and `rdf/writer.py` can each be imported and instantiated without importing or running the other modules
-  2. A thin `pipeline.py` orchestrator replaces the monolithic execution path and passes named data objects between stages (no shared global state)
-  3. Running the modularized pipeline against the current AOP-Wiki XML produces a triple count within 0% of the monolithic script output (regression test passes)
-  4. Unit tests exist for the gene mapper and chemical mapper modules that run with real BridgeDb API calls
-**Plans:** 6/6 plans complete
+  1. Running `run_conversion.py --enable-iri-labels` sets `PipelineConfig.enable_iri_labels = True` and produces output carrying the labels.
+  2. With the flag absent, `enable_iri_labels` stays `False` and the output is byte-identical to today's flag-off output (the labeling code does not fire).
+  3. The flag mirrors the existing `--enable-bern2` flag in argparse surface and help text, and the forbidden-token / CLI guard is extended to cover it.
+**Plans**: 1 plan
+- [x] 10-01-PLAN.md — LABEL-05: wire --enable-iri-labels into run_conversion.py (flat copy of --enable-bern2), off by default, with build_config testability helper + config-default and CLI argparse->config wiring tests
 
-Plans:
-- [ ] 02-01-PLAN.md — Shared foundations: BridgeDb client, protein ontology mapper, RDF namespaces
-- [ ] 02-02-PLAN.md — Extract gene mapper module with unit tests
-- [ ] 02-03-PLAN.md — Extract chemical mapper module, clean parser duplicates, unit tests
-- [ ] 02-04-PLAN.md — Extract RDF writer module with unit tests
-- [ ] 02-05-PLAN.md — Thin orchestrator replacing monolith, structural tests
-- [ ] 02-06-PLAN.md — Triple-for-triple regression test (monolith vs modularized)
-
-### Phase 3: Predicate Correction
-**Goal**: All cross-database identifier links use semantically correct predicates; HGNC gene symbols remain queryable; downstream SPARQL consumers are audited and a safe transition path exists
-**Depends on**: Phase 2
-**Requirements**: PRED-01, PRED-02, PRED-03, PRED-04, GENE-03, GENE-04
+### Phase 11: COMPAT Closing Gate
+**Goal**: A maintainer can prove, byte-for-byte, that the flag-gated v1.2/v1.3 infrastructure reproduces production output exactly when the flags are off — the safety proof that must exist before the flip.
+**Depends on**: Phase 10 (the `--enable-iri-labels` flag must exist so the gate can exercise flags-off vs flags-on deterministically)
+**Requirements**: COMPAT-01
 **Success Criteria** (what must be TRUE):
-  1. `owl:sameAs` is used for all cross-database identifier links (chemicals and genes); `skos:exactMatch` no longer appears in the generated RDF for identifier links
-  2. Gene triples use numeric HGNC IDs for identifier URIs and retain gene symbols as `rdfs:label` or `skos:prefLabel` — a SPARQL query for a known gene symbol returns the correct gene node
-  3. A documented inventory of `skos:exactMatch`-dependent queries in `aopwiki-snorql-extended` exists, with each query marked as updated or confirmed unaffected
-  4. The existing three-stage precision filtering (screening, precision matching, false positive filtering) is preserved and unit-tested in the isolated gene mapper module
-**Plans:** 2/3 plans executed
+  1. A full-corpus byte-identity check (`scripts/compat_check.py`) compares a fresh flags-off run against a pinned, in-repo flags-off golden regenerated on a committed XML snapshot — never the stale `production-rdf-backup/`.
+  2. The check masks embedded wall-clock dates (`# Generated:` header, `pav:createdOn` in VoID/ServiceDescription) so it does not false-fail across calendar days — verified to pass on two different dates with no data change.
+  3. No blank-node canonicalization is implemented: the writer emits manual f-string Turtle (not `rdflib.serialize()`), so the gate relies only on date-masking plus the existing `sorted()` iteration order.
+  4. The gate runs as a manual / milestone `workflow_dispatch` job (`compat-gate.yml`), not in the weekly per-commit pytest, and reports a readable per-subject diff on failure.
+**Plans**: TBD
 
-Plans:
-- [ ] 03-01-PLAN.md — Re-key gene mapper to numeric HGNC IDs with symbol_lookup, update tests
-- [ ] 03-02-PLAN.md — Predicate correction (owl:sameAs), dual-predicate config flag, gene rdfs:label
-- [ ] 03-03-PLAN.md — SNORQL audit: update SPARQL queries, create GitHub issue for external repo
-
-### Phase 4: Output Separation
-**Goal**: Pure AOP-Wiki source triples and pipeline-enriched triples live in distinct TTL files with VoID subset declarations linking them; downstream consumers can load either or both files
-**Depends on**: Phase 3
-**Requirements**: SEP-01, SEP-02, SEP-03, DOC-03, DOC-04
+### Phase 12: Production Flag Flip (BERN2-Primary + IRI Labels)
+**Goal**: BERN2-primary gene annotations and IRI labels go live in `master/data/`, with downstream consumers verified to still work — promoting the v1.2 infrastructure to production output.
+**Depends on**: Phase 11 (the flip commits only once COMPAT-01 is green) and Phase 10 (the CLI flag being flipped)
+**Requirements**: PROMO-01
 **Success Criteria** (what must be TRUE):
-  1. `AOPWikiRDF.ttl` contains only triples directly derived from AOP-Wiki XML source data — it has no imports from `mapping/` modules and no gene association or chemical cross-reference triples
-  2. A separate enriched TTL file contains all gene associations and chemical cross-references with provenance — loading only this file alongside `AOPWikiRDF.ttl` restores the full joined query capability
-  3. The VoID metadata file declares `void:subset` relationships between the pure and enriched files, and includes `void:triples`, `dcterms:license`, and `pav:importedFrom` for the BridgeDb enrichment
-  4. `void:exampleResource` entries are present in VoID for each core entity type (AOP, Key Event, KER, Chemical)
-**Plans:** 4 plans
-
-Plans:
-- [ ] 04-01-PLAN.md — Split writer: ENRICHED_PREFIXES, write_enriched_rdf, remove cross-refs from write_aop_rdf
-- [ ] 04-02-PLAN.md — Pipeline wiring: enriched stage, triple counting, VoID parent/subset rewrite
-- [ ] 04-03-PLAN.md — GitHub Actions updates and integration tests for output separation
-- [ ] 04-04-PLAN.md — Gap closure: fix test namespace URIs and enriched file header assertions
-
-### Phase 5: Validation and Documentation
-**Goal**: SHACL shapes validate the RDF structure in a separate GitHub Actions workflow; schema and conversion documentation exists; a BioBERT prototype produces a comparative precision/recall report
-**Depends on**: Phase 4
-**Requirements**: VAL-01, VAL-02, VAL-03, VAL-04, DOC-01, DOC-02, BIO-01, BIO-02, BIO-03
-**Success Criteria** (what must be TRUE):
-  1. A property population audit has been run against the current RDF output and identifies which properties are required vs optional per entity type — this audit precedes any SHACL shape definition
-  2. SHACL shapes exist for `aopo:AdverseOutcomePathway`, `aopo:KeyEvent`, KER, Stressor, and Chemical entity types and produce a machine-readable `sh:ValidationReport` when run against the full RDF output
-  3. SHACL validation runs in a separate triggered GitHub Actions workflow (not inline with RDF generation) and completes within GitHub Actions time limits
-  4. Schema documentation describes the RDF structure, namespaces, and entity types; conversion documentation covers the gene mapping algorithm, chemical mapping strategy, and precision filtering
-  5. A BioBERT NER prototype has been run on a subset of Key Event descriptions and produced a documented precision/recall comparison against the current HGNC regex-based approach with a written feasibility assessment
-**Plans:** 4/4 plans complete
-
-Plans:
-- [ ] 05-01-PLAN.md — Property population audit and SHACL shape definitions
-- [ ] 05-02-PLAN.md — SHACL validation GitHub Actions workflow and badge
-- [ ] 05-03-PLAN.md — Schema and conversion documentation with SPARQL examples
-- [ ] 05-04-PLAN.md — BioBERT NER prototype with precision/recall comparison and feasibility report
+  1. The flags are flipped on in BOTH `rdfgeneration.yml` and `test-python-conversion.yml`, kept mirrored, so the weekly run and the regression run emit identical flags-on output.
+  2. Before the flip commit touches `master/data/`, the curated downstream SPARQL `.rq` queries and the dashboard `methodology_notes.json` queries are pre-flighted against a flags-on Virtuoso load and confirmed to still resolve.
+  3. The live `master/data/*.ttl` carries BERN2-primary annotations + IRI labels, the VoID dataset version is bumped, and `docs/schema.md` documents the newly live predicates.
+  4. The flip is additive (counts go up), so the QC delta-guard does not false-alarm; the elevated post-flip baseline is left intact (the guard intentionally becomes more sensitive to BERN2 outages — `--drop-pct` is not loosened).
+**Plans**: TBD
 
 ## Progress
 
-**Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
-
-| Phase | Plans Complete | Status | Completed |
-|-------|----------------|--------|-----------|
-| 1. Foundation | 4/4 | Complete | 2026-03-05 |
-| 2. Module Extraction | 6/6 | Complete   | 2026-03-06 |
-| 3. Predicate Correction | 2/3 | In Progress|  |
-| 4. Output Separation | 3/4 | In Progress|  |
-| 5. Validation and Documentation | 4/4 | Complete   | 2026-03-09 |
+| Phase | Milestone | Plans Complete | Status | Completed |
+|-------|-----------|----------------|--------|-----------|
+| 1. Foundation | v1.0 | 4/4 | Complete | 2026-03-05 |
+| 2. Module Extraction | v1.0 | 6/6 | Complete | 2026-03-06 |
+| 3. Predicate Correction | v1.0 | 3/3 | Complete | 2026-03-08 |
+| 4. Output Separation | v1.0 | 4/4 | Complete | 2026-03-09 |
+| 5. Validation and Documentation | v1.0 | 4/4 | Complete | 2026-03-09 |
+| A–C. BERN2 NER Enrichment | v1.1 | — | Complete | 2026-05-18 |
+| 6. BERN2 Hardening + QC Delta-Guard | v1.2 | 3/3 | Complete | 2026-06-01 |
+| 7. Promote BERN2 to Primary | v1.2 | 4/4 | Complete | 2026-06-01 |
+| 8. External-IRI Labeling | v1.2 | 3/3 | Complete | 2026-06-01 |
+| 9. XML→RDF Coverage Audit & Ratchet | v1.3 | 4/4 | Complete   | 2026-06-18 |
+| 10. IRI-Labels CLI Flag Wiring | v1.3 | 1/1 | Complete    | 2026-06-18 |
+| 11. COMPAT Closing Gate | v1.3 | 0/? | Not started | - |
+| 12. Production Flag Flip | v1.3 | 0/? | Not started | - |

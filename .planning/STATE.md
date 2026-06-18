@@ -1,41 +1,57 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: complete
-stopped_at: Completed 05-04-PLAN.md (final plan)
-last_updated: "2026-03-09T13:15:07.763Z"
-last_activity: 2026-03-09 — Completed 05-04 BioBERT NER feasibility report (final plan)
+milestone: v1.3
+milestone_name: XML Coverage, COMPAT Gate & Production Promotion
+status: ready_to_plan
+stopped_at: Phase 10 complete (1/1) — ready to discuss Phase 11
+last_updated: 2026-06-18T13:29:20.677Z
+last_activity: 2026-06-18 -- Phase 10 execution started
 progress:
-  total_phases: 5
-  completed_phases: 5
-  total_plans: 21
-  completed_plans: 21
-  percent: 100
+  total_phases: 4
+  completed_phases: 1
+  total_plans: 5
+  completed_plans: 5
+  percent: 25
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-04)
+See: .planning/PROJECT.md (updated 2026-06-17)
 
 **Core value:** Produce accurate, well-structured RDF from AOP-Wiki XML every week — reliably and with traceable provenance for pure vs enriched content.
-**Current focus:** Phase 5 — Validation and Documentation
+**Current focus:** Phase 11 — compat closing gate
+
+> **Milestone history:** v1.0 (phases 1-5, archived) → v1.1 BERN2 NER enrichment (phases A-C, shipped 2026-05-18, retrospective) → v1.2 (phases 6-8: BERN2-primary + IRI labels). v1.2 was planned as phases 6-10 but re-scoped to what shipped; XML coverage (XML-01/02/03) and the COMPAT closing gate (COMPAT-01) deferred to v1.3. ROADMAP.md now carries the v1.3 milestone (Phases 9–12) alongside the archived v1.0–v1.2 sections. See `v1.2-MILESTONE-AUDIT.md`.
 
 ## Current Position
 
-Phase: 5 of 5 (Validation and Documentation)
-Plan: 4 of 4 in current phase
-Status: complete
-Last activity: 2026-03-09 — Completed 05-04 BioBERT NER feasibility report (final plan)
+Phase: 11
+Plan: Not started
+Status: Ready to plan
+Last activity: 2026-06-18
 
-Progress: [██████████] 100%
+## v1.3 Phase Map
+
+| Phase | Goal | Requirements | Depends on |
+|-------|------|--------------|------------|
+| 9 | XML→RDF coverage audit, fix high-value gaps, coverage ratchet | XML-01/02/03 | — (independent, first) |
+| 10 | `--enable-iri-labels` CLI flag wiring (off by default) | LABEL-05 | — (precondition for the flip) |
+| 11 | COMPAT full-corpus byte-identity closing gate (date-masked, pinned golden) | COMPAT-01 | Phase 10 |
+| 12 | Production flag flip (BERN2-primary + IRI labels), gated on green COMPAT | PROMO-01 | Phases 10, 11 |
+
+**Ordering invariants (from research):**
+
+- COMPAT-01 (Phase 11) MUST be proven green BEFORE the flip (Phase 12).
+- XML parser fixes (Phase 9 — intentionally change output) MUST NOT be co-mingled with flag-gated promotions (Phases 10–12 — must not change flag-off output).
+- NER-05 (self-hosted BERN2) is **out of scope** for v1.3 — no phase.
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
+
+- Total plans completed (v1.3): 0
 - Average duration: — min
 - Total execution time: 0.0 hours
 
@@ -43,95 +59,43 @@ Progress: [██████████] 100%
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| — | 0 | - | - |
+| 09 | 4 | - | - |
+| 10 | 1 | - | - |
 
 **Recent Trend:**
+
 - Last 5 plans: —
 - Trend: —
 
 *Updated after each plan completion*
-| Phase 01 P01 | 3 | 2 tasks | 9 files |
-| Phase 01 P02 | 4 | 2 tasks | 6 files |
-| Phase 01 P03 | 2 | 2 tasks | 6 files |
-| Phase 02 P02 | 4 | 2 tasks | 3 files |
-| Phase 02 P03 | 4 | 2 tasks | 3 files |
-| Phase 02 P05 | 8 | 2 tasks | 3 files |
-| Phase 02 P06 | 52 | 2 tasks | 2 files |
-| Phase 03 P01 | 4 | 2 tasks | 4 files |
-| Phase 03 P03 | 4 | 2 tasks | 3 files |
-| Phase 03 P02 | 5 | 2 tasks | 4 files |
-| Phase 04 P01 | 2 | 2 tasks | 2 files |
-| Phase 04 P03 | 1 | 2 tasks | 3 files |
-| Phase 04 P02 | 2 | 2 tasks | 3 files |
-| Phase 04 P04 | 1 | 2 tasks | 2 files |
-| Phase 05 P03 | 4 | 2 tasks | 4 files |
-| Phase 05 P01 | 9 | 2 tasks | 16 files |
-| Phase 05 P02 | 2 | 2 tasks | 3 files |
-| Phase 05 P04 | 9 | 3 tasks | 7 files |
 
 ## Accumulated Context
 
 ### Decisions
 
 Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
+Recent decisions affecting v1.3 work:
 
-- Modularize into separate Python modules: 2,300-line monolith is hard to test and maintain
-- exec() replacement must be the first commit before any module extraction
-- Full gene mapping rework over incremental fix: HGNC static download + wrong predicates need holistic solution
-- Predicate changes are breaking — SNORQL audit required before Phase 3 ships
-- Separate pure vs enriched RDF: provenance clarity; file-level separation is sufficient (named graphs deferred)
-- RDF output validation only (not source XML): focus on what we control and ship
-- [Phase 01]: Transitional exec in pipeline.py: main(config) API is clean but internally execs monolith. Removed in Phase 2.
-- [Phase 01]: Header skipped unconditionally to handle both old Synonyms and new Alias symbols HGNC formats
-- [Phase 01]: download_hgnc_data takes individual parameters not PipelineConfig for decoupling
-- [Phase 01]: Config optional for parse_aopwiki_xml: when None, network calls skipped for offline testing
-- [Phase 01]: celldict/organdict populated from KE cell-term/organ-term for standalone access
-- [Phase 02]: Generic batch_xrefs pattern factored from gene/chemical BridgeDb implementations with parse_fn + fallback_fn injection
-- [Phase 02]: Protein ontology return keys prefixed pro_ (pro_hgnclist) to prevent confusion with gene-mapping hgnclist
-- [Phase 02]: GENES_PREFIXES and VOID_PREFIXES stored as exact string constants for byte-identical RDF output
-- [Phase 02]: BridgeDb batch logic inlined in gene_mapper rather than importing from bridgedb.py (parallel wave)
-- [Phase 02]: False positive filter constants promoted to module-level for testability
-- [Phase 02]: Lazy import in parser for chemical_mapper to avoid circular dependency between parser and mapping packages
-- [Phase 02]: Chemical mapper reads CAS from chedict property rather than re-parsing XML
-- [Phase 02]: Orchestrator parses XML separately to provide xml_root to mapping stages (ParsedEntities lacks root/ns fields)
-- [Phase 02]: Chemical identifier lists reconstructed from chedict since ParsedEntities does not expose them
-- [Phase 02]: parse_aopwiki_xml called with config=None to skip internal promapping, deferring to protein_ontology module
-- [Phase 02]: Regression test normalizes file:// URIs, blank nodes, ISO dates, and ctime dates before NTriples comparison
-- [Phase 02]: Redundant local import time in monolith removed to fix UnboundLocalError scoping bug
-- [Phase 03]: Keep BridgeDb system code H (symbol) with symbol_lookup reverse mapping instead of switching to Hac
-- [Phase 03]: Gene dicts re-keyed from symbol to numeric HGNC ID with symbol_lookup flowing through pipeline context
-- [Phase 03]: No hgnc:SYMBOL patterns found in SPARQL queries -- no additional gene URI migration needed
-- [Phase 03]: GitHub issue approach for tracking external aopwiki-snorql-extended repo updates
-- [Phase 03]: config=None defaults to owl:sameAs only for safe backward compatibility
-- [Phase 03]: rdfs:label on gene nodes uses symbol_lookup with fallback to numeric ID
-- [Phase 04]: Enriched file emits ONLY owl:sameAs cross-references -- no type declarations or base properties on subjects
-- [Phase 04]: Mapped identifier sections stay in write_aop_rdf as entity descriptions, not cross-references
-- [Phase 04]: Tests use ENRICHED_OBJECT_PREFIXES list to detect cross-reference triples rather than checking all owl:sameAs
-- [Phase 04]: Combined triple count regression threshold set at 150,000 based on current output estimates
-- [Phase 04]: Triple counting uses rdflib Graph parse for accuracy over regex-based line counting
-- [Phase 04]: VoID parent dataset uses :AOPWikiRDF (no extension) with void:subset to three content files
-- [Phase 04]: Header lines written before ENRICHED_PREFIXES constant rather than modifying constant
-- [Phase 05]: Property tables in schema docs derived directly from writer.py source, not guessed
-- [Phase 05]: SPARQL examples adapted for current schema (owl:sameAs, numeric HGNC IDs)
-- [Phase 05]: Documentation completeness enforced via pytest tests (10 assertions)
-- [Phase 05]: Violation threshold set to 100% population to guarantee zero violations on current data
-- [Phase 05]: Per-file SHACL validation targeting to avoid cross-file shape conflicts
-- [Phase 05]: Untyped subjects in enriched TTL targeted via sh:targetSubjectsOf owl:sameAs
-- [Phase 05]: SVG badge generated inline via Python script rather than shields.io endpoint
-- [Phase 05]: BioBERT NER not recommended for production: 5% overlap with regex, different abstraction levels, unsolved entity normalization
+- **[v1.2]** `enable_iri_labels` shipped programmatic-only — v1.3 adds the CLI flag (LABEL-05, Phase 10) and flips it in production (PROMO-01, Phase 12).
+- **[v1.2]** QC delta-guard baselines on `HEAD~1`, not `production-rdf-backup/` — Phase 9 coverage ratchet extends this same pattern; Phase 11 COMPAT golden likewise must NOT use the stale `production-rdf-backup/`.
+- **[v1.3 research]** Writer emits manual f-string Turtle, not `rdflib.serialize()` — COMPAT (Phase 11) needs only date-masking + existing `sorted()`, no blank-node canonicalization.
+- **[v1.3 research]** Coverage gaps computed vs instance data, not bare XSD declarations — XSD-only would flood the report with optional/empty elements; baseline the ratchet after fixing high-value gaps.
+- **[v1.3 research]** NER-05 dropped — full BERN2 needs ~63.5 GB RAM + GPU; cluster nodes have ~31 GB and no GPU (verified by SSH 2026-06-17). Keep external API + committed cache.
 
 ### Pending Todos
 
-None yet.
+- [Phase 9 planning] Confirm AOP-XML XSD per-quarter versioning — if one global XSD, derive the per-snapshot element universe from instance data.
+- [Phase 11 planning] Decide `data/compat-golden/` repo footprint — commit TTLs vs SHA-256 manifests (by file size).
 
 ### Blockers/Concerns
 
-- [RESOLVED] The `aopwiki-snorql-extended` SPARQL query inventory has been audited; GitHub issue #70 tracks external repo updates
-- [Pre-Phase 5] Property population audit (SPARQL query against current TTL) must run before any SHACL shape is written
+- [RESOLVED, v1.0] Property population audit ran before SHACL shapes were written (scripts/property_audit.py → generate_shapes.py)
+- [Carried to v1.3] Phase 12 flip must pre-flight downstream SPARQL `.rq` + dashboard `methodology_notes.json` against a flags-on Virtuoso load before touching `master/data/` (new predicates can break consumers).
 
 ## Session Continuity
 
-Last session: 2026-03-09T13:13:34Z
-Stopped at: Completed 05-04-PLAN.md (final plan, all phases complete)
-Resume file: None
+Last session: 2026-06-18T12:55:33.374Z
+Stopped at: Phase 10 context gathered
+Resume file: .planning/phases/10-enable-iri-labels-cli-flag-wiring/10-CONTEXT.md
+Next: `/gsd-plan-phase 9` (XML→RDF coverage audit + ratchet)
