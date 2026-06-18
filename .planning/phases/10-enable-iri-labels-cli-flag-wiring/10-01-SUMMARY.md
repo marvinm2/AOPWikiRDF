@@ -49,7 +49,7 @@ Wired a `--enable-iri-labels` argparse flag on `run_conversion.py` through to `P
 
 ## Verification
 
-- `python -c "import run_conversion; assert build_config(['--enable-iri-labels']).enable_iri_labels is True; assert build_config([]).enable_iri_labels is False"` exits 0.
+- `python -c "import run_conversion; assert run_conversion.build_config(['--enable-iri-labels']).enable_iri_labels is True; assert run_conversion.build_config([]).enable_iri_labels is False"` exits 0.
 - Scoped test run: `pytest tests/unit/test_run_conversion_cli.py tests/unit/test_ner_el_mapper.py -k "iri_labels"` => 4 passed.
 - `git diff --stat ae148a1 HEAD` touches only `run_conversion.py`, `tests/unit/test_ner_el_mapper.py`, and `tests/unit/test_run_conversion_cli.py` — NOT `src/aopwiki_rdf/config.py` and NO `.github/` workflow files.
 - `tests/integration/test_compat_flag_off.py` is unchanged; the `--enable-bern2` argument block is byte-identical to base.
