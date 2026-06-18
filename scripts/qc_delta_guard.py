@@ -94,6 +94,117 @@ def _delta_pct(baseline, new):
     return (new - baseline) / baseline
 
 
+def count_predicate(graph, predicate_uri):
+    """Return the number of triples whose predicate is ``predicate_uri``.
+
+    Counts by exact URI (no prefix parsing), exactly the way
+    ``count_gene_associations`` counts ``edam:data_1025``. Used by the
+    per-element guard to count each fixed-gap element's predicate.
+    """
+    return sum(1 for _ in graph.triples((None, URIRef(predicate_uri), None)))
+
+
+def compare_per_element(new_path, baseline_path, element_predicates, drop_pct):
+    """Compare per-element predicate counts in new vs baseline TTL.
+
+    For each ``element -> predicate_uri`` pair, count triples by exact URI in
+    both graphs and apply the SAME relative floor used for the gene/total
+    checks (``baseline > 0 and new < (1 - drop_pct) * baseline``, D-10) — never
+    an absolute magic number. A MISSING baseline or new file is a hard breach
+    (cannot prove safety), mirroring ``compare``.
+
+    Parameters
+    ----------
+    new_path : str
+        Path to the freshly generated TTL holding the fixed-gap predicates.
+    baseline_path : str
+        Path to the (HEAD~1) baseline TTL.
+    element_predicates : dict
+        ``{element_name: predicate_uri}`` map (from coverage-ratchet-baseline).
+    drop_pct : float
+        Fractional drop threshold; a drop strictly greater than this fraction
+        for any tracked predicate is a breach.
+
+    Returns
+    -------
+    dict
+        ``{element: {predicate, baseline_count, new_count, delta_pct,
+        breached, reasons}}`` for every tracked element.
+    """
+    per_element = {}
+
+    missing_reason = None
+    if not os.path.exists(baseline_path):
+        missing_reason = f"missing baseline file: {baseline_path}"
+    elif not os.path.exists(new_path):
+        missing_reason = f"missing new file: {new_path}"
+
+    baseline_graph = None
+    new_graph = None
+    parse_reason = None
+    if missing_reason is None:
+        try:
+            baseline_graph = load_graph(baseline_path)
+        except Exception as exc:  # noqa: BLE001 - any parse failure is a hard breach
+            parse_reason = f"baseline parse failure ({os.path.basename(baseline_path)}): {exc}"
+        if parse_reason is None:
+            try:
+                new_graph = load_graph(new_path)
+            except Exception as exc:  # noqa: BLE001 - any parse failure is a hard breach
+                parse_reason = f"new parse failure ({os.path.basename(new_path)}): {exc}"
+
+    for element, predicate in element_predicates.items():
+        entry = {
+            "predicate": predicate,
+            "baseline_count": None,
+            "new_count": None,
+            "delta_pct": None,
+            "breached": False,
+            "reasons": [],
+        }
+        hard_reason = missing_reason or parse_reason
+        if hard_reason is not None:
+            entry["breached"] = True
+            entry["reasons"].append(hard_reason)
+            per_element[element] = entry
+            continue
+
+        baseline_count = count_predicate(baseline_graph, predicate)
+        new_count = count_predicate(new_graph, predicate)
+        entry["baseline_count"] = baseline_count
+        entry["new_count"] = new_count
+        entry["delta_pct"] = _delta_pct(baseline_count, new_count)
+
+        # Relative floor (D-10), identical math to the gene/total checks.
+        if baseline_count > 0 and new_count < (1 - drop_pct) * baseline_count:
+            entry["breached"] = True
+            entry["reasons"].append(
+                f"element <{element}> ({predicate}) dropped "
+                f"{entry['delta_pct'] * 100:.2f}% "
+                f"({baseline_count} -> {new_count}), exceeds {drop_pct * 100:.1f}% threshold"
+            )
+        per_element[element] = entry
+
+    return per_element
+
+
+def load_element_predicate_map(coverage_baseline_path):
+    """Read the element->predicate map from a coverage-ratchet-baseline.json.
+
+    The baseline JSON is the single source of truth shared by the ratchet and
+    the per-element guard (Open Question #2). Expects an ``element_predicates``
+    object mapping each fixed-gap element name to its predicate URI.
+
+    Returns
+    -------
+    dict
+        ``{element_name: predicate_uri}``. Empty when the key is absent.
+    """
+    with open(coverage_baseline_path) as fh:
+        data = json.load(fh)
+    return data.get("element_predicates", {})
+
+
 def compare(new_path, baseline_path, drop_pct, check_genes):
     """Compare one new TTL against its baseline.
 
@@ -206,6 +317,14 @@ def print_report(report):
         if entry["reasons"]:
             for reason in entry["reasons"]:
                 print(f"  BREACH: {reason}")
+    if "per_element" in report:
+        print("\nPer-element predicate counts (relative floor):")
+        for element, entry in report["per_element"].items():
+            print(f"  <{element}> ({entry['predicate']}): "
+                  f"baseline={entry['baseline_count']} new={entry['new_count']} "
+                  f"delta={_fmt_pct(entry['delta_pct'])}")
+            for reason in entry["reasons"]:
+                print(f"    BREACH: {reason}")
     print()
     if report["breached"]:
         print("RESULT: FAIL (delta guard breached)")
@@ -214,7 +333,8 @@ def print_report(report):
 
 
 def run(new_dir, baseline_dir, drop_pct=DEFAULT_DROP_PCT,
-        report_path=DEFAULT_REPORT_PATH):
+        report_path=DEFAULT_REPORT_PATH, per_element=False,
+        element_predicates=None):
     """Compare both checked files and write the JSON report.
 
     Parameters
@@ -227,11 +347,19 @@ def run(new_dir, baseline_dir, drop_pct=DEFAULT_DROP_PCT,
         Fractional drop threshold (default 0.05).
     report_path : str
         Where to write qc-delta-report.json.
+    per_element : bool
+        When True, ALSO run the per-element predicate-count guard (D-10) using
+        ``element_predicates``. Each tracked predicate is counted in the main
+        TTL of new_dir vs baseline_dir and held to the same relative floor.
+    element_predicates : dict, optional
+        ``{element_name: predicate_uri}`` map. When ``per_element`` is True and
+        this is None, the per-element pass is a no-op (no elements to check).
 
     Returns
     -------
     dict
         {"drop_pct", "new_dir", "baseline_dir", "files": [...], "breached": bool}
+        and, when ``per_element``, a "per_element" object keyed by element name.
     """
     checks = [
         (MAIN_FILE, False),
@@ -260,6 +388,23 @@ def run(new_dir, baseline_dir, drop_pct=DEFAULT_DROP_PCT,
         "breached": any(e["breached"] for e in file_reports),
     }
 
+    # Per-element guard (D-10): the fixed-gap predicates live in the main TTL,
+    # so count them there. Folds into the same breached/reasons aggregation.
+    if per_element:
+        element_predicates = element_predicates or {}
+        per_element_report = compare_per_element(
+            os.path.join(new_dir, MAIN_FILE),
+            os.path.join(baseline_dir, MAIN_FILE),
+            element_predicates=element_predicates,
+            drop_pct=drop_pct,
+        )
+        report["per_element"] = per_element_report
+        for entry in per_element_report.values():
+            aggregated_reasons.extend(entry["reasons"])
+            if entry["breached"]:
+                report["breached"] = True
+        report["reasons"] = aggregated_reasons
+
     with open(report_path, "w") as fh:
         json.dump(report, fh, indent=2, sort_keys=True)
 
@@ -284,16 +429,41 @@ def main(argv=None):
     parser.add_argument("--report-path", default=DEFAULT_REPORT_PATH,
                         help="Path to write qc-delta-report.json "
                              "(default: qc-delta-report.json)")
+    parser.add_argument("--coverage-baseline", default=None,
+                        help="Path to scripts/coverage-ratchet-baseline.json. "
+                             "When given, also run the per-element predicate "
+                             "guard using its element->predicate map (D-10).")
+    parser.add_argument("--warn-only", action="store_true",
+                        help="On breach, print ::warning:: lines and return 0 "
+                             "instead of 1 (weekly warn-not-block posture, D-08).")
     args = parser.parse_args(argv)
+
+    per_element = args.coverage_baseline is not None
+    element_predicates = None
+    if per_element:
+        element_predicates = load_element_predicate_map(args.coverage_baseline)
 
     report = run(
         new_dir=args.new_dir,
         baseline_dir=args.baseline_dir,
         drop_pct=args.drop_pct,
         report_path=args.report_path,
+        per_element=per_element,
+        element_predicates=element_predicates,
     )
     print_report(report)
-    return 1 if report["breached"] else 0
+
+    if not report["breached"]:
+        return 0
+
+    # Breach. In warn-only mode (D-08 weekly posture) surface every reason as a
+    # ::warning:: and exit 0 so a transient upstream hiccup can't stall the
+    # live data release; otherwise fail the job (exit 1).
+    if args.warn_only:
+        for reason in report["reasons"]:
+            print(f"::warning::{reason}")
+        return 0
+    return 1
 
 
 if __name__ == "__main__":
