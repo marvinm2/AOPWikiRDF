@@ -154,19 +154,21 @@ _FLAG_OFF_MAIN = (
 )
 
 
-def _write_corpus(directory, main_text, *, with_all_files=True):
+def _write_corpus(directory, main_text, *, with_all_files=True, genes_text=""):
     """Write a corpus dir holding the five CORPUS_FILES.
 
-    ``main_text`` is the content of AOPWikiRDF.ttl; the remaining files are
-    written empty (the gate masks+compares them too, so they must exist to
-    avoid a missing-file hard breach).
+    ``main_text`` is the content of AOPWikiRDF.ttl; ``genes_text`` is the content
+    of AOPWikiRDF-Genes.ttl (default empty). The remaining files are written
+    empty (the gate masks+compares them too, so they must exist to avoid a
+    missing-file hard breach).
     """
     os.makedirs(directory, exist_ok=True)
     with open(os.path.join(directory, "AOPWikiRDF.ttl"), "w", encoding="utf-8") as fh:
         fh.write(main_text)
     if with_all_files:
+        with open(os.path.join(directory, "AOPWikiRDF-Genes.ttl"), "w", encoding="utf-8") as fh:
+            fh.write(genes_text)
         for name in (
-            "AOPWikiRDF-Genes.ttl",
             "AOPWikiRDF-Enriched.ttl",
             "AOPWikiRDF-Void.ttl",
             "ServiceDescription.ttl",
@@ -176,11 +178,15 @@ def _write_corpus(directory, main_text, *, with_all_files=True):
     return directory
 
 
-def _patch_regen(monkeypatch, off_text, on_text):
+def _patch_regen(monkeypatch, off_text, on_text, off_genes="", on_genes=""):
     """Monkeypatch gate.regenerate to write fixture corpora (no pipeline run)."""
 
     def fake_regenerate(xml_file, out_dir, enable_flags):
-        _write_corpus(out_dir, on_text if enable_flags else off_text)
+        _write_corpus(
+            out_dir,
+            on_text if enable_flags else off_text,
+            genes_text=on_genes if enable_flags else off_genes,
+        )
         return out_dir
 
     monkeypatch.setattr(gate, "regenerate", fake_regenerate)
@@ -251,17 +257,21 @@ def test_gate_fails_on_injected_diff(tmp_path, monkeypatch):
 
 
 def test_off_vs_on_delta_is_additive_only(tmp_path, monkeypatch):
-    """Flag-on ADDS subjects/predicates only -> additive-only -> no breach.
+    """Flag-on ADDS an rdfs:label to an EXISTING subject -> no breach.
 
-    The flag-on corpus keeps every flag-off subject byte-identical and ADDS a
-    new prov:Activity subject plus an extra predicate on an existing subject.
-    The off-vs-on comparison classifies this as additive-only and does NOT
-    hard-fail. (The mutated-shared-line breach is proven separately by
-    test_gate_fails_on_injected_diff.)
+    The flag-on corpus appends an ``rdfs:label "Pathway one"`` predicate to the
+    EXISTING aop/1 subject block (the real ``enable_iri_labels=True`` trigger:
+    appending the predicate flips aop/1's former-last line terminator from
+    ``.`` to ``;`` and adds the label line) and also adds a brand-new
+    prov:Activity subject. Both are additive, so the off-vs-on HARD comparison
+    must NOT breach. This is the load-bearing case CR-01 fixed -- it FAILS on
+    the pre-fix whole-block-equality code. (The mutated-shared-line breach is
+    proven separately by test_gate_fails_on_injected_diff.)
     """
     additive_on = (
         "<http://aopwiki.org/aop/1>\ta\taopo:AdverseOutcomePathway"
         ' ;\n\tdcterms:title "Pathway one"'
+        ' ;\n\trdfs:label "Pathway one"'  # rdfs:label ADDED to an EXISTING subject
         " .\n"
         "\n"
         "<http://aopwiki.org/event/100>\ta\taopo:KeyEvent"
@@ -291,3 +301,39 @@ def test_off_vs_on_delta_is_additive_only(tmp_path, monkeypatch):
         "--report-path", str(tmp_path / "r2.txt"),
     ])
     assert rc == 0
+
+
+def test_off_vs_on_prefix_gain_is_additive(tmp_path, monkeypatch):
+    """Flag-on AOPWikiRDF-Genes.ttl gains one @prefix preamble line -> no breach.
+
+    Mirrors ``enable_bern2=True`` prepending GENES_PROVENANCE_PREFIX
+    (``@prefix : <...> .``) to the Genes file's prefix block. Both off and on
+    Genes files have their @prefix declarations as block 0; first_subject()
+    returns None for that block so it is excluded from the subject comparison
+    (CR-02). The gained @prefix line must therefore NOT breach. This FAILS on
+    the pre-fix code, which keyed both prefix blocks on b"@prefix" and reported
+    a violation when they differed.
+    """
+    off_genes = "@prefix a: <http://a/> .\n"
+    on_genes = (
+        "@prefix : <https://aopwiki.rdf.bigcat-bioinformatics.org/> .\n"
+        "@prefix a: <http://a/> .\n"
+    )
+    golden_dir = _write_corpus(
+        str(tmp_path / "golden"), _FLAG_OFF_MAIN, genes_text=off_genes
+    )
+    _patch_regen(
+        monkeypatch,
+        off_text=_FLAG_OFF_MAIN,
+        on_text=_FLAG_OFF_MAIN,
+        off_genes=off_genes,
+        on_genes=on_genes,
+    )
+
+    report = gate.run(
+        golden_dir=golden_dir,
+        xml_file=str(tmp_path / "snapshot.gz"),
+        mode="off-vs-on",
+        report_path=str(tmp_path / "r.txt"),
+    )
+    assert report["breached"] is False
