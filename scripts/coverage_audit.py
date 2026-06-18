@@ -38,7 +38,6 @@ import json
 import os
 import re
 import sys
-import urllib.request
 from xml.etree.ElementTree import iterparse, parse
 
 # Re-declared verbatim from src/aopwiki_rdf/parser/xml_parser.py:25 (D-03).

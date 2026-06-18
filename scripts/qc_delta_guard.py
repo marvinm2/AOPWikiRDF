@@ -302,8 +302,13 @@ def _fmt_pct(value):
     return f"{value * 100:+.2f}%"
 
 
-def print_report(report):
-    """Print a human-readable old-vs-new table to stdout."""
+def print_report(report, warn_only=False):
+    """Print a human-readable old-vs-new table to stdout.
+
+    When ``warn_only`` is set (D-08 weekly posture), a breach is surfaced as a
+    ``WARNING`` rather than ``FAIL`` so CI log readers are not misled into
+    investigating a non-failing run that exits 0.
+    """
     print("=" * 78)
     print("QC delta guard: new data vs baseline")
     print("=" * 78)
@@ -327,7 +332,10 @@ def print_report(report):
                 print(f"    BREACH: {reason}")
     print()
     if report["breached"]:
-        print("RESULT: FAIL (delta guard breached)")
+        if warn_only:
+            print("RESULT: WARNING (delta guard breached, warn-only — not blocking)")
+        else:
+            print("RESULT: FAIL (delta guard breached)")
     else:
         print("RESULT: PASS (within threshold)")
 
@@ -451,7 +459,7 @@ def main(argv=None):
         per_element=per_element,
         element_predicates=element_predicates,
     )
-    print_report(report)
+    print_report(report, warn_only=args.warn_only)
 
     if not report["breached"]:
         return 0
