@@ -12,7 +12,14 @@ from aopwiki_rdf.config import PipelineConfig
 from aopwiki_rdf.pipeline import main
 
 
-def cli():
+def build_config(argv=None):
+    """Parse CLI arguments and construct a PipelineConfig.
+
+    Testability-only helper: builds the argument parser, parses ``argv``
+    (or ``sys.argv`` when None), and returns the constructed PipelineConfig.
+    Does NOT run the pipeline -- callers that want to run it should pass the
+    returned config to ``main()`` (see ``cli()``).
+    """
     parser = argparse.ArgumentParser(
         description="Run AOP-Wiki XML to RDF conversion"
     )
@@ -37,14 +44,30 @@ def cli():
             "annotates the full corpus inline over the hosted API."
         ),
     )
+    parser.add_argument(
+        "--enable-iri-labels",
+        action="store_true",
+        help=(
+            "Enable external-IRI labeling: emit a single untagged rdfs:label "
+            "co-located with dc:source on external/component IRIs, sourced "
+            "from in-memory label maps (no new network calls). OFF by default "
+            "until the production flip -- the default (flag-off) run stays "
+            "byte-identical to current output."
+        ),
+    )
 
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
-    config = PipelineConfig(
+    return PipelineConfig(
         data_dir=Path(args.output_dir),
         log_level=args.log_level,
         enable_bern2=args.enable_bern2,
+        enable_iri_labels=args.enable_iri_labels,
     )
+
+
+def cli():
+    config = build_config()
     main(config)
 
 
