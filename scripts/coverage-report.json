@@ -836,17 +836,17 @@
     },
     "evidence-collection-strategy": {
       "allowlisted": false,
-      "covered": false,
+      "covered": true,
       "delta_vs_prev": null,
-      "emitted_by_parser": false,
+      "emitted_by_parser": true,
       "in_xsd": true,
       "is_attribute": false,
-      "is_gap": true,
+      "is_gap": false,
       "occurrences": 2336,
       "occurrences_by_snapshot": {
         "2026-06-17": 2336
       },
-      "rank_score": 2336.0
+      "rank_score": 0.0
     },
     "evidence-supporting-chemical-initiation": {
       "allowlisted": false,
@@ -864,17 +864,17 @@
     },
     "evidence-supporting-taxonomic-applicability": {
       "allowlisted": false,
-      "covered": false,
+      "covered": true,
       "delta_vs_prev": null,
-      "emitted_by_parser": false,
+      "emitted_by_parser": true,
       "in_xsd": true,
       "is_attribute": false,
-      "is_gap": true,
+      "is_gap": false,
       "occurrences": 3919,
       "occurrences_by_snapshot": {
         "2026-06-17": 3919
       },
-      "rank_score": 3919.0
+      "rank_score": 0.0
     },
     "examples": {
       "allowlisted": false,
@@ -920,17 +920,17 @@
     },
     "feedforward-feedback-loops": {
       "allowlisted": false,
-      "covered": false,
+      "covered": true,
       "delta_vs_prev": null,
-      "emitted_by_parser": false,
+      "emitted_by_parser": true,
       "in_xsd": true,
       "is_attribute": false,
-      "is_gap": true,
+      "is_gap": false,
       "occurrences": 2336,
       "occurrences_by_snapshot": {
         "2026-06-17": 2336
       },
-      "rank_score": 2336.0
+      "rank_score": 0.0
     },
     "handbook-version": {
       "allowlisted": false,
@@ -1074,17 +1074,17 @@
     },
     "known-modulating-factors": {
       "allowlisted": false,
-      "covered": false,
+      "covered": true,
       "delta_vs_prev": null,
-      "emitted_by_parser": false,
+      "emitted_by_parser": true,
       "in_xsd": true,
       "is_attribute": false,
-      "is_gap": true,
+      "is_gap": false,
       "occurrences": 2923,
       "occurrences_by_snapshot": {
         "2026-06-17": 2923
       },
-      "rank_score": 2923.0
+      "rank_score": 0.0
     },
     "last-modification-timestamp": {
       "allowlisted": false,
@@ -1284,17 +1284,17 @@
     },
     "quantitative-understanding": {
       "allowlisted": false,
-      "covered": false,
+      "covered": true,
       "delta_vs_prev": null,
-      "emitted_by_parser": false,
+      "emitted_by_parser": true,
       "in_xsd": true,
       "is_attribute": false,
-      "is_gap": true,
+      "is_gap": false,
       "occurrences": 2336,
       "occurrences_by_snapshot": {
         "2026-06-17": 2336
       },
-      "rank_score": 2336.0
+      "rank_score": 0.0
     },
     "quantitative-understanding-value": {
       "allowlisted": false,
@@ -1340,17 +1340,17 @@
     },
     "response-response-relationship": {
       "allowlisted": false,
-      "covered": false,
+      "covered": true,
       "delta_vs_prev": null,
-      "emitted_by_parser": false,
+      "emitted_by_parser": true,
       "in_xsd": true,
       "is_attribute": false,
-      "is_gap": true,
+      "is_gap": false,
       "occurrences": 2336,
       "occurrences_by_snapshot": {
         "2026-06-17": 2336
       },
-      "rank_score": 2336.0
+      "rank_score": 0.0
     },
     "sex": {
       "allowlisted": false,
@@ -1508,17 +1508,17 @@
     },
     "time-scale": {
       "allowlisted": false,
-      "covered": false,
+      "covered": true,
       "delta_vs_prev": null,
-      "emitted_by_parser": false,
+      "emitted_by_parser": true,
       "in_xsd": true,
       "is_attribute": false,
-      "is_gap": true,
+      "is_gap": false,
       "occurrences": 2336,
       "occurrences_by_snapshot": {
         "2026-06-17": 2336
       },
-      "rank_score": 2336.0
+      "rank_score": 0.0
     },
     "title": {
       "allowlisted": false,
@@ -1662,13 +1662,6 @@
     }
   },
   "gaps": [
-    "evidence-supporting-taxonomic-applicability",
-    "known-modulating-factors",
-    "evidence-collection-strategy",
-    "feedforward-feedback-loops",
-    "quantitative-understanding",
-    "response-response-relationship",
-    "time-scale",
     "exposure-characterization",
     "coaches",
     "external_links",
@@ -1687,9 +1680,9 @@
   "namespace": "http://www.aopkb.org/aop-xml",
   "schema_version": "1.0",
   "summary": {
-    "actionable_gap_count": 20,
-    "coverage_pct": 72.6,
-    "covered_element_count": 69,
+    "actionable_gap_count": 13,
+    "coverage_pct": 80.0,
+    "covered_element_count": 76,
     "historical_snapshots_walked": 0,
     "instance_element_count": 95,
     "xsd_only_count": 43
