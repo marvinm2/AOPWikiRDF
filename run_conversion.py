@@ -55,6 +55,17 @@ def build_config(argv=None):
             "byte-identical to current output."
         ),
     )
+    parser.add_argument(
+        "--xml-file",
+        default=None,
+        help=(
+            "Path to a committed AOP-Wiki XML snapshot (.xml or .gz). When set, "
+            "the parse stage SKIPS the network download and reads this file "
+            "instead (gunzip if .gz). Used by the COMPAT closing gate to "
+            "regenerate the pipeline against a pinned snapshot. Default None = "
+            "unchanged network behavior, byte-identical to current output."
+        ),
+    )
 
     args = parser.parse_args(argv)
 
@@ -63,6 +74,7 @@ def build_config(argv=None):
         log_level=args.log_level,
         enable_bern2=args.enable_bern2,
         enable_iri_labels=args.enable_iri_labels,
+        xml_file=Path(args.xml_file) if args.xml_file else None,
     )
 
 
