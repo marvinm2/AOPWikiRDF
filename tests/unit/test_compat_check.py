@@ -136,3 +136,158 @@ def test_two_dates_no_drift():
         sd_modified="2026-09-01T06:00:00",
     ).encode("utf-8")
     assert gate.mask(day_one) == gate.mask(day_two)
+
+
+# ---------------------------------------------------------------------------
+# Negative sample + off-vs-on additive-only (the gate must be provable to fail)
+# ---------------------------------------------------------------------------
+
+# A minimal flag-off corpus: two subject blocks separated by a blank line.
+_FLAG_OFF_MAIN = (
+    "<http://aopwiki.org/aop/1>\ta\taopo:AdverseOutcomePathway"
+    ' ;\n\tdcterms:title "Pathway one"'
+    " .\n"
+    "\n"
+    "<http://aopwiki.org/event/100>\ta\taopo:KeyEvent"
+    ' ;\n\tdcterms:title "Event one hundred"'
+    " .\n"
+)
+
+
+def _write_corpus(directory, main_text, *, with_all_files=True):
+    """Write a corpus dir holding the five CORPUS_FILES.
+
+    ``main_text`` is the content of AOPWikiRDF.ttl; the remaining files are
+    written empty (the gate masks+compares them too, so they must exist to
+    avoid a missing-file hard breach).
+    """
+    os.makedirs(directory, exist_ok=True)
+    with open(os.path.join(directory, "AOPWikiRDF.ttl"), "w", encoding="utf-8") as fh:
+        fh.write(main_text)
+    if with_all_files:
+        for name in (
+            "AOPWikiRDF-Genes.ttl",
+            "AOPWikiRDF-Enriched.ttl",
+            "AOPWikiRDF-Void.ttl",
+            "ServiceDescription.ttl",
+        ):
+            with open(os.path.join(directory, name), "w", encoding="utf-8") as fh:
+                fh.write("")
+    return directory
+
+
+def _patch_regen(monkeypatch, off_text, on_text):
+    """Monkeypatch gate.regenerate to write fixture corpora (no pipeline run)."""
+
+    def fake_regenerate(xml_file, out_dir, enable_flags):
+        _write_corpus(out_dir, on_text if enable_flags else off_text)
+        return out_dir
+
+    monkeypatch.setattr(gate, "regenerate", fake_regenerate)
+
+
+def test_identical_inputs_pass(tmp_path, monkeypatch):
+    """Off == on (additive subset, no drift) -> not breached, main() exits 0."""
+    golden_dir = _write_corpus(str(tmp_path / "golden"), _FLAG_OFF_MAIN)
+    _patch_regen(monkeypatch, off_text=_FLAG_OFF_MAIN, on_text=_FLAG_OFF_MAIN)
+
+    report = gate.run(
+        golden_dir=golden_dir,
+        xml_file=str(tmp_path / "snapshot.gz"),
+        mode="off-vs-on",
+        report_path=str(tmp_path / "r.txt"),
+    )
+    assert report["breached"] is False
+
+    rc = gate.main([
+        "--golden-dir", golden_dir,
+        "--xml-file", str(tmp_path / "snapshot.gz"),
+        "--mode", "off-vs-on",
+        "--report-path", str(tmp_path / "r2.txt"),
+    ])
+    assert rc == 0
+
+
+def test_gate_fails_on_injected_diff(tmp_path, monkeypatch):
+    """NEGATIVE sample: a mutated subject in the flag-on output breaches.
+
+    Mirrors test_coverage_ratchet.py::test_ratchet_fails_on_drop -- a gate that
+    cannot be shown to fail is not validated. The flag-on corpus changes a
+    SHARED subject block (event/100), which is NOT additive, so the off-vs-on
+    HARD comparison must breach, main() must return 1, and the report must name
+    the mutated subject.
+    """
+    mutated_on = (
+        "<http://aopwiki.org/aop/1>\ta\taopo:AdverseOutcomePathway"
+        ' ;\n\tdcterms:title "Pathway one"'
+        " .\n"
+        "\n"
+        "<http://aopwiki.org/event/100>\ta\taopo:KeyEvent"
+        ' ;\n\tdcterms:title "MUTATED TITLE"'  # shared subject changed
+        " .\n"
+    )
+    golden_dir = _write_corpus(str(tmp_path / "golden"), _FLAG_OFF_MAIN)
+    _patch_regen(monkeypatch, off_text=_FLAG_OFF_MAIN, on_text=mutated_on)
+
+    report = gate.run(
+        golden_dir=golden_dir,
+        xml_file=str(tmp_path / "snapshot.gz"),
+        mode="off-vs-on",
+        report_path=str(tmp_path / "r.txt"),
+    )
+    assert report["breached"] is True
+
+    rc = gate.main([
+        "--golden-dir", golden_dir,
+        "--xml-file", str(tmp_path / "snapshot.gz"),
+        "--mode", "off-vs-on",
+        "--report-path", str(tmp_path / "r2.txt"),
+    ])
+    assert rc == 1
+
+    with open(str(tmp_path / "r2.txt"), encoding="utf-8") as fh:
+        report_text = fh.read()
+    assert "http://aopwiki.org/event/100" in report_text
+
+
+def test_off_vs_on_delta_is_additive_only(tmp_path, monkeypatch):
+    """Flag-on ADDS subjects/predicates only -> additive-only -> no breach.
+
+    The flag-on corpus keeps every flag-off subject byte-identical and ADDS a
+    new prov:Activity subject plus an extra predicate on an existing subject.
+    The off-vs-on comparison classifies this as additive-only and does NOT
+    hard-fail. (The mutated-shared-line breach is proven separately by
+    test_gate_fails_on_injected_diff.)
+    """
+    additive_on = (
+        "<http://aopwiki.org/aop/1>\ta\taopo:AdverseOutcomePathway"
+        ' ;\n\tdcterms:title "Pathway one"'
+        " .\n"
+        "\n"
+        "<http://aopwiki.org/event/100>\ta\taopo:KeyEvent"
+        ' ;\n\tdcterms:title "Event one hundred"'
+        " .\n"
+        "\n"
+        # NEW flag-gated subject (prov:Activity) -- additive, must not breach.
+        "<http://aopwiki.org/activity/1>\ta\tprov:Activity"
+        ' ;\n\tprov:wasAssociatedWith <http://example.org/bern2>'
+        " .\n"
+    )
+    golden_dir = _write_corpus(str(tmp_path / "golden"), _FLAG_OFF_MAIN)
+    _patch_regen(monkeypatch, off_text=_FLAG_OFF_MAIN, on_text=additive_on)
+
+    report = gate.run(
+        golden_dir=golden_dir,
+        xml_file=str(tmp_path / "snapshot.gz"),
+        mode="off-vs-on",
+        report_path=str(tmp_path / "r.txt"),
+    )
+    assert report["breached"] is False
+
+    rc = gate.main([
+        "--golden-dir", golden_dir,
+        "--xml-file", str(tmp_path / "snapshot.gz"),
+        "--mode", "off-vs-on",
+        "--report-path", str(tmp_path / "r2.txt"),
+    ])
+    assert rc == 0

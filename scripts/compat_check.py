@@ -147,7 +147,11 @@ def subject_blocks(masked):
     """Split a masked TTL byte string into per-subject blocks.
 
     The writer emits subject blocks separated by blank lines (``\\n\\n``;
-    RESEARCH Pattern 3). Empty/whitespace-only chunks are dropped.
+    RESEARCH Pattern 3). Empty/whitespace-only chunks are dropped and each
+    retained block is stripped of leading/trailing whitespace so that a block
+    appearing at end-of-file (no trailing blank line) compares EQUAL to the
+    same block followed by another block -- the split is positional, not a
+    content difference.
 
     Parameters
     ----------
@@ -156,9 +160,9 @@ def subject_blocks(masked):
     Returns
     -------
     list of bytes
-        One entry per non-empty subject block.
+        One entry per non-empty subject block, whitespace-stripped.
     """
-    return [b for b in masked.split(b"\n\n") if b.strip()]
+    return [b.strip() for b in masked.split(b"\n\n") if b.strip()]
 
 
 def first_subject(block):
