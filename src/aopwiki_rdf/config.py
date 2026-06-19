@@ -22,6 +22,11 @@ class PipelineConfig:
         "&col=gd_prev_sym&col=gd_aliases&col=gd_pub_acc_ids"
         "&col=md_ensembl_id&status=Approved&format=text&submit=submit"
     )
+    # VoID metadata advertisement. Defaults match the production endpoint and
+    # data dump; deployments serving the data elsewhere (e.g. the versioned
+    # multi-endpoint) override these so per-version VoID points at their host.
+    sparql_endpoint: str = "https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/"
+    data_dump_base: str = "https://raw.githubusercontent.com/marvinm2/AOPWikiRDF/master/data"
     max_retries: int = 3
     request_timeout: int = 30
     log_level: str = "INFO"

@@ -566,6 +566,8 @@ def _stage_write_void_rdf(config, context):
         "genes": context.get("triple_count_genes", 0),
     }
     metadata["bridgedb_url"] = config.bridgedb_url
+    metadata["sparql_endpoint"] = config.sparql_endpoint
+    metadata["data_dump_base"] = config.data_dump_base
 
     write_void_rdf(filepath + "AOPWikiRDF-Void.ttl", metadata)
 
