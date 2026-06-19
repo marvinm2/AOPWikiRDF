@@ -102,6 +102,34 @@ def test_json_loader_pulls_sparql_per_entry(tmp_path):
         assert "SELECT" in rec["query"]
 
 
+def test_json_loader_expands_multi_query_entries(tmp_path):
+    # Some methodology_notes entries carry a `queries` list of {caption, query}
+    # sub-queries instead of a single `sparql` key; all sub-queries must be covered.
+    notes = {
+        "ke_components": {
+            "title": "KE components",
+            "queries": [
+                {"caption": "objects", "query": "SELECT ?o WHERE { ?ke ?p ?o }"},
+                {"caption": "processes", "query": "SELECT ?pr WHERE { ?ke ?p ?pr }"},
+            ],
+        },
+        "single": {
+            "title": "single",
+            "sparql": "SELECT ?s WHERE { ?s ?p ?o }",
+        },
+    }
+    p = tmp_path / "methodology_notes.json"
+    p.write_text(json.dumps(notes))
+
+    records = pf.load_json_corpus(p)
+
+    names = {r["name"] for r in records}
+    assert "ke_components::objects" in names
+    assert "ke_components::processes" in names
+    assert "single" in names
+    assert len(records) == 3
+
+
 def test_json_loader_skips_entries_without_sparql(tmp_path):
     notes = {
         "has_q": {"title": "ok", "sparql": "SELECT ?s WHERE { ?s ?p ?o }"},
