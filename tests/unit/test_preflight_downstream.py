@@ -173,6 +173,64 @@ def test_classify_zero_to_nonzero_is_pass():
 
 
 # --------------------------------------------------------------------------- #
+# load_prefix_block() / apply_prefixes() — namespace injection
+# --------------------------------------------------------------------------- #
+
+def test_load_prefix_block_parses_at_prefix_lines(tmp_path):
+    (tmp_path / "a.ttl").write_text(
+        "@prefix aopo: <http://aopkb.org/aop_ontology#> .\n"
+        "@prefix : <https://aopwiki.rdf.bigcat-bioinformatics.org/> .\n"
+        "@prefix hgnc: <https://identifiers.org/hgnc/>.\n"
+        ":x a aopo:Thing .\n"
+    )
+    block = pf.load_prefix_block(tmp_path)
+    assert "PREFIX aopo: <http://aopkb.org/aop_ontology#>" in block
+    assert "PREFIX : <https://aopwiki.rdf.bigcat-bioinformatics.org/>" in block
+    assert "PREFIX hgnc: <https://identifiers.org/hgnc/>" in block
+
+
+def test_load_prefix_block_dedupes_by_name(tmp_path):
+    (tmp_path / "a.ttl").write_text("@prefix foaf: <http://xmlns.com/foaf/0.1/> .\n")
+    (tmp_path / "b.ttl").write_text("@prefix foaf: <http://example.org/other#> .\n")
+    block = pf.load_prefix_block(tmp_path)
+    assert sum(1 for ln in block if ln.startswith("PREFIX foaf:")) == 1
+    # first declaration wins
+    assert "PREFIX foaf: <http://xmlns.com/foaf/0.1/>" in block
+
+
+def test_apply_prefixes_prepends_missing():
+    out = pf.apply_prefixes("SELECT * WHERE { ?s a aopo:X }",
+                            ["PREFIX aopo: <http://aopkb.org/aop_ontology#>"])
+    assert out.startswith("PREFIX aopo:")
+    assert "SELECT * WHERE" in out
+
+
+def test_apply_prefixes_skips_already_declared():
+    q = "PREFIX aopo: <http://aopkb.org/aop_ontology#>\nSELECT * WHERE { ?s a aopo:X }"
+    out = pf.apply_prefixes(q, ["PREFIX aopo: <http://example.org/other#>"])
+    # the query's own declaration is kept; no duplicate prepended
+    assert out.count("PREFIX aopo:") == 1
+    assert "<http://example.org/other#>" not in out
+
+
+def test_apply_prefixes_empty_block_is_noop():
+    q = "SELECT * WHERE { ?s ?p ?o }"
+    assert pf.apply_prefixes(q, []) == q
+
+
+def test_substitute_graph_uri_replaces_token():
+    q = "SELECT * WHERE { GRAPH __GRAPH_URI__ { ?s ?p ?o } }"
+    out = pf.substitute_graph_uri(q, "http://aopwiki.org/")
+    assert "__GRAPH_URI__" not in out
+    assert "GRAPH <http://aopwiki.org/>" in out
+
+
+def test_substitute_graph_uri_noop_without_token():
+    q = "SELECT * WHERE { ?s ?p ?o }"
+    assert pf.substitute_graph_uri(q, "http://aopwiki.org/") == q
+
+
+# --------------------------------------------------------------------------- #
 # save_report()
 # --------------------------------------------------------------------------- #
 
@@ -191,6 +249,24 @@ def test_save_report_writes_markdown_table(tmp_path):
     assert "| Status" in text or "Status |" in text  # a Markdown table header
     assert "PASS" in text and "FAIL" in text
     assert "all-aops" in text and "ke_components" in text
+
+
+def test_save_report_counts_flip_attributable_regressions(tmp_path):
+    records = [
+        # errored on both loads -> environmental, NOT flip-attributable
+        {"source": "SNORQL", "name": "federated-q", "pre_count": 0, "post_count": 0,
+         "status": "FAIL", "errored": True, "errored_pre": True,
+         "flip_regression": False},
+        # ran off-flip, errors on-flip -> flip-attributable regression
+        {"source": "SNORQL", "name": "broke-by-flip", "pre_count": 5, "post_count": 0,
+         "status": "FAIL", "errored": True, "errored_pre": False,
+         "flip_regression": True},
+    ]
+    out = tmp_path / "preflight-report.md"
+    pf.save_report(records, out)
+    text = out.read_text()
+    assert "**Flip-attributable regressions**: 1" in text
+    assert "Flip verdict" in text
 
 
 if __name__ == "__main__":

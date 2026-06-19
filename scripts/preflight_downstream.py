@@ -28,6 +28,7 @@ executed with the already-present ``requests`` dependency.
 import argparse
 import concurrent.futures
 import json
+import re
 import sys
 import time
 from pathlib import Path
@@ -86,6 +87,68 @@ def _substitute_mustache(query, defaults):
     for name, default in defaults.items():
         query = query.replace("{{" + name + "}}", default)
     return query
+
+
+_PREFIX_DECL_RE = re.compile(r"^@prefix\s+([^:\s]*):\s*<([^>]+)>\s*\.", re.MULTILINE)
+_QUERY_PREFIX_RE = re.compile(r"^\s*PREFIX\s+([^:\s]*):", re.IGNORECASE | re.MULTILINE)
+
+
+def load_prefix_block(ttl_dir):
+    """Derive SPARQL ``PREFIX`` lines from the ``@prefix`` headers of TTLs in ``ttl_dir``.
+
+    The downstream ``.rq`` / methodology queries are NOT self-contained: the live
+    SNORQL UI and the dashboard inject the dataset's namespace prefixes at runtime.
+    To execute them faithfully here we replay the SAME prefixes that the data
+    declares, sourced directly from the generated TTLs so query prefixed-names
+    resolve to exactly the IRIs present in the loaded graph.
+
+    Returns a list of ``"PREFIX name: <iri>"`` strings, de-duplicated by prefix
+    name (first declaration wins). Read-only.
+    """
+    ttl_dir = Path(ttl_dir)
+    seen = {}
+    order = []
+    for path in sorted(ttl_dir.glob("*.ttl")):
+        text = path.read_text(encoding="utf-8")
+        for name, iri in _PREFIX_DECL_RE.findall(text):
+            if name not in seen:
+                seen[name] = iri
+                order.append(name)
+    return [f"PREFIX {name}: <{seen[name]}>" for name in order]
+
+
+def apply_prefixes(query, prefix_lines):
+    """Prepend ``prefix_lines`` to ``query``, skipping any prefix it already declares.
+
+    Mirrors how SNORQL/the dashboard render a query with the standard namespace
+    block in front. A query that declares its own ``PREFIX foo:`` keeps it; only
+    the missing prefixes are added, so no duplicate declaration is emitted.
+    """
+    if not prefix_lines:
+        return query
+    declared = {m.lower() for m in _QUERY_PREFIX_RE.findall(query)}
+    to_add = [ln for ln in prefix_lines
+              if ln.split()[1].rstrip(":").lower() not in declared]
+    if not to_add:
+        return query
+    return "\n".join(to_add) + "\n" + query
+
+
+_GRAPH_URI_TOKEN = "__GRAPH_URI__"
+
+
+def substitute_graph_uri(query, graph_iri):
+    """Replace the dashboard's ``__GRAPH_URI__`` placeholder with ``<graph_iri>``.
+
+    The AOP-Wiki dashboard parameterizes its per-version queries with a
+    ``GRAPH __GRAPH_URI__ { ... }`` token and substitutes the concrete versioned
+    graph IRI at runtime. The pre-flight loads everything into a single graph, so
+    we substitute that graph's IRI (angle-bracketed) the same way; queries without
+    the token are returned unchanged.
+    """
+    if _GRAPH_URI_TOKEN not in query:
+        return query
+    return query.replace(_GRAPH_URI_TOKEN, f"<{graph_iri}>")
 
 
 def load_rq_corpus(root):
@@ -182,25 +245,34 @@ def save_report(records, path):
     fails = [r for r in records if r.get("status") == "FAIL"]
     n_fail = len(fails)
     n_pass = total - n_fail
+    n_flip = sum(1 for r in records if r.get("flip_regression"))
 
     with open(path, "w", encoding="utf-8") as f:
         f.write("# Downstream SPARQL Pre-flight Report\n\n")
         f.write(f"**Generated**: {time.strftime('%Y-%m-%d %H:%M:%S UTC')}\n\n")
         f.write(f"**Total queries**: {total}\n\n")
         f.write(f"**PASS**: {n_pass}\n\n")
-        f.write(f"**FAIL**: {n_fail}\n\n")
+        f.write(f"**FAIL (D-05 literal)**: {n_fail}\n\n")
+        f.write(f"**Flip-attributable regressions**: {n_flip}\n\n")
         f.write(f"**Result**: {'PASS' if n_fail == 0 else 'FAIL'} "
                 f"(D-05 bar: no error, no >=1-row-to-0-row regression)\n\n")
+        f.write(f"**Flip verdict**: {'SAFE' if n_flip == 0 else 'REGRESSION'} "
+                f"— flip-attributable regressions are failures (error or >=1->0 row "
+                f"drop) present on flags-on but NOT on the flags-off baseline. "
+                f"D-05-literal FAILs that fail identically on both loads are "
+                f"environmental (federation privileges, external SERVICE endpoints, "
+                f"heavy-query timeouts), not caused by the flip.\n\n")
 
         if fails:
             f.write("## Failures\n\n")
-            f.write("| Source | Name | Pre | Post | Errored |\n")
-            f.write("|---|---|---|---|---|\n")
+            f.write("| Source | Name | Pre | Post | Errored(on) | Errored(off) | Flip-attributable |\n")
+            f.write("|---|---|---|---|---|---|---|\n")
             for r in fails:
                 f.write(
                     f"| {r.get('source', '')} | {r.get('name', '')} "
                     f"| {r.get('pre_count', '')} | {r.get('post_count', '')} "
-                    f"| {r.get('errored', '')} |\n"
+                    f"| {r.get('errored', '')} | {r.get('errored_pre', '')} "
+                    f"| {r.get('flip_regression', '')} |\n"
                 )
             f.write("\n")
 
@@ -292,6 +364,9 @@ def main(argv=None):
                              "(default: ../AOPWikiSNORQL).")
     parser.add_argument("--methodology-notes", default=DEFAULT_METHODOLOGY_NOTES,
                         help="Read-only path to the dashboard methodology_notes.json.")
+    parser.add_argument("--graph-uri", default="http://aopwiki.org/",
+                        help="Graph IRI substituted for the dashboard's "
+                             "__GRAPH_URI__ placeholder (default: http://aopwiki.org/).")
     parser.add_argument("--flags-off-endpoint", default=DEFAULT_ENDPOINT,
                         help="SPARQL endpoint for the baseline (flags-off) load.")
     parser.add_argument("--flags-on-endpoint", default=DEFAULT_ENDPOINT,
@@ -314,6 +389,16 @@ def main(argv=None):
           f"{sum(1 for r in records if r['source'] == 'methodology_notes')} "
           f"methodology_notes).")
 
+    # Inject the dataset namespace prefixes the SNORQL UI / dashboard add at
+    # runtime (the corpus queries are not self-contained). Sourced from the
+    # flags-on TTLs, falling back to flags-off; identical prefix set in both.
+    prefix_lines = load_prefix_block(args.flags_on_dir) \
+        or load_prefix_block(args.flags_off_dir)
+    print(f"Injecting {len(prefix_lines)} dataset prefixes into each query.")
+    for rec in records:
+        q = substitute_graph_uri(rec["query"], args.graph_uri)
+        rec["query"] = apply_prefixes(q, prefix_lines)
+
     # Baseline (pre-flip) pass.
     print(f"Running baseline corpus against {args.flags_off_endpoint} ...")
     pre = run_corpus(records, args.flags_off_endpoint,
@@ -328,15 +413,26 @@ def main(argv=None):
     report_records = []
     for rec in records:
         key = (rec["source"], rec["name"])
-        pre_count, _pre_err = pre.get(key, (0, True))
+        pre_count, pre_err = pre.get(key, (0, True))
         post_count, post_err = post.get(key, (0, True))
         status = classify(pre_count, post_count, post_err)
+        # Flip-attributable = a failure the flags-on flip INTRODUCED: an error that
+        # appears only on flags-on, or a >=1->0 row drop absent from the flags-off
+        # baseline. A query that fails identically on both loads is environmental
+        # (federation privileges, external SERVICE endpoints, heavy-query timeouts)
+        # and is NOT caused by the flip.
+        flip_regression = (
+            (post_err and not pre_err)
+            or (not post_err and not pre_err and pre_count >= 1 and post_count == 0)
+        )
         report_records.append({
             "source": rec["source"],
             "name": rec["name"],
             "pre_count": pre_count,
             "post_count": post_count,
             "errored": post_err,
+            "errored_pre": pre_err,
+            "flip_regression": flip_regression,
             "status": status,
         })
 
