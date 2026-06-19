@@ -119,6 +119,39 @@ def test_write_void_rdf_emits_cc_by_sa_license():
         assert 'creativecommons.org/licenses/by/4.0' not in content
 
 
+def test_write_void_rdf_emits_pav_version():
+    """VoID parent dataset must carry an explicit pav:version "1.3" literal.
+
+    Establishes a deliberate dataset-version counter (D-06) on the top-level
+    :AOPWikiRDF dataset, distinct from the date-only pav:createdOn stamp. The
+    value is a bare string literal "1.3" (milestone label, no xsd: datatype).
+    """
+    from aopwiki_rdf.rdf.writer import write_void_rdf
+
+    now = datetime.datetime.now()
+    metadata = {
+        'aopwikixmlfilename': 'aop-wiki-xml-2025-01-01.gz',
+        'date': now.strftime('%Y-%m-%d'),
+        'datetime_obj': now,
+        'HGNCmodificationTime': '2025-01-01',
+        'PromodificationTime': '2025-01-01',
+        'bridgedb_info': {},
+        'service_desc_filepath': None,
+        'triple_counts': {'main': 1000, 'enriched': 500, 'genes': 200},
+    }
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        out = os.path.join(tmpdir, 'AOPWikiRDF-Void.ttl')
+        write_void_rdf(out, metadata)
+        content = open(out).read()
+
+        # Explicit milestone-tied version field is present on the parent block.
+        assert 'pav:version' in content
+        assert '"1.3"' in content
+        # Bare literal -- no datatype tag on the version value.
+        assert 'pav:version\t"1.3"' in content
+
+
 def test_write_void_rdf_with_service_desc():
     """Write VoID with ServiceDescription and verify both files."""
     from aopwiki_rdf.rdf.writer import write_void_rdf

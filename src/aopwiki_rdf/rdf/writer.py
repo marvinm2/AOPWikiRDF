@@ -1004,6 +1004,11 @@ def write_void_rdf(filepath, metadata):
         g.write(' ;\n\tvoid:subset\t:AOPWikiRDF.ttl, :AOPWikiRDF-Enriched.ttl, :AOPWikiRDF-Genes.ttl')
         g.write(' ;\n\tvoid:exampleResource\taop:1, aop.events:1, aop.relationships:1, cas:83-79-4, aop.stressor:1')
         g.write(' ;\n\tpav:createdOn\t"' + y + '"^^xsd:date')
+        # Milestone-tied dataset version (D-06): bare string literal, no xsd:
+        # datatype tag. Distinct from the date-only pav:createdOn stamp; bumps
+        # per schema-changing release. Top-level :AOPWikiRDF parent only --
+        # the milestone label belongs to the dataset as a whole, not per-subset.
+        g.write(' ;\n\tpav:version\t"1.3"')
         g.write(' ;\n\tfoaf:homepage\t<https://aopwiki.org>')
         g.write(' ;\n\tpav:createdBy\t<https://zenodo.org/badge/latestdoi/146466058>')
         g.write(' .\n')
