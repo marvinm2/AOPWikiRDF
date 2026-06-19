@@ -2,11 +2,17 @@
 
 What this proves
 ----------------
-The Phase 12 production flip turns the ``enable_bern2`` / ``enable_iri_labels``
-flags ON. This gate proves that doing so does NOT silently mutate or drop any
-subject the *current* (flag-off) production output emits: it regenerates the
-pipeline TWICE against the SAME pinned XML snapshot -- once flags-off, once
-flags-on -- masks the four run-varying date-token families, and compares.
+The Phase 12 production flip turns ``enable_iri_labels`` ON. BERN2 is already
+the live production baseline (shipped in v1.2), so this gate holds BERN2 on for
+BOTH runs and toggles ONLY ``enable_iri_labels`` -- isolating the flip actually
+being shipped. It proves that enabling IRI labels does NOT silently mutate or
+drop any subject the current (bern2-on, iri-labels-off) production output emits:
+it regenerates the pipeline TWICE against the SAME pinned XML snapshot -- once
+baseline (iri-labels-off), once flip (iri-labels-on) -- masks the four
+run-varying date-token families plus the derived ``void:triples`` per-subset
+counts (which legitimately rise when the flip adds triples), and compares. (Both
+runs share one process, so set-iteration ordering of multi-valued objects is
+identical between them.)
 
 Dual comparison (D-01)
 ----------------------
@@ -114,6 +120,17 @@ MASK_PATTERNS = (
     (
         re.compile(rb'dcterms:modified "[^"]*"\^\^xsd:dateTime'),
         b'dcterms:modified "<MASKED>"^^xsd:dateTime',
+    ),
+    # 5. Void void:triples per-subset counts. NOT a date, but a DERIVED AGGREGATE
+    #    that legitimately rises whenever the flip adds triples (e.g. rdfs:label
+    #    lines under enable_iri_labels) -- an additive change is exactly what
+    #    makes this count grow, so a changed count must not register as a
+    #    subject mutation. Masked on BOTH sides so the void:Dataset stat blocks
+    #    compare equal; the real additivity is still proven by every OTHER
+    #    subject's predicate-line subset check.
+    (
+        re.compile(rb'void:triples\s+[0-9]+'),
+        b'void:triples\t<MASKED>',
     ),
 )
 
@@ -283,7 +300,14 @@ def regenerate(xml_file, out_dir, enable_flags):
     out_dir : str
         Directory to write the regenerated TTLs into.
     enable_flags : bool
-        ``False`` -> flags-off run; ``True`` -> enable_bern2 + enable_iri_labels.
+        Selects the baseline vs the flip-under-test. BERN2 is the ESTABLISHED
+        production baseline (live since v1.2), so it is enabled on BOTH sides;
+        the only flag that toggles is ``enable_iri_labels`` (the Phase 12 flip).
+        ``False`` -> baseline (bern2-on, iri-labels-off);
+        ``True``  -> flip     (bern2-on, iri-labels-on).
+        Keeping BERN2 on both sides isolates the IRI-labels delta so the gate
+        tests the flip actually being shipped, not the already-live BERN2 union
+        (whose edam:data_1025 gene-merge legitimately mutates that line).
 
     Returns
     -------
@@ -301,8 +325,8 @@ def regenerate(xml_file, out_dir, enable_flags):
     config = PipelineConfig(
         data_dir=Path(out_dir),
         xml_file=Path(xml_file),
-        enable_bern2=enable_flags,
-        enable_iri_labels=enable_flags,
+        enable_bern2=True,                  # baseline + flip both bern2-on (live since v1.2)
+        enable_iri_labels=enable_flags,     # the Phase 12 flip under test
     )
     pipeline_main(config)
     return out_dir

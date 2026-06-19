@@ -105,6 +105,19 @@ def test_mask_covers_all_runvarying():
     assert b"2016-11-29" in masked
 
 
+def test_mask_neutralizes_void_triples_count():
+    """void:triples is a derived aggregate that rises under additive flips; it
+    must be masked so a changed count does not register as a subject mutation."""
+    off = b':AOPWikiRDF.ttl\ta\tvoid:Dataset ;\n\tvoid:triples\t130546 ;\n\tdc:x\t"y" .'
+    on = b':AOPWikiRDF.ttl\ta\tvoid:Dataset ;\n\tvoid:triples\t136527 ;\n\tdc:x\t"y" .'
+    masked_off = gate.mask(off)
+    masked_on = gate.mask(on)
+    assert b"void:triples\t<MASKED>" in masked_off
+    assert b"130546" not in masked_off and b"136527" not in masked_on
+    # After masking, the differing counts compare equal (no spurious breach).
+    assert masked_off == masked_on
+
+
 def test_mask_is_idempotent():
     """mask(mask(x)) == mask(x) — masking an already-masked corpus is a no-op."""
     raw = _all_tokens_ttl(
