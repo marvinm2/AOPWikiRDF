@@ -574,7 +574,9 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
                 if stressor in aopdict[aop].get('nci:C54571', {}):
                     aop_ids.add(aopdict[aop]['dc:identifier'])
 
-            _write_multivalue_triple(g, 'dcterms:isPartOf', list(set(ke_ids + list(aop_ids))))
+            # sorted() for byte-stable output: aop_ids is a set (hash-seed-randomized
+            # iteration), so emit a deterministically ordered, de-duplicated union.
+            _write_multivalue_triple(g, 'dcterms:isPartOf', sorted(set(ke_ids) | aop_ids))
 
             g.write(' .\n\n')
 
