@@ -1,4 +1,4 @@
-# Generated: 2026-06-13
+# Generated: 2026-06-20
 # Load alongside AOPWikiRDF.ttl for full cross-reference capability
 # AOPWikiRDF-Enriched.ttl
 # Cross-reference enrichment triples for AOP-Wiki RDF
@@ -1704,6 +1704,11 @@ cas:83-46-5
 	owl:sameAs	chebi:27693, chebi:27693, chemspider:192962, wikidata:Q121802, pubchem.compound:222284, drugbank:DB14038, hmdb:HMDB0000852, hmdb:HMDB00852, kegg.compound:C01753, lipidmaps:LMST01040129 .
 
 
+cas:4685-14-7
+	skos:exactMatch	chebi:34905, chebi:34905, chemspider:15147, wikidata:Q26841324, chembl.compound:CHEMBL74469, pubchem.compound:15939, kegg.compound:C14701 ;
+	owl:sameAs	chebi:34905, chebi:34905, chemspider:15147, wikidata:Q26841324, chembl.compound:CHEMBL74469, pubchem.compound:15939, kegg.compound:C14701 .
+
+
 cas:77011-63-3
 	skos:exactMatch	chemspider:10482269, wikidata:Q27259586, pubchem.compound:16052009 ;
 	owl:sameAs	chemspider:10482269, wikidata:Q27259586, pubchem.compound:16052009 .
@@ -2067,11 +2072,6 @@ cas:15545-48-9
 cas:117428-22-5
 	skos:exactMatch	chebi:83197, chebi:83197, chemspider:10737621, wikidata:Q15632879, pubchem.compound:11285653 ;
 	owl:sameAs	chebi:83197, chebi:83197, chemspider:10737621, wikidata:Q15632879, pubchem.compound:11285653 .
-
-
-cas:4685-14-7
-	skos:exactMatch	chebi:34905, chebi:34905, chemspider:15147, wikidata:Q26841324, chembl.compound:CHEMBL74469, pubchem.compound:15939, kegg.compound:C14701 ;
-	owl:sameAs	chebi:34905, chebi:34905, chemspider:15147, wikidata:Q26841324, chembl.compound:CHEMBL74469, pubchem.compound:15939, kegg.compound:C14701 .
 
 
 pr:000031316
