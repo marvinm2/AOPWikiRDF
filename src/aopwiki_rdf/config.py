@@ -68,9 +68,19 @@ class PipelineConfig:
     # in production this phase.
     enable_iri_labels: bool = False
 
+    # Pinned-snapshot knob (COMPAT-01). When set, _stage_parse reads this XML
+    # file (gunzip if .gz) instead of downloading config.aopwiki_xml_url, so the
+    # COMPAT gate can regenerate the pipeline deterministically against a
+    # committed snapshot rather than date.today() + a live network fetch.
+    # Default None keeps the current network download path -- byte-identical to
+    # prior production output (A1).
+    xml_file: Path | None = None
+
     def __post_init__(self):
         """Ensure path-typed fields are Path objects."""
         if isinstance(self.data_dir, str):
             self.data_dir = Path(self.data_dir)
         if isinstance(self.ner_cache_dir, str):
             self.ner_cache_dir = Path(self.ner_cache_dir)
+        if isinstance(self.xml_file, str):
+            self.xml_file = Path(self.xml_file)

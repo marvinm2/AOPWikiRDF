@@ -14,6 +14,15 @@ qc-delta-report.json
 aop-wiki-xml*
 data/aop-wiki-xml*
 
+# Exception: vendored, pinned AOP-XML schema directory (version-controlled).
+# The blanket aop-wiki-xml* rule above matches data/schema/aop-wiki-xml.xsd,
+# but the vendored XSD + its provenance pin + the coverage allowlist are
+# tracked source artifacts, not transient snapshot downloads. Raw
+# data/aop-wiki-xml* snapshot downloads stay ignored by the rule above.
+!data/schema/
+!data/schema/aop-wiki-xml.xsd
+!data/schema/aop-wiki-xml.xsd.SOURCE
+
 # Python cache and compiled files
 __pycache__/
 *.pyc
@@ -40,6 +49,16 @@ data/*.ttl
 !data/AOPWikiRDF-Genes.ttl
 !data/AOPWikiRDF-Void.ttl
 !data/ServiceDescription.ttl
+
+# Exception: pinned COMPAT flag-off golden TTLs + the committed XML snapshot
+# they were built from (COMPAT-01). Tracked source artifacts, not transient
+# output -- exempted from the data/*.ttl and aop-wiki-xml* rules above. The
+# .gz needs its OWN explicit ! line because the more-specific aop-wiki-xml*
+# rule is not overridden by the bare directory exception in all git versions
+# (same reason data/schema/aop-wiki-xml.xsd is listed explicitly above).
+!data/compat-golden/
+!data/compat-golden/*.ttl
+!data/compat-golden/aop-wiki-xml-2026-06-18.gz
 
 # Exception: SHACL shape definitions (version-controlled)
 !shapes/*.ttl

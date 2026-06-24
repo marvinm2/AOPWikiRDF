@@ -483,6 +483,10 @@ class TestPipelineConfigFields:
         from aopwiki_rdf.config import PipelineConfig
         assert PipelineConfig().enable_bern2 is False
 
+    def test_enable_iri_labels_defaults_false(self):
+        from aopwiki_rdf.config import PipelineConfig
+        assert PipelineConfig().enable_iri_labels is False
+
     def test_bern2_url_default_is_hosted_api(self):
         from aopwiki_rdf.config import PipelineConfig
         assert "bern2.korea.ac.kr" in PipelineConfig().bern2_url

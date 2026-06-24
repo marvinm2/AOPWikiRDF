@@ -2,6 +2,9 @@
 
 import datetime
 import os
+import re
+import subprocess
+import sys
 import tempfile
 
 import pytest
@@ -117,6 +120,39 @@ def test_write_void_rdf_emits_cc_by_sa_license():
         # No stale CC-BY URI should remain anywhere in the VoID file
         content = open(out).read()
         assert 'creativecommons.org/licenses/by/4.0' not in content
+
+
+def test_write_void_rdf_emits_pav_version():
+    """VoID parent dataset must carry an explicit pav:version "1.3" literal.
+
+    Establishes a deliberate dataset-version counter (D-06) on the top-level
+    :AOPWikiRDF dataset, distinct from the date-only pav:createdOn stamp. The
+    value is a bare string literal "1.3" (milestone label, no xsd: datatype).
+    """
+    from aopwiki_rdf.rdf.writer import write_void_rdf
+
+    now = datetime.datetime.now()
+    metadata = {
+        'aopwikixmlfilename': 'aop-wiki-xml-2025-01-01.gz',
+        'date': now.strftime('%Y-%m-%d'),
+        'datetime_obj': now,
+        'HGNCmodificationTime': '2025-01-01',
+        'PromodificationTime': '2025-01-01',
+        'bridgedb_info': {},
+        'service_desc_filepath': None,
+        'triple_counts': {'main': 1000, 'enriched': 500, 'genes': 200},
+    }
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        out = os.path.join(tmpdir, 'AOPWikiRDF-Void.ttl')
+        write_void_rdf(out, metadata)
+        content = open(out).read()
+
+        # Explicit milestone-tied version field is present on the parent block.
+        assert 'pav:version' in content
+        assert '"1.3"' in content
+        # Bare literal -- no datatype tag on the version value.
+        assert 'pav:version\t"1.3"' in content
 
 
 def test_write_void_rdf_with_service_desc():
@@ -850,3 +886,113 @@ class TestExternalIriLabelsFlagOn:
             labels = list(g.objects(chebi_iri, RDFS.label))
             assert len(labels) == 1
             assert str(labels[0]) == 'weird "quoted" name'
+
+
+# --------------------------------------------------------------------------- #
+# Determinism / byte-stability of multi-valued objects (stressor dcterms:isPartOf)
+# --------------------------------------------------------------------------- #
+# The stressor dcterms:isPartOf list is built from a Python set, whose iteration
+# order is hash-seed-randomized per process. writer.py sorts it for byte-stable
+# output. These tests pin that: the list is emitted sorted, and the writer's
+# output is byte-identical across two PYTHONHASHSEED values.
+
+def _build_ispartof_entities():
+    """Entities with one stressor linked to several AOPs (insertion order
+    deliberately unsorted) so the stressor dcterms:isPartOf set-union path fires
+    with a multi-element set."""
+    def _aop(ident):
+        return {
+            'dc:identifier': ident, 'rdfs:label': f'"{ident}"',
+            'foaf:page': f'<https://identifiers.org/{ident}>',
+            'dc:title': '"t"', 'dcterms:alternative': 'x', 'dc:source': 'AOP-Wiki',
+            'dcterms:created': '2020-01-01', 'dcterms:modified': '2020-01-01',
+            'aopo:has_key_event': {},
+            'nci:C54571': {'S1': {'dc:identifier': 'aop.stressor:1'}},
+        }
+    return {
+        # deliberately NOT in sorted order, and including aop:10 so lexical vs
+        # numeric order is exercised (lexical: aop:1 < aop:10 < aop:2 < aop:3).
+        'aopdict': {'a3': _aop('aop:3'), 'a1': _aop('aop:1'),
+                    'a2': _aop('aop:2'), 'a10': _aop('aop:10')},
+        'kedict': {}, 'kerdict': {},
+        'strdict': {'S1': {
+            'dc:identifier': 'aop.stressor:1', 'rdfs:label': '"S1"',
+            'foaf:page': '<https://identifiers.org/aop.stressor/1>',
+            'dc:title': '"Cadmium"', 'dcterms:created': '2020-01-01',
+            'dcterms:modified': '2020-01-01',
+        }},
+        'chedict': {}, 'taxdict': {}, 'bioobjdict': {}, 'bioprodict': {},
+        'bioactdict': {}, 'prodict': {},
+        'hgnclist': [], 'ncbigenelist': [], 'uniprotlist': [],
+        'listofcas': [], 'listofinchikey': [], 'listofcomptox': [],
+        'listofchebi': [], 'listofchemspider': [], 'listofwikidata': [],
+        'listofchembl': [], 'listofpubchem': [], 'listofdrugbank': [],
+        'listofkegg': [], 'listoflipidmaps': [], 'listofhmdb': [],
+    }
+
+
+def _write_ispartof_prefixes(path):
+    with open(path, 'w') as f:
+        f.write('prefix,uri\n')
+        for p, u in [
+            ('dc', 'http://purl.org/dc/elements/1.1/'),
+            ('dcterms', 'http://purl.org/dc/terms/'),
+            ('rdfs', 'http://www.w3.org/2000/01/rdf-schema#'),
+            ('foaf', 'http://xmlns.com/foaf/0.1/'),
+            ('aopo', 'http://aopkb.org/aop_ontology#'),
+            ('nci', 'http://purl.obolibrary.org/obo/NCIT_'),
+            ('aop', 'https://identifiers.org/aop/'),
+            ('aop.stressor', 'https://identifiers.org/aop.stressor/'),
+            ('sh', 'http://www.w3.org/ns/shacl#'),
+            ('xsd', 'http://www.w3.org/2001/XMLSchema#'),
+        ]:
+            f.write(f'{p},{u}\n')
+    return path
+
+
+def _ispartof_objects(ttl_text):
+    """Extract the comma-separated dcterms:isPartOf objects from the TTL."""
+    m = re.search(r'dcterms:isPartOf\t([^\n;.]+)', ttl_text)
+    assert m, "no dcterms:isPartOf line found in output"
+    return [tok.strip() for tok in m.group(1).split(',')]
+
+
+def test_stressor_ispartof_emitted_sorted(tmp_path):
+    """The set-derived stressor dcterms:isPartOf list is emitted in sorted order."""
+    from aopwiki_rdf.rdf.writer import write_aop_rdf
+
+    prefix_csv = _write_ispartof_prefixes(str(tmp_path / 'prefixes.csv'))
+    out = tmp_path / 'AOPWikiRDF.ttl'
+    write_aop_rdf(str(out), _build_ispartof_entities(), prefix_csv, config=None)
+
+    objs = _ispartof_objects(out.read_text())
+    assert objs == sorted(objs)
+    assert objs == ['aop:1', 'aop:10', 'aop:2', 'aop:3']
+
+
+def test_writer_output_byte_stable_across_hash_seeds(tmp_path):
+    """write_aop_rdf output is byte-identical under different PYTHONHASHSEED.
+
+    Catches any set/frozenset-derived emission whose order would otherwise vary
+    per process (the class of bug fixed at the stressor dcterms:isPartOf site)."""
+    worker = tmp_path / 'worker.py'
+    worker.write_text(
+        "import sys\n"
+        f"sys.path.insert(0, {os.path.dirname(os.path.abspath(__file__))!r})\n"
+        "from test_rdf_writer import _build_ispartof_entities\n"
+        "from aopwiki_rdf.rdf.writer import write_aop_rdf\n"
+        "write_aop_rdf(sys.argv[1], _build_ispartof_entities(), sys.argv[2], config=None)\n"
+    )
+    prefix_csv = _write_ispartof_prefixes(str(tmp_path / 'prefixes.csv'))
+
+    outputs = []
+    for seed in ('0', '1'):
+        out = tmp_path / f'out_{seed}.ttl'
+        env = dict(os.environ, PYTHONHASHSEED=seed)
+        subprocess.run(
+            [sys.executable, str(worker), str(out), prefix_csv],
+            env=env, check=True, capture_output=True,
+        )
+        outputs.append(out.read_bytes())
+
+    assert outputs[0] == outputs[1], "TTL output is not byte-stable across hash seeds"

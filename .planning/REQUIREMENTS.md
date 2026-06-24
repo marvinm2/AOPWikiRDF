@@ -1,126 +1,48 @@
-# Requirements: AOPWikiRDF Pipeline Modernization
+# Requirements — Milestone v1.3: XML Coverage, COMPAT Gate & Production Promotion
 
-**Defined:** 2026-03-04
-**Core Value:** Produce accurate, well-structured RDF from AOP-Wiki XML every week — reliably and with traceable provenance for pure vs enriched content.
+> REQ-IDs continue numbering from prior milestones (LABEL-01..04 shipped in v1.2).
+> Self-hosted BERN2 (NER-05) was evaluated and **dropped** — see Out of Scope.
 
-## v1 Requirements
+## Milestone v1.3 Requirements
 
-### Modularization
+### XML Coverage (XML)
+- [x] **XML-01**: A maintainer can run a single re-runnable script that reports XML→RDF element coverage as machine-readable JSON — diffing AOP-XML elements/attributes (declared in the XSD and/or observed in instance data) against what the parser actually emits, with per-element occurrence counts and snapshot-over-snapshot deltas.
+- [x] **XML-02**: High-value coverage gaps (elements present in actual quarterly-snapshot instance data but absent from the RDF output) are fixed in the parser/writer, ranked by occurrence-count × semantic value.
+- [x] **XML-03**: A coverage-ratchet regression test plus per-element triple-count QC guards fail the build when coverage regresses below the post-fix baseline, extending the existing `HEAD~1` delta-guard pattern.
 
-- [x] **MOD-01**: Replace `exec()`/string-replacement config with Python dataclass-based configuration
-- [x] **MOD-02**: Extract XML parser into a standalone module with defined input/output contracts
-- [x] **MOD-03**: Extract gene mapper into a standalone module with defined input/output contracts
-- [x] **MOD-04**: Extract chemical mapper into a standalone module with defined input/output contracts
-- [x] **MOD-05**: Extract RDF writer(s) into standalone module(s) with defined input/output contracts
-- [x] **MOD-06**: Create thin orchestrator that wires modules together and replaces monolithic execution
-- [x] **MOD-07**: Modularized pipeline produces identical RDF output compared to current monolithic script (triple-for-triple regression test)
+### IRI Labels (LABEL)
+- [x] **LABEL-05**: A maintainer can enable IRI labels at the command line via a `--enable-iri-labels` flag on `run_conversion.py`, wired through to `PipelineConfig.enable_iri_labels` (off by default until the production flip), mirroring the existing `--enable-bern2` flag.
 
-### Predicate Correction
+### Compatibility (COMPAT)
+- [ ] **COMPAT-01**: A milestone-level, full-corpus byte-identity closing gate proves that flag-gated changes reproduce the flag-off output exactly. It compares against a pinned, in-repo flag-off golden (regenerated on a committed XML snapshot — never the stale `production-rdf-backup/`), masks embedded wall-clock dates so it does not false-fail across calendar days, and runs as a manual/milestone `workflow_dispatch` job, not in the weekly per-commit pytest.
 
-- [x] **PRED-01**: Replace `skos:exactMatch` with `owl:sameAs` for all cross-database identifier links (chemicals and genes)
-- [x] **PRED-02**: Fix HGNC namespace usage — use numeric HGNC IDs for identifier URIs, retain symbols as queryable properties (e.g. `rdfs:label` or `skos:prefLabel`)
-- [x] **PRED-03**: Audit downstream SNORQL SPARQL queries for `skos:exactMatch` usage and document required changes
-- [x] **PRED-04**: Ensure HGNC gene symbols remain queryable in the RDF after ID/predicate corrections
+### Production Promotion (PROMO)
+- [ ] **PROMO-01**: BERN2-primary gene annotations and IRI labels go live in `master/data/` by flipping the flags in both the weekly `rdfgeneration.yml` and the `test-python-conversion.yml` regression workflow (kept mirrored), gated on a green COMPAT-01, with downstream SPARQL `.rq` and dashboard `methodology_notes.json` queries pre-flighted against a flags-on Virtuoso load before the flip commit touches `master/data/`. VoID dataset version bumped and `docs/schema.md` updated for the newly live predicates.
 
-### Gene Mapping Rework
+## Future Requirements (deferred)
 
-- [x] **GENE-01**: Implement dynamic HGNC data download at pipeline startup via BioMart endpoint
-- [x] **GENE-02**: Fall back to cached static HGNC file when dynamic download fails
-- [x] **GENE-03**: Maintain existing three-stage precision filtering (screening, precision matching, false positive filtering)
-- [x] **GENE-04**: Gene mapping module is independently testable with unit tests
+- **NER-05** — Self-hosted BERN2 to remove the external public-API dependency. Blocked on hardware: full BERN2 needs ~63.5 GB RAM + a CUDA GPU; cluster nodes have ~31 GB and no GPU. Revisit only if a GPU/fat-RAM host is provisioned (hardware question for slaenen) **or** a distilled CPU NER fallback (TinyBERN2/scispaCy) passes gene-set parity against current BERN2-primary output.
+- **KER-02** (#68) — KER relationship overview extraction.
+- **YARRML-01..03** (#60-63) — declarative YARRML/RML mapping transition (separate collaboration).
 
-### BioBERT Exploration
+## Out of Scope (explicit exclusions)
 
-- [x] **BIO-01**: Build prototype NER pipeline using BioBERT (or similar biomedical model) on a subset of Key Event descriptions
-- [x] **BIO-02**: Compare BioBERT precision and recall against current HGNC regex-based mapping
-- [x] **BIO-03**: Document findings, feasibility assessment, and integration path for future adoption
-
-### Output Separation
-
-- [x] **SEP-01**: Separate pure AOP-Wiki RDF (source-derived triples only) into its own TTL file
-- [x] **SEP-02**: Separate enriched/associated content (gene mappings, chemical cross-references) into distinct TTL file(s)
-- [x] **SEP-03**: Add `void:subset` declarations linking separated files in VoID metadata
-
-### Validation
-
-- [x] **VAL-01**: Audit current RDF output to determine which properties are required vs optional per entity type
-- [x] **VAL-02**: Define SHACL shapes for core entity types: AOP, Key Event, KER, Stressor, Chemical
-- [x] **VAL-03**: Integrate SHACL validation as a triggered GitHub Actions workflow (separate from generation)
-- [x] **VAL-04**: SHACL validation completes within GitHub Actions time limits on full RDF output
-
-### Documentation & VoID
-
-- [x] **DOC-01**: Write schema documentation covering RDF structure, namespaces, and entity types
-- [x] **DOC-02**: Document conversion process and mapping strategy (gene mapping, chemical mapping, precision filtering)
-- [x] **DOC-03**: Enrich VoID metadata with `void:triples`, `dcterms:license`, `pav:importedFrom` for BridgeDb enrichment
-- [x] **DOC-04**: Add `void:exampleResource` entries for discoverability
-
-## v2 Requirements
-
-### YARRML Transition
-
-- **YARRML-01**: Investigate YARRML mapping patterns for AOP-Wiki XML structure
-- **YARRML-02**: Design hybrid YARRML + Python post-processing approach
-- **YARRML-03**: Update GitHub Actions workflow for YARRML integration
-
-### KER Relationships
-
-- **KER-01**: Extract KER relationship overview data from XML into RDF (#68)
-
-### Advanced NER
-
-- **NER-01**: Full BioBERT integration into production pipeline (pending prototype results from BIO-01/02/03)
-
-## Out of Scope
-
-| Feature | Reason |
-|---------|--------|
-| YARRML transition (#60-63) | Separate collaboration with Saurav Kumar, different timeline |
-| KER overview extraction (#68) | Deferred to future round |
-| Real-time conversion | Weekly batch is the deployment model |
-| Mobile/web UI | This is a data pipeline, not user-facing |
-| rdflib 7.x upgrade | Unresolved risk — may affect serialization behavior; evaluate separately |
-| Named graphs for provenance | File-level separation is simpler and sufficient for batch pipeline |
+- **Self-hosted BERN2 in v1.3** — infeasible on current hardware (see Future / NER-05). Keep external API + committed cache.
+- **Auto-mapping all XSD-declared elements** — would flood the graph with empty/junk triples; only high-value, instance-present gaps are fixed.
+- **Full-corpus byte-identity on every weekly run** — COMPAT is a milestone gate, not a per-run check (28–90 min full-corpus cost).
+- **Sampled byte-identity** — defeats the purpose of a closing gate; COMPAT is full-corpus.
+- **RDFC-1.0 / blank-node canonicalization for COMPAT** — unnecessary; the writer emits manual f-string Turtle, not `rdflib.serialize()`, so the only non-determinism is embedded dates and iteration order.
+- **Removing the regex/cache fallback** — retained regardless of any BERN2 topology change.
 
 ## Traceability
 
-| Requirement | Phase | Status |
-|-------------|-------|--------|
-| MOD-01 | Phase 1 | Complete |
-| MOD-02 | Phase 1 | Complete |
-| GENE-01 | Phase 1 | Complete |
-| GENE-02 | Phase 1 | Complete |
-| MOD-03 | Phase 2 | Complete |
-| MOD-04 | Phase 2 | Complete |
-| MOD-05 | Phase 2 | Complete |
-| MOD-06 | Phase 2 | Complete |
-| MOD-07 | Phase 2 | Complete |
-| PRED-01 | Phase 3 | Complete |
-| PRED-02 | Phase 3 | Complete |
-| PRED-03 | Phase 3 | Complete |
-| PRED-04 | Phase 3 | Complete |
-| GENE-03 | Phase 3 | Complete |
-| GENE-04 | Phase 3 | Complete |
-| SEP-01 | Phase 4 | Complete |
-| SEP-02 | Phase 4 | Complete |
-| SEP-03 | Phase 4 | Complete |
-| DOC-03 | Phase 4 | Complete |
-| DOC-04 | Phase 4 | Complete |
-| VAL-01 | Phase 5 | Complete |
-| VAL-02 | Phase 5 | Complete |
-| VAL-03 | Phase 5 | Complete |
-| VAL-04 | Phase 5 | Complete |
-| DOC-01 | Phase 5 | Complete |
-| DOC-02 | Phase 5 | Complete |
-| BIO-01 | Phase 5 | Complete |
-| BIO-02 | Phase 5 | Complete |
-| BIO-03 | Phase 5 | Complete |
+*(Filled by roadmap — each requirement maps to exactly one phase.)*
 
-**Coverage:**
-- v1 requirements: 29 total
-- Mapped to phases: 29
-- Unmapped: 0
-
----
-*Requirements defined: 2026-03-04*
-*Last updated: 2026-03-04 after roadmap creation*
+| REQ-ID | Phase | Status |
+|--------|-------|--------|
+| XML-01 | Phase 9 | complete |
+| XML-02 | Phase 9 | complete |
+| XML-03 | Phase 9 | complete |
+| LABEL-05 | Phase 10 | Complete |
+| COMPAT-01 | Phase 11 | pending |
+| PROMO-01 | Phase 12 | pending |

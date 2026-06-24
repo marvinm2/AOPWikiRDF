@@ -1,0 +1,580 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.aopkb.org/aop-xml" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" vc:minVersion="1.1" targetNamespace="http://www.aopkb.org/aop-xml">
+    <xs:simpleType name="guid">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">The representation of a GUID, generally the id of an element.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="evidence-type">
+        <xs:sequence>
+            <xs:element name="evidence" type="confidence-level-type" />
+            <xs:element name="uri" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="applicability-type">
+        <xs:sequence>
+            <xs:element name="sex" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="evidence-type">
+                            <xs:sequence>
+                                <xs:element name="sex">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="Male" />
+                                            <xs:enumeration value="Female" />
+                                            <xs:enumeration value="Mixed" />
+                                            <xs:enumeration value="Asexual" />
+                                            <xs:enumeration value="Third Gender" />
+                                            <xs:enumeration value="Hermaphrodite" />
+                                            <xs:enumeration value="Unspecific" />
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="life-stage" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="evidence-type">
+                            <xs:sequence>
+                                <xs:element name="life-stage">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="Birth to &lt; 1 month" />
+                                            <xs:enumeration value="1 to &lt; 3 months" />
+                                            <xs:enumeration value="3 to &lt; 6 months" />
+                                            <xs:enumeration value="6 to &lt; 12 months" />
+                                            <xs:enumeration value="1 to &lt; 2 years" />
+                                            <xs:enumeration value="2 to &lt; 3 years" />
+                                            <xs:enumeration value="3 to &lt; 6 years" />
+                                            <xs:enumeration value="6 to &lt; 11 years" />
+                                            <xs:enumeration value="11 to &lt; 16 years" />
+                                            <xs:enumeration value="16 to &lt; 21 years" />
+                                            <xs:enumeration value="Nursing Child" />
+                                            <xs:enumeration value="Pregnancy" />
+                                            <xs:enumeration value="Old Age" />
+                                            <xs:enumeration value="Not Otherwise Specified" />
+                                            <xs:enumeration value="Lactating Mother" />
+                                            <xs:enumeration value="Conception to &lt; Fetal" />
+                                            <xs:enumeration value="Fetal to Parturition" />
+                                            <xs:enumeration value="Foetal" />
+                                            <xs:enumeration value="Embryo" />
+                                            <xs:enumeration value="Juvenile" />
+                                            <xs:enumeration value="Adult, reproductively mature" />
+                                            <xs:enumeration value="Perinatal" />
+                                            <xs:enumeration value="During development and at adulthood" />
+                                            <xs:enumeration value="Adults" />
+                                            <xs:enumeration value="Adult" />
+                                            <xs:enumeration value="During brain development, adulthood and aging" />
+                                            <xs:enumeration value="During brain development" />
+                                            <xs:enumeration value="Human" />
+                                            <xs:enumeration value="Development" />
+                                            <xs:enumeration value="All life stages" />
+                                            <xs:enumeration value="Fetal" />
+                                            <xs:enumeration value="Larvae" />
+                                            <xs:enumeration value="Larval development" />
+                                            <xs:enumeration value="before or during gonadal sex differentiation" />
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="taxonomy" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="evidence-type">
+                            <xs:attribute name="taxonomy-id" type="guid" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="uri" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="biological-compartment" type="xs:string" maxOccurs="unbounded" minOccurs="0" />
+            <xs:element name="time-to-manifestation" type="xs:string" maxOccurs="unbounded" minOccurs="0" />
+            <xs:element name="time-to-manifestation-range" type="xs:string" maxOccurs="unbounded" minOccurs="0" />
+            <xs:element name="generation" type="xs:string" maxOccurs="unbounded" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="substance-info">
+        <xs:sequence>
+            <xs:element name="title" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="type" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="iuc-name" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+            <!-- <xs:element name="constituent" type="constituent-type" minOccurs="0" maxOccurs="unbounded"/> -->
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="substance-properties" type="property-values" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="property-values">
+        <xs:sequence>
+            <xs:element name="property" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="units" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="conditions" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="source" type="xs:string" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="qa-type">
+        <xs:sequence>
+            <xs:element name="contributor" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="reviewer" type="xs:string" maxOccurs="unbounded" minOccurs="0" />
+            <xs:element name="seal-of-approval" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="last-modified" type="xs:dateTime" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="url_link">
+        <xs:sequence>
+            <xs:element name="link_source" type="xs:string" minOccurs="0" />
+            <xs:element name="url" type="xs:string" minOccurs="0" />
+            <xs:element name="title" type="xs:string" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="status">
+        <xs:sequence>
+            <xs:element name="wiki-license">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="All rights reserved" />
+                        <xs:enumeration value="BY-SA" />
+                        <xs:enumeration value="Open for adoption" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="oecd-status" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="WPHA/WNT Endorsed" />
+                        <xs:enumeration value="ESCA Approved" />
+                        <xs:enumeration value="Under Review" />
+                        <xs:enumeration value="Under Development" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="biological-organization-level-type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Molecular" />
+            <xs:enumeration value="Organelle" />
+            <xs:enumeration value="Cellular" />
+            <xs:enumeration value="Tissue" />
+            <xs:enumeration value="Organ" />
+            <xs:enumeration value="Organ System" />
+            <xs:enumeration value="Individual" />
+            <xs:enumeration value="Population" />
+            <xs:enumeration value="Species" />
+            <xs:enumeration value="Communities" />
+            <xs:enumeration value="Ecosystem" />
+            <xs:enumeration value="Biosphere" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="confidence-level-type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="High" />
+            <xs:enumeration value="Moderate" />
+            <xs:enumeration value="Low" />
+            <xs:enumeration value="Not Specified" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="biological-term-type">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="source-id" type="xs:string" />
+            <xs:element minOccurs="0" name="source" type="xs:string" />
+            <xs:element name="name" type="xs:string" />
+            <xs:element minOccurs="0" name="synonym" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="data">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="chemical" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="inchi" type="xs:string" minOccurs="0" />
+                            <xs:element name="casrn" type="xs:string" minOccurs="0" />
+                            <xs:element name="jchem-inchi-key" type="xs:string" minOccurs="0" />
+                            <xs:element name="indigo-inchi-key" type="xs:string" minOccurs="0" />
+                            <xs:element name="iupac-name" type="xs:string" minOccurs="0" />
+                            <xs:element name="smiles" type="xs:string" minOccurs="0" />
+                            <xs:element name="preferred-name" type="xs:string" />
+                            <xs:element name="synonyms" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="synonym" minOccurs="1" maxOccurs="unbounded" type="xs:string" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="formula" type="xs:string" minOccurs="0" />
+                            <xs:element name="structural-diagram-2d" type="xs:hexBinary" minOccurs="0" />
+                            <xs:element name="dsstox-id" type="xs:string" minOccurs="0" />
+                        </xs:sequence>
+                        <xs:attribute name="id" type="guid" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="biological-object" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:complexContent>
+                            <xs:extension base="biological-term-type">
+                                <xs:sequence>
+                                    
+                                </xs:sequence>
+                                <xs:attribute name="id" type="guid" use="required" />
+                            </xs:extension>
+                        </xs:complexContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="biological-process" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:complexContent>
+                            <xs:extension base="biological-term-type">
+                                <xs:sequence>
+                                    
+                                </xs:sequence>
+                                <xs:attribute name="id" type="guid" use="required" />
+                            </xs:extension>
+                        </xs:complexContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="biological-action" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:complexContent>
+                            <xs:extension base="biological-term-type">
+                                <xs:attribute name="id" type="guid" use="required" />
+                            </xs:extension>
+                        </xs:complexContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="stressor" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string" />
+                            <xs:element minOccurs="0" name="quality-assurance" type="qa-type" />
+                            <xs:element name="description" type="xs:string" />
+                            <xs:element name="chemicals" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="chemical-initiator" minOccurs="1" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="chemical-id" type="guid" />
+                                                <xs:attribute name="user-term" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="structural-properties" type="property-values" />
+                            <xs:element name="synonym" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="associated-substances" type="substance-info" />
+                            <xs:element name="link" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element name="exposure-characterization" type="xs:string" minOccurs="0" />
+                            <xs:element minOccurs="0" name="creation-timestamp" type="xs:dateTime" />
+                            <xs:element minOccurs="0" name="last-modification-timestamp" type="xs:dateTime" />
+                        </xs:sequence>
+                        <xs:attribute name="id" type="guid" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="taxonomy" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:complexContent>
+                            <xs:extension base="biological-term-type">
+                                <xs:attribute name="id" type="guid" use="required" />
+                            </xs:extension>
+                        </xs:complexContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="key-event" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="title" type="xs:string" maxOccurs="1" minOccurs="1" />
+                            <xs:element name="short-name" type="xs:string" maxOccurs="1" minOccurs="1" />
+                            <xs:element name="biological-organization-level" minOccurs="0" type="biological-organization-level-type" />
+                            <xs:element name="description" type="xs:string" />
+                            <xs:element name="measurement-methodology" type="xs:string" minOccurs="0" />
+                            <xs:element name="evidence-supporting-taxonomic-applicability" type="xs:string" minOccurs="0" />
+                            <xs:element name="organ-term" type="biological-term-type" minOccurs="0" />
+                            <xs:element name="cell-term" type="biological-term-type" minOccurs="0" />
+                            <xs:element name="applicability" type="applicability-type" minOccurs="0" />
+                            <xs:element name="associated-tests" type="xs:string" minOccurs="0" />
+                            <xs:element name="biological-events" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="biological-event" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="object-id" type="guid" use="optional" />
+                                                <xs:attribute name="process-id" type="guid" use="optional" />
+                                                <xs:attribute name="action-id" type="guid" use="required" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="key-event-stressors" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="key-event-stressor" minOccurs="1" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:complexContent>
+                                                    <xs:extension base="evidence-type">
+                                                        <xs:attribute name="stressor-id" type="guid" use="required" />
+                                                    </xs:extension>
+                                                </xs:complexContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="references" type="xs:string" minOccurs="0" />
+                            <xs:element name="source" minOccurs="0">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="AOPWiki" />
+                                        <xs:enumeration value="Effectopedia" />
+                                        <xs:enumeration value="Intermediate Effects DB" />
+                                        <xs:enumeration value="AOP Xplorer" />
+                                        <xs:enumeration value="Other" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="source-internal-id" type="xs:string" minOccurs="0" maxOccurs="1" />
+                            <xs:element name="uri" type="xs:string" minOccurs="0" maxOccurs="1" />
+                            <xs:element name="quality-assurance" type="qa-type" minOccurs="0" />
+                            <xs:element name="creation-timestamp" type="xs:dateTime" minOccurs="0" />
+                            <xs:element name="last-modification-timestamp" type="xs:dateTime" minOccurs="0" />
+                        </xs:sequence>
+                        <xs:attribute name="id" type="guid" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="key-event-relationship" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="title">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="upstream-id" type="guid" />
+                                        <xs:element name="downstream-id" type="guid" />
+                                        <xs:element name="detail-level" minOccurs="0" default="Hypothetical">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:enumeration value="Hypothetical" />
+                                                    <xs:enumeration value="One to One" />
+                                                    <xs:enumeration value="Proportional" />
+                                                    <xs:enumeration value="Threshold" />
+                                                    <xs:enumeration value="Response-Response" />
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="description" type="xs:string" minOccurs="0" />
+                            <xs:element name="evidence-collection-strategy" type="xs:string" minOccurs="0" />
+                            <xs:element name="weight-of-evidence" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="value" type="xs:string" />
+                                        <xs:element name="biological-plausibility" type="xs:string" minOccurs="0" />
+                                        <xs:element name="emperical-support-linkage" type="xs:string" minOccurs="0" />
+                                        <xs:element name="uncertainties-or-inconsistencies" type="xs:string" minOccurs="0" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="known-modulating-factors" type="xs:string" minOccurs="0" />
+                            <xs:element name="quantitative-understanding" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="description" type="xs:string" />
+                                        <xs:element name="support-evidence" type="xs:string" minOccurs="0" />
+                                        <xs:element name="response-response-relationship" type="xs:string" minOccurs="0" />
+                                        <xs:element name="time-scale" type="xs:string" minOccurs="0" />
+                                        <xs:element name="feedforward-feedback-loops" type="xs:string" minOccurs="0" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="applicability" type="applicability-type" minOccurs="0" />
+                            <xs:element name="evidence-supporting-taxonomic-applicability" type="xs:string" minOccurs="0" />
+                            <xs:element name="references" type="xs:string" minOccurs="0" />
+                            <xs:element name="source" minOccurs="0">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="AOPWiki" />
+                                        <xs:enumeration value="Effectopedia" />
+                                        <xs:enumeration value="Intermediate Effects DB" />
+                                        <xs:enumeration value="AOP Xplorer" />
+                                        <xs:enumeration value="Other" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="source-internal-id" type="xs:string" minOccurs="0" />
+                            <xs:element name="uri" type="xs:string" minOccurs="0" maxOccurs="1" />
+                            <xs:element minOccurs="0" name="quality-assurance" type="qa-type" />
+                            <xs:element name="creation-timestamp" type="xs:dateTime" minOccurs="0" />
+                            <xs:element name="last-modification-timestamp" type="xs:dateTime" minOccurs="0" />
+                        </xs:sequence>
+                        <xs:attribute name="id" type="guid" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="aop" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="title" type="xs:string" />
+                            <xs:element name="short-name" type="xs:string" />
+                            <xs:element name="point-of-contact" type="xs:string" />
+                            <xs:element name="authors" type="xs:string" />
+                            <xs:element name="coaches" maxOccurs="1" minOccurs="0" >
+                               <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="coach" type="xs:string" maxOccurs="unbounded" minOccurs="0" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                             </xs:element>
+                            <xs:element name="external_links" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="url_link" type="url_link" minOccurs="0" maxOccurs="unbounded" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="status" type="status" />
+                            <xs:element name="oecd-project" type="xs:string" />
+                            <xs:element name="handbook-version" type="xs:string" />
+                            <xs:element name="abstract" type="xs:string" />
+                            <xs:element name="background" type="xs:string" minOccurs="0" />
+                            <xs:element name="development-strategy" type="xs:string" minOccurs="0" />
+                            <xs:element name="molecular-initiating-event" maxOccurs="unbounded" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="evidence-supporting-chemical-initiation" type="xs:string" minOccurs="0" />
+                                    </xs:sequence>
+                                    <xs:attribute name="key-event-id"  type="guid"  use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="key-events" maxOccurs="1" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="key-event" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="key-event-id"  type="guid"  use="required" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="adverse-outcome" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="examples" type="xs:string" minOccurs="0" />
+                                        <xs:element name="regulatory-relevance" type="xs:string" minOccurs="0" />
+                                        <xs:element name="organs-affected" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:complexContent>
+                                                    <xs:extension base="evidence-type">
+                                                        <xs:sequence>
+                                                            <xs:element name="synonym" type="xs:string" />
+                                                            <xs:element name="scientific-name" type="xs:string" />
+                                                        </xs:sequence>
+                                                    </xs:extension>
+                                                </xs:complexContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="key-event-id" type="guid"  use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="key-event-relationships" maxOccurs="1" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="relationship" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="adjacency">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="adjacent" />
+                                                                <xs:enumeration value="non-adjacent" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="quantitative-understanding-value" type="confidence-level-type" />
+                                                    <xs:element name="evidence" type="confidence-level-type" />
+                                                </xs:sequence>
+                                                <xs:attribute name="id" type="guid" use="required" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="applicability" type="applicability-type" minOccurs="0" />
+                            <xs:element name="overall-assessment" maxOccurs="1" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="description" type="xs:string" minOccurs="0" />
+                                        <xs:element name="applicability" type="xs:string" minOccurs="0" />
+                                        <xs:element name="key-event-essentiality-summary" type="xs:string" minOccurs="0" />
+                                        <xs:element name="weight-of-evidence-summary" type="xs:string" minOccurs="0" />
+                                        <xs:element name="known-modulating-factors" type="xs:string" minOccurs="0" />
+                                        <xs:element name="quantitative-considerations" type="xs:string" minOccurs="0" />
+                                        <xs:element name="uri" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="potential-applications" type="xs:string" minOccurs="0" />
+                            <xs:element name="aop-stressors" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="aop-stressor" minOccurs="1" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:complexContent>
+                                                    <xs:extension base="evidence-type">
+														<xs:attribute name="stressor-id" type="guid" use="required" />
+                                                    </xs:extension>
+                                                </xs:complexContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="references" type="xs:string" minOccurs="0" />
+                            <xs:element name="source" minOccurs="0">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="AOPWiki" />
+                                        <xs:enumeration value="Effectopedia" />
+                                        <xs:enumeration value="Intermediate Effects DB" />
+                                        <xs:enumeration value="AOP Xplorer" />
+                                        <xs:enumeration value="Other" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="source-internal-id" type="xs:string" minOccurs="0" />
+                            <xs:element name="uri" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element minOccurs="0" name="quality-assurance" type="qa-type" />
+                            <xs:element name="creation-timestamp" type="xs:dateTime" />
+                            <xs:element name="last-modification-timestamp" type="xs:dateTime" />
+                        </xs:sequence>
+                        <xs:attribute name="id" type="guid" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="vendor-specific" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:any maxOccurs="unbounded" processContents="lax" />
+                        </xs:sequence>
+                        <xs:attribute name="id" type="guid" use="required" />
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                        <xs:attribute name="version" type="xs:string" use="optional" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

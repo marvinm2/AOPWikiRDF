@@ -128,9 +128,19 @@ jobs:
       # baseline (first such failure: weekly run on 2026-06-06). Using HEAD~1
       # gives a true week-over-week baseline with no large files in the repo and
       # no manual maintenance. Requires fetch-depth >= 2 on the checkout above.
-      - name: Gene/triple delta guard vs previous commit
+      #
+      # Step 5c folds the per-element coverage ratchet guard (XML-03) into this
+      # same invocation: passing --coverage-baseline makes qc_delta_guard.py run
+      # BOTH the gene/total check AND a per-element predicate check (from
+      # scripts/coverage-ratchet-baseline.json) against the same HEAD~1 baseline,
+      # catching a silent drop in a SPECIFIC fixed-gap predicate (e.g.
+      # evidence-collection-strategy) too small to move the whole-graph total.
+      # One materialization + one guard call avoids re-parsing the TTLs twice and
+      # overwriting qc-delta-report.json. STRICT (blocking) mode: any breach fails
+      # the PR/push QC job (D-08 hard-fail posture).
+      - name: Gene/triple + per-element coverage ratchet guard vs previous commit
         run: |
-          echo "=== Gene/triple delta guard (QC-01) ==="
+          echo "=== Delta + coverage ratchet guard (QC-01 + XML-03) ==="
           mkdir -p delta-baseline
           missing=false
           for f in AOPWikiRDF.ttl AOPWikiRDF-Genes.ttl; do
@@ -143,9 +153,11 @@ jobs:
           done
           if [ "$missing" = true ]; then
             echo "::warning::Skipping delta guard -- no previous data/ commit to compare against (first run?)."
+            rm -rf delta-baseline
             exit 0
           fi
-          python scripts/qc_delta_guard.py --new-dir data/ --baseline-dir delta-baseline/ --drop-pct 0.05
+          python scripts/qc_delta_guard.py --new-dir data/ --baseline-dir delta-baseline/ --coverage-baseline scripts/coverage-ratchet-baseline.json --drop-pct 0.05
+          rm -rf delta-baseline
 
       # Step 6: Commit and Push QC Status File to /data
       - name: Commit and Push QC Status

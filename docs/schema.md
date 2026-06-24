@@ -260,6 +260,52 @@ Key Events and Key Event Relationships are linked to genes via the `edam:data_10
 | `dc:identifier` | Literal | 1 | Full identifier string |
 | `dc:source` | Literal | 1 | "UniProt" |
 
+#### Gene-mapping provenance (BERN2-primary)
+
+**File:** `AOPWikiRDF-Genes.ttl`
+
+When BERN2 NER+EL gene mapping is enabled in production (the live default), the genes
+file additionally carries PROV-O provenance describing how each gene link was detected.
+Two mapping methods are declared as `prov:Activity` resources, with BERN2 marked as the
+featured (recall-extending) method:
+
+| Subject | Type | Properties | Description |
+|---------|------|------------|-------------|
+| `:BERN2NERMapping` | `prov:Activity` | `rdfs:label`, `:isFeaturedMethod true`, `:minConfidence "0.70"^^xsd:decimal`, `prov:used <http://bern2.korea.ac.kr/plain>`, `prov:wasDerivedFrom :AOPWikiXMLSource` | BERN2 NER+EL gene mapping — the featured recall-extending method (additive to the regex baseline, not an override) |
+| `:RegexGeneMapping` | `prov:Activity` | `rdfs:label`, `:isFeaturedMethod false`, `prov:used <https://www.genenames.org/>`, `prov:wasDerivedFrom :AOPWikiXMLSource` | HGNC dictionary regex gene mapping — the baseline method that seeds and orders the `edam:data_1025` union |
+| `:AOPWikiXMLSource` | `prov:Entity` | `rdfs:label` | The AOP-Wiki XML export |
+
+The two detection predicates are wired to their generating activity so a SPARQL consumer
+can resolve the canonical method without out-of-band docs:
+
+- `:geneDetectedByNER prov:wasGeneratedBy :BERN2NERMapping`
+- `:geneDetectedByRegex prov:wasGeneratedBy :RegexGeneMapping`
+
+**Note on `:isFeaturedMethod` semantics:** "featured" denotes the recall-EXTENDING method
+canonically surfaced for discovery, NOT a precedence that overrides regex — the
+`edam:data_1025` union is regex-baseline + NER-additive (a BERN2 outage never thins the
+regex genes). `:minConfidence "0.70"` is the floor applied to *scored* annotations only;
+unscored neural-normalised entities are deliberately retained. The authoritative source
+for these activity definitions is `src/aopwiki_rdf/rdf/namespaces.py`
+(`GENES_PROVENANCE_ACTIVITIES`).
+
+#### Human-readable labels on minted IRIs (`rdfs:label`)
+
+When IRI labels are enabled in production (alongside BERN2-primary), the minted `:` gene
+provenance predicates and the BERN2 confidence/featured flags additionally carry
+human-readable `rdfs:label` values so they self-describe in a SPARQL editor:
+
+- `:geneDetectedByNER rdfs:label "gene detected by BERN2 NER+EL (featured recall-extending method)"`
+- `:geneDetectedByRegex rdfs:label "gene detected by HGNC dictionary regex (baseline method)"`
+- `:isFeaturedMethod rdfs:label "is featured method (BERN2 primacy flag)"`
+- `:minConfidence rdfs:label "minimum BERN2 annotation confidence retained"`
+
+These label rows are double-gated (emitted only when both BERN2 and IRI labels are on).
+Reused external ontology predicates (Dublin Core, OWL/RDFS, AOP Ontology, EDAM) likewise
+carry `rdfs:label` rows in the main `AOPWikiRDF.ttl` file under the same IRI-label flag.
+The authoritative source for the minted-predicate labels is
+`src/aopwiki_rdf/rdf/namespaces.py` (`GENES_MINTED_PREDICATE_LABELS`).
+
 ### Enriched Cross-References (`owl:sameAs`)
 
 **File:** `AOPWikiRDF-Enriched.ttl`
@@ -343,7 +389,10 @@ Contains cross-reference enrichment triples:
 Contains VoID dataset metadata:
 
 1. VoID prefix declarations
-2. Parent dataset (`:AOPWikiRDF`) with `void:subset` links to the three content files
+2. Parent dataset (`:AOPWikiRDF`) with `void:subset` links to the three content files, plus
+   an explicit `pav:version "1.3"` milestone-tied dataset-version field (a bare string
+   literal, distinct from the date-only `pav:createdOn` stamp; bumped per schema-changing
+   release and stamped on the top-level dataset only, not the per-subset nodes)
 3. Pure source subset (`:AOPWikiRDF.ttl`) with provenance and triple counts
 4. Enriched subset (`:AOPWikiRDF-Enriched.ttl`) with BridgeDb provenance
 5. Genes subset (`:AOPWikiRDF-Genes.ttl`) with HGNC provenance

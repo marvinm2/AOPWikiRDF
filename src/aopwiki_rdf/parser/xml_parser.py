@@ -557,6 +557,11 @@ def parse_aopwiki_xml(xml_path: str, config: PipelineConfig = None) -> ParsedEnt
             kedict[ke.get('id')]['dc:description'] = '"""' + HTML_TAG_PATTERN.sub('', ke.find(aopxml + 'description').text) + '"""'
         if ke.find(aopxml + 'measurement-methodology').text is not None:
             kedict[ke.get('id')]['mmo:0000000'] = '"""' + HTML_TAG_PATTERN.sub('', ke.find(aopxml + 'measurement-methodology').text) + '"""'
+        # Coverage gap-fix (Plan 09-03, XML-02): KE-level taxonomic-applicability
+        # evidence free text (also present at KER level above). Additive, guarded.
+        ke_esta = ke.find(aopxml + 'evidence-supporting-taxonomic-applicability')
+        if ke_esta is not None and ke_esta.text is not None:
+            kedict[ke.get('id')]['nci:C17469'] = '"""' + HTML_TAG_PATTERN.sub('', ke_esta.text) + '"""'
         kedict[ke.get('id')]['biological-organization-level'] = ke.find(aopxml + 'biological-organization-level').text
         kedict[ke.get('id')]['dc:source'] = ke.find(aopxml + 'source').text
         for appl in ke.findall(aopxml + 'applicability'):
@@ -648,6 +653,32 @@ def parse_aopwiki_xml(xml_path: str, config: PipelineConfig = None) -> ParsedEnt
                 kerdict[ker.get('id')]['edam:data_2042'] = '"""' + HTML_TAG_PATTERN.sub('', weight.find(aopxml + 'emperical-support-linkage').text) + '"""'
             if weight.find(aopxml + 'uncertainties-or-inconsistencies').text is not None:
                 kerdict[ker.get('id')]['nci:C71478'] = '"""' + HTML_TAG_PATTERN.sub('', weight.find(aopxml + 'uncertainties-or-inconsistencies').text) + '"""'
+        # Coverage gap-fixes (Plan 09-03, XML-02): KER-level free-text WoE /
+        # quantitative-understanding sub-elements that were present in the XML
+        # but never mapped to RDF. Each is additive and guarded with is not None.
+        ecs = ker.find(aopxml + 'evidence-collection-strategy')
+        if ecs is not None and ecs.text is not None:
+            kerdict[ker.get('id')]['nci:C103159'] = '"""' + HTML_TAG_PATTERN.sub('', ecs.text) + '"""'
+        kmf = ker.find(aopxml + 'known-modulating-factors')
+        if kmf is not None and kmf.text is not None:
+            kerdict[ker.get('id')]['nci:C68821'] = '"""' + HTML_TAG_PATTERN.sub('', kmf.text) + '"""'
+        esta = ker.find(aopxml + 'evidence-supporting-taxonomic-applicability')
+        if esta is not None and esta.text is not None:
+            kerdict[ker.get('id')]['nci:C17469'] = '"""' + HTML_TAG_PATTERN.sub('', esta.text) + '"""'
+        qu = ker.find(aopxml + 'quantitative-understanding')
+        if qu is not None:
+            qu_desc = qu.find(aopxml + 'description')
+            if qu_desc is not None and qu_desc.text is not None:
+                kerdict[ker.get('id')]['edam:operation_3799'] = '"""' + HTML_TAG_PATTERN.sub('', qu_desc.text) + '"""'
+            rrr = qu.find(aopxml + 'response-response-relationship')
+            if rrr is not None and rrr.text is not None:
+                kerdict[ker.get('id')]['edam:operation_3438'] = '"""' + HTML_TAG_PATTERN.sub('', rrr.text) + '"""'
+            ts = qu.find(aopxml + 'time-scale')
+            if ts is not None and ts.text is not None:
+                kerdict[ker.get('id')]['nci:C25207'] = '"""' + HTML_TAG_PATTERN.sub('', ts.text) + '"""'
+            ffl = qu.find(aopxml + 'feedforward-feedback-loops')
+            if ffl is not None and ffl.text is not None:
+                kerdict[ker.get('id')]['nci:C25343'] = '"""' + HTML_TAG_PATTERN.sub('', ffl.text) + '"""'
         kerdict[ker.get('id')]['aopo:has_upstream_key_event'] = {}
         kerdict[ker.get('id')]['aopo:has_upstream_key_event']['id'] = ker.find(aopxml + 'title').find(aopxml + 'upstream-id').text
         kerdict[ker.get('id')]['aopo:has_upstream_key_event']['dc:identifier'] = 'aop.events:' + refs['KE'][ker.find(aopxml + 'title').find(aopxml + 'upstream-id').text]

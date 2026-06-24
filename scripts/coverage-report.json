@@ -1,0 +1,1691 @@
+{
+  "attributes": {
+    "adverse-outcome@key-event-id": {
+      "attribute": "key-event-id",
+      "covered": true,
+      "element": "adverse-outcome",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 645
+    },
+    "aop-reference@aop-wiki-id": {
+      "attribute": "aop-wiki-id",
+      "covered": true,
+      "element": "aop-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 587
+    },
+    "aop-reference@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "aop-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 587
+    },
+    "aop-stressor@stressor-id": {
+      "attribute": "stressor-id",
+      "covered": true,
+      "element": "aop-stressor",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 776
+    },
+    "aop@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "aop",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 587
+    },
+    "biological-action-reference@aop-wiki-id": {
+      "attribute": "aop-wiki-id",
+      "covered": true,
+      "element": "biological-action-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 11
+    },
+    "biological-action-reference@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "biological-action-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 11
+    },
+    "biological-action@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "biological-action",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 11
+    },
+    "biological-event@action-id": {
+      "attribute": "action-id",
+      "covered": true,
+      "element": "biological-event",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 1116
+    },
+    "biological-event@object-id": {
+      "attribute": "object-id",
+      "covered": true,
+      "element": "biological-event",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 803
+    },
+    "biological-event@process-id": {
+      "attribute": "process-id",
+      "covered": true,
+      "element": "biological-event",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 950
+    },
+    "biological-object-reference@aop-wiki-id": {
+      "attribute": "aop-wiki-id",
+      "covered": true,
+      "element": "biological-object-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 494
+    },
+    "biological-object-reference@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "biological-object-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 494
+    },
+    "biological-object@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "biological-object",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 494
+    },
+    "biological-process-reference@aop-wiki-id": {
+      "attribute": "aop-wiki-id",
+      "covered": true,
+      "element": "biological-process-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 558
+    },
+    "biological-process-reference@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "biological-process-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 558
+    },
+    "biological-process@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "biological-process",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 558
+    },
+    "chemical-initiator@chemical-id": {
+      "attribute": "chemical-id",
+      "covered": true,
+      "element": "chemical-initiator",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 430
+    },
+    "chemical-initiator@user-term": {
+      "attribute": "user-term",
+      "covered": true,
+      "element": "chemical-initiator",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 430
+    },
+    "chemical-reference@aop-wiki-id": {
+      "attribute": "aop-wiki-id",
+      "covered": true,
+      "element": "chemical-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 421
+    },
+    "chemical-reference@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "chemical-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 421
+    },
+    "chemical@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "chemical",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 421
+    },
+    "key-event-reference@aop-wiki-id": {
+      "attribute": "aop-wiki-id",
+      "covered": true,
+      "element": "key-event-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 1583
+    },
+    "key-event-reference@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "key-event-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 1583
+    },
+    "key-event-relationship-reference@aop-wiki-id": {
+      "attribute": "aop-wiki-id",
+      "covered": true,
+      "element": "key-event-relationship-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 2336
+    },
+    "key-event-relationship-reference@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "key-event-relationship-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 2336
+    },
+    "key-event-relationship@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "key-event-relationship",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 2336
+    },
+    "key-event@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "key-event",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 1583
+    },
+    "key-event@key-event-id": {
+      "attribute": "key-event-id",
+      "covered": true,
+      "element": "key-event",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 2509
+    },
+    "molecular-initiating-event@key-event-id": {
+      "attribute": "key-event-id",
+      "covered": true,
+      "element": "molecular-initiating-event",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 538
+    },
+    "relationship@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "relationship",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 3277
+    },
+    "stressor-reference@aop-wiki-id": {
+      "attribute": "aop-wiki-id",
+      "covered": true,
+      "element": "stressor-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 738
+    },
+    "stressor-reference@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "stressor-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 738
+    },
+    "stressor@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "stressor",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 738
+    },
+    "taxonomy-reference@aop-wiki-id": {
+      "attribute": "aop-wiki-id",
+      "covered": true,
+      "element": "taxonomy-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 359
+    },
+    "taxonomy-reference@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "taxonomy-reference",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 359
+    },
+    "taxonomy@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "taxonomy",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 359
+    },
+    "taxonomy@taxonomy-id": {
+      "attribute": "taxonomy-id",
+      "covered": true,
+      "element": "taxonomy",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 3886
+    },
+    "vendor-specific@id": {
+      "attribute": "id",
+      "covered": true,
+      "element": "vendor-specific",
+      "emitted_by_parser": true,
+      "is_attribute": true,
+      "occurrences": 1
+    },
+    "vendor-specific@name": {
+      "attribute": "name",
+      "covered": false,
+      "element": "vendor-specific",
+      "emitted_by_parser": false,
+      "is_attribute": true,
+      "occurrences": 1
+    },
+    "vendor-specific@version": {
+      "attribute": "version",
+      "covered": false,
+      "element": "vendor-specific",
+      "emitted_by_parser": false,
+      "is_attribute": true,
+      "occurrences": 1
+    }
+  },
+  "elements": {
+    "abstract": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 0.0
+    },
+    "adjacency": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 3277,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 3277
+      },
+      "rank_score": 0.0
+    },
+    "adverse-outcome": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 645,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 645
+      },
+      "rank_score": 0.0
+    },
+    "aop": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 0.0
+    },
+    "aop-reference": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": false,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 0.0
+    },
+    "aop-stressor": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 776,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 776
+      },
+      "rank_score": 0.0
+    },
+    "aop-stressors": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 249,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 249
+      },
+      "rank_score": 0.0
+    },
+    "applicability": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 5093,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 5093
+      },
+      "rank_score": 0.0
+    },
+    "authors": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 0.0
+    },
+    "background": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 211,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 211
+      },
+      "rank_score": 0.0
+    },
+    "biological-action": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 11,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 11
+      },
+      "rank_score": 0.0
+    },
+    "biological-action-reference": {
+      "allowlisted": false,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": false,
+      "is_attribute": false,
+      "is_gap": true,
+      "occurrences": 11,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 11
+      },
+      "rank_score": 11.0
+    },
+    "biological-event": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 1116,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 1116
+      },
+      "rank_score": 0.0
+    },
+    "biological-events": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 885,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 885
+      },
+      "rank_score": 0.0
+    },
+    "biological-object": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 494,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 494
+      },
+      "rank_score": 0.0
+    },
+    "biological-object-reference": {
+      "allowlisted": false,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": false,
+      "is_attribute": false,
+      "is_gap": true,
+      "occurrences": 494,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 494
+      },
+      "rank_score": 494.0
+    },
+    "biological-organization-level": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 1583,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 1583
+      },
+      "rank_score": 0.0
+    },
+    "biological-plausibility": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2336,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2336
+      },
+      "rank_score": 0.0
+    },
+    "biological-process": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 558,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 558
+      },
+      "rank_score": 0.0
+    },
+    "biological-process-reference": {
+      "allowlisted": false,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": false,
+      "is_attribute": false,
+      "is_gap": true,
+      "occurrences": 558,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 558
+      },
+      "rank_score": 558.0
+    },
+    "casrn": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 421,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 421
+      },
+      "rank_score": 0.0
+    },
+    "cell-term": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 426,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 426
+      },
+      "rank_score": 0.0
+    },
+    "chemical": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 421,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 421
+      },
+      "rank_score": 0.0
+    },
+    "chemical-initiator": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 430,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 430
+      },
+      "rank_score": 0.0
+    },
+    "chemical-reference": {
+      "allowlisted": false,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": false,
+      "is_attribute": false,
+      "is_gap": true,
+      "occurrences": 421,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 421
+      },
+      "rank_score": 421.0
+    },
+    "chemicals": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 423,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 423
+      },
+      "rank_score": 0.0
+    },
+    "coach": {
+      "allowlisted": false,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": true,
+      "occurrences": 128,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 128
+      },
+      "rank_score": 128.0
+    },
+    "coaches": {
+      "allowlisted": false,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": true,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 587.0
+    },
+    "creation-timestamp": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 5244,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 5244
+      },
+      "rank_score": 0.0
+    },
+    "data": {
+      "allowlisted": true,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 1,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 1
+      },
+      "rank_score": 0.0
+    },
+    "description": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 7580,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 7580
+      },
+      "rank_score": 0.0
+    },
+    "development-strategy": {
+      "allowlisted": false,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": true,
+      "occurrences": 124,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 124
+      },
+      "rank_score": 124.0
+    },
+    "downstream-id": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2336,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2336
+      },
+      "rank_score": 0.0
+    },
+    "dsstox-id": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 421,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 421
+      },
+      "rank_score": 0.0
+    },
+    "emperical-support-linkage": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2336,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2336
+      },
+      "rank_score": 0.0
+    },
+    "evidence": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 11136,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 11136
+      },
+      "rank_score": 0.0
+    },
+    "evidence-collection-strategy": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2336,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2336
+      },
+      "rank_score": 0.0
+    },
+    "evidence-supporting-chemical-initiation": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 538,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 538
+      },
+      "rank_score": 0.0
+    },
+    "evidence-supporting-taxonomic-applicability": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 3919,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 3919
+      },
+      "rank_score": 0.0
+    },
+    "examples": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 645,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 645
+      },
+      "rank_score": 0.0
+    },
+    "exposure-characterization": {
+      "allowlisted": false,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": true,
+      "occurrences": 738,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 738
+      },
+      "rank_score": 738.0
+    },
+    "external_links": {
+      "allowlisted": false,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": true,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 587.0
+    },
+    "feedforward-feedback-loops": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2336,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2336
+      },
+      "rank_score": 0.0
+    },
+    "handbook-version": {
+      "allowlisted": false,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": true,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 587.0
+    },
+    "indigo-inchi-key": {
+      "allowlisted": false,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": true,
+      "occurrences": 421,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 421
+      },
+      "rank_score": 421.0
+    },
+    "jchem-inchi-key": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 421,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 421
+      },
+      "rank_score": 0.0
+    },
+    "key-event": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 4092,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 4092
+      },
+      "rank_score": 0.0
+    },
+    "key-event-essentiality-summary": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 0.0
+    },
+    "key-event-reference": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": false,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 1583,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 1583
+      },
+      "rank_score": 0.0
+    },
+    "key-event-relationship": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2336,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2336
+      },
+      "rank_score": 0.0
+    },
+    "key-event-relationship-reference": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": false,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2336,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2336
+      },
+      "rank_score": 0.0
+    },
+    "key-event-relationships": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 476,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 476
+      },
+      "rank_score": 0.0
+    },
+    "key-events": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 529,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 529
+      },
+      "rank_score": 0.0
+    },
+    "known-modulating-factors": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2923,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2923
+      },
+      "rank_score": 0.0
+    },
+    "last-modification-timestamp": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 5244,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 5244
+      },
+      "rank_score": 0.0
+    },
+    "life-stage": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 3252,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 3252
+      },
+      "rank_score": 0.0
+    },
+    "link_source": {
+      "allowlisted": true,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 55,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 55
+      },
+      "rank_score": 0.0
+    },
+    "measurement-methodology": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 1583,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 1583
+      },
+      "rank_score": 0.0
+    },
+    "molecular-initiating-event": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 538,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 538
+      },
+      "rank_score": 0.0
+    },
+    "name": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2931,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2931
+      },
+      "rank_score": 0.0
+    },
+    "oecd-project": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 0.0
+    },
+    "oecd-status": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 146,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 146
+      },
+      "rank_score": 0.0
+    },
+    "organ-term": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 345,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 345
+      },
+      "rank_score": 0.0
+    },
+    "overall-assessment": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 0.0
+    },
+    "point-of-contact": {
+      "allowlisted": false,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": true,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 587.0
+    },
+    "potential-applications": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 0.0
+    },
+    "preferred-name": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 421,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 421
+      },
+      "rank_score": 0.0
+    },
+    "quantitative-considerations": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 0.0
+    },
+    "quantitative-understanding": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2336,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2336
+      },
+      "rank_score": 0.0
+    },
+    "quantitative-understanding-value": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 3277,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 3277
+      },
+      "rank_score": 0.0
+    },
+    "references": {
+      "allowlisted": true,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 4506,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 4506
+      },
+      "rank_score": 0.0
+    },
+    "relationship": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 3277,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 3277
+      },
+      "rank_score": 0.0
+    },
+    "response-response-relationship": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2336,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2336
+      },
+      "rank_score": 0.0
+    },
+    "sex": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 3142,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 3142
+      },
+      "rank_score": 0.0
+    },
+    "short-name": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2170,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2170
+      },
+      "rank_score": 0.0
+    },
+    "source": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 6699,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 6699
+      },
+      "rank_score": 0.0
+    },
+    "source-id": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2193,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2193
+      },
+      "rank_score": 0.0
+    },
+    "status": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 0.0
+    },
+    "stressor": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 738,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 738
+      },
+      "rank_score": 0.0
+    },
+    "stressor-reference": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": false,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 738,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 738
+      },
+      "rank_score": 0.0
+    },
+    "synonym": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 13526,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 13526
+      },
+      "rank_score": 0.0
+    },
+    "synonyms": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 348,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 348
+      },
+      "rank_score": 0.0
+    },
+    "taxonomy": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 4245,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 4245
+      },
+      "rank_score": 0.0
+    },
+    "taxonomy-reference": {
+      "allowlisted": false,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": false,
+      "is_attribute": false,
+      "is_gap": true,
+      "occurrences": 359,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 359
+      },
+      "rank_score": 359.0
+    },
+    "time-scale": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2336,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2336
+      },
+      "rank_score": 0.0
+    },
+    "title": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 4561,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 4561
+      },
+      "rank_score": 0.0
+    },
+    "uncertainties-or-inconsistencies": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2336,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2336
+      },
+      "rank_score": 0.0
+    },
+    "upstream-id": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2336,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2336
+      },
+      "rank_score": 0.0
+    },
+    "url": {
+      "allowlisted": true,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 55,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 55
+      },
+      "rank_score": 0.0
+    },
+    "url_link": {
+      "allowlisted": true,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 55,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 55
+      },
+      "rank_score": 0.0
+    },
+    "value": {
+      "allowlisted": true,
+      "covered": false,
+      "delta_vs_prev": null,
+      "emitted_by_parser": false,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2336,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2336
+      },
+      "rank_score": 0.0
+    },
+    "vendor-specific": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 1,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 1
+      },
+      "rank_score": 0.0
+    },
+    "weight-of-evidence": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 2336,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 2336
+      },
+      "rank_score": 0.0
+    },
+    "weight-of-evidence-summary": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 0.0
+    },
+    "wiki-license": {
+      "allowlisted": false,
+      "covered": true,
+      "delta_vs_prev": null,
+      "emitted_by_parser": true,
+      "in_xsd": true,
+      "is_attribute": false,
+      "is_gap": false,
+      "occurrences": 587,
+      "occurrences_by_snapshot": {
+        "2026-06-17": 587
+      },
+      "rank_score": 0.0
+    }
+  },
+  "gaps": [
+    "exposure-characterization",
+    "coaches",
+    "external_links",
+    "handbook-version",
+    "point-of-contact",
+    "biological-process-reference",
+    "biological-object-reference",
+    "chemical-reference",
+    "indigo-inchi-key",
+    "taxonomy-reference",
+    "coach",
+    "development-strategy",
+    "biological-action-reference"
+  ],
+  "generated_for_snapshot": "2026-06-17",
+  "namespace": "http://www.aopkb.org/aop-xml",
+  "schema_version": "1.0",
+  "summary": {
+    "actionable_gap_count": 13,
+    "coverage_pct": 80.0,
+    "covered_element_count": 76,
+    "historical_snapshots_walked": 0,
+    "instance_element_count": 95,
+    "xsd_only_count": 43
+  },
+  "xsd_source": {}
+}

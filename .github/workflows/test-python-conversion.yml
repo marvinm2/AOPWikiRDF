@@ -73,19 +73,25 @@ jobs:
 
       # Step 6: Run Python conversion script (test version)
       # Must mirror the production command in rdfgeneration.yml, which runs with
-      # --enable-bern2. Without it this regression test exercised only the regex
-      # gene-mapping path and never the BERN2 NER+EL path that production now
-      # depends on -- and the comparison below pitted non-BERN2 test output
-      # against BERN2-enriched production, so it "differed" every week and the
-      # signal was meaningless. The committed data/cache/bern2/ cache keeps this
-      # warm (only the partial-chunk/failed-lookup tail re-queries), so it stays
-      # within the time budget; timeout raised 60->90 to match generation.
+      # --enable-bern2 --enable-iri-labels. Without --enable-bern2 this regression
+      # test exercised only the regex gene-mapping path and never the BERN2 NER+EL
+      # path that production now depends on -- and the comparison below pitted
+      # non-BERN2 test output against BERN2-enriched production, so it "differed"
+      # every week and the signal was meaningless. --enable-iri-labels must match
+      # production for the same reason: production now emits rdfs:label on the
+      # minted/numeric IRIs, so a test run WITHOUT the flag would lack those label
+      # triples and the size/line comparison against production would show a
+      # spurious every-week difference. Keeping both flags identical preserves the
+      # mirror invariant so the comparison only ever surfaces real drift. The
+      # committed data/cache/bern2/ cache keeps this warm (only the
+      # partial-chunk/failed-lookup tail re-queries), so it stays within the time
+      # budget; timeout raised 60->90 to match generation.
       - id: python-conversion
         name: Run Python Conversion Script
         timeout-minutes: 90
         run: |
-          echo "Running Python conversion script (BERN2 enabled, matching production)..."
-          python run_conversion.py --output-dir data-test/ --log-level INFO --enable-bern2
+          echo "Running Python conversion script (BERN2 + IRI labels enabled, matching production)..."
+          python run_conversion.py --output-dir data-test/ --log-level INFO --enable-bern2 --enable-iri-labels
 
           echo "Generated files:"
           ls -lh data-test/

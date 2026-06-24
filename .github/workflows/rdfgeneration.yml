@@ -52,7 +52,7 @@ jobs:
           # --enable-bern2 adds BERN2 NER+EL gene enrichment; the warm
           # cache at data/cache/bern2/ means only changed KE descriptions
           # hit the network, so the weekly run stays within the time budget.
-          python run_conversion.py --output-dir data/ --log-level INFO --enable-bern2
+          python run_conversion.py --output-dir data/ --log-level INFO --enable-bern2 --enable-iri-labels
           
           echo "End time: $(date -u)"
           echo "Generated files:"
@@ -162,6 +162,34 @@ jobs:
           fi
           python scripts/qc_delta_guard.py --new-dir data/ --baseline-dir publish-baseline/ --drop-pct 0.05
           rm -rf publish-baseline
+
+      # Step 7c: Per-element coverage ratchet guard (warn-not-block, XML-03).
+      # Surfaces a silent drop in any fixed-gap predicate (from
+      # scripts/coverage-ratchet-baseline.json) using the same relative floor.
+      # WARN-NOT-BLOCK posture (D-08): run WITH --warn-only so a per-element
+      # coverage drop emits ::warning:: and exits 0 -- a transient upstream XML
+      # hiccup must not stall the live endpoint's weekly release. The existing
+      # gene/total publish gate (Step 7b) remains the hard backstop. Reuses the
+      # HEAD publish-gate materialization idiom; HEAD:data/ is at default depth.
+      - name: Per-element coverage ratchet guard (warn-only)
+        run: |
+          echo "=== Per-element coverage ratchet guard (XML-03, warn-only) ==="
+          mkdir -p ratchet-baseline
+          missing=false
+          for f in AOPWikiRDF.ttl AOPWikiRDF-Genes.ttl; do
+            if git cat-file -e "HEAD:data/$f" 2>/dev/null; then
+              git show "HEAD:data/$f" > "ratchet-baseline/$f"
+            else
+              echo "No HEAD:data/$f committed; cannot establish a baseline."
+              missing=true
+            fi
+          done
+          if [ "$missing" = true ]; then
+            echo "::warning::Skipping per-element ratchet guard -- no committed baseline (first run?)."
+            exit 0
+          fi
+          python scripts/qc_delta_guard.py --new-dir data/ --baseline-dir ratchet-baseline/ --coverage-baseline scripts/coverage-ratchet-baseline.json --drop-pct 0.05 --warn-only
+          rm -rf ratchet-baseline
 
       # Step 8: Check if there are changes
       - id: check_changes
