@@ -1,4 +1,4 @@
-# Generated: 2026-06-24
+# Generated: 2026-07-04
 # Load alongside AOPWikiRDF.ttl for full cross-reference capability
 # AOPWikiRDF-Enriched.ttl
 # Cross-reference enrichment triples for AOP-Wiki RDF
@@ -2074,19 +2074,54 @@ cas:117428-22-5
 	owl:sameAs	chebi:83197, chebi:83197, chemspider:10737621, wikidata:Q15632879, pubchem.compound:11285653 .
 
 
+cas:205-99-2
+	skos:exactMatch	chebi:34565, chebi:34565, chemspider:8799, wikidata:Q2380192, chembl.compound:CHEMBL1337502, pubchem.compound:9153, kegg.compound:C14320 ;
+	owl:sameAs	chebi:34565, chebi:34565, chemspider:8799, wikidata:Q2380192, chembl.compound:CHEMBL1337502, pubchem.compound:9153, kegg.compound:C14320 .
+
+
+cas:91-20-3
+	skos:exactMatch	chebi:16482, chebi:16482, chemspider:906, wikidata:Q179724, chembl.compound:CHEMBL16293, pubchem.compound:931, hmdb:HMDB0029751, hmdb:HMDB29751, kegg.compound:C00829 ;
+	owl:sameAs	chebi:16482, chebi:16482, chemspider:906, wikidata:Q179724, chembl.compound:CHEMBL16293, pubchem.compound:931, hmdb:HMDB0029751, hmdb:HMDB29751, kegg.compound:C00829 .
+
+
+cas:120-12-7
+	skos:exactMatch	chebi:35298, chebi:35298, chemspider:8111, wikidata:Q422152, chembl.compound:CHEMBL333179, pubchem.compound:8418, kegg.compound:C14315 ;
+	owl:sameAs	chebi:35298, chebi:35298, chemspider:8111, wikidata:Q422152, chembl.compound:CHEMBL333179, pubchem.compound:8418, kegg.compound:C14315 .
+
+
+cas:129-00-0
+	skos:exactMatch	chebi:39106, chebi:39106, chemspider:29153, wikidata:Q415723, chembl.compound:CHEMBL279564, pubchem.compound:31423, hmdb:HMDB42002, hmdb:HMDB0042002, kegg.compound:C14335 ;
+	owl:sameAs	chebi:39106, chebi:39106, chemspider:29153, wikidata:Q415723, chembl.compound:CHEMBL279564, pubchem.compound:31423, hmdb:HMDB42002, hmdb:HMDB0042002, kegg.compound:C14335 .
+
+
+cas:56-55-3
+	skos:exactMatch	chebi:51348, chebi:51348, chemspider:5739, wikidata:Q2442512, chembl.compound:CHEMBL1873684, pubchem.compound:5954, kegg.compound:C14317 ;
+	owl:sameAs	chebi:51348, chebi:51348, chemspider:5739, wikidata:Q2442512, chembl.compound:CHEMBL1873684, pubchem.compound:5954, kegg.compound:C14317 .
+
+
+cas:218-01-9
+	skos:exactMatch	chebi:51687, chebi:51687, chemspider:8817, wikidata:Q415465, chembl.compound:CHEMBL85685, pubchem.compound:9171, kegg.compound:C14222 ;
+	owl:sameAs	chebi:51687, chebi:51687, chemspider:8817, wikidata:Q415465, chembl.compound:CHEMBL85685, pubchem.compound:9171, kegg.compound:C14222 .
+
+
+cas:3697-24-3
+	skos:exactMatch	chebi:82342, chebi:82342, chemspider:18309, wikidata:Q27155887, chembl.compound:CHEMBL1797269, pubchem.compound:19427, kegg.compound:C19259 ;
+	owl:sameAs	chebi:82342, chebi:82342, chemspider:18309, wikidata:Q27155887, chembl.compound:CHEMBL1797269, pubchem.compound:19427, kegg.compound:C19259 .
+
+
+cas:56-49-5
+	skos:exactMatch	chebi:34342, chebi:34342, chemspider:1611, wikidata:Q223099, chembl.compound:CHEMBL40583, pubchem.compound:1674, kegg.compound:C14470 ;
+	owl:sameAs	chebi:34342, chebi:34342, chemspider:1611, wikidata:Q223099, chembl.compound:CHEMBL40583, pubchem.compound:1674, kegg.compound:C14470 .
+
+
+cas:105650-23-5
+	skos:exactMatch	chebi:76290, chebi:76290, chemspider:1476, wikidata:Q4596855, chembl.compound:CHEMBL1213271, pubchem.compound:1530, drugbank:DB08398, hmdb:HMDB0041008, hmdb:HMDB41008, kegg.compound:C16038 ;
+	owl:sameAs	chebi:76290, chebi:76290, chemspider:1476, wikidata:Q4596855, chembl.compound:CHEMBL1213271, pubchem.compound:1530, drugbank:DB08398, hmdb:HMDB0041008, hmdb:HMDB41008, kegg.compound:C16038 .
+
+
 pr:000031316
-	skos:exactMatch	hgnc:7455,uniprot:P03886,uniprot:P03888,uniprot:P03889,uniprot:P18929,uniprot:P18936,uniprot:P24887,uniprot:P92558,uniprot:Q37313,uniprot:Q9MIZ0 ;
-	owl:sameAs	hgnc:7455,uniprot:P03886,uniprot:P03888,uniprot:P03889,uniprot:P18929,uniprot:P18936,uniprot:P24887,uniprot:P92558,uniprot:Q37313,uniprot:Q9MIZ0 .
-
-
-pr:P33244
-	skos:exactMatch	uniprot:P33244,uniprot:P33244-1,uniprot:P33244-2 ;
-	owl:sameAs	uniprot:P33244,uniprot:P33244-1,uniprot:P33244-2 .
-
-
-pr:Q9VCW0
-	skos:exactMatch	uniprot:Q9VCW0 ;
-	owl:sameAs	uniprot:Q9VCW0 .
+	skos:exactMatch	hgnc:7455,uniprot:P03886,uniprot:P03888,uniprot:P03889,uniprot:P18936,uniprot:P92558 ;
+	owl:sameAs	hgnc:7455,uniprot:P03886,uniprot:P03888,uniprot:P03889,uniprot:P18936,uniprot:P92558 .
 
 
 pr:000013056
@@ -2105,8 +2140,8 @@ pr:000011047
 
 
 pr:000006100
-	skos:exactMatch	hgnc:2594,uniprot:O42145,uniprot:P11511,uniprot:P22443,uniprot:P28649 ;
-	owl:sameAs	hgnc:2594,uniprot:O42145,uniprot:P11511,uniprot:P22443,uniprot:P28649 .
+	skos:exactMatch	hgnc:2594,uniprot:P11511,uniprot:P22443,uniprot:P28649 ;
+	owl:sameAs	hgnc:2594,uniprot:P11511,uniprot:P22443,uniprot:P28649 .
 
 
 pr:000011397
@@ -2140,13 +2175,13 @@ pr:000011406
 
 
 pr:000003626
-	skos:exactMatch	hgnc:108,uniprot:P04058,uniprot:P21836,uniprot:P22303,uniprot:P36196,uniprot:P37136,uniprot:Q54WD8,uniprot:Q9DDE3 ;
-	owl:sameAs	hgnc:108,uniprot:P04058,uniprot:P21836,uniprot:P22303,uniprot:P36196,uniprot:P37136,uniprot:Q54WD8,uniprot:Q9DDE3 .
+	skos:exactMatch	hgnc:108,uniprot:P04058,uniprot:P21836,uniprot:P22303,uniprot:P36196,uniprot:P37136,uniprot:Q54WD8 ;
+	owl:sameAs	hgnc:108,uniprot:P04058,uniprot:P21836,uniprot:P22303,uniprot:P36196,uniprot:P37136,uniprot:Q54WD8 .
 
 
 pr:000015715
-	skos:exactMatch	hgnc:11359,ncbigene:395421,uniprot:P49675,uniprot:P51557,uniprot:P97826,uniprot:Q9DG09,uniprot:Q9DG10 ;
-	owl:sameAs	hgnc:11359,ncbigene:395421,uniprot:P49675,uniprot:P51557,uniprot:P97826,uniprot:Q9DG09,uniprot:Q9DG10 .
+	skos:exactMatch	hgnc:11359,ncbigene:395421,uniprot:P49675,uniprot:P51557,uniprot:P97826,uniprot:Q9DG09 ;
+	owl:sameAs	hgnc:11359,ncbigene:395421,uniprot:P49675,uniprot:P51557,uniprot:P97826,uniprot:Q9DG09 .
 
 
 pr:000016757
@@ -2190,8 +2225,8 @@ pr:000013427
 
 
 pr:000007204
-	skos:exactMatch	hgnc:3467,ncbigene:396099,ncbigene:407238,uniprot:P03372,uniprot:P06211,uniprot:P06212,uniprot:P19785,uniprot:P49884,uniprot:P57717 ;
-	owl:sameAs	hgnc:3467,ncbigene:396099,ncbigene:407238,uniprot:P03372,uniprot:P06211,uniprot:P06212,uniprot:P19785,uniprot:P49884,uniprot:P57717 .
+	skos:exactMatch	hgnc:3467,ncbigene:396099,ncbigene:407238,uniprot:P03372,uniprot:P06211,uniprot:P06212,uniprot:P19785,uniprot:P49884 ;
+	owl:sameAs	hgnc:3467,ncbigene:396099,ncbigene:407238,uniprot:P03372,uniprot:P06211,uniprot:P06212,uniprot:P19785,uniprot:P49884 .
 
 
 pr:P69905
@@ -2200,8 +2235,8 @@ pr:P69905
 
 
 pr:000007749
-	skos:exactMatch	hgnc:4057,ncbigene:29595855,uniprot:A9MC63,uniprot:A9WZ73,uniprot:C0RLT0,uniprot:C7LIQ1,uniprot:O00091,uniprot:P05370,uniprot:P0AC53,uniprot:P11412,uniprot:P11413,uniprot:P12646,uniprot:Q00612,uniprot:Q27464,uniprot:Q2YL30,uniprot:Q557D2,uniprot:Q578Q7,uniprot:Q8YCL5 ;
-	owl:sameAs	hgnc:4057,ncbigene:29595855,uniprot:A9MC63,uniprot:A9WZ73,uniprot:C0RLT0,uniprot:C7LIQ1,uniprot:O00091,uniprot:P05370,uniprot:P0AC53,uniprot:P11412,uniprot:P11413,uniprot:P12646,uniprot:Q00612,uniprot:Q27464,uniprot:Q2YL30,uniprot:Q557D2,uniprot:Q578Q7,uniprot:Q8YCL5 .
+	skos:exactMatch	hgnc:4057,ncbigene:29595855,uniprot:A9MC63,uniprot:A9WZ73,uniprot:C0RLT0,uniprot:C7LIQ1,uniprot:O00091,uniprot:P05370,uniprot:P0AC53,uniprot:P11412,uniprot:P11413,uniprot:Q00612,uniprot:Q2YL30,uniprot:Q557D2,uniprot:Q578Q7,uniprot:Q8YCL5 ;
+	owl:sameAs	hgnc:4057,ncbigene:29595855,uniprot:A9MC63,uniprot:A9WZ73,uniprot:C0RLT0,uniprot:C7LIQ1,uniprot:O00091,uniprot:P05370,uniprot:P0AC53,uniprot:P11412,uniprot:P11413,uniprot:Q00612,uniprot:Q2YL30,uniprot:Q557D2,uniprot:Q578Q7,uniprot:Q8YCL5 .
 
 
 pr:000011326
@@ -2220,13 +2255,13 @@ pr:000011394
 
 
 pr:000011395
-	skos:exactMatch	hgnc:7966,uniprot:G5EEM0,uniprot:Q13133,uniprot:Q62685,uniprot:Q9Z0Y9 ;
-	owl:sameAs	hgnc:7966,uniprot:G5EEM0,uniprot:Q13133,uniprot:Q62685,uniprot:Q9Z0Y9 .
+	skos:exactMatch	hgnc:7966,uniprot:Q13133,uniprot:Q62685,uniprot:Q9Z0Y9 ;
+	owl:sameAs	hgnc:7966,uniprot:Q13133,uniprot:Q62685,uniprot:Q9Z0Y9 .
 
 
 pr:000001905
-	skos:exactMatch	hgnc:1663,uniprot:E1JI63,uniprot:P16671,uniprot:Q08857,uniprot:Q11124 ;
-	owl:sameAs	hgnc:1663,uniprot:E1JI63,uniprot:P16671,uniprot:Q08857,uniprot:Q11124 .
+	skos:exactMatch	hgnc:1663,uniprot:E1JI63,uniprot:P16671,uniprot:Q08857 ;
+	owl:sameAs	hgnc:1663,uniprot:E1JI63,uniprot:P16671,uniprot:Q08857 .
 
 
 pr:000010460
@@ -2250,8 +2285,8 @@ pr:000014497
 
 
 pr:000013058
-	skos:exactMatch	hgnc:9236,uniprot:O88275,uniprot:P37231,uniprot:P37238,uniprot:P41830 ;
-	owl:sameAs	hgnc:9236,uniprot:O88275,uniprot:P37231,uniprot:P37238,uniprot:P41830 .
+	skos:exactMatch	hgnc:9236,uniprot:O88275,uniprot:P37231,uniprot:P37238 ;
+	owl:sameAs	hgnc:9236,uniprot:O88275,uniprot:P37231,uniprot:P37238 .
 
 
 pr:000013057
@@ -2260,8 +2295,8 @@ pr:000013057
 
 
 pr:000008774
-	skos:exactMatch	hgnc:4800,uniprot:O08756,uniprot:O18404,uniprot:O70351,uniprot:Q07530,uniprot:Q99714 ;
-	owl:sameAs	hgnc:4800,uniprot:O08756,uniprot:O18404,uniprot:O70351,uniprot:Q07530,uniprot:Q99714 .
+	skos:exactMatch	hgnc:4800,uniprot:O08756,uniprot:O70351,uniprot:Q07530,uniprot:Q99714 ;
+	owl:sameAs	hgnc:4800,uniprot:O08756,uniprot:O70351,uniprot:Q07530,uniprot:Q99714 .
 
 
 pr:000016584
@@ -2270,18 +2305,18 @@ pr:000016584
 
 
 pr:000002112
-	skos:exactMatch	hgnc:6307,uniprot:F1NW21,uniprot:O08775,uniprot:P35918,uniprot:P35968,uniprot:Q5GIT4 ;
-	owl:sameAs	hgnc:6307,uniprot:F1NW21,uniprot:O08775,uniprot:P35918,uniprot:P35968,uniprot:Q5GIT4 .
+	skos:exactMatch	hgnc:6307,uniprot:F1NW21,uniprot:O08775,uniprot:P35918,uniprot:P35968 ;
+	owl:sameAs	hgnc:6307,uniprot:F1NW21,uniprot:O08775,uniprot:P35918,uniprot:P35968 .
 
 
 pr:000007563
-	skos:exactMatch	hgnc:3763,ncbigene:374100,uniprot:P17948,uniprot:P35969,uniprot:P53767,uniprot:Q21038,uniprot:Q8QHL3 ;
-	owl:sameAs	hgnc:3763,ncbigene:374100,uniprot:P17948,uniprot:P35969,uniprot:P53767,uniprot:Q21038,uniprot:Q8QHL3 .
+	skos:exactMatch	hgnc:3763,ncbigene:374100,uniprot:P17948,uniprot:P35969,uniprot:P53767,uniprot:Q8QHL3 ;
+	owl:sameAs	hgnc:3763,ncbigene:374100,uniprot:P17948,uniprot:P35969,uniprot:P53767,uniprot:Q8QHL3 .
 
 
 pr:000003035
-	skos:exactMatch	hgnc:11998,uniprot:P02340,uniprot:P04637,uniprot:P10360,uniprot:P10361,uniprot:P79734 ;
-	owl:sameAs	hgnc:11998,uniprot:P02340,uniprot:P04637,uniprot:P10360,uniprot:P10361,uniprot:P79734 .
+	skos:exactMatch	hgnc:11998,uniprot:P02340,uniprot:P04637,uniprot:P10360,uniprot:P10361 ;
+	owl:sameAs	hgnc:11998,uniprot:P02340,uniprot:P04637,uniprot:P10360,uniprot:P10361 .
 
 
 pr:000015171
@@ -2320,8 +2355,8 @@ pr:000008654
 
 
 pr:000007603
-	skos:exactMatch	hgnc:5022,uniprot:P32182,uniprot:P35583,uniprot:Q07342,uniprot:Q9Y261 ;
-	owl:sameAs	hgnc:5022,uniprot:P32182,uniprot:P35583,uniprot:Q07342,uniprot:Q9Y261 .
+	skos:exactMatch	hgnc:5022,uniprot:P32182,uniprot:P35583,uniprot:Q9Y261 ;
+	owl:sameAs	hgnc:5022,uniprot:P32182,uniprot:P35583,uniprot:Q9Y261 .
 
 
 pr:000005835
@@ -2350,8 +2385,8 @@ pr:000008778
 
 
 pr:000003392
-	skos:exactMatch	hgnc:7467,uniprot:A0A0R4IVV0,uniprot:D4A1W8,uniprot:O08601,uniprot:P55157,uniprot:Q9VIH3 ;
-	owl:sameAs	hgnc:7467,uniprot:A0A0R4IVV0,uniprot:D4A1W8,uniprot:O08601,uniprot:P55157,uniprot:Q9VIH3 .
+	skos:exactMatch	hgnc:7467,uniprot:D4A1W8,uniprot:O08601,uniprot:P55157 ;
+	owl:sameAs	hgnc:7467,uniprot:D4A1W8,uniprot:O08601,uniprot:P55157 .
 
 
 pr:000004145
@@ -2360,8 +2395,8 @@ pr:000004145
 
 
 pr:000003912
-	skos:exactMatch	hgnc:392,uniprot:P31751,uniprot:P47197,uniprot:Q17941,uniprot:Q60823,uniprot:Q8INB9 ;
-	owl:sameAs	hgnc:392,uniprot:P31751,uniprot:P47197,uniprot:Q17941,uniprot:Q60823,uniprot:Q8INB9 .
+	skos:exactMatch	hgnc:392,uniprot:P31751,uniprot:P47197,uniprot:Q60823 ;
+	owl:sameAs	hgnc:392,uniprot:P31751,uniprot:P47197,uniprot:Q60823 .
 
 
 pr:000011405
@@ -2370,8 +2405,8 @@ pr:000011405
 
 
 pr:000006294
-	skos:exactMatch	hgnc:2689,ncbigene:280758,uniprot:P09172,uniprot:P15101,uniprot:Q05754,uniprot:Q64237,uniprot:Q86B61,uniprot:Q9XTQ6 ;
-	owl:sameAs	hgnc:2689,ncbigene:280758,uniprot:P09172,uniprot:P15101,uniprot:Q05754,uniprot:Q64237,uniprot:Q86B61,uniprot:Q9XTQ6 .
+	skos:exactMatch	hgnc:2689,ncbigene:280758,uniprot:P09172,uniprot:P15101,uniprot:Q05754,uniprot:Q64237 ;
+	owl:sameAs	hgnc:2689,ncbigene:280758,uniprot:P09172,uniprot:P15101,uniprot:Q05754,uniprot:Q64237 .
 
 
 pr:P01101
@@ -2434,19 +2469,9 @@ pr:Q63065
 	owl:sameAs	uniprot:Q63065 .
 
 
-pr:Q94900
-	skos:exactMatch	uniprot:Q94900,uniprot:Q94900-1,uniprot:Q94900-2,uniprot:Q94900-3,uniprot:Q94900-4,uniprot:Q94900-5 ;
-	owl:sameAs	uniprot:Q94900,uniprot:Q94900-1,uniprot:Q94900-2,uniprot:Q94900-3,uniprot:Q94900-4,uniprot:Q94900-5 .
-
-
 pr:P32755
 	skos:exactMatch	uniprot:P32755 ;
 	owl:sameAs	uniprot:P32755 .
-
-
-pr:G5EGD2
-	skos:exactMatch	uniprot:G5EGD2,uniprot:G5EGD2-1,uniprot:G5EGD2-2,uniprot:G5EGD2-3,uniprot:G5EGD2-4,uniprot:G5EGD2-5 ;
-	owl:sameAs	uniprot:G5EGD2,uniprot:G5EGD2-1,uniprot:G5EGD2-2,uniprot:G5EGD2-3,uniprot:G5EGD2-4,uniprot:G5EGD2-5 .
 
 
 pr:000008555
@@ -2460,13 +2485,13 @@ pr:000038849
 
 
 pr:000008636
-	skos:exactMatch	hgnc:5006,uniprot:P04035,uniprot:P14773,uniprot:P51639,uniprot:Q01237,uniprot:Q10283,uniprot:Q19207 ;
-	owl:sameAs	hgnc:5006,uniprot:P04035,uniprot:P14773,uniprot:P51639,uniprot:Q01237,uniprot:Q10283,uniprot:Q19207 .
+	skos:exactMatch	hgnc:5006,uniprot:P04035,uniprot:P51639,uniprot:Q01237,uniprot:Q10283,uniprot:Q19207 ;
+	owl:sameAs	hgnc:5006,uniprot:P04035,uniprot:P51639,uniprot:Q01237,uniprot:Q10283,uniprot:Q19207 .
 
 
 pr:000001186
-	skos:exactMatch	hgnc:281,ncbigene:282135,uniprot:P08913,uniprot:P22909,uniprot:Q01338,uniprot:Q28838,uniprot:Q90WY4,uniprot:Q9VE32 ;
-	owl:sameAs	hgnc:281,ncbigene:282135,uniprot:P08913,uniprot:P22909,uniprot:Q01338,uniprot:Q28838,uniprot:Q90WY4,uniprot:Q9VE32 .
+	skos:exactMatch	hgnc:281,ncbigene:282135,uniprot:P08913,uniprot:P22909,uniprot:Q01338,uniprot:Q28838,uniprot:Q9VE32 ;
+	owl:sameAs	hgnc:281,ncbigene:282135,uniprot:P08913,uniprot:P22909,uniprot:Q01338,uniprot:Q28838,uniprot:Q9VE32 .
 
 
 pr:Q53H76
@@ -2475,8 +2500,8 @@ pr:Q53H76
 
 
 pr:000017134
-	skos:exactMatch	hgnc:12591,uniprot:P06132,uniprot:P29680,uniprot:P32347,uniprot:P32362,uniprot:P70697,uniprot:Q2FXA3,uniprot:Q54DF9,uniprot:Q9PTS2,uniprot:Q9V595 ;
-	owl:sameAs	hgnc:12591,uniprot:P06132,uniprot:P29680,uniprot:P32347,uniprot:P32362,uniprot:P70697,uniprot:Q2FXA3,uniprot:Q54DF9,uniprot:Q9PTS2,uniprot:Q9V595 .
+	skos:exactMatch	hgnc:12591,uniprot:P06132,uniprot:P29680,uniprot:P32347,uniprot:P32362,uniprot:P70697,uniprot:Q2FXA3 ;
+	owl:sameAs	hgnc:12591,uniprot:P06132,uniprot:P29680,uniprot:P32347,uniprot:P32362,uniprot:P70697,uniprot:Q2FXA3 .
 
 
 pr:000006102
@@ -2490,8 +2515,8 @@ pr:P79761
 
 
 pr:000014993
-	skos:exactMatch	hgnc:10970,uniprot:O35956,uniprot:Q4U2R8,uniprot:Q6NYN7,uniprot:Q8VC69 ;
-	owl:sameAs	hgnc:10970,uniprot:O35956,uniprot:Q4U2R8,uniprot:Q6NYN7,uniprot:Q8VC69 .
+	skos:exactMatch	hgnc:10970,uniprot:O35956,uniprot:Q4U2R8,uniprot:Q8VC69 ;
+	owl:sameAs	hgnc:10970,uniprot:O35956,uniprot:Q4U2R8,uniprot:Q8VC69 .
 
 
 pr:000006933
@@ -2510,13 +2535,13 @@ pr:000011328
 
 
 pr:000007893
-	skos:exactMatch	hgnc:4193,ncbigene:396146,uniprot:O13774,uniprot:P22288,uniprot:P30793,uniprot:P48596,uniprot:P50141,uniprot:P51601,uniprot:Q05915,uniprot:Q19980,uniprot:Q94465 ;
-	owl:sameAs	hgnc:4193,ncbigene:396146,uniprot:O13774,uniprot:P22288,uniprot:P30793,uniprot:P48596,uniprot:P50141,uniprot:P51601,uniprot:Q05915,uniprot:Q19980,uniprot:Q94465 .
+	skos:exactMatch	hgnc:4193,ncbigene:396146,uniprot:O13774,uniprot:P22288,uniprot:P30793,uniprot:P50141,uniprot:P51601,uniprot:Q05915 ;
+	owl:sameAs	hgnc:4193,ncbigene:396146,uniprot:O13774,uniprot:P22288,uniprot:P30793,uniprot:P50141,uniprot:P51601,uniprot:Q05915 .
 
 
 pr:000017284
-	skos:exactMatch	hgnc:12680,uniprot:O73682,uniprot:P15692,uniprot:P16612,uniprot:P67964,uniprot:Q00731 ;
-	owl:sameAs	hgnc:12680,uniprot:O73682,uniprot:P15692,uniprot:P16612,uniprot:P67964,uniprot:Q00731 .
+	skos:exactMatch	hgnc:12680,uniprot:P15692,uniprot:P16612,uniprot:P67964,uniprot:Q00731 ;
+	owl:sameAs	hgnc:12680,uniprot:P15692,uniprot:P16612,uniprot:P67964,uniprot:Q00731 .
 
 
 pr:000016801
@@ -2630,8 +2655,8 @@ pr:000015039
 
 
 pr:000006727
-	skos:exactMatch	hgnc:3062,uniprot:Q8CIY2,uniprot:Q9NRD9,uniprot:Q9VQH2 ;
-	owl:sameAs	hgnc:3062,uniprot:Q8CIY2,uniprot:Q9NRD9,uniprot:Q9VQH2 .
+	skos:exactMatch	hgnc:3062,uniprot:A2AQ92,uniprot:Q8CIY2,uniprot:Q9NRD9 ;
+	owl:sameAs	hgnc:3062,uniprot:A2AQ92,uniprot:Q8CIY2,uniprot:Q9NRD9 .
 
 
 pr:000001065
@@ -2644,24 +2669,14 @@ pr:000016261
 	owl:sameAs	hgnc:11740,ncbigene:280705,uniprot:P02787,uniprot:P12346,uniprot:Q29443,uniprot:Q921I1 .
 
 
-pr:P23023
-	skos:exactMatch	uniprot:P23023,uniprot:P23023-1,uniprot:P23023-2 ;
-	owl:sameAs	uniprot:P23023,uniprot:P23023-1,uniprot:P23023-2 .
-
-
 pr:000003106
 	skos:exactMatch	uniprot:Q9DGE1,uniprot:Q9DGE2 ;
 	owl:sameAs	uniprot:Q9DGE1,uniprot:Q9DGE2 .
 
 
 pr:000008293
-	skos:exactMatch	hgnc:4624,uniprot:P35669,uniprot:P46413,uniprot:P46416,uniprot:P48637,uniprot:P51855,uniprot:Q08220,uniprot:Q54E83 ;
-	owl:sameAs	hgnc:4624,uniprot:P35669,uniprot:P46413,uniprot:P46416,uniprot:P48637,uniprot:P51855,uniprot:Q08220,uniprot:Q54E83 .
-
-
-pr:O16850
-	skos:exactMatch	uniprot:O16850,uniprot:O16850-1,uniprot:O16850-2,uniprot:O16850-3,uniprot:O16850-4,uniprot:O16850-5,uniprot:O16850-6,uniprot:O16850-8 ;
-	owl:sameAs	uniprot:O16850,uniprot:O16850-1,uniprot:O16850-2,uniprot:O16850-3,uniprot:O16850-4,uniprot:O16850-5,uniprot:O16850-6,uniprot:O16850-8 .
+	skos:exactMatch	hgnc:4624,uniprot:P35669,uniprot:P46413,uniprot:P46416,uniprot:P48637,uniprot:P51855,uniprot:Q08220 ;
+	owl:sameAs	hgnc:4624,uniprot:P35669,uniprot:P46413,uniprot:P46416,uniprot:P48637,uniprot:P51855,uniprot:Q08220 .
 
 
 pr:000008478
@@ -2685,8 +2700,8 @@ pr:000001363
 
 
 pr:000030936
-	skos:exactMatch	hgnc:17652,uniprot:Q22329,uniprot:Q9H237,uniprot:Q9JJJ7,uniprot:Q9VWV9 ;
-	owl:sameAs	hgnc:17652,uniprot:Q22329,uniprot:Q9H237,uniprot:Q9JJJ7,uniprot:Q9VWV9 .
+	skos:exactMatch	hgnc:17652,uniprot:Q9H237,uniprot:Q9JJJ7 ;
+	owl:sameAs	hgnc:17652,uniprot:Q9H237,uniprot:Q9JJJ7 .
 
 
 pr:000009198
@@ -2707,6 +2722,11 @@ pr:000016456
 pr:P07711
 	skos:exactMatch	uniprot:P07711,uniprot:P07711,uniprot:P07711,uniprot:P07711-1,uniprot:P07711-3 ;
 	owl:sameAs	uniprot:P07711,uniprot:P07711,uniprot:P07711,uniprot:P07711-1,uniprot:P07711-3 .
+
+
+pr:000024938
+	skos:exactMatch	uniprot:A0A087WWS6,uniprot:P0DY56 ;
+	owl:sameAs	uniprot:A0A087WWS6,uniprot:P0DY56 .
 
 
 pr:000001393
@@ -2740,13 +2760,13 @@ pr:Q6EWH2
 
 
 pr:000007628
-	skos:exactMatch	hgnc:3816,uniprot:F1QDF8,uniprot:Q61660,uniprot:Q63247,uniprot:Q92949 ;
-	owl:sameAs	hgnc:3816,uniprot:F1QDF8,uniprot:Q61660,uniprot:Q63247,uniprot:Q92949 .
+	skos:exactMatch	hgnc:3816,uniprot:Q61660,uniprot:Q63247,uniprot:Q92949 ;
+	owl:sameAs	hgnc:3816,uniprot:Q61660,uniprot:Q63247,uniprot:Q92949 .
 
 
 pr:000015718
-	skos:exactMatch	hgnc:17579,uniprot:Q14849,uniprot:Q61542,uniprot:Q9DFS4,uniprot:Q9W145 ;
-	owl:sameAs	hgnc:17579,uniprot:Q14849,uniprot:Q61542,uniprot:Q9DFS4,uniprot:Q9W145 .
+	skos:exactMatch	hgnc:17579,uniprot:Q14849,uniprot:Q61542 ;
+	owl:sameAs	hgnc:17579,uniprot:Q14849,uniprot:Q61542 .
 
 
 pr:000015719
@@ -2765,8 +2785,8 @@ pr:000015721
 
 
 pr:000015288
-	skos:exactMatch	hgnc:11119,uniprot:P56726,uniprot:P91682,uniprot:P97698,uniprot:Q5RH73,uniprot:Q99835 ;
-	owl:sameAs	hgnc:11119,uniprot:P56726,uniprot:P91682,uniprot:P97698,uniprot:Q5RH73,uniprot:Q99835 .
+	skos:exactMatch	hgnc:11119,uniprot:P56726,uniprot:P91682,uniprot:P97698,uniprot:Q99835 ;
+	owl:sameAs	hgnc:11119,uniprot:P56726,uniprot:P91682,uniprot:P97698,uniprot:Q99835 .
 
 
 pr:000008026
@@ -2780,8 +2800,8 @@ pr:000008027
 
 
 pr:000014841
-	skos:exactMatch	hgnc:10848,ncbigene:395615,uniprot:Q15465,uniprot:Q62226,uniprot:Q63673,uniprot:Q91035,uniprot:Q92008 ;
-	owl:sameAs	hgnc:10848,ncbigene:395615,uniprot:Q15465,uniprot:Q62226,uniprot:Q63673,uniprot:Q91035,uniprot:Q92008 .
+	skos:exactMatch	hgnc:10848,ncbigene:395615,uniprot:Q15465,uniprot:Q62226,uniprot:Q63673,uniprot:Q91035 ;
+	owl:sameAs	hgnc:10848,ncbigene:395615,uniprot:Q15465,uniprot:Q62226,uniprot:Q63673,uniprot:Q91035 .
 
 
 pr:000006296
@@ -2805,13 +2825,13 @@ pr:000012946
 
 
 pr:000009056
-	skos:exactMatch	hgnc:6083,uniprot:O15503,uniprot:Q5ZMT9,uniprot:Q8AV61,uniprot:Q8BGI3,uniprot:Q9Y7R5 ;
-	owl:sameAs	hgnc:6083,uniprot:O15503,uniprot:Q5ZMT9,uniprot:Q8AV61,uniprot:Q8BGI3,uniprot:Q9Y7R5 .
+	skos:exactMatch	hgnc:6083,uniprot:O15503,uniprot:Q5ZMT9,uniprot:Q8BGI3,uniprot:Q9Y7R5 ;
+	owl:sameAs	hgnc:6083,uniprot:O15503,uniprot:Q5ZMT9,uniprot:Q8BGI3,uniprot:Q9Y7R5 .
 
 
 pr:000015612
-	skos:exactMatch	hgnc:11290,uniprot:A3KNA7,uniprot:Q12772,uniprot:Q3T1I5,uniprot:Q3U1N2 ;
-	owl:sameAs	hgnc:11290,uniprot:A3KNA7,uniprot:Q12772,uniprot:Q3T1I5,uniprot:Q3U1N2 .
+	skos:exactMatch	hgnc:11290,uniprot:Q12772,uniprot:Q3T1I5,uniprot:Q3U1N2 ;
+	owl:sameAs	hgnc:11290,uniprot:Q12772,uniprot:Q3T1I5,uniprot:Q3U1N2 .
 
 
 pr:000012440
@@ -2835,8 +2855,8 @@ pr:000014950
 
 
 pr:000001449
-	skos:exactMatch	hgnc:3689,ncbigene:396259,uniprot:P18461,uniprot:P21802,uniprot:P21803,uniprot:Q07407,uniprot:Q8JG38 ;
-	owl:sameAs	hgnc:3689,ncbigene:396259,uniprot:P18461,uniprot:P21802,uniprot:P21803,uniprot:Q07407,uniprot:Q8JG38 .
+	skos:exactMatch	hgnc:3689,ncbigene:396259,uniprot:P18461,uniprot:P21802,uniprot:P21803 ;
+	owl:sameAs	hgnc:3689,ncbigene:396259,uniprot:P18461,uniprot:P21802,uniprot:P21803 .
 
 
 pr:000007480
