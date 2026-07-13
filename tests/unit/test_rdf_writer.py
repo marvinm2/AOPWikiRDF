@@ -359,119 +359,74 @@ class TestDualPredicateChemicalsAndProteinOntology:
 
         return entities
 
+    def _enrichment_data(self, entities):
+        """Slice the enrichment-relevant dicts for write_enriched_rdf.
+
+        Cross-reference triples (skos:exactMatch / owl:sameAs) live in the
+        Enriched output, not the main file, since the output-separation refactor.
+        """
+        return {
+            'chedict': entities['chedict'],
+            'bioobjdict': entities['bioobjdict'],
+            'prodict': entities['prodict'],
+        }
+
     def test_dual_predicate_protein_ontology(self):
         """With emit_legacy_predicates=True, protein ontology links have both predicates."""
-        from aopwiki_rdf.rdf.writer import write_aop_rdf
+        from aopwiki_rdf.rdf.writer import write_enriched_rdf
         from aopwiki_rdf.config import PipelineConfig
 
         config = PipelineConfig(emit_legacy_predicates=True)
         entities = self._make_minimal_entities(include_chemicals=False)
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            prefix_csv = os.path.join(tmpdir, 'prefixes.csv')
-            # Minimal prefixes.csv
-            with open(prefix_csv, 'w') as f:
-                f.write('prefix,uri\n')
-                f.write('dc,http://purl.org/dc/elements/1.1/\n')
-                f.write('rdfs,http://www.w3.org/2000/01/rdf-schema#\n')
-                f.write('skos,http://www.w3.org/2004/02/skos/core#\n')
-                f.write('owl,http://www.w3.org/2002/07/owl#\n')
-                f.write('pato,http://purl.obolibrary.org/obo/PATO_\n')
-                f.write('pr,http://purl.obolibrary.org/obo/PR_\n')
-                f.write('hgnc,https://identifiers.org/hgnc/\n')
-                f.write('uniprot,https://identifiers.org/uniprot/\n')
-                f.write('sh,http://www.w3.org/ns/shacl#\n')
-                f.write('xsd,http://www.w3.org/2001/XMLSchema#\n')
-
-            out = os.path.join(tmpdir, 'AOPWikiRDF.ttl')
-            write_aop_rdf(out, entities, prefix_csv, config=config)
+            out = os.path.join(tmpdir, 'AOPWikiRDF-Enriched.ttl')
+            write_enriched_rdf(out, self._enrichment_data(entities), config=config)
             content = open(out).read()
             assert 'skos:exactMatch' in content
             assert 'owl:sameAs' in content
 
     def test_owl_only_protein_ontology(self):
         """With emit_legacy_predicates=False, only owl:sameAs for protein ontology."""
-        from aopwiki_rdf.rdf.writer import write_aop_rdf
+        from aopwiki_rdf.rdf.writer import write_enriched_rdf
         from aopwiki_rdf.config import PipelineConfig
 
         config = PipelineConfig(emit_legacy_predicates=False)
         entities = self._make_minimal_entities(include_chemicals=False)
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            prefix_csv = os.path.join(tmpdir, 'prefixes.csv')
-            with open(prefix_csv, 'w') as f:
-                f.write('prefix,uri\n')
-                f.write('dc,http://purl.org/dc/elements/1.1/\n')
-                f.write('rdfs,http://www.w3.org/2000/01/rdf-schema#\n')
-                f.write('skos,http://www.w3.org/2004/02/skos/core#\n')
-                f.write('owl,http://www.w3.org/2002/07/owl#\n')
-                f.write('pato,http://purl.obolibrary.org/obo/PATO_\n')
-                f.write('pr,http://purl.obolibrary.org/obo/PR_\n')
-                f.write('hgnc,https://identifiers.org/hgnc/\n')
-                f.write('uniprot,https://identifiers.org/uniprot/\n')
-                f.write('sh,http://www.w3.org/ns/shacl#\n')
-                f.write('xsd,http://www.w3.org/2001/XMLSchema#\n')
-
-            out = os.path.join(tmpdir, 'AOPWikiRDF.ttl')
-            write_aop_rdf(out, entities, prefix_csv, config=config)
+            out = os.path.join(tmpdir, 'AOPWikiRDF-Enriched.ttl')
+            write_enriched_rdf(out, self._enrichment_data(entities), config=config)
             content = open(out).read()
             assert 'skos:exactMatch' not in content
             assert 'owl:sameAs' in content
 
     def test_dual_predicate_chemicals(self):
         """With emit_legacy_predicates=True, chemical identifiers have both predicates."""
-        from aopwiki_rdf.rdf.writer import write_aop_rdf
+        from aopwiki_rdf.rdf.writer import write_enriched_rdf
         from aopwiki_rdf.config import PipelineConfig
 
         config = PipelineConfig(emit_legacy_predicates=True)
         entities = self._make_minimal_entities(include_prodict=False)
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            prefix_csv = os.path.join(tmpdir, 'prefixes.csv')
-            with open(prefix_csv, 'w') as f:
-                f.write('prefix,uri\n')
-                f.write('dc,http://purl.org/dc/elements/1.1/\n')
-                f.write('rdfs,http://www.w3.org/2000/01/rdf-schema#\n')
-                f.write('skos,http://www.w3.org/2004/02/skos/core#\n')
-                f.write('owl,http://www.w3.org/2002/07/owl#\n')
-                f.write('cheminf,http://semanticscience.org/resource/CHEMINF_\n')
-                f.write('chebi,https://identifiers.org/chebi/\n')
-                f.write('cas,https://identifiers.org/cas/\n')
-                f.write('inchikey,https://identifiers.org/inchikey/\n')
-                f.write('sh,http://www.w3.org/ns/shacl#\n')
-                f.write('xsd,http://www.w3.org/2001/XMLSchema#\n')
-
-            out = os.path.join(tmpdir, 'AOPWikiRDF.ttl')
-            write_aop_rdf(out, entities, prefix_csv, config=config)
+            out = os.path.join(tmpdir, 'AOPWikiRDF-Enriched.ttl')
+            write_enriched_rdf(out, self._enrichment_data(entities), config=config)
             content = open(out).read()
             assert 'skos:exactMatch' in content
             assert 'owl:sameAs' in content
 
     def test_owl_only_chemicals(self):
         """With emit_legacy_predicates=False, only owl:sameAs for chemicals."""
-        from aopwiki_rdf.rdf.writer import write_aop_rdf
+        from aopwiki_rdf.rdf.writer import write_enriched_rdf
         from aopwiki_rdf.config import PipelineConfig
 
         config = PipelineConfig(emit_legacy_predicates=False)
         entities = self._make_minimal_entities(include_prodict=False)
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            prefix_csv = os.path.join(tmpdir, 'prefixes.csv')
-            with open(prefix_csv, 'w') as f:
-                f.write('prefix,uri\n')
-                f.write('dc,http://purl.org/dc/elements/1.1/\n')
-                f.write('rdfs,http://www.w3.org/2000/01/rdf-schema#\n')
-                f.write('skos,http://www.w3.org/2004/02/skos/core#\n')
-                f.write('owl,http://www.w3.org/2002/07/owl#\n')
-                f.write('cheminf,http://semanticscience.org/resource/CHEMINF_\n')
-                f.write('chebi,https://identifiers.org/chebi/\n')
-                f.write('cas,https://identifiers.org/cas/\n')
-                f.write('inchikey,https://identifiers.org/inchikey/\n')
-                f.write('sh,http://www.w3.org/ns/shacl#\n')
-                f.write('xsd,http://www.w3.org/2001/XMLSchema#\n')
-
-            out = os.path.join(tmpdir, 'AOPWikiRDF.ttl')
-            write_aop_rdf(out, entities, prefix_csv, config=config)
+            out = os.path.join(tmpdir, 'AOPWikiRDF-Enriched.ttl')
+            write_enriched_rdf(out, self._enrichment_data(entities), config=config)
             content = open(out).read()
             assert 'skos:exactMatch' not in content
             assert 'owl:sameAs' in content
