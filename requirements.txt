@@ -2,7 +2,7 @@
 # Pinned versions for reproducible builds
 
 # Core Jupyter environment
-jupyterlab==4.5.7
+jupyterlab==4.5.9
 nbclient==0.8.0
 ipython==8.25.0
 
