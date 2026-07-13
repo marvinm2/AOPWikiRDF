@@ -9,10 +9,12 @@ Tests cover:
 import os
 import pytest
 import requests
+from unittest.mock import patch, MagicMock
 
 from aopwiki_rdf.mapping.gene_mapper import (
     build_gene_dicts,
     build_gene_xrefs,
+    _batch_xrefs_bridgedb,
     _map_genes_in_text,
 )
 
@@ -180,3 +182,34 @@ def test_build_gene_xrefs_live():
     assert "hgnc:1100" in result["geneiddict"]
     assert "hgnc:11998" in result["geneiddict"]
     assert len(result["geneiddict"]["hgnc:1100"]) > 0
+
+
+# ---------------------------------------------------------------------------
+# Test: BridgeDb base URL is normalized (regression for the missing-slash bug)
+# ---------------------------------------------------------------------------
+
+@pytest.mark.parametrize("base", [
+    "https://webservice.bridgedb.org/Human",   # no trailing slash (the bug)
+    "https://webservice.bridgedb.org/Human/",  # already correct
+])
+def test_batch_xrefs_normalizes_base_url(base):
+    """A missing trailing slash must not corrupt the endpoint.
+
+    Without normalization, ``base + 'xrefsBatch/H'`` yields
+    ``.../HumanxrefsBatch/H``, which 404s for every gene and silently drops all
+    external cross-references. The batch endpoint must always be built against a
+    slash-terminated base.
+    """
+    captured = {}
+
+    def fake_post(url, *args, **kwargs):
+        captured["url"] = url
+        resp = MagicMock()
+        resp.text = ""            # no rows -> parser skips, no xrefs needed
+        resp.raise_for_status.return_value = None
+        return resp
+
+    with patch("aopwiki_rdf.mapping.gene_mapper.requests.post", side_effect=fake_post):
+        _batch_xrefs_bridgedb(["hgnc:1100"], base, timeout=5)
+
+    assert captured["url"] == "https://webservice.bridgedb.org/Human/xrefsBatch/H"
