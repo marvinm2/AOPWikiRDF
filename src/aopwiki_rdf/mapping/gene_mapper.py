@@ -418,6 +418,11 @@ def _batch_xrefs_bridgedb(gene_list: list[str], bridgedb_url: str,
     dict
         Mapping of gene_id -> {db_name: [identifiers]}.
     """
+    # Endpoints are appended directly to the base (e.g. + 'xrefsBatch/H'), so it
+    # must end in '/'. A missing trailing slash yields '.../HumanxrefsBatch/H',
+    # which 404s for every gene and silently drops all external xrefs. Normalize
+    # here as ner_el_mapper already does for its own BridgeDb calls.
+    bridgedb_url = bridgedb_url.rstrip('/') + '/'
     results = {}
     total_chunks = (len(gene_list) + chunk_size - 1) // chunk_size
 
