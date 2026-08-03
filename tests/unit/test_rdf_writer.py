@@ -122,15 +122,8 @@ def test_write_void_rdf_emits_cc_by_sa_license():
         assert 'creativecommons.org/licenses/by/4.0' not in content
 
 
-def test_write_void_rdf_emits_pav_version():
-    """VoID parent dataset must carry an explicit pav:version "1.3" literal.
-
-    Establishes a deliberate dataset-version counter (D-06) on the top-level
-    :AOPWikiRDF dataset, distinct from the date-only pav:createdOn stamp. The
-    value is a bare string literal "1.3" (milestone label, no xsd: datatype).
-    """
-    from aopwiki_rdf.rdf.writer import write_void_rdf
-
+def _void_metadata(**overrides):
+    """Baseline VoID metadata dict, with per-test overrides applied."""
     now = datetime.datetime.now()
     metadata = {
         'aopwikixmlfilename': 'aop-wiki-xml-2025-01-01.gz',
@@ -142,17 +135,64 @@ def test_write_void_rdf_emits_pav_version():
         'service_desc_filepath': None,
         'triple_counts': {'main': 1000, 'enriched': 500, 'genes': 200},
     }
+    metadata.update(overrides)
+    return metadata
+
+
+def _write_void(metadata):
+    """Write VoID to a temp dir and return the file contents."""
+    from aopwiki_rdf.rdf.writer import write_void_rdf
 
     with tempfile.TemporaryDirectory() as tmpdir:
         out = os.path.join(tmpdir, 'AOPWikiRDF-Void.ttl')
         write_void_rdf(out, metadata)
-        content = open(out).read()
+        return open(out).read()
 
-        # Explicit milestone-tied version field is present on the parent block.
-        assert 'pav:version' in content
-        assert '"1.3"' in content
-        # Bare literal -- no datatype tag on the version value.
-        assert 'pav:version\t"1.3"' in content
+
+def test_write_void_rdf_emits_supplied_pav_version():
+    """pav:version carries the caller-supplied calendar version verbatim.
+
+    Guards issue #101: the value used to be hard-coded "1.3" and went six years
+    stale. It is now derived per run and passed in, so the writer must emit
+    exactly what it is given -- as a bare literal, no xsd: datatype tag.
+    """
+    content = _write_void(_void_metadata(dataset_version='2026.08.01'))
+
+    assert 'pav:version\t"2026.08.01"' in content
+    # The stale literal must never reappear.
+    assert '"1.3"' not in content
+
+
+def test_write_void_rdf_omits_pav_version_when_underivable():
+    """No version at all beats a wrong one when the date cannot be derived."""
+    content = _write_void(_void_metadata(dataset_version=None))
+
+    assert 'pav:version' not in content
+
+
+def test_write_void_rdf_emits_source_commit():
+    """The generating commit is published so a release is pinnable from the endpoint."""
+    url = 'https://github.com/marvinm2/AOPWikiRDF/commit/' + 'a' * 40
+    content = _write_void(_void_metadata(source_commit_url=url))
+
+    assert 'pav:createdWith\t<' + url + '>' in content
+
+
+def test_write_void_rdf_omits_source_commit_when_unknown():
+    """Outside a checkout, emit no commit triple rather than a fabricated one."""
+    content = _write_void(_void_metadata(source_commit_url=None))
+
+    assert '/commit/' not in content
+    # The subset-level pav:createdWith literals are unaffected.
+    assert 'pav:createdWith' in content
+
+
+def test_write_void_rdf_declares_weekly_accrual():
+    """Cadence must match the Saturday 08:00 UTC regeneration, not 'quarterly'."""
+    content = _write_void(_void_metadata())
+
+    assert 'freq:weekly' in content
+    assert 'freq:quarterly' not in content
 
 
 def test_write_void_rdf_with_service_desc():

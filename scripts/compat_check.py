@@ -132,6 +132,23 @@ MASK_PATTERNS = (
         re.compile(rb'void:triples\s+[0-9]+'),
         b'void:triples\t<MASKED>',
     ),
+    # 6. Void pav:version calendar release string. Run-varying since issue #101
+    #    made it derive from the AOP-Wiki XML export date instead of a
+    #    hard-coded literal, so an off-vs-on comparison spanning two XML
+    #    snapshots would otherwise diff here. Predicate-anchored; the only
+    #    pav:version in the corpus is the one on :AOPWikiRDF.
+    (
+        re.compile(rb'pav:version\t"[^"]*"'),
+        b'pav:version\t"<MASKED>"',
+    ),
+    # 7. Void pav:createdWith commit URL. Varies with every commit, and the two
+    #    halves of a COMPAT run are generated from the same checkout, so this
+    #    carries no compatibility signal. Anchored on the commit-URL shape so it
+    #    cannot touch the sibling pav:createdWith XML-filename literals.
+    (
+        re.compile(rb'pav:createdWith\t<https://github\.com/[^>]*/commit/[0-9a-f]+>'),
+        b'pav:createdWith\t<MASKED-COMMIT>',
+    ),
 )
 
 

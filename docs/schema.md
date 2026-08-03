@@ -390,14 +390,52 @@ Contains VoID dataset metadata:
 
 1. VoID prefix declarations
 2. Parent dataset (`:AOPWikiRDF`) with `void:subset` links to the three content files, plus
-   an explicit `pav:version "1.3"` milestone-tied dataset-version field (a bare string
-   literal, distinct from the date-only `pav:createdOn` stamp; bumped per schema-changing
-   release and stamped on the top-level dataset only, not the per-subset nodes)
+   the release-identity fields described under *Versioning* below
 3. Pure source subset (`:AOPWikiRDF.ttl`) with provenance and triple counts
 4. Enriched subset (`:AOPWikiRDF-Enriched.ttl`) with BridgeDb provenance
 5. Genes subset (`:AOPWikiRDF-Genes.ttl`) with HGNC provenance
 6. HGNC linkset metadata
 7. Promapping linkset metadata
+
+#### Versioning
+
+Two different things carry versions, and they are deliberately *not* the same
+value. Conflating them is what left the served RDF advertising `pav:version "1.3"`
+long after that label stopped meaning anything (issue #101).
+
+| What | Where | Scheme | Example |
+|---|---|---|---|
+| The **dataset** — one weekly snapshot | `pav:version` on `:AOPWikiRDF` | calendar, from the XML export date | `"2026.08.01"` |
+| The **software** — this repository | `pav:createdWith` commit URL on `:AOPWikiRDF` | git commit | `<https://github.com/marvinm2/AOPWikiRDF/commit/0eeca9a…>` |
+| The **software**, for citation | `CITATION.cff`, git tags | calendar / semver | `2026.05`, `v2.2` |
+
+`pav:version` is **derived at generation time** from the AOP-Wiki XML filename
+(`aop-wiki-xml-2026-08-01` → `2026.08.01`) by
+`aopwiki_rdf.provenance.derive_dataset_version`, so it cannot drift out of date.
+If the filename does not carry a parseable date the triple is **omitted** rather
+than guessed — no version is honest, a stale one is not.
+
+The commit URL means a consumer can pin an exact release from the endpoint alone:
+
+```sparql
+PREFIX pav: <http://purl.org/pav/>
+SELECT ?version ?builtOn ?commit WHERE {
+  <https://aopwiki.rdf.bigcat-bioinformatics.org/AOPWikiRDF>
+      pav:version ?version ;
+      pav:createdOn ?builtOn ;
+      pav:createdWith ?commit .
+  FILTER(isIRI(?commit))
+}
+```
+
+The `isIRI` filter is defensive rather than required here — pinning the subject to
+`:AOPWikiRDF` is already enough, because only the parent carries a commit URL. It
+is worth keeping if you loosen the subject, since `pav:createdWith` is reused on
+the *subset* nodes with string literals naming the input files.
+
+`dcat:accrualPeriodicity` is `freq:weekly`, matching the actual regeneration
+cadence (Saturdays 08:00 UTC). It previously read `freq:quarterly`, which told
+consumers to expect refreshes four times less often than they actually happen.
 
 ### ServiceDescription.ttl
 
