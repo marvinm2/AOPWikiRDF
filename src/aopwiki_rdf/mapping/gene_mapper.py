@@ -274,6 +274,68 @@ def _has_gene_context(context: str) -> bool:
     return bool(_GENE_CONTEXT_PATTERN.search(context))
 
 
+# Language that marks the token as the thing being ADMINISTERED rather than
+# measured. Chemical stressor abbreviations collide with gene aliases often --
+# BPA (bisphenol A) is an alias of DST, DBP (dibutyl phthalate) is the approved
+# symbol of D-box binding protein -- and both were being read as gene mentions.
+#
+# Matched POSITIONALLY, immediately around the token, not anywhere in the window.
+# That distinction is what makes it safe: in "AR expression was measured after
+# BPA exposure", 'exposure' is present for both tokens, but only BPA is directly
+# followed by it. A window-wide test would discard the legitimate AR match too.
+_STRESSOR_AFTER = re.compile(
+    r'^[\s\-]*(?:exposure|exposures|exposed|treatment|treated|administration|'
+    r'administered|dosing|dosed|injection|injected)\b',
+    re.IGNORECASE,
+)
+_STRESSOR_BEFORE = re.compile(
+    r'\b(?:exposure|exposed|treatment|treated|administration|administered|'
+    r'dosing|dosed|injection|injected)\s+(?:to|with|of)\s*$',
+    re.IGNORECASE,
+)
+
+# How far either side to look for that positional evidence. Deliberately short:
+# it must catch "BPA exposure" without reaching an unrelated clause.
+STRESSOR_PROXIMITY = 24
+
+
+# Only ABBREVIATIONS are treated this way. A full protein name next to exposure
+# language is usually still a real mention of that gene product -- "leptin
+# treatment" and "insulin treatment" are about leptin and insulin, and an
+# earlier revision of this rule discarded exactly those. An abbreviation next to
+# the same words is far more often a chemical: BPA, DBP, TCDD.
+STRESSOR_MAX_TOKEN_LEN = 4
+
+
+# When one of these follows the token, the token is MODIFYING it rather than
+# being the administered substance itself. "exposure to TPO inhibitors" is about
+# thyroid peroxidase -- the inhibitor is what was administered, and TPO is a
+# perfectly good gene mention. Without this guard the rule discarded 8 such TPO
+# matches and read the gene out of its own sentence.
+_STRESSOR_HEAD_NOUN = re.compile(
+    r'^[\s\-]*(?:inhibitor|inhibitors|inhibition|agonist|agonists|antagonist|'
+    r'antagonists|activity|activities|level|levels|protein|proteins|enzyme|'
+    r'enzymes|receptor|receptors|expression|mrna|signalling|signaling|'
+    r'deficien\w*|knockout|null)\b',
+    re.IGNORECASE,
+)
+
+
+def _is_stressor_mention(text: str, start: int, end: int) -> bool:
+    """True when the token reads as an administered substance, not a gene."""
+    if end - start > STRESSOR_MAX_TOKEN_LEN:
+        return False
+
+    after = text[end:end + STRESSOR_PROXIMITY]
+    if _STRESSOR_HEAD_NOUN.match(after):
+        return False
+
+    if _STRESSOR_AFTER.match(after):
+        return True
+    before = text[max(0, start - STRESSOR_PROXIMITY):start]
+    return bool(_STRESSOR_BEFORE.search(before))
+
+
 CONTEXT_RADIUS = 50
 
 
@@ -431,6 +493,16 @@ def _map_genes_in_text(text: str, genedict1: dict, hgnc_list: list,
             continue
 
         matched_alias = text[start:end]
+
+        # Checked before the general filters: this needs the token's position in
+        # the text, which _is_false_positive deliberately does not receive.
+        if _is_stressor_mention(text, start, end):
+            logger.debug(
+                f"Filtered stressor mention: {gene_key} "
+                f"(token '{matched_alias}' reads as an administered substance)"
+            )
+            continue
+
         context = _context_window(text, start, end)
 
         is_fp, fp_reason = _is_false_positive(

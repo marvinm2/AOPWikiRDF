@@ -191,3 +191,27 @@ jobs:
           # qc-delta-report.json) must not trigger a commit with nothing staged,
           # which exits non-zero and fails the job.
           git diff --staged --quiet || (git commit -m "Update QC status" && git push)
+
+      # Step 7: Detector-disagreement ranking (QC-03, issue #109).
+      # Ranks genes the dictionary asserts on many entities that BERN2 never
+      # confirms -- the signal that surfaces alias collisions (ROS -> ROS1,
+      # BPA -> DST) without waiting for someone to notice one by accident.
+      #
+      # ADVISORY ONLY, never blocking. NER silence is not proof of a false
+      # positive: BERN2 has its own recall gaps and has had zero-output weeks,
+      # so this gates human review and must not drive an automatic drop. Runs
+      # after the delta guard so a genuine data failure surfaces first.
+      - name: Gene detector-disagreement ranking (advisory)
+        if: always()
+        run: |
+          python scripts/detector_disagreement.py \
+            --genes-file data/AOPWikiRDF-Genes.ttl \
+            --report-path gene-disagreement.json || true
+
+      - name: Upload disagreement report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gene-disagreement-report
+          path: gene-disagreement.json
+          if-no-files-found: ignore
