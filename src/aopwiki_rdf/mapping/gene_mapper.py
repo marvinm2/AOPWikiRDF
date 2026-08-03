@@ -174,10 +174,43 @@ ROMAN_NUMERAL_PATTERN = re.compile(r'\b[IVX]+\b')
 # previous symbol of two other genes; TH is both thyroid hormone and tyrosine
 # hydroxylase), so they are handled by ownership resolution and the short-token
 # rule below, which can still admit them where the context supports it.
+#
+# Second batch, added after a survey of the published 97191db release. Each was
+# found by ranking genes on regex-vs-NER disagreement (see issue #109) and then
+# read in context across the 1,360 KE/KER texts; the counts below are
+# occurrences in that corpus, every one of which was the non-gene reading:
+#
+#   T3       188x  triiodothyronine        alias of SLC25A5
+#   T2        15x  diiodothyronine         alias of SLC25A5
+#   LPS       19x  lipopolysaccharide      previous symbol of IRF6
+#   HCC       31x  hepatocellular carcinoma  alias of HYCC1
+#   PND        9x  postnatal day           alias of NPPA
+#   CCL        6x  C-C chemokine family prefix  alias of CRYGEP
+#   BPA        5x  bisphenol A             alias of DST
+#
+# These seven are the ones that ownership resolution cannot reach, because each
+# is claimed by exactly ONE gene and so is never contested. Tokens with several
+# claimants and no approved-symbol owner -- E2, EMT, ERK, p38, ALP, G2, AP-1 --
+# are already retired by build_token_owners and are deliberately left out rather
+# than listed redundantly.
+#
+# Also deliberately NOT here, having been checked and rejected:
+#   TPO, CA1, DBP  approved symbols of real genes; stoplisting them would drop
+#                  legitimate mentions. CA1 (carbonic anhydrase 1 vs the
+#                  hippocampal CA1 field) is genuinely ambiguous and needs a
+#                  context rule, not a stoplist. DBP does not occur in the
+#                  corpus at all.
 DOMAIN_ABBREVIATION_STOPLIST = {
     'ROS',
     'ECM',
     'spatial',
+    'T3',
+    'T2',
+    'LPS',
+    'HCC',
+    'PND',
+    'CCL',
+    'BPA',
 }
 
 # A short token is only read as a gene when the surrounding prose is talking

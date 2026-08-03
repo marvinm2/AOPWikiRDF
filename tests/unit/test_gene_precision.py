@@ -116,6 +116,92 @@ def test_ordinary_english_word_does_not_match_TBATA():
     assert find(text, TBATA) == set()
 
 
+# --- Second stoplist batch (issue #109) ------------------------------------
+#
+# These seven are single-claimant tokens, so ownership resolution never sees
+# them as contested and cannot retire them. Contexts below are taken from the
+# published 97191db corpus. Each pairs a rejection with a proof that the
+# claiming gene is still reachable by its approved symbol.
+
+SLC25A5 = {'10991': ['SLC25A5', 'solute carrier family 25 member 5', 'T2', 'T3']}
+IRF6 = {'6121': ['IRF6', 'interferon regulatory factor 6', 'LPS']}
+HYCC1 = {'24587': ['HYCC1', 'hyccin PI4KA lipid kinase complex subunit 1', 'HCC']}
+NPPA = {'7939': ['NPPA', 'natriuretic peptide A', 'PND']}
+CRYGEP = {'2412': ['CRYGEP', 'crystallin gamma E, pseudogene', 'CCL']}
+DST = {'1090': ['DST', 'dystonin', 'BPA']}
+
+
+def test_thyroid_hormones_do_not_match_SLC25A5():
+    """T3/T2 are thyronines throughout the corpus, never the transporter.
+
+    T3 alone occurs 188 times, which made SLC25A5 one of the most widely
+    asserted genes in the release.
+    """
+    text = ('The two major thyroid hormones are triiodothyronine (T3) and '
+            'thyroxine (T4); deiodination of rT3 yields 3,3-T2.')
+    assert find(text, SLC25A5) == set()
+
+
+def test_lipopolysaccharide_does_not_match_IRF6():
+    text = ('Lipopolysaccharide (LPS) from the bacteria binds to TLR4 and '
+            'drives expression of pro-inflammatory cytokines.')
+    assert find(text, IRF6) == set()
+
+
+def test_hepatocellular_carcinoma_does_not_match_HYCC1():
+    text = ('Hepatocellular carcinoma (HCC) is a primary cancer of the '
+            'hepatocytes.')
+    assert find(text, HYCC1) == set()
+
+
+def test_postnatal_day_does_not_match_NPPA():
+    text = ('Inhibitory synapses cannot be found prior to PND 18, after which '
+            'expression increases steadily.')
+    assert find(text, NPPA) == set()
+
+
+def test_chemokine_family_prefix_does_not_match_CRYGEP():
+    text = ('Enhanced levels of the C-C motif chemokine ligand (CCL) family '
+            'were observed, including CCL-2 protein.')
+    assert find(text, CRYGEP) == set()
+
+
+def test_bisphenol_a_does_not_match_DST():
+    text = ('Bisphenol A (BPA) exposure altered receptor expression in '
+            'exposed animals.')
+    assert find(text, DST) == set()
+
+
+def test_second_batch_genes_still_match_their_approved_symbols():
+    """The whole batch must cost no genuine mentions.
+
+    A stoplist entry rejects one alias, not the gene -- each of these texts
+    names the gene by its approved symbol and must still be found.
+
+    None of these strings may begin with the symbol: the precision dictionary
+    matches delimiter-wrapped variants, so a token opening a text has no
+    leading delimiter and can never match (issue #104). That is a pre-existing
+    recall gap, unrelated to the stoplist.
+    """
+    assert find('Expression of SLC25A5 was reduced.', SLC25A5) == {'hgnc:10991'}
+    assert find('The IRF6 gene was upregulated.', IRF6) == {'hgnc:6121'}
+    assert find('Levels of HYCC1 protein fell.', HYCC1) == {'hgnc:24587'}
+    assert find('Transcription of NPPA increased.', NPPA) == {'hgnc:7939'}
+    assert find('The DST gene was altered.', DST) == {'hgnc:1090'}
+
+
+def test_gene_context_cue_does_not_rescue_a_stoplisted_token():
+    """The gap this batch closes.
+
+    The short-token rule admits a token whenever a cue word is nearby, and
+    toxicology prose about a stressor almost always also says "expression" or
+    "receptor" -- so the cue test alone let every one of these through.
+    """
+    text = ('LPS-induced expression of the receptor protein increased '
+            'following exposure.')
+    assert find(text, IRF6) == set()
+
+
 def test_stoplisted_gene_still_matches_its_real_symbol():
     """Stoplisting the alias 'ROS' must not cost us genuine ROS1 mentions."""
     text = 'The ROS1 gene was found to be overexpressed in treated cells.'
