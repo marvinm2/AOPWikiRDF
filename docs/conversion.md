@@ -160,6 +160,31 @@ Genes written by their approved symbol are unaffected: AHR holds at 36 occurrenc
 
 Because BERN2 output is unioned in, the published drop is smaller than the regex drop: of the 2,812 regex associations removed, 1,507 are for genes BERN2 finds independently.
 
+### Stressor abbreviations
+
+Chemical stressor abbreviations collide with gene aliases often, and both detectors used to read them as genes: `BPA` (bisphenol A) is an alias of **DST**, and `DBP` (dibutyl phthalate) is the approved symbol of **D-box binding protein**. Two of the most-studied stressors in AOP-Wiki were being asserted as gene mentions.
+
+A token of 4 characters or fewer that sits **immediately** beside exposure language — `BPA exposure`, `exposed to BPA`, `treatment with DBP` — is read as an administered substance rather than a gene.
+
+Two guards keep this from over-reaching:
+
+- **Position matters, not proximity.** In *"AR expression was measured after BPA exposure"* the word `exposure` is within range of both tokens, but only `BPA` is directly followed by it. A window-wide test would discard the legitimate AR match too.
+- **A following head noun cancels it.** In *"exposure to TPO inhibitors"* the administered thing is the inhibitor and `TPO` merely modifies it, so that stays a valid thyroid-peroxidase mention. Without this guard the rule discarded 8 such TPO matches.
+
+Full protein names are exempt entirely — *"leptin treatment"* and *"insulin treatment"* are genuine mentions of those gene products, and an earlier revision of this rule discarded exactly those.
+
+### Finding collisions systematically
+
+`scripts/detector_disagreement.py` ranks genes by how often the dictionary asserts them against how often BERN2 confirms them. A gene asserted on many entities that the context-aware model never confirms is overwhelmingly a collision, because NER declines exactly what a context-free string match cannot.
+
+```bash
+python scripts/detector_disagreement.py --min-regex-entities 10 --max-agreement 0.10
+```
+
+Run against the pre-fix `97191db` release it puts **ROS1 first and TBATA second** — the two clearest collisions, found independently of the manual audit that originally caught them. It runs in the QC workflow as an **advisory** artifact.
+
+This is a **heuristic for review, not ground truth.** NER silence does not prove a false positive: BERN2 has its own recall gaps and has had zero-output weeks. It must gate a human decision, never an automatic drop, and it cannot see collisions both detectors make.
+
 ### Recall gap at text boundaries (fixed)
 
 Every `genedict2` variant had the form delimiter + token + delimiter, so a token that **opened** a text had no leading delimiter to match against and was missed entirely, however unambiguous it was. The automaton treats the text edges as boundaries, closing this.
