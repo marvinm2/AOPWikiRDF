@@ -13,6 +13,7 @@ import time
 
 import requests
 
+from aopwiki_rdf.mapping.automaton import GeneAutomaton
 from aopwiki_rdf.mapping.bridgedb import batch_xrefs_gene
 
 logger = logging.getLogger(__name__)
@@ -28,13 +29,21 @@ MIN_BRIDGEDB_SUCCESS_RATE = 50.0
 # Section A: Gene dictionary building
 # ---------------------------------------------------------------------------
 
-def build_gene_dicts(hgnc_file_path: str) -> tuple[dict, dict, dict]:
+def build_gene_dicts(hgnc_file_path: str,
+                     build_precision_dict: bool = False
+                     ) -> tuple[dict, dict, dict]:
     """Parse HGNC file into genedict1 (screening), genedict2 (precision), and symbol_lookup.
 
     Parameters
     ----------
     hgnc_file_path : str
         Path to the HGNCgenes.txt file.
+    build_precision_dict : bool
+        Whether to materialise ``genedict2``, the delimiter-expanded variants.
+        Defaults to False: the automaton expresses those boundaries directly, so
+        production no longer reads it, and building it meant holding 7.4 million
+        strings (~0.5 GB) that nothing consumed. Kept as an opt-in because the
+        shape is still part of the published return signature.
 
     Returns
     -------
@@ -88,10 +97,11 @@ def build_gene_dicts(hgnc_file_path: str) -> tuple[dict, dict, dict]:
                 if not item == '':
                     for name in item.split(', '):
                         genedict1[hgnc_id].append(name)
-            for item in genedict1[hgnc_id]:
-                for s1 in symbols:
-                    for s2 in symbols:
-                        genedict2[hgnc_id].append((s1 + item + s2))
+            if build_precision_dict:
+                for item in genedict1[hgnc_id]:
+                    for s1 in symbols:
+                        for s2 in symbols:
+                            genedict2[hgnc_id].append((s1 + item + s2))
 
     hgnc_file.close()
     logger.info(f"Gene mapping setup: {len(genedict2)} genes included for mappings")
@@ -155,6 +165,41 @@ def build_token_owners(genedict1: dict, symbol_lookup: dict) -> dict:
         f"{retired} retired as unresolvable"
     )
     return owners
+
+
+def build_token_index(genedict1: dict, symbol_lookup: dict) -> dict:
+    """Return ``{token: gene_key}`` for every token, contests already resolved.
+
+    The automaton needs one owner per token up front, where the old loop
+    resolved contests per match. Uncontested tokens map to their only claimant;
+    contested ones go to their approved-symbol owner, or are dropped entirely
+    when no reading is defensible -- the same rule :func:`build_token_owners`
+    applies, just materialised for the whole dictionary.
+    """
+    claims: dict[str, set] = {}
+    for gene_key, tokens in genedict1.items():
+        for token in tokens:
+            stripped = token.strip()
+            if stripped:
+                claims.setdefault(stripped, set()).add(gene_key)
+
+    index = {}
+    retired = 0
+    for token, gene_keys in claims.items():
+        if len(gene_keys) == 1:
+            index[token] = next(iter(gene_keys))
+            continue
+        symbol_owners = [k for k in gene_keys if symbol_lookup.get(k) == token]
+        if len(symbol_owners) == 1:
+            index[token] = symbol_owners[0]
+        else:
+            retired += 1
+
+    logger.info(
+        f"Gene mapping setup: {len(index)} tokens indexed, "
+        f"{retired} contested tokens retired as unresolvable"
+    )
+    return index
 
 
 # ---------------------------------------------------------------------------
@@ -229,6 +274,32 @@ def _has_gene_context(context: str) -> bool:
     return bool(_GENE_CONTEXT_PATTERN.search(context))
 
 
+CONTEXT_RADIUS = 50
+
+
+def _context_window(text: str, start: int, end: int,
+                    radius: int = CONTEXT_RADIUS) -> str:
+    """Return roughly ``radius`` characters either side, snapped to whole words.
+
+    A fixed character window can sever a cue word and flip the verdict on one
+    character: an observed match had "over-expression" truncated to
+    "over-expressio", losing the `expression` cue and with it the decision.
+    Extending to the nearest whitespace outside the window means a cue either
+    falls in range or does not, rather than depending on where the arithmetic
+    happened to land.
+    """
+    left = max(0, start - radius)
+    right = min(len(text), end + radius)
+
+    # Walk outward to whitespace so partially-included words are made whole.
+    while left > 0 and not text[left - 1].isspace():
+        left -= 1
+    while right < len(text) and not text[right].isspace():
+        right += 1
+
+    return text[left:right]
+
+
 def _is_false_positive(gene_key: str, matched_alias: str,
                        matched_text_context: str,
                        symbol_lookup: dict | None = None
@@ -301,12 +372,13 @@ def _is_false_positive(gene_key: str, matched_alias: str,
 def _map_genes_in_text(text: str, genedict1: dict, hgnc_list: list,
                        genedict2: dict | None = None,
                        token_owners: dict | None = None,
-                       symbol_lookup: dict | None = None) -> list[str]:
-    """Enhanced three-stage gene mapping algorithm with false positive filtering.
+                       symbol_lookup: dict | None = None,
+                       automaton=None) -> list[str]:
+    """Find gene mentions in a text and return their HGNC IDs.
 
-    Stage 1: Screen with genedict1 (basic gene names)
-    Stage 2: Match with genedict2 (punctuation-delimited variants) with precision
-    Stage 3: Resolve contested tokens, then apply false positive filters
+    Scans the text once with an Aho-Corasick automaton, then applies the
+    false-positive filters to each delimiter-bounded match. Replaces a loop that
+    tested every gene in the dictionary against every text.
 
     Parameters
     ----------
@@ -314,132 +386,79 @@ def _map_genes_in_text(text: str, genedict1: dict, hgnc_list: list,
         Text to scan for gene mentions.
     genedict1 : dict
         Screening dictionary (numeric_hgnc_id -> [symbol, name, aliases...]).
+        Used to build an automaton when one is not supplied.
     hgnc_list : list
         Global list of found HGNC IDs (mutated in place).
     genedict2 : dict, optional
-        Precision dictionary (numeric_hgnc_id -> punctuation-delimited variants).
+        Accepted and ignored. The delimiter-expanded dictionary it held is what
+        the automaton makes unnecessary; the parameter remains so existing
+        callers keep working.
     token_owners : dict, optional
-        token -> owning HGNC ID (or None) from :func:`build_token_owners`. When
-        omitted, contested tokens are left unresolved and every claiming gene
-        matches -- the pre-existing behaviour, kept so callers that have not
-        been updated still work.
+        Contested-token resolution, applied when building an automaton here.
     symbol_lookup : dict, optional
-        numeric_hgnc_id -> approved symbol, passed through for log clarity.
+        numeric_hgnc_id -> approved symbol, used by the short-token filter.
+    automaton : GeneAutomaton, optional
+        Prebuilt automaton. Pass this in loops -- constructing one per text
+        rebuilds the whole dictionary and is far slower than the code it
+        replaced.
 
     Returns
     -------
     list[str]
         List of found HGNC IDs (e.g., ['hgnc:1100']).
     """
-    if not text or not genedict1:
+    if not text or (automaton is None and not genedict1):
         return []
+
+    if automaton is None:
+        # Convenience path for callers holding only the raw dicts (tests,
+        # ad-hoc use). Production builds the automaton once per run.
+        index = build_token_index(genedict1, symbol_lookup or {})
+        if token_owners:
+            for token, owner in token_owners.items():
+                if owner is None:
+                    index.pop(token, None)
+                else:
+                    index[token] = owner
+        automaton = GeneAutomaton(index)
 
     found_genes = []
     start_time = time.time()
-    genes_checked = 0
 
-    for gene_key in genedict1:
-        genes_checked += 1
+    for start, end, gene_key in automaton.find(text):
+        hgnc_id = 'hgnc:' + gene_key
+        if hgnc_id in found_genes:
+            continue
 
-        # Stage 1: Screen with genedict1
-        a = 0
-        stage1_matched_alias = None
-        for item in genedict1[gene_key]:
-            if item in text:
-                a = 1
-                stage1_matched_alias = item
-                break
+        matched_alias = text[start:end]
+        context = _context_window(text, start, end)
 
-        # Stage 2: If Stage 1 passes, use genedict2 for precise matching
-        if a == 1:
-            hgnc_id = 'hgnc:' + gene_key
+        is_fp, fp_reason = _is_false_positive(
+            gene_key, matched_alias, context, symbol_lookup
+        )
+        if is_fp:
+            # Only this occurrence is rejected. Another mention of the same gene
+            # elsewhere in the text may still carry the context it needs.
+            logger.debug(
+                f"Filtered false positive: {gene_key} "
+                f"(alias '{matched_alias}') - {fp_reason}"
+            )
+            continue
 
-            if genedict2 and gene_key in genedict2:
-                for item in genedict2[gene_key]:
-                    if item in text and hgnc_id not in found_genes:
-                        # Stage 3: False positive filtering
-                        match_index = text.find(item)
-                        context_start = max(0, match_index - 50)
-                        context_end = min(len(text), match_index + len(item) + 50)
-                        context = text[context_start:context_end]
-
-                        # Every genedict2 variant is s1 + token + s2 with both
-                        # sentinels non-empty, so it is always >= 3 chars and
-                        # this strip is the only reachable case.
-                        matched_alias = item.strip(' ()[],.')
-
-                        owner = token_owners.get(matched_alias, gene_key) if token_owners else gene_key
-                        if owner != gene_key:
-                            logger.debug(
-                                f"Skipped contested token '{matched_alias}' for "
-                                f"{gene_key}: owned by {owner or 'no gene'}"
-                            )
-                            # Another variant of this gene may still match
-                            # legitimately, so keep scanning rather than
-                            # abandoning the gene.
-                            continue
-
-                        is_fp, fp_reason = _is_false_positive(
-                            gene_key, matched_alias, context, symbol_lookup
-                        )
-
-                        if is_fp:
-                            logger.debug(
-                                f"Filtered false positive: {gene_key} "
-                                f"(alias '{matched_alias}') - {fp_reason}"
-                            )
-                            # Only this variant is rejected. Abandoning the gene
-                            # here (the previous behaviour) meant a text
-                            # containing both 'ROS' and 'ROS1' could lose the
-                            # legitimate ROS1 match, depending purely on which
-                            # variant genedict2 happened to list first.
-                            continue
-
-                        found_genes.append(hgnc_id)
-                        if hgnc_id not in hgnc_list:
-                            hgnc_list.append(hgnc_id)
-                        break
-            else:
-                # Fallback to genedict1-only matching
-                owner = (
-                    token_owners.get(stage1_matched_alias, gene_key)
-                    if token_owners else gene_key
-                )
-                if owner != gene_key:
-                    logger.debug(
-                        f"Skipped contested token '{stage1_matched_alias}' for "
-                        f"{gene_key}: owned by {owner or 'no gene'}"
-                    )
-                    continue
-
-                is_fp, fp_reason = _is_false_positive(
-                    gene_key, stage1_matched_alias, text, symbol_lookup
-                )
-
-                if not is_fp and hgnc_id not in found_genes:
-                    found_genes.append(hgnc_id)
-                    if hgnc_id not in hgnc_list:
-                        hgnc_list.append(hgnc_id)
-                elif is_fp:
-                    logger.debug(
-                        f"Filtered false positive: {gene_key} "
-                        f"(alias '{stage1_matched_alias}') - {fp_reason}"
-                    )
+        found_genes.append(hgnc_id)
+        if hgnc_id not in hgnc_list:
+            hgnc_list.append(hgnc_id)
 
     elapsed = time.time() - start_time
-    precision_note = (
-        " (using enhanced precision filtering)" if genedict2
-        else " (genedict1 fallback)"
-    )
     if elapsed > 1.0:
         logger.info(
-            f"SLOW gene mapping: {elapsed:.2f}s, {genes_checked} genes, "
-            f"{len(found_genes)} genes found, text_len={len(text)}{precision_note}"
+            f"SLOW gene mapping: {elapsed:.2f}s, {len(found_genes)} genes "
+            f"found, text_len={len(text)}"
         )
     elif found_genes:
         logger.debug(
             f"Gene mapping: {elapsed:.2f}s, {len(found_genes)} genes found, "
-            f"text_len={len(text)}{precision_note}"
+            f"text_len={len(text)}"
         )
 
     return found_genes
@@ -478,6 +497,17 @@ def map_genes_in_entities(kedict: dict, kerdict: dict, genedict1: dict,
     """
     hgnclist = []
 
+    # One automaton for the whole corpus. Building it per text would rebuild the
+    # entire dictionary each time and be far slower than the loop this replaces.
+    index = build_token_index(genedict1, symbol_lookup or {})
+    if token_owners:
+        for token, owner in token_owners.items():
+            if owner is None:
+                index.pop(token, None)
+            else:
+                index[token] = owner
+    automaton = GeneAutomaton(index)
+
     # --- Key Events ---
     logger.info("Starting gene mapping on Key Events (this may take a minute)...")
     ke_start_time = time.time()
@@ -490,7 +520,7 @@ def map_genes_in_entities(kedict: dict, kerdict: dict, genedict1: dict,
             description_text = kedict[ke.get('id')]['dc:description']
             found_genes = _map_genes_in_text(
                 description_text, genedict1, hgnclist, genedict2,
-                token_owners, symbol_lookup,
+                token_owners, symbol_lookup, automaton,
             )
             if found_genes:
                 kedict[ke.get('id')]['edam:data_1025'] = found_genes
@@ -549,6 +579,7 @@ def map_genes_in_entities(kedict: dict, kerdict: dict, genedict1: dict,
             description_genes = _map_genes_in_text(
                 kerdict[ker.get('id')]['dc:description'],
                 genedict1, hgnclist, genedict2, token_owners, symbol_lookup,
+                automaton,
             )
             all_found_genes.extend(description_genes)
 

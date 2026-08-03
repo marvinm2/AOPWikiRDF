@@ -62,17 +62,22 @@ def test_contested_token_resolves_to_the_approved_symbol_owner():
     )
 
 
-def test_contested_token_regression_all_three_used_to_match():
-    """Without resolution every claiming gene matches -- the shipped defect."""
-    unresolved = find(
-        'Sustained AR receptor activation follows exposure.', AR_TRIO,
-        resolve=False,
-    )
+def test_contested_token_maps_to_exactly_one_gene():
+    """Resolution is now structural rather than a per-match check.
 
-    assert len(unresolved) > 1
-    assert unresolved > find(
-        'Sustained AR receptor activation follows exposure.', AR_TRIO
-    )
+    The automaton is built from a token index holding one owner per token, so a
+    contested token cannot reach more than one gene by construction -- there is
+    no longer an 'unresolved' mode to compare against, which is the point.
+    """
+    from aopwiki_rdf.mapping.gene_mapper import build_token_index
+
+    g1, _, sym = make_dicts(AR_TRIO)
+    index = build_token_index(g1, sym)
+
+    assert index['AR'] == '644'
+    # FDXR and AREG keep their own unambiguous names.
+    assert index['FDXR'] == '3642'
+    assert index['amphiregulin'] == '651'
 
 
 def test_contested_token_with_no_approved_owner_is_retired():
@@ -159,16 +164,17 @@ def test_short_token_accepted_with_gene_context():
     assert find(text, TH) == {'hgnc:11782'}
 
 
-@pytest.mark.xfail(
-    reason='Pre-existing recall gap: every genedict2 variant is '
-           'delimiter+token+delimiter, so a token starting a text has no '
-           'leading delimiter to match against and is missed entirely. '
-           'Predates the precision work; fixing it changes recall and needs '
-           'its own measurement.',
-    strict=True,
-)
-def test_token_at_start_of_text_is_missed():
+def test_token_at_start_of_text_is_found():
+    """Previously impossible: every genedict2 variant was
+    delimiter+token+delimiter, so a token opening a text had no leading
+    delimiter to match against and was missed however unambiguous it was. The
+    automaton treats the start and end of the text as boundaries."""
     assert find('TH gene expression was reduced.', TH) == {'hgnc:11782'}
+
+
+def test_token_at_end_of_text_is_found():
+    """The same gap applied at the other end when no trailing punctuation."""
+    assert find('Reduced expression of the gene TH', TH) == {'hgnc:11782'}
 
 
 # --- Approved symbols are stronger evidence than aliases -------------------

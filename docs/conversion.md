@@ -58,13 +58,23 @@ Gene clusters (symbols containing `@`) are excluded.
 
 **Example:** For gene TP53 (HGNC:11998) with aliases including "p53" and "tumor protein p53", Stage 1 searches the KE description text for any of these terms. If "p53" appears anywhere in the text, the gene passes screening.
 
-### Stage 2: Precision Matching (genedict2)
+### Stage 2: Boundary-bounded matching (Aho-Corasick)
 
-The precision dictionary `genedict2` extends each alias with punctuation-delimited variants. For each alias, all combinations of leading and trailing delimiter characters from the set `[' ', '(', ')', '[', ']', ',', '.']` are generated.
+Matching uses an Aho-Corasick automaton (`mapping/automaton.py`) built once per run from `{token: gene}`. Each text is scanned **once**, in time proportional to its length rather than to the size of the dictionary.
 
-**How it works:** After Stage 1 passes a gene, Stage 2 checks whether any punctuation-bounded variant from `genedict2` appears in the text. This prevents matching gene symbols that are substrings of longer words.
+A match counts only when the characters immediately before and after it are delimiters, from the set `[' ', '(', ')', '[', ']', ',', '.']` — so `AR` matches in `"(AR)"` but not inside `ARID1A`. **The start and end of the text also count as boundaries.**
 
-**Example:** For a gene with symbol "A", `genedict2` generates variants like `" A "`, `" A,"`, `"(A)"`, `" A."`, etc. This prevents matching the letter "A" when it appears as part of normal English text, only matching when it appears as a standalone term bounded by punctuation or spaces.
+This replaced a dictionary named `genedict2` that pre-expanded every token into all 49 combinations of leading and trailing delimiter, and a loop that tested all ~45,000 genes against every text.
+
+| | expanded dictionary + loop | automaton |
+|---|---:|---:|
+| dictionary build | 37 s, 510 MB peak | 1.0 s, 23 MB peak |
+| stored entries | 7,383,026 variants | 146,633 tokens / 563,036 states |
+| corpus scan (2,737 texts) | 505 s | 2.8 s |
+
+`genedict2` is no longer built. `build_gene_dicts(..., build_precision_dict=True)` still produces it for anything that wants the old shape.
+
+Because the automaton reports **every** token spanning a position, contested-token resolution is applied when the token index is built rather than per match — one token maps to at most one gene by construction.
 
 ### Stage 3: False Positive Filtering
 
@@ -150,9 +160,13 @@ Genes written by their approved symbol are unaffected: AHR holds at 36 occurrenc
 
 Because BERN2 output is unioned in, the published drop is smaller than the regex drop: of the 2,812 regex associations removed, 1,507 are for genes BERN2 finds independently.
 
-### Known recall gap
+### Recall gap at text boundaries (fixed)
 
-Every `genedict2` variant has the form delimiter + token + delimiter, so a token that **opens** a text has no leading delimiter to match against and is missed entirely. `tests/unit/test_gene_precision.py` pins this as a strict `xfail`. It predates the precision work; fixing it changes recall and needs its own measurement.
+Every `genedict2` variant had the form delimiter + token + delimiter, so a token that **opened** a text had no leading delimiter to match against and was missed entirely, however unambiguous it was. The automaton treats the text edges as boundaries, closing this.
+
+Measured effect on the full corpus: 3,927 → 4,057 gene associations (+3.3%) and 1,035 → 1,046 distinct genes. Two genes lost a match, both correctly — `NPAT` was matching on `E14` (embryonic day 14) and `H2AC20` on `H2A` (the histone family, not that specific gene).
+
+The context window used by the short-token filter is also snapped outward to whole words. A fixed character window could sever a cue and flip the verdict on a single character: one observed match had `over-expression` truncated to `over-expressio`, admitting `STZ` (streptozotocin) as the gene `ST3GAL4`.
 
 ## BERN2 NER+EL Gene Enrichment
 
