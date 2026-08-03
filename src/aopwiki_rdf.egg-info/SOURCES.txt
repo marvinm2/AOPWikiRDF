@@ -5,6 +5,7 @@ src/aopwiki_rdf/__init__.py
 src/aopwiki_rdf/config.py
 src/aopwiki_rdf/pipeline.py
 src/aopwiki_rdf/pipeline_monolith.py
+src/aopwiki_rdf/provenance.py
 src/aopwiki_rdf/utils.py
 src/aopwiki_rdf.egg-info/PKG-INFO
 src/aopwiki_rdf.egg-info/SOURCES.txt
