@@ -15,16 +15,32 @@ Counting
   ``-Genes.ttl``). Counted by exact predicate URI, NOT prefix parsing.
 * Total triples = ``len(Graph)`` for each file.
 
-Threshold policy (defaults; tunable via ``--drop-pct``)
--------------------------------------------------------
+Threshold policy (defaults; tunable via ``--drop-pct`` / ``--rise-pct``)
+------------------------------------------------------------------------
 * Fail if a new count drops below ``(1 - drop_pct) * baseline``.
 * Default ``drop_pct`` is 0.05, i.e. a strictly-greater-than 5% drop fails.
   Rationale: a normal weekly AOP-Wiki update moves counts well under 5%; a
-  larger drop indicates a silent loss (outage / parser regression). An
-  INCREASE always passes; a within-threshold change always passes.
+  larger drop indicates a silent loss (outage / parser regression).
+* Gene associations are ALSO guarded on the way up: fail if they exceed
+  ``(1 + rise_pct) * baseline``, default 25%. The guard was originally
+  one-sided, which meant a matcher regression that started admitting false
+  positives -- an alias colliding with a common word -- passed silently, while
+  a deliberate precision fix tripped the alarm. Both directions are now
+  data-quality signals. The rise bar sits well above the drop bar because
+  legitimate growth is asymmetric: AOP-Wiki adds Key Events far faster than it
+  removes them.
 * Total-triple drop is checked for BOTH ``AOPWikiRDF.ttl`` and
-  ``AOPWikiRDF-Genes.ttl``; gene-association drop is checked for
-  ``AOPWikiRDF-Genes.ttl``.
+  ``AOPWikiRDF-Genes.ttl``; gene-association checks apply to
+  ``AOPWikiRDF-Genes.ttl``. Total triples are NOT rise-checked -- they grow
+  normally as curators add content.
+* ``--expect-gene-change {drop,rise,any}`` declares gene movement in that
+  direction intentional: the delta is still measured and printed, but does not
+  fail the run. For precision work, where removing false positives is the goal
+  and blocking on the resulting drop would be backwards. Direction is enforced
+  -- declaring ``drop`` and then observing a rise still fails, since that is
+  exactly the mistake worth catching. An acknowledged drop also covers the
+  ``-Genes.ttl`` total-triple fall that necessarily follows from removing
+  associations; ``AOPWikiRDF.ttl`` stays blocking.
 * A MISSING baseline file OR MISSING new file is a HARD FAIL (cannot prove
   safety).
 
@@ -51,6 +67,16 @@ MAIN_FILE = "AOPWikiRDF.ttl"
 GENES_FILE = "AOPWikiRDF-Genes.ttl"
 
 DEFAULT_DROP_PCT = 0.05
+
+# Gene associations are also guarded on the way UP. A drop means silent loss (a
+# BERN2 outage); a large rise means the matcher started accepting things it
+# should not -- an alias collision reaching a common word, say -- and that is
+# just as much a data-quality failure, but the original one-sided guard passed
+# it silently. Set well above the drop threshold because legitimate upstream
+# growth is genuinely asymmetric: AOP-Wiki adds Key Events far faster than it
+# removes them. Only gene associations are rise-checked; total triples grow
+# normally as curators add content.
+DEFAULT_RISE_PCT = 0.25
 DEFAULT_NEW_DIR = "data"
 DEFAULT_BASELINE_DIR = "production-rdf-backup"
 DEFAULT_REPORT_PATH = "qc-delta-report.json"
@@ -205,7 +231,8 @@ def load_element_predicate_map(coverage_baseline_path):
     return data.get("element_predicates", {})
 
 
-def compare(new_path, baseline_path, drop_pct, check_genes):
+def compare(new_path, baseline_path, drop_pct, check_genes,
+            rise_pct=DEFAULT_RISE_PCT, expect_gene_change=None):
     """Compare one new TTL against its baseline.
 
     Parameters
@@ -214,6 +241,21 @@ def compare(new_path, baseline_path, drop_pct, check_genes):
         Path to the freshly generated TTL.
     baseline_path : str
         Path to the last-known-good baseline TTL.
+    rise_pct : float
+        Fractional rise threshold for gene associations. A rise strictly
+        greater than this fraction is a breach.
+    expect_gene_change : str or None
+        One of ``"drop"``, ``"rise"``, ``"any"``, or None. Declares that gene
+        movement in that direction is intentional: it is measured and printed
+        but does not breach. Direction matters -- declaring a precision fix
+        (``drop``) and then observing a RISE is precisely the mistake worth
+        failing on, so ``drop`` does not excuse a rise.
+
+        Because gene associations are the bulk of ``-Genes.ttl``, an
+        acknowledged gene change also covers that file's total-triple drop;
+        removing associations necessarily removes triples. ``AOPWikiRDF.ttl``
+        stays blocking regardless -- an intentional gene change is no licence
+        to lose unrelated source triples.
     drop_pct : float
         Fractional drop threshold. A drop strictly greater than this fraction
         is a breach.
@@ -271,11 +313,18 @@ def compare(new_path, baseline_path, drop_pct, check_genes):
 
     # Total-triple drop check (an increase or within-threshold change passes).
     if baseline_total > 0 and new_total < (1 - drop_pct) * baseline_total:
-        result["breached"] = True
-        result["reasons"].append(
+        total_reason = (
             f"total triples dropped {result['total_delta_pct'] * 100:.2f}% "
             f"({baseline_total} -> {new_total}), exceeds {drop_pct * 100:.1f}% threshold"
         )
+        # A declared gene DROP explains the -Genes.ttl total falling with it,
+        # since those associations are most of that file. It explains nothing
+        # about AOPWikiRDF.ttl.
+        if check_genes and expect_gene_change in ("drop", "any"):
+            result.setdefault("acknowledged", []).append(total_reason)
+        else:
+            result["breached"] = True
+            result["reasons"].append(total_reason)
 
     if check_genes:
         baseline_genes = count_gene_associations(baseline_graph)
@@ -284,13 +333,36 @@ def compare(new_path, baseline_path, drop_pct, check_genes):
         result["new_genes"] = new_genes
         result["gene_delta_pct"] = _delta_pct(baseline_genes, new_genes)
 
+        result["gene_change_expected"] = expect_gene_change
+
+        gene_reason = None
         if baseline_genes > 0 and new_genes < (1 - drop_pct) * baseline_genes:
-            result["breached"] = True
-            result["reasons"].append(
+            gene_reason = (
                 f"gene associations (edam:data_1025) dropped "
                 f"{result['gene_delta_pct'] * 100:.2f}% "
                 f"({baseline_genes} -> {new_genes}), exceeds {drop_pct * 100:.1f}% threshold"
             )
+        elif baseline_genes > 0 and new_genes > (1 + rise_pct) * baseline_genes:
+            gene_reason = (
+                f"gene associations (edam:data_1025) rose "
+                f"{result['gene_delta_pct'] * 100:.2f}% "
+                f"({baseline_genes} -> {new_genes}), exceeds {rise_pct * 100:.1f}% "
+                f"rise threshold -- check for a matcher regression admitting "
+                f"false positives"
+            )
+
+        observed_direction = (
+            "drop" if result["gene_delta_pct"] is not None
+            and result["gene_delta_pct"] < 0 else "rise"
+        )
+        if gene_reason:
+            if expect_gene_change in (observed_direction, "any"):
+                # Recorded for the report and surfaced by print_report, but not
+                # a breach: the operator declared this change intentional.
+                result.setdefault("acknowledged", []).append(gene_reason)
+            else:
+                result["breached"] = True
+                result["reasons"].append(gene_reason)
 
     return result
 
@@ -322,6 +394,10 @@ def print_report(report, warn_only=False):
         if entry["reasons"]:
             for reason in entry["reasons"]:
                 print(f"  BREACH: {reason}")
+        # Movement the operator declared intentional. Printed so a reader can
+        # still see WHAT changed -- an acknowledged delta is not a hidden one.
+        for reason in entry.get("acknowledged", []):
+            print(f"  ACKNOWLEDGED (--expect-gene-change): {reason}")
     if "per_element" in report:
         print("\nPer-element predicate counts (relative floor):")
         for element, entry in report["per_element"].items():
@@ -342,7 +418,8 @@ def print_report(report, warn_only=False):
 
 def run(new_dir, baseline_dir, drop_pct=DEFAULT_DROP_PCT,
         report_path=DEFAULT_REPORT_PATH, per_element=False,
-        element_predicates=None):
+        element_predicates=None, rise_pct=DEFAULT_RISE_PCT,
+        expect_gene_change=None):
     """Compare both checked files and write the JSON report.
 
     Parameters
@@ -380,6 +457,8 @@ def run(new_dir, baseline_dir, drop_pct=DEFAULT_DROP_PCT,
             os.path.join(baseline_dir, filename),
             drop_pct=drop_pct,
             check_genes=check_genes,
+            rise_pct=rise_pct,
+            expect_gene_change=expect_gene_change,
         )
         file_reports.append(entry)
 
@@ -387,8 +466,15 @@ def run(new_dir, baseline_dir, drop_pct=DEFAULT_DROP_PCT,
     for entry in file_reports:
         aggregated_reasons.extend(entry["reasons"])
 
+    aggregated_acknowledged = []
+    for entry in file_reports:
+        aggregated_acknowledged.extend(entry.get("acknowledged", []))
+
     report = {
         "drop_pct": drop_pct,
+        "rise_pct": rise_pct,
+        "gene_change_expected": expect_gene_change,
+        "acknowledged": aggregated_acknowledged,
         "new_dir": new_dir,
         "baseline_dir": baseline_dir,
         "files": file_reports,
@@ -434,6 +520,21 @@ def main(argv=None):
     parser.add_argument("--drop-pct", type=float, default=DEFAULT_DROP_PCT,
                         help="Fractional drop threshold; a drop greater than "
                              "this fails (default: 0.05 = 5%%)")
+    parser.add_argument("--rise-pct", type=float, default=DEFAULT_RISE_PCT,
+                        help="Fractional RISE threshold for gene associations; "
+                             "a rise greater than this fails, catching a "
+                             "matcher regression that admits false positives "
+                             "(default: 0.25 = 25%%)")
+    parser.add_argument("--expect-gene-change", choices=("drop", "rise", "any"),
+                        default=None,
+                        help="Declare gene-association movement in this "
+                             "DIRECTION intentional (e.g. 'drop' for a "
+                             "precision fix removing false positives). The "
+                             "delta is measured and printed but does not fail. "
+                             "Direction matters: declaring 'drop' and then "
+                             "seeing a rise still fails. Also covers the "
+                             "-Genes.ttl total-triple drop that necessarily "
+                             "follows; AOPWikiRDF.ttl stays blocking.")
     parser.add_argument("--report-path", default=DEFAULT_REPORT_PATH,
                         help="Path to write qc-delta-report.json "
                              "(default: qc-delta-report.json)")
@@ -458,6 +559,8 @@ def main(argv=None):
         report_path=args.report_path,
         per_element=per_element,
         element_predicates=element_predicates,
+        rise_pct=args.rise_pct,
+        expect_gene_change=args.expect_gene_change,
     )
     print_report(report, warn_only=args.warn_only)
 

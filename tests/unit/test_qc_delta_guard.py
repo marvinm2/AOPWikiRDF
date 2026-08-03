@@ -127,9 +127,19 @@ def test_gene_drop_trips_guard(tmp_path):
 
 
 def test_increase_passes(tmp_path):
-    """(c) more triples and more genes than baseline -> increase passes."""
+    """(c) more triples and more genes than baseline -> increase passes.
+
+    Gene associations are now guarded in BOTH directions, so "an increase always
+    passes" is no longer true without qualification: a rise beyond
+    ``DEFAULT_RISE_PCT`` (25%) is a breach, because a matcher that suddenly
+    admits far more matches is usually admitting false positives. This case uses
+    a +15% rise -- ordinary upstream growth, comfortably inside the band. The
+    breach side is covered in tests/unit/test_qc_delta_two_sided.py.
+
+    Total triples are deliberately NOT rise-checked, so new_main may grow freely.
+    """
     new_dir, baseline_dir = _write_pair(
-        tmp_path, baseline_genes=100, new_genes=130,
+        tmp_path, baseline_genes=100, new_genes=115,
         baseline_main=20, new_main=40,
     )
     report = guard.run(new_dir, baseline_dir, drop_pct=0.05,

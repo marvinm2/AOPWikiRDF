@@ -5,6 +5,18 @@ on:
     paths:
       - 'data/**'
   workflow_dispatch:
+    inputs:
+      expect_gene_change:
+        description: >-
+          Declare a gene-association change intentional so the delta guard
+          reports it instead of failing. Use "drop" for a precision fix that
+          removes false positives, "rise" for a deliberate recall improvement.
+          The direction is enforced: declaring "drop" and then seeing a rise
+          still fails.
+        required: false
+        default: none
+        type: choice
+        options: [none, drop, rise, any]
   workflow_run:
     workflows: [RDF Generation]
     types:
@@ -156,7 +168,16 @@ jobs:
             rm -rf delta-baseline
             exit 0
           fi
-          python scripts/qc_delta_guard.py --new-dir data/ --baseline-dir delta-baseline/ --coverage-baseline scripts/coverage-ratchet-baseline.json --drop-pct 0.05
+          # Manual runs may declare an intentional gene change; scheduled and
+          # workflow_run invocations never can, so they always get the strict
+          # two-sided guard.
+          EXPECT="${{ github.event.inputs.expect_gene_change || 'none' }}"
+          EXPECT_FLAG=""
+          if [ "$EXPECT" != "none" ]; then
+            EXPECT_FLAG="--expect-gene-change $EXPECT"
+            echo "::notice::Gene-association $EXPECT declared intentional for this run"
+          fi
+          python scripts/qc_delta_guard.py --new-dir data/ --baseline-dir delta-baseline/ --coverage-baseline scripts/coverage-ratchet-baseline.json --drop-pct 0.05 $EXPECT_FLAG
           rm -rf delta-baseline
 
       # Step 6: Commit and Push QC Status File to /data
