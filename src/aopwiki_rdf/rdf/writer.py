@@ -990,6 +990,10 @@ def write_void_rdf(filepath, metadata):
     # endpoint); defaults describe the production single-snapshot service.
     sparql_endpoint = metadata.get('sparql_endpoint', 'https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/')
     data_dump_base = metadata.get('data_dump_base', 'https://raw.githubusercontent.com/marvinm2/AOPWikiRDF/master/data')
+    # Both may be None -- the corresponding triple is then omitted rather than
+    # emitted with a placeholder value.
+    dataset_version = metadata.get('dataset_version')
+    source_commit = metadata.get('source_commit_url')
 
     logger.info(f"Writing VoID RDF file: {filepath}")
 
@@ -1002,17 +1006,26 @@ def write_void_rdf(filepath, metadata):
         g.write(' ;\n\tdcterms:license\t<https://creativecommons.org/licenses/by-sa/4.0/>')
         g.write(' ;\n\tvoid:sparqlEndpoint\t<' + sparql_endpoint + '>')
         g.write(' ;\n\tvoid:dataDump\t<' + data_dump_base + '/AOPWikiRDF.ttl>, <' + data_dump_base + '/AOPWikiRDF-Enriched.ttl>, <' + data_dump_base + '/AOPWikiRDF-Genes.ttl>')
-        g.write(' ;\n\tdcat:accrualPeriodicity\tfreq:quarterly')
+        g.write(' ;\n\tdcat:accrualPeriodicity\tfreq:weekly')
         g.write(' ;\n\tvoid:subset\t:AOPWikiRDF.ttl, :AOPWikiRDF-Enriched.ttl, :AOPWikiRDF-Genes.ttl')
         g.write(' ;\n\tvoid:exampleResource\taop:1, aop.events:1, aop.relationships:1, cas:83-79-4, aop.stressor:1')
         g.write(' ;\n\tpav:createdOn\t"' + y + '"^^xsd:date')
-        # Milestone-tied dataset version (D-06): bare string literal, no xsd:
-        # datatype tag. Distinct from the date-only pav:createdOn stamp; bumps
-        # per schema-changing release. Top-level :AOPWikiRDF parent only --
-        # the milestone label belongs to the dataset as a whole, not per-subset.
-        g.write(' ;\n\tpav:version\t"1.3"')
+        # Calendar dataset version, DERIVED from the AOP-Wiki XML export this
+        # run consumed (aop-wiki-xml-2026-08-01 -> "2026.08.01"). Previously a
+        # hard-coded "1.3" that tracked a GSD milestone label and went six years
+        # stale, colliding with an unrelated 2020 git tag of the same name.
+        # Omitted entirely when the version cannot be derived -- see
+        # provenance.derive_dataset_version. Bare literal, no xsd: datatype tag.
+        if dataset_version:
+            g.write(' ;\n\tpav:version\t"' + dataset_version + '"')
         g.write(' ;\n\tfoaf:homepage\t<https://aopwiki.org>')
         g.write(' ;\n\tpav:createdBy\t<https://zenodo.org/badge/latestdoi/146466058>')
+        # Software identity: the exact commit that generated this release. Lets
+        # a consumer pin a release from the endpoint alone, without matching
+        # void:triples counts. Distinct from pav:version, which versions the
+        # DATA; this versions the CODE.
+        if source_commit:
+            g.write(' ;\n\tpav:createdWith\t<' + source_commit + '>')
         g.write(' .\n')
 
         # --- Pure source subset ---
@@ -1024,7 +1037,7 @@ def write_void_rdf(filepath, metadata):
         g.write(' ;\n\tpav:createdOn\t"' + y + '"^^xsd:date')
         g.write(' ;\n\tpav:createdWith\t"' + str(aopwikixmlfilename) + '", :Promapping')
         g.write(' ;\n\tfoaf:homepage\t<https://aopwiki.org>')
-        g.write(' ;\n\tdcat:accrualPeriodicity\tfreq:quarterly')
+        g.write(' ;\n\tdcat:accrualPeriodicity\tfreq:weekly')
         g.write(' ;\n\tdcat:downloadURL\t<https://aopwiki.org/downloads/' + str(aopwikixmlfilename) + '>')
         g.write(' .\n')
 
@@ -1047,7 +1060,7 @@ def write_void_rdf(filepath, metadata):
         g.write(' ;\n\tpav:createdOn\t"' + y + '"^^xsd:date')
         g.write(' ;\n\tpav:createdWith\t"' + str(aopwikixmlfilename) + '", :HGNCgenes')
         g.write(' ;\n\tfoaf:homepage\t<https://aopwiki.org>')
-        g.write(' ;\n\tdcat:accrualPeriodicity\tfreq:quarterly')
+        g.write(' ;\n\tdcat:accrualPeriodicity\tfreq:weekly')
         g.write(' ;\n\tdcat:downloadURL\t<https://aopwiki.org/downloads/' + str(aopwikixmlfilename) + '>, <https://www.genenames.org/download/custom/>')
         g.write(' .\n')
 
