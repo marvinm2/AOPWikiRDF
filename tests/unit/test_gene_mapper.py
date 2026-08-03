@@ -45,7 +45,8 @@ def _bridgedb_reachable():
 
 @pytest.mark.skipif(not HGNC_AVAILABLE, reason="HGNCgenes.txt not present")
 def test_build_gene_dicts():
-    result = build_gene_dicts(HGNC_FILE)
+    # genedict2 is opt-in since #104; request it to assert its shape.
+    result = build_gene_dicts(HGNC_FILE, build_precision_dict=True)
 
     # Must return 3-tuple (genedict1, genedict2, symbol_lookup)
     assert len(result) == 3, f"Expected 3-tuple, got {len(result)}-tuple"
@@ -78,7 +79,8 @@ def test_build_gene_dicts():
 @pytest.mark.skipif(not HGNC_AVAILABLE, reason="HGNCgenes.txt not present")
 def test_build_gene_dicts_no_invalid_hgnc_ids():
     """Lines without valid HGNC:NNNN in column 0 are skipped."""
-    genedict1, genedict2, symbol_lookup = build_gene_dicts(HGNC_FILE)
+    genedict1, genedict2, symbol_lookup = build_gene_dicts(
+        HGNC_FILE, build_precision_dict=True)
     # All keys should be purely numeric strings
     for key in genedict1:
         assert key.isdigit(), f"Key '{key}' is not a valid numeric HGNC ID"
