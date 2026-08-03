@@ -4,6 +4,18 @@ on:
   schedule:
     - cron: '0 8 * * 6'  # Runs every Saturday at 08:00 UTC
   workflow_dispatch:
+    inputs:
+      expect_gene_change:
+        description: >-
+          Declare a gene-association change intentional so the publish gate
+          reports it instead of blocking the commit. Needed for the ONE
+          regeneration that first carries a deliberate matcher change; after
+          that run the new counts become the baseline and weekly runs are
+          normal again. Scheduled runs cannot set this and always gate strictly.
+        required: false
+        default: none
+        type: choice
+        options: [none, drop, rise, any]
 
 jobs:
   build:
@@ -160,7 +172,13 @@ jobs:
             echo "::warning::Skipping publish gate -- no committed baseline (first run?)."
             exit 0
           fi
-          python scripts/qc_delta_guard.py --new-dir data/ --baseline-dir publish-baseline/ --drop-pct 0.05
+          EXPECT="${{ github.event.inputs.expect_gene_change || 'none' }}"
+          EXPECT_FLAG=""
+          if [ "$EXPECT" != "none" ]; then
+            EXPECT_FLAG="--expect-gene-change $EXPECT"
+            echo "::notice::Gene-association $EXPECT declared intentional; publish gate will report rather than block"
+          fi
+          python scripts/qc_delta_guard.py --new-dir data/ --baseline-dir publish-baseline/ --drop-pct 0.05 $EXPECT_FLAG
           rm -rf publish-baseline
 
       # Step 7c: Per-element coverage ratchet guard (warn-not-block, XML-03).
