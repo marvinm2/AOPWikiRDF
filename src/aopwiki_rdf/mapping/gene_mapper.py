@@ -13,7 +13,15 @@ import time
 
 import requests
 
+from aopwiki_rdf.mapping.bridgedb import batch_xrefs_gene
+
 logger = logging.getLogger(__name__)
+
+# Floor below which the BridgeDb resolution rate is treated as a service
+# failure rather than a data characteristic. Healthy runs sit far above this
+# (>90%); the three recorded incidents all produced ~0%. Deliberately generous
+# so only a genuine collapse trips it.
+MIN_BRIDGEDB_SUCCESS_RATE = 50.0
 
 
 # ---------------------------------------------------------------------------
@@ -588,149 +596,10 @@ def map_genes_in_entities(kedict: dict, kerdict: dict, genedict1: dict,
 # Section C: BridgeDb gene cross-references
 # ---------------------------------------------------------------------------
 
-def _batch_xrefs_bridgedb(gene_list: list[str], bridgedb_url: str,
-                          timeout: int = 30,
-                          chunk_size: int = 100,
-                          symbol_lookup: dict | None = None) -> dict:
-    """Map genes using BridgeDb batch xrefs API.
-
-    Parameters
-    ----------
-    gene_list : list[str]
-        List of HGNC gene IDs (e.g., ['hgnc:1100']).
-    bridgedb_url : str
-        Base URL for BridgeDb service.
-    timeout : int
-        Request timeout in seconds.
-    chunk_size : int
-        Number of genes per batch request.
-    symbol_lookup : dict, optional
-        Mapping of numeric HGNC ID -> gene symbol for BridgeDb queries.
-
-    Returns
-    -------
-    dict
-        Mapping of gene_id -> {db_name: [identifiers]}.
-    """
-    # Endpoints are appended directly to the base (e.g. + 'xrefsBatch/H'), so it
-    # must end in '/'. A missing trailing slash yields '.../HumanxrefsBatch/H',
-    # which 404s for every gene and silently drops all external xrefs. Normalize
-    # here as ner_el_mapper already does for its own BridgeDb calls.
-    bridgedb_url = bridgedb_url.rstrip('/') + '/'
-    results = {}
-    total_chunks = (len(gene_list) + chunk_size - 1) // chunk_size
-
-    # Build reverse lookup: symbol -> numeric ID for response mapping
-    reverse_lookup = {}
-    if symbol_lookup:
-        for numeric_id, sym in symbol_lookup.items():
-            reverse_lookup[sym] = numeric_id
-
-    for chunk_idx in range(0, len(gene_list), chunk_size):
-        chunk = gene_list[chunk_idx:chunk_idx + chunk_size]
-        chunk_num = chunk_idx // chunk_size + 1
-
-        try:
-            # Convert numeric IDs to symbols for BridgeDb H system code queries
-            gene_symbols = []
-            for gene in chunk:
-                numeric = gene[5:]  # Remove 'hgnc:' prefix -> "1100"
-                symbol = symbol_lookup.get(numeric, numeric) if symbol_lookup else numeric
-                gene_symbols.append(symbol)
-
-            batch_data = '\n'.join(gene_symbols)
-            batch_url = bridgedb_url + 'xrefsBatch/H'
-            headers = {'Content-Type': 'text/plain'}
-
-            logger.debug(
-                f"BridgeDb batch {chunk_num}/{total_chunks}: {len(chunk)} genes"
-            )
-            response = requests.post(
-                batch_url, data=batch_data, headers=headers, timeout=timeout
-            )
-            response.raise_for_status()
-
-            for line in response.text.strip().split('\n'):
-                if line.strip():
-                    parts = line.split('\t')
-                    if len(parts) >= 3:
-                        gene_symbol = parts[0]
-                        # Map response symbol back to numeric ID
-                        numeric_id = reverse_lookup.get(gene_symbol, gene_symbol)
-                        gene_id = f'hgnc:{numeric_id}'
-                        xrefs_str = parts[2]
-
-                        if xrefs_str != 'N/A':
-                            dictionaryforgene = {}
-                            xrefs = xrefs_str.split(',')
-
-                            # System code -> database name mapping
-                            system_code_map = {
-                                'L': 'Entrez Gene',
-                                'En': 'Ensembl',
-                                'S': 'Uniprot-TrEMBL',
-                                'H': 'HGNC',
-                                'X': 'Affy',
-                                'T': 'GeneOntology',
-                                'Pd': 'PDB',
-                                'Q': 'RefSeq',
-                                'Om': 'OMIM',
-                                'Uc': 'UCSC Genome Browser',
-                                'Wg': 'WikiGenes',
-                                'Ag': 'Agilent',
-                                'Il': 'Illumina',
-                                'Hac': 'HGNC Accession number',
-                            }
-
-                            for xref in xrefs:
-                                if ':' in xref:
-                                    system_code, value = xref.split(':', 1)
-                                    db_name = system_code_map.get(system_code)
-                                    if db_name is None:
-                                        continue
-                                    if db_name not in dictionaryforgene:
-                                        dictionaryforgene[db_name] = []
-                                    dictionaryforgene[db_name].append(value)
-
-                            results[gene_id] = dictionaryforgene
-                        else:
-                            results[gene_id] = {}
-
-        except requests.RequestException as e:
-            logger.warning(
-                f"BridgeDb batch {chunk_num} failed, "
-                f"falling back to individual calls: {e}"
-            )
-            for gene in chunk:
-                numeric = gene[5:]
-                symbol = symbol_lookup.get(numeric, numeric) if symbol_lookup else numeric
-                try:
-                    response = requests.get(
-                        bridgedb_url + 'xrefs/H/' + symbol,
-                        timeout=timeout,
-                    )
-                    response.raise_for_status()
-                    lines = response.text.split('\n')
-
-                    dictionaryforgene = {}
-                    for item in lines:
-                        b = item.split('\t')
-                        if len(b) == 2:
-                            if b[1] not in dictionaryforgene:
-                                dictionaryforgene[b[1]] = []
-                            dictionaryforgene[b[1]].append(b[0])
-
-                    results[gene] = dictionaryforgene
-                except requests.RequestException:
-                    logger.warning(f"Individual fallback also failed for {gene}")
-                    results[gene] = {}
-
-    return results
-
-
 def build_gene_xrefs(hgnclist: list, bridgedb_url: str,
                      timeout: int = 30,
-                     symbol_lookup: dict | None = None) -> dict:
+                     symbol_lookup: dict | None = None,
+                     min_success_rate: float = MIN_BRIDGEDB_SUCCESS_RATE) -> dict:
     """Map HGNC IDs to Entrez/Ensembl/UniProt via BridgeDb.
 
     Parameters
@@ -744,11 +613,20 @@ def build_gene_xrefs(hgnclist: list, bridgedb_url: str,
     symbol_lookup : dict, optional
         Mapping of numeric HGNC ID -> gene symbol for BridgeDb queries.
         Required for converting numeric IDs back to symbols (system code H).
+    min_success_rate : float
+        Percentage of genes that must resolve before the result is trusted.
+        Below it, a RuntimeError is raised rather than returning empty
+        cross-references. Set to 0 to disable.
 
     Returns
     -------
     dict
         Keys: 'geneiddict', 'listofentrez', 'listofensembl', 'listofuniprot'.
+
+    Raises
+    ------
+    RuntimeError
+        When the BridgeDb resolution rate falls below ``min_success_rate``.
     """
     logger.info(
         f"Starting BridgeDb identifier mapping for {len(hgnclist)} genes "
@@ -757,7 +635,7 @@ def build_gene_xrefs(hgnclist: list, bridgedb_url: str,
     bridgedb_start_time = time.time()
     total_genes = len(hgnclist)
 
-    batch_results = _batch_xrefs_bridgedb(
+    batch_results = batch_xrefs_gene(
         hgnclist, bridgedb_url, timeout=timeout, chunk_size=100,
         symbol_lookup=symbol_lookup,
     )
@@ -805,6 +683,27 @@ def build_gene_xrefs(hgnclist: list, bridgedb_url: str,
             f"({successful_mappings}/{total_genes} genes), "
             f"{failed_mappings} failed mappings"
         )
+
+        # Fail loudly on a collapse instead of publishing xref-less genes.
+        #
+        # This exact failure has now occurred three times (PR #100's missing
+        # trailing slash, the multiEndpoint 2026-07-01 quarter, and the
+        # 2026-07-25 BridgeDb 2.1.8 wire-format change). Every time BridgeDb
+        # returned HTTP 200 with something unparseable, every gene resolved to
+        # {}, and nothing raised -- the success rate was logged at INFO and the
+        # pipeline carried on. It was caught late, or by the publish gate, or
+        # by luck. A hard failure here stops the run at the cause rather than
+        # several steps downstream at a symptom.
+        if success_rate < min_success_rate:
+            raise RuntimeError(
+                f"BridgeDb resolved only {success_rate:.1f}% of genes "
+                f"({successful_mappings}/{total_genes}), below the "
+                f"{min_success_rate:.0f}% floor. This normally means the "
+                f"service returned an unparseable response rather than that "
+                f"the genes are unmappable -- check the wire format and the "
+                f"base URL before rerunning. Pass min_success_rate=0 to "
+                f"override if the low rate is genuinely expected."
+            )
         logger.info(
             f"Gene identifiers mapped: {len(listofentrez)} Entrez, "
             f"{len(listofuniprot)} UniProt, {len(listofensembl)} Ensembl IDs"

@@ -39,11 +39,7 @@ from aopwiki_rdf.mapping.iri_labels import (
 )
 from aopwiki_rdf.mapping.protein_ontology import download_and_parse_promapping
 from aopwiki_rdf.rdf.writer import write_aop_rdf, write_enriched_rdf, write_genes_rdf, write_void_rdf
-from aopwiki_rdf.provenance import (
-    derive_dataset_version,
-    resolve_source_commit,
-    source_commit_url,
-)
+from aopwiki_rdf.provenance import release_metadata
 
 logger = logging.getLogger(__name__)
 
@@ -585,16 +581,8 @@ def _stage_write_void_rdf(config, context):
     metadata["sparql_endpoint"] = config.sparql_endpoint
     metadata["data_dump_base"] = config.data_dump_base
 
-    # Release identity (issue #101): pav:version is derived from the XML export
-    # so it cannot go stale, and the generating commit is published so a release
-    # is pinnable from the endpoint alone.
-    metadata["dataset_version"] = derive_dataset_version(aopwikixmlfilename)
-    metadata["source_commit_url"] = source_commit_url(resolve_source_commit())
-    logger.info(
-        "Dataset version %s, generated from commit %s",
-        metadata["dataset_version"] or "<underivable>",
-        metadata["source_commit_url"] or "<unknown>",
-    )
+    # Release identity (issue #101): derived, so pav:version cannot go stale.
+    metadata.update(release_metadata(aopwikixmlfilename))
 
     write_void_rdf(filepath + "AOPWikiRDF-Void.ttl", metadata)
 
