@@ -90,3 +90,20 @@ def test_source_commit_url_builds_github_url():
 def test_source_commit_url_passes_none_through():
     """An unknown commit must yield no triple, not a URL ending in 'None'."""
     assert source_commit_url(None) is None
+
+
+# --- release_metadata ------------------------------------------------------
+
+def test_release_metadata_bundles_both_fields():
+    from aopwiki_rdf.provenance import release_metadata
+
+    md = release_metadata("aop-wiki-xml-2026-08-01")
+    assert md["dataset_version"] == "2026.08.01"
+    assert set(md) == {"dataset_version", "source_commit_url"}
+
+
+def test_release_metadata_omits_underivable_version():
+    """A bad filename yields None, so the writer emits no pav:version."""
+    from aopwiki_rdf.provenance import release_metadata
+
+    assert release_metadata("not-an-export")["dataset_version"] is None

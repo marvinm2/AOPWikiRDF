@@ -91,3 +91,23 @@ def resolve_source_commit() -> str | None:
 def source_commit_url(sha: str | None) -> str | None:
     """Return the GitHub commit URL for ``sha``, or ``None`` if there is none."""
     return f"{REPO_URL}/commit/{sha}" if sha else None
+
+
+def release_metadata(aopwikixmlfilename: str) -> dict:
+    """Return the VoID release-identity fields for this run.
+
+    Bundles the dataset version and the generating commit so the orchestrator
+    stays a wiring layer -- deciding what identifies a release belongs here, not
+    in the pipeline. Either value may be ``None``, in which case the writer
+    omits the corresponding triple.
+    """
+    metadata = {
+        "dataset_version": derive_dataset_version(aopwikixmlfilename),
+        "source_commit_url": source_commit_url(resolve_source_commit()),
+    }
+    logger.info(
+        "Dataset version %s, generated from commit %s",
+        metadata["dataset_version"] or "<underivable>",
+        metadata["source_commit_url"] or "<unknown>",
+    )
+    return metadata

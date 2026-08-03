@@ -257,35 +257,102 @@ def _gene_individual_fallback(
     return dictionaryforgene
 
 
+def _rekey_to_original(raw_results: dict, request_to_original: dict) -> dict:
+    """Map BridgeDb's response keys back to the caller's original identifiers.
+
+    BridgeDb is queried by gene SYMBOL (system code H) but this pipeline tracks
+    genes by numeric HGNC ID, so results come back keyed the wrong way round.
+
+    Matching is case-insensitive on the symbol. The service has been observed to
+    echo identifiers with different casing than it was sent, and a key that
+    fails to map back is not a cosmetic problem -- the consumer looks up
+    ``hgnc:1100``, finds nothing under ``hgnc:BRCA1``, and records zero
+    cross-references while every syntax check still passes. Unmapped keys are
+    counted and reported by the caller rather than silently kept.
+    """
+    lowered = {k.lower(): v for k, v in request_to_original.items()}
+    remapped = {}
+    unmapped = []
+    for key, value in raw_results.items():
+        original = request_to_original.get(key) or lowered.get(key.lower())
+        if original is None:
+            unmapped.append(key)
+            remapped[key] = value
+        else:
+            remapped[original] = value
+    if unmapped:
+        logger.warning(
+            "BridgeDb returned %d identifier(s) that could not be mapped back "
+            "to a requested gene (first few: %s). Their cross-references will "
+            "be dropped by the consumer.",
+            len(unmapped), unmapped[:5],
+        )
+    return remapped
+
+
 def batch_xrefs_gene(
     gene_list: list[str],
     bridgedb_url: str,
     timeout: int = 30,
     chunk_size: int = 100,
+    symbol_lookup: dict | None = None,
 ) -> dict:
     """Map HGNC IDs to Entrez/Ensembl/UniProt via BridgeDb batch API.
 
     Parameters
     ----------
     gene_list:
-        List of HGNC gene IDs, e.g. ``['hgnc:BRCA2', 'hgnc:BRCA1']``.
+        List of HGNC gene IDs. With ``symbol_lookup`` these are numeric
+        (``['hgnc:1100']``); without it they are already symbols
+        (``['hgnc:BRCA1']``).
     bridgedb_url:
         Base BridgeDb Human service URL.
     timeout:
         HTTP request timeout in seconds.
     chunk_size:
         Number of genes per batch request.
+    symbol_lookup:
+        ``{numeric_hgnc_id: approved_symbol}``. BridgeDb's ``H`` system code is
+        keyed by gene SYMBOL, not by numeric HGNC ID, so when the caller tracks
+        genes numerically this translates on the way out and back. Results are
+        always keyed by whatever the caller passed in.
 
     Returns
     -------
     dict
-        ``{gene_id: {db_name: [identifiers]}}``
+        ``{gene_id: {db_name: [identifiers]}}``, keyed as the caller supplied.
     """
     logger.info(
         "Starting BridgeDb gene batch mapping for %d genes", len(gene_list),
     )
-    return batch_xrefs(
-        identifiers=gene_list,
+
+    if not symbol_lookup:
+        return batch_xrefs(
+            identifiers=gene_list,
+            bridgedb_url=bridgedb_url,
+            system_code="H",
+            parse_fn=_parse_gene_batch_response,
+            id_prefix="hgnc:",
+            fallback_fn=_gene_individual_fallback,
+            chunk_size=chunk_size,
+            timeout=timeout,
+        )
+
+    # Numeric -> symbol for the request, remembering the way back. Building the
+    # return map from what we SENT (rather than reverse-mapping whatever the
+    # service echoes) means an unrecognised response key is visible as unmapped
+    # instead of quietly becoming a key nobody looks up.
+    request_ids = []
+    request_to_original = {}
+    for gene in gene_list:
+        numeric = gene[len("hgnc:"):] if gene.startswith("hgnc:") else gene
+        symbol = symbol_lookup.get(numeric, numeric)
+        request_id = f"hgnc:{symbol}"
+        request_ids.append(request_id)
+        request_to_original[request_id] = gene
+
+    raw = batch_xrefs(
+        identifiers=request_ids,
         bridgedb_url=bridgedb_url,
         system_code="H",
         parse_fn=_parse_gene_batch_response,
@@ -294,6 +361,7 @@ def batch_xrefs_gene(
         chunk_size=chunk_size,
         timeout=timeout,
     )
+    return _rekey_to_original(raw, request_to_original)
 
 
 # ---------------------------------------------------------------------------

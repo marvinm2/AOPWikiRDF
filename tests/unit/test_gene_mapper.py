@@ -11,10 +11,11 @@ import pytest
 import requests
 from unittest.mock import patch, MagicMock
 
+from aopwiki_rdf.mapping.bridgedb import batch_xrefs_gene
 from aopwiki_rdf.mapping.gene_mapper import (
     build_gene_dicts,
     build_gene_xrefs,
-    _batch_xrefs_bridgedb,
+    build_gene_xrefs,
     _map_genes_in_text,
 )
 
@@ -209,7 +210,11 @@ def test_batch_xrefs_normalizes_base_url(base):
         resp.raise_for_status.return_value = None
         return resp
 
-    with patch("aopwiki_rdf.mapping.gene_mapper.requests.post", side_effect=fake_post):
-        _batch_xrefs_bridgedb(["hgnc:1100"], base, timeout=5)
+    # The inline client was replaced by the shared bridgedb module (#103); the
+    # URL-normalisation guarantee from #100 must survive that move, so this now
+    # exercises the shared path.
+    with patch("aopwiki_rdf.mapping.bridgedb.requests.post", side_effect=fake_post):
+        batch_xrefs_gene(["hgnc:1100"], base, timeout=5,
+                         symbol_lookup={"1100": "BRCA1"})
 
     assert captured["url"] == "https://webservice.bridgedb.org/Human/xrefsBatch/H"
