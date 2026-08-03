@@ -124,6 +124,32 @@ The later ownership and abbreviation work targeted a different class of error, m
 | `ECM` | MMRN1 | 37 | extracellular matrix |
 | `AR` | AR + FDXR + AREG | 29 (all three at once) | androgen receptor |
 
+Measured over the full KE/KER corpus (2,737 texts, `aop-wiki-xml-2026-06-18`), comparing the matcher before and after:
+
+| | before | after | change |
+|---|---:|---:|---:|
+| gene associations | 6,710 | 3,927 | −41.5 % |
+| distinct genes | 1,516 | 1,035 | −31.7 % |
+| dictionary tokens | 212,378 | 150,674 | −29.1 % |
+| match variants held in memory | 10,406,522 | 7,383,026 | −29.1 % |
+| matcher runtime | 691 s | 505 s | −26.9 % |
+
+Spot-checking the largest removals against HGNC confirms each was driven by a short alias meaning something else entirely in toxicology prose:
+
+| Gene | Matched via | What the token means here |
+|------|------------|---------------------------|
+| ROS1 | `ROS` | reactive oxygen species |
+| ITK, SLC22A3 | `EMT` | epithelial–mesenchymal transition |
+| DLAT, SNORA62, CST12P | `E2` | estradiol |
+| IRF6 | `LPS` | lipopolysaccharide |
+| AKR1B1, FDXR, AREG | `AR` | androgen receptor (which keeps the token) |
+| THPO | `TPO` | thyroid peroxidase (which keeps the token) |
+| MMRN1 | `ECM` | extracellular matrix |
+
+Genes written by their approved symbol are unaffected: AHR holds at 36 occurrences, TPO at 35, AR at 55, SHH at 34.
+
+Because BERN2 output is unioned in, the published drop is smaller than the regex drop: of the 2,812 regex associations removed, 1,507 are for genes BERN2 finds independently.
+
 ### Known recall gap
 
 Every `genedict2` variant has the form delimiter + token + delimiter, so a token that **opens** a text has no leading delimiter to match against and is missed entirely. `tests/unit/test_gene_precision.py` pins this as a strict `xfail`. It predates the precision work; fixing it changes recall and needs its own measurement.

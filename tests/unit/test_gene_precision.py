@@ -171,6 +171,43 @@ def test_token_at_start_of_text_is_missed():
     assert find('TH gene expression was reduced.', TH) == {'hgnc:11782'}
 
 
+# --- Approved symbols are stronger evidence than aliases -------------------
+
+AHR = {'348': ['AHR', 'aryl hydrocarbon receptor', 'AhR']}
+SHH = {'10848': ['SHH', 'sonic hedgehog signaling molecule']}
+ITK = {'6171': ['ITK', 'IL2 inducible T cell kinase']}
+CD4_T4 = {'1678': ['CD4', 'CD4 molecule', 'T4']}
+
+
+@pytest.mark.parametrize('spec,text', [
+    (AHR, 'Persistent AHR activation was observed after 14 days.'),
+    (SHH, 'Disruption of SHH during neural tube closure.'),
+    (ITK, 'Reduced ITK following sustained exposure.'),
+])
+def test_three_char_approved_symbol_needs_no_cue(spec, text):
+    """AHR/SHH/ITK are how authors write these genes; demanding a cue costs
+    real mentions. An earlier revision of this filter dropped AHR from 36
+    occurrences to 15 and ITK from 35 to zero."""
+    assert len(find(text, spec)) == 1
+
+
+def test_three_char_alias_still_needs_a_cue():
+    """The exemption is for approved symbols only, not for aliases."""
+    text = 'Excessive generation of reactive oxygen species (ROS).'
+    assert find(text, ROS1) == set()
+
+
+def test_two_char_alias_of_a_longer_symbol_needs_a_cue():
+    """'T4' is thyroxine here, not the CD4 gene."""
+    text = 'Serum T4 concentrations declined markedly after exposure.'
+    assert find(text, CD4_T4) == set()
+
+
+def test_two_char_approved_symbol_still_needs_a_cue():
+    """TH and AR stay ambiguous with ordinary abbreviations even as symbols."""
+    assert find('Circulating TH concentrations declined.', TH) == set()
+
+
 @pytest.mark.parametrize('context,expected', [
     ('TH gene expression fell', True),
     ('reduced TH protein levels', True),

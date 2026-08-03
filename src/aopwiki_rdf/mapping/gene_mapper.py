@@ -200,8 +200,20 @@ _GENE_CONTEXT_PATTERN = re.compile(
 )
 
 # Length at or below which a token is treated as an abbreviation first and a
-# gene name second. Covers ER/AR/TH/T4 (2) and ROS/ECM/AhR (3).
-SHORT_TOKEN_MAX_LEN = 3
+# gene name second -- but the threshold depends on how strong the token is as
+# evidence.
+#
+# An APPROVED SYMBOL is a deliberate, curated identifier: AHR, SHH, TPO, ITK and
+# CD4 are how authors actually write those genes, and demanding a nearby cue word
+# costs real mentions. Only 2-character approved symbols (TH, AR, ER) stay
+# ambiguous enough with ordinary abbreviations to need one.
+#
+# An ALIAS or PREVIOUS SYMBOL is much weaker evidence -- it is whatever the gene
+# used to be called, or is sometimes called -- so the bar stays at 3 characters.
+# That is what catches ROS (alias of ROS1), ECM (alias of MMRN1), T4 (alias of
+# CD4) and ER (alias of ESR1) without touching the approved symbols above.
+SHORT_TOKEN_MAX_LEN_APPROVED_SYMBOL = 2
+SHORT_TOKEN_MAX_LEN_ALIAS = 3
 
 
 def _has_gene_context(context: str) -> bool:
@@ -248,9 +260,20 @@ def _is_false_positive(gene_key: str, matched_alias: str,
     # depend on unrelated punctuation -- 'TH' survived on 104 entities purely
     # because no bracket happened to fall nearby -- so it filtered arbitrarily
     # rather than meaningfully.
-    if len(stripped) <= SHORT_TOKEN_MAX_LEN and not _has_gene_context(matched_text_context):
+    #
+    # The threshold is lower for approved symbols than for aliases: see the
+    # constants above for why AHR/SHH/TPO are exempt but ROS/ECM/T4 are not.
+    is_approved_symbol = bool(
+        symbol_lookup and symbol_lookup.get(gene_key) == stripped
+    )
+    max_len = (
+        SHORT_TOKEN_MAX_LEN_APPROVED_SYMBOL if is_approved_symbol
+        else SHORT_TOKEN_MAX_LEN_ALIAS
+    )
+    if len(stripped) <= max_len and not _has_gene_context(matched_text_context):
+        kind = 'approved symbol' if is_approved_symbol else 'alias'
         return True, (
-            f"short token '{stripped}' with no gene context in surrounding text"
+            f"short {kind} '{stripped}' with no gene context in surrounding text"
         )
 
     # Filter 5: Gene-specific false positive patterns (match on alias, not key)
