@@ -16,6 +16,7 @@ src/aopwiki_rdf/hgnc/__init__.py
 src/aopwiki_rdf/hgnc/download.py
 src/aopwiki_rdf/hgnc/parser.py
 src/aopwiki_rdf/mapping/__init__.py
+src/aopwiki_rdf/mapping/automaton.py
 src/aopwiki_rdf/mapping/bridgedb.py
 src/aopwiki_rdf/mapping/chemical_mapper.py
 src/aopwiki_rdf/mapping/gene_mapper.py
