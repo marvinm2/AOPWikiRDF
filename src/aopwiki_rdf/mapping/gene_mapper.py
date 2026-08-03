@@ -70,7 +70,13 @@ def build_gene_dicts(hgnc_file_path: str) -> tuple[dict, dict, dict]:
             genedict1[hgnc_id].append(gene_symbol)
             if not a[2] == '':
                 genedict1[hgnc_id].append(a[2])
-            for item in a[3:]:
+            # Columns 4-5 ONLY (previous symbols, alias symbols). Columns 6-7 are
+            # accession numbers and the Ensembl ID -- database identifiers, not
+            # names anything in a Key Event description would ever be called by.
+            # Scanning them added no true positives and a great deal of noise:
+            # accessions are shared across genes, so e.g. 'AF250841' was claimed
+            # by 71 different genes, every one of them a spurious ambiguity.
+            for item in a[3:5]:
                 if not item == '':
                     for name in item.split(', '):
                         genedict1[hgnc_id].append(name)
@@ -85,6 +91,64 @@ def build_gene_dicts(hgnc_file_path: str) -> tuple[dict, dict, dict]:
     return genedict1, genedict2, symbol_lookup
 
 
+def build_token_owners(genedict1: dict, symbol_lookup: dict) -> dict:
+    """Resolve which gene, if any, a given name token legitimately identifies.
+
+    The matcher tests every gene independently, so a token claimed by several
+    genes used to produce an association with *all* of them. ``AR`` is an alias
+    or previous symbol of AR, FDXR and AREG, and the published RDF consequently
+    asserted all three on 29 entities, where at most one can be correct.
+
+    Ambiguity is resolved in favour of the gene whose **approved symbol** the
+    token is -- the reading a curator would take. If a contested token is nobody's
+    approved symbol (or, pathologically, more than one gene's), no reading is
+    defensible and the token is retired for every gene.
+
+    Parameters
+    ----------
+    genedict1 : dict
+        Screening dictionary (numeric_hgnc_id -> [symbol, name, prev, aliases]).
+    symbol_lookup : dict
+        numeric_hgnc_id -> approved gene symbol.
+
+    Returns
+    -------
+    dict
+        token -> owning numeric HGNC ID, or ``None`` where the token is
+        contested and has no approved-symbol owner. Tokens absent from the
+        mapping are unambiguous by construction.
+    """
+    claims: dict[str, set] = {}
+    for gene_key, tokens in genedict1.items():
+        for token in tokens:
+            stripped = token.strip()
+            if stripped:
+                claims.setdefault(stripped, set()).add(gene_key)
+
+    owners = {}
+    contested = 0
+    retired = 0
+    for token, gene_keys in claims.items():
+        if len(gene_keys) == 1:
+            continue  # unambiguous; absence from `owners` means "no contest"
+        contested += 1
+        symbol_owners = [
+            key for key in gene_keys if symbol_lookup.get(key) == token
+        ]
+        if len(symbol_owners) == 1:
+            owners[token] = symbol_owners[0]
+        else:
+            owners[token] = None
+            retired += 1
+
+    logger.info(
+        f"Gene mapping setup: {contested} contested tokens; "
+        f"{contested - retired} resolved to an approved-symbol owner, "
+        f"{retired} retired as unresolvable"
+    )
+    return owners
+
+
 # ---------------------------------------------------------------------------
 # Section B: Gene mapping in entity text (three-stage algorithm)
 # ---------------------------------------------------------------------------
@@ -97,9 +161,70 @@ SINGLE_LETTER_ALIASES = {
 
 ROMAN_NUMERAL_PATTERN = re.compile(r'\b[IVX]+\b')
 
+# Tokens HGNC lists as gene names that, in AOP-Wiki prose, essentially never
+# denote the gene. Each was verified against the corpus before being added --
+# every occurrence of these as a match was a false positive:
+#
+#   ROS      alias of ROS1; in AOP text always "reactive oxygen species"
+#   ECM      alias of MMRN1; always "extracellular matrix"
+#   spatial  alias of TBATA; an ordinary English adjective
+#
+# Deliberately NOT here: AR, TH, ER, T4 and friends. Those are genuinely
+# ambiguous rather than always-wrong (AR is both androgen receptor and a
+# previous symbol of two other genes; TH is both thyroid hormone and tyrosine
+# hydroxylase), so they are handled by ownership resolution and the short-token
+# rule below, which can still admit them where the context supports it.
+DOMAIN_ABBREVIATION_STOPLIST = {
+    'ROS',
+    'ECM',
+    'spatial',
+}
+
+# A short token is only read as a gene when the surrounding prose is talking
+# about genes. Without a cue, "(ER)" is the endoplasmic reticulum and "T4" is
+# thyroxine, not ESR1 and CD4.
+#
+# Matched on WORD BOUNDARIES, not as substrings. Substring matching would let
+# "generation of reactive oxygen species" satisfy the 'gene' cue -- precisely
+# the context the filter exists to reject -- and "in general" would do the same.
+GENE_CONTEXT_CUES = (
+    'gene', 'genes', 'genetic', 'mrna', 'transcript', 'transcripts',
+    'transcription', 'expression', 'expressed', 'protein', 'proteins',
+    'receptor', 'receptors', 'enzyme', 'enzymes', 'isoform', 'isoforms',
+    'knockout', 'knockdown', 'polymorphism', 'allele', 'alleles', 'mutation',
+    'mutations', 'promoter', 'agonist', 'antagonist', 'encoded', 'encodes',
+)
+
+_GENE_CONTEXT_PATTERN = re.compile(
+    r'\b(?:' + '|'.join(GENE_CONTEXT_CUES) + r')\b', re.IGNORECASE
+)
+
+# Length at or below which a token is treated as an abbreviation first and a
+# gene name second -- but the threshold depends on how strong the token is as
+# evidence.
+#
+# An APPROVED SYMBOL is a deliberate, curated identifier: AHR, SHH, TPO, ITK and
+# CD4 are how authors actually write those genes, and demanding a nearby cue word
+# costs real mentions. Only 2-character approved symbols (TH, AR, ER) stay
+# ambiguous enough with ordinary abbreviations to need one.
+#
+# An ALIAS or PREVIOUS SYMBOL is much weaker evidence -- it is whatever the gene
+# used to be called, or is sometimes called -- so the bar stays at 3 characters.
+# That is what catches ROS (alias of ROS1), ECM (alias of MMRN1), T4 (alias of
+# CD4) and ER (alias of ESR1) without touching the approved symbols above.
+SHORT_TOKEN_MAX_LEN_APPROVED_SYMBOL = 2
+SHORT_TOKEN_MAX_LEN_ALIAS = 3
+
+
+def _has_gene_context(context: str) -> bool:
+    """True when the surrounding text reads as being about genes or proteins."""
+    return bool(_GENE_CONTEXT_PATTERN.search(context))
+
 
 def _is_false_positive(gene_key: str, matched_alias: str,
-                       matched_text_context: str) -> tuple[bool, str | None]:
+                       matched_text_context: str,
+                       symbol_lookup: dict | None = None
+                       ) -> tuple[bool, str | None]:
     """Filter out known false positive patterns.
 
     Parameters
@@ -110,6 +235,9 @@ def _is_false_positive(gene_key: str, matched_alias: str,
         The alias text that was matched.
     matched_text_context : str
         Surrounding text context for pattern analysis.
+    symbol_lookup : dict, optional
+        numeric_hgnc_id -> approved symbol. Only used for logging clarity; the
+        filters below apply identically with or without it.
     """
     # Filter 1: Single letter aliases (too ambiguous)
     if matched_alias.strip() in SINGLE_LETTER_ALIASES:
@@ -119,12 +247,36 @@ def _is_false_positive(gene_key: str, matched_alias: str,
     if ROMAN_NUMERAL_PATTERN.fullmatch(matched_alias.strip()):
         return True, f"Roman numeral '{matched_alias.strip()}'"
 
-    # Filter 3: Short ambiguous symbols in parentheses or brackets
     stripped = matched_alias.strip()
-    if len(stripped) <= 2 and any(char in matched_text_context for char in '()[]{}'):
-        return True, f"short symbol '{stripped}' in parentheses/brackets context"
 
-    # Filter 4: Gene-specific false positive patterns (match on alias, not key)
+    # Filter 3: Domain abbreviations that never mean the gene in AOP prose.
+    if stripped in DOMAIN_ABBREVIATION_STOPLIST:
+        return True, f"domain abbreviation '{stripped}' (never a gene mention here)"
+
+    # Filter 4: Short tokens need the prose to actually be about genes.
+    #
+    # This replaces an earlier rule that rejected short tokens only when a
+    # bracket appeared anywhere in the +/-50 char window. That made the outcome
+    # depend on unrelated punctuation -- 'TH' survived on 104 entities purely
+    # because no bracket happened to fall nearby -- so it filtered arbitrarily
+    # rather than meaningfully.
+    #
+    # The threshold is lower for approved symbols than for aliases: see the
+    # constants above for why AHR/SHH/TPO are exempt but ROS/ECM/T4 are not.
+    is_approved_symbol = bool(
+        symbol_lookup and symbol_lookup.get(gene_key) == stripped
+    )
+    max_len = (
+        SHORT_TOKEN_MAX_LEN_APPROVED_SYMBOL if is_approved_symbol
+        else SHORT_TOKEN_MAX_LEN_ALIAS
+    )
+    if len(stripped) <= max_len and not _has_gene_context(matched_text_context):
+        kind = 'approved symbol' if is_approved_symbol else 'alias'
+        return True, (
+            f"short {kind} '{stripped}' with no gene context in surrounding text"
+        )
+
+    # Filter 5: Gene-specific false positive patterns (match on alias, not key)
     if stripped == 'IV' and (
         'Complex I' in matched_text_context or '(I\u2013V)' in matched_text_context
     ):
@@ -139,12 +291,14 @@ def _is_false_positive(gene_key: str, matched_alias: str,
 
 
 def _map_genes_in_text(text: str, genedict1: dict, hgnc_list: list,
-                       genedict2: dict | None = None) -> list[str]:
+                       genedict2: dict | None = None,
+                       token_owners: dict | None = None,
+                       symbol_lookup: dict | None = None) -> list[str]:
     """Enhanced three-stage gene mapping algorithm with false positive filtering.
 
     Stage 1: Screen with genedict1 (basic gene names)
     Stage 2: Match with genedict2 (punctuation-delimited variants) with precision
-    Stage 3: Apply false positive filters to eliminate problematic matches
+    Stage 3: Resolve contested tokens, then apply false positive filters
 
     Parameters
     ----------
@@ -156,6 +310,13 @@ def _map_genes_in_text(text: str, genedict1: dict, hgnc_list: list,
         Global list of found HGNC IDs (mutated in place).
     genedict2 : dict, optional
         Precision dictionary (numeric_hgnc_id -> punctuation-delimited variants).
+    token_owners : dict, optional
+        token -> owning HGNC ID (or None) from :func:`build_token_owners`. When
+        omitted, contested tokens are left unresolved and every claiming gene
+        matches -- the pre-existing behaviour, kept so callers that have not
+        been updated still work.
+    symbol_lookup : dict, optional
+        numeric_hgnc_id -> approved symbol, passed through for log clarity.
 
     Returns
     -------
@@ -194,14 +355,24 @@ def _map_genes_in_text(text: str, genedict1: dict, hgnc_list: list,
                         context_end = min(len(text), match_index + len(item) + 50)
                         context = text[context_start:context_end]
 
-                        matched_alias = (
-                            item.strip(' ()[],.') if len(item) >= 3
-                            else item[1:-1] if len(item) == 3
-                            else item
-                        )
+                        # Every genedict2 variant is s1 + token + s2 with both
+                        # sentinels non-empty, so it is always >= 3 chars and
+                        # this strip is the only reachable case.
+                        matched_alias = item.strip(' ()[],.')
+
+                        owner = token_owners.get(matched_alias, gene_key) if token_owners else gene_key
+                        if owner != gene_key:
+                            logger.debug(
+                                f"Skipped contested token '{matched_alias}' for "
+                                f"{gene_key}: owned by {owner or 'no gene'}"
+                            )
+                            # Another variant of this gene may still match
+                            # legitimately, so keep scanning rather than
+                            # abandoning the gene.
+                            continue
 
                         is_fp, fp_reason = _is_false_positive(
-                            gene_key, matched_alias, context
+                            gene_key, matched_alias, context, symbol_lookup
                         )
 
                         if is_fp:
@@ -209,7 +380,12 @@ def _map_genes_in_text(text: str, genedict1: dict, hgnc_list: list,
                                 f"Filtered false positive: {gene_key} "
                                 f"(alias '{matched_alias}') - {fp_reason}"
                             )
-                            break  # Skip this gene entirely
+                            # Only this variant is rejected. Abandoning the gene
+                            # here (the previous behaviour) meant a text
+                            # containing both 'ROS' and 'ROS1' could lose the
+                            # legitimate ROS1 match, depending purely on which
+                            # variant genedict2 happened to list first.
+                            continue
 
                         found_genes.append(hgnc_id)
                         if hgnc_id not in hgnc_list:
@@ -217,8 +393,19 @@ def _map_genes_in_text(text: str, genedict1: dict, hgnc_list: list,
                         break
             else:
                 # Fallback to genedict1-only matching
+                owner = (
+                    token_owners.get(stage1_matched_alias, gene_key)
+                    if token_owners else gene_key
+                )
+                if owner != gene_key:
+                    logger.debug(
+                        f"Skipped contested token '{stage1_matched_alias}' for "
+                        f"{gene_key}: owned by {owner or 'no gene'}"
+                    )
+                    continue
+
                 is_fp, fp_reason = _is_false_positive(
-                    gene_key, stage1_matched_alias, text
+                    gene_key, stage1_matched_alias, text, symbol_lookup
                 )
 
                 if not is_fp and hgnc_id not in found_genes:
@@ -251,7 +438,9 @@ def _map_genes_in_text(text: str, genedict1: dict, hgnc_list: list,
 
 
 def map_genes_in_entities(kedict: dict, kerdict: dict, genedict1: dict,
-                          genedict2: dict, xml_root, aopxml_ns: str
+                          genedict2: dict, xml_root, aopxml_ns: str,
+                          token_owners: dict | None = None,
+                          symbol_lookup: dict | None = None
                           ) -> tuple[dict, dict, list]:
     """Scan KE/KER text fields for gene mentions using three-stage algorithm.
 
@@ -269,6 +458,10 @@ def map_genes_in_entities(kedict: dict, kerdict: dict, genedict1: dict,
         XML root element of the AOP-Wiki XML.
     aopxml_ns : str
         AOP-Wiki XML namespace string (e.g., '{http://...}').
+    token_owners : dict, optional
+        Contested-token resolution map from :func:`build_token_owners`.
+    symbol_lookup : dict, optional
+        numeric_hgnc_id -> approved symbol.
 
     Returns
     -------
@@ -288,7 +481,8 @@ def map_genes_in_entities(kedict: dict, kerdict: dict, genedict1: dict,
         if ke.find(aopxml_ns + 'description').text is not None:
             description_text = kedict[ke.get('id')]['dc:description']
             found_genes = _map_genes_in_text(
-                description_text, genedict1, hgnclist, genedict2
+                description_text, genedict1, hgnclist, genedict2,
+                token_owners, symbol_lookup,
             )
             if found_genes:
                 kedict[ke.get('id')]['edam:data_1025'] = found_genes
@@ -346,7 +540,7 @@ def map_genes_in_entities(kedict: dict, kerdict: dict, genedict1: dict,
                 and 'dc:description' in kerdict[ker.get('id')]):
             description_genes = _map_genes_in_text(
                 kerdict[ker.get('id')]['dc:description'],
-                genedict1, hgnclist, genedict2,
+                genedict1, hgnclist, genedict2, token_owners, symbol_lookup,
             )
             all_found_genes.extend(description_genes)
 

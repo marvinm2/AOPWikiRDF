@@ -20,7 +20,12 @@ import requests
 from aopwiki_rdf.config import PipelineConfig
 from aopwiki_rdf.parser.xml_parser import parse_aopwiki_xml, AOPXML_NS
 from aopwiki_rdf.hgnc import download_hgnc_data
-from aopwiki_rdf.mapping.gene_mapper import build_gene_dicts, map_genes_in_entities, build_gene_xrefs
+from aopwiki_rdf.mapping.gene_mapper import (
+    build_gene_dicts,
+    build_token_owners,
+    map_genes_in_entities,
+    build_gene_xrefs,
+)
 from aopwiki_rdf.mapping.ner_el_mapper import (
     map_ner_genes_in_kers_result,
     map_ner_genes_in_kes_result,
@@ -370,6 +375,10 @@ def _stage_gene_mapping(config, context):
     # Build gene dictionaries
     genedict1, genedict2, symbol_lookup = build_gene_dicts(hgnc_filepath)
 
+    # Resolve tokens claimed by more than one gene to a single owner, so a
+    # mention of "AR" no longer asserts AR, FDXR and AREG all at once.
+    token_owners = build_token_owners(genedict1, symbol_lookup)
+
     # Map genes in KE/KER text
     kedict, kerdict, gene_hgnclist = map_genes_in_entities(
         entities.kedict,
@@ -378,6 +387,8 @@ def _stage_gene_mapping(config, context):
         genedict2,
         xml_root,
         aopxml_ns,
+        token_owners,
+        symbol_lookup,
     )
 
     # Optional BERN2 NER+EL enrichment (Phase B). When config.enable_bern2
