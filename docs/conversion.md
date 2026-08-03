@@ -78,22 +78,55 @@ After Stage 2 finds a match, four false positive filters are applied to eliminat
 
 - **Example:** GCNT2 has alias "II". Without this filter, text like "Complex II" or "(I-V)" would falsely match GCNT2. The Roman numeral filter blocks "II" as a Roman numeral pattern. In production, this eliminated 108 false GCNT2 occurrences.
 
-**Filter 3: Short Symbols in Brackets.** Matched aliases of 2 characters or fewer that appear in text containing parentheses, brackets, or braces are rejected. Short symbols in parenthetical contexts are almost always scientific abbreviations rather than gene references.
+**Filter 3: Domain Abbreviations.** A small stoplist of tokens that HGNC lists as gene names but which, in AOP-Wiki prose, never denote the gene: `ROS` (an alias of ROS1, but always "reactive oxygen species" here), `ECM` (an alias of MMRN1, always "extracellular matrix"), and `spatial` (an alias of TBATA, and an ordinary English adjective). Each was verified against the corpus before being added.
 
-**Filter 4: Gene-Specific Context Rules.** Targeted rules for known problematic patterns:
+Stoplisting an alias does not cost the gene its real mentions — `ROS1` itself still matches normally.
+
+**Filter 4: Short Tokens Need Gene Context.** Tokens of 3 characters or fewer are only accepted when the surrounding ±50 characters contain a cue that the prose is about genes or proteins — `gene`, `expression`, `mRNA`, `transcript`, `protein`, `receptor`, `encoded`, and similar.
+
+Cues are matched on **word boundaries**, not as substrings. As substrings, "generation of reactive oxygen species" would satisfy the `gene` cue, which is exactly the context the filter exists to reject.
+
+This replaced an earlier rule that rejected short tokens only when a bracket appeared anywhere in the context window. That made the verdict depend on unrelated punctuation: `TH` survived on 56 entities purely because no bracket happened to fall nearby.
+
+**Filter 5: Gene-Specific Context Rules.** Targeted rules for known problematic patterns:
 
 - **IV gene:** When matched alias "IV" appears near "Complex I" or "(I-V)" numbering patterns, the match is rejected.
 - **II alias (GCNT2):** When "II" appears near "(I-V)" numbering or "complexes" text, the match is rejected.
 
+### Contested tokens
+
+Filtering alone cannot fix a token that several genes legitimately claim. Because the matcher tests each gene independently, `AR` — the approved symbol of AR, and a previous symbol of both FDXR and AREG — caused all three genes to be asserted together on 29 entities, where at most one can be correct.
+
+`build_token_owners` inverts the dictionary to find every token claimed by more than one gene, and awards each to the gene whose **approved symbol** it is, which is the reading a curator would take. A contested token that is nobody's approved symbol is retired for every gene, since no reading is defensible.
+
+Two design notes:
+
+- Genuinely ambiguous tokens such as `AR`, `TH`, `ER` and `T4` are deliberately **not** stoplisted. They are ambiguous rather than always-wrong, so they pass through ownership resolution and the context rule, which can still admit them where the text supports it.
+- HGNC columns 6–7 (accession numbers, Ensembl ID) are **not** loaded as gene names. They are database identifiers, not names any Key Event description would use, and they are shared across genes — `AF250841` alone was claimed by 71 of them.
+
 ### Proven Results
 
-The false positive filtering system achieved a **14.6% reduction** in false positive gene mappings (1,398 gene occurrences eliminated):
+The 2025 filtering work achieved a **14.6% reduction** in false positive gene mappings (1,398 gene occurrences eliminated):
 
 | Gene | Alias | Before Filtering | After Filtering | Reduction |
 |------|-------|-----------------|-----------------|-----------|
 | GCNT2 | "II" | 108 | 0 | 100% |
 | PPIB | "B" | 134 | 4 | 97% |
 | IV | "IV" | 37 | 4 | 89% |
+
+The later ownership and abbreviation work targeted a different class of error, measured in published RDF:
+
+| Token | Claimed by | Entities affected | Reading in AOP text |
+|-------|-----------|-------------------|---------------------|
+| `ROS` | ROS1 | 136 | reactive oxygen species |
+| `TH` | TH | 56 | thyroid hormone |
+| `spatial` | TBATA | 40 | ordinary English adjective |
+| `ECM` | MMRN1 | 37 | extracellular matrix |
+| `AR` | AR + FDXR + AREG | 29 (all three at once) | androgen receptor |
+
+### Known recall gap
+
+Every `genedict2` variant has the form delimiter + token + delimiter, so a token that **opens** a text has no leading delimiter to match against and is missed entirely. `tests/unit/test_gene_precision.py` pins this as a strict `xfail`. It predates the precision work; fixing it changes recall and needs its own measurement.
 
 ## BERN2 NER+EL Gene Enrichment
 
