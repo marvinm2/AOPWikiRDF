@@ -25,6 +25,76 @@ The conversion process produces three main RDF files:
 - **AOPWikiRDF-Genes.ttl**: Gene mapping extensions with approved HGNC symbols and database identifiers
 - **AOPWikiRDF-Void.ttl**: VoID metadata describing the datasets
 
+## Live SPARQL Endpoint
+
+The generated RDF data is available through a public SPARQL endpoint:
+
+- **SNORQL Interface**: https://aopwiki.rdf.bigcat-bioinformatics.org/
+- **SPARQL Endpoint**: https://aopwiki.rdf.bigcat-bioinformatics.org/sparql
+
+Use these endpoints to query the AOP-Wiki RDF data directly without setting up a local instance.
+
+## RDF Prefixes
+
+The RDF data uses the following namespace prefixes:
+
+**Note**: The generated RDF files also include machine-readable SHACL prefix declarations for all namespaces, following the W3C SHACL specification.
+
+| Prefix | Namespace URI | Description |
+|--------|---------------|-------------|
+| dc | http://purl.org/dc/elements/1.1/ | Dublin Core Elements |
+| dcterms | http://purl.org/dc/terms/ | Dublin Core Terms |
+| foaf | http://xmlns.com/foaf/0.1/ | Friend of a Friend |
+| aop | https://identifiers.org/aop/ | AOP identifiers |
+| aop.events | https://identifiers.org/aop.events/ | AOP Events |
+| aop.relationships | https://identifiers.org/aop.relationships/ | AOP Relationships |
+| aop.stressor | https://identifiers.org/aop.stressor/ | AOP Stressors |
+| aopo | http://aopkb.org/aop_ontology# | AOP Ontology |
+| chebi | https://identifiers.org/chebi/ | ChEBI identifiers |
+| go | http://purl.obolibrary.org/obo/GO_ | Gene Ontology |
+| pato | http://purl.obolibrary.org/obo/PATO_ | Phenotype and Trait Ontology |
+| uniprot | https://identifiers.org/uniprot/ | UniProt identifiers |
+| hgnc | https://identifiers.org/hgnc/ | HGNC gene identifiers |
+
+<details>
+<summary>View all prefixes</summary>
+
+| Prefix | Namespace URI |
+|--------|---------------|
+| cas | https://identifiers.org/cas/ |
+| chembl.compound | https://identifiers.org/chembl.compound/ |
+| cheminf | http://semanticscience.org/resource/CHEMINF_ |
+| chemspider | https://identifiers.org/chemspider/ |
+| cl | http://purl.obolibrary.org/obo/CL_ |
+| comptox | https://identifiers.org/comptox/ |
+| drugbank | https://identifiers.org/drugbank/ |
+| edam | http://edamontology.org/ |
+| ensembl | https://identifiers.org/ensembl/ |
+| fma | http://purl.obolibrary.org/obo/FMA_ |
+| hmdb | https://identifiers.org/hmdb/ |
+| hp | http://purl.obolibrary.org/obo/HP_ |
+| ido | http://purl.obolibrary.org/obo/IDO_ |
+| inchikey | https://identifiers.org/inchikey/ |
+| kegg.compound | https://identifiers.org/kegg.compound/ |
+| lipidmaps | https://identifiers.org/lipidmaps/ |
+| mesh | http://purl.org/commons/record/mesh/ |
+| mi | http://purl.obolibrary.org/obo/MI_ |
+| mmo | http://purl.obolibrary.org/obo/MMO_ |
+| mp | http://purl.obolibrary.org/obo/MP_ |
+| nbo | http://purl.obolibrary.org/obo/NBO_ |
+| ncbigene | https://identifiers.org/ncbigene/ |
+| ncbitaxon | http://purl.bioontology.org/ontology/NCBITAXON/ |
+| nci | http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl# |
+| pco | http://purl.obolibrary.org/obo/PCO_ |
+| pr | http://purl.obolibrary.org/obo/PR_ |
+| pubchem.compound | https://identifiers.org/pubchem.compound/ |
+| rbo | http://purl.obolibrary.org/obo/RBO_ |
+| uberon | http://purl.obolibrary.org/obo/UBERON_ |
+| vt | http://purl.obolibrary.org/obo/VT_ |
+| wikidata | https://identifiers.org/wikidata/ |
+
+</details>
+
 ## Quick Start
 
 ### Prerequisites
