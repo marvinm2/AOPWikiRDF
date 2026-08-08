@@ -1,4 +1,4 @@
-# Generated: 2026-08-03
+# Generated: 2026-08-08
 # Load alongside AOPWikiRDF.ttl for full cross-reference capability
 # AOPWikiRDF-Enriched.ttl
 # Cross-reference enrichment triples for AOP-Wiki RDF
@@ -100,8 +100,8 @@ cas:143807-66-3
 
 
 cas:15130-85-5
-	skos:exactMatch	chebi:27495, chebi:27495, chemspider:390407, wikidata:Q27103165, pubchem.compound:441828, kegg.compound:C08819, kegg.compound:C16992, lipidmaps:LMST01010194 ;
-	owl:sameAs	chebi:27495, chebi:27495, chemspider:390407, wikidata:Q27103165, pubchem.compound:441828, kegg.compound:C08819, kegg.compound:C16992, lipidmaps:LMST01010194 .
+	skos:exactMatch	chebi:27495, chebi:27495, chemspider:390407, wikidata:Q27103165, pubchem.compound:441828, kegg.compound:C16992, lipidmaps:LMST01010194 ;
+	owl:sameAs	chebi:27495, chebi:27495, chemspider:390407, wikidata:Q27103165, pubchem.compound:441828, kegg.compound:C16992, lipidmaps:LMST01010194 .
 
 
 cas:59456-70-1
@@ -150,8 +150,8 @@ cas:115-29-7
 
 
 cas:120068-37-3
-	skos:exactMatch	chebi:83394, chebi:83394, chebi:5063, chemspider:3235, wikidata:Q415933, chembl.compound:CHEMBL101326, pubchem.compound:3352, hmdb:HMDB0252265, kegg.compound:C11099, kegg.compound:D01042 ;
-	owl:sameAs	chebi:83394, chebi:83394, chebi:5063, chemspider:3235, wikidata:Q415933, chembl.compound:CHEMBL101326, pubchem.compound:3352, hmdb:HMDB0252265, kegg.compound:C11099, kegg.compound:D01042 .
+	skos:exactMatch	chebi:83394, chebi:83394, chemspider:3235, wikidata:Q415933, chembl.compound:CHEMBL101326, pubchem.compound:3352, hmdb:HMDB0252265, kegg.compound:D01042 ;
+	owl:sameAs	chebi:83394, chebi:83394, chemspider:3235, wikidata:Q415933, chembl.compound:CHEMBL101326, pubchem.compound:3352, hmdb:HMDB0252265, kegg.compound:D01042 .
 
 
 cas:7439-92-1
@@ -270,8 +270,8 @@ cas:7439-97-6
 
 
 cas:7440-38-2
-	skos:exactMatch	chebi:35828, chebi:27563, chebi:35828, chebi:27563, chebi:47217, chemspider:94549, chemspider:4514330, wikidata:Q871, pubchem.compound:5359596, pubchem.compound:104734, hmdb:HMDB02290, hmdb:HMDB0002290, kegg.compound:C06269 ;
-	owl:sameAs	chebi:35828, chebi:27563, chebi:35828, chebi:27563, chebi:47217, chemspider:94549, chemspider:4514330, wikidata:Q871, pubchem.compound:5359596, pubchem.compound:104734, hmdb:HMDB02290, hmdb:HMDB0002290, kegg.compound:C06269 .
+	skos:exactMatch	chebi:35828, chebi:27563, chebi:35828, chebi:27563, chemspider:94549, chemspider:4514330, wikidata:Q871, pubchem.compound:5359596, pubchem.compound:104734, hmdb:HMDB02290, hmdb:HMDB0002290, kegg.compound:C06269 ;
+	owl:sameAs	chebi:35828, chebi:27563, chebi:35828, chebi:27563, chemspider:94549, chemspider:4514330, wikidata:Q871, pubchem.compound:5359596, pubchem.compound:104734, hmdb:HMDB02290, hmdb:HMDB0002290, kegg.compound:C06269 .
 
 
 cas:7440-22-4
@@ -285,8 +285,8 @@ cas:7439-96-5
 
 
 cas:7440-02-0
-	skos:exactMatch	chebi:28112, chebi:49786, chebi:49786, chebi:28112, chemspider:910, chemspider:909, wikidata:Q744, pubchem.compound:934, pubchem.compound:935, hmdb:HMDB0002457, hmdb:HMDB02457, kegg.compound:C00291, kegg.compound:C19609 ;
-	owl:sameAs	chebi:28112, chebi:49786, chebi:49786, chebi:28112, chemspider:910, chemspider:909, wikidata:Q744, pubchem.compound:934, pubchem.compound:935, hmdb:HMDB0002457, hmdb:HMDB02457, kegg.compound:C00291, kegg.compound:C19609 .
+	skos:exactMatch	chebi:28112, chebi:49786, chebi:49786, chebi:28112, chemspider:910, chemspider:909, wikidata:Q744, pubchem.compound:934, pubchem.compound:935, hmdb:HMDB0002457, hmdb:HMDB02457, kegg.compound:C19609 ;
+	owl:sameAs	chebi:28112, chebi:49786, chebi:49786, chebi:28112, chemspider:910, chemspider:909, wikidata:Q744, pubchem.compound:934, pubchem.compound:935, hmdb:HMDB0002457, hmdb:HMDB02457, kegg.compound:C19609 .
 
 
 cas:7440-66-6
@@ -305,8 +305,8 @@ cas:637-07-0
 
 
 cas:3771-19-5
-	skos:exactMatch	chebi:77649, chebi:77649, chebi:7449, chemspider:18456, wikidata:Q6958167, chembl.compound:CHEMBL1909070, pubchem.compound:19592, hmdb:HMDB0255421, kegg.compound:C11371, kegg.compound:D05102 ;
-	owl:sameAs	chebi:77649, chebi:77649, chebi:7449, chemspider:18456, wikidata:Q6958167, chembl.compound:CHEMBL1909070, pubchem.compound:19592, hmdb:HMDB0255421, kegg.compound:C11371, kegg.compound:D05102 .
+	skos:exactMatch	chebi:77649, chebi:77649, chemspider:18456, wikidata:Q6958167, chembl.compound:CHEMBL1909070, pubchem.compound:19592, hmdb:HMDB0255421, kegg.compound:C11371, kegg.compound:D05102 ;
+	owl:sameAs	chebi:77649, chebi:77649, chemspider:18456, wikidata:Q6958167, chembl.compound:CHEMBL1909070, pubchem.compound:19592, hmdb:HMDB0255421, kegg.compound:C11371, kegg.compound:D05102 .
 
 
 cas:52214-84-3
@@ -335,8 +335,8 @@ cas:79902-63-9
 
 
 cas:90357-06-5
-	skos:exactMatch	chebi:144093, chebi:144093, chebi:3090, chemspider:2284, wikidata:Q1988832, chembl.compound:CHEMBL409, pubchem.compound:2375, drugbank:DB01128, hmdb:HMDB15260, hmdb:HMDB0015260, kegg.compound:D00961, kegg.compound:C08160 ;
-	owl:sameAs	chebi:144093, chebi:144093, chebi:3090, chemspider:2284, wikidata:Q1988832, chembl.compound:CHEMBL409, pubchem.compound:2375, drugbank:DB01128, hmdb:HMDB15260, hmdb:HMDB0015260, kegg.compound:D00961, kegg.compound:C08160 .
+	skos:exactMatch	chebi:144093, chebi:144093, chemspider:2284, wikidata:Q1988832, chembl.compound:CHEMBL409, pubchem.compound:2375, drugbank:DB01128, hmdb:HMDB15260, hmdb:HMDB0015260, kegg.compound:D00961, kegg.compound:C08160 ;
+	owl:sameAs	chebi:144093, chebi:144093, chemspider:2284, wikidata:Q1988832, chembl.compound:CHEMBL409, pubchem.compound:2375, drugbank:DB01128, hmdb:HMDB15260, hmdb:HMDB0015260, kegg.compound:D00961, kegg.compound:C08160 .
 
 
 cas:427-51-0
@@ -355,8 +355,8 @@ cas:13311-84-7
 
 
 cas:85509-19-9
-	skos:exactMatch	chebi:81922, chebi:81922, chemspider:66326, wikidata:Q499791, chembl.compound:CHEMBL1900522, pubchem.compound:73675, hmdb:HMDB39815, hmdb:HMDB0039815, kegg.compound:C18733 ;
-	owl:sameAs	chebi:81922, chebi:81922, chemspider:66326, wikidata:Q499791, chembl.compound:CHEMBL1900522, pubchem.compound:73675, hmdb:HMDB39815, hmdb:HMDB0039815, kegg.compound:C18733 .
+	skos:exactMatch	chebi:81922, chebi:81922, chemspider:66326, wikidata:Q499791, chembl.compound:CHEMBL1900522, pubchem.compound:73675, hmdb:HMDB0039815, hmdb:HMDB39815, kegg.compound:C18733 ;
+	owl:sameAs	chebi:81922, chebi:81922, chemspider:66326, wikidata:Q499791, chembl.compound:CHEMBL1900522, pubchem.compound:73675, hmdb:HMDB0039815, hmdb:HMDB39815, kegg.compound:C18733 .
 
 
 cas:67747-09-5
@@ -370,18 +370,18 @@ cas:60207-90-1
 
 
 cas:131983-72-7
-	skos:exactMatch	chebi:84005, chebi:81980, chebi:84005, chemspider:5020874, wikidata:Q2366874, chembl.compound:CHEMBL3188632, pubchem.compound:6537961, kegg.compound:C18815 ;
-	owl:sameAs	chebi:84005, chebi:81980, chebi:84005, chemspider:5020874, wikidata:Q2366874, chembl.compound:CHEMBL3188632, pubchem.compound:6537961, kegg.compound:C18815 .
+	skos:exactMatch	chebi:84005, chebi:84005, chemspider:5020874, wikidata:Q2366874, chembl.compound:CHEMBL3188632, pubchem.compound:6537961, kegg.compound:C18815 ;
+	owl:sameAs	chebi:84005, chebi:84005, chemspider:5020874, wikidata:Q2366874, chembl.compound:CHEMBL3188632, pubchem.compound:6537961, kegg.compound:C18815 .
 
 
 cas:107534-96-3
-	skos:exactMatch	chebi:81781, chebi:83779, chebi:83779, chemspider:77680, wikidata:Q2697579, chembl.compound:CHEMBL487186, pubchem.compound:86102, hmdb:HMDB0258762, kegg.compound:C18489 ;
-	owl:sameAs	chebi:81781, chebi:83779, chebi:83779, chemspider:77680, wikidata:Q2697579, chembl.compound:CHEMBL487186, pubchem.compound:86102, hmdb:HMDB0258762, kegg.compound:C18489 .
+	skos:exactMatch	chebi:83779, chebi:83779, chemspider:77680, wikidata:Q2697579, chembl.compound:CHEMBL487186, pubchem.compound:86102, hmdb:HMDB0258762, kegg.compound:C18489 ;
+	owl:sameAs	chebi:83779, chebi:83779, chemspider:77680, wikidata:Q2697579, chembl.compound:CHEMBL487186, pubchem.compound:86102, hmdb:HMDB0258762, kegg.compound:C18489 .
 
 
 cas:50471-44-8
-	skos:exactMatch	chebi:83732, chebi:9986, chebi:83732, chemspider:36278, wikidata:Q412907, chembl.compound:CHEMBL513221, pubchem.compound:39676, hmdb:HMDB0259811, kegg.compound:C10981 ;
-	owl:sameAs	chebi:83732, chebi:9986, chebi:83732, chemspider:36278, wikidata:Q412907, chembl.compound:CHEMBL513221, pubchem.compound:39676, hmdb:HMDB0259811, kegg.compound:C10981 .
+	skos:exactMatch	chebi:83732, chebi:83732, chemspider:36278, wikidata:Q412907, chembl.compound:CHEMBL513221, pubchem.compound:39676, hmdb:HMDB0259811, kegg.compound:C10981 ;
+	owl:sameAs	chebi:83732, chebi:83732, chemspider:36278, wikidata:Q412907, chembl.compound:CHEMBL513221, pubchem.compound:39676, hmdb:HMDB0259811, kegg.compound:C10981 .
 
 
 cas:92-87-5
@@ -465,8 +465,8 @@ cas:15687-27-1
 
 
 cas:155569-91-8
-	skos:exactMatch	chebi:39233, wikidata:Q22683540, pubchem.compound:22833503 ;
-	owl:sameAs	chebi:39233, wikidata:Q22683540, pubchem.compound:22833503 .
+	skos:exactMatch	wikidata:Q22683540, pubchem.compound:22833503 ;
+	owl:sameAs	wikidata:Q22683540, pubchem.compound:22833503 .
 
 
 cas:100-00-5
@@ -500,8 +500,8 @@ cas:688-73-3
 
 
 cas:85-01-8
-	skos:exactMatch	chebi:28851, chebi:28851, chemspider:970, wikidata:Q422037, chembl.compound:CHEMBL46730, pubchem.compound:995, hmdb:HMDB0256390, kegg.compound:C11422 ;
-	owl:sameAs	chebi:28851, chebi:28851, chemspider:970, wikidata:Q422037, chembl.compound:CHEMBL46730, pubchem.compound:995, hmdb:HMDB0256390, kegg.compound:C11422 .
+	skos:exactMatch	chebi:28851, chebi:28851, chemspider:970, wikidata:Q422037, chembl.compound:CHEMBL46730, pubchem.compound:995, drugbank:DB08381, hmdb:HMDB0256390, kegg.compound:C11422 ;
+	owl:sameAs	chebi:28851, chebi:28851, chemspider:970, wikidata:Q422037, chembl.compound:CHEMBL46730, pubchem.compound:995, drugbank:DB08381, hmdb:HMDB0256390, kegg.compound:C11422 .
 
 
 cas:207-08-9
@@ -535,8 +535,8 @@ cas:56-23-5
 
 
 cas:68-26-8
-	skos:exactMatch	chebi:17336, chebi:17336, chemspider:393012, wikidata:Q424976, chembl.compound:CHEMBL986, pubchem.compound:445354, drugbank:DB00162, hmdb:HMDB00305, hmdb:HMDB0000305, kegg.compound:C00473, kegg.compound:C17276, kegg.compound:D06543, kegg.compound:D00069, lipidmaps:LMPR01090001 ;
-	owl:sameAs	chebi:17336, chebi:17336, chemspider:393012, wikidata:Q424976, chembl.compound:CHEMBL986, pubchem.compound:445354, drugbank:DB00162, hmdb:HMDB00305, hmdb:HMDB0000305, kegg.compound:C00473, kegg.compound:C17276, kegg.compound:D06543, kegg.compound:D00069, lipidmaps:LMPR01090001 .
+	skos:exactMatch	chebi:17336, chebi:17336, chemspider:393012, wikidata:Q424976, chembl.compound:CHEMBL986, pubchem.compound:445354, drugbank:DB00162, hmdb:HMDB00305, hmdb:HMDB0000305, kegg.compound:C17276, kegg.compound:D06543, kegg.compound:D00069, lipidmaps:LMPR01090001 ;
+	owl:sameAs	chebi:17336, chebi:17336, chemspider:393012, wikidata:Q424976, chembl.compound:CHEMBL986, pubchem.compound:445354, drugbank:DB00162, hmdb:HMDB00305, hmdb:HMDB0000305, kegg.compound:C17276, kegg.compound:D06543, kegg.compound:D00069, lipidmaps:LMPR01090001 .
 
 
 cas:62-55-5
@@ -620,8 +620,8 @@ cas:212141-54-3
 
 
 cas:341031-54-7
-	skos:exactMatch	chemspider:4958254, wikidata:Q27283213, chembl.compound:CHEMBL1567, pubchem.compound:6456015 ;
-	owl:sameAs	chemspider:4958254, wikidata:Q27283213, chembl.compound:CHEMBL1567, pubchem.compound:6456015 .
+	skos:exactMatch	chebi:232546, chebi:232546, chemspider:4958254, wikidata:Q27283213, chembl.compound:CHEMBL1567, pubchem.compound:6456015 ;
+	owl:sameAs	chebi:232546, chebi:232546, chemspider:4958254, wikidata:Q27283213, chembl.compound:CHEMBL1567, pubchem.compound:6456015 .
 
 
 cas:1162-65-8
@@ -635,8 +635,8 @@ cas:14277-97-5
 
 
 cas:14797-55-8
-	skos:exactMatch	chebi:17632, chebi:17632, chemspider:918, wikidata:Q182168, pubchem.compound:943, drugbank:DB14049, hmdb:HMDB15021, hmdb:HMDB0002878, hmdb:HMDB02878, kegg.compound:C00244 ;
-	owl:sameAs	chebi:17632, chebi:17632, chemspider:918, wikidata:Q182168, pubchem.compound:943, drugbank:DB14049, hmdb:HMDB15021, hmdb:HMDB0002878, hmdb:HMDB02878, kegg.compound:C00244 .
+	skos:exactMatch	chebi:17632, chebi:17632, chemspider:918, wikidata:Q182168, pubchem.compound:943, drugbank:DB14049, hmdb:HMDB0002878, hmdb:HMDB02878, kegg.compound:C00244 ;
+	owl:sameAs	chebi:17632, chebi:17632, chemspider:918, wikidata:Q182168, pubchem.compound:943, drugbank:DB14049, hmdb:HMDB0002878, hmdb:HMDB02878, kegg.compound:C00244 .
 
 
 cas:302-04-5
@@ -680,8 +680,8 @@ cas:50-53-3
 
 
 cas:52-53-9
-	skos:exactMatch	chebi:77733, chebi:77733, chebi:9948, chemspider:2425, wikidata:Q410291, chembl.compound:CHEMBL6966, pubchem.compound:2520, drugbank:DB00661, hmdb:HMDB0001850, hmdb:HMDB01850, kegg.compound:C07188, kegg.compound:D02356 ;
-	owl:sameAs	chebi:77733, chebi:77733, chebi:9948, chemspider:2425, wikidata:Q410291, chembl.compound:CHEMBL6966, pubchem.compound:2520, drugbank:DB00661, hmdb:HMDB0001850, hmdb:HMDB01850, kegg.compound:C07188, kegg.compound:D02356 .
+	skos:exactMatch	chebi:77733, chebi:77733, chemspider:2425, wikidata:Q410291, chembl.compound:CHEMBL6966, pubchem.compound:2520, drugbank:DB00661, hmdb:HMDB0001850, hmdb:HMDB01850, kegg.compound:C07188, kegg.compound:D02356 ;
+	owl:sameAs	chebi:77733, chebi:77733, chemspider:2425, wikidata:Q410291, chembl.compound:CHEMBL6966, pubchem.compound:2520, drugbank:DB00661, hmdb:HMDB0001850, hmdb:HMDB01850, kegg.compound:C07188, kegg.compound:D02356 .
 
 
 cas:52315-07-8
@@ -700,8 +700,8 @@ cas:66230-04-4
 
 
 cas:66841-25-6
-	skos:exactMatch	chebi:39400, chemspider:43788, wikidata:Q61446657, kegg.compound:C18413 ;
-	owl:sameAs	chebi:39400, chemspider:43788, wikidata:Q61446657, kegg.compound:C18413 .
+	skos:exactMatch	chemspider:43788, wikidata:Q61446657, kegg.compound:C18413 ;
+	owl:sameAs	chemspider:43788, wikidata:Q61446657, kegg.compound:C18413 .
 
 
 cas:82657-04-3
@@ -730,8 +730,8 @@ cas:7440-57-5
 
 
 cas:15663-27-1
-	skos:exactMatch	chebi:110422, chebi:27899, chebi:35852, chebi:27899, chebi:110422, chebi:35852, chemspider:2665, chemspider:76401, wikidata:Q412415, chembl.compound:CHEMBL11359, pubchem.compound:2767, pubchem.compound:5702198, pubchem.compound:84691, pubchem.compound:5460033, drugbank:DB00515, hmdb:HMDB14656, hmdb:HMDB0014656, kegg.compound:C06911, kegg.compound:D00275 ;
-	owl:sameAs	chebi:110422, chebi:27899, chebi:35852, chebi:27899, chebi:110422, chebi:35852, chemspider:2665, chemspider:76401, wikidata:Q412415, chembl.compound:CHEMBL11359, pubchem.compound:2767, pubchem.compound:5702198, pubchem.compound:84691, pubchem.compound:5460033, drugbank:DB00515, hmdb:HMDB14656, hmdb:HMDB0014656, kegg.compound:C06911, kegg.compound:D00275 .
+	skos:exactMatch	chebi:110422, chebi:27899, chebi:27899, chebi:110422, chemspider:2665, chemspider:76401, wikidata:Q412415, chembl.compound:CHEMBL11359, pubchem.compound:2767, pubchem.compound:5460033, drugbank:DB00515, hmdb:HMDB14656, hmdb:HMDB0014656, kegg.compound:C06911, kegg.compound:D00275 ;
+	owl:sameAs	chebi:110422, chebi:27899, chebi:27899, chebi:110422, chemspider:2665, chemspider:76401, wikidata:Q412415, chembl.compound:CHEMBL11359, pubchem.compound:2767, pubchem.compound:5460033, drugbank:DB00515, hmdb:HMDB14656, hmdb:HMDB0014656, kegg.compound:C06911, kegg.compound:D00275 .
 
 
 cas:5989-27-5
@@ -760,8 +760,8 @@ cas:31430-18-9
 
 
 cas:518-28-5
-	skos:exactMatch	chebi:50305, chebi:50305, chemspider:10162, wikidata:Q421193, chembl.compound:CHEMBL61, pubchem.compound:10607, drugbank:DB01179, hmdb:HMDB15310, hmdb:HMDB31452, kegg.compound:D05529, kegg.compound:C10874 ;
-	owl:sameAs	chebi:50305, chebi:50305, chemspider:10162, wikidata:Q421193, chembl.compound:CHEMBL61, pubchem.compound:10607, drugbank:DB01179, hmdb:HMDB15310, hmdb:HMDB31452, kegg.compound:D05529, kegg.compound:C10874 .
+	skos:exactMatch	chebi:50305, chebi:50305, chemspider:10162, wikidata:Q421193, chembl.compound:CHEMBL61, pubchem.compound:10607, drugbank:DB01179, hmdb:HMDB15310, hmdb:HMDB31452, kegg.compound:D05529 ;
+	owl:sameAs	chebi:50305, chebi:50305, chemspider:10162, wikidata:Q421193, chembl.compound:CHEMBL61, pubchem.compound:10607, drugbank:DB01179, hmdb:HMDB15310, hmdb:HMDB31452, kegg.compound:D05529 .
 
 
 cas:10605-21-7
@@ -790,8 +790,8 @@ cas:362-07-2
 
 
 cas:240494-70-6
-	skos:exactMatch	chebi:79396, chebi:79396, chemspider:21232982, chemspider:570989, wikidata:Q99430983, wikidata:Q424874, pubchem.compound:656636, pubchem.compound:5282227, kegg.compound:C13487 ;
-	owl:sameAs	chebi:79396, chebi:79396, chemspider:21232982, chemspider:570989, wikidata:Q99430983, wikidata:Q424874, pubchem.compound:656636, pubchem.compound:5282227, kegg.compound:C13487 .
+	skos:exactMatch	chebi:79396, chebi:79396, chemspider:21232982, chemspider:570989, wikidata:Q99430983, wikidata:Q424874, pubchem.compound:656636, pubchem.compound:5282227 ;
+	owl:sameAs	chebi:79396, chebi:79396, chemspider:21232982, chemspider:570989, wikidata:Q99430983, wikidata:Q424874, pubchem.compound:656636, pubchem.compound:5282227 .
 
 
 cas:338404-52-7
@@ -815,8 +815,8 @@ cas:335104-84-2
 
 
 cas:153719-23-4
-	skos:exactMatch	chebi:39185, chebi:39186, chebi:39185, chemspider:96828, wikidata:Q1040678, chembl.compound:CHEMBL1896251, pubchem.compound:107646, hmdb:HMDB0258969, kegg.compound:C18513 ;
-	owl:sameAs	chebi:39185, chebi:39186, chebi:39185, chemspider:96828, wikidata:Q1040678, chembl.compound:CHEMBL1896251, pubchem.compound:107646, hmdb:HMDB0258969, kegg.compound:C18513 .
+	skos:exactMatch	chebi:39185, chebi:39185, chemspider:96828, wikidata:Q1040678, chembl.compound:CHEMBL1896251, pubchem.compound:107646, hmdb:HMDB0258969, kegg.compound:C18513 ;
+	owl:sameAs	chebi:39185, chebi:39185, chemspider:96828, wikidata:Q1040678, chembl.compound:CHEMBL1896251, pubchem.compound:107646, hmdb:HMDB0258969, kegg.compound:C18513 .
 
 
 cas:134523-00-5
@@ -825,8 +825,8 @@ cas:134523-00-5
 
 
 cas:7440-47-3
-	skos:exactMatch	chebi:28073, chebi:49544, chebi:49544, chebi:28073, chemspider:25743, wikidata:Q725, pubchem.compound:27668, pubchem.compound:23976, drugbank:DB11136, hmdb:HMDB0000599, hmdb:HMDB00599, kegg.compound:C19368, kegg.compound:C06268 ;
-	owl:sameAs	chebi:28073, chebi:49544, chebi:49544, chebi:28073, chemspider:25743, wikidata:Q725, pubchem.compound:27668, pubchem.compound:23976, drugbank:DB11136, hmdb:HMDB0000599, hmdb:HMDB00599, kegg.compound:C19368, kegg.compound:C06268 .
+	skos:exactMatch	chebi:28073, chebi:49544, chebi:49544, chebi:28073, chemspider:25743, chemspider:22412, wikidata:Q725, pubchem.compound:27668, pubchem.compound:23976, drugbank:DB11136, hmdb:HMDB0000599, hmdb:HMDB00599, kegg.compound:C19368, kegg.compound:C06268 ;
+	owl:sameAs	chebi:28073, chebi:49544, chebi:49544, chebi:28073, chemspider:25743, chemspider:22412, wikidata:Q725, pubchem.compound:27668, pubchem.compound:23976, drugbank:DB11136, hmdb:HMDB0000599, hmdb:HMDB00599, kegg.compound:C19368, kegg.compound:C06268 .
 
 
 cas:108-05-4
@@ -965,8 +965,8 @@ cas:137071-32-0
 
 
 cas:303-45-7
-	skos:exactMatch	chebi:28584, chemspider:3383, wikidata:Q411882, chembl.compound:CHEMBL51483, pubchem.compound:3503, drugbank:DB13044, drugbank:DB17379, hmdb:HMDB40723, kegg.compound:C07667, lipidmaps:LMPR0103330002 ;
-	owl:sameAs	chebi:28584, chemspider:3383, wikidata:Q411882, chembl.compound:CHEMBL51483, pubchem.compound:3503, drugbank:DB13044, drugbank:DB17379, hmdb:HMDB40723, kegg.compound:C07667, lipidmaps:LMPR0103330002 .
+	skos:exactMatch	chebi:28584, chebi:28584, chemspider:3383, wikidata:Q411882, chembl.compound:CHEMBL51483, pubchem.compound:3503, drugbank:DB13044, drugbank:DB17379, hmdb:HMDB40723, kegg.compound:C07667 ;
+	owl:sameAs	chebi:28584, chebi:28584, chemspider:3383, wikidata:Q411882, chembl.compound:CHEMBL51483, pubchem.compound:3503, drugbank:DB13044, drugbank:DB17379, hmdb:HMDB40723, kegg.compound:C07667 .
 
 
 cas:520-18-3
@@ -1050,8 +1050,8 @@ cas:50-55-5
 
 
 cas:11056-06-7
-	skos:exactMatch	chebi:22907, chebi:22907, chebi:3139, chemspider:4514492, wikidata:Q415571, pubchem.compound:5360373, drugbank:DB00290, hmdb:HMDB14435, hmdb:HMDB0014435, kegg.compound:C06854, kegg.compound:C15773, kegg.compound:D07535 ;
-	owl:sameAs	chebi:22907, chebi:22907, chebi:3139, chemspider:4514492, wikidata:Q415571, pubchem.compound:5360373, drugbank:DB00290, hmdb:HMDB14435, hmdb:HMDB0014435, kegg.compound:C06854, kegg.compound:C15773, kegg.compound:D07535 .
+	skos:exactMatch	chebi:22907, chebi:22907, chemspider:4514492, wikidata:Q415571, pubchem.compound:5360373, drugbank:DB00290, hmdb:HMDB14435, hmdb:HMDB0014435, kegg.compound:C06854, kegg.compound:D07535 ;
+	owl:sameAs	chebi:22907, chebi:22907, chemspider:4514492, wikidata:Q415571, pubchem.compound:5360373, drugbank:DB00290, hmdb:HMDB14435, hmdb:HMDB0014435, kegg.compound:C06854, kegg.compound:D07535 .
 
 
 cas:42461-84-7
@@ -1075,8 +1075,8 @@ cas:53716-49-7
 
 
 cas:81-81-2
-	skos:exactMatch	chebi:87732, chebi:10033, chebi:87732, chemspider:10442445, wikidata:Q407431, chembl.compound:CHEMBL1464, pubchem.compound:54678486, drugbank:DB00682, hmdb:HMDB01935, hmdb:HMDB0001935, kegg.compound:C01541 ;
-	owl:sameAs	chebi:87732, chebi:10033, chebi:87732, chemspider:10442445, wikidata:Q407431, chembl.compound:CHEMBL1464, pubchem.compound:54678486, drugbank:DB00682, hmdb:HMDB01935, hmdb:HMDB0001935, kegg.compound:C01541 .
+	skos:exactMatch	chebi:87732, chebi:87732, chemspider:10442445, wikidata:Q407431, chembl.compound:CHEMBL1464, pubchem.compound:54678486, drugbank:DB00682, hmdb:HMDB01935, hmdb:HMDB0001935, kegg.compound:C01541 ;
+	owl:sameAs	chebi:87732, chebi:87732, chemspider:10442445, wikidata:Q407431, chembl.compound:CHEMBL1464, pubchem.compound:54678486, drugbank:DB00682, hmdb:HMDB01935, hmdb:HMDB0001935, kegg.compound:C01541 .
 
 
 cas:81-82-3
@@ -1150,8 +1150,8 @@ cas:625-45-6
 
 
 cas:461-55-2
-	skos:exactMatch	chebi:17968, chebi:17968, chemspider:94582, wikidata:Q55582441, pubchem.compound:104775, kegg.compound:C00246 ;
-	owl:sameAs	chebi:17968, chebi:17968, chemspider:94582, wikidata:Q55582441, pubchem.compound:104775, kegg.compound:C00246 .
+	skos:exactMatch	chebi:17968, chebi:17968, chemspider:94582, wikidata:Q55582441, pubchem.compound:104775 ;
+	owl:sameAs	chebi:17968, chebi:17968, chemspider:94582, wikidata:Q55582441, pubchem.compound:104775 .
 
 
 cas:58880-19-6
@@ -1180,18 +1180,18 @@ cas:183506-66-3
 
 
 cas:65277-42-1
-	skos:exactMatch	chebi:47519, chebi:47518, chebi:48339, chebi:48336, chebi:47518, chebi:48336, chebi:48339, chemspider:401695, chemspider:43284, chemspider:3691, wikidata:Q407883, wikidata:Q27121163, chembl.compound:CHEMBL157101, chembl.compound:CHEMBL75, pubchem.compound:47576, pubchem.compound:3823, pubchem.compound:456201, drugbank:DB01026, hmdb:HMDB12242, hmdb:HMDB0012242, hmdb:HMDB0243587, kegg.compound:D00351 ;
-	owl:sameAs	chebi:47519, chebi:47518, chebi:48339, chebi:48336, chebi:47518, chebi:48336, chebi:48339, chemspider:401695, chemspider:43284, chemspider:3691, wikidata:Q407883, wikidata:Q27121163, chembl.compound:CHEMBL157101, chembl.compound:CHEMBL75, pubchem.compound:47576, pubchem.compound:3823, pubchem.compound:456201, drugbank:DB01026, hmdb:HMDB12242, hmdb:HMDB0012242, hmdb:HMDB0243587, kegg.compound:D00351 .
+	skos:exactMatch	chebi:48336, chebi:47518, chebi:48336, chebi:47518, chemspider:43284, chemspider:401695, wikidata:Q27121163, chembl.compound:CHEMBL75, pubchem.compound:456201, pubchem.compound:47576, hmdb:HMDB12242, hmdb:HMDB0012242 ;
+	owl:sameAs	chebi:48336, chebi:47518, chebi:48336, chebi:47518, chemspider:43284, chemspider:401695, wikidata:Q27121163, chembl.compound:CHEMBL75, pubchem.compound:456201, pubchem.compound:47576, hmdb:HMDB12242, hmdb:HMDB0012242 .
 
 
 cas:65899-73-2
-	skos:exactMatch	chebi:77898, chebi:77898, chebi:9604, chemspider:5282, chemspider:21240436, wikidata:Q260326, chembl.compound:CHEMBL1200438, pubchem.compound:5482, drugbank:DB01007, hmdb:HMDB15142, hmdb:HMDB0015142, kegg.compound:C08082, kegg.compound:D00890 ;
-	owl:sameAs	chebi:77898, chebi:77898, chebi:9604, chemspider:5282, chemspider:21240436, wikidata:Q260326, chembl.compound:CHEMBL1200438, pubchem.compound:5482, drugbank:DB01007, hmdb:HMDB15142, hmdb:HMDB0015142, kegg.compound:C08082, kegg.compound:D00890 .
+	skos:exactMatch	chebi:77898, chebi:77898, chemspider:5282, chemspider:21240436, wikidata:Q260326, chembl.compound:CHEMBL1200438, pubchem.compound:5482, drugbank:DB01007, hmdb:HMDB15142, hmdb:HMDB0015142, kegg.compound:C08082, kegg.compound:D00890 ;
+	owl:sameAs	chebi:77898, chebi:77898, chemspider:5282, chemspider:21240436, wikidata:Q260326, chembl.compound:CHEMBL1200438, pubchem.compound:5482, drugbank:DB01007, hmdb:HMDB15142, hmdb:HMDB0015142, kegg.compound:C08082, kegg.compound:D00890 .
 
 
 cas:22916-47-8
-	skos:exactMatch	chebi:82892, chebi:82892, chebi:6923, chemspider:4044, wikidata:Q410534, chembl.compound:CHEMBL91, pubchem.compound:4189, drugbank:DB01110, hmdb:HMDB15242, hmdb:HMDB0015242, kegg.compound:C08070, kegg.compound:D00882 ;
-	owl:sameAs	chebi:82892, chebi:82892, chebi:6923, chemspider:4044, wikidata:Q410534, chembl.compound:CHEMBL91, pubchem.compound:4189, drugbank:DB01110, hmdb:HMDB15242, hmdb:HMDB0015242, kegg.compound:C08070, kegg.compound:D00882 .
+	skos:exactMatch	chebi:82892, chebi:82892, chemspider:4044, wikidata:Q410534, chembl.compound:CHEMBL91, pubchem.compound:4189, drugbank:DB01110, hmdb:HMDB15242, hmdb:HMDB0015242, kegg.compound:C08070, kegg.compound:D00882 ;
+	owl:sameAs	chebi:82892, chebi:82892, chemspider:4044, wikidata:Q410534, chembl.compound:CHEMBL91, pubchem.compound:4189, drugbank:DB01110, hmdb:HMDB15242, hmdb:HMDB0015242, kegg.compound:C08070, kegg.compound:D00882 .
 
 
 cas:86386-73-4
@@ -1255,8 +1255,8 @@ cas:137-30-4
 
 
 cas:12122-67-7
-	skos:exactMatch	chebi:52498, chebi:52498, chemspider:2297309, chemspider:21170912, wikidata:Q204384, chembl.compound:CHEMBL1411246, pubchem.compound:5284484, kegg.compound:C15232 ;
-	owl:sameAs	chebi:52498, chebi:52498, chemspider:2297309, chemspider:21170912, wikidata:Q204384, chembl.compound:CHEMBL1411246, pubchem.compound:5284484, kegg.compound:C15232 .
+	skos:exactMatch	chebi:52498, chebi:52498, chemspider:2297309, chemspider:21170912, wikidata:Q204384, chembl.compound:CHEMBL1411246, pubchem.compound:3032296, pubchem.compound:101815861, pubchem.compound:5284484, kegg.compound:C15232 ;
+	owl:sameAs	chebi:52498, chebi:52498, chemspider:2297309, chemspider:21170912, wikidata:Q204384, chembl.compound:CHEMBL1411246, pubchem.compound:3032296, pubchem.compound:101815861, pubchem.compound:5284484, kegg.compound:C15232 .
 
 
 cas:591-35-5
@@ -1300,8 +1300,8 @@ cas:202138-50-9
 
 
 cas:106941-25-7
-	skos:exactMatch	chebi:2469, chebi:2469, chemspider:54252, wikidata:Q353551, chembl.compound:CHEMBL484, pubchem.compound:60172, drugbank:DB13868, kegg.compound:D02768, kegg.compound:C11277 ;
-	owl:sameAs	chebi:2469, chebi:2469, chemspider:54252, wikidata:Q353551, chembl.compound:CHEMBL484, pubchem.compound:60172, drugbank:DB13868, kegg.compound:D02768, kegg.compound:C11277 .
+	skos:exactMatch	chebi:2469, chebi:2469, chemspider:54252, wikidata:Q353551, chembl.compound:CHEMBL484, pubchem.compound:60172, drugbank:DB13868, kegg.compound:D02768 ;
+	owl:sameAs	chebi:2469, chebi:2469, chemspider:54252, wikidata:Q353551, chembl.compound:CHEMBL484, pubchem.compound:60172, drugbank:DB13868, kegg.compound:D02768 .
 
 
 cas:142340-99-6
@@ -1315,8 +1315,8 @@ cas:113852-37-2
 
 
 cas:1403-66-3
-	skos:exactMatch	chebi:17833, chemspider:3348, wikidata:Q422482, chembl.compound:CHEMBL329592, pubchem.compound:3467, drugbank:DB00798, hmdb:HMDB0014936, hmdb:HMDB14936, kegg.compound:D08013, kegg.compound:C00505 ;
-	owl:sameAs	chebi:17833, chemspider:3348, wikidata:Q422482, chembl.compound:CHEMBL329592, pubchem.compound:3467, drugbank:DB00798, hmdb:HMDB0014936, hmdb:HMDB14936, kegg.compound:D08013, kegg.compound:C00505 .
+	skos:exactMatch	chemspider:3348, wikidata:Q422482, chembl.compound:CHEMBL329592, pubchem.compound:3467, drugbank:DB00798, hmdb:HMDB0014936, hmdb:HMDB14936, kegg.compound:D08013 ;
+	owl:sameAs	chemspider:3348, wikidata:Q422482, chembl.compound:CHEMBL329592, pubchem.compound:3467, drugbank:DB00798, hmdb:HMDB0014936, hmdb:HMDB14936, kegg.compound:D08013 .
 
 
 cas:32986-56-4
@@ -1330,13 +1330,13 @@ cas:1404-90-6
 
 
 cas:1404-26-8
-	skos:exactMatch	chebi:59063, chebi:8309, chebi:8309, chemspider:21253968, wikidata:Q27108044, pubchem.compound:199402, kegg.compound:C11612, lipidmaps:LMPK14000008 ;
-	owl:sameAs	chebi:59063, chebi:8309, chebi:8309, chemspider:21253968, wikidata:Q27108044, pubchem.compound:199402, kegg.compound:C11612, lipidmaps:LMPK14000008 .
+	skos:exactMatch	chebi:8309, chebi:8309, chemspider:21253968, wikidata:Q27108044, pubchem.compound:199402 ;
+	owl:sameAs	chebi:8309, chebi:8309, chemspider:21253968, wikidata:Q27108044, pubchem.compound:199402 .
 
 
 cas:1066-17-7
-	skos:exactMatch	chebi:37943, chebi:37943, wikidata:Q418946, drugbank:DB00803, kegg.compound:D02138, kegg.compound:C13768 ;
-	owl:sameAs	chebi:37943, chebi:37943, wikidata:Q418946, drugbank:DB00803, kegg.compound:D02138, kegg.compound:C13768 .
+	skos:exactMatch	chebi:37943, chebi:37943, wikidata:Q418946, pubchem.compound:131704173, drugbank:DB00803, kegg.compound:D02138 ;
+	owl:sameAs	chebi:37943, chebi:37943, wikidata:Q418946, pubchem.compound:131704173, drugbank:DB00803, kegg.compound:D02138 .
 
 
 cas:13838-16-9
@@ -1420,8 +1420,8 @@ cas:72509-76-3
 
 
 cas:63675-72-9
-	skos:exactMatch	chebi:76917, chebi:76917, chebi:7577, chemspider:4343, wikidata:Q3342150, chembl.compound:CHEMBL1726, pubchem.compound:4499, drugbank:DB00401, hmdb:HMDB14545, hmdb:HMDB0014545, kegg.compound:D00618, kegg.compound:C07699 ;
-	owl:sameAs	chebi:76917, chebi:76917, chebi:7577, chemspider:4343, wikidata:Q3342150, chembl.compound:CHEMBL1726, pubchem.compound:4499, drugbank:DB00401, hmdb:HMDB14545, hmdb:HMDB0014545, kegg.compound:D00618, kegg.compound:C07699 .
+	skos:exactMatch	chebi:76917, chebi:76917, chemspider:4343, wikidata:Q3342150, chembl.compound:CHEMBL1726, pubchem.compound:4499, drugbank:DB00401, hmdb:HMDB14545, hmdb:HMDB0014545, kegg.compound:D00618, kegg.compound:C07699 ;
+	owl:sameAs	chebi:76917, chebi:76917, chemspider:4343, wikidata:Q3342150, chembl.compound:CHEMBL1726, pubchem.compound:4499, drugbank:DB00401, hmdb:HMDB14545, hmdb:HMDB0014545, kegg.compound:D00618, kegg.compound:C07699 .
 
 
 cas:66085-59-4
@@ -1440,8 +1440,8 @@ cas:42399-41-7
 
 
 cas:88-85-7
-	skos:exactMatch	chebi:83632, chebi:83632, chebi:34719, chemspider:6684, wikidata:Q415111, chembl.compound:CHEMBL1892987, pubchem.compound:6950, hmdb:HMDB0032559, hmdb:HMDB32559, kegg.compound:C14302 ;
-	owl:sameAs	chebi:83632, chebi:83632, chebi:34719, chemspider:6684, wikidata:Q415111, chembl.compound:CHEMBL1892987, pubchem.compound:6950, hmdb:HMDB0032559, hmdb:HMDB32559, kegg.compound:C14302 .
+	skos:exactMatch	chebi:83632, chebi:83632, chemspider:6684, wikidata:Q415111, chembl.compound:CHEMBL1892987, pubchem.compound:6950, hmdb:HMDB32559, hmdb:HMDB0032559, kegg.compound:C14302 ;
+	owl:sameAs	chebi:83632, chebi:83632, chemspider:6684, wikidata:Q415111, chembl.compound:CHEMBL1892987, pubchem.compound:6950, hmdb:HMDB32559, hmdb:HMDB0032559, kegg.compound:C14302 .
 
 
 cas:15502-74-6
@@ -1455,8 +1455,8 @@ cas:2277-92-1
 
 
 cas:1397-94-0
-	skos:exactMatch	chebi:2762, wikidata:Q110402628, kegg.compound:C11339 ;
-	owl:sameAs	chebi:2762, wikidata:Q110402628, kegg.compound:C11339 .
+	skos:exactMatch	wikidata:Q110402628 ;
+	owl:sameAs	wikidata:Q110402628 .
 
 
 cas:3562-84-3
@@ -1475,8 +1475,8 @@ cas:83366-66-9
 
 
 cas:657-24-9
-	skos:exactMatch	chebi:6801, chebi:6801, chemspider:3949, wikidata:Q19484, chembl.compound:CHEMBL1431, pubchem.compound:4091, drugbank:DB00331, hmdb:HMDB01921, kegg.compound:D04966, kegg.compound:C07151 ;
-	owl:sameAs	chebi:6801, chebi:6801, chemspider:3949, wikidata:Q19484, chembl.compound:CHEMBL1431, pubchem.compound:4091, drugbank:DB00331, hmdb:HMDB01921, kegg.compound:D04966, kegg.compound:C07151 .
+	skos:exactMatch	chebi:6801, chebi:6801, chemspider:3949, wikidata:Q19484, chembl.compound:CHEMBL1431, pubchem.compound:155906370, pubchem.compound:152743144, pubchem.compound:4091, drugbank:DB00331, hmdb:HMDB01921, kegg.compound:D04966, kegg.compound:C07151 ;
+	owl:sameAs	chebi:6801, chebi:6801, chemspider:3949, wikidata:Q19484, chembl.compound:CHEMBL1431, pubchem.compound:155906370, pubchem.compound:152743144, pubchem.compound:4091, drugbank:DB00331, hmdb:HMDB01921, kegg.compound:D04966, kegg.compound:C07151 .
 
 
 cas:130929-57-6
@@ -1515,8 +1515,8 @@ cas:547757-23-3
 
 
 cas:20554-84-1
-	skos:exactMatch	chebi:7939, chebi:7939, chemspider:4510242, wikidata:Q76393797, wikidata:Q2662393, chembl.compound:CHEMBL3186408, pubchem.compound:5420805, pubchem.compound:7251185, drugbank:DB13063, kegg.compound:C07609, lipidmaps:LMPR0103090002 ;
-	owl:sameAs	chebi:7939, chebi:7939, chemspider:4510242, wikidata:Q76393797, wikidata:Q2662393, chembl.compound:CHEMBL3186408, pubchem.compound:5420805, pubchem.compound:7251185, drugbank:DB13063, kegg.compound:C07609, lipidmaps:LMPR0103090002 .
+	skos:exactMatch	chebi:7939, chebi:7939, chemspider:4510242, wikidata:Q76393797, wikidata:Q2662393, chembl.compound:CHEMBL3186408, pubchem.compound:5420805, pubchem.compound:7251185, drugbank:DB13063, kegg.compound:C07609 ;
+	owl:sameAs	chebi:7939, chebi:7939, chemspider:4510242, wikidata:Q76393797, wikidata:Q2662393, chembl.compound:CHEMBL3186408, pubchem.compound:5420805, pubchem.compound:7251185, drugbank:DB13063, kegg.compound:C07609 .
 
 
 cas:38194-50-2
@@ -1610,8 +1610,8 @@ cas:7784-46-5
 
 
 cas:76738-62-0
-	skos:exactMatch	chebi:139344, chebi:139344, chebi:73162, chemspider:66322, wikidata:Q3270569, chembl.compound:CHEMBL1897373, pubchem.compound:73671, kegg.compound:C18479 ;
-	owl:sameAs	chebi:139344, chebi:139344, chebi:73162, chemspider:66322, wikidata:Q3270569, chembl.compound:CHEMBL1897373, pubchem.compound:73671, kegg.compound:C18479 .
+	skos:exactMatch	chebi:139344, chebi:139344, chemspider:66322, wikidata:Q3270569, chembl.compound:CHEMBL1897373, pubchem.compound:73671, kegg.compound:C18479 ;
+	owl:sameAs	chebi:139344, chebi:139344, chemspider:66322, wikidata:Q3270569, chembl.compound:CHEMBL1897373, pubchem.compound:73671, kegg.compound:C18479 .
 
 
 cas:1836-75-5
@@ -1650,8 +1650,8 @@ cas:330-55-2
 
 
 cas:32809-16-8
-	skos:exactMatch	chebi:8450, chebi:8450, chemspider:33326, wikidata:Q416120, chembl.compound:CHEMBL513678, pubchem.compound:36242, hmdb:HMDB0256790, kegg.compound:C10986 ;
-	owl:sameAs	chebi:8450, chebi:8450, chemspider:33326, wikidata:Q416120, chembl.compound:CHEMBL513678, pubchem.compound:36242, hmdb:HMDB0256790, kegg.compound:C10986 .
+	skos:exactMatch	chemspider:33326, wikidata:Q416120, chembl.compound:CHEMBL513678, pubchem.compound:36242, hmdb:HMDB0256790, kegg.compound:C10986 ;
+	owl:sameAs	chemspider:33326, wikidata:Q416120, chembl.compound:CHEMBL513678, pubchem.compound:36242, hmdb:HMDB0256790, kegg.compound:C10986 .
 
 
 cas:84-61-7
@@ -1690,8 +1690,8 @@ cas:50-28-2
 
 
 cas:68392-35-8
-	skos:exactMatch	chebi:92076, chebi:92076, chemspider:56752, wikidata:Q27163871, chembl.compound:CHEMBL2137046, pubchem.compound:63062, hmdb:HMDB0248042, kegg.compound:C05011 ;
-	owl:sameAs	chebi:92076, chebi:92076, chemspider:56752, wikidata:Q27163871, chembl.compound:CHEMBL2137046, pubchem.compound:63062, hmdb:HMDB0248042, kegg.compound:C05011 .
+	skos:exactMatch	chebi:92076, chebi:92076, chemspider:56752, wikidata:Q27163871, chembl.compound:CHEMBL2137046, pubchem.compound:63062, hmdb:HMDB0248042 ;
+	owl:sameAs	chebi:92076, chebi:92076, chemspider:56752, wikidata:Q27163871, chembl.compound:CHEMBL2137046, pubchem.compound:63062, hmdb:HMDB0248042 .
 
 
 cas:114798-26-4
@@ -1725,8 +1725,8 @@ cas:107868-30-4
 
 
 cas:5697-56-3
-	skos:exactMatch	chemspider:552190, wikidata:Q752861, chembl.compound:CHEMBL499915, pubchem.compound:636403, drugbank:DB02329 ;
-	owl:sameAs	chemspider:552190, wikidata:Q752861, chembl.compound:CHEMBL499915, pubchem.compound:636403, drugbank:DB02329 .
+	skos:exactMatch	chebi:41462, chebi:41462, chemspider:552190, wikidata:Q752861, chembl.compound:CHEMBL499915, pubchem.compound:636403, drugbank:DB02329 ;
+	owl:sameAs	chebi:41462, chebi:41462, chemspider:552190, wikidata:Q752861, chembl.compound:CHEMBL499915, pubchem.compound:636403, drugbank:DB02329 .
 
 
 cas:1405-86-3
@@ -1850,8 +1850,8 @@ cas:302-79-4
 
 
 cas:84625-61-6
-	skos:exactMatch	chebi:6076, chebi:6076, chebi:94366, chemspider:49927, wikidata:Q411229, chembl.compound:CHEMBL22587, pubchem.compound:55283, drugbank:DB01167, hmdb:HMDB15298, hmdb:HMDB0015298, kegg.compound:D00350 ;
-	owl:sameAs	chebi:6076, chebi:6076, chebi:94366, chemspider:49927, wikidata:Q411229, chembl.compound:CHEMBL22587, pubchem.compound:55283, drugbank:DB01167, hmdb:HMDB15298, hmdb:HMDB0015298, kegg.compound:D00350 .
+	skos:exactMatch	chebi:6076, chebi:6076, chemspider:49927, wikidata:Q411229, chembl.compound:CHEMBL22587, pubchem.compound:55283, drugbank:DB01167, hmdb:HMDB15298, hmdb:HMDB0015298, kegg.compound:D00350 ;
+	owl:sameAs	chebi:6076, chebi:6076, chemspider:49927, wikidata:Q411229, chembl.compound:CHEMBL22587, pubchem.compound:55283, drugbank:DB01167, hmdb:HMDB15298, hmdb:HMDB0015298, kegg.compound:D00350 .
 
 
 cas:145040-37-5
@@ -1910,8 +1910,8 @@ cas:116355-83-0
 
 
 cas:1333-86-4
-	skos:exactMatch	chebi:82297, chebi:82297, wikidata:Q3342725, wikidata:Q764245, drugbank:DB11980, kegg.compound:C19202 ;
-	owl:sameAs	chebi:82297, chebi:82297, wikidata:Q3342725, wikidata:Q764245, drugbank:DB11980, kegg.compound:C19202 .
+	skos:exactMatch	chebi:82297, chebi:82297, wikidata:Q30348162, wikidata:Q764245, drugbank:DB11980 ;
+	owl:sameAs	chebi:82297, chebi:82297, wikidata:Q30348162, wikidata:Q764245, drugbank:DB11980 .
 
 
 cas:879085-55-9
@@ -1950,8 +1950,8 @@ cas:581809-46-3
 
 
 cas:874967-67-6
-	skos:exactMatch	chebi:83174, chebi:83174, chebi:83173, chemspider:9863260, wikidata:Q17592209, pubchem.compound:11688533 ;
-	owl:sameAs	chebi:83174, chebi:83174, chebi:83173, chemspider:9863260, wikidata:Q17592209, pubchem.compound:11688533 .
+	skos:exactMatch	chebi:83174, chebi:83174, chemspider:9863260, wikidata:Q17592209, pubchem.compound:11688533 ;
+	owl:sameAs	chebi:83174, chebi:83174, chemspider:9863260, wikidata:Q17592209, pubchem.compound:11688533 .
 
 
 cas:142-47-2
@@ -1995,8 +1995,8 @@ cas:9002-86-2
 
 
 cas:81098-60-4
-	skos:exactMatch	chebi:95129, chebi:3720, chebi:3720, chemspider:5292927, wikidata:Q425295, chembl.compound:CHEMBL1729, chembl.compound:CHEMBL560739, pubchem.compound:6917698, drugbank:DB00604, hmdb:HMDB14742, hmdb:HMDB0014742, kegg.compound:C06910, kegg.compound:D00274 ;
-	owl:sameAs	chebi:95129, chebi:3720, chebi:3720, chemspider:5292927, wikidata:Q425295, chembl.compound:CHEMBL1729, chembl.compound:CHEMBL560739, pubchem.compound:6917698, drugbank:DB00604, hmdb:HMDB14742, hmdb:HMDB0014742, kegg.compound:C06910, kegg.compound:D00274 .
+	skos:exactMatch	chebi:3720, chebi:3720, chemspider:5292927, wikidata:Q425295, chembl.compound:CHEMBL1729, chembl.compound:CHEMBL560739, pubchem.compound:6917698, drugbank:DB00604, hmdb:HMDB14742, hmdb:HMDB0014742, kegg.compound:C06910, kegg.compound:D00274 ;
+	owl:sameAs	chebi:3720, chebi:3720, chemspider:5292927, wikidata:Q425295, chembl.compound:CHEMBL1729, chembl.compound:CHEMBL560739, pubchem.compound:6917698, drugbank:DB00604, hmdb:HMDB14742, hmdb:HMDB0014742, kegg.compound:C06910, kegg.compound:D00274 .
 
 
 cas:50679-08-8
@@ -2010,8 +2010,8 @@ cas:1763-23-1
 
 
 cas:121-75-5
-	skos:exactMatch	chebi:141474, chebi:141474, chebi:6651, chemspider:3864, wikidata:Q423005, chembl.compound:CHEMBL1200468, pubchem.compound:4004, drugbank:DB00772, hmdb:HMDB14910, hmdb:HMDB0014910, kegg.compound:D00534, kegg.compound:C07497 ;
-	owl:sameAs	chebi:141474, chebi:141474, chebi:6651, chemspider:3864, wikidata:Q423005, chembl.compound:CHEMBL1200468, pubchem.compound:4004, drugbank:DB00772, hmdb:HMDB14910, hmdb:HMDB0014910, kegg.compound:D00534, kegg.compound:C07497 .
+	skos:exactMatch	chebi:141474, chebi:141474, chemspider:3864, wikidata:Q423005, chembl.compound:CHEMBL1200468, pubchem.compound:4004, drugbank:DB00772, hmdb:HMDB14910, hmdb:HMDB0014910, kegg.compound:D00534, kegg.compound:C07497 ;
+	owl:sameAs	chebi:141474, chebi:141474, chemspider:3864, wikidata:Q423005, chembl.compound:CHEMBL1200468, pubchem.compound:4004, drugbank:DB00772, hmdb:HMDB14910, hmdb:HMDB0014910, kegg.compound:D00534, kegg.compound:C07497 .
 
 
 cas:50-29-3
@@ -2045,8 +2045,8 @@ cas:19666-30-9
 
 
 cas:51218-45-2
-	skos:exactMatch	chebi:6902, chebi:83645, chebi:83645, chemspider:4025, wikidata:Q409598, chembl.compound:CHEMBL1884974, pubchem.compound:4169, hmdb:HMDB0254678, kegg.compound:C10953 ;
-	owl:sameAs	chebi:6902, chebi:83645, chebi:83645, chemspider:4025, wikidata:Q409598, chembl.compound:CHEMBL1884974, pubchem.compound:4169, hmdb:HMDB0254678, kegg.compound:C10953 .
+	skos:exactMatch	chebi:83645, chebi:83645, chemspider:4025, wikidata:Q409598, chembl.compound:CHEMBL1884974, pubchem.compound:4169, hmdb:HMDB0254678, kegg.compound:C10953 ;
+	owl:sameAs	chebi:83645, chebi:83645, chemspider:4025, wikidata:Q409598, chembl.compound:CHEMBL1884974, pubchem.compound:4169, hmdb:HMDB0254678, kegg.compound:C10953 .
 
 
 cas:57-97-6

@@ -1,11 +1,11 @@
 {
   "per_source": {
     "ChEBI": {
-      "labeled": 469,
+      "labeled": 441,
       "unlabeled": 0
     },
     "ChEMBL": {
-      "labeled": 368,
+      "labeled": 367,
       "unlabeled": 0
     },
     "ChemSpider": {
@@ -21,15 +21,15 @@
       "unlabeled": 0
     },
     "HMDB": {
-      "labeled": 550,
+      "labeled": 548,
       "unlabeled": 0
     },
     "KEGG": {
-      "labeled": 490,
+      "labeled": 474,
       "unlabeled": 0
     },
     "LIPID MAPS": {
-      "labeled": 36,
+      "labeled": 33,
       "unlabeled": 0
     },
     "NCBIGene": {
@@ -37,7 +37,7 @@
       "unlabeled": 0
     },
     "PubChem": {
-      "labeled": 487,
+      "labeled": 489,
       "unlabeled": 0
     },
     "UniProt": {
@@ -45,7 +45,7 @@
       "unlabeled": 0
     },
     "Wikidata": {
-      "labeled": 442,
+      "labeled": 441,
       "unlabeled": 0
     }
   },
