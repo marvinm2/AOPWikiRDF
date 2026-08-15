@@ -17,7 +17,7 @@
       "unlabeled": 0
     },
     "Ensembl": {
-      "labeled": 2725,
+      "labeled": 2722,
       "unlabeled": 0
     },
     "HMDB": {
@@ -33,7 +33,7 @@
       "unlabeled": 0
     },
     "NCBIGene": {
-      "labeled": 2745,
+      "labeled": 2742,
       "unlabeled": 0
     },
     "PubChem": {
@@ -41,7 +41,7 @@
       "unlabeled": 0
     },
     "UniProt": {
-      "labeled": 13598,
+      "labeled": 13595,
       "unlabeled": 0
     },
     "Wikidata": {
