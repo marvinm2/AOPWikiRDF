@@ -23,45 +23,45 @@
 	dcat:accrualPeriodicity	freq:weekly ;
 	void:subset	:AOPWikiRDF.ttl, :AOPWikiRDF-Enriched.ttl, :AOPWikiRDF-Genes.ttl ;
 	void:exampleResource	aop:1, aop.events:1, aop.relationships:1, cas:83-79-4, aop.stressor:1 ;
-	pav:createdOn	"2026-08-15"^^xsd:date ;
-	pav:version	"2026.08.15" ;
+	pav:createdOn	"2026-08-22"^^xsd:date ;
+	pav:version	"2026.08.22" ;
 	foaf:homepage	<https://aopwiki.org> ;
 	pav:createdBy	<https://zenodo.org/badge/latestdoi/146466058> ;
-	pav:createdWith	<https://github.com/marvinm2/AOPWikiRDF/commit/2f2e2e6d6c4b105e2bce6adb883aa5e932cbf1dd> .
+	pav:createdWith	<https://github.com/marvinm2/AOPWikiRDF/commit/72bd801fe32e71c88969fb137fdf689e3dbd19ae> .
 
 :AOPWikiRDF.ttl	a	void:Dataset ;
 	dc:description	"AOP-Wiki source-derived triples" ;
-	void:triples	138781 ;
+	void:triples	138898 ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	pav:createdOn	"2026-08-15"^^xsd:date ;
-	pav:createdWith	"aop-wiki-xml-2026-08-15", :Promapping ;
+	pav:createdOn	"2026-08-22"^^xsd:date ;
+	pav:createdWith	"aop-wiki-xml-2026-08-22", :Promapping ;
 	foaf:homepage	<https://aopwiki.org> ;
 	dcat:accrualPeriodicity	freq:weekly ;
-	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-08-15> .
+	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-08-22> .
 
 :AOPWikiRDF-Enriched.ttl	a	void:Dataset ;
 	dc:description	"Chemical and protein cross-reference enrichment triples" ;
 	void:triples	8262 ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	pav:importedFrom	<https://webservice.bridgedb.org/Human/> ;
-	pav:createdOn	"2026-08-15"^^xsd:date .
+	pav:createdOn	"2026-08-22"^^xsd:date .
 
 :AOPWikiRDF-Genes.ttl	a	void:Dataset ;
 	dc:description	"Gene mapping enrichment triples" ;
 	void:triples	191650 ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	pav:createdOn	"2026-08-15"^^xsd:date ;
-	pav:createdWith	"aop-wiki-xml-2026-08-15", :HGNCgenes ;
+	pav:createdOn	"2026-08-22"^^xsd:date ;
+	pav:createdWith	"aop-wiki-xml-2026-08-22", :HGNCgenes ;
 	foaf:homepage	<https://aopwiki.org> ;
 	dcat:accrualPeriodicity	freq:weekly ;
-	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-08-15>, <https://www.genenames.org/download/custom/> .
+	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-08-22>, <https://www.genenames.org/download/custom/> .
 
 :HGNCgenes.txt	a	void:Dataset, void:Linkset ;
 	dc:description	"HGNC approved symbols and names for genes" ;
 	dcat:downloadURL	<https://www.genenames.org/download/custom/> ;
-	pav:importedOn	"Sat Aug 15 08:31:23 2026" .
+	pav:importedOn	"Sat Aug 22 08:33:01 2026" .
 
 <https://proconsortium.org/download/current/promapping.txt>	a	void:Dataset, void:Linkset ;
 	dc:description	"PRotein ontology mappings to protein database identifiers" ;
 	dcat:downloadURL	<https://proconsortium.org/download/current/promapping.txt> ;
-	pav:importedOn	"Sat Aug 15 08:30:33 2026" .
+	pav:importedOn	"Sat Aug 22 08:32:58 2026" .
