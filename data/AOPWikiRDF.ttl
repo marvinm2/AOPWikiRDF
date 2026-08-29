@@ -67361,6 +67361,8 @@ aop:566
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2025-01-10T14:01:22" ;
 	dcterms:modified	"2025-04-03T15:58:17" ;
+	dc:description	"""Persistent vaginal cornification is an adverse outcome monitored in Endocrine Disruptor Screening Program (EDSP) protocol (US EPA 1998; OECD 2001).
+""" ;
 	aopo:AopContext	"""Sex Applicability: Males and Females
 
 Taxonomic Applicablity: Restricted to mammals.
@@ -72338,6 +72340,7 @@ aop:609
 	dcterms:created	"2025-10-02T12:18:23" ;
 	dcterms:modified	"2026-07-28T14:26:52" ;
 	dc:description	"""This AOP was part of an Environmental Protection Agency effort to develop AOPs that establish scientifically supported causal linkages between alternative endpoints measured using new approach methodologies (NAMs) and guideline apical endpoints measured in Tier 1 and Tier 2 test guidelines (U.S. EPA, 2025) employed by the Endocrine Disruptor Screening Program (EDSP). &nbsp;A series of key events that represent significant, measurable, milestones connecting molecular initiation to apical endpoints indicative of adversity were identified based on scientific review articles and empirical studies. Additionally, scientific evidence supporting the causal relationships between each pair of key events was assembled and evaluated. &nbsp; The present effort focused primarily on empirical studies with laboratory rodents and other mammals.
+""", """Prolonged estrus cycle is an adverse outcome monitored in Endocrine Disruptor Screening Program (EDSP) protocol&nbsp;US EPA 1998, 2011; OECD 2025).
 """ ;
 	nci:C25217	"""
 	
@@ -74049,6 +74052,7 @@ aop:623
 	dcterms:created	"2026-01-29T10:46:44" ;
 	dcterms:modified	"2026-07-08T15:20:54" ;
 	dc:description	"""This AOP was part of an Environmental Protection Agency effort to develop AOPs that establish scientifically supported causal linkages between alternative endpoints measured using new approach methodologies (NAMs) and guideline apical endpoints measured in Tier 1 and Tier 2 test guidelines (U.S. EPA, 2025) employed by the Endocrine Disruptor Screening Program (EDSP). &nbsp;A series of key events that represent significant, measurable, milestones connecting molecular initiation to apical endpoints indicative of adversity were identified based on scientific review articles and empirical studies. Additionally, scientific evidence supporting the causal relationships between each pair of key events was assembled and evaluated. &nbsp; The present effort focused primarily on empirical studies with laboratory rodents and other mammals.
+""", """Persistent vaginal cornification is an adverse outcome monitored in Endocrine Disruptor Screening Program (EDSP) protocol (US EPA 1998; OECD 2001).
 """ ;
 	nci:C25217	"""
 	
@@ -76136,7 +76140,7 @@ aop:636
 	dcterms:alternative	"Increase in ROS leading to human ALS" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-03-13T02:16:33" ;
-	dcterms:modified	"2026-08-20T21:43:22" ;
+	dcterms:modified	"2026-08-23T18:47:19" ;
 	dc:description	"""The development of ALS represents an apical neurotoxicological endpoint of paramount regulatory significance, falling directly under international safety assessment and human health protection frameworks:
 
 
@@ -76210,7 +76214,7 @@ aop:636
 	aopo:has_key_event_relationship	aop.relationships:3496, aop.relationships:3767, aop.relationships:2500, aop.relationships:3768 ;
 	aopo:has_molecular_initiating_event	aop.events:1115 ;
 	aopo:has_adverse_outcome	aop.events:2416 ;
-	nci:C54571	aop.stressor:549, aop.stressor:303, aop.stressor:673 ;
+	nci:C54571	aop.stressor:303 ;
 	pato:0000047	"Male", "Female" ;
 	aopo:LifeStageContext	"Adult" ;
 	ncbitaxon:131567	ncbitaxon:9606 .
@@ -76568,6 +76572,7 @@ aop:639
 	dcterms:created	"2026-03-26T11:33:01" ;
 	dcterms:modified	"2026-06-02T14:34:37" ;
 	dc:description	"""This AOP was part of an Environmental Protection Agency effort to develop AOPs that establish scientifically supported causal linkages between alternative endpoints measured using new approach methodologies (NAMs) and guideline apical endpoints measured in Tier 1 and Tier 2 test guidelines (U.S. EPA, 2025) employed by the Endocrine Disruptor Screening Program (EDSP). &nbsp;A series of key events that represent significant, measurable, milestones connecting molecular initiation to apical endpoints indicative of adversity were identified based on scientific review articles and empirical studies. Additionally, scientific evidence supporting the causal relationships between each pair of key events was assembled and evaluated. &nbsp; The present effort focused primarily on empirical studies with laboratory rodents and other mammals.
+""", """Precocious puberty is an adverse outcome monitored in Endocrine Disruptor Screening Program (EDSP) protocol (US EPA 1998, 2011; OECD 2025).
 """ ;
 	nci:C25217	"""
 	
@@ -85504,6 +85509,82 @@ The follicular pool in humans cannot be directly counted in vivo. Surrogate mark
 	pato:0001241	uberon:0001305 ;
 	dcterms:isPartOf	aop:563 .
 
+aop.events:2306
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2306 ;
+	rdfs:label	"KE 2306" ;
+	foaf:page	<https://identifiers.org/aop.events/2306> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2306> ;
+	dc:title	"Persistent vaginal cornification" ;
+	dcterms:alternative	"Persistent vaginal cornification" ;
+	dc:source	"AOPWiki" ;
+	dc:description	"""Vaginal cornification refers to the thickening (increased cell layers) and process where vaginal epithelial cells harden by addition of keratin during estrus.
+
+Biological state
+
+The rodent cycle is subdivided in four subsequent phases, proestrous, estrous, metestrous (or diestrous 1) and diestrous (or dioestrous 2).&nbsp; It is characterized by hormonal variation and consequent behavioural, morphological and physiological changes to the reproductive tract (ovary, uterus and vagina), describing these four phases.&nbsp; Proestrous is the period during which pre-ovulatory development of the follicles takes place in the ovary. Estrous is the brief interval during which the female accepts the male and during which ovulation occurs. Next is metoestrous, the early luteal phase, followed by diestrous. The duration of the estrous cycle of rodent strains most commonly used in toxicology studies is typically 4 to 5 days (Goldman, 2007). For each phase of the cycle, the ovary, uterus and vagina have typical morphologic characteristics (Dixon, 2014).
+
+Biological role in physiology
+
+The keratinization of vaginal epithelial cells (vaginal cornification) that typically characterizes the day of estrous in the cycling rodents, is a consequence of the rising level of estradiol that peaks around midday on proestrous (Goldman, 2007).
+
+Repeated failure of ovulation over successive days produces irregular cycles characterized by a persistent vaginal cornification (PVC). This state is called persistent estrous or constant estrous. Females in persistent estrous exhibit constant sexual receptivity (Westwood, 2008). The term persistent estrous (PE) in adult rats denotes failure of at least two consecutive estrous cycles as documented by cornified vaginal smears for 10 or more days (Singh, 2005).
+
+Exposure to estrogenic compounds has commonly been reported to result in a persistent vaginal cornification (Goldman, 2007). As such, persistent vaginal cornification represents a good marker of prolonged E2 bioavailability in the uterus in regulatory studies.
+
+It is noteworthy that persistent estrous is not equivalent to the true estrous phase. Indeed, at ovary level, estrous stage is characterized by the presence of new basophilic corpora lutea (CP) formed after the current ovulation and an absence of healthy (non-atretic) tertiary follicles. On the other end, a state of persistent estrous is characterized by ovaries with absence of basophilic corpora lutea, increased number of antral follicles and follicular cysts. Persistent estrous is comparable with the anovulatory cycles in women (Horvath 2004; Finch, 2014).
+""" ;
+	mmo:0000000	"""Regular cyclicity is one of the key parameters in assessment of female reproductive function in rodents. Parameters assessed for cyclicity:
+
+
+	Number of cycling females
+	Number of females with regular cycles
+	Number of cycles
+	Estrous cycle length
+	Percentage of time spent in the various estrous cycle stages. Abnormal cycles were defined as one or more estrous cycles in the 21-day period with prolonged estrous (&ge;3 days) or prolonged diestrous (&ge;4 days) within a given cycle (Goldman, 2007).
+
+
+Visual assessment
+
+Visual observation of the vagina is the fastest method. It requires no special equipment and is best used when only proestrous or estrous stages need to be identified. It is non-invasive but the findings from this technique are observer-dependent. In the proestrous phase, the vaginal opening appears full, swollen and moist (Ajayi, 2020). The vaginal opening of mice in proestrous is characterized by swollen, moist, pink tissue. The opening is wide and there are often wrinkles or striations along the dorsal and ventral edges. As the mouse enters estrous, the vaginal opening becomes less pink, less moist, and less swollen (Byers, 2012).
+
+Vaginal smear
+
+Estrous cycle can be monitored in the rat and mouse by observing the changes in the vaginal smear cytology. It seems to be the most common technique used to determine the phases of the estrous cycle. It is non-invasive and relatively inexpensive (Goldman, 2007; Byer, 2012; Ajayi, 2020) and OECD guidelines (www.oecd.org).
+
+The estrous phase shows abundant non-nucleate cornified epithelial cells. The cytoplasm is granular, and the cells are irregular in shape. Persistent estrous is characterized by cornified vaginal smears for 10 or more days.
+
+Monitoring of estrous cyclicity is included in OECD test guidelines (TG 421: Reproduction/Developmental Toxicity Screening Test, 2016; TG 422 Combined Repeated Dose Toxicity Study with the Reproduction/Developmental Toxicity Screening Test, 2016; TG 416: Two-Generation Reproduction Toxicity, 2001; TG 443: Extended One-Generation Reproductive Toxicity Study, 2018; and in USA EPA OCSPP 890.1450. Pubertal Development and Thyroid Function in Intact Juvenile/Peripubertal Female Rats Assay, 2011.
+
+Histological examination of the reproductive organs
+
+This technique is invasive and does not allow individual estrous cyclicity assessment. The minimal requirement for estrous staging evaluation by histology is the complete longitudinal sections of the vagina and cervix, transverse sections of the mid-portion of both uterine horns, and middle sections of both ovaries (Goldman 2007; Byers, 2012). Persistent estrous is characterized in ovary by the presence of numbers of ovarian follicular cysts (due to pre-ovulatory follicles losing the capacity to ovulate) absence of basophilic corpora lutea and decreased corpora lutea while uterine epithelium becomes tall columnar and vagina may show cornification (Westwood, 2008, Dixon, 2014, Shirai 2017, see also Fig. 16).
+
+
+
+In OECD TG 443: For adult P and F1 females, a vaginal smear is examined on the day of necropsy to determine the stage of the estrous cycle and allow correlation with histopathology in reproductive organs.&nbsp; Vaginal smear at necropsy is also required in OECD TG 408, OECD TG 421, OECD TG 422 while it is optional in OECD TG 407.
+
+Other methods
+
+Vaginal wall impedance and urine biochemistry are alternative methods. However, no standard values are available for commonly used laboratory animals (Ajayi, 2020).
+""" ;
+	nci:C25664	"""Tissue""" ;
+	nci:C17469	"""The majority of the information comes from in vivo studies with rodents.
+
+Regulatory Significance of the KE
+
+While an evaluation of the estrous cycle in laboratory rodents can be a useful measure of the integrity of the hypothalamic-pituitary-ovarian reproductive axis, it can also serve as a way of ensuring that animals exhibiting abnormal cycling patterns are excluded from a study prior to exposure to a test compound. When incorporated as an adjunct to other endpoint measures, a determination of a female&#39;s cycling status can contribute important information about the nature of a toxicant insult to the reproductive system. In doing so, it can help to integrate the data into a more comprehensive mechanistic portrait of the effect, and in terms of risk assessment, may provide some indication of a toxicant&#39;s impact on human reproductive physiology. Significant evidence that the estrous cycle (or menstrual cycle in primates) has been disrupted should be considered an adverse effect (OECD, 2008). Included should be evidence of abnormal cycle length or pattern, ovulation failure, or abnormal menstruation (AOP 7).
+""" ;
+	pato:0000047	"Female" ;
+	aopo:LifeStageContext	"Adult, reproductively mature" ;
+	ncbitaxon:131567	"WikiUser_17" ;
+	aopo:OrganContext	uberon:0001344 ;
+	aopo:hasBiologicalEvent	<2306_bioevent_0> ;
+	go:0008150	go:0070268 ;
+	pato:0000001	"occurrence" ;
+	pato:0001241	uberon:0001344 ;
+	dcterms:isPartOf	aop:566, aop:623 .
+
 aop.events:2316
 	a	aopo:KeyEvent ;
 	dc:identifier	aop.events:2316 ;
@@ -85536,6 +85617,106 @@ Taxonomic: Primarily studied in humans and laboratory rodents.&nbsp;&nbsp;Plausi
 	pato:0000001	"increased" ;
 	pato:0001241	uberon:0002048 ;
 	dcterms:isPartOf	aop:573 .
+
+aop.events:1075
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:1075 ;
+	rdfs:label	"KE 1075" ;
+	foaf:page	<https://identifiers.org/aop.events/1075> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/1075> ;
+	dc:title	"prolonged, estrus cycle" ;
+	dcterms:alternative	"prolonged, estrus cycle" ;
+	dc:source	"AOPWiki" ;
+	dc:description	"""The estrus cycle is a coordinated series of changes that results in fertility in mammals. &nbsp;Changes to the uterus and vagina are coordinated through hormone signaling, including Progesterone, Estradiol, Luteinizing Hormone, and Follicle-Stimulating Hormone in order to progress through metestrus, diestrus, proestrus, and estrous phases &nbsp;over a period of 4-5 days in rodents (Miller and Takahashi 2014; Swift et al. 2024). &nbsp;In proestrus, increased estradiol levels occur, and physiological changes include ovarian follicle development and the thickening of the uterine wall in preparation for potential pregnancy. &nbsp;In estrus, a surge in luteinizing hormone levels occur, and ovulation of the mature egg. &nbsp;Metestrus is a short transition between estrus and diestrus, features an increase in progesterone levels, and development of the corpus luteum begins in preparation for pregnancy. &nbsp;Diestrus includes continued high levels of progesterone and further development of the corpus luteum; if pregnancy does not occur the corpus luteum regresses and resetting of the cycle occurs. &nbsp;Prolonged estrous occurs when the normal estrus cycle progression has been disrupted.
+
+
+Length of phases of the estrus cycle (modified from data/format from Ajayi and Akhigbe 2020):
+
+
+	
+		
+			
+			Phase
+			
+			
+			Length in Rats
+			
+			
+			Length in Mice
+			
+		
+		
+			
+			Proestrus
+			
+			
+			14 hours
+			
+			
+			&lt;24 hours
+			
+		
+		
+			
+			Estrus
+			
+			
+			24-48 hours
+			
+			
+			12-48 hours
+			
+		
+		
+			
+			Mestestrus
+			
+			
+			6-8 hours
+			
+			
+			8-24 hours
+			
+		
+		
+			
+			Diestrus
+			
+			
+			48-72 hours
+			
+			
+			48-72 hours
+			
+		
+	
+
+
+&nbsp;
+""" ;
+	mmo:0000000	"""The phases of the estrus cycles are determined by anatomical changes to the vagina and uterus, as well as vaginal smear/cytology (Laffan et al. 2018; Ajayi and Akhigbe 2020).&nbsp;
+
+
+Analysis of hormone levels can also be performed but are more labor intensive, more stressful to animals, and less definitive than physical examination.
+&nbsp;
+""" ;
+	nci:C25664	"""Individual""" ;
+	nci:C17469	"""Life Stage: Adult, reproductively mature and juveniles.
+
+
+Sex: Applies to females.
+
+
+Taxonomic: Primarily studied in laboratory rodents. &nbsp;Plausible for most mammals due to shared reproductive physiology and hormones. &nbsp;Primates have menstrual cycles as the lining of the uterus is shed rather than being reabsorbed.
+&nbsp;
+""" ;
+	pato:0000047	"Female" ;
+	aopo:LifeStageContext	"Adult, reproductively mature" ;
+	ncbitaxon:131567	"WikiUser_17" ;
+	aopo:hasBiologicalEvent	<1075_bioevent_0>, <1075_bioevent_1> ;
+	go:0008150	mp:0009006, mp:0009017 ;
+	pato:0000001	"increased" ;
+	dcterms:isPartOf	aop:168, aop:169, aop:609, aop:640 .
 
 aop.events:2401
 	a	aopo:KeyEvent ;
@@ -85814,6 +85995,38 @@ Taxonomic: Primarily studied in laboratory rodents. &nbsp;Applicable to most mam
 	pato:0000001	"increased" ;
 	pato:0001241	uberon:0009853 ;
 	dcterms:isPartOf	aop:637 .
+
+aop.events:2415
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2415 ;
+	rdfs:label	"KE 2415" ;
+	foaf:page	<https://identifiers.org/aop.events/2415> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2415> ;
+	dc:title	"Precocious puberty" ;
+	dcterms:alternative	"Precocious puberty" ;
+	dc:source	"AOPWiki" ;
+	dc:description	"""Puberty occurs when reproductive organs mature and hormone levels are altered to transform an individual into capable of reproduction (for review McCormick et al. 2017). &nbsp;Puberty is a process that all vertebrate species undergo in order to become sexually mature, but has been mainly studied in mammals (Ball and Wade 2013). In rodent females, puberty includes the onset of the estrus cycle (for review see Miller and Takahashi 2014; Swift et al. 2024). &nbsp;Precocious puberty occurs when stressors accelerate the process of sexual maturation, with associated physiological and hormone changes.
+""" ;
+	mmo:0000000	"""Puberty is generally assessed by physiological changes in an individual. &nbsp;In rodents vaginal opening in females and balanopreputial separation (separation of the foreskin from penis) in males are often used as visual indicators of onset of puberty (e.g. Engelbregt et al. 2001). &nbsp;In birds there can be species-specific changes such as feather plumage, eye color, skull ossification, feather wear, and eye color (Mueller and Weise 1996; Cucco and Malacarne 2000). &nbsp;Size (body weight or length) is generally a better predictor of maturity than age in reptiles (Ball and Wade 2013; Marn and Kooijman 2022), amphibians (Ryser 1996; Morrison and Hero 2003), and fish (Ryu et al. 2013; Espigares et al. 2015), with a threshold minimum size for reproduction. &nbsp;Determining an individual has mature ova or sperm or changes in hormone levels from baseline (i.e. gonadotropins, testosterone, estradiol) are more invasive but alternative assessment methods, with development of mature ova or sperm ultimately a more direct assessment of the onset of puberty.
+""" ;
+	nci:C25664	"""Individual""" ;
+	nci:C17469	"""Life Stage: Adult, reproductively mature, juveniles undergoing reproductive maturation.
+
+
+Sex: Applies to both males and females as both sexes undergo reproductive maturation.
+
+
+Taxonomic: Primarily studied in laboratory rodents and humans. &nbsp;Plausible for most mammals and vertebrates due to shared reproductive physiology and hormones.
+&nbsp;
+""" ;
+	pato:0000047	"Unspecific" ;
+	aopo:LifeStageContext	"Juvenile", "Adult, reproductively mature" ;
+	ncbitaxon:131567	"WikiUser_28" ;
+	aopo:hasBiologicalEvent	<2415_bioevent_0> ;
+	go:0008150	mp:0003936 ;
+	pato:0000001	"increased" ;
+	pato:0001241	uberon:0003133 ;
+	dcterms:isPartOf	aop:639 .
 
 aop.events:2418
 	a	aopo:KeyEvent ;
@@ -101166,106 +101379,6 @@ aop.events:1074
 	go:0008150	mp:0001928 ;
 	pato:0000001	"disrupted" ;
 	dcterms:isPartOf	aop:168, aop:169 .
-
-aop.events:1075
-	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:1075 ;
-	rdfs:label	"KE 1075" ;
-	foaf:page	<https://identifiers.org/aop.events/1075> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/1075> ;
-	dc:title	"prolonged, estrus cycle" ;
-	dcterms:alternative	"prolonged, estrus cycle" ;
-	dc:source	"AOPWiki" ;
-	dc:description	"""The estrus cycle is a coordinated series of changes that results in fertility in mammals. &nbsp;Changes to the uterus and vagina are coordinated through hormone signaling, including Progesterone, Estradiol, Luteinizing Hormone, and Follicle-Stimulating Hormone in order to progress through metestrus, diestrus, proestrus, and estrous phases &nbsp;over a period of 4-5 days in rodents (Miller and Takahashi 2014; Swift et al. 2024). &nbsp;In proestrus, increased estradiol levels occur, and physiological changes include ovarian follicle development and the thickening of the uterine wall in preparation for potential pregnancy. &nbsp;In estrus, a surge in luteinizing hormone levels occur, and ovulation of the mature egg. &nbsp;Metestrus is a short transition between estrus and diestrus, features an increase in progesterone levels, and development of the corpus luteum begins in preparation for pregnancy. &nbsp;Diestrus includes continued high levels of progesterone and further development of the corpus luteum; if pregnancy does not occur the corpus luteum regresses and resetting of the cycle occurs. &nbsp;Prolonged estrous occurs when the normal estrus cycle progression has been disrupted.
-
-
-Length of phases of the estrus cycle (modified from data/format from Ajayi and Akhigbe 2020):
-
-
-	
-		
-			
-			Phase
-			
-			
-			Length in Rats
-			
-			
-			Length in Mice
-			
-		
-		
-			
-			Proestrus
-			
-			
-			14 hours
-			
-			
-			&lt;24 hours
-			
-		
-		
-			
-			Estrus
-			
-			
-			24-48 hours
-			
-			
-			12-48 hours
-			
-		
-		
-			
-			Mestestrus
-			
-			
-			6-8 hours
-			
-			
-			8-24 hours
-			
-		
-		
-			
-			Diestrus
-			
-			
-			48-72 hours
-			
-			
-			48-72 hours
-			
-		
-	
-
-
-&nbsp;
-""" ;
-	mmo:0000000	"""The phases of the estrus cycles are determined by anatomical changes to the vagina and uterus, as well as vaginal smear/cytology (Laffan et al. 2018; Ajayi and Akhigbe 2020).&nbsp;
-
-
-Analysis of hormone levels can also be performed but are more labor intensive, more stressful to animals, and less definitive than physical examination.
-&nbsp;
-""" ;
-	nci:C25664	"""Individual""" ;
-	nci:C17469	"""Life Stage: Adult, reproductively mature and juveniles.
-
-
-Sex: Applies to females.
-
-
-Taxonomic: Primarily studied in laboratory rodents. &nbsp;Plausible for most mammals due to shared reproductive physiology and hormones. &nbsp;Primates have menstrual cycles as the lining of the uterus is shed rather than being reabsorbed.
-&nbsp;
-""" ;
-	pato:0000047	"Female" ;
-	aopo:LifeStageContext	"Adult, reproductively mature" ;
-	ncbitaxon:131567	"WikiUser_17" ;
-	aopo:hasBiologicalEvent	<1075_bioevent_0>, <1075_bioevent_1> ;
-	go:0008150	mp:0009006, mp:0009017 ;
-	pato:0000001	"increased" ;
-	dcterms:isPartOf	aop:168, aop:169, aop:609, aop:640 .
 
 aop.events:1076
 	a	aopo:KeyEvent ;
@@ -127616,82 +127729,6 @@ Estrogen and progesterone are steroid hormones that play a pivotal role in the r
 	aopo:OrganContext	uberon:0001969 ;
 	dcterms:isPartOf	aop:566 .
 
-aop.events:2306
-	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:2306 ;
-	rdfs:label	"KE 2306" ;
-	foaf:page	<https://identifiers.org/aop.events/2306> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/2306> ;
-	dc:title	"Persistent vaginal cornification" ;
-	dcterms:alternative	"Persistent vaginal cornification" ;
-	dc:source	"AOPWiki" ;
-	dc:description	"""Vaginal cornification refers to the thickening (increased cell layers) and process where vaginal epithelial cells harden by addition of keratin during estrus.
-
-Biological state
-
-The rodent cycle is subdivided in four subsequent phases, proestrous, estrous, metestrous (or diestrous 1) and diestrous (or dioestrous 2).&nbsp; It is characterized by hormonal variation and consequent behavioural, morphological and physiological changes to the reproductive tract (ovary, uterus and vagina), describing these four phases.&nbsp; Proestrous is the period during which pre-ovulatory development of the follicles takes place in the ovary. Estrous is the brief interval during which the female accepts the male and during which ovulation occurs. Next is metoestrous, the early luteal phase, followed by diestrous. The duration of the estrous cycle of rodent strains most commonly used in toxicology studies is typically 4 to 5 days (Goldman, 2007). For each phase of the cycle, the ovary, uterus and vagina have typical morphologic characteristics (Dixon, 2014).
-
-Biological role in physiology
-
-The keratinization of vaginal epithelial cells (vaginal cornification) that typically characterizes the day of estrous in the cycling rodents, is a consequence of the rising level of estradiol that peaks around midday on proestrous (Goldman, 2007).
-
-Repeated failure of ovulation over successive days produces irregular cycles characterized by a persistent vaginal cornification (PVC). This state is called persistent estrous or constant estrous. Females in persistent estrous exhibit constant sexual receptivity (Westwood, 2008). The term persistent estrous (PE) in adult rats denotes failure of at least two consecutive estrous cycles as documented by cornified vaginal smears for 10 or more days (Singh, 2005).
-
-Exposure to estrogenic compounds has commonly been reported to result in a persistent vaginal cornification (Goldman, 2007). As such, persistent vaginal cornification represents a good marker of prolonged E2 bioavailability in the uterus in regulatory studies.
-
-It is noteworthy that persistent estrous is not equivalent to the true estrous phase. Indeed, at ovary level, estrous stage is characterized by the presence of new basophilic corpora lutea (CP) formed after the current ovulation and an absence of healthy (non-atretic) tertiary follicles. On the other end, a state of persistent estrous is characterized by ovaries with absence of basophilic corpora lutea, increased number of antral follicles and follicular cysts. Persistent estrous is comparable with the anovulatory cycles in women (Horvath 2004; Finch, 2014).
-""" ;
-	mmo:0000000	"""Regular cyclicity is one of the key parameters in assessment of female reproductive function in rodents. Parameters assessed for cyclicity:
-
-
-	Number of cycling females
-	Number of females with regular cycles
-	Number of cycles
-	Estrous cycle length
-	Percentage of time spent in the various estrous cycle stages. Abnormal cycles were defined as one or more estrous cycles in the 21-day period with prolonged estrous (&ge;3 days) or prolonged diestrous (&ge;4 days) within a given cycle (Goldman, 2007).
-
-
-Visual assessment
-
-Visual observation of the vagina is the fastest method. It requires no special equipment and is best used when only proestrous or estrous stages need to be identified. It is non-invasive but the findings from this technique are observer-dependent. In the proestrous phase, the vaginal opening appears full, swollen and moist (Ajayi, 2020). The vaginal opening of mice in proestrous is characterized by swollen, moist, pink tissue. The opening is wide and there are often wrinkles or striations along the dorsal and ventral edges. As the mouse enters estrous, the vaginal opening becomes less pink, less moist, and less swollen (Byers, 2012).
-
-Vaginal smear
-
-Estrous cycle can be monitored in the rat and mouse by observing the changes in the vaginal smear cytology. It seems to be the most common technique used to determine the phases of the estrous cycle. It is non-invasive and relatively inexpensive (Goldman, 2007; Byer, 2012; Ajayi, 2020) and OECD guidelines (www.oecd.org).
-
-The estrous phase shows abundant non-nucleate cornified epithelial cells. The cytoplasm is granular, and the cells are irregular in shape. Persistent estrous is characterized by cornified vaginal smears for 10 or more days.
-
-Monitoring of estrous cyclicity is included in OECD test guidelines (TG 421: Reproduction/Developmental Toxicity Screening Test, 2016; TG 422 Combined Repeated Dose Toxicity Study with the Reproduction/Developmental Toxicity Screening Test, 2016; TG 416: Two-Generation Reproduction Toxicity, 2001; TG 443: Extended One-Generation Reproductive Toxicity Study, 2018; and in USA EPA OCSPP 890.1450. Pubertal Development and Thyroid Function in Intact Juvenile/Peripubertal Female Rats Assay, 2011.
-
-Histological examination of the reproductive organs
-
-This technique is invasive and does not allow individual estrous cyclicity assessment. The minimal requirement for estrous staging evaluation by histology is the complete longitudinal sections of the vagina and cervix, transverse sections of the mid-portion of both uterine horns, and middle sections of both ovaries (Goldman 2007; Byers, 2012). Persistent estrous is characterized in ovary by the presence of numbers of ovarian follicular cysts (due to pre-ovulatory follicles losing the capacity to ovulate) absence of basophilic corpora lutea and decreased corpora lutea while uterine epithelium becomes tall columnar and vagina may show cornification (Westwood, 2008, Dixon, 2014, Shirai 2017, see also Fig. 16).
-
-
-
-In OECD TG 443: For adult P and F1 females, a vaginal smear is examined on the day of necropsy to determine the stage of the estrous cycle and allow correlation with histopathology in reproductive organs.&nbsp; Vaginal smear at necropsy is also required in OECD TG 408, OECD TG 421, OECD TG 422 while it is optional in OECD TG 407.
-
-Other methods
-
-Vaginal wall impedance and urine biochemistry are alternative methods. However, no standard values are available for commonly used laboratory animals (Ajayi, 2020).
-""" ;
-	nci:C25664	"""Tissue""" ;
-	nci:C17469	"""The majority of the information comes from in vivo studies with rodents.
-
-Regulatory Significance of the KE
-
-While an evaluation of the estrous cycle in laboratory rodents can be a useful measure of the integrity of the hypothalamic-pituitary-ovarian reproductive axis, it can also serve as a way of ensuring that animals exhibiting abnormal cycling patterns are excluded from a study prior to exposure to a test compound. When incorporated as an adjunct to other endpoint measures, a determination of a female&#39;s cycling status can contribute important information about the nature of a toxicant insult to the reproductive system. In doing so, it can help to integrate the data into a more comprehensive mechanistic portrait of the effect, and in terms of risk assessment, may provide some indication of a toxicant&#39;s impact on human reproductive physiology. Significant evidence that the estrous cycle (or menstrual cycle in primates) has been disrupted should be considered an adverse effect (OECD, 2008). Included should be evidence of abnormal cycle length or pattern, ovulation failure, or abnormal menstruation (AOP 7).
-""" ;
-	pato:0000047	"Female" ;
-	aopo:LifeStageContext	"Adult, reproductively mature" ;
-	ncbitaxon:131567	"WikiUser_17" ;
-	aopo:OrganContext	uberon:0001344 ;
-	aopo:hasBiologicalEvent	<2306_bioevent_0> ;
-	go:0008150	go:0070268 ;
-	pato:0000001	"occurrence" ;
-	pato:0001241	uberon:0001344 ;
-	dcterms:isPartOf	aop:566, aop:623 .
-
 aop.events:2307
 	a	aopo:KeyEvent ;
 	dc:identifier	aop.events:2307 ;
@@ -127872,7 +127909,18 @@ PD-L1 is a membrane protein belonging to the immunoglobulin family (IgSF). It ha
 
 In the context of cancer, tumor&nbsp;cells overexpress this ligand, which contributes to immune escape and the establishment of the Tumor MicroEnvironment (TME) (Riella et al., 2012).
 """ ;
+	mmo:0000000	"""Multiple validated and widely used methods exist to measure PD-L1 expression on cancer cells :
+
+1. Immunohistochemistry (IHC).&nbsp;This is the most clinically validated and standardized method. Several antibody clones such as 22C3, 28-8, SP142, and SP263, have been approved as companion or complementary diagnostics for anti-PD-L1 immunotherapies and are used routinely on formalin-fixed paraffin-embedded tumour sections (Martinez-Morilla et al., 2021). Expression is quantified as the Tumour Proportion Score (TPS), the percentage of viable tumour cells showing membranous staining, or as the Combined Positive Score (CPS), which also incorporates PD-L1-positive immune cells (Noordhof et al., 2023).
+2. Flow cytometry.&nbsp;Used on dissociated tumour tissue or cultured cancer cell lines to quantify cell-surface PD-L1 via fluorochrome-conjugated antibodies; allows co-staining with other markers to characterise the PD-L1⁺ cell subpopulation (Chen et al., 2021)&nbsp;34211855.
+3. Quantitative RT-PCR / RNA sequencing. Used to measure CD274&nbsp;(PD-L1 gene) mRNA transcript levels; mRNA levels correlate moderately-to-strongly with IHC protein scores (Noordhof et al., 2023).
+4. Western blot.&nbsp;Used in cell-line-based mechanistic studies to confirm total cellular PD-L1 protein levels, often alongside pathway-specific inhibitors/activators (e.g., STAT1/STAT3 inhibition) (Alsaab et al., 2019).
+5. ELISA (for soluble PD-L1, sPD-L1). Used to measure a shed/secreted form of PD-L1 in serum or culture supernatant as a surrogate, non-invasive biomarker, complementary to tissue-based assays.
+""" ;
 	nci:C25664	"""Molecular""" ;
+	pato:0000047	"Mixed" ;
+	aopo:LifeStageContext	"During development and at adulthood" ;
+	ncbitaxon:131567	"WCS_9606", ncbitaxon:10090 ;
 	aopo:CellTypeContext	cl:0000235 ;
 	dcterms:isPartOf	aop:578 .
 
@@ -129383,38 +129431,6 @@ Transcriptomics (RNA-Seq / Microarray): High-throughput sequencing can detect th
 	pato:0000001	"increased" ;
 	dcterms:isPartOf	aop:638 .
 
-aop.events:2415
-	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:2415 ;
-	rdfs:label	"KE 2415" ;
-	foaf:page	<https://identifiers.org/aop.events/2415> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/2415> ;
-	dc:title	"Precocious puberty" ;
-	dcterms:alternative	"Precocious puberty" ;
-	dc:source	"AOPWiki" ;
-	dc:description	"""Puberty occurs when reproductive organs mature and hormone levels are altered to transform an individual into capable of reproduction (for review McCormick et al. 2017). &nbsp;Puberty is a process that all vertebrate species undergo in order to become sexually mature, but has been mainly studied in mammals (Ball and Wade 2013). In rodent females, puberty includes the onset of the estrus cycle (for review see Miller and Takahashi 2014; Swift et al. 2024). &nbsp;Precocious puberty occurs when stressors accelerate the process of sexual maturation, with associated physiological and hormone changes.
-""" ;
-	mmo:0000000	"""Puberty is generally assessed by physiological changes in an individual. &nbsp;In rodents vaginal opening in females and balanopreputial separation (separation of the foreskin from penis) in males are often used as visual indicators of onset of puberty (e.g. Engelbregt et al. 2001). &nbsp;In birds there can be species-specific changes such as feather plumage, eye color, skull ossification, feather wear, and eye color (Mueller and Weise 1996; Cucco and Malacarne 2000). &nbsp;Size (body weight or length) is generally a better predictor of maturity than age in reptiles (Ball and Wade 2013; Marn and Kooijman 2022), amphibians (Ryser 1996; Morrison and Hero 2003), and fish (Ryu et al. 2013; Espigares et al. 2015), with a threshold minimum size for reproduction. &nbsp;Determining an individual has mature ova or sperm or changes in hormone levels from baseline (i.e. gonadotropins, testosterone, estradiol) are more invasive but alternative assessment methods, with development of mature ova or sperm ultimately a more direct assessment of the onset of puberty.
-""" ;
-	nci:C25664	"""Individual""" ;
-	nci:C17469	"""Life Stage: Adult, reproductively mature, juveniles undergoing reproductive maturation.
-
-
-Sex: Applies to both males and females as both sexes undergo reproductive maturation.
-
-
-Taxonomic: Primarily studied in laboratory rodents and humans. &nbsp;Plausible for most mammals and vertebrates due to shared reproductive physiology and hormones.
-&nbsp;
-""" ;
-	pato:0000047	"Unspecific" ;
-	aopo:LifeStageContext	"Juvenile", "Adult, reproductively mature" ;
-	ncbitaxon:131567	"WikiUser_28" ;
-	aopo:hasBiologicalEvent	<2415_bioevent_0> ;
-	go:0008150	mp:0003936 ;
-	pato:0000001	"increased" ;
-	pato:0001241	uberon:0003133 ;
-	dcterms:isPartOf	aop:639 .
-
 aop.events:2417
 	a	aopo:KeyEvent ;
 	dc:identifier	aop.events:2417 ;
@@ -130183,9 +130199,22 @@ aop.events:2446
 	aopo:hasObject	uberon:0001305 ;
 	aopo:hasAction	"decreased" .
 
+<2306_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	go:0070268 ;
+	aopo:hasObject	uberon:0001344 ;
+	aopo:hasAction	"occurrence" .
+
 <2316_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	hp:0100598 ;
 	aopo:hasObject	uberon:0002048 ;
+	aopo:hasAction	"increased" .
+
+<1075_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	mp:0009006 ;
+	aopo:hasAction	"increased" .
+
+<1075_bioevent_1> a aopo:BiologicalEvent ;
+	aopo:hasProcess	mp:0009017 ;
 	aopo:hasAction	"increased" .
 
 <2401_bioevent_0> a aopo:BiologicalEvent ;
@@ -130206,6 +130235,11 @@ aop.events:2446
 <2413_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	mp:0004904 ;
 	aopo:hasObject	uberon:0009853 ;
+	aopo:hasAction	"increased" .
+
+<2415_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	mp:0003936 ;
+	aopo:hasObject	uberon:0003133 ;
 	aopo:hasAction	"increased" .
 
 <2418_bioevent_0> a aopo:BiologicalEvent ;
@@ -132906,14 +132940,6 @@ aop.events:2446
 	aopo:hasProcess	mp:0001928 ;
 	aopo:hasAction	"disrupted" .
 
-<1075_bioevent_0> a aopo:BiologicalEvent ;
-	aopo:hasProcess	mp:0009006 ;
-	aopo:hasAction	"increased" .
-
-<1075_bioevent_1> a aopo:BiologicalEvent ;
-	aopo:hasProcess	mp:0009017 ;
-	aopo:hasAction	"increased" .
-
 <1076_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasObject	chebio:50114 ;
 	aopo:hasAction	"increased" .
@@ -134647,11 +134673,6 @@ aop.events:2446
 	aopo:hasProcess	go:0007610 ;
 	aopo:hasAction	"abnormal" .
 
-<2306_bioevent_0> a aopo:BiologicalEvent ;
-	aopo:hasProcess	go:0070268 ;
-	aopo:hasObject	uberon:0001344 ;
-	aopo:hasAction	"occurrence" .
-
 <2308_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	go:0099589 ;
 	aopo:hasObject	fma:86594 ;
@@ -134759,11 +134780,6 @@ aop.events:2446
 
 <2414_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	hp:0012852 ;
-	aopo:hasAction	"increased" .
-
-<2415_bioevent_0> a aopo:BiologicalEvent ;
-	aopo:hasProcess	mp:0003936 ;
-	aopo:hasObject	uberon:0003133 ;
 	aopo:hasAction	"increased" .
 
 <2417_bioevent_0> a aopo:BiologicalEvent ;
@@ -262696,8 +262712,7 @@ aop.stressor:549
 	dc:title	"Atorvastatin" ;
 	dcterms:created	"2020-03-31T10:30:56" ;
 	dcterms:modified	"2020-03-31T10:30:56" ;
-	aopo:has_chemical_entity	cas:134523-00-5 ;
-	dcterms:isPartOf	aop:636 .
+	aopo:has_chemical_entity	cas:134523-00-5 .
 
 aop.stressor:713
 	a	nci:C54571 ;
@@ -266933,7 +266948,7 @@ aop.stressor:673
 	dcterms:created	"2021-09-09T07:26:05" ;
 	dcterms:modified	"2021-09-28T08:54:40" ;
 	aopo:has_chemical_entity	cas:10102-44-0 ;
-	dcterms:isPartOf	aop:411, aop:636 .
+	dcterms:isPartOf	aop:411 .
 
 aop.stressor:656
 	a	nci:C54571 ;
@@ -275215,6 +275230,12 @@ uberon:0013191	a	aopo:OrganContext ;
 	dc:source	"UBERON" ;
 	rdfs:label	"ovarian cortex" .
 
+uberon:0001344	a	aopo:OrganContext ;
+	dc:identifier	uberon:0001344 ;
+	dc:title	"epithelium of vagina" ;
+	dc:source	"UBERON" ;
+	rdfs:label	"epithelium of vagina" .
+
 uberon:0001332	a	aopo:OrganContext ;
 	dc:identifier	uberon:0001332 ;
 	dc:title	"prepuce of penis" ;
@@ -275664,12 +275685,6 @@ uberon:0001301	a	aopo:OrganContext ;
 	dc:title	"epididymis" ;
 	dc:source	"UBERON" ;
 	rdfs:label	"epididymis" .
-
-uberon:0001344	a	aopo:OrganContext ;
-	dc:identifier	uberon:0001344 ;
-	dc:title	"epithelium of vagina" ;
-	dc:source	"UBERON" ;
-	rdfs:label	"epithelium of vagina" .
 
 uberon:0001017	a	aopo:OrganContext ;
 	dc:identifier	uberon:0001017 ;

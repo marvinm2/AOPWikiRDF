@@ -323,6 +323,9 @@ aop.events:2154	edam:data_1025	hgnc:10839,hgnc:6081 ;
 	:geneDetectedByRegex	hgnc:10839 ;
 	:geneDetectedByNER	hgnc:10839,hgnc:6081 .
 
+aop.events:1075	edam:data_1025	hgnc:1103,hgnc:9081 ;
+	:geneDetectedByNER	hgnc:1103,hgnc:9081 .
+
 aop.events:2407	edam:data_1025	hgnc:2197 ;
 	:geneDetectedByNER	hgnc:2197 .
 
@@ -897,9 +900,6 @@ aop.events:2329	edam:data_1025	hgnc:10887 ;
 aop.events:2330	edam:data_1025	hgnc:10887 ;
 	:geneDetectedByRegex	hgnc:10887 ;
 	:geneDetectedByNER	hgnc:10887 .
-
-aop.events:1075	edam:data_1025	hgnc:1103,hgnc:9081 ;
-	:geneDetectedByNER	hgnc:1103,hgnc:9081 .
 
 aop.events:1498	edam:data_1025	hgnc:10803,hgnc:638,hgnc:5973,hgnc:11892,hgnc:1499,hgnc:2753,hgnc:29889,hgnc:5992 ;
 	:geneDetectedByRegex	hgnc:10803,hgnc:638,hgnc:5973 ;
