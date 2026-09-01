@@ -9,10 +9,15 @@ jobs:
   update-zenodo-record:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        # bash (rather than the default bash -e) so pipefail is set: without it
+        # a curl failure on the left of a pipe is masked by whatever jq returns.
+        shell: bash
+
     env:
-      # Retry transient Zenodo errors (HTTP 408/429/500/502/503/504 and timeouts).
-      # curl treats these as transient and backs off between attempts.
-      CURL_RETRY: "--retry 5 --retry-delay 15 --retry-connrefused"
+      ZENODO_TOKEN: ${{ secrets.ZENODO_ACCESS_TOKEN }}
+      ZENODO_DEPOSITION_ID: ${{ secrets.ZENODO_DEPOSITION_ID }}
 
     steps:
       - name: Checkout Repository
@@ -37,56 +42,54 @@ jobs:
 
       - name: Discard Any Existing Draft
         run: |
-          AUTH="Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}"
+          source .github/scripts/zenodo.sh
           # Resolve the concept record id so we can find drafts on ANY version, not
           # just the configured deposition. A new-version draft lives under a new
           # deposition id, so discarding the static id alone never cleans it up
           # (e.g. an orphaned draft left behind when a newversion POST times out at
           # the gateway after Zenodo already created it).
-          dep=$(curl -s $CURL_RETRY -H "$AUTH" \
-                "https://zenodo.org/api/deposit/depositions/${{ secrets.ZENODO_DEPOSITION_ID }}")
-          conceptrecid=$(echo "$dep" | jq -r '.conceptrecid' 2>/dev/null)
-          if [[ "$conceptrecid" == "null" || -z "$conceptrecid" ]]; then
-            echo "Could not resolve conceptrecid. Deposition response was: $dep"
+          dep=$(zenodo_api GET "$ZENODO_API/deposit/depositions/${ZENODO_DEPOSITION_ID}")
+          conceptrecid=$(jq -r '.conceptrecid // empty' <<<"$dep")
+          if [[ -z "$conceptrecid" ]]; then
+            echo "::error::Could not resolve conceptrecid. Deposition response was: $dep"
             exit 1
           fi
           echo "Concept record id: $conceptrecid"
+
           # Find every unsubmitted draft across all versions of this concept.
-          drafts=$(curl -s $CURL_RETRY -H "$AUTH" \
-                   "https://zenodo.org/api/deposit/depositions?all_versions=true&q=conceptrecid:${conceptrecid}&size=100" \
-                   | jq -r '.[] | select(.submitted == false) | .id' 2>/dev/null)
+          # Zenodo answers transient trouble with an error object rather than the
+          # expected array, so check the shape before indexing into it.
+          depositions=$(zenodo_api GET \
+            "$ZENODO_API/deposit/depositions?all_versions=true&q=conceptrecid:${conceptrecid}&size=100")
+          require_json_type "$depositions" array "Listing depositions for concept $conceptrecid"
+
+          drafts=$(jq -r '.[] | select(.submitted == false) | .id' <<<"$depositions")
           if [[ -z "$drafts" ]]; then
             echo "No existing drafts to discard."
           else
             for draft_id in $drafts; do
               echo "Discarding draft deposition $draft_id"
-              discard_response=$(curl -s $CURL_RETRY -X POST -H "$AUTH" \
-                                 "https://zenodo.org/api/deposit/depositions/${draft_id}/actions/discard")
-              echo "Discard Response: $discard_response"
-              if echo "$discard_response" | grep -q '"status": 403'; then
-                echo "Failed to discard draft $draft_id. It might be locked or in an invalid state."
-                exit 1
-              fi
+              zenodo_api POST "$ZENODO_API/deposit/depositions/${draft_id}/actions/discard"
             done
           fi
 
       - name: Create a New Version of the Deposition
         id: new_version
         run: |
-          response=$(curl -s $CURL_RETRY -X POST -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
-                        "https://zenodo.org/api/deposit/depositions/${{ secrets.ZENODO_DEPOSITION_ID }}/actions/newversion")
-          echo "Response: $response"
-          new_draft_url=$(echo "$response" | jq -r '.links.latest_draft' 2>/dev/null)
-          if [[ "$new_draft_url" == "null" || -z "$new_draft_url" ]]; then
-            echo "Failed to retrieve the latest draft URL. Response was: $response"
+          source .github/scripts/zenodo.sh
+          response=$(zenodo_api POST \
+            "$ZENODO_API/deposit/depositions/${ZENODO_DEPOSITION_ID}/actions/newversion")
+          new_draft_url=$(jq -r '.links.latest_draft // empty' <<<"$response")
+          if [[ -z "$new_draft_url" ]]; then
+            echo "::error::Failed to retrieve the latest draft URL. Response was: $response"
             exit 1
           fi
-          new_draft_response=$(curl -s $CURL_RETRY -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" "$new_draft_url")
-          echo "New Draft Response: $new_draft_response"
-          new_deposition_id=$(echo "$new_draft_response" | jq -r '.id' 2>/dev/null)
-          new_bucket_url=$(echo "$new_draft_response" | jq -r '.links.bucket' 2>/dev/null)
-          if [[ "$new_deposition_id" == "null" || -z "$new_deposition_id" ]]; then
-            echo "Failed to retrieve the new deposition ID. New draft response was: $new_draft_response"
+
+          new_draft_response=$(zenodo_api GET "$new_draft_url")
+          new_deposition_id=$(jq -r '.id // empty' <<<"$new_draft_response")
+          new_bucket_url=$(jq -r '.links.bucket // empty' <<<"$new_draft_response")
+          if [[ -z "$new_deposition_id" || -z "$new_bucket_url" ]]; then
+            echo "::error::Failed to retrieve the new deposition id or bucket URL. New draft response was: $new_draft_response"
             exit 1
           fi
           echo "New Deposition ID: $new_deposition_id"
@@ -96,13 +99,25 @@ jobs:
 
       - name: Upload files to Zenodo
         run: |
-          for file in data/*.ttl; do
-            curl --progress-bar $CURL_RETRY -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
-                  --upload-file $file "$new_bucket_url/$(basename $file)"
+          source .github/scripts/zenodo.sh
+          shopt -s nullglob
+          files=(data/*.ttl)
+          if [[ ${#files[@]} -eq 0 ]]; then
+            echo "::error::No TTL files found in data/ to upload."
+            exit 1
+          fi
+          for file in "${files[@]}"; do
+            echo "Uploading $file"
+            # --fail-with-body so a rejected upload stops the run here; a partial
+            # file set must never reach the publish step.
+            curl --progress-bar --fail-with-body "${ZENODO_RETRY[@]}" \
+                 -H "Authorization: Bearer ${ZENODO_TOKEN}" \
+                 --upload-file "$file" "$new_bucket_url/$(basename "$file")"
           done
 
       - name: Update Metadata for New Version
         run: |
+          source .github/scripts/zenodo.sh
           version=$(date +'%Y-%m')
           current_date=$(date +%Y-%m-%d)
           metadata=$(jq -n --arg title "Adverse Outcome Pathway Wiki RDF" \
@@ -133,12 +148,14 @@ jobs:
                                 upload_type: $upload_type
                               }
                             }')
-          curl -s $CURL_RETRY -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
-               -H "Content-Type: application/json" \
-               -X PUT --data "$metadata" "https://zenodo.org/api/deposit/depositions/$new_deposition_id"
+          zenodo_api PUT "$ZENODO_API/deposit/depositions/$new_deposition_id" \
+            -H "Content-Type: application/json" --data "$metadata" > /dev/null
+          echo "Metadata updated for deposition $new_deposition_id"
 
       - name: Publish Updated Zenodo Record
         run: |
-          curl -s $CURL_RETRY -H "Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}" \
-               -H "Content-Type: application/json" \
-               -X POST "https://zenodo.org/api/deposit/depositions/$new_deposition_id/actions/publish"
+          source .github/scripts/zenodo.sh
+          published=$(zenodo_api POST \
+            "$ZENODO_API/deposit/depositions/$new_deposition_id/actions/publish" \
+            -H "Content-Type: application/json")
+          echo "Published: $(jq -r '.doi // "unknown DOI"' <<<"$published")"
