@@ -32745,11 +32745,11 @@ aop:324
 	rdfs:label	"AOP 324" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/324> ;
 	foaf:page	<https://identifiers.org/aop/324> ;
-	dc:title	"Reactive oxygen species leading to growth inhibition via oxidative DNA damage and cell cycle disruption" ;
+	dc:title	"Increase in reactive oxygen species leading to growth inhibition via oxidative DNA damage and cell cycle disruption" ;
 	dcterms:alternative	"ROS leading to growth inhibition via oxidative DNA damage and cell cycle disruption" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-18T05:18:10" ;
-	dcterms:modified	"2026-06-19T14:33:49" ;
+	dcterms:modified	"2026-09-02T03:18:49" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and are also generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, while excessive ROS can disturb redox homeostasis and initiate oxidative damage to cellular macromolecules (Schieber and Chandel, 2014; Sies et al., 2017). DNA is a major target of oxidative attack. Oxidative DNA lesions such as 8-oxo-2&#39;-deoxyguanosine and other oxidized bases can arise endogenously or following toxic insult, and these lesions may contribute to mutation, strand break formation, and activation of DNA damage responses if they are not repaired correctly or efficiently (Cooke et al., 2003; OECD, 2023).
 
 This AOP was developed to represent the DNA damage-driven linear route within the broader ROS-growth AOP network. The route was selected because oxidative DNA damage is a well-established consequence of oxidative stress and because downstream events such as inadequate DNA repair, strand breaks, cell cycle disruption, and reduced cell proliferation provide a mechanistically coherent bridge between molecular damage and decreased organismal growth (Cuddihy and O&#39;Connell, 2003; Conlon and Raff, 1999; OECD, 2022; OECD, 2023). The AOP was therefore designed to provide a focused, reviewable linear representation of one major mechanistic branch by which excessive ROS can impair growth.
@@ -33406,6 +33406,7 @@ AI disclosure
 
 Artificial intelligence (AI) tools were used to support literature prioritization, review and AOP-Wiki page preparation in this work. AOP-helpFinder was used for automated literature mining, and ChatGPT (OpenAI) was used as an auxiliary tool for title and abstract screening, extraction of study metadata, and identification of potential weight-of-evidence indicators. AI-assisted outputs were used only to organize and prioritize information and were verified against the original sources by the authors before inclusion. Additional AI assistance was used for formatting, copy-editing, citation cross-checking, and harmonization of the AOP-Wiki pages. All scientific interpretations, weight-of-evidence judgments, final wording, and conclusions were determined and approved by the authors, who take full responsibility for the content and integrity of the work.
 """ ;
+	nci:C25688	"Under Development" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:1392, aop.events:1634, aop.events:155, aop.events:1635, aop.events:1505, aop.events:1821, aop.events:1115, aop.events:1521 ;
 	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:2810, aop.relationships:1909, aop.relationships:1910, aop.relationships:3480, aop.relationships:3363, aop.relationships:2205 ;
@@ -33422,11 +33423,11 @@ aop:325
 	rdfs:label	"AOP 325" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/325> ;
 	foaf:page	<https://identifiers.org/aop/325> ;
-	dc:title	"Reactive oxygen species leading to growth inhibition via oxidative DNA damage and cell death" ;
+	dc:title	"Increase in reactive oxygen species leading to growth inhibition via oxidative DNA damage and cell death" ;
 	dcterms:alternative	"ROS leading to growth inhibition via oxidative DNA damage and cell death" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-18T05:18:37" ;
-	dcterms:modified	"2026-06-19T14:28:10" ;
+	dcterms:modified	"2026-09-02T03:19:29" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and are also generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative damage to cellular macromolecules (Schieber and Chandel, 2014; Sies et al., 2017). DNA is a major target of oxidative attack. Oxidative DNA lesions such as 8-oxo-2&#39;-deoxyguanosine and other oxidized bases can arise endogenously or following toxic insult, and these lesions may contribute to mutation, strand break formation, activation of DNA damage responses, and cell death if they are not repaired correctly or efficiently (Cooke et al., 2003; OECD, 2023).
 
 &nbsp;&nbsp;&nbsp; AOP 325 was developed to represent the cell injury/death-driven linear route within the broader ROS-growth AOP network. The route was selected because oxidative DNA damage is a well-established consequence of oxidative stress and because downstream events such as inadequate DNA repair, DNA strand breaks, and cell injury/death provide a mechanistically coherent bridge between molecular damage and decreased organismal growth. This pathway complements AOP 324, which emphasizes cell cycle disruption and reduced cell proliferation as the downstream route from DNA damage to growth impairment. AOP 325 instead captures the alternative but biologically connected route in which unrepaired or severe DNA damage contributes to cell loss, thereby reducing growth capacity at the organ or organism level.
@@ -34003,6 +34004,7 @@ AI disclosure
 
 Artificial intelligence (AI) tools were used to support literature prioritization, review and AOP-Wiki page preparation in this work. AOP-helpFinder was used for automated literature mining, and ChatGPT (OpenAI) was used as an auxiliary tool for title and abstract screening, extraction of study metadata, and identification of potential weight-of-evidence indicators. AI-assisted outputs were used only to organize and prioritize information and were verified against the original sources by the authors before inclusion. Additional AI assistance was used for formatting, copy-editing, citation cross-checking, and harmonization of the AOP-Wiki pages. All scientific interpretations, weight-of-evidence judgments, final wording, and conclusions were determined and approved by the authors, who take full responsibility for the content and integrity of the work.
 """ ;
+	nci:C25688	"Under Development" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:1392, aop.events:1634, aop.events:155, aop.events:1635, aop.events:55, aop.events:1115, aop.events:1521 ;
 	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:2810, aop.relationships:1909, aop.relationships:1910, aop.relationships:3797, aop.relationships:2767 ;
@@ -34019,11 +34021,11 @@ aop:326
 	rdfs:label	"AOP 326" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/326> ;
 	foaf:page	<https://identifiers.org/aop/326> ;
-	dc:title	"Reactive oxygen species leading to growth inhibition via lipid peroxidation and decreased cell proliferation" ;
+	dc:title	"Increase in reactive oxygen species leading to growth inhibition via lipid peroxidation and decreased cell proliferation" ;
 	dcterms:alternative	"ROS leading to growth inhibition via LPO and decreased cell proliferation" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-18T05:19:06" ;
-	dcterms:modified	"2026-06-19T14:32:10" ;
+	dcterms:modified	"2026-09-02T03:20:06" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Lipids are important targets of oxidative attack because membrane phospholipids, especially those containing polyunsaturated fatty acyl chains, can undergo radical-driven peroxidation. Lipid peroxidation generates lipid hydroperoxides and secondary reactive products, including malondialdehyde and 4-hydroxy-2-nonenal, which can alter membrane structure, propagate oxidative damage, and affect protein and organelle function (Ayala et al., 2014).
 
 &nbsp;&nbsp;&nbsp; AOP 326 was developed to represent the lipid peroxidation-driven linear route within the broader ROS-growth AOP network. This route was selected because lipid peroxidation is a well-established consequence of oxidative stress and because mitochondrial membranes are central determinants of OXPHOS coupling. Peroxidative modification of mitochondrial membrane lipids can alter membrane fluidity, proton leak, respiratory control, and mitochondrial membrane potential, providing a mechanistically coherent bridge from oxidative stress to impaired ATP production (Murphy, 2009; Nicholls and Ferguson, 2013; Ouillon et al., 2021). The downstream sequence from decreased coupling of OXPHOS to decreased ATP pool, decreased cell proliferation, and decreased growth is already represented in AOP 263 and provides the growth-relevant terminal module for AOP 326 (AOP-Wiki, 2026b; OECD, 2022; Song and Villeneuve, 2021).
@@ -34640,6 +34642,7 @@ AI disclosure
 
 Artificial intelligence (AI) tools were used to support literature prioritization, review and AOP-Wiki page preparation in this work. AOP-helpFinder was used for automated literature mining, and ChatGPT (OpenAI) was used as an auxiliary tool for title and abstract screening, extraction of study metadata, and identification of potential weight-of-evidence indicators. AI-assisted outputs were used only to organize and prioritize information and were verified against the original sources by the authors before inclusion. Additional AI assistance was used for formatting, copy-editing, citation cross-checking, and harmonization of the AOP-Wiki pages. All scientific interpretations, weight-of-evidence judgments, final wording, and conclusions were determined and approved by the authors, who take full responsibility for the content and integrity of the work.
 """ ;
+	nci:C25688	"Under Development" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:1392, aop.events:1445, aop.events:1446, aop.events:1771, aop.events:1821, aop.events:1115, aop.events:1521 ;
 	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:3116, aop.relationships:1599, aop.relationships:2203, aop.relationships:2204, aop.relationships:2205 ;
@@ -34788,11 +34791,11 @@ aop:331
 	rdfs:label	"AOP 331" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/331> ;
 	foaf:page	<https://identifiers.org/aop/331> ;
-	dc:title	"Reactive oxygen species leading to growth inhibition via lipid peroxidation and cell death" ;
+	dc:title	"Increase in reactive oxygen species leading to growth inhibition via lipid peroxidation and cell death" ;
 	dcterms:alternative	"ROS leading to growth inhibition via LPO and cell death" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-19T04:50:03" ;
-	dcterms:modified	"2026-06-20T05:38:31" ;
+	dcterms:modified	"2026-09-02T03:20:21" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Lipid membranes are important targets of oxidative attack because phospholipids containing polyunsaturated fatty acids can undergo radical-driven peroxidation. Lipid peroxidation generates lipid hydroperoxides and secondary reactive aldehydes, including malondialdehyde and 4-hydroxy-2-nonenal, which can propagate oxidative injury and alter membrane-associated protein and organelle function (Ayala et al., 2014).
 
 &nbsp;&nbsp;&nbsp; AOP 331 was developed to represent the lipid peroxidation and cell injury/death-driven linear route within the broader ROS-growth AOP network. This route was selected because lipid peroxidation is a well-established consequence of oxidative stress and because mitochondrial membranes are central determinants of OXPHOS coupling. Peroxidative modification of mitochondrial membrane lipids can alter membrane fluidity, proton leak, respiratory control, and mitochondrial membrane potential, providing a mechanistically coherent bridge from oxidative stress to impaired ATP production (Murphy, 2009; Nicholls and Ferguson, 2013; Ouillon et al., 2021). ATP depletion is a well-established contributor to loss of cell viability because cellular survival depends on ATP-dependent ion gradients, membrane repair, protein turnover, stress-response pathways, and the execution of regulated death processes. Depletion of ATP can shift cells from adaptive responses to injury and death, and severe ATP loss can affect the mode of cell death (Leist et al., 1997; Bonora et al., 2012).
@@ -35409,6 +35412,7 @@ AI disclosure
 
 Artificial intelligence (AI) tools were used to support literature prioritization, review and AOP-Wiki page preparation in this work. AOP-helpFinder was used for automated literature mining, and ChatGPT (OpenAI) was used as an auxiliary tool for title and abstract screening, extraction of study metadata, and identification of potential weight-of-evidence indicators. AI-assisted outputs were used only to organize and prioritize information and were verified against the original sources by the authors before inclusion. Additional AI assistance was used for formatting, copy-editing, citation cross-checking, and harmonization of the AOP-Wiki pages. All scientific interpretations, weight-of-evidence judgments, final wording, and conclusions were determined and approved by the authors, who take full responsibility for the content and integrity of the work.
 """ ;
+	nci:C25688	"Under Development" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:1392, aop.events:1445, aop.events:1446, aop.events:1771, aop.events:55, aop.events:1115, aop.events:1521 ;
 	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:3116, aop.relationships:1599, aop.relationships:2203, aop.relationships:2768, aop.relationships:2767 ;
@@ -35425,11 +35429,11 @@ aop:332
 	rdfs:label	"AOP 332" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/332> ;
 	foaf:page	<https://identifiers.org/aop/332> ;
-	dc:title	"Reactive oxygen species leading to growth inhibition via protein oxidation and decreased cell proliferation" ;
+	dc:title	"Increase in reactive oxygen species leading to growth inhibition via protein oxidation and decreased cell proliferation" ;
 	dcterms:alternative	"ROS leading to growth inhibition via protein oxidation and decreased cell proliferation" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-19T04:52:14" ;
-	dcterms:modified	"2026-06-20T05:43:36" ;
+	dcterms:modified	"2026-09-02T03:20:26" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Proteins are major targets of oxidative attack because many amino acid side chains and prosthetic groups are susceptible to oxidation, carbonylation, thiol oxidation, nitration, or other oxidative modifications. Protein oxidation can alter enzyme activity, protein-protein interactions, protein folding, stability, and degradation, and it is widely used as a marker of severe oxidative damage and cellular dysfunction (Dalle-Donne et al., 2006).
 
 AOP 332 was developed to represent the protein oxidation-driven linear route within the broader ROS-growth AOP network. This route was selected because oxidative stress can directly modify proteins, including mitochondrial proteins involved in electron transport, OXPHOS coupling, ATP synthesis, metabolite transport, and maintenance of mitochondrial integrity. Oxidation of mitochondrial proteins can impair the efficiency of electron transfer and proton motive force utilization, thereby providing a mechanistically coherent bridge from oxidative stress to decreased coupling of OXPHOS (Murphy, 2009; Nicholls and Ferguson, 2013; Sokolov et al., 2019). The downstream sequence from decreased coupling of OXPHOS to decreased ATP pool, decreased cell proliferation, and decreased growth is represented in AOP 263 and provides the growth-relevant terminal module for AOP 332 (AOP-Wiki, 2026b; OECD, 2022; Song and Villeneuve, 2021).
@@ -36044,6 +36048,7 @@ AI disclosure
 
 Artificial intelligence (AI) tools were used to support literature prioritization, review and AOP-Wiki page preparation in this work. AOP-helpFinder was used for automated literature mining, and ChatGPT (OpenAI) was used as an auxiliary tool for title and abstract screening, extraction of study metadata, and identification of potential weight-of-evidence indicators. AI-assisted outputs were used only to organize and prioritize information and were verified against the original sources by the authors before inclusion. Additional AI assistance was used for formatting, copy-editing, citation cross-checking, and harmonization of the AOP-Wiki pages. All scientific interpretations, weight-of-evidence judgments, final wording, and conclusions were determined and approved by the authors, who take full responsibility for the content and integrity of the work.
 """ ;
+	nci:C25688	"Under Development" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:1392, aop.events:1767, aop.events:1446, aop.events:1771, aop.events:1821, aop.events:1115, aop.events:1521 ;
 	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:3632, aop.relationships:3633, aop.relationships:2203, aop.relationships:2204, aop.relationships:2205 ;
@@ -36060,11 +36065,11 @@ aop:333
 	rdfs:label	"AOP 333" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/333> ;
 	foaf:page	<https://identifiers.org/aop/333> ;
-	dc:title	"Reactive oxygen species leading to growth inhibition via protein oxidation and cell death" ;
+	dc:title	"Increase in reactive oxygen species leading to growth inhibition via protein oxidation and cell death" ;
 	dcterms:alternative	"ROS leading to growth inhibition via protein oxidation and cell death" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-19T04:52:38" ;
-	dcterms:modified	"2026-06-20T06:05:16" ;
+	dcterms:modified	"2026-09-02T03:20:30" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Proteins are major targets of oxidative attack because amino acid side chains, thiol groups, metal centers, and prosthetic groups can undergo oxidative modification. Protein oxidation can reduce enzyme activity, alter protein-protein interactions, impair folding, increase aggregation, disrupt degradation by proteasomal and lysosomal systems, and contribute to cellular dysfunction (Dalle-Donne et al., 2006).
 
 &nbsp;&nbsp;&nbsp; AOP 333 was developed to represent the protein oxidation and cell injury/death-driven linear route within the broader ROS-growth AOP network. This route was selected because protein oxidation is a well-established consequence of oxidative stress and because mitochondrial proteins are central determinants of OXPHOS coupling and ATP production. Oxidative modification of respiratory-chain proteins, ATP synthase subunits, mitochondrial carriers, or proteins involved in maintaining mitochondrial membrane potential can reduce respiratory efficiency and ATP synthesis (Murphy, 2009; Nicholls and Ferguson, 2013; Sokolov et al., 2019). ATP depletion is an established contributor to loss of cell viability because cell survival depends on ATP-dependent ion gradients, membrane repair, stress responses, proteostasis, and execution of regulated cell death pathways. Severe ATP depletion can shift cellular outcomes toward irreversible injury or necrosis, whereas less severe depletion may permit apoptosis or adaptive responses (Leist et al., 1997; Bonora et al., 2012).
@@ -36683,6 +36688,7 @@ AI disclosure
 
 Artificial intelligence (AI) tools were used to support literature prioritization, review and AOP-Wiki page preparation in this work. AOP-helpFinder was used for automated literature mining, and ChatGPT (OpenAI) was used as an auxiliary tool for title and abstract screening, extraction of study metadata, and identification of potential weight-of-evidence indicators. AI-assisted outputs were used only to organize and prioritize information and were verified against the original sources by the authors before inclusion. Additional AI assistance was used for formatting, copy-editing, citation cross-checking, and harmonization of the AOP-Wiki pages. All scientific interpretations, weight-of-evidence judgments, final wording, and conclusions were determined and approved by the authors, who take full responsibility for the content and integrity of the work.
 """ ;
+	nci:C25688	"Under Development" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:1392, aop.events:1767, aop.events:1446, aop.events:1771, aop.events:55, aop.events:1115, aop.events:1521 ;
 	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:3632, aop.relationships:3633, aop.relationships:2203, aop.relationships:2768, aop.relationships:2767 ;
@@ -63240,19 +63246,197 @@ aop:547
 	rdfs:label	"AOP 547" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/547> ;
 	foaf:page	<https://identifiers.org/aop/547> ;
-	dc:title	"Androgen receptor agonism leading to long anogenital distance in female offspring" ;
-	dcterms:alternative	"Androgen receptor agonism leading to long anogenital distance in female offspring" ;
+	dc:title	"Androgen receptor agonism leading to long anogenital distance (AGD) in female offspring" ;
+	dcterms:alternative	"Androgen receptor agonism leading to long anogenital distance (AGD) in female offspring" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2024-11-02T04:31:31" ;
-	dcterms:modified	"2026-03-10T03:29:33" ;
-	dc:description	"""Characterization of chemical properties: Androgen receptor binding chemicals can be grouped into two broad structural domains, steroidal and non-steroidal (Yin et al. 2003). Steroidal androgens consist primarily of testosterone and its derivatives (Yin et al. 2003). Many of the non-steroidal AR binding chemicals studied are derivatives of well known non-steroidal AR antagonists like bicalutamide, hydroxyflutamide, and nilutamide (Yin et al. 2003). Nonetheless, a number of QSARs and SARs that consider AR binding of both these pharmaceutical agents as well as environmental chemicals have been developed (Waller et al. 1996; Serafimova et al. 2002; Todorov et al. 2011; Hong et al. 2003; Bohl et al. 2004). However, it has been shown that very minor structural differences can dramatically impact function as either an agonist or antagonist (Yin et al. 2003; Bohl et al. 2004; Norris et al. 2009), making it difficult at present to predict agonist versus antagonist activity based on chemical structure alone.
+	dcterms:modified	"2026-08-30T05:59:17" ;
+	dc:description	"""This AOP was developed as part of the European Food Safety Authority (EFSA) project (Grant Agreement No. GP/EFSA/PREV/2022/01) aimed at creating AOPs for endocrine disruptors. The purpose of this AOP is to provide a framework for identifying endocrine disruptors associated with increased AGD in female rodent offspring. Other AOPs within the project address shortened AGD in males (AOPs 305, 306, and 307).
+
+The molecular initiating event (MIE25: Agonism, Androgen receptor) and key event (KE2274: Androgen receptor activation, increased) described in this AOP can serve as a foundation for developing additional AOPs related to adverse outcomes resulting from androgen receptor agonism.
+
+Furthermore, this AOP can be expanded into an AOP network by incorporating pathways such as &ldquo;Increased testosterone levels leading to long anogenital distance in female offspring&rdquo; and &ldquo;Increased dihydrotestosterone levels leading to long anogenital distance in female offspring.&rdquo; These can be developed using the key events (KE2272, KE2273) and key event relationships (KER3380, KER3381) established in the EFSA-funded project.
+
+A shortened AGD is recognized as a sensitive marker of reduced AR activity during the masculinization programming window in the male, whereas in the female a longer AGD is a marker of increased AR activity and masculinization of the female fetus in this period.
+""", """Characterization of chemical properties: Androgen receptor binding chemicals can be grouped into two broad structural domains, steroidal and non-steroidal (Yin et al. 2003). Steroidal androgens consist primarily of testosterone and its derivatives (Yin et al. 2003). Many of the non-steroidal AR binding chemicals studied are derivatives of well known non-steroidal AR antagonists like bicalutamide, hydroxyflutamide, and nilutamide (Yin et al. 2003). Nonetheless, a number of QSARs and SARs that consider AR binding of both these pharmaceutical agents as well as environmental chemicals have been developed (Waller et al. 1996; Serafimova et al. 2002; Todorov et al. 2011; Hong et al. 2003; Bohl et al. 2004). However, it has been shown that very minor structural differences can dramatically impact function as either an agonist or antagonist (Yin et al. 2003; Bohl et al. 2004; Norris et al. 2009), making it difficult at present to predict agonist versus antagonist activity based on chemical structure alone.
 
 In vivo considerations: A variety of steroidal androgens can be converted to estrogens in vitro through the action of cytochrome P450 19 (aromatase). Structures subject to aromatization may behave in vivo as estrogens despite exhibiting potent androgen receptor agonism in vitro.
+""", """Measuring the AGD is mandatory in OECD test guidelines used to test for developmental and reproductive toxicity of chemicals. Guidelines include &lsquo;TG 443 extended one-generation study&rsquo; (OECD, 2025a), &lsquo;TG 421/422 reproductive toxicity screening studies&rsquo; (OECD, 2025b) and &lsquo;TG 414 developmental toxicity study&rsquo; (OECD, 2018). However, there is a huge challenge in interpreting a longer AGD in females.
+""" ;
+	nci:C48192	"""
+	
+		
+			
+			KE
+			
+			
+			Evidence
+			
+			
+			Level of evidence
+			
+		
+		
+			
+			MIE25
+			
+			
+			Direct evidence on effect on KE2274:
+
+			Studies in AR knockout mice demonstrate that AR is essential for mediating effects on the reproductive system by AR activation (De Gendt et al., 2004; Holdcraft &amp; Braun, 2004; Matsumoto et al., 2003; Notini et al., 2005; Yeh et al., 2002).
+
+			AR antagonists flutamide, procymidone and vinclozolin inhibit AR activity in vivo as shown in the OECD test guideline Hershberger assay (Browne et al., 2018).
+
+			Direct evidence on effect on AO2365: 
+
+			Studies in AR knockout mice demonstrate that AR is essential for a longer AGD, as male AR knockout mice exhibit AGD lengths comparable to female wild-type mice (Yeh et al., 2002, Sato et al., 2004).&nbsp;It should be noted AGD in male mice was studied but the AO2365 is in females.
+
+			Prenatal exposure to the AR antagonists flutamide, procymidone and vinclozolin results in shorter AGD in rat studies (Casto et al., 2003; Foster &amp; Harris, 2005; Fussell et al., 2015; Goto et al., 2004; Gray et al., 1994; Hass et al., 2007; Hass et al., 2012; Inawaka et al., 2010; Kita et al., 2016; Ostby et al., 1999; McIntyre et al., 2001; Shimamura et al., 2002; Wolf et al., 2000; Yamasaki et al., 2005). It should be noted AGD in male rats was studied but the AO2365 is in females.
+			
+			
+			High. 
+
+			There is direct evidence from knockout and antagonist studies. There are no inconsistencies identified but it should be noted that the effect on AGD was studied in male animals.
+			
+		
+		
+			
+			KE2274
+			
+			
+			Direct evidence on effect on AO2365: 
+
+			Studies in AR knockout mice demonstrate that AR activity is essential for a longer AGD, as male AR knockout mice exhibit AGD lengths comparable to female wild-type mice (Yeh et al., 2002, Sato et al., 2004).&nbsp;It should be noted AGD in male mice was studied but the AO2365 is in females.
+
+			Prenatal exposure to the AR antagonists flutamide, procymidone and vinclozolin results in reduced AGD in rat studies (Casto et al., 2003; Foster &amp; Harris, 2005; Fussell et al., 2015; Goto et al., 2004; Gray et al., 1994; Hass et al., 2007; Hass et al., 2012; Inawaka et al., 2010; Kita et al., 2016; Ostby et al., 1999; McIntyre et al., 2001; Shimamura et al., 2002; Wolf et al., 2000; Yamasaki et al., 2005). It should be noted AGD in male rats was studied but the AO2365 is in females.
+			
+			
+			High. 
+
+			There is direct evidence from knockout and antagonist studies. There are no inconsistencies identified, but it should be noted that the effect on AGD was studied in male animals.
+			
+		
+	
+
+""" ;
+	aopo:AopContext	"""Life stage applicability
+
+The life stage applicability domain for this AOP is fetal. Although AR activation occurs during fetal development, puberty, and adulthood, the regulation of AGD growth is specifically controlled by androgens during the masculinization programming window, which takes place in fetal development (Dalton &amp; Gao, 2010; Luetjens &amp; Weinbauer, 2012; Naamneh Elzenaty et al., 2022; Sutinen et al., 2017; Welsh et al., 2008).
+
+Taxonomic applicability
+
+The biologically plausible taxonomic applicability domain for this AOP is mammals, as fetal masculinization is regulated by androgens across all mammalian species (Welsh et al., 2014). The empirical taxonomic applicability domain is rat and human, supported by prenatal studies in rat demonstrating that androgen receptor activation leads to a measurable increase in female offspring AGD (Armoskus et al., 2014; Guerra et al., 2014; Hotchkiss et al., 2007; Sathishkumar et al., 2011; Welsh et al., 2009; Wilson et al., 2002; Wolf et al., 2002; Wolf et al., 2004) and epidemiological studies suggesting that elevated androgen levels in women are associated with increased AGD (Mira-Escolano et al., 2014; Pan et al., 2021; Zamani et al., 2023).
+
+Sex applicability
+
+The sex applicability domain for this AOP is females, supported by studies showing effects of androgen activation on female AGD (Armoskus et al., 2014; Guerra et al., 2014; Hotchkiss et al., 2007; Mira-Escolano et al., 2014; Pan et al., 2021; Sathishkumar et al., 2011; Welsh et al., 2009; Wilson et al., 2002; Wolf et al., 2002; Wolf et al., 2004; Zamani et al., 2023).
+""" ;
+	aopo:has_evidence	"""Assessment of biological plausibility
+
+
+	
+		
+			
+			KER
+			
+			
+			Assessment
+			
+		
+		
+			
+			KER 3378: Agonism, Androgen receptor leads to Androgen receptor activation, increased
+			
+			
+			The biological plausibility of the KER is High.
+
+			It is a generally recognised process, canonical knowledge, that binding of agonists to AR leads to increased AR activation in vivo (Dalton &amp; Gao, 2010; Luetjens &amp; Weinbauer, 2012; Naamneh Elzenaty et al., 2022; Sutinen et al., 2017).
+			
+		
+		
+			
+			KER 3628: Androgen receptor activation, increased leads to AGD, increased
+			
+			
+			The biological plausibility of the KER is High.
+
+			It is a well-documented by numerous studies in rats that AR activation drives the fetal masculinization process, including the growth of the perineum, which can be measured as AGD (Liu et al., 2014; Salazar-Martinez et al, 2004; Schwartz et al., 2019; Sharpe, 2020; Thankamony et al., 2016; Welsh et al., 2008; Wise, 2024). This is supported by epidemiological studies (Mira-Escolano et al., 2014; Pan et al., 2021; Zamani et al., 2023).
+			
+		
+	
+
+
+Assessment of empirical evidence
+
+
+	
+		
+			
+			KER
+			
+			
+			Assessment
+			
+		
+		
+			
+			KER 3378: Agonism, Androgen receptor leads to Androgen receptor activation, increased
+			
+			
+			The empirical support for the KER is High.
+
+			AR agonists such as testosterone propionate, methyl testosterone and trenbolone have been identified as agonists in the US EPA Androgen receptor pathway model, which integrates in vitro assays for receptor binding, coregulator recruitment and transactivation. These stressors have also been shown to increase androgen activity in Hershberger assay and other in vivo assays (Kleinstreuer et al., 2018; Browne et al., 2018).
+
+			Assessing dose and temporal concordance for this KER is challenging because the upstream KE is measured in vitro, whereas the downstream KE reflects on increased in vivo activation. There are no available data on incidence concordance.
+			
+		
+		
+			
+			KER 3628: Androgen receptor activation, increased leads to AGD, increased
+			
+			
+			The empirical support for the KER is High.
+
+			The empirical evidence is based on four model substances: methyl testosterone, testosterone, testosterone propionate and trenbolone. These substances bind AR and act as AR agonists, as demonstrated in in vitro studies (Kleinstreuer et al., 2018; Judson et al., 2020) and androgen activity in in vivo Hershberger assays (Browne et al., 2018). Prenatal exposure to&nbsp; these substances in rat studies has been shown to increase AGD in female offspring, as reported in multiple studies (Armoskus et al., 2014; Guerra et al., 2014; Hotchkiss et al., 2007; Juarez et al., 1995; Kawashima et al., 1975; McCoy et al., 1992; Rhees et al., 1997; Tehrani et al., 2014; Welsh et al., 2009; Wilson et al., 2002; Wolf et al., 2002; Wolf et al., 2004; Wu et al., 2010)
+
+			Assessing dose and temporal concordance for this KER is challenging because the upstream KE is measured in vitro, whereas the downstream KE is assessed in vivo. The upstream KE, increased AR activation, is expected to occur rapidly, within minutes to hours after exposure to the substance (Naamneh Elzenaty et al., 2022; Sutinen et al., 2017). In the prenatal in vivo studies, the exposure occurred during GD15&ndash;19, with AGD measured in female offspring between GD21 and PND30. No evidence is currently available to assess incidence concordance for this KER.
+			
+		
+	
+
+""" ;
+	edam:operation_3799	"""The level of quantitative understanding of the AOP is low. No specific evidence has been identified for response-response relationships for the KERs or for the presence of feedforward or feedback loops.&nbsp; There is some understanding of the time-scale. Agonism of the AR leads rapidly to increased AR activity in vivo. Effects on activation of the receptor on cellular function can be seen after minutes to hours (Naamneh Elzenaty et al., 2022; Sutinen et al., 2017). In prenatal in vivo studies, exposure to a substance that activates AR for five to six days during the masculinization window (around GD16-20 in rats) can result in increased AGD at PND2 (Hotchkiss et al., 2007; Wilson et al., 2002; Wolf et al., 2004).
+""" ;
+	nci:C25725	"""AGD is considered an apical endpoint and is included in OECD test guidelines TG414, TG416, TG421, TG422, and TG443 (OECD, 2001; OECD, 2018; OECD, 2025a; OECD, 2025b; OECD, 2025c). According to ECHA/EFSA guidance for identifying endocrine disruptors, AGD is classified as an EATS-mediated parameter and is used in the identification of endocrine-disrupting substances (ECHA/EFSA, 2018).
+
+This AOP supports the regulatory use of increased AGD in female rodents as an indicator of endocrine disruption, specifically to identify androgenic endocrine disruptors.
+""" ;
+	dc:creator	"""Hanna KL Johansson, National Food Institute, Technical University of Denmark, Denmark
+
+Johanna Zilliacus, Institute of Environmental Medicine, Karolinska Institutet, Sweden
+
+Anna Beronius, Institute of Environmental Medicine, Karolinska Institutet, Sweden
+
+Terje Svingen, National Food Institute, Technical University of Denmark, Denmark
+""" ;
+	dcterms:abstract	"""The purpose of developing this AOP was to establish a framework for identifying endocrine disruptors based on the measurement of anogenital distance (AGD) in female rodents. AGD is defined as the distance between the anus and the external genitalia. In both rodents and humans, female AGD is approximately half the length of male AGD (Liu et al., 2014; Salazar-Martinez et al., 2004; Schwartz et al., 2019; Sharpe, 2020; Thankamony et al., 2016; Wise, 2024). This difference reflects androgen-dependent regulation of perineal growth during fetal development in males, whereas in females, the absence of androgens limits this growth (Ipulan et al., 2016; Schwartz et al., &nbsp;2019; Sharpe, 2020; Welsh et al., 2008).
+
+AGD is considered an apical endpoint and is included in OECD test guidelines TG414, TG416, TG421, TG422 and TG443 (OECD, 2001; OECD, 2018; OECD, 2025a; OECD, 2025b; OECD, 2025c). According to ECHA/EFSA guidance for identifying endocrine disruptors, AGD is classified as an EATS-mediated parameter and is used in the identification of endocrine disruptors (ECHA/EFSA, 2018).
+
+The molecular initiating event (MIE) for this AOP is androgen receptor (AR) agonism, meaning the binding of a compound to the AR that activates the receptor. This leads to the first key event (KE): increased AR activation in tissues and organs in vivo, including the perineum. During fetal development in females, increased AR activation in the perineum results in increased AGD considered an adverse outcome (AO). 
+
+The overall weight of evidence supporting this AOP is high. Biological plausibility for both key event relationships (KERs) is strong, as androgen receptor mechanisms and androgenic effects on AGD are well established. Empirical evidence for the KERs is based on studies showing that AR agonists increase female AGD in prenatal rat studies.
+
+This AOP is applicable for identifying androgenic endocrine disruptors.
 """ ;
 	aopo:has_key_event	aop.events:2274, aop.events:25, aop.events:2365 ;
 	aopo:has_key_event_relationship	aop.relationships:3378, aop.relationships:3628 ;
 	aopo:has_molecular_initiating_event	aop.events:25 ;
-	aopo:has_adverse_outcome	aop.events:2365 .
+	aopo:has_adverse_outcome	aop.events:2365 ;
+	nci:C54571	aop.stressor:875, aop.stressor:876, aop.stressor:5 ;
+	pato:0000047	"Female" ;
+	aopo:LifeStageContext	"Fetal" ;
+	ncbitaxon:131567	ncbitaxon:10116, "WCS_9606" .
 
 aop:548
 	a	aopo:AdverseOutcomePathway ;
@@ -78517,7 +78701,7 @@ aop:647
 	dcterms:alternative	"ROS leading to growth inhibition moduleated by the Keap1–Nrf2 antioxidant response" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-07-22T02:54:27" ;
-	dcterms:modified	"2026-08-20T08:44:36" ;
+	dcterms:modified	"2026-09-02T16:07:58" ;
 	dc:description	"""Reactive oxygen species (ROS) are produced during normal aerobic metabolism and act as physiological signalling molecules. Their biological effects depend on concentration, duration, cellular location and antioxidant capacity. At controlled levels, ROS participate in redox regulation; when ROS production exceeds antioxidant and repair capacity, oxidative stress can disrupt redox signalling and damage cellular macromolecules (Sies and Jones, 2020; Sies, 2015). In aquatic animals, environmentally induced oxidative stress is a common response to chemical and non-chemical stressors, including metals, pesticides, nanoparticles, radiation and changes in environmental conditions (Lushchak, 2011; Song et al., 2023).&nbsp;
 
 Cells maintain redox homeostasis through antioxidant enzymes, low-molecular-weight redox buffers and stress-response pathways. The Keap1-Nrf2 pathway is a major adaptive defence system against oxidative and electrophilic stress. Keap1 represses Nrf2-dependent activation of antioxidant response elements under basal conditions, while oxidative or electrophilic modification of Keap1 promotes Nrf2 activation and induction of antioxidant and detoxification genes (Itoh et al., 1999; Baird and Yamamoto, 2020). This adaptive response is important for interpreting oxidative-stress outcomes because it can delay, reduce or modify downstream toxicity depending on exposure intensity, duration and biological capacity for compensation.&nbsp;Sustained oxidative stress can affect cell fate through damage to lipids, proteins and other macromolecules, and through interactions with mitochondrial and endoplasmic-reticulum (ER) stress responses. Cytochrome c has a central role in mitochondrial apoptosis, including cardiolipin oxidation and release of proapoptotic factors, followed by Apaf-1/caspase-9 complex formation and activation of the apoptotic protease cascade (Kagan et al., 2005; Li et al., 1997). ER stress is also linked to cell-fate decisions and can contribute to apoptosis when adaptive unfolded-protein responses are insufficient (Cao and Kaufman, 2014; Chen et al., 2023).
@@ -78563,8 +78747,8 @@ Growth impairment is a regulatory and ecotoxicologically relevant apical outcome
 """ ;
 	dcterms:abstract	"""This AOP describes the linkage between increased reactive oxygen species (ROS) formation and decreased organismal growth. The molecular initiating event is increased ROS formation. When ROS production exceeds the buffering capacity of endogenous antioxidant systems, oxidative stress increases. This oxidative burden leads to oxidative damage to cellular macromolecules through two key-event branches: increased lipid oxidation and increased protein oxidation.&nbsp;Increased lipid and protein oxidation can disrupt cellular homeostasis and contribute to mitochondrial and endoplasmic-reticulum stress responses. These processes are represented by increased cytochrome c release and increased endoplasmic-reticulum stress, which promote increased caspase activation. Caspase activation contributes to increased cell injury and cell death. At the organism level, cumulative cellular injury and loss of viable or functional cells can result in decreased growth.&nbsp;The Keap1-Nrf2 antioxidant response is included as a modulating component of this AOP. ROS-mediated modification of Keap1 cysteine residues promotes Nrf2 nuclear accumulation and induction of antioxidant enzymes. This adaptive response can reduce oxidative stress and influence the threshold, magnitude and progression of downstream key events.&nbsp;This AOP provides a mechanistic framework for linking ROS formation, oxidative macromolecular damage, stress-response signalling, apoptotic activation, cell injury and growth impairment. It is considered broadly applicable across aerobic eukaryotes because ROS formation, oxidative damage, antioxidant defence and regulated cell-death processes are conserved biological features. Growth impairment is included as the adverse outcome because it is a biologically and ecotoxicologically relevant endpoint across multiple taxa.
 """ ;
-	aopo:has_key_event	aop.events:1392, aop.events:1445, aop.events:1767, aop.events:55, aop.events:1812, aop.events:1815, aop.events:2188, aop.events:1115, aop.events:1521 ;
-	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:3116, aop.relationships:3632, aop.relationships:3837, aop.relationships:3838, aop.relationships:3050, aop.relationships:3839, aop.relationships:2767, aop.relationships:3840 ;
+	aopo:has_key_event	aop.events:1392, aop.events:1445, aop.events:1767, aop.events:1812, aop.events:1815, aop.events:2188, aop.events:55, aop.events:1115, aop.events:1521 ;
+	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:3116, aop.relationships:3632, aop.relationships:3837, aop.relationships:3838, aop.relationships:3050, aop.relationships:3839, aop.relationships:3840, aop.relationships:2767 ;
 	aopo:has_molecular_initiating_event	aop.events:1115 ;
 	aopo:has_adverse_outcome	aop.events:1521 ;
 	nci:C54571	aop.stressor:252 ;
@@ -78798,6 +78982,22 @@ This AOP contributes to the scientific understanding of the mechanistic foundati
 	pato:0000047	"Male" ;
 	aopo:LifeStageContext	"Adult, reproductively mature" ;
 	ncbitaxon:131567	"WikiUser_17", "WikiUser_28" .
+
+aop:652
+	a	aopo:AdverseOutcomePathway ;
+	dc:identifier	aop:652 ;
+	rdfs:label	"AOP 652" ;
+	rdfs:seeAlso	<https://identifiers.org/aop/652> ;
+	foaf:page	<https://identifiers.org/aop/652> ;
+	dc:title	"Inhibition of brain insulin-degrading enzyme (IDE) leads to cognitive decline (adult)" ;
+	dcterms:alternative	"IDE and cognitive decline" ;
+	dc:source	"AOPWiki" ;
+	dcterms:created	"2026-08-31T09:12:13" ;
+	dcterms:modified	"2026-08-31T09:22:04" ;
+	aopo:has_key_event	aop.events:2449, aop.events:1943, aop.events:1944, aop.events:2448, aop.events:2450 ;
+	aopo:has_key_event_relationship	aop.relationships:3841, aop.relationships:3842, aop.relationships:3843, aop.relationships:3844, aop.relationships:3845 ;
+	aopo:has_molecular_initiating_event	aop.events:2448 ;
+	aopo:has_adverse_outcome	aop.events:2450 .
 
 aop.events:888
 	a	aopo:KeyEvent ;
@@ -82564,6 +82764,73 @@ aop.events:1521
 	dc:description	"""Decreased growth refers to a reduction in size and/or weight of a tissue, organ or individual organism. Growth is normally controlled by growth factors and mainly achieved through cell proliferation (Conlon 1999).
 """ ;
 	mmo:0000000	"""Growth can be indicated by measuring weight, length, total volume, and/or total area of a tissue, organ or individual organism. &nbsp;
+
+Revised version (non-endorsed, added by You Song, 02/09/2026)
+
+Growth can be measured as a change in size, mass, biomass, length, area, volume, or growth rate of a tissue, organ, or whole organism over a defined exposure period. The appropriate measurement depends on the biological system, life stage, and test species.
+
+At the organism level, growth is commonly assessed by measuring body weight, wet weight, dry weight, body length, standard length, total length, shell length, shoot height, root length, frond number, frond area, cell density, biomass, or relative growth rate. Growth inhibition is typically expressed as a statistically significant reduction relative to the control, or as an effect concentration causing a defined percentage reduction in growth, such as ECx, ErCx, EyCx, LOEC, NOEC, or benchmark concentration/dose values.
+
+For unicellular algae and cyanobacteria, growth is commonly quantified from changes in biomass over time. Biomass may be estimated using direct cell counts, electronic particle counters, microscopy, optical density, fluorescence, chlorophyll-related measurements, or other validated biomass proxies. Growth inhibition is commonly calculated from average specific growth rate and yield.
+
+For aquatic macrophytes such as Lemna spp., growth is typically quantified using frond number and at least one additional growth-related variable, such as total frond area, dry weight, fresh weight, or image-based area measurements. Digital imaging, flatbed scanning, stereomicroscopy, or automated image-analysis tools can be used to quantify frond area and related morphological endpoints.
+
+For terrestrial plants, growth can be measured using seedling emergence, survival, shoot height, root length, fresh or dry biomass, leaf area, and visual signs of phytotoxicity such as chlorosis, necrosis, deformation, or delayed development. Measurements may be made using rulers or calipers, analytical balances, scanners, digital imaging, or plant image-analysis software.
+
+For aquatic invertebrates, growth may be assessed using body length, body area, wet weight, dry weight, developmental stage, or size at defined time points. In small organisms such as Daphnia, body length is often measured from microscope or stereomicroscope images using calibrated image-analysis software.
+
+For fish and amphibians, growth is commonly assessed using wet weight, dry weight, standard length, total length, snout&ndash;vent length, condition factor, developmental stage, and specific growth rate. Measurements may be obtained using balances, calipers, digital imaging, or stereomicroscopy, depending on organism size and life stage.
+
+For mammals and other vertebrates in repeated-dose or reproductive/developmental toxicity studies, growth-related endpoints are typically evaluated using body weight, body-weight gain, food and water consumption, pup or offspring weight, litter growth, organ weight, and developmental landmarks. These endpoints are usually interpreted together with clinical observations, survival, pathology, and reproductive or developmental parameters.
+
+Because growth is an integrative apical endpoint, measurement should be performed over a biologically appropriate time window and interpreted in relation to survival, developmental delay, nutritional status, reproductive output, and general toxicity. Direct measurements of organismal size, biomass, or growth rate provide the strongest evidence for this key event, whereas indirect indicators such as altered morphology, reduced condition factor, or reduced organ weight may provide supporting evidence depending on biological context.
+
+Relevant OECD Test Guidelines include, but are not limited to:
+
+
+	
+	OECD TG 201: Freshwater Alga and Cyanobacteria, Growth Inhibition Test. This guideline directly assesses inhibition of algal or cyanobacterial growth, typically using average specific growth rate and yield as response variables.
+	
+	
+	OECD TG 208: Terrestrial Plant Test: Seedling Emergence and Seedling Growth Test. This guideline assesses effects on seedling emergence and early growth of terrestrial plants, including biomass, shoot height, and visible phytotoxic effects.
+	
+	
+	OECD TG 211: Daphnia magna Reproduction Test. Although the primary endpoint is reproductive output, the test can provide chronic organism-level information relevant to population performance, and growth-related observations such as body size may be reported as supporting endpoints when included in the study design.
+	
+	
+	OECD TG 212: Fish, Short-term Toxicity Test on Embryo and Sac-Fry Stages. This guideline assesses toxicity during early fish development from fertilized egg to the end of the sac-fry stage. Growth-related developmental observations may support interpretation of early-life-stage impairment.
+	
+	
+	OECD TG 215: Fish, Juvenile Growth Test. This guideline directly evaluates effects on juvenile fish growth. Effects are expressed using growth rate, and concentration-response analysis can be used to estimate concentrations causing a defined percentage change in growth rate.
+	
+	
+	OECD TG 221: Lemna sp. Growth Inhibition Test. This guideline directly assesses effects on vegetative growth of Lemna spp. using average specific growth rate and yield, commonly based on frond number and additional variables such as frond area or biomass.
+	
+	
+	OECD TG 228: Determination of Developmental Toxicity to Dipteran Dung Flies. This guideline is relevant where chemical exposure affects development and growth-related performance in terrestrial invertebrates.
+	
+	
+	OECD TG 241: Larval Amphibian Growth and Development Assay. This guideline evaluates growth and development in amphibians from fertilization through the early juvenile period.
+	
+	
+	OECD TG 407: Repeated Dose 28-day Oral Toxicity Study in Rodents. This guideline includes body weight and food/water consumption measurements as part of the assessment of repeated-dose systemic toxicity.
+	
+	
+	OECD TG 408: Repeated Dose 90-day Oral Toxicity Study in Rodents. This guideline includes body weight and related clinical observations as part of subchronic systemic toxicity assessment.
+	
+	
+	OECD TG 416: Two-Generation Reproduction Toxicity. This guideline evaluates effects on reproduction as well as growth and development of offspring across generations.
+	
+	
+	OECD TG 422: Combined Repeated Dose Toxicity Study with the Reproduction/Developmental Toxicity Screening Test. This guideline includes body weight, food/water consumption, offspring observations and measurements, and developmental parameters.
+	
+	
+	OECD TG 443: Extended One-Generation Reproductive Toxicity Study. This guideline evaluates reproductive and developmental effects, including health, growth, development, and function of offspring following pre- and postnatal exposure.
+	
+	
+	OECD TG 453: Combined Chronic Toxicity/Carcinogenicity Studies. This guideline includes body weight and body-weight gain as part of the evaluation of chronic systemic toxicity and carcinogenicity.
+	
+
 """ ;
 	nci:C25664	"""Individual""" ;
 	nci:C17469	"""Taxonomic applicability domain
@@ -83479,6 +83746,12 @@ Sequencing assays&nbsp;
 	Various markers are used to detect and highlight sites of DNA damage; the result is then processed and sequenced. This category encompasses a wide range of assays such as snAP-seq, OGG1-AP-seq, oxiDIP-seq, OG-seq, and click-code-seq (Yun et al., 2017; Wu et al., 2018; Amente et al., 2019; Poetsch, 2020b).&nbsp;
 	We note that other types of oxidative lesions can be quantified using the methods described above.
 
+
+&nbsp;
+
+Update - non-endorsed (by You Song, 02/09/2026)
+
+ToxCast/Tox21 assays (invitrodb v4.3):&nbsp;ATG_p53_CIS; LTEA_HepaRG_GADD45A; TOX21_p53_BLA_*_ratio; TOX21_p53_BLA_ms_human_ratio; TOX21_p53_BLA_ms_rat_ratio
 """ ;
 	nci:C25664	"""Molecular""" ;
 	nci:C17469	"""Taxonomic applicability: Theoretically, DNA oxidation can occur in any cell type, in any organism. Oxidative DNA lesions have been measured in mammalian cells (human, mouse, calf, rat) in vitro and in vivo, and in prokaryotes.
@@ -85472,6 +85745,46 @@ In vitro data is used to support these domains.
 	pato:0000001	"abnormal" ;
 	pato:0001241	fma:67338 ;
 	dcterms:isPartOf	aop:323, aop:348, aop:521, aop:526, aop:595, aop:651 .
+
+aop.events:2365
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2365 ;
+	rdfs:label	"KE 2365" ;
+	foaf:page	<https://identifiers.org/aop.events/2365> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2365> ;
+	dc:title	"Anogenital distance (AGD), increased" ;
+	dcterms:alternative	"Anogenital distance (AGD), increased" ;
+	dc:source	"AOPWiki" ;
+	dc:description	"""Anogenital distance (AGD)&mdash;the span between the anus and the external genitalia&mdash;is a sexually dimorphic trait observed in both rodents and humans, where males exhibit an AGD approximately twice as long as that of females (Liu et al., 2014; Salazar-Martinez et al., 2004; Schwartz et al., 2019; Sharpe, 2020; Thankamony et al., 2016; Wise, 2024). This difference arises from the influence of androgens during fetal development, which drive the formation of secondary sexual characteristics. Presence of androgen in the male fetus drives he elongation of perineum, whereas the lack of androgen in female fetuses prevents this masculinization process (Ipulan et al., 2016; Schwartz et al., 2019; Sharpe, 2020; Welsh et al., 2008).
+
+In rats, androgens act within a critical developmental window &ndash; around gestational days 15.5 to 18.5 (Welsh et al, 2008; MacLeod et al., 2010) - and AGD has gained recognition as a reliable proxy for assessing the intrauterine hormonal environment. In XY fetuses, insufficient androgen exposure results in a shorter AGD, while in XX fetuses, excessive androgen exposure can lead to an elongated AGD. This pattern has been observed in both human and rodent studies (Schwartz et al., 2019).
+""" ;
+	mmo:0000000	"""In rodent studies, anogenital distance (AGD) is measured as the span between the genital papilla and the anus using a stereomicroscope equipped with a micrometer eyepiece. To account for body size, the AGD index (AGDi) is calculated by dividing AGD by the cube root of the body weight.
+
+For statistical analysis, it is essential to treat the litter as the experimental unit, especially when multiple pups from the same litter are assessed. In such cases, statistical models are adjusted by including litter as an independent, random, and nested factor. Additionally, AGD measurements are analyzed using body weight as a covariate, in accordance with the recommendations outlined in OECD Guidance Document 151 (2013).
+""" ;
+	nci:C25664	"""Tissue""" ;
+	nci:C17469	"""Taxonomic Applicability
+
+The biologically plausible taxonomic applicability domain is mammals, as fetal masculinization is regulated by androgens across all mammalian species (Welsh et al., 2014). The empirical taxonomic applicability domain is based on rat, supported by prenatal studies demonstrating that exogenous androgen treatment leads to a measurable increase in female AGD (Armoskus et al., 2014; Guerra et al., 2014; Hotchkiss et al., 2007; Sathishkumar et al., 2011; Welsh et al., 2009; Wilson et al., 2002; Wolf et al., 2002; Wolf et al., 2004). In humans, epidemiological studies show that patients with polycystic ovary syndrome (PCOS) presents with a longer AGD than controls (Pan et al., 2021; Zamani et al., 2023). There is also some conflicting evidence that girls born to women with PCOS have longer AGD. Evidence regarding AGD in daughters of women with PCOS is mixed: Barrett et al. (2018) reported an association, whereas Glintborg et al. (2019) did not. Additionally, one study found that fetuses of women with PCOS exhibited longer AGD (Perlman et al., 2020).
+
+Sex applicability
+
+This KE focuses on effects on AGD in females. A long AGD in female offspring is a marker of excess (ectopic) androgen action during fetal life (Schwartz et al. 2019). A longer AGD is thus a sign of virilization of the female fetus.
+
+Life Stage Applicability
+
+Growth of AGD in rats is regulated by androgens during the masculinization programming window, which occurs during fetal development between GD15-18 (Welsh et al., 2008; Mc Leod et al, 2010).
+""" ;
+	pato:0000047	"Female" ;
+	aopo:LifeStageContext	"Fetal" ;
+	ncbitaxon:131567	ncbitaxon:10116, "WCS_9606" ;
+	aopo:OrganContext	uberon:0002356 ;
+	aopo:hasBiologicalEvent	<2365_bioevent_0> ;
+	go:0008150	go:0030521 ;
+	pato:0000001	"increased" ;
+	pato:0001241	fma:264623 ;
+	dcterms:isPartOf	aop:547 .
 
 aop.events:2305
 	a	aopo:KeyEvent ;
@@ -87755,6 +88068,12 @@ Caspase activity assays measured by fluorescence. During apoptosis, mainly caspa
 Hoechst 33342 staining: Hoechst dyes are cell-permeable and bind to DNA in live or fixed cells. Therefore, these stains are often called supravital, which means that cells survive a treatment with these compounds. The stained, condensed or fragmented DNA is a marker of apoptosis (Loo, 2002; Kubbies and Rabinovitch, 1983).&nbsp;
 
 Acridine Orange/Ethidium Bromide staining is used to visualize nuclear changes and apoptotic body formation that are characteristic of apoptosis. Cells are viewed under a fluorescence microscope and counted to quantify apoptosis.
+
+&nbsp;
+
+Update - non-endorsed (by You Song, 02/09/2026)
+
+ToxCast/Tox21 assays (invitrodb v4.3):&nbsp;APR_HepG2_CellLoss_*; ATG_XTT_Cytotoxicity; LTEA_HepaRG_LDH_cytotoxicity
 """ ;
 	nci:C25664	"""Cellular""" ;
 	nci:C17469	"""Cell death is an universal event occurring in cells of any species (Fink and Cookson,2005). 
@@ -88599,6 +88918,10 @@ Please refer to the table below for additional details and methodologies for det
 
 
 &nbsp;
+
+Update - non-endorsed (by You Song, 02/09/2026)
+
+ToxCast/Tox21 assays (invitrodb v4.3):&nbsp;TOX21_DT40_100_LUC; TOX21_DT40_657_LUC; TOX21_ELG1_LUC_Agonist
 """ ;
 	nci:C25664	"""Cellular""" ;
 	nci:C17469	"""The retention of adducts has been directly measured in many different types of eukaryotic somatic cells (in vitro and in vivo). In male germ cells, work has been done on hamsters, rats and mice. The accumulation of mutation and changes in mutation spectrum has been measured in mice and human cells in culture. Theoretically, saturation of DNA repair occurs in every species (prokaryotic and eukaryotic). The principles of this work were established in prokaryotic models. Nagel et al. (2014) have produced an assay that directly measures DNA repair in human cells in culture.
@@ -88616,6 +88939,8 @@ Evidence for perturbation by a stressor: Multiple studies demonstrate that inade
 	pato:0000047	"Unspecific" ;
 	aopo:LifeStageContext	"All life stages" ;
 	ncbitaxon:131567	ncbitaxon:10090, ncbitaxon:10116, ncbitaxon:10036, ncbitaxon:9606, ncbitaxon:9913 ;
+	aopo:CellTypeContext	cl:0000000 ;
+	aopo:OrganContext	uberon:0000062 ;
 	aopo:hasBiologicalEvent	<155_bioevent_0> ;
 	go:0008150	go:0006281 ;
 	pato:0000001	"abnormal" ;
@@ -89436,7 +89761,9 @@ Molecular Biology: Nrf2. Nrf2&rsquo;s transcriptional activity is controlled p
 	
 
 
-&nbsp;
+Update - non-endorsed (by You Song, 02/09/2026)
+
+ToxCast/Tox21 assays (invitrodb v4.3):&nbsp;ATG_NRF2_ARE_CIS; Tox21_ARE_BLA_Agonist_ratio; TOX21_ARE_KS_LUC_Agonist; LTEA_HepaRG_NFE2L2; LTEA_HepaRG_GCLC; LTEA_HepaRG_CAT
 """ ;
 	nci:C25664	"""Molecular""" ;
 	nci:C17469	"""Taxonomic applicability: Occurrence of oxidative stress is not species specific. &nbsp;
@@ -104017,6 +104344,12 @@ aop.events:1505
 	dc:description	"""The disruption of the cell cycle leads to a decrease in cell number. The cell cycle consists of G1, S, G2, M, and G0 phases. The cell cycle regulation is disrupted by the cell cycle arrest in certain cell cycle phases. The histone gene expression is regulated in cell cycle phases [Heintz et al., 1983].
 """ ;
 	mmo:0000000	"""The percentage of cells at G1, G0, S, and G2/M phases can be detected by flow cytometry&nbsp; [Li et al., 2013]. Cell cycle distribution was analyzed by fluorescence-activated cell sorter (FACS) analysis with a Partec PAS-II sorter [Zupkovitz et al., 2010]. The four cell-cycle phases in living cells can be measured with four-color fluorescent proteins using live-cell imaging [Bajar et al., 2016]. The incorporation of [3H]deoxycytidine or [3H]thymidine into cell DNA during the S phase can be monitored as DNA synthesis [Heintz et al., 1982].
+
+&nbsp;
+
+Update - non-endorsed (by You Song, 02/09/2026)
+
+ToxCast/Tox21 assays (invitrodb v4.3):&nbsp;LTEA_HepaRG_CCND1; LTEA_HepaRG_CDKN1A; NVS_ENZ_hCDK2; ERF_FR_ENZ_hCDK2; APR_HepG2_CellCycleArrest_*; APR_HepG2_MitoticArrest_*
 """ ;
 	nci:C25664	"""Cellular""" ;
 	nci:C17469	"""The histone gene expression alters in each phase of the cell cycle in human HeLa cells (Homo sapiens) [Heintz et al., 1982].
@@ -105029,6 +105362,12 @@ Strand breaks are intermediates in various biological events, including DNA repa
 		
 	
 
+
+&nbsp;
+
+Update - non-endorsed (by You Song, 02/09/2026)
+
+ToxCast/Tox21 assays (invitrodb v4.3):&nbsp;ATG_p53_CIS; TOX21_H2AX_HTRF_CHO_Agonist_ratio; APR_HepG2_P-H2AX
 """ ;
 	nci:C25664	"""Molecular""" ;
 	nci:C17469	"""Taxonomic applicability: DNA strand breaks are relevant to all species, including vertebrates such as humans, that contain DNA (Cannan &amp; Pederson, 2016). &nbsp;
@@ -106784,6 +107123,10 @@ aop.events:1821
 	ToxCast high-throughput screening bioassays such as &ldquo;BSK_3C_Proliferation&rdquo;, &ldquo;BSK_CASM3C_Proliferation&rdquo; and &ldquo;BSK_SAg_Proliferation&rdquo; can be used to measure cell proliferation status.
 	Commercially available methods such as the well-established 5-bromo-2&rsquo;-deoxyuridine (BrdU) (Raza 1985; Muir 1990) or 5-ethynyl-2&rsquo;-deoxyuridine (EdU) assay. Both assays measure DNA synthesis in dividing cells to indicate proliferation status.
 
+
+Update - non-endorsed (by You Song, 02/09/2026)
+
+ToxCast/Tox21 assays (invitrodb v4.3):&nbsp;APR_HepG2_CellCycleArrest_*; APR_HepG2_CellLoss_*; IUF_NPC1b_proliferation_BrdU_*; BSK_3C_Proliferation
 """ ;
 	nci:C25664	"""Cellular""" ;
 	nci:C17469	"""Taxonomic applicability domain
@@ -117189,7 +117532,7 @@ aop.events:1943
 	dcterms:alternative	"p-Tau" ;
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Cellular""" ;
-	dcterms:isPartOf	aop:429 .
+	dcterms:isPartOf	aop:429, aop:652 .
 
 aop.events:1945
 	a	aopo:KeyEvent ;
@@ -117235,7 +117578,7 @@ aop.events:1944
 	go:0008150	mp:0002916, mp:0003990 ;
 	pato:0000001	"decreased", "increased" ;
 	pato:0001241	cl:0000117 ;
-	dcterms:isPartOf	aop:429, aop:471, aop:475 .
+	dcterms:isPartOf	aop:429, aop:471, aop:475, aop:652 .
 
 aop.events:1950
 	a	aopo:KeyEvent ;
@@ -125846,18 +126189,6 @@ The AR is expressed in both males and females and has important roles for sexual
 	pato:0001241	pr:000004191 ;
 	dcterms:isPartOf	aop:547 .
 
-aop.events:2365
-	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:2365 ;
-	rdfs:label	"KE 2365" ;
-	foaf:page	<https://identifiers.org/aop.events/2365> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/2365> ;
-	dc:title	"Anogenital distance (AGD), increased" ;
-	dcterms:alternative	"AGD, increased" ;
-	dc:source	"AOPWiki" ;
-	nci:C25664	"""Tissue""" ;
-	dcterms:isPartOf	aop:547 .
-
 aop.events:2276
 	a	aopo:KeyEvent ;
 	dc:identifier	aop.events:2276 ;
@@ -127912,16 +128243,28 @@ In the context of cancer, tumor&nbsp;cells overexpress this ligand, which contri
 	mmo:0000000	"""Multiple validated and widely used methods exist to measure PD-L1 expression on cancer cells :
 
 1. Immunohistochemistry (IHC).&nbsp;This is the most clinically validated and standardized method. Several antibody clones such as 22C3, 28-8, SP142, and SP263, have been approved as companion or complementary diagnostics for anti-PD-L1 immunotherapies and are used routinely on formalin-fixed paraffin-embedded tumour sections (Martinez-Morilla et al., 2021). Expression is quantified as the Tumour Proportion Score (TPS), the percentage of viable tumour cells showing membranous staining, or as the Combined Positive Score (CPS), which also incorporates PD-L1-positive immune cells (Noordhof et al., 2023).
+
 2. Flow cytometry.&nbsp;Used on dissociated tumour tissue or cultured cancer cell lines to quantify cell-surface PD-L1 via fluorochrome-conjugated antibodies; allows co-staining with other markers to characterise the PD-L1⁺ cell subpopulation (Chen et al., 2021)&nbsp;34211855.
+
 3. Quantitative RT-PCR / RNA sequencing. Used to measure CD274&nbsp;(PD-L1 gene) mRNA transcript levels; mRNA levels correlate moderately-to-strongly with IHC protein scores (Noordhof et al., 2023).
+
 4. Western blot.&nbsp;Used in cell-line-based mechanistic studies to confirm total cellular PD-L1 protein levels, often alongside pathway-specific inhibitors/activators (e.g., STAT1/STAT3 inhibition) (Alsaab et al., 2019).
+
 5. ELISA (for soluble PD-L1, sPD-L1). Used to measure a shed/secreted form of PD-L1 in serum or culture supernatant as a surrogate, non-invasive biomarker, complementary to tissue-based assays.
 """ ;
 	nci:C25664	"""Molecular""" ;
+	nci:C17469	"""PD-L1 overexpression relative to normal tissue has been independently documented in non-small cell lung cancer, melanoma, breast cancer, ovarian cancer, colorectal cancer, hepatocellular carcinoma, prostate cancer, gastric cancer and renal cell carcinoma (Dermani et al., 2019, Kammerer-Jacquet et al., 2019, Payandeh et al., 2020, Matuschewski et al., 2025, Santoni et al., 2020).
+
+The magnitude&nbsp;of overexpression and its clinical or functional threshold varies by tumour type.
+""" ;
 	pato:0000047	"Mixed" ;
 	aopo:LifeStageContext	"During development and at adulthood" ;
 	ncbitaxon:131567	"WCS_9606", ncbitaxon:10090 ;
 	aopo:CellTypeContext	cl:0000235 ;
+	aopo:hasBiologicalEvent	<2323_bioevent_0> ;
+	go:0008150	hp:0010987 ;
+	pato:0000001	"increased" ;
+	pato:0001241	pr:000001290 ;
 	dcterms:isPartOf	aop:578 .
 
 aop.events:2324
@@ -129677,6 +130020,42 @@ aop.events:2446
 	nci:C25664	"""Tissue""" ;
 	dcterms:isPartOf	aop:646 .
 
+aop.events:2448
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2448 ;
+	rdfs:label	"KE 2448" ;
+	foaf:page	<https://identifiers.org/aop.events/2448> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2448> ;
+	dc:title	"Brain insulin-degrading enzyme (IDE), inhibition" ;
+	dcterms:alternative	"IDE inhibition" ;
+	dc:source	"AOPWiki" ;
+	nci:C25664	"""Molecular""" ;
+	dcterms:isPartOf	aop:652 .
+
+aop.events:2449
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2449 ;
+	rdfs:label	"KE 2449" ;
+	foaf:page	<https://identifiers.org/aop.events/2449> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2449> ;
+	dc:title	"Brain amyloid-beta (Aβ) accumulation, increased" ;
+	dcterms:alternative	"Abeta accumulation" ;
+	dc:source	"AOPWiki" ;
+	nci:C25664	"""Cellular""" ;
+	dcterms:isPartOf	aop:652 .
+
+aop.events:2450
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2450 ;
+	rdfs:label	"KE 2450" ;
+	foaf:page	<https://identifiers.org/aop.events/2450> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2450> ;
+	dc:title	"Cognitive Decline (Adult)" ;
+	dcterms:alternative	"Cognitive Decline (Adult)" ;
+	dc:source	"AOPWiki" ;
+	nci:C25664	"""Individual""" ;
+	dcterms:isPartOf	aop:652 .
+
 <888_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	go:0006120 ;
 	aopo:hasObject	pr:000031316 ;
@@ -130193,6 +130572,11 @@ aop.events:2446
 	aopo:hasProcess	hp:0008669 ;
 	aopo:hasObject	fma:67338 ;
 	aopo:hasAction	"abnormal" .
+
+<2365_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	go:0030521 ;
+	aopo:hasObject	fma:264623 ;
+	aopo:hasAction	"increased" .
 
 <2305_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	hp:0008209 ;
@@ -134692,6 +135076,11 @@ aop.events:2446
 	aopo:hasProcess	go:1990834 ;
 	aopo:hasObject	fma:46472 ;
 	aopo:hasAction	"decreased" .
+
+<2323_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	hp:0010987 ;
+	aopo:hasObject	pr:000001290 ;
+	aopo:hasAction	"increased" .
 
 <2363_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasObject	go:0005739 ;
@@ -153925,7 +154314,7 @@ The applicability domain should nevertheless be bounded by biological context an
 """ ;
 	pato:0000047	"Unspecific" ;
 	aopo:LifeStageContext	"All life stages" ;
-	ncbitaxon:131567	"WCS_9606", "WikiUser_6", "WCS_35525", "WCS_63659" ;
+	ncbitaxon:131567	"WCS_9606", "WikiUser_6", "WCS_35525", "WCS_63659", ncbitaxon:10090, ncbitaxon:10116 ;
 	dcterms:isPartOf	aop:26, aop:186, aop:324, aop:325, aop:326, aop:331, aop:332, aop:333, aop:396, aop:462, aop:472, aop:481, aop:497, aop:505, aop:511, aop:521, aop:534, aop:540, aop:595, aop:596, aop:599, aop:600, aop:601, aop:602, aop:603, aop:647 .
 
 aop.relationships:248
@@ -245569,9 +245958,157 @@ aop.relationships:3628
 	foaf:page	<https://identifiers.org/aop.relationships/3628> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3628> ;
 	dcterms:created	"2025-09-05T05:06:04" ;
-	dcterms:modified	"2025-09-05T05:06:04" ;
+	dcterms:modified	"2026-08-30T06:00:34" ;
 	aopo:has_upstream_key_event	aop.events:2274 ;
 	aopo:has_downstream_key_event	aop.events:2365 ;
+	dc:description	"""This KER describes how increased androgen receptor (AR) activation in females during fetal development can lead to an increased AGD. The AR is a member of the steroid hormone receptor family and mediates the biological effects of androgens. Increased AR activation can occur either through AR agonism (i.e., activation of the receptor by a compound) or through elevated levels of endogenous hormones such as testosterone or dihydrotestosterone (DHT) (Dalton &amp; Gao, 2010; Davey &amp; Grossmann, 2016; Luetjens &amp; Weinbauer, 2012; Naamneh Elzenaty et al., 2022; Sutinen et al., 2017). 
+
+Anogenital distance (AGD) refers to the distance between the anus and the external genitalia. In both rodents and humans, female AGD is approximately half the length of male AGD (Liu et al., 2014; Salazar-Martinez et al, 2004; Schwartz et al., 2019; Sharpe, 2020; Thankamony at al., 2016; Wise, 2024). This difference is due to androgen-dependent regulation of perineal growth during fetal development in males, whereas in females, the absence of androgens limits this growth (Ipulan at al., 2016; Schwartz at al., 2019; Sharpe, 2020; Welsh at al., 2008). 
+
+It should be noted that the upstream Key Event (KE) &lsquo;increase, androgen receptor activation&rsquo; (KE-2274) specifically focuses on increased activation of the androgen receptor in vivo, while most methods that can be used to measure AR activity are carried out in vitro. Indirect information about this KE may for example be provided from assays showing in vitro AR agonism, increased in vitro or in vivo testosterone production/levels or increased in vitro or in vivo dihydrotestosterone (DHT) production/levels.
+""" ;
+	nci:C80263	"""The biological plausibility for this KER is judged to be high based on the following:
+
+
+	During the masculinization programming window of fetal development, androgens drive the masculinization process in males, including growth of the perineum, which can be measured as anogenital distance (AGD), the distance between the anus and the genitalia. In female fetuses, lower androgen levels limit this growth, resulting in male AGD being approximately twice as long as female AGD (Liu et al., 2014; Salazar-Martinez et al, 2004; Schwartz at al., 2019; Sharpe, 2020; Thankamony at al., 2016; Welsh at al., 2008; Wise, 2024).
+	Studies in androgen receptor (AR) knockout mice demonstrate that AR is essential for a longer AGD, as male AR knockout mice exhibit AGD lengths comparable to female wild-type mice (Yeh et al., 2002, Sato et al., 2004).&nbsp;
+	The mechanism underlying androgen regulation of perineal growth likely involves androgen-mediated development of the levator ani and bulbocavernosus (LABC) muscle complex in the perineum. AR knockout in non-myocytic cells of the LABC leads to defective muscle formation and reduced AGD (Ipulan et al., 2016). Furthermore, differential gene expression profiles have been observed in the perineum of male and female rats (Schwartz et al., 2019)
+	An association between higher testosterone levels in young women and longer AGD has been reported in a cross-sectional study (Mira-Escolano at al., 2014).
+	Epidemiological studies of women with polycystic ovary syndrome (PCOS) indicate that elevated androgen levels are associated with increased AGD. Women with PCOS produce higher androgen levels (Yang &amp; Chen, 2024), and several studies have shown longer AGD in women with PCOS (Pan at al., 2021; Zamani at al., 2023). Evidence regarding AGD in daughters of women with PCOS is mixed: Barrett at al. (2018) reported an association, whereas Glintborg at al. (2019) did not. Additionally, one study found that fetuses of women with PCOS exhibited longer AGD (Perlman et al., 2020).
+
+""" ;
+	edam:data_2042	"""The empirical evidence for this KER is judged to be high based on the following: .
+
+The empirical evidence is based on four model substances: methyl testosterone, testosterone, testosterone propionate and trenbolone. Evidence for the upstream KE (androgen receptor activation, increased) is derived from in vitro assays assessing AR agonism, as well as in vivo Hershberger assays that measure androgenic effects. Evidence for the downstream KE (Anogenital distance, increased) is based on prenatal in vivo studies measuring AGD. To date, no in vivo studies have measured both KEs within the same experiment.
+
+Evidence for the upstream KE
+
+Methyl testosterone 
+
+Methyl testosterone is synthetic androgen previously used as a pharmaceutical. It binds to AR and acts as an AR agonist &nbsp;in vitro (Kleinstreuer et al., 2018; Judson et al., 2020) and show androgen activity in vivo in Hershberger assays (Browne et al., 2018).
+
+Testosterone
+
+Testosterone is an endogenous androgen that binds to AR and acts as an AR agonist.
+
+Testosterone propionate 
+
+Testosterone propionate is synthetic androgen formerly used as a pharmaceutical. It binds to AR and acts as an AR agonist in vitro (Kleinstreuer et al., 2018; Judson et al., 2020) and show androgen activity &nbsp;in vivo in Hershberger assays (Browne et al., 2018).
+
+Trenbolone 
+
+Trenbolone is synthetic androgen used in veterinary medicine. It binds to AR and acts as an AR agonist in vitro(Kleinstreuer et al., 2018; Judson et al., 2020) and show androgen activity in vivo in Hershberger assays (Browne et al., 2018).
+
+Evidence for the downstream KE
+
+Methyl testosterone
+
+Overall confidence in the data for methyl testosterone is weak. 2 publications including 3 datasets were analysed. Increased AGD in females was observed in all three datasets, but the datasets were classified as not reliable (Table 4).
+
+Testosterone
+
+Overall confidence in the data for testosterone is weak. 3 publications including 16 datasets were analysed. All datasets were classified as not reliable. Increased AGD in females was observed in 12 out of 16 datasets. The conflicting results in four datasets, i.e. no effect on AGD in females, could possibly be explained by that exposure was only during one of the days GD19, 20, 21 or 22, which is at the end of&nbsp; the male programming window GD16-20. Effect was observed in the same study for exposure during GD16, 17 or 18 (Table 4).
+
+Testosterone propionate
+
+Overall confidence in the data for testosterone propionate is moderate. 9 publications including 22 datasets were analysed. Increased AGD in females was observed in eight out of twelve datasets classified as reliable without restriction and in both datasets classified as reliable with restriction. The conflicting results, i.e. no effect on AGD in females, could possibly be explained in three of the datasets (testosterone-propionate-3B, testosterone-propionate-8B and testosterone-propionate-8C) by that AGD was measured at later timepoint (PND24, at puberty, PND75), since an effect was observed in the same studies when AGD was measured at earlier timepoints (PND2, PND1). The conflicting result, i.e. no effect on AGD in females, in the fourth dataset (testosterone-propionate-7) cannot be explained by differences in study design. Increased AGD in females was also observed in seven out of eight datasets classified as non-reliable. The dataset, testosterone-propionate-2B, showed increased AGD but the authors report that it was not significant (Table 4).
+
+Trenbolone
+
+Overall confidence in the data for trenbolone is strong. 2 publications including 2 datasets were analysed. Increased AGD in females was observed in two datasets classified as reliable (Table 4).
+""" ;
+	nci:C71478	"""For the model substances, there were some inconsistencies in the empirical evidence, but they could mostly be explained by differences in study design.
+""" ;
+	nci:C103159	"""A systematic weight of evidence approach was applied to collect, evaluate, extract and integrate evidence for the KER.
+
+Literature search
+
+First, a scoping literature search was performed in PubMed to identify relevant model substances using the search string: (anogenital distance OR AGD) AND (androgen receptor OR testosterone OR dihydrotestosterone) AND female. This search was performed on January 10, 2025. Additionally, results from a previous literature search conducted for the development of KER 2820 were reviewed (Holmer at., 2024).
+
+Based on these findings, the following model substances were selected for developing the KER: methyl testosterone, testosterone, testosterone propionate and trenbolone.
+
+A targeted literature search was performed on January 28, 2025, in PubMed and Web of Science using the following search strings:
+
+PubMed: (&quot;testosterone propionate&quot;[Title/Abstract] OR &quot;Testosterone Propionate&quot;[MeSH Terms] OR &quot;trenbolone&quot;[Title/Abstract] OR &quot;Trenbolone Acetate&quot;[MeSH Terms] OR &quot;methyl testosterone&quot;[Title/Abstract] OR &quot;Methyltestosterone&quot;[MeSH Terms]) AND (&quot;anogenital distance&quot;[Title/Abstract] OR &quot;AGD&quot;[Title/Abstract]) 
+
+Web of Science, Core Collection: ((&quot;testosterone propionate&quot; OR &quot;trenbolone&quot; OR &quot;methyl testosterone&quot;) AND (&quot;anogenital distance*&quot; OR &quot;AGD&quot;)) 
+
+The retrieved publications were imported into Rayyan (https://www.rayyan.ai), and duplicates were removed, resulting in 40 unique publications. Screening was performed in two stages&mdash;titles and abstracts, followed by full-text review&mdash;using the following criteria:
+
+Inclusion criteria:
+
+
+	Primary literature on prenatal exposure to testosterone, testosterone propionate, trenbolone or methyl testosterone in rat or mouse measuring anogenital distance in female offspring as an outcome
+	Reviews on anogenital distance
+
+
+Exclusion criteria:
+
+
+	Not in English
+	Not full text 
+
+
+After screening of titles and abstract 33 publications were retained for full-text review. Of these, 14 original studies and 1 review met the inclusion criteria. Screening of reference lists identified two additional publications.
+
+An additional literature search was conducted on August 16, 2025, in PubMed to identify reviews on AGD using the search string:
+
+(&quot;anogenital distance&quot;[Title/Abstract] OR &quot;AGD&quot;[Title/Abstract]) AND (review[Filter] OR systematicreview[Filter]). 
+
+This search identified 10 relevant reviews, which were analysed for supplementary evidence.
+
+Data extraction and study quality assessment
+
+Data was extracted from the publications into an Excel template and divided into datasets based on administered doses, exposure timepoint and measurement timepoint. 
+
+Study reliability was assessed using the Science in Risk Assessment and Policy (SciRAP) tools for in vivo&nbsp;studies (http://www.scirap.org). The SciRAP criteria, including considerations for each criterion and identification of key criteria, are summarized in Table 1. The SciRAP assessment for each dataset was then translated into a reliability category based on predefined principles (Table 2). The overall confidence in the evidence for each model substance was categorized as strong, moderate, or weak, based on reliability and consistency (Table 3). All data extraction, SciRAP assessments, and categorizations were performed by one reviewer and verified by a second reviewer, with disagreements resolved through discussion.
+""" ;
+	nci:C68821	"""
+No known modulating factors have been identified for this KER.
+
+
+	
+		
+			Modulating Factor (MF)
+			MF Specification
+			Effect(s) on the KER
+			Reference(s)
+		
+	
+	
+		
+			&nbsp;
+			&nbsp;
+			&nbsp;
+			&nbsp;
+		
+	
+
+
+""" ;
+	nci:C17469	"""Taxonomic Applicability
+
+The biologically plausible taxonomic applicability domain is mammals, as fetal masculinization is regulated by androgens across all mammalian species (Welsh, 2014). The empirical taxonomic applicability domain is based on rat, supported by prenatal studies demonstrating that androgen receptor activation leads to a measurable increase in female AGD (Armoskus et al., 2014; Guerra et al., 2014; Hotchkiss et al., 2007; Sathishkumar et al., 2011; Welsh et al., 2009; Wilson et al., 2002; Wolf et al., 2002; Wolf et al., 2004). Additionally, epidemiological studies suggest that elevated androgen levels in women are associated with increased AGD (Mira-Escolano et al., 2014; Pan et al., 2021; Zamani et al., 2023).
+
+Sex applicability
+
+This KER focuses on effects on AGD in females, supported by empirical evidence from prenatal studies in rats (Armoskus et al., 2014; Guerra et al., 2014; Hotchkiss et al., 2007; Sathishkumar et al., 2011; Welsh et al., 2009; Wilson et al., 2002; Wolf et al., 2002; Wolf et al., 2004).
+
+Life Stage Applicability
+
+Growth of AGD in rats is regulated by androgens during the masculinization programming window, which occurs during fetal development around GD16-20 (MacLeod et al., 2010; Welsh et al., 2008).
+""" ;
+	edam:operation_3799	"""The quantitative understanding of the KER is low. This is a consequence of it not being possible to measure the upstream and the downstream event in the same study.
+""" ;
+	edam:operation_3438	"""No specific evidence for response-response relationships has been identified for this KER.
+""" ;
+	nci:C25207	"""In a prenatal in vivo study, exposure to a substance that acts on the upstream KE (androgen receptor activation) for five to six days during the masculinization window (around GD16-20 in rats) can lead to a measurable effect on the downstream KE (increased anogenital distance) at PND2 (Hotchkiss et al., 2007; Wilson et al., 2002; Wolf et al., 2004).
+""" ;
+	nci:C25343	"""No specific evidence for feedforward or feedback loops has been identified for this KER.&nbsp;
+""" ;
+	pato:0000047	"Female" ;
+	aopo:LifeStageContext	"Fetal" ;
+	ncbitaxon:131567	ncbitaxon:10116, "WCS_9606" ;
 	dcterms:isPartOf	aop:547 .
 
 aop.relationships:3388
@@ -258785,6 +259322,66 @@ Taxonomic: Largely studied in lab mammals; plausible for all sexually reproducti
 	ncbitaxon:131567	"WikiUser_17", "WikiUser_28" ;
 	dcterms:isPartOf	aop:651 .
 
+aop.relationships:3841
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3841 ;
+	rdfs:label	"KER 3841" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3841> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3841> ;
+	dcterms:created	"2026-08-31T09:21:32" ;
+	dcterms:modified	"2026-08-31T09:21:32" ;
+	aopo:has_upstream_key_event	aop.events:2448 ;
+	aopo:has_downstream_key_event	aop.events:2449 ;
+	dcterms:isPartOf	aop:652 .
+
+aop.relationships:3845
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3845 ;
+	rdfs:label	"KER 3845" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3845> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3845> ;
+	dcterms:created	"2026-08-31T09:22:04" ;
+	dcterms:modified	"2026-08-31T09:22:04" ;
+	aopo:has_upstream_key_event	aop.events:2449 ;
+	aopo:has_downstream_key_event	aop.events:2450 ;
+	dcterms:isPartOf	aop:652 .
+
+aop.relationships:3842
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3842 ;
+	rdfs:label	"KER 3842" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3842> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3842> ;
+	dcterms:created	"2026-08-31T09:21:40" ;
+	dcterms:modified	"2026-08-31T09:21:40" ;
+	aopo:has_upstream_key_event	aop.events:2449 ;
+	aopo:has_downstream_key_event	aop.events:1943 ;
+	dcterms:isPartOf	aop:652 .
+
+aop.relationships:3843
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3843 ;
+	rdfs:label	"KER 3843" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3843> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3843> ;
+	dcterms:created	"2026-08-31T09:21:47" ;
+	dcterms:modified	"2026-08-31T09:21:47" ;
+	aopo:has_upstream_key_event	aop.events:1943 ;
+	aopo:has_downstream_key_event	aop.events:1944 ;
+	dcterms:isPartOf	aop:652 .
+
+aop.relationships:3844
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3844 ;
+	rdfs:label	"KER 3844" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3844> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3844> ;
+	dcterms:created	"2026-08-31T09:21:53" ;
+	dcterms:modified	"2026-08-31T09:21:53" ;
+	aopo:has_upstream_key_event	aop.events:1944 ;
+	aopo:has_downstream_key_event	aop.events:2450 ;
+	dcterms:isPartOf	aop:652 .
+
 ncbitaxon:10116
 	a	ncbitaxon:131567 ;
 	dc:identifier	ncbitaxon:10116 ;
@@ -261525,7 +262122,7 @@ aop.stressor:5
 	dcterms:created	"2016-11-29T18:42:08" ;
 	dcterms:modified	"2016-11-29T18:42:08" ;
 	aopo:has_chemical_entity	cas:10161-33-8 ;
-	dcterms:isPartOf	aop:23, aop:376, aop:496 .
+	dcterms:isPartOf	aop:23, aop:376, aop:496, aop:547 .
 
 aop.stressor:52
 	a	nci:C54571 ;
@@ -267559,6 +268156,28 @@ aop.stressor:773
 	dcterms:modified	"2024-05-08T10:23:40" ;
 	dcterms:isPartOf	aop:529 .
 
+aop.stressor:875
+	a	nci:C54571 ;
+	dc:identifier	aop.stressor:875 ;
+	rdfs:label	"Stressor 875" ;
+	foaf:page	<https://identifiers.org/aop.stressor/875> ;
+	dc:title	"17-Methyltestosterone" ;
+	dcterms:created	"2026-08-30T05:46:34" ;
+	dcterms:modified	"2026-08-30T05:46:34" ;
+	aopo:has_chemical_entity	cas:58-18-4 ;
+	dcterms:isPartOf	aop:547 .
+
+aop.stressor:876
+	a	nci:C54571 ;
+	dc:identifier	aop.stressor:876 ;
+	rdfs:label	"Stressor 876" ;
+	foaf:page	<https://identifiers.org/aop.stressor/876> ;
+	dc:title	"Testosterone propionate" ;
+	dcterms:created	"2026-08-30T05:48:13" ;
+	dcterms:modified	"2026-08-30T05:48:13" ;
+	aopo:has_chemical_entity	cas:57-85-2 ;
+	dcterms:isPartOf	aop:547 .
+
 aop.stressor:784
 	a	nci:C54571 ;
 	dc:identifier	aop.stressor:784 ;
@@ -271654,6 +272273,12 @@ go:1990834	a	go:0008150 ;
 	dc:source	"GO" ;
 	rdfs:label	"response to odorant" . 
 
+hp:0010987	a	go:0008150 ;
+	dc:identifier	hp:0010987 ;
+	dc:title	"Abnormality of cellular immune system" ;
+	dc:source	"HP" ;
+	rdfs:label	"Abnormality of cellular immune system" . 
+
 go:0055114	a	go:0008150 ;
 	dc:identifier	go:0055114 ;
 	dc:title	"oxidation-reduction process" ;
@@ -274618,6 +275243,12 @@ chebio:47774	a	pato:0001241 ;
 	dc:source	"CHEBI" ;
 	rdfs:label	"low-density lipoprotein cholesterol". 
 
+fma:264623	a	pato:0001241 ;
+	dc:identifier	fma:264623 ;
+	dc:title	"Musculature of female perineum" ;
+	dc:source	"FMA" ;
+	rdfs:label	"Musculature of female perineum". 
+
 pr:000012440	a	pato:0001241 ;
 	dc:identifier	pr:000012440 ;
 	dc:title	"proprotein convertase subtilisin/kexin type 9" ;
@@ -274641,6 +275272,12 @@ pr:000001161	a	pato:0001241 ;
 	dc:title	"5-hydroxytryptamine receptor 1A" ;
 	dc:source	"PR" ;
 	rdfs:label	"5-hydroxytryptamine receptor 1A". 
+
+pr:000001290	a	pato:0001241 ;
+	dc:identifier	pr:000001290 ;
+	dc:title	"B7-related protein" ;
+	dc:source	"PR" ;
+	rdfs:label	"B7-related protein". 
 
 pr:000001183	a	pato:0001241 ;
 	dc:identifier	pr:000001183 ;
@@ -279629,6 +280266,26 @@ cas:1763-23-1
 	dcterms:alternative	"Perfluorooctane sulfonic acid" ;
 	dcterms:isPartOf	aop.stressor:771 .
 
+cas:58-18-4
+	dc:identifier	cas:58-18-4 ;
+	a	cheminf:000000, cheminf:000446 ;
+	cheminf:000446	"58-18-4" ;
+	cheminf:000059	inchikey:GCKMFJBGXUYNAG-HLXURNFRSA-N ;
+	dc:title	"17-Methyltestosterone" ;
+	cheminf:000568	comptox:DTXSID1033664 ;
+	dcterms:alternative	"Androst-4-en-3-one, 17-hydroxy-17-methyl-, (17β)-", "(17β)-17-Hydroxy-17-methylandrost-4-en-3-one", "17(α)-Methyl-Δ4-androsten-17-(β)-ol-3-one", "17-Hydroxy-17-methyl-3-keto-androstene-4", "17-Methyltestosteron", "17α-Methyl-17β-hydroxyandrost-4-en-3-one", "17α-Methyl-17β-hydroxyandrost-4-ene-3-one", "17α-Methyl-3-oxo-4-androsten-17β-ol", "17α-Methylandrost-4-en-17-ol-3-one", "17α-Methylandrost-4-en-17β-ol-3-one", "17α-Methyltestosterone", "17β-Hydroxy-17-methylandrost-4-en-3-one", "17β-Hydroxy-17α-methyl-3-oxoandrost-4-ene", "17β-Hydroxy-17α-methylandrost-4-en-3-one", "17β-Hydroxy-17α-methylandrost-4-ene-3-one", "Android", "Andrometh", "Androsan", "Androst-4-en-3-one, 17β-hydroxy-17-methyl-", "Androst-4-ene-17α-methyl-17β-ol-3-one", "Androsten", "Dumogran", "Glosso-Sterandryl", "Hormale", "M.T.Mucorettes", "Malestrone", "Malogen", "Masenone", "Mastestona", "Mesterone", "Metandren", "Methyltestosteron", "Methyltestosterone", "metiltestosterona", "Metrone", "Neo-Hombreol-M", "NSC 139965", "NSC 9701", "Oraviron", "Orchisterone M", "Oreton Methyl", "Oreton-M", "Steronyl", "Synandrets", "Synandrotabs", "Testhormone", "Testora", "Testovis Depot", "Testred" ;
+	dcterms:isPartOf	aop.stressor:875 .
+
+cas:57-85-2
+	dc:identifier	cas:57-85-2 ;
+	a	cheminf:000000, cheminf:000446 ;
+	cheminf:000446	"57-85-2" ;
+	cheminf:000059	inchikey:PDMMFKSKQVNJMI-BLQWBTBKSA-N ;
+	dc:title	"Testosterone propionate" ;
+	cheminf:000568	comptox:DTXSID9036515 ;
+	dcterms:alternative	"Androst-4-en-3-one, 17-(1-oxopropoxy)-, (17β)-", "(17β)-17-(1-oxopropoxy)-androst-4-en-3-one", "17β-(Propionyloxy)androst-4-en-3-one", "17β-Hydroxy-4-androsten-3-one 17-propionate", "17β-Hydroxyandrost-4-en-3-one propionate", "17β-Hydroxyandrost-4-en-3-one-17β-propionate", "Agovirin", "Androlon", "Androtest P", "Androteston", "Aquaviron", "Bio-testiculina", "Enarmon", "Enarmon-oil", "Hormoteston", "Masenate", "neo-Hombreol", "NSC 9166", "Okasa-Mascul", "Orchiol", "Orchisterone", "Orchistin", "Pantestin", "Primotestone", "Propiokan", "Propionate de testosterone", "propionato de testosterona", "Recthormone testosterone", "Solvotest", "Sterandryl", "Synandrol", "Synerone", "Telipex", "Testaform", "Testodet", "Testodrin", "Testogen", "Testolets", "Testonique", "Testormol", "Testosid", "Testosteron propionate", "Testosterone, propionate", "Testosterone-17-propionate", "Testosterone-17β propionate", "Testosteronpropionat", "Testoxyl", "Testrex", "Textes Depot", "Tostrin", "Uniteston" ;
+	dcterms:isPartOf	aop.stressor:876 .
+
 cas:121-75-5
 	dc:identifier	cas:121-75-5 ;
 	a	cheminf:000000, cheminf:000446 ;
@@ -281119,6 +281776,12 @@ cas:50679-08-8	dc:source	"CAS" ;
 cas:1763-23-1	dc:source	"CAS" ;
 	rdfs:label	"Perfluorooctanesulfonic acid".
 
+cas:58-18-4	dc:source	"CAS" ;
+	rdfs:label	"17-Methyltestosterone".
+
+cas:57-85-2	dc:source	"CAS" ;
+	rdfs:label	"Testosterone propionate".
+
 cas:121-75-5	dc:source	"CAS" ;
 	rdfs:label	"Malathion".
 
@@ -282430,6 +283093,12 @@ inchikey:GUGOEEXESWIERI-UHFFFAOYNA-N	dc:source	"InChIKey" ;
 inchikey:YFSUTJLHUFNCNZ-UHFFFAOYSA-N	dc:source	"InChIKey" ;
 	rdfs:label	"Perfluorooctanesulfonic acid".
 
+inchikey:GCKMFJBGXUYNAG-HLXURNFRSA-N	dc:source	"InChIKey" ;
+	rdfs:label	"17-Methyltestosterone".
+
+inchikey:PDMMFKSKQVNJMI-BLQWBTBKSA-N	dc:source	"InChIKey" ;
+	rdfs:label	"Testosterone propionate".
+
 inchikey:JXSJBGJIGXNWCI-UHFFFAOYNA-N	dc:source	"InChIKey" ;
 	rdfs:label	"Malathion".
 
@@ -283740,6 +284409,12 @@ comptox:DTXSID2023642	dc:source	"CompTox" ;
 
 comptox:DTXSID3031864	dc:source	"CompTox" ;
 	rdfs:label	"Perfluorooctanesulfonic acid".
+
+comptox:DTXSID1033664	dc:source	"CompTox" ;
+	rdfs:label	"17-Methyltestosterone".
+
+comptox:DTXSID9036515	dc:source	"CompTox" ;
+	rdfs:label	"Testosterone propionate".
 
 comptox:DTXSID4020791	dc:source	"CompTox" ;
 	rdfs:label	"Malathion".
@@ -286305,6 +286980,24 @@ chebi:39421	a	cheminf:000407 ;
 	dc:identifier	"chebi:39421";
 	dc:source	"ChEBI" ;
 	rdfs:label	"Perfluorooctanesulfonic acid".
+
+chebi:27436	a	cheminf:000407 ;
+	cheminf:000407	"27436";
+	dc:identifier	"chebi:27436";
+	dc:source	"ChEBI" ;
+	rdfs:label	"17-Methyltestosterone".
+
+chebi:9466	a	cheminf:000407 ;
+	cheminf:000407	"9466";
+	dc:identifier	"chebi:9466";
+	dc:source	"ChEBI" ;
+	rdfs:label	"Testosterone propionate".
+
+chebi:290629	a	cheminf:000407 ;
+	cheminf:000407	"290629";
+	dc:identifier	"chebi:290629";
+	dc:source	"ChEBI" ;
+	rdfs:label	"Testosterone propionate".
 
 chebi:141474	a	cheminf:000407 ;
 	cheminf:000407	"141474";
@@ -288982,6 +289675,18 @@ chemspider:67068	a	cheminf:000405 ;
 	dc:source	"ChemSpider" ;
 	rdfs:label	"Perfluorooctanesulfonic acid".
 
+chemspider:5788	a	cheminf:000405 ;
+	cheminf:000405	"5788";
+	dc:identifier	"chemspider:5788";
+	dc:source	"ChemSpider" ;
+	rdfs:label	"17-Methyltestosterone".
+
+chemspider:5774	a	cheminf:000405 ;
+	cheminf:000405	"5774";
+	dc:identifier	"chemspider:5774";
+	dc:source	"ChemSpider" ;
+	rdfs:label	"Testosterone propionate".
+
 chemspider:3864	a	cheminf:000405 ;
 	cheminf:000405	"3864";
 	dc:identifier	"chemspider:3864";
@@ -291622,6 +292327,18 @@ wikidata:Q902094	a	cheminf:000567 ;
 	dc:source	"Wikidata" ;
 	rdfs:label	"Perfluorooctanesulfonic acid".
 
+wikidata:Q421768	a	cheminf:000567 ;
+	cheminf:000567	"Q421768";
+	dc:identifier	"wikidata:Q421768";
+	dc:source	"Wikidata" ;
+	rdfs:label	"17-Methyltestosterone".
+
+wikidata:Q10354588	a	cheminf:000567 ;
+	cheminf:000567	"Q10354588";
+	dc:identifier	"wikidata:Q10354588";
+	dc:source	"Wikidata" ;
+	rdfs:label	"Testosterone propionate".
+
 wikidata:Q423005	a	cheminf:000567 ;
 	cheminf:000567	"Q423005";
 	dc:identifier	"wikidata:Q423005";
@@ -293847,6 +294564,18 @@ chembl.compound:CHEMBL1876554	a	cheminf:000412 ;
 	dc:identifier	"chembl.compound:CHEMBL1876554";
 	dc:source	"ChEMBL" ;
 	rdfs:label	"Perfluorooctanesulfonic acid".
+
+chembl.compound:CHEMBL1395	a	cheminf:000412 ;
+	cheminf:000412	"CHEMBL1395";
+	dc:identifier	"chembl.compound:CHEMBL1395";
+	dc:source	"ChEMBL" ;
+	rdfs:label	"17-Methyltestosterone".
+
+chembl.compound:CHEMBL1170	a	cheminf:000412 ;
+	cheminf:000412	"CHEMBL1170";
+	dc:identifier	"chembl.compound:CHEMBL1170";
+	dc:source	"ChEMBL" ;
+	rdfs:label	"Testosterone propionate".
 
 chembl.compound:CHEMBL1200468	a	cheminf:000412 ;
 	cheminf:000412	"CHEMBL1200468";
@@ -296764,6 +297493,18 @@ pubchem.compound:74483	a	cheminf:000140 ;
 	dc:source	"PubChem" ;
 	rdfs:label	"Perfluorooctanesulfonic acid".
 
+pubchem.compound:6010	a	cheminf:000140 ;
+	cheminf:000140	"6010";
+	dc:identifier	"pubchem.compound:6010";
+	dc:source	"PubChem" ;
+	rdfs:label	"17-Methyltestosterone".
+
+pubchem.compound:5995	a	cheminf:000140 ;
+	cheminf:000140	"5995";
+	dc:identifier	"pubchem.compound:5995";
+	dc:source	"PubChem" ;
+	rdfs:label	"Testosterone propionate".
+
 pubchem.compound:4004	a	cheminf:000140 ;
 	cheminf:000140	"4004";
 	dc:identifier	"pubchem.compound:4004";
@@ -298233,6 +298974,18 @@ drugbank:DB00342	a	cheminf:000406 ;
 	dc:identifier	"drugbank:DB00342";
 	dc:source	"DrugBank" ;
 	rdfs:label	"Terfenadine".
+
+drugbank:DB06710	a	cheminf:000406 ;
+	cheminf:000406	"DB06710";
+	dc:identifier	"drugbank:DB06710";
+	dc:source	"DrugBank" ;
+	rdfs:label	"17-Methyltestosterone".
+
+drugbank:DB01420	a	cheminf:000406 ;
+	cheminf:000406	"DB01420";
+	dc:identifier	"drugbank:DB01420";
+	dc:source	"DrugBank" ;
+	rdfs:label	"Testosterone propionate".
 
 drugbank:DB00772	a	cheminf:000406 ;
 	cheminf:000406	"DB00772";
@@ -300940,6 +301693,30 @@ kegg.compound:C18142	a	cheminf:000409 ;
 	dc:source	"KEGG" ;
 	rdfs:label	"Perfluorooctanesulfonic acid".
 
+kegg.compound:D00408	a	cheminf:000409 ;
+	cheminf:000409	"D00408";
+	dc:identifier	"kegg.compound:D00408";
+	dc:source	"KEGG" ;
+	rdfs:label	"17-Methyltestosterone".
+
+kegg.compound:C07198	a	cheminf:000409 ;
+	cheminf:000409	"C07198";
+	dc:identifier	"kegg.compound:C07198";
+	dc:source	"KEGG" ;
+	rdfs:label	"17-Methyltestosterone".
+
+kegg.compound:D00959	a	cheminf:000409 ;
+	cheminf:000409	"D00959";
+	dc:identifier	"kegg.compound:D00959";
+	dc:source	"KEGG" ;
+	rdfs:label	"Testosterone propionate".
+
+kegg.compound:C08158	a	cheminf:000409 ;
+	cheminf:000409	"C08158";
+	dc:identifier	"kegg.compound:C08158";
+	dc:source	"KEGG" ;
+	rdfs:label	"Testosterone propionate".
+
 kegg.compound:D00534	a	cheminf:000409 ;
 	cheminf:000409	"D00534";
 	dc:identifier	"kegg.compound:D00534";
@@ -301299,6 +302076,18 @@ lipidmaps:LMSP01080022	a	cheminf:000564 ;
 	dc:identifier	"lipidmaps:LMSP01080022";
 	dc:source	"LIPID MAPS" ;
 	rdfs:label	"Fumonisin B1".
+
+lipidmaps:LMST02020029	a	cheminf:000564 ;
+	cheminf:000564	"LMST02020029";
+	dc:identifier	"lipidmaps:LMST02020029";
+	dc:source	"LIPID MAPS" ;
+	rdfs:label	"17-Methyltestosterone".
+
+lipidmaps:LMST02020076	a	cheminf:000564 ;
+	cheminf:000564	"LMST02020076";
+	dc:identifier	"lipidmaps:LMST02020076";
+	dc:source	"LIPID MAPS" ;
+	rdfs:label	"Testosterone propionate".
 
 hmdb:HMDB34436	a	cheminf:000408 ;
 	cheminf:000408	"HMDB34436";
@@ -304419,6 +305208,30 @@ hmdb:HMDB59586	a	cheminf:000408 ;
 	dc:identifier	"hmdb:HMDB59586";
 	dc:source	"HMDB" ;
 	rdfs:label	"Perfluorooctanesulfonic acid".
+
+hmdb:HMDB15655	a	cheminf:000408 ;
+	cheminf:000408	"HMDB15655";
+	dc:identifier	"hmdb:HMDB15655";
+	dc:source	"HMDB" ;
+	rdfs:label	"17-Methyltestosterone".
+
+hmdb:HMDB0015655	a	cheminf:000408 ;
+	cheminf:000408	"HMDB0015655";
+	dc:identifier	"hmdb:HMDB0015655";
+	dc:source	"HMDB" ;
+	rdfs:label	"17-Methyltestosterone".
+
+hmdb:HMDB15489	a	cheminf:000408 ;
+	cheminf:000408	"HMDB15489";
+	dc:identifier	"hmdb:HMDB15489";
+	dc:source	"HMDB" ;
+	rdfs:label	"Testosterone propionate".
+
+hmdb:HMDB0015489	a	cheminf:000408 ;
+	cheminf:000408	"HMDB0015489";
+	dc:identifier	"hmdb:HMDB0015489";
+	dc:source	"HMDB" ;
+	rdfs:label	"Testosterone propionate".
 
 hmdb:HMDB14910	a	cheminf:000408 ;
 	cheminf:000408	"HMDB14910";
