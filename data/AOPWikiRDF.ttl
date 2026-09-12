@@ -19505,11 +19505,11 @@ aop:214
 	dcterms:alternative	"Network of SSRIs" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2017-04-13T14:11:48" ;
-	dcterms:modified	"2023-04-29T16:03:00" ;
+	dcterms:modified	"2026-09-09T12:50:11" ;
 	dc:description	"""The increase in depression is associated with high suicide rates and a significant socioeconomic impact.&nbsp;
 """ ;
-	aopo:has_key_event	aop.events:1316, aop.events:1317, aop.events:1318, aop.events:1319, aop.events:1320, aop.events:1347, aop.events:1321, aop.events:1322, aop.events:1323, aop.events:1324, aop.events:1325, aop.events:1326, aop.events:1328, aop.events:1329, aop.events:1330, aop.events:1334, aop.events:122, aop.events:1335, aop.events:1336, aop.events:1337, aop.events:1338, aop.events:1339, aop.events:1340, aop.events:1341, aop.events:1342, aop.events:1344, aop.events:1345, aop.events:1346, aop.events:1343 ;
-	aopo:has_key_event_relationship	aop.relationships:1426, aop.relationships:1427, aop.relationships:1428, aop.relationships:1429, aop.relationships:1430, aop.relationships:1431, aop.relationships:1432, aop.relationships:1433, aop.relationships:1434, aop.relationships:1435, aop.relationships:1436, aop.relationships:1437, aop.relationships:1438, aop.relationships:1439, aop.relationships:1440, aop.relationships:1441, aop.relationships:1442, aop.relationships:1443, aop.relationships:1444, aop.relationships:1445, aop.relationships:1446, aop.relationships:1447, aop.relationships:1448, aop.relationships:1449, aop.relationships:1450, aop.relationships:1451 ;
+	aopo:has_key_event	aop.events:1316, aop.events:1317, aop.events:1318, aop.events:1319, aop.events:1320, aop.events:1347, aop.events:1321, aop.events:1322, aop.events:1323, aop.events:1324, aop.events:1325, aop.events:1326, aop.events:1328, aop.events:1329, aop.events:1330, aop.events:1334, aop.events:122, aop.events:381, aop.events:1336, aop.events:1337, aop.events:1338, aop.events:1339, aop.events:1340, aop.events:1341, aop.events:1342, aop.events:1344, aop.events:1345, aop.events:1346, aop.events:1343 ;
+	aopo:has_key_event_relationship	aop.relationships:1426, aop.relationships:1427, aop.relationships:1428, aop.relationships:1429, aop.relationships:1430, aop.relationships:1431, aop.relationships:1432, aop.relationships:1433, aop.relationships:1434, aop.relationships:1435, aop.relationships:1436, aop.relationships:1437, aop.relationships:1438, aop.relationships:1439, aop.relationships:1440, aop.relationships:1441, aop.relationships:1442, aop.relationships:1443, aop.relationships:1444, aop.relationships:1445, aop.relationships:1446, aop.relationships:1447, aop.relationships:1448, aop.relationships:1449, aop.relationships:1450, aop.relationships:3848 ;
 	aopo:has_adverse_outcome	aop.events:1344, aop.events:1345, aop.events:1346, aop.events:1343 ;
 	nci:C54571	aop.stressor:270, aop.stressor:272 .
 
@@ -20562,11 +20562,11 @@ aop:221
 	dcterms:alternative	"Mental stress to depression" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2017-05-30T13:56:15" ;
-	dcterms:modified	"2023-04-29T16:03:00" ;
+	dcterms:modified	"2026-09-09T12:52:29" ;
 	dc:description	"""The increase in depression is associated with high suicide rates and a significant socioeconomic impact.&nbsp;
 """ ;
-	aopo:has_key_event	aop.events:1335, aop.events:1330, aop.events:1328, aop.events:1347, aop.events:1325, aop.events:1324, aop.events:1323, aop.events:1317, aop.events:1320, aop.events:1329, aop.events:1396, aop.events:1346 ;
-	aopo:has_key_event_relationship	aop.relationships:1522, aop.relationships:1523, aop.relationships:1449, aop.relationships:1436, aop.relationships:1430, aop.relationships:1431, aop.relationships:1432, aop.relationships:1433, aop.relationships:1434 ;
+	aopo:has_key_event	aop.events:381, aop.events:1330, aop.events:1328, aop.events:1347, aop.events:1325, aop.events:1324, aop.events:1323, aop.events:1317, aop.events:1320, aop.events:1329, aop.events:1396, aop.events:1346 ;
+	aopo:has_key_event_relationship	aop.relationships:3849, aop.relationships:3847, aop.relationships:1449, aop.relationships:1436, aop.relationships:1430, aop.relationships:1431, aop.relationships:1432, aop.relationships:1433, aop.relationships:1434 ;
 	aopo:has_molecular_initiating_event	aop.events:1396 ;
 	aopo:has_adverse_outcome	aop.events:1346 ;
 	nci:C54571	aop.stressor:272 .
@@ -20581,9 +20581,9 @@ aop:222
 	dcterms:alternative	"Mental stress to agitation" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2017-05-30T15:12:23" ;
-	dcterms:modified	"2023-04-29T16:03:00" ;
-	aopo:has_key_event	aop.events:1335, aop.events:1329, aop.events:1328, aop.events:1330, aop.events:1347, aop.events:1317, aop.events:1320, aop.events:1325, aop.events:1324, aop.events:1323, aop.events:1396, aop.events:1345 ;
-	aopo:has_key_event_relationship	aop.relationships:1522, aop.relationships:1447, aop.relationships:1448, aop.relationships:1511, aop.relationships:1436, aop.relationships:1430, aop.relationships:1431, aop.relationships:1432, aop.relationships:1433, aop.relationships:1434 ;
+	dcterms:modified	"2026-09-09T12:54:16" ;
+	aopo:has_key_event	aop.events:381, aop.events:1329, aop.events:1328, aop.events:1330, aop.events:1347, aop.events:1317, aop.events:1320, aop.events:1325, aop.events:1324, aop.events:1323, aop.events:1396, aop.events:1345 ;
+	aopo:has_key_event_relationship	aop.relationships:3849, aop.relationships:1447, aop.relationships:1448, aop.relationships:3851, aop.relationships:1436, aop.relationships:1430, aop.relationships:1431, aop.relationships:1432, aop.relationships:1433, aop.relationships:1434 ;
 	aopo:has_molecular_initiating_event	aop.events:1396 ;
 	aopo:has_adverse_outcome	aop.events:1345 ;
 	nci:C54571	aop.stressor:272 .
@@ -26931,11 +26931,11 @@ aop:289
 	rdfs:label	"AOP 289" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/289> ;
 	foaf:page	<https://identifiers.org/aop/289> ;
-	dc:title	"Inhibition of 5α-reductase leading to impaired fecundity in female fish" ;
-	dcterms:alternative	" 5α-reductase,female fish" ;
+	dc:title	"Inhibition of 5α-reductase leading to decreased population growth rate via impaired fecundity in female fish" ;
+	dcterms:alternative	" 5α-reductase inhibition leading to decreased population growth rate" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2019-04-18T17:45:58" ;
-	dcterms:modified	"2026-04-14T05:22:39" ;
+	dcterms:modified	"2026-09-07T15:16:39" ;
 	dc:description	"""The possible KE is the inhibition of 5&alpha;-reductase affects the level of the other endogenous substrate steroids such as androstenedione, progesterone, cortisol, and aldosterone. The physiological responses of the reduction of these steroids and the inhibition of 5&alpha;-reductase are not fully understood (Azzouni et al. 2012).&nbsp;
 
 Acknowledgements:&nbsp;This research was supported by the National Research Council of Science &amp; Technology(NST) grant by the Korea&nbsp;government (MSIP) (No. CAP-17-01-KIST Europe)
@@ -70199,7 +70199,7 @@ aop:577
 	dcterms:alternative	"AhR and Endometriosis" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2025-04-18T06:25:49" ;
-	dcterms:modified	"2026-08-06T04:12:28" ;
+	dcterms:modified	"2026-09-11T11:28:17" ;
 	dc:description	"""The AHR can be activated by several structurally diverse chemicals, but binds preferentially to planar halogenated aromatic hydrocarbons and polycyclic aromatic hydrocarbons. Dioxin-like compounds (DLCs), which include polychlorinated dibenzo-p-dioxins (PCDDs), polychlorinated dibenzofurans (PCDFs) and certain polychlorinated biphenyls (PCBs), are among the most potent AHR ligands[38]. Only a subset of PCDD, PCDF and PCB congeners has been shown to bind to the AHR and cause toxic effects to those elicited by TCDD. Until recently, TCDD was considered to be the most potent DLC in birds[39]; however, recent reports indicate that 2,3,4,7,8-pentachlorodibenzofuran (PeCDF) is more potent than TCDD in some species of birds.[40][13][41][21][42][43] When screened for their ability to induce aryl hydrocarbon hydroxylase (AHH) activity, dioxins with chlorine atoms at a minimum of three out of the four lateral ring positions, and with at least one non-chlorinated ring position are the most active[44]. Of the dioxin-like PCBs, non-ortho congeners are the most toxicologically active, while mono-ortho PCBs are generally less potent[45][9]. Chlorine substitution at ortho positions increases the energetic costs of assuming the coplanar conformation required for binding to the AHR [45]. Thus, a smaller proportion of mono-ortho PCB molecules are able to bind to the AHR and elicit toxic effects, resulting in reduced potency of these congeners. Other PCB congeners, such as di-ortho substituted PCBs, are very weak AHR agonists and do not likely contribute to dioxin-like effects [9].
 
 
@@ -70209,9 +70209,10 @@ aop:577
 The role of the AHR in mediating the toxic effects of planar hydrophobic contaminants has been well studied, however the endogenous role of the AHR is less clear [1]. Some endogenous and natural substances, including prostaglandin PGG2 and the tryptophan derivatives indole-3-carbinol, 6-formylindolo[3,2-b]carbazole (FICZ) and kynurenic acid can bind to and activate the AHR. [6][46][47][48][49] The AHR is thought to have important endogenous roles in reproduction, liver and heart development, cardiovascular function, immune function and cell cycle regulation [50][38][51][52][53][54][46][55][56][57] and activation of the AHR by DLCs may therefore adversely affect these processes.
 """ ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	aopo:has_key_event	aop.events:2444, aop.events:149, aop.events:18 ;
+	aopo:has_key_event	aop.events:2444, aop.events:149, aop.events:18, aop.events:2455 ;
 	aopo:has_key_event_relationship	aop.relationships:3836, aop.relationships:3835 ;
 	aopo:has_molecular_initiating_event	aop.events:18 ;
+	aopo:has_adverse_outcome	aop.events:2455 ;
 	nci:C54571	aop.stressor:249 ;
 	pato:0000047	"Female" .
 
@@ -72199,11 +72200,11 @@ aop:604
 	dcterms:alternative	"Binding of Alpha 1-Adrenergics to Agonists Leading to Depression " ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2025-09-11T08:49:37" ;
-	dcterms:modified	"2026-05-28T10:52:14" ;
+	dcterms:modified	"2026-09-09T12:42:00" ;
 	dc:description	"""The increase in depression is associated with high suicide rates and a significant socioeconomic impact.&nbsp;
 """ ;
-	aopo:has_key_event	aop.events:2371, aop.events:1335, aop.events:1330, aop.events:2370, aop.events:1346 ;
-	aopo:has_key_event_relationship	aop.relationships:3645, aop.relationships:3747, aop.relationships:1523, aop.relationships:1449 ;
+	aopo:has_key_event	aop.events:2371, aop.events:381, aop.events:1330, aop.events:2370, aop.events:1346 ;
+	aopo:has_key_event_relationship	aop.relationships:3645, aop.relationships:3846, aop.relationships:3847, aop.relationships:1449 ;
 	aopo:has_molecular_initiating_event	aop.events:2370 ;
 	aopo:has_adverse_outcome	aop.events:1346 ;
 	pato:0000047	"Unspecific" ;
@@ -76324,7 +76325,7 @@ aop:636
 	dcterms:alternative	"Increase in ROS leading to human ALS" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-03-13T02:16:33" ;
-	dcterms:modified	"2026-08-23T18:47:19" ;
+	dcterms:modified	"2026-09-06T20:45:32" ;
 	dc:description	"""The development of ALS represents an apical neurotoxicological endpoint of paramount regulatory significance, falling directly under international safety assessment and human health protection frameworks:
 
 
@@ -76394,7 +76395,7 @@ aop:636
 """ ;
 	dcterms:abstract	"""Amyotrophic lateral sclerosis (ALS) is a fatal neurodegenerative disease characterized by the impairment of motor neurons in the brain and spinal cord, leading to skeletal muscle atrophy and eventual death due to respiratory muscle paralysis. Currently, fundamental curative treatments remain unestablished. The objective of this study is to develop an Adverse Outcome Pathway (AOP) for ALS to elucidate its underlying pathological mechanisms. By analyzing molecular networks using RNA-seq data and synthesizing existing literature, we have proposed a draft AOP. This pathway delineates the progression from an initial rise in reactive oxygen species (ROS) and oxidative stress to neurodegeneration and motor neuron death, mediated by key events such as TDP-43 aggregation, mitochondrial dysfunction, neuroinflammation, and axonal transport failure. In developing a quantitative AOP (qAOP), it is essential to assess the quantifiability of each Key Event (KE) and Key Event Relationship (KER) to accurately model the network&#39;s functional relationships. Current AOP636 starts with MIE1115, an increase in ROS, links to KE177, an increase in mitochondrial dysfunction, KE188, neuroinflammation, and KE386, a decrease in neuronal network function, and leads to AO2416 human ALS.&nbsp;We need to develop a new KE2416 on ALS and KERs with a quantitative understanding.
 """ ;
-	aopo:has_key_event	aop.events:177, aop.events:188, aop.events:386, aop.events:1115, aop.events:2416 ;
+	aopo:has_key_event	aop.events:2451, aop.events:177, aop.events:188, aop.events:386, aop.events:1115, aop.events:2416 ;
 	aopo:has_key_event_relationship	aop.relationships:3496, aop.relationships:3767, aop.relationships:2500, aop.relationships:3768 ;
 	aopo:has_molecular_initiating_event	aop.events:1115 ;
 	aopo:has_adverse_outcome	aop.events:2416 ;
@@ -78999,6 +79000,31 @@ aop:652
 	aopo:has_molecular_initiating_event	aop.events:2448 ;
 	aopo:has_adverse_outcome	aop.events:2450 .
 
+aop:653
+	a	aopo:AdverseOutcomePathway ;
+	dc:identifier	aop:653 ;
+	rdfs:label	"AOP 653" ;
+	rdfs:seeAlso	<https://identifiers.org/aop/653> ;
+	foaf:page	<https://identifiers.org/aop/653> ;
+	dc:title	"Inhibition to Microsomal Triglyceride Transfer Protein Leads to Steatosis" ;
+	dcterms:alternative	"Inhibition to Microsomal Triglyceride Transfer Protein Leads to Steatosis" ;
+	dc:source	"AOPWiki" ;
+	dcterms:created	"2026-09-09T15:28:48" ;
+	dcterms:modified	"2026-09-09T15:40:46" ;
+	dc:description	"""Steatosis is a regulatory endpoint and has been used as an endpoint in many US EPA assessments, including IRIS assessments.
+""" ;
+	dc:creator	"""Huan Yang
+""" ;
+	dcterms:abstract	"""This document outlines the development of an AOP linking the MIE of inhibition to Microsomal Triglyceride Transfer Protein (MTP) to (multiorgan) steatosis. The AOP maps the molecular initiating event (MTP inhibition) to the primary key event of reduced lipid efflux. This disruption branches into tissue-specific lipid accumulation in the liver and small intestine, ultimately resulting in hepatic and intestinal steatosis.
+""" ;
+	aopo:has_key_event	aop.events:2453, aop.events:2446, aop.events:2452, aop.events:459, aop.events:2454 ;
+	aopo:has_key_event_relationship	aop.relationships:3852, aop.relationships:3853, aop.relationships:3854, aop.relationships:3855 ;
+	aopo:has_molecular_initiating_event	aop.events:2452 ;
+	aopo:has_adverse_outcome	aop.events:459, aop.events:2454 ;
+	nci:C54571	aop.stressor:877 ;
+	pato:0000047	"Mixed" ;
+	aopo:LifeStageContext	"Adults" .
+
 aop.events:888
 	a	aopo:KeyEvent ;
 	dc:identifier	aop.events:888 ;
@@ -80584,7 +80610,7 @@ Taxonomic: This key event appears to be present broadly in vertebrates, with mos
 	aopo:hasBiologicalEvent	<459_bioevent_0> ;
 	go:0008150	hp:0001397 ;
 	pato:0000001	"increased" ;
-	dcterms:isPartOf	aop:36, aop:57, aop:58, aop:60, aop:61, aop:62, aop:213, aop:232, aop:285, aop:318, aop:494, aop:517, aop:518, aop:529, aop:591, aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
+	dcterms:isPartOf	aop:36, aop:57, aop:58, aop:60, aop:61, aop:62, aop:213, aop:232, aop:285, aop:318, aop:494, aop:517, aop:518, aop:529, aop:591, aop:624, aop:625, aop:626, aop:627, aop:628, aop:629, aop:653 .
 
 aop.events:244
 	a	aopo:KeyEvent ;
@@ -88025,7 +88051,7 @@ There is compelling data that demonstrates the role&nbsp; of&nbsp; BDNF &nbsp;in
 	go:0008150	go:0010467, go:0046903 ;
 	pato:0000001	"decreased" ;
 	pato:0001241	pr:000004716 ;
-	dcterms:isPartOf	aop:12, aop:13, aop:54, aop:375, aop:610 .
+	dcterms:isPartOf	aop:12, aop:13, aop:54, aop:214, aop:221, aop:222, aop:375, aop:604, aop:610 .
 
 aop.events:55
 	a	aopo:KeyEvent ;
@@ -104649,10 +104675,43 @@ aop.events:1329
 	rdfs:label	"KE 1329" ;
 	foaf:page	<https://identifiers.org/aop.events/1329> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.events/1329> ;
-	dc:title	"Reduce expression, BDNF (Brain-derived neurotrophic factor)" ;
-	dcterms:alternative	"Reduce expression, BDNF" ;
+	dc:title	"Brain-derived neurotrophic factor (BDNF) gene expression, reduced" ;
+	dcterms:alternative	"BDNF gene expression, reduced" ;
 	dc:source	"AOPWiki" ;
+	dc:description	"""Brain-derived neurotrophic factor (BDNF) is a neurotrophin gene expressed prominently in the central nervous system. This key event refers specifically to a decrease in BDNF/Bdnf mRNA transcript abundance relative to an appropriate control in a defined biological compartment, typically neural tissue or neural cells.
+
+Foundational studies established that BDNF mRNA is expressed predominantly in the central nervous system (Leibrock et al., 1989). In adult mouse brain, BDNF mRNA is broadly distributed across regions, with highest levels in hippocampus and substantial expression in cerebral cortex; in situ hybridization localized BDNF mRNA to hippocampal pyramidal and granule neurons (Hofer et al., 1990). These findings support the biological relevance of this key event in brain regions important for neuronal plasticity and function.
+
+BDNF transcription is dynamically regulated by neuronal activity. In the mammalian brain, membrane depolarization and calcium influx through voltage-gated calcium channels and NMDA receptors promote transcriptional activation of BDNF, and both rodent and human BDNF genes use multiple promoters that contribute to context-dependent regulation (Park &amp; Poo, 2013).&nbsp;
+""" ;
+	mmo:0000000	"""
+	RT-qPCR for targeted quantification of BDNF/Bdnf transcript abundance in neural tissue or cultured neural cells.
+	RNA sequencing or other transcriptomic platforms for broader assessment of BDNF transcript levels.
+	Northern blot analysis, used in foundational studies to detect and compare BDNF mRNA expression across tissues and brain regions (Leibrock et al., 1989; Hofer et al., 1990).
+	In situ hybridization for anatomical localization of BDNF mRNA within specific brain regions or cell populations (Hofer et al., 1990).
+
+""" ;
 	nci:C25664	"""Molecular""" ;
+	nci:C17469	"""Taxonomic Applicability
+
+Strongest support: Mammals, especially rodents and humans.&nbsp;Direct evidence for this key event comes primarily from mammalian studies of BDNF mRNA expression and regulation (Leibrock et al., 1989; Hofer et al., 1990; Park &amp; Poo, 2013).
+
+Life Stage Applicability
+
+Supported: During brain development and adulthood; plausibly aging. BDNF is involved in neural development, neuronal differentiation, and synaptic plasticity, and BDNF mRNA is clearly expressed in adult brain (Binder &amp; Scharfman, 2004; Hofer et al., 1990; Park &amp; Poo, 2013). Applicability to aging is biologically plausible, although direct support in the cited primary literature is more limited.
+
+Sex Applicability
+
+Unspecific. BDNF gene expression is a general feature of mammalian brain biology.
+""" ;
+	pato:0000047	"Unspecific" ;
+	aopo:LifeStageContext	"Adult", "Adults", "During brain development" ;
+	ncbitaxon:131567	"40674", "WikiUser_19", ncbitaxon:9606 ;
+	aopo:OrganContext	uberon:0000955 ;
+	aopo:hasBiologicalEvent	<1329_bioevent_0> ;
+	go:0008150	go:0010467 ;
+	pato:0000001	"decreased" ;
+	pato:0001241	pr:000004716 ;
 	dcterms:isPartOf	aop:214, aop:221, aop:222, aop:224, aop:225 .
 
 aop.events:1330
@@ -104720,52 +104779,6 @@ aop.events:1334
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Molecular""" ;
 	dcterms:isPartOf	aop:214 .
-
-aop.events:1335
-	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:1335 ;
-	rdfs:label	"KE 1335" ;
-	foaf:page	<https://identifiers.org/aop.events/1335> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/1335> ;
-	dc:title	"Reduced, BDNF (Brain-derived neurotrophic factor)" ;
-	dcterms:alternative	"Reduced, BDNF" ;
-	dc:source	"AOPWiki" ;
-	dc:description	"""
-	The brain-derived neurotrophic factor (BDNF) is synthesized and secreted by excitatory neurons. It is a key regulator involved in synaptic plasticity and fundamental brain processes such as cognition and memory (Barde, 2025).
-	BDNF belongs to the neurotrophin family and is present throughout the central nervous system (CNS), both during development and in the mature brain. Experiments conducted with rodents have shown that postnatal expression in the prefrontal cortex is low and gradually increases as the brain matures. Therefore, it becomes evident that BDNF levels reach maturity in parallel with the maturation of cortical brain areas (Cohen-Cory et al., 2010).
-	The first step in the entire process involving this neurotrophin is its synthesis and secretion. Both its expression and synthesis depend on tightly regulated mechanisms, which primarily reflect the regulation of its gene. This mechanism is essential to ensure the availability and functional activity of BDNF in specific cellular locations (Tongiorgi et al., 2006).
-	The BDNF gene consists of alternatively organized exons, and its structure varies among species. For example, there are ten exons in humans, eight in rodents, and six in lower vertebrates, with only a single exon capable of fully encoding the pro-BDNF protein. The expression of the BDNF gene can be controlled by different types of promoters, which function independently depending on development, tissue type, and cellular activity. Moreover, the organization of the BDNF gene is highly conserved between fish and mammals (Aid et al., 2007; Tao et al., 2002; Rattiner et al., 2004; Kidane et al., 2009; Heirinch et al., 2004; Pruunsild et al., 2007).
-	BDNF secretion occurs through two pathways: constitutive and regulated. Constitutive secretion mainly occurs in the soma, while the regulated pathway predominates in distal neuronal processes. Efficient targeting of BDNF to the regulated secretory pathway depends primarily on a specific region within the pro-domain of BDNF (Brigadiski et al., 2005).
-	The following diagram illustrates the general process of activation, regulation of synthesis, and secretion of BDNF at pre- and postsynaptic sites. Presynaptic activity induces the activation of postsynaptic NMDA (N-methyl-D-aspartate) and AMPA (&alpha;-amino-3-hydroxy-5-methyl-4-isoxazolepropionic acid) receptors. Locally produced BDNF mRNA is transported to the dendritic spine, where it is translated into protein and directed to the postsynaptic site in an activity-dependent manner. This BDNF binds to presynaptic TrkB receptors, activating intracellular signaling pathways that influence the activity of the GTPases RhoA, Rac, and Cdc42, which in turn modify actin structure through the cytoskeleton. Rac and Cdc42 act as positive regulators of cell growth and also play essential roles in neuronal branching. Additionally, BDNF can act in an autocrine manner through the activation of postsynaptic TrkB receptors (Cory et al., 2011).
-	Scientific evidence shows that BDNF activation through its TrkB receptor can promote the morphological development of neurons and is also associated with synaptic connectivity (Huang &amp; Reichardt et al., 2001; Poo et al., 2001; Zweifel et al., 2005).
-
-""" ;
-	mmo:0000000	"""
-	BDNF can be measured in human serum using the enzyme-linked immunosorbent assay (ELISA) technique. (Naegelin et al; 2018);&nbsp;
-	To measure or detect BDNF, various methods can be employed, including molecular biology techniques, immunohistochemistry, and other approaches such as immunohistochemical staining, quantitative real-time polymerase chain reaction (qPCR), and Western blot analysis (Ding et al., 2017);&nbsp;
-	Commercially available kits utilizing sandwich enzyme-linked immunosorbent assay (ELISA) techniques have been developed to detect BDNF in cerebrospinal fluid using specific antibodies. Moreover, multiplex immunobead-based assays are employed for high-throughput and targeted screening of BDNF levels. (Trajkvska et al, 2007;&nbsp;Zhang et al., 2008);&nbsp;
-	
-	In the commercial market, a variety of assay kits are available for detecting and quantifying BDNF levels in different biological fluids, including whole blood, plasma, and platelets. (Trajkovska et al., 2007).&nbsp;
-	
-	
-	Certain precautions should be considered when measuring or detecting BDNF in plasma or serum using the ELISA method. A specific study that measured BDNF concentrations in mouse and porcine serum reported that BDNF was undetectable using this methodological approach. (Elfving et al., 2010;&nbsp;Klein et al., 2011)&nbsp;
-	
-
-""" ;
-	nci:C25664	"""Molecular""" ;
-	nci:C17469	"""
-	Brain-derived neurotrophic factor (BDNF) is associated with essential and fundamental brain processes in most vertebrates. Its empirical relationship with mammals has been well documented. Previous studies have investigated the determination of BDNF in whole blood, serum, plasma, and brain tissue. In one of these studies, BDNF concentrations were measured in three different mammalian species &mdash; rat, pig, and mouse &mdash; using the ELISA method. As mentioned earlier, other research groups have also demonstrated the quantification of BDNF in human serum. (Klein et al., 2011;&nbsp;Aid et al., 2007;&nbsp;Trajkovska et al. 2007).&nbsp;
-	
-	The role of BDNF can be observed in the brain development of fish, where it regulates cell proliferation; in birds, where it is involved in specific brain regions controlling song production; and in the visual system of Xenopus, where BDNF functions as a neurotrophic factor mediating synaptic differentiation.&nbsp;(Sanchez et al., 2006; Marshak et al., 2007;&nbsp;Brenowitz, 2013;&nbsp;&nbsp;D&#39;Angelo L&nbsp;et al., 2014; Heinrich e Pagtakhan, 2004).&nbsp;
-	
-
-""" ;
-	pato:0000047	"Unspecific" ;
-	aopo:LifeStageContext	"During brain development" ;
-	ncbitaxon:131567	"WCS_9606", ncbitaxon:10116, ncbitaxon:10090 ;
-	aopo:CellTypeContext	cl:0002319 ;
-	aopo:OrganContext	uberon:0000955 ;
-	dcterms:isPartOf	aop:214, aop:221, aop:222, aop:604 .
 
 aop.events:1336
 	a	aopo:KeyEvent ;
@@ -128225,6 +128238,18 @@ aop.events:2444
 	pato:0000047	"Female" ;
 	dcterms:isPartOf	aop:577 .
 
+aop.events:2455
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2455 ;
+	rdfs:label	"KE 2455" ;
+	foaf:page	<https://identifiers.org/aop.events/2455> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2455> ;
+	dc:title	"increase, endometriosis" ;
+	dcterms:alternative	"endometriosis" ;
+	dc:source	"AOPWiki" ;
+	nci:C25664	"""Tissue""" ;
+	dcterms:isPartOf	aop:577 .
+
 aop.events:2323
 	a	aopo:KeyEvent ;
 	dc:identifier	aop.events:2323 ;
@@ -128287,6 +128312,11 @@ In short, both Th17 and Treg require TGF-&beta; to be activated; however, in a s
 
 In cancer or in autoimmune diseases, this balance between the two phenotypes is disturbed &nbsp;with a higher presence of Treg and leads to adverse outcomes such as tumor maintenance (Lin et al., 2019; He et al., 2020; Yan et al., 2020).
 
+""" ;
+	mmo:0000000	"""1. Multiparameter flow cytometry. This is the most widely used and highest-confidence method. Treg cells are identified as CD4+CD25+FoxP3+, while Th17 cells are identified either by intracellular IL-17A staining, or by expression of the lineage-defining transcription factor ROR&gamma;t (Maruyama et al., 2010; Zeng et al., 2020). The Treg/Th17 ratio is then calculated as the proportion of Tregs divided by the proportion of Th17 cells among total CD4+ cells, in a given tissue compartment (tumor, lymph node, or peripheral blood).
+2. Immunohistochemistry (IHC). Used on formalin-fixed tumor sections to localize and semi-quantify FoxP3+, IL-17+ or ROR&gamma;t+&nbsp;cell infiltrates directly within the tumor microenvironment, complementing flow-cytometric data obtained from dissociated tissue (Maruyama et al., 2010; Zeng et al., 2020).
+3. Quantitative RT-PCR.&nbsp;Used to measure relative transcript levels of FOXP3 and RORC (encoding ROR&gamma;t) as surrogate, whole tissue indicators of Treg versus Th17 lineage commitment (Qin et al., 2017).
+4. ELISA / cytokine profiling.&nbsp;Serum or culture-supernatant levels of IL-17 and IL-23 (Th17-associated) can be measured by ELISA as functional correlates of Th17 activity, typically alongside flow-cytometric Treg quantification (He et al., 2011).
 """ ;
 	nci:C25664	"""Cellular""" ;
 	dcterms:isPartOf	aop:578 .
@@ -129746,6 +129776,107 @@ aop.events:2409
 	ncbitaxon:131567	ncbitaxon:9606, ncbitaxon:10090, ncbitaxon:10116, "WikiUser_17" ;
 	dcterms:isPartOf	aop:630 .
 
+aop.events:2451
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2451 ;
+	rdfs:label	"KE 2451" ;
+	foaf:page	<https://identifiers.org/aop.events/2451> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2451> ;
+	dc:title	"Increase, TDP-43 aggregation" ;
+	dcterms:alternative	"TDP-43 aggregation" ;
+	dc:source	"AOPWiki" ;
+	dc:description	"""Transactivation response DNA-binding protein 43 (TDP-43) is an essential, highly conserved heterogeneous nuclear ribonucleoprotein (hnRNP) primarily localized to the cell nucleus, where it participates in RNA processing, alternative splicing, transcriptional regulation, and mRNA stability.
+
+In pathological states&mdash;particularly in amyotrophic lateral sclerosis (ALS) and frontotemporal lobar degeneration (FTLD-TDP)&mdash;TDP-43 undergoes nuclear-to-cytoplasmic mislocalization, hyperphosphorylation, ubiquitination, and C-terminal fragmentation. Excessive cellular stressors, including elevated reactive oxygen species (ROS), facilitate abnormal liquid-liquid phase separation (LLPS) transitions, driving TDP-43 into irreversible liquid-to-solid transitions and the formation of insoluble cytoplasmic aggregates (inclusion bodies). This process impairs normal cellular proteostasis, disrupts RNA metabolism through loss of physiological nuclear function, and mediates cytotoxic gain-of-function cascades in neuronal cells.
+""" ;
+	mmo:0000000	"""
+	
+	Biochemical &amp; Solubility Fractionation:
+
+	
+		
+		Sequential Protein Extraction: Separation of cell/tissue lysates into detergent-soluble (e.g., RIPA, Triton X-100) and detergent-insoluble (e.g., Urea/SDS, formic acid) fractions, followed by immunoblotting to quantify insoluble TDP-43 species.
+		
+		
+		Post-Translational Modification Probing: Western blotting using phospho-specific antibodies targeting pathological epitopes (e.g., Ser409/Ser410) and full-length vs. truncated C-terminal fragments (~25 kDa and ~35 kDa).
+		
+	
+	
+	
+	Immunocytochemistry &amp; Immunohistochemistry (ICC/IHC):
+
+	
+		
+		Subcellular Localization &amp; Quantification: Confocal microscopy detecting cytoplasmic puncta/inclusions vs. nuclear depletion in primary motor neurons, iPSC-derived motor neurons, or spinal cord tissue slices.
+		
+		
+		Colocalization Analysis: Co-staining with stress granule markers (e.g., G3BP1, TIA-1) and ubiquitin/p62 to verify inclusion maturation.
+		
+	
+	
+	
+	Fluorescence Recovery After Photobleaching (FRAP):
+
+	
+		
+		In live-cell imaging setups expressing GFP/mCherry-tagged TDP-43 to assess loss of mobility and liquid-to-solid phase transition kinetics under stressor conditions.
+		
+	
+	
+	
+	High-Throughput / Quantitative Assays:
+
+	
+		
+		ELISA / Meso Scale Discovery (MSD): Quantitative sandwich immunoassays for phosphorylated TDP-43 (p-TDP-43) in cellular lysates or biofluids (CSF/plasma).
+		
+		
+		Filter Retardation Assays: Cell lysate filtration through nitrocellulose membranes (e.g., 0.2 micro m) to isolate and quantify high-molecular-weight aggregates.
+		
+	
+	
+
+""" ;
+	nci:C25664	"""Cellular""" ;
+	nci:C17469	"""Taxonomic Applicability: Primates (Human), Rodents (Mouse, Rat)
+
+
+	
+		
+			Domain
+			Taxon Name
+			Scientific Name
+			Evidence
+		
+	
+	
+		
+			Eukaryota
+			Human
+			Homo sapiens
+			Strong (post-mortem tissue, patient iPSC lines)
+		
+		
+			Eukaryota
+			Mouse
+			Mus musculus
+			Strong (transgenic/knock-in models)
+		
+		
+			Eukaryota
+			Rat
+			Rattus norvegicus
+			Moderate (in vitro primary cultures, rodent models)
+		
+	
+
+
+&nbsp;
+""" ;
+	pato:0000047	"Male", "Female" ;
+	ncbitaxon:131567	"WCS_9606", ncbitaxon:10090, ncbitaxon:10116 ;
+	dcterms:isPartOf	aop:636 .
+
 aop.events:2414
 	a	aopo:KeyEvent ;
 	dc:identifier	aop.events:2414 ;
@@ -130018,7 +130149,7 @@ aop.events:2446
 	dcterms:alternative	"lipid accumulation" ;
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Tissue""" ;
-	dcterms:isPartOf	aop:646 .
+	dcterms:isPartOf	aop:646, aop:653 .
 
 aop.events:2448
 	a	aopo:KeyEvent ;
@@ -130055,6 +130186,42 @@ aop.events:2450
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Individual""" ;
 	dcterms:isPartOf	aop:652 .
+
+aop.events:2452
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2452 ;
+	rdfs:label	"KE 2452" ;
+	foaf:page	<https://identifiers.org/aop.events/2452> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2452> ;
+	dc:title	"Inhibition to Microsomal Triglyceride Transfer Protein" ;
+	dcterms:alternative	"inhbition to MTP " ;
+	dc:source	"AOPWiki" ;
+	nci:C25664	"""Molecular""" ;
+	dcterms:isPartOf	aop:653 .
+
+aop.events:2453
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2453 ;
+	rdfs:label	"KE 2453" ;
+	foaf:page	<https://identifiers.org/aop.events/2453> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2453> ;
+	dc:title	"reduced efflux of lipid " ;
+	dcterms:alternative	"reduced lipid efflux" ;
+	dc:source	"AOPWiki" ;
+	nci:C25664	"""Cellular""" ;
+	dcterms:isPartOf	aop:653 .
+
+aop.events:2454
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2454 ;
+	rdfs:label	"KE 2454" ;
+	foaf:page	<https://identifiers.org/aop.events/2454> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2454> ;
+	dc:title	"Increase, small intestine steatosis" ;
+	dcterms:alternative	"small intestine steatosis" ;
+	dc:source	"AOPWiki" ;
+	nci:C25664	"""Organ""" ;
+	dcterms:isPartOf	aop:653 .
 
 <888_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	go:0006120 ;
@@ -133937,6 +134104,11 @@ aop.events:2450
 	aopo:hasProcess	mp:0010069 ;
 	aopo:hasObject	chebio:28790 ;
 	aopo:hasAction	"increased" .
+
+<1329_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	go:0010467 ;
+	aopo:hasObject	pr:000004716 ;
+	aopo:hasAction	"decreased" .
 
 <1339_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	vt:0010499 ;
@@ -171836,16 +172008,16 @@ aop.relationships:1450
 	aopo:has_downstream_key_event	aop.events:122 ;
 	dcterms:isPartOf	aop:214 .
 
-aop.relationships:1451
+aop.relationships:3848
 	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:1451 ;
-	rdfs:label	"KER 1451" ;
-	foaf:page	<https://identifiers.org/aop.relationships/1451> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/1451> ;
-	dcterms:created	"2017-04-14T14:55:18" ;
-	dcterms:modified	"2017-04-14T14:55:18" ;
+	dc:identifier	aop.relationships:3848 ;
+	rdfs:label	"KER 3848" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3848> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3848> ;
+	dcterms:created	"2026-09-09T12:49:49" ;
+	dcterms:modified	"2026-09-09T12:49:49" ;
 	aopo:has_upstream_key_event	aop.events:122 ;
-	aopo:has_downstream_key_event	aop.events:1335 ;
+	aopo:has_downstream_key_event	aop.events:381 ;
 	dcterms:isPartOf	aop:214 .
 
 aop.relationships:1452
@@ -173498,40 +173670,40 @@ Mdr2-/- mice have higher background levels of inflammation and genomic instabili
 """ ;
 	dcterms:isPartOf	aop:220 .
 
-aop.relationships:1522
+aop.relationships:3849
 	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:1522 ;
-	rdfs:label	"KER 1522" ;
-	foaf:page	<https://identifiers.org/aop.relationships/1522> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/1522> ;
-	dcterms:created	"2017-05-31T17:31:03" ;
-	dcterms:modified	"2017-05-31T17:31:03" ;
+	dc:identifier	aop.relationships:3849 ;
+	rdfs:label	"KER 3849" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3849> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3849> ;
+	dcterms:created	"2026-09-09T12:51:13" ;
+	dcterms:modified	"2026-09-09T12:51:13" ;
 	aopo:has_upstream_key_event	aop.events:1396 ;
-	aopo:has_downstream_key_event	aop.events:1335 ;
+	aopo:has_downstream_key_event	aop.events:381 ;
 	dcterms:isPartOf	aop:221, aop:222 .
 
-aop.relationships:1523
+aop.relationships:3847
 	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:1523 ;
-	rdfs:label	"KER 1523" ;
-	foaf:page	<https://identifiers.org/aop.relationships/1523> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/1523> ;
-	dcterms:created	"2017-05-31T17:32:23" ;
-	dcterms:modified	"2017-05-31T17:32:23" ;
-	aopo:has_upstream_key_event	aop.events:1335 ;
+	dc:identifier	aop.relationships:3847 ;
+	rdfs:label	"KER 3847" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3847> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3847> ;
+	dcterms:created	"2026-09-09T12:40:10" ;
+	dcterms:modified	"2026-09-09T12:40:10" ;
+	aopo:has_upstream_key_event	aop.events:381 ;
 	aopo:has_downstream_key_event	aop.events:1330 ;
 	dcterms:isPartOf	aop:221, aop:604 .
 
-aop.relationships:1511
+aop.relationships:3851
 	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:1511 ;
-	rdfs:label	"KER 1511" ;
-	foaf:page	<https://identifiers.org/aop.relationships/1511> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/1511> ;
-	dcterms:created	"2017-05-30T14:08:50" ;
-	dcterms:modified	"2017-05-30T14:08:50" ;
+	dc:identifier	aop.relationships:3851 ;
+	rdfs:label	"KER 3851" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3851> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3851> ;
+	dcterms:created	"2026-09-09T12:54:05" ;
+	dcterms:modified	"2026-09-09T12:54:05" ;
 	aopo:has_upstream_key_event	aop.events:1328 ;
-	aopo:has_downstream_key_event	aop.events:1335 ;
+	aopo:has_downstream_key_event	aop.events:381 ;
 	dcterms:isPartOf	aop:222 .
 
 aop.relationships:1524
@@ -253757,16 +253929,16 @@ Agonists&nbsp;activate &alpha;1 receptors in hypothalamic and associated regions
 	ncbitaxon:131567	ncbitaxon:10116, "WCS_9606" ;
 	dcterms:isPartOf	aop:604 .
 
-aop.relationships:3747
+aop.relationships:3846
 	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3747 ;
-	rdfs:label	"KER 3747" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3747> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3747> ;
-	dcterms:created	"2026-03-19T09:06:32" ;
-	dcterms:modified	"2026-03-19T09:06:32" ;
+	dc:identifier	aop.relationships:3846 ;
+	rdfs:label	"KER 3846" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3846> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3846> ;
+	dcterms:created	"2026-09-09T12:39:51" ;
+	dcterms:modified	"2026-09-09T12:39:51" ;
 	aopo:has_upstream_key_event	aop.events:2371 ;
-	aopo:has_downstream_key_event	aop.events:1335 ;
+	aopo:has_downstream_key_event	aop.events:381 ;
 	dcterms:isPartOf	aop:604 .
 
 aop.relationships:3644
@@ -259381,6 +259553,54 @@ aop.relationships:3844
 	aopo:has_upstream_key_event	aop.events:1944 ;
 	aopo:has_downstream_key_event	aop.events:2450 ;
 	dcterms:isPartOf	aop:652 .
+
+aop.relationships:3852
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3852 ;
+	rdfs:label	"KER 3852" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3852> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3852> ;
+	dcterms:created	"2026-09-09T15:35:21" ;
+	dcterms:modified	"2026-09-09T15:35:21" ;
+	aopo:has_upstream_key_event	aop.events:2452 ;
+	aopo:has_downstream_key_event	aop.events:2453 ;
+	dcterms:isPartOf	aop:653 .
+
+aop.relationships:3853
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3853 ;
+	rdfs:label	"KER 3853" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3853> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3853> ;
+	dcterms:created	"2026-09-09T15:35:38" ;
+	dcterms:modified	"2026-09-09T15:35:38" ;
+	aopo:has_upstream_key_event	aop.events:2453 ;
+	aopo:has_downstream_key_event	aop.events:2446 ;
+	dcterms:isPartOf	aop:653 .
+
+aop.relationships:3854
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3854 ;
+	rdfs:label	"KER 3854" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3854> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3854> ;
+	dcterms:created	"2026-09-09T15:35:55" ;
+	dcterms:modified	"2026-09-09T15:35:55" ;
+	aopo:has_upstream_key_event	aop.events:2446 ;
+	aopo:has_downstream_key_event	aop.events:459 ;
+	dcterms:isPartOf	aop:653 .
+
+aop.relationships:3855
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3855 ;
+	rdfs:label	"KER 3855" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3855> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3855> ;
+	dcterms:created	"2026-09-09T15:36:09" ;
+	dcterms:modified	"2026-09-09T15:36:09" ;
+	aopo:has_upstream_key_event	aop.events:2446 ;
+	aopo:has_downstream_key_event	aop.events:2454 ;
+	dcterms:isPartOf	aop:653 .
 
 ncbitaxon:10116
 	a	ncbitaxon:131567 ;
@@ -269008,6 +269228,17 @@ aop.stressor:874
 	dcterms:modified	"2026-07-09T07:33:24" ;
 	aopo:has_chemical_entity	cas:191-24-2 ;
 	dcterms:isPartOf	aop:645, aop:646 .
+
+aop.stressor:877
+	a	nci:C54571 ;
+	dc:identifier	aop.stressor:877 ;
+	rdfs:label	"Stressor 877" ;
+	foaf:page	<https://identifiers.org/aop.stressor/877> ;
+	dc:title	"Lomitapide" ;
+	dcterms:created	"2026-09-09T15:38:25" ;
+	dcterms:modified	"2026-09-09T15:38:25" ;
+	aopo:has_chemical_entity	cas:182431-12-5 ;
+	dcterms:isPartOf	aop:653 .
 
 mesh:D006965	a	go:0008150 ;
 	dc:identifier	mesh:D006965 ;
@@ -280573,6 +280804,15 @@ cas:191-24-2
 	dcterms:alternative	"Benzo[ghi]perylene", "1,12-Benzoperylene", "1,12-Benzperylene", "BENZO(GHI)PERYLEN", "Benzo(ghi)perylene", "benzo[ghi]perileno", "Benzo[ghi]perylen", "NSC 89275" ;
 	dcterms:isPartOf	aop.stressor:874 .
 
+cas:182431-12-5
+	dc:identifier	cas:182431-12-5 ;
+	a	cheminf:000000, cheminf:000446 ;
+	cheminf:000446	"182431-12-5" ;
+	cheminf:000059	inchikey:MBBCVAKAJPKAKM-UHFFFAOYSA-N ;
+	dc:title	"Lomitapide" ;
+	cheminf:000568	comptox:DTXSID50171294 ;
+	dcterms:isPartOf	aop.stressor:877 .
+
 cas:83-79-4	dc:source	"CAS" ;
 	rdfs:label	"Rotenone".
 
@@ -281868,6 +282108,9 @@ cas:53-70-3	dc:source	"CAS" ;
 
 cas:191-24-2	dc:source	"CAS" ;
 	rdfs:label	"Benzo(g,h,i)perylene".
+
+cas:182431-12-5	dc:source	"CAS" ;
+	rdfs:label	"Lomitapide".
 
 inchikey:JUVIOZPCNVVQFO-HBGVWJBISA-N	dc:source	"InChIKey" ;
 	rdfs:label	"Rotenone".
@@ -283186,6 +283429,9 @@ inchikey:LHRCREOYAASXPZ-UHFFFAOYSA-N	dc:source	"InChIKey" ;
 inchikey:GYFAGKUZYNFMBN-UHFFFAOYSA-N	dc:source	"InChIKey" ;
 	rdfs:label	"Benzo(g,h,i)perylene".
 
+inchikey:MBBCVAKAJPKAKM-UHFFFAOYSA-N	dc:source	"InChIKey" ;
+	rdfs:label	"Lomitapide".
+
 comptox:DTXSID6021248	dc:source	"CompTox" ;
 	rdfs:label	"Rotenone".
 
@@ -284502,6 +284748,9 @@ comptox:DTXSID9020409	dc:source	"CompTox" ;
 
 comptox:DTXSID5023908	dc:source	"CompTox" ;
 	rdfs:label	"Benzo(g,h,i)perylene".
+
+comptox:DTXSID50171294	dc:source	"CompTox" ;
+	rdfs:label	"Lomitapide".
 
 chebi:28201	a	cheminf:000407 ;
 	cheminf:000407	"28201";
@@ -287166,6 +287415,12 @@ chebi:34568	a	cheminf:000407 ;
 	dc:identifier	"chebi:34568";
 	dc:source	"ChEBI" ;
 	rdfs:label	"Benzo(g,h,i)perylene".
+
+chebi:72297	a	cheminf:000407 ;
+	cheminf:000407	"72297";
+	dc:identifier	"chebi:72297";
+	dc:source	"ChEBI" ;
+	rdfs:label	"Lomitapide".
 
 chemspider:6500	a	cheminf:000405 ;
 	cheminf:000405	"6500";
@@ -289855,6 +290110,12 @@ chemspider:8763	a	cheminf:000405 ;
 	dc:source	"ChemSpider" ;
 	rdfs:label	"Benzo(g,h,i)perylene".
 
+chemspider:8028764	a	cheminf:000405 ;
+	cheminf:000405	"8028764";
+	dc:identifier	"chemspider:8028764";
+	dc:source	"ChemSpider" ;
+	rdfs:label	"Lomitapide".
+
 wikidata:Q412388	a	cheminf:000567 ;
 	cheminf:000567	"Q412388";
 	dc:identifier	"wikidata:Q412388";
@@ -292513,6 +292774,12 @@ wikidata:Q2275328	a	cheminf:000567 ;
 	dc:source	"Wikidata" ;
 	rdfs:label	"Benzo(g,h,i)perylene".
 
+wikidata:Q1268941	a	cheminf:000567 ;
+	cheminf:000567	"Q1268941";
+	dc:identifier	"wikidata:Q1268941";
+	dc:source	"Wikidata" ;
+	rdfs:label	"Lomitapide".
+
 chembl.compound:CHEMBL429023	a	cheminf:000412 ;
 	cheminf:000412	"CHEMBL429023";
 	dc:identifier	"chembl.compound:CHEMBL429023";
@@ -294726,6 +294993,12 @@ chembl.compound:CHEMBL1880376	a	cheminf:000412 ;
 	dc:identifier	"chembl.compound:CHEMBL1880376";
 	dc:source	"ChEMBL" ;
 	rdfs:label	"Benzo(g,h,i)perylene".
+
+chembl.compound:CHEMBL354541	a	cheminf:000412 ;
+	cheminf:000412	"CHEMBL354541";
+	dc:identifier	"chembl.compound:CHEMBL354541";
+	dc:source	"ChEMBL" ;
+	rdfs:label	"Lomitapide".
 
 pubchem.compound:6758	a	cheminf:000140 ;
 	cheminf:000140	"6758";
@@ -297673,6 +297946,12 @@ pubchem.compound:9117	a	cheminf:000140 ;
 	dc:source	"PubChem" ;
 	rdfs:label	"Benzo(g,h,i)perylene".
 
+pubchem.compound:9853053	a	cheminf:000140 ;
+	cheminf:000140	"9853053";
+	dc:identifier	"pubchem.compound:9853053";
+	dc:source	"PubChem" ;
+	rdfs:label	"Lomitapide".
+
 drugbank:DB11457	a	cheminf:000406 ;
 	cheminf:000406	"DB11457";
 	dc:identifier	"drugbank:DB11457";
@@ -299010,6 +299289,12 @@ drugbank:DB08398	a	cheminf:000406 ;
 	dc:identifier	"drugbank:DB08398";
 	dc:source	"DrugBank" ;
 	rdfs:label	"2-Amino-1-methyl-6-phenylimidazo [4,5-b]pyridine".
+
+drugbank:DB08827	a	cheminf:000406 ;
+	cheminf:000406	"DB08827";
+	dc:identifier	"drugbank:DB08827";
+	dc:source	"DrugBank" ;
+	rdfs:label	"Lomitapide".
 
 kegg.compound:C07593	a	cheminf:000409 ;
 	cheminf:000409	"C07593";
@@ -301878,6 +302163,12 @@ kegg.compound:C14318	a	cheminf:000409 ;
 	dc:identifier	"kegg.compound:C14318";
 	dc:source	"KEGG" ;
 	rdfs:label	"Benzo(g,h,i)perylene".
+
+kegg.compound:D09637	a	cheminf:000409 ;
+	cheminf:000409	"D09637";
+	dc:identifier	"kegg.compound:D09637";
+	dc:source	"KEGG" ;
+	rdfs:label	"Lomitapide".
 
 lipidmaps:LMPK12060007	a	cheminf:000564 ;
 	cheminf:000564	"LMPK12060007";
@@ -305400,6 +305691,12 @@ hmdb:HMDB0249010	a	cheminf:000408 ;
 	dc:identifier	"hmdb:HMDB0249010";
 	dc:source	"HMDB" ;
 	rdfs:label	"Benzo(g,h,i)perylene".
+
+hmdb:HMDB0254156	a	cheminf:000408 ;
+	cheminf:000408	"HMDB0254156";
+	dc:identifier	"hmdb:HMDB0254156";
+	dc:source	"HMDB" ;
+	rdfs:label	"Lomitapide".
 
 hgnc:11892	a	edam:data_2298, edam:data_1025 ;
 	rdfs:label	"TNF" ;
