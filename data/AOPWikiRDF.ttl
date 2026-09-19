@@ -70199,7 +70199,7 @@ aop:577
 	dcterms:alternative	"AhR and Endometriosis" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2025-04-18T06:25:49" ;
-	dcterms:modified	"2026-09-11T11:28:17" ;
+	dcterms:modified	"2026-09-16T04:25:37" ;
 	dc:description	"""The AHR can be activated by several structurally diverse chemicals, but binds preferentially to planar halogenated aromatic hydrocarbons and polycyclic aromatic hydrocarbons. Dioxin-like compounds (DLCs), which include polychlorinated dibenzo-p-dioxins (PCDDs), polychlorinated dibenzofurans (PCDFs) and certain polychlorinated biphenyls (PCBs), are among the most potent AHR ligands[38]. Only a subset of PCDD, PCDF and PCB congeners has been shown to bind to the AHR and cause toxic effects to those elicited by TCDD. Until recently, TCDD was considered to be the most potent DLC in birds[39]; however, recent reports indicate that 2,3,4,7,8-pentachlorodibenzofuran (PeCDF) is more potent than TCDD in some species of birds.[40][13][41][21][42][43] When screened for their ability to induce aryl hydrocarbon hydroxylase (AHH) activity, dioxins with chlorine atoms at a minimum of three out of the four lateral ring positions, and with at least one non-chlorinated ring position are the most active[44]. Of the dioxin-like PCBs, non-ortho congeners are the most toxicologically active, while mono-ortho PCBs are generally less potent[45][9]. Chlorine substitution at ortho positions increases the energetic costs of assuming the coplanar conformation required for binding to the AHR [45]. Thus, a smaller proportion of mono-ortho PCB molecules are able to bind to the AHR and elicit toxic effects, resulting in reduced potency of these congeners. Other PCB congeners, such as di-ortho substituted PCBs, are very weak AHR agonists and do not likely contribute to dioxin-like effects [9].
 
 
@@ -70210,7 +70210,7 @@ The role of the AHR in mediating the toxic effects of planar hydrophobic contami
 """ ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:2444, aop.events:149, aop.events:18, aop.events:2455 ;
-	aopo:has_key_event_relationship	aop.relationships:3836, aop.relationships:3835 ;
+	aopo:has_key_event_relationship	aop.relationships:3836, aop.relationships:3835, aop.relationships:3856 ;
 	aopo:has_molecular_initiating_event	aop.events:18 ;
 	aopo:has_adverse_outcome	aop.events:2455 ;
 	nci:C54571	aop.stressor:249 ;
@@ -76325,7 +76325,7 @@ aop:636
 	dcterms:alternative	"Increase in ROS leading to human ALS" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-03-13T02:16:33" ;
-	dcterms:modified	"2026-09-06T20:45:32" ;
+	dcterms:modified	"2026-09-17T03:39:00" ;
 	dc:description	"""The development of ALS represents an apical neurotoxicological endpoint of paramount regulatory significance, falling directly under international safety assessment and human health protection frameworks:
 
 
@@ -76395,8 +76395,8 @@ aop:636
 """ ;
 	dcterms:abstract	"""Amyotrophic lateral sclerosis (ALS) is a fatal neurodegenerative disease characterized by the impairment of motor neurons in the brain and spinal cord, leading to skeletal muscle atrophy and eventual death due to respiratory muscle paralysis. Currently, fundamental curative treatments remain unestablished. The objective of this study is to develop an Adverse Outcome Pathway (AOP) for ALS to elucidate its underlying pathological mechanisms. By analyzing molecular networks using RNA-seq data and synthesizing existing literature, we have proposed a draft AOP. This pathway delineates the progression from an initial rise in reactive oxygen species (ROS) and oxidative stress to neurodegeneration and motor neuron death, mediated by key events such as TDP-43 aggregation, mitochondrial dysfunction, neuroinflammation, and axonal transport failure. In developing a quantitative AOP (qAOP), it is essential to assess the quantifiability of each Key Event (KE) and Key Event Relationship (KER) to accurately model the network&#39;s functional relationships. Current AOP636 starts with MIE1115, an increase in ROS, links to KE177, an increase in mitochondrial dysfunction, KE188, neuroinflammation, and KE386, a decrease in neuronal network function, and leads to AO2416 human ALS.&nbsp;We need to develop a new KE2416 on ALS and KERs with a quantitative understanding.
 """ ;
-	aopo:has_key_event	aop.events:2451, aop.events:177, aop.events:188, aop.events:386, aop.events:1115, aop.events:2416 ;
-	aopo:has_key_event_relationship	aop.relationships:3496, aop.relationships:3767, aop.relationships:2500, aop.relationships:3768 ;
+	aopo:has_key_event	aop.events:1392, aop.events:2451, aop.events:177, aop.events:188, aop.events:386, aop.events:1115, aop.events:2416 ;
+	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:3857, aop.relationships:3858, aop.relationships:3767, aop.relationships:2500, aop.relationships:3768, aop.relationships:3496 ;
 	aopo:has_molecular_initiating_event	aop.events:1115 ;
 	aopo:has_adverse_outcome	aop.events:2416 ;
 	nci:C54571	aop.stressor:303 ;
@@ -89806,7 +89806,7 @@ Evidence for perturbation by prototypic stressor: There is evidence of the incre
 	aopo:hasBiologicalEvent	<1392_bioevent_0> ;
 	go:0008150	mp:0003674 ;
 	pato:0000001	"increased" ;
-	dcterms:isPartOf	aop:17, aop:26, aop:31, aop:138, aop:171, aop:177, aop:186, aop:200, aop:220, aop:260, aop:284, aop:324, aop:325, aop:326, aop:331, aop:332, aop:333, aop:377, aop:396, aop:411, aop:424, aop:425, aop:429, aop:437, aop:444, aop:447, aop:450, aop:452, aop:457, aop:459, aop:462, aop:464, aop:470, aop:471, aop:472, aop:476, aop:478, aop:479, aop:481, aop:482, aop:483, aop:488, aop:497, aop:501, aop:505, aop:507, aop:509, aop:510, aop:511, aop:521, aop:534, aop:535, aop:538, aop:540, aop:595, aop:596, aop:598, aop:599, aop:600, aop:601, aop:602, aop:603, aop:608, aop:616, aop:622, aop:625, aop:628, aop:642, aop:645, aop:646, aop:647 .
+	dcterms:isPartOf	aop:17, aop:26, aop:31, aop:138, aop:171, aop:177, aop:186, aop:200, aop:220, aop:260, aop:284, aop:324, aop:325, aop:326, aop:331, aop:332, aop:333, aop:377, aop:396, aop:411, aop:424, aop:425, aop:429, aop:437, aop:444, aop:447, aop:450, aop:452, aop:457, aop:459, aop:462, aop:464, aop:470, aop:471, aop:472, aop:476, aop:478, aop:479, aop:481, aop:482, aop:483, aop:488, aop:497, aop:501, aop:505, aop:507, aop:509, aop:510, aop:511, aop:521, aop:534, aop:535, aop:538, aop:540, aop:595, aop:596, aop:598, aop:599, aop:600, aop:601, aop:602, aop:603, aop:608, aop:616, aop:622, aop:625, aop:628, aop:636, aop:642, aop:645, aop:646, aop:647 .
 
 aop.events:1488
 	a	aopo:KeyEvent ;
@@ -103765,6 +103765,12 @@ aop.events:1263
 	dc:title	"Necrosis" ;
 	dcterms:alternative	"Necrosis" ;
 	dc:source	"AOPWiki" ;
+	dc:description	"""Necrosis is an uncontrolled form of cell death triggered by injury, trauma, or infection[1]. Its cellular mechanisms involve a cascade of events that break down cellular components and release intracellular contents into the extracellular space[2]. Unlike non-inflammatory cell death, the released intracellular contents activate the immune system and harm neighboring cells, frequently causing localized inflammation and tissue damage[3-4].
+""" ;
+	mmo:0000000	"""1. Morphological Evaluation: Live-cell phase-contrast microscopy reveals classic necrotic features, such as high-amplitude organelle/cellular swelling (&quot;ballooned&quot; morphology) followed by plasma membrane rupture. Cytospin samples with eosin&ndash;methylene blue staining further identify necrotic cells by their &quot;ghost cell&quot; appearance with ruptured cytoplasm and swollen intact nuclei[5]. &nbsp;
+
+2. Membrane Permeability &amp; Caspase Inactivity: Multiparametric flow cytometry using Annexin V-FITC and Propidium Iodide (PI) shows an Annexin V+/PI+ profile due to rapid plasma membrane disruption. Combining PI with FLICA probes yields a FLICA-/PI+&nbsp;pattern, confirming the absence of caspase activation[5].&nbsp;
+""" ;
 	nci:C25664	"""Tissue""" ;
 	pato:0000047	"Unspecific" ;
 	aopo:LifeStageContext	"Not Otherwise Specified" ;
@@ -119262,7 +119268,22 @@ aop.events:2009
 	dc:title	"Activation of inflammation pathway" ;
 	dcterms:alternative	"Activation, inflammation pathway" ;
 	dc:source	"AOPWiki" ;
+	dc:description	"""Cell damage activates inflammatory pathways through signals both inside and outside the cell. Under stress, breakdown of the mitochondrial membrane (MOMP) releases damage signals into the cell fluid such as mitochondrial DNA (mtDNA) [1]and double-stranded RNA (dsRNA)[2, 3], and reducing protective proteins (IAPs)[4]. These released signals turn on major inflammation pathways. At the same time, the loss of IAPs activat,es NF-&kappa;B to produce inflammatory cytokines[5, 6]. Also, Toll-like receptors (TLRs) may recognize damage and pathogen signals&nbsp;through two main pathways: MyD88-dependent and TRIF-dependent[7]. The MyD88 pathway turns on NF-&kappa;B and MAPK to release inflammatory cytokines[8], while the TRIF pathway activates IRF3 to produce type I interferons. Together, these pathways work to strengthen and maintain the overall inflammatory response.
+""" ;
+	mmo:0000000	"""1. Sequencing &amp; Transcriptomics: Bulk RNA-seq and single-cell RNA-seq to quantify gene expression dynamics, activation states, and downstream transcriptional pathways[9, 10]&nbsp;;
+
+2. Proteomics &amp; Epigenomics: Mass spectrometry-based proteomics and chromatin accessibility profiling (e.g., ATAC-seq) to evaluate protein expression profiles and accessible transcription factor binding motifs (e.g., RUNX1, KLF6, RELB, IRF5, JUNB, RFX2) [9, 11, 12];
+
+3. Protein Modifications &amp; Translocation: Western blotting, phospho-flow cytometry, and nuclear/cytoplasmic fractionation to detect intracellular kinase phosphorylation cascades (e.g., ERK1/2, p38 MAPK, JNK, AKT, SYK, Src, JAK1/2, STAT3, MEK, PKC, TAK1), nuclear translocation of transcription factors (e.g., STAT3, NF-&kappa;B/p65, ERK), and membrane spatial redistribution of regulators like PTEN[1, 7];
+
+4. Cytometry &amp; Surface Marker Profiling: Flow cytometry and Cytometry by Time-of-Flight (CyTOF / Mass Cytometry) to quantify cell surface receptor dynamics and classify distinct activation subpopulations[13,14].
+""" ;
 	nci:C25664	"""Cellular""" ;
+	nci:C17469	"""Representative studies focused on mammals (humans, lab mice, lab rats).
+""" ;
+	pato:0000047	"Unspecific" ;
+	aopo:LifeStageContext	"Not Otherwise Specified" ;
+	ncbitaxon:131567	"WikiUser_17" ;
 	dcterms:isPartOf	aop:452, aop:507, aop:511, aop:638 .
 
 aop.events:2010
@@ -128244,7 +128265,7 @@ aop.events:2455
 	rdfs:label	"KE 2455" ;
 	foaf:page	<https://identifiers.org/aop.events/2455> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.events/2455> ;
-	dc:title	"increase, endometriosis" ;
+	dc:title	"Endometriosis" ;
 	dcterms:alternative	"endometriosis" ;
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Tissue""" ;
@@ -154487,7 +154508,7 @@ The applicability domain should nevertheless be bounded by biological context an
 	pato:0000047	"Unspecific" ;
 	aopo:LifeStageContext	"All life stages" ;
 	ncbitaxon:131567	"WCS_9606", "WikiUser_6", "WCS_35525", "WCS_63659", ncbitaxon:10090, ncbitaxon:10116 ;
-	dcterms:isPartOf	aop:26, aop:186, aop:324, aop:325, aop:326, aop:331, aop:332, aop:333, aop:396, aop:462, aop:472, aop:481, aop:497, aop:505, aop:511, aop:521, aop:534, aop:540, aop:595, aop:596, aop:599, aop:600, aop:601, aop:602, aop:603, aop:647 .
+	dcterms:isPartOf	aop:26, aop:186, aop:324, aop:325, aop:326, aop:331, aop:332, aop:333, aop:396, aop:462, aop:472, aop:481, aop:497, aop:505, aop:511, aop:521, aop:534, aop:540, aop:595, aop:596, aop:599, aop:600, aop:601, aop:602, aop:603, aop:636, aop:647 .
 
 aop.relationships:248
 	a	aopo:KeyEventRelationship ;
@@ -250879,6 +250900,18 @@ aop.relationships:3835
 	pato:0000047	"Female" ;
 	dcterms:isPartOf	aop:577 .
 
+aop.relationships:3856
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3856 ;
+	rdfs:label	"KER 3856" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3856> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3856> ;
+	dcterms:created	"2026-09-16T04:25:37" ;
+	dcterms:modified	"2026-09-16T04:25:37" ;
+	aopo:has_upstream_key_event	aop.events:149 ;
+	aopo:has_downstream_key_event	aop.events:2455 ;
+	dcterms:isPartOf	aop:577 .
+
 aop.relationships:3533
 	a	aopo:KeyEventRelationship ;
 	dc:identifier	aop.relationships:3533 ;
@@ -257404,6 +257437,30 @@ aop.relationships:3725
 	aopo:has_downstream_key_event	aop.events:177 ;
 	dcterms:isPartOf	aop:627 .
 
+aop.relationships:3857
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3857 ;
+	rdfs:label	"KER 3857" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3857> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3857> ;
+	dcterms:created	"2026-09-17T03:38:34" ;
+	dcterms:modified	"2026-09-17T03:38:34" ;
+	aopo:has_upstream_key_event	aop.events:1392 ;
+	aopo:has_downstream_key_event	aop.events:2451 ;
+	dcterms:isPartOf	aop:636 .
+
+aop.relationships:3858
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3858 ;
+	rdfs:label	"KER 3858" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3858> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3858> ;
+	dcterms:created	"2026-09-17T03:38:59" ;
+	dcterms:modified	"2026-09-17T03:38:59" ;
+	aopo:has_upstream_key_event	aop.events:2451 ;
+	aopo:has_downstream_key_event	aop.events:177 ;
+	dcterms:isPartOf	aop:636 .
+
 aop.relationships:3767
 	a	aopo:KeyEventRelationship ;
 	dc:identifier	aop.relationships:3767 ;
@@ -257636,6 +257693,9 @@ aop.relationships:3748
 	aopo:has_downstream_key_event	aop.events:1195 ;
 	dc:description	"""Collagen is a structural protein in the supramolecular structure of the extracellular matrix (ECM). The expression of COL3A1 is closely associated with the remodelling of the ECM [1]. Meanwhile, integrin receptors serve as the primary molecular link between cells and the ECM, mediating intercellular interactions [2]. Hepatic fibrosis is characterized by excessive deposition of ECM proteins [3]. Therefore, the pathological upregulation of COL3A1 structurally disrupts normal cell-matrix homeostasis via integrin-mediated signaling, directly driving the progressive and excessive deposition of the extracellular matrix.
 """ ;
+	pato:0000047	"Unspecific" ;
+	aopo:LifeStageContext	"All life stages" ;
+	ncbitaxon:131567	"WikiUser_17" ;
 	dcterms:isPartOf	aop:638 .
 
 aop.relationships:3749

@@ -1459,6 +1459,9 @@ aop.events:1065	edam:data_1025	hgnc:3225,hgnc:7670,hgnc:11205,hgnc:8975,hgnc:323
 aop.events:2023	edam:data_1025	hgnc:14253,hgnc:24260,hgnc:25295,hgnc:4214,hgnc:6502 ;
 	:geneDetectedByNER	hgnc:14253,hgnc:24260,hgnc:25295,hgnc:4214,hgnc:6502 .
 
+aop.events:2009	edam:data_1025	hgnc:18348,hgnc:6118 ;
+	:geneDetectedByRegex	hgnc:18348,hgnc:6118 .
+
 aop.events:2020	edam:data_1025	hgnc:11189,hgnc:11204,hgnc:11327,hgnc:12774,hgnc:16421,hgnc:2514,hgnc:4983 ;
 	:geneDetectedByNER	hgnc:11189,hgnc:11204,hgnc:11327,hgnc:12774,hgnc:16421,hgnc:2514,hgnc:4983 .
 
