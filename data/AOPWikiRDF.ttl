@@ -1505,7 +1505,7 @@ aop:4
 	dcterms:alternative	"EcR agonism leading to mortality via suppression of Ftz-f1" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2016-11-29T18:41:15" ;
-	dcterms:modified	"2025-10-02T04:18:29" ;
+	dcterms:modified	"2026-09-29T08:22:25" ;
 	dc:description	"""The development of this AOP is motivated by regulatory needs to understand and predict the impacts of insect growth regulators and other endocrine-active chemicals that target EcR. Such compounds are widely used in pest control but pose risks to non-target arthropods, including pollinators and aquatic invertebrates. The AOP formalizes knowledge of conserved molting endocrine pathways to support hazard identification and potential regulatory screening frameworks.
 """, """The Adverse Outcome is highly significant from a regulatory point of view. It is employed as regulatory endpoint in most studies assessing the toxicity of stressors.
 """ ;
@@ -1684,7 +1684,7 @@ For ecological risk assessment, this AOP highlights the potential for population
 
 Overall, this AOP offers opportunities to improve chemical safety decision-making by providing a structured framework to integrate mechanistic data into regulatory contexts, enabling screening, prioritization, and risk assessment of chemicals that act through EcR hyperactivation.
 """ ;
-	dc:creator	"""You Song&nbsp;and Knut Erik Tollefsen
+	dc:creator	"""You Song, Li Xie and Knut Erik Tollefsen
 Norwegian Institute for Water Research (NIVA), &Oslash;kernveien 94, N-0579 Oslo, Norway
 """ ;
 	dcterms:abstract	"""This Adverse Outcome Pathway (AOP) describes how hyperactivation of the ecdysone receptor (EcR) in arthropods can lead to lethal molting disruption and mortality. Binding of natural ligands (ecdysteroids) to EcR is critical for regulating molting and metamorphosis in insects and crustaceans. However, inappropriate or prolonged activation of EcR by exogenous chemicals disrupts the tightly regulated temporal gene expression cascade required for successful ecdysis. Key events (KEs) include altered expression of early transcription factors (E75B, Ftz-f1), reduction of circulating neuropeptides (CCAP, ETH), impaired motor program activity, and suppression of abdominal muscle contraction, ultimately resulting in incomplete ecdysis and death. This AOP provides mechanistic understanding relevant for environmental chemical safety assessment, particularly regarding pesticides and other compounds targeting insect endocrine systems.
@@ -71810,6 +71810,7 @@ aop:594
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2025-08-28T22:36:18" ;
 	dcterms:modified	"2025-08-28T22:40:53" ;
+	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:1288, aop.events:1238, aop.events:1277 ;
 	aopo:has_molecular_initiating_event	aop.events:1238 ;
 	aopo:has_adverse_outcome	aop.events:1277 .
@@ -71827,6 +71828,7 @@ aop:595
 	dcterms:modified	"2025-11-06T05:11:27" ;
 	dc:description	"""A large number of drugs and chemicals have been shown to antagonise the AR using various AR reporter gene assays. The AR is specifically targeted in AR-sensitive cancers, for example the use of the anti-androgenic drug flutamide in treating prostate cancer (Alapi &amp; Fischer, 2006). Flutamide has also been used in several rodent in vivo studies showing anti-androgenic effects (feminization of male offspring) evident by e.g. short anogenital distance (AGD) in males (Foster &amp; Harris, 2005; Hass et al, 2007; Kita et al, 2016). QSAR models can predict AR antagonism for a wide range of chemicals, many of which have shown in vitro antagonistic potential (Vinggaard et al, 2008).
 """ ;
+	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:1392, aop.events:1262, aop.events:177, aop.events:495, aop.events:2080, aop.events:1690, aop.events:1758, aop.events:3, aop.events:2366, aop.events:2367, aop.events:1837, aop.events:2369, aop.events:112, aop.events:1115, aop.events:26, aop.events:520, aop.events:1863, aop.events:1696 ;
 	aopo:has_key_event_relationship	aop.relationships:3614, aop.relationships:2009, aop.relationships:3129, aop.relationships:3146, aop.relationships:3615, aop.relationships:3616, aop.relationships:3617, aop.relationships:3618, aop.relationships:3619, aop.relationships:3620, aop.relationships:3621, aop.relationships:3622, aop.relationships:3624, aop.relationships:3625 ;
 	aopo:has_molecular_initiating_event	aop.events:112, aop.events:1115, aop.events:26 ;
@@ -78991,7 +78993,7 @@ aop:652
 	dcterms:alternative	"IDE and cognitive decline" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-08-31T09:12:13" ;
-	dcterms:modified	"2026-08-31T09:22:04" ;
+	dcterms:modified	"2026-09-29T01:42:17" ;
 	aopo:has_key_event	aop.events:2449, aop.events:1943, aop.events:1944, aop.events:2448, aop.events:2450 ;
 	aopo:has_key_event_relationship	aop.relationships:3841, aop.relationships:3842, aop.relationships:3843, aop.relationships:3844, aop.relationships:3845 ;
 	aopo:has_molecular_initiating_event	aop.events:2448 ;
@@ -79033,6 +79035,364 @@ aop:654
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-09-24T17:48:27" ;
 	dcterms:modified	"2026-09-24T17:48:27" .
+
+aop:655
+	a	aopo:AdverseOutcomePathway ;
+	dc:identifier	aop:655 ;
+	rdfs:label	"AOP 655" ;
+	rdfs:seeAlso	<https://identifiers.org/aop/655> ;
+	foaf:page	<https://identifiers.org/aop/655> ;
+	dc:title	"Activation of Transient Receptor Potential A1 (TRPA1) Leading to Pulmonary Fibrosis" ;
+	dcterms:alternative	"TRPA1 Activation Leading to Pulmonary Fibrosis" ;
+	dc:source	"AOPWiki" ;
+	dcterms:created	"2026-09-28T20:24:16" ;
+	dcterms:modified	"2026-09-29T00:44:39" ;
+	dc:description	"""Background:&nbsp;Pulmonary fibrosis is a potentially fatal respiratory disease characterized by the accumulation of interstitial scar tissue, leading to the loss of alveolar function, destruction of normal lung architecture, and impaired respiratory function. Adverse Outcome Pathways (AOP) provide a framework for testing and evaluating pulmonary fibrosis. However, to enhance the applicability of AOPs in regulatory environments, further development of the pulmonary fibrosis AOP framework is necessary. This study develops&nbsp;an AOP for pulmonary fibrosis induced by TRPA1 activation, aimed at predicting all compounds highly related to this AOP. Additionally, this study identifies core Key Events (KEs) shared across different AOPs to facilitate further development of the AOP.&nbsp;Existing OECD AOP Wiki networks also lack a dedicated pathway for TRPA1-mediated pulmonary fibrosis. Therefore, constructing an AOP for TRPA1 activation-induced pulmonary fibrosis is of great significance for revealing novel mechanisms of environmental stressor-induced fibrosis and filling gaps in the existing pulmonary fibrosis AOP network.
+""" ;
+	nci:C48192	"""
+	
+		
+			
+			Type (Event ID)
+			
+			
+			Title
+			
+			
+			Description
+			
+			
+			Support for the essentiality of the KE
+			
+		
+		
+			
+			MIE&nbsp;(1215)
+			
+			
+			Activation of TRPA1
+			
+			
+			The TRPA1 ion channel (also known as the wasabi receptor) is a detector of noxious chemical agents encountered in our environment or produced endogenously during tissue injury or drug metabolism. &nbsp;TRPA1 antagonists hold potential for treating neurogenic inflammatory conditions provoked or exacerbated by irritant exposure1.&nbsp;The TRPA1 channel was first successfully isolated in human lung fibroblasts, and it was found to have a relatively concentrated distribution in the lungs and respiratory tract. It is also involved in various acute and chronic inflammatory processes of lung diseases and may even play a core role in the progression and/or prevention of pulmonary fibrosis2.
+			
+			
+			Satyanarayana Achanta&nbsp;and Sven-Eric Jordt&nbsp;(2020)3reported TRPA1 play a crucial role in complex pulmonary pathophysiologic events including, increased intracellular calcium levels, signal transduction, recruitment of proinflammatory cells, neurogenic inflammatory pathways and fibrosis. There is no doubt that TRPA1 localized in the sensory network contribute to airway neurogenic inflammation, and emerging evidence underlines the role of nonneuronal TRPA1 in orchestrating inflammation and repair in the respiratory tract4.
+
+			&nbsp;
+			
+		
+		
+			
+			KE1&nbsp;(149)
+			
+			
+			Increase inflammation
+			
+			
+			Inflammatory cytokines refer to a variety of cytokines involved in the inflammatory response. Among the many inflammatory cytokines, TNF-&alpha;, IL-1&beta;, IL-6, TGF-&beta;, IL-8, IL-l0, etc5. TNF-&alpha; is the earliest and most important inflammatory mediator in the process of inflammatory response, which can activate neutrophils and lymphocytes, increase the permeability of vascular endothelial cells, regulate the metabolic activity of other tissues, and promote the synthesis and release of other cytokines6. IL-6 can induce B-cell differentiation and antibody production, and induce T-cell activation, proliferation and differentiation, and participate in the body&#39;s immune response, which is a promoter of inflammatory response7.
+			
+			
+			Dysregulated activation of NLRP3 within the pulmonary microenvironment exacerbates inflammation and may incite fibrogenic responses. Contemporary findings suggest that the pro-fibrotic consequences stemming from NLRP3 signaling primarily hinge on the action of interleukin-1&beta; (IL-1&beta;). IL-1&beta; instigates IL-1 receptor signaling, potentiating the activity of transforming growth factor-beta (TGF-&beta;)8. RNA sequencing showed that the tumor necrosis factor alpha (TNF&alpha;) signaling pathway and transforming growth factor beta (TGF&beta;) signaling pathway were consistently activated, potentially contributing to the development of inflammation and fibrosis9.
+			
+		
+		
+			
+			KE2&nbsp;(1271)
+			
+			
+			Activation of TGF-&beta; signaling
+			
+			
+			The transforming growth factor-&beta; (TGF-&beta;) is the prototype of the TGF-&beta; family of growth and differentiation factors, which is encoded by 33 genes in mammals and comprises homo- and heterodimers. This review introduces the reader to the TGF-&beta; family with its complexity of names and biological activities. It also introduces TGF-&beta; as the best-studied factor among the TGF-&beta; family proteins, with its diversity of roles in the control of cell proliferation and differentiation, wound healing and immune system, and its key roles in pathology, for example, skeletal diseases, fibrosis, and cancer10.
+			
+			
+			In the presence of persisting injurious pathways, or disrupted repair pathways, activated TGF-&beta; can lead to enhanced epithelial apoptosis and epithelial-to-mesenchymal transition (EMT) as well as fibroblast, and fibrocyte, transformation into myofibroblasts which are resistant to apoptosis11.&nbsp;TGF-&beta; is a central regulator involved in EMT and pulmonary fibrosis. E3 ubiquitin ligases regulate TGF-&beta;-Smad pathway-mediated EMT via the ubiquitin-proteasome pathway12.
+			
+		
+		
+			
+			KE3&nbsp;(1457)
+			
+			
+			Epithelial mesenchymal transition
+			
+			
+			The transdifferentiation of epithelial cells into motile mesenchymal cells, a process known as epithelial-mesenchymal transition (EMT), is integral in development, wound healing and stem cell behaviour, and contributes pathologically to fibrosis and cancer progression. This switch in cell differentiation and behaviour is mediated by key transcription factors, including SNAIL, zinc-finger E-box-binding (ZEB) and basic helix-loop-helix transcription factors, the functions of which are finely regulated at the transcriptional, translational and post-translational levels. The reprogramming of gene expression during EMT, as well as non-transcriptional changes, are initiated and controlled by signalling pathways that respond to extracellular cues. Among these, transforming growth factor-&beta; (TGF&beta;) family signalling has a predominant role; however, the convergence of signalling pathways is essential for EMT13.
+			
+			
+			Using both in vitro and in vivo models, we demonstrated a notable upregulation of epithelial IL5RA during the progression of pulmonary fibrosis. This upregulated IL5RA expression subsequently promotes epithelial-mesenchymal transition (EMT), leading to the generation of mesenchymal phenotype with augmented capability for ECM production14.&nbsp;Epithelial cells can undergo a process called epithelial-mesenchymal transition, in which they acquire a more mesenchymal-like phenotype and contribute directly to fibroblast activation and ECM deposition15.
+			
+		
+		
+			
+			KE4&nbsp;(1501)
+			
+			
+			Increased extracellular matrix deposition
+			
+			
+			Extracellular matrix (ECM) is a non-cellular three-dimensional macromolecular network composed of collagens, proteoglycans/glycosaminoglycans, elastin, fibronectin, laminins, and several other glycoproteins. Matrix components bind each other as well as cell adhesion receptors forming a complex network into which cells reside in all tissues and organs. Cell surface receptors transduce signals into cells from ECM, which regulate diverse cellular functions, such as survival, growth, migration, and differentiation, and are vital for maintaining normal homeostasis. ECM is a highly dynamic structural network that continuously undergoes remodeling mediated by several matrix-degrading enzymes during normal and pathological conditions. Deregulation of ECM composition and structure is associated with the development and progression of several pathologic conditions16.
+			
+			
+			Pulmonary fibrosis (PF) is characterized by an increase in collagen synthesis and deposition of extracellular matrix. Several factors, including transforming growth factor-&beta;1 (TGF-&beta;1), mothers against decapentaplegic homolog family proteins (Smad), and alpha-smooth muscle actin (&alpha;-SMA) trigger extracellular matrix (ECM) accumulation, fibroblast to myofibroblasts conversion, and epithelial-to-mesenchymal-transition (EMT) leading to PF
+
+			17.&nbsp;We demonstrated that the exposure of PM2.5 could enhance the ERS induced-autophagy-mediated Cav-1 degradation, thus activating the TGF-&beta;1/Smad3 axis to promote pneumonocytes apoptosis and overproduction of extracellular matrix (ECM), finally aggravating PF18.
+			
+		
+		
+			
+			AO&nbsp;(1458)
+			
+			
+			Pulmonary fibrosis
+			
+			
+			Pulmonary fibrosis is a chronic progressive lung disease that steadily leads to lung architecture disruption and respiratory failure. The development of pulmonary fibrosis is mostly the result of previous acute lung inflammation, caused by a wide variety of etiological factors, not resolved over time and causing the deposition of fibrotic tissue in the lungs19.&nbsp;
+			
+			
+			&nbsp;
+			
+		
+	
+
+""" ;
+	aopo:has_evidence	"""
+	
+		
+			
+			Upstream event
+			
+			
+			Relationship&nbsp;type
+			
+			
+			Downstream&nbsp;events
+			
+			
+			Evidence from the&nbsp;literature
+			
+		
+		
+			
+			Activation of TRPA1
+			
+			
+			adjacent
+			
+			
+			Increase inflammation
+			
+			
+			TRPA1 is expressed in a large subset of sensory nerves, where it integrates numerous noxious stimuli. In non-neuronal cells, TRPA1 also acts as nociceptive sensors and potentiate the inflammatory process20.
+			
+		
+		
+			
+			&nbsp;
+			
+			
+			non-adjacent
+			
+			
+			Activation of TGF-&beta; signaling
+			
+			
+			The lack of TRPA1 in cultured ocular fibroblasts attenuated expression of TGF-&beta;1, interleukin-6, and &alpha;-smooth muscle actin, a myofibroblast the marker, but suppressed the activation of Smad3, p38 MAPK, ERK, and JNK.The responsible mechanism may include the inhibition of TGF-&beta;1-signaling cascades in fibroblasts by attenuated TRPA1 signaling21.
+			
+		
+		
+			
+			&nbsp;
+			
+			
+			non-adjacent
+			
+			
+			Epithelial mesenchymal transition
+			
+			
+			Transient depotentiation of TRPA1 by siRNA is sufficient to attenuate the downstream signalling pathway of FGFR2c and consequently affect EMT22.
+			
+		
+		
+			
+			&nbsp;
+			
+			
+			non-adjacent
+			
+			
+			Increased extracellular matrix deposition
+			
+			
+			The activation of transient receptor potential ankyrin 1 (TRPA1) was claimed to be a risk factor in osteoarthritis by causing inflammation and extracellular matrix degradation23.
+			
+		
+		
+			
+			&nbsp;
+			
+			
+			non-adjacent
+			
+			
+			Pulmonary fibrosis
+			
+			
+			Targeting TRPA1 channels presents promising therapeutic potential in managing pulmonary fibrosis by reducing pro-fibrotic marker expression, inhibiting M2 macrophage polarization, and diminishing collagen deposition24.
+			
+		
+		
+			
+			Increase inflammation
+			
+			
+			adjacent
+			
+			
+			Activation of TGF-&beta; signaling
+			
+			
+			Dysregulated activation of NLRP3 within the pulmonary microenvironment exacerbates inflammation and may incite fibrogenic responses. Contemporary findings suggest that the pro-fibrotic consequences stemming from NLRP3 signaling primarily hinge on the action of interleukin-1&beta; (IL-1&beta;). IL-1&beta; instigates IL-1 receptor signaling, potentiating the activity of transforming growth factor-beta (TGF-&beta;)8.
+			
+		
+		
+			
+			&nbsp;
+			
+			
+			non-adjacent
+			
+			
+			Epithelial mesenchymal transition
+			
+			
+			EMT also plays a key role in wound healing processes, which are mediated by inflammatory cells and fibroblasts. &nbsp;Wound healing follows four distinct and successive phases characterized by haemostasis, inflammation, cell proliferation and finally tissue remodeling25.
+			
+		
+		
+			
+			&nbsp;
+			
+			
+			non-adjacent
+			
+			
+			Increased extracellular matrix deposition
+			
+			
+			The effect of pro- and inflammatory factors on ECM degrading enzymes, such as metalloproteases, and in a more detailed manner on hyaluronan metabolism and the signaling pathways triggered by the binding of hyaluronan with its receptors26.
+			
+		
+		
+			
+			&nbsp;
+			
+			
+			non-adjacent
+			
+			
+			Pulmonary fibrosis
+			
+			
+			Idiopathic pulmonary fibrosis (IPF) is featured with inflammation and extensive lung remodeling caused by overloaded deposition of extracellular matrix. Scutellarin suppressed BLM-induced inflammation via NF-&kappa;B/NLRP3 pathway both in vivo and in vitro. Scutellarin suppressed inflammation and EMT in BLM-induced pulmonary fibrosis through NF-&kappa;B/NLRP3 signaling27.
+			
+		
+		
+			
+			Activation of TGF-&beta; signaling
+			
+			
+			adjacent
+			
+			
+			Epithelial mesenchymal transition
+			
+			
+			it was demonstrated that transforming growth factor (TGF)-beta induces EMT in alveolar epithelial cells (AEC) in vitro and in vivo, and epithelial and mesenchymal markers have been colocalized to hyperplastic type II (AT2) cells in lung tissue from patients with idiopathic pulmonary fibrosis (IPF), suggesting that AEC may exhibit extreme plasticity and serve as a source of fibroblasts and/or myofibroblasts in lung fibrosis28.
+			
+		
+		
+			
+			&nbsp;
+			
+			
+			non-adjacent
+			
+			
+			Increased extracellular matrix deposition
+			
+			
+			Overexpressed TGF-&beta; causes epithelial-mesenchymal transition (EMT), extracellular matrix (ECM) deposition, cancer-associated fibroblast (CAF) formation, which leads to fibrotic disease, and cancer29.
+			
+		
+		
+			
+			&nbsp;
+			
+			
+			non-adjacent
+			
+			
+			Pulmonary fibrosis
+			
+			
+			PFD alleviated pulmonary fibrosis in vitro and in vivo through regulating Wnt/GSK-3&beta;/&beta;-catenin and TGF-&beta;1/Smad2/3 signaling pathways, which might further improve the action mechanism of anti-fibrosis effect of PFD30.
+			
+		
+		
+			
+			Epithelial mesenchymal transition
+			
+			
+			adjacent
+			
+			
+			Increased extracellular matrix deposition
+			
+			
+			In vivo studies revealed that SiNPs-induced pulmonary fibrosis mainly manifested as EMT trans-differentiation in airway epithelial cells, which subsequently led to excessive deposition of extracellular matrix (ECM)31.
+			
+		
+		
+			
+			&nbsp;
+			
+			
+			non-adjacent
+			
+			
+			Pulmonary fibrosis
+			
+			
+			Epithelial mesenchymal transition (EMT) is a key progression that promotes pulmonary fibrosis (PF). &nbsp;Numb deficiency by siRNA relieved the protection of activating Nrf2 against EMT. Activating Nrf2 antioxidant pathway suppresses EMT during PF via inhibiting the abnormal expression of Numb32.
+			
+		
+		
+			
+			Increased extracellular matrix deposition
+			
+			
+			adjacent
+			
+			
+			Pulmonary fibrosis
+			
+			
+			It progresses with the recruitment of fibroblasts and myofibroblasts that contribute to the accumulation of extracellular matrix (ECM) proteins, leading to the loss of compliance and alveolar integrity, compromising the gas exchange capacity of the lung33.
+			
+		
+	
+
+""" ;
+	dc:creator	"""Luo Yuan, Lin Xueyang, Sun Yixian, Wang Yongan, Du Xianli, Feng Wenya
+""" ;
+	dcterms:abstract	"""Abstract:&nbsp;Pulmonary fibrosis is a chronic, irreversible lung disease characterized by excessive extracellular matrix (ECM) deposition and structural destruction of the lungs, closely associated with environmental stressors. Traditional research has primarily focused&nbsp;on the role of classical pathways such as TGF-&beta;/Smad in pulmonary fibrosis, yet the mechanism by which environmental stressors initiate fibrosis remains incompletely elucidated. Transient Receptor Potential Ankyrin 1 (TRPA1), a widely expressed ion channel in lung epithelial cells, fibroblasts, and immune cells, acts as a direct sensor of environmental stress. Its activation triggers downstream calcium signaling and inflammatory responses, but its initiating role in pulmonary fibrosis and association with classical pathways have not been systematically integrated into mechanistic frameworks. Existing OECD AOP Wiki networks also lack a dedicated pathway for TRPA1-mediated pulmonary fibrosis. Therefore, constructing an AOP for TRPA1 activation-induced pulmonary fibrosis is of great significance for revealing novel mechanisms of environmental stressor-induced fibrosis and filling gaps in the existing pulmonary fibrosis AOP network.
+""" ;
+	aopo:has_key_event	aop.events:149, aop.events:1271, aop.events:1457, aop.events:1501, aop.events:1215, aop.events:1458 ;
+	aopo:has_key_event_relationship	aop.relationships:3859, aop.relationships:3860, aop.relationships:1723, aop.relationships:3861, aop.relationships:1708 ;
+	aopo:has_molecular_initiating_event	aop.events:1215 ;
+	aopo:has_adverse_outcome	aop.events:1458 .
 
 aop.events:888
 	a	aopo:KeyEvent ;
@@ -91736,7 +92096,7 @@ Extensive data exists on the presence of inflammation in human (Coussens, Aggarw
 	aopo:hasBiologicalEvent	<149_bioevent_0> ;
 	go:0008150	go:0006954 ;
 	pato:0000001	"increased" ;
-	dcterms:isPartOf	aop:27, aop:115, aop:206, aop:280, aop:439, aop:472, aop:505, aop:544, aop:577, aop:645 .
+	dcterms:isPartOf	aop:27, aop:115, aop:206, aop:280, aop:439, aop:472, aop:505, aop:544, aop:577, aop:645, aop:655 .
 
 aop.events:209
 	a	aopo:KeyEvent ;
@@ -102139,7 +102499,7 @@ In vitro, there is no single assay that can measure the alveolar thickness. Howe
 	aopo:LifeStageContext	"Adults" ;
 	ncbitaxon:131567	"WCS_9606", ncbitaxon:10090, ncbitaxon:10116 ;
 	aopo:OrganContext	uberon:0002048 ;
-	dcterms:isPartOf	aop:173, aop:241, aop:347, aop:481 .
+	dcterms:isPartOf	aop:173, aop:241, aop:347, aop:481, aop:655 .
 
 aop.events:1104
 	a	aopo:KeyEvent ;
@@ -102682,7 +103042,7 @@ aop.events:1215
 	go:0008150	go:0023052 ;
 	pato:0000001	"increased" ;
 	pato:0001241	pr:000001065 ;
-	dcterms:isPartOf	aop:196 .
+	dcterms:isPartOf	aop:196, aop:655 .
 
 aop.events:1218
 	a	aopo:KeyEvent ;
@@ -103814,7 +104174,7 @@ aop.events:1271
 	dcterms:alternative	"Activation of TGF-β signaling" ;
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Molecular""" ;
-	dcterms:isPartOf	aop:206, aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
+	dcterms:isPartOf	aop:206, aop:624, aop:625, aop:626, aop:627, aop:628, aop:629, aop:655 .
 
 aop.events:1275
 	a	aopo:KeyEvent ;
@@ -104021,7 +104381,7 @@ Regulation of miRNA expression by DNA replication,damage and repair responses,tr
 	go:0008150	go:0001837 ;
 	pato:0000001	"occurrence" ;
 	pato:0001241	fma:66768 ;
-	dcterms:isPartOf	aop:206, aop:241, aop:280, aop:298, aop:347, aop:414, aop:415, aop:443, aop:452, aop:474 .
+	dcterms:isPartOf	aop:206, aop:241, aop:280, aop:298, aop:347, aop:414, aop:415, aop:443, aop:452, aop:474, aop:655 .
 
 aop.events:1174
 	a	aopo:KeyEvent ;
@@ -115750,7 +116110,7 @@ Ex vivo and in vitro models of ECM deposition:
 No models currently exist which allow for in vitro assessment of ECM deposition. Using single, or co-cultures containing fibroblasts, the production of soluble ECM components can be assessed after exposure to a stressor of interest using either ELISA or qRT-PCR experiments as a proxy.&nbsp; 
 """ ;
 	nci:C25664	"""Tissue""" ;
-	dcterms:isPartOf	aop:383, aop:414, aop:415 .
+	dcterms:isPartOf	aop:383, aop:414, aop:415, aop:655 .
 
 aop.events:1743
 	a	aopo:KeyEvent ;
@@ -128344,11 +128704,25 @@ In cancer or in autoimmune diseases, this balance between the two phenotypes is 
 
 """ ;
 	mmo:0000000	"""1. Multiparameter flow cytometry. This is the most widely used and highest-confidence method. Treg cells are identified as CD4+CD25+FoxP3+, while Th17 cells are identified either by intracellular IL-17A staining, or by expression of the lineage-defining transcription factor ROR&gamma;t (Maruyama et al., 2010; Zeng et al., 2020). The Treg/Th17 ratio is then calculated as the proportion of Tregs divided by the proportion of Th17 cells among total CD4+ cells, in a given tissue compartment (tumor, lymph node, or peripheral blood).
+
+
 2. Immunohistochemistry (IHC). Used on formalin-fixed tumor sections to localize and semi-quantify FoxP3+, IL-17+ or ROR&gamma;t+&nbsp;cell infiltrates directly within the tumor microenvironment, complementing flow-cytometric data obtained from dissociated tissue (Maruyama et al., 2010; Zeng et al., 2020).
+
+
 3. Quantitative RT-PCR.&nbsp;Used to measure relative transcript levels of FOXP3 and RORC (encoding ROR&gamma;t) as surrogate, whole tissue indicators of Treg versus Th17 lineage commitment (Qin et al., 2017).
+
+
 4. ELISA / cytokine profiling.&nbsp;Serum or culture-supernatant levels of IL-17 and IL-23 (Th17-associated) can be measured by ELISA as functional correlates of Th17 activity, typically alongside flow-cytometric Treg quantification (He et al., 2011).
 """ ;
 	nci:C25664	"""Cellular""" ;
+	pato:0000047	"Mixed" ;
+	aopo:LifeStageContext	"During development and at adulthood" ;
+	ncbitaxon:131567	ncbitaxon:9606, ncbitaxon:10090 ;
+	aopo:CellTypeContext	cl:0000084 ;
+	aopo:hasBiologicalEvent	<2324_bioevent_0> ;
+	go:0008150	hp:0010987 ;
+	pato:0000001	"abnormal" ;
+	pato:0001241	cl:0000789 ;
 	dcterms:isPartOf	aop:578 .
 
 aop.events:2326
@@ -128369,6 +128743,13 @@ Anti-cancer therapies targeting PD1/PD-L1 aim to restore CTLs function. Combined
 
 """ ;
 	nci:C25664	"""Cellular""" ;
+	pato:0000047	"Mixed" ;
+	aopo:LifeStageContext	"During development and at adulthood" ;
+	ncbitaxon:131567	ncbitaxon:9606, ncbitaxon:10090 ;
+	aopo:hasBiologicalEvent	<2326_bioevent_0> ;
+	go:0008150	hp:0010987 ;
+	pato:0000001	"disrupted" ;
+	pato:0001241	cl:0000906 ;
 	dcterms:isPartOf	aop:578 .
 
 aop.events:2331
@@ -130211,8 +130592,8 @@ aop.events:2450
 	rdfs:label	"KE 2450" ;
 	foaf:page	<https://identifiers.org/aop.events/2450> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.events/2450> ;
-	dc:title	"Cognitive Decline (Adult)" ;
-	dcterms:alternative	"Cognitive Decline (Adult)" ;
+	dc:title	"Cognitive Decline" ;
+	dcterms:alternative	"Cognitive Decline" ;
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Individual""" ;
 	dcterms:isPartOf	aop:652 .
@@ -135283,6 +135664,16 @@ aop.events:2454
 	aopo:hasProcess	hp:0010987 ;
 	aopo:hasObject	pr:000001290 ;
 	aopo:hasAction	"increased" .
+
+<2324_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	hp:0010987 ;
+	aopo:hasObject	cl:0000789 ;
+	aopo:hasAction	"abnormal" .
+
+<2326_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	hp:0010987 ;
+	aopo:hasObject	cl:0000906 ;
+	aopo:hasAction	"disrupted" .
 
 <2363_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasObject	go:0005739 ;
@@ -259671,6 +260062,78 @@ aop.relationships:3855
 	aopo:has_downstream_key_event	aop.events:2454 ;
 	dcterms:isPartOf	aop:653 .
 
+aop.relationships:3859
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3859 ;
+	rdfs:label	"KER 3859" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3859> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3859> ;
+	dcterms:created	"2026-09-29T00:42:20" ;
+	dcterms:modified	"2026-09-29T00:42:20" ;
+	aopo:has_upstream_key_event	aop.events:1215 ;
+	aopo:has_downstream_key_event	aop.events:149 ;
+	dcterms:isPartOf	aop:655 .
+
+aop.relationships:3860
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3860 ;
+	rdfs:label	"KER 3860" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3860> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3860> ;
+	dcterms:created	"2026-09-29T00:43:44" ;
+	dcterms:modified	"2026-09-29T00:43:44" ;
+	aopo:has_upstream_key_event	aop.events:149 ;
+	aopo:has_downstream_key_event	aop.events:1271 ;
+	dcterms:isPartOf	aop:655 .
+
+aop.relationships:1723
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:1723 ;
+	rdfs:label	"KER 1723" ;
+	foaf:page	<https://identifiers.org/aop.relationships/1723> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/1723> ;
+	dcterms:created	"2018-03-18T09:49:43" ;
+	dcterms:modified	"2018-03-18T09:49:43" ;
+	aopo:has_upstream_key_event	aop.events:1271 ;
+	aopo:has_downstream_key_event	aop.events:1457 ;
+	dcterms:isPartOf	aop:655 .
+
+aop.relationships:3861
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3861 ;
+	rdfs:label	"KER 3861" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3861> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3861> ;
+	dcterms:created	"2026-09-29T00:44:23" ;
+	dcterms:modified	"2026-09-29T00:44:23" ;
+	aopo:has_upstream_key_event	aop.events:1457 ;
+	aopo:has_downstream_key_event	aop.events:1501 ;
+	dcterms:isPartOf	aop:655 .
+
+aop.relationships:1708
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:1708 ;
+	rdfs:label	"KER 1708" ;
+	foaf:page	<https://identifiers.org/aop.relationships/1708> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/1708> ;
+	dcterms:created	"2018-01-16T09:35:18" ;
+	dcterms:modified	"2021-12-06T16:55:21" ;
+	aopo:has_upstream_key_event	aop.events:1501 ;
+	aopo:has_downstream_key_event	aop.events:1458 ;
+	dc:description	"""Fibrosis by definition is the end result of a healing process. It involves a series of lung remodelling and reorganisation events leading to permanent alteration in the lung architecture and a fixed scar tissue or fibrotic lesion (Wallace WA, 2007). Excessive deposition of ECM or collagen is the hallmark of this disease and there is ample evidence to support this KER (Fukuda 1985, Meyer 2017, Richeldi 2017, Thannickal 2004, Zisman 2005).
+""" ;
+	nci:C80263	"""By definition, pulmonary fibrosis is characterized by excessive deposition of extracellular matrix and destruction of native lung architecture (Fukuda 1985, Richeldi 2017, Thannickal 2004). Thus, the plausibility of this association is undisputed. 
+""" ;
+	edam:data_2042	"""Excessive ECM deposition is the defining characteristic of pulmonary fibrosis, and the evidence to support this relationship is unequivocal. (Meyer 2017, Thannickal 2004, Zisman 2005).
+""" ;
+	nci:C17469	"""Humans (Zisman 2005, Meyer 2017), rats (Williamson 2015), mice (Williamson 2015).
+""" ;
+	edam:operation_3799	"""Since the adverse outcome of lung fibrosis involves multiple cell types, cell - cell interactions and cell&ndash;biomolecule interactions, it is difficult to recapitulate the entire process in one model. Therefore, an integrated approach, such as one consisting of cell systems that assess individual KEs and quantitative relationships between the KEs, is needed to predict the AO in humans.
+""" ;
+	aopo:LifeStageContext	"Adult" ;
+	ncbitaxon:131567	ncbitaxon:10090, ncbitaxon:10116, "WCS_9606" ;
+	dcterms:isPartOf	aop:655 .
+
 ncbitaxon:10116
 	a	ncbitaxon:131567 ;
 	dc:identifier	ncbitaxon:10116 ;
@@ -275578,6 +276041,18 @@ pr:000001290	a	pato:0001241 ;
 	dc:title	"B7-related protein" ;
 	dc:source	"PR" ;
 	rdfs:label	"B7-related protein". 
+
+cl:0000789	a	pato:0001241 ;
+	dc:identifier	cl:0000789 ;
+	dc:title	"alpha-beta T cell" ;
+	dc:source	"CL" ;
+	rdfs:label	"alpha-beta T cell". 
+
+cl:0000906	a	pato:0001241 ;
+	dc:identifier	cl:0000906 ;
+	dc:title	"activated CD8-positive, alpha-beta T cell" ;
+	dc:source	"CL" ;
+	rdfs:label	"activated CD8-positive, alpha-beta T cell". 
 
 pr:000001183	a	pato:0001241 ;
 	dc:identifier	pr:000001183 ;
