@@ -645,7 +645,7 @@ def _write_label_prefixes(path):
             ('rdfs', 'http://www.w3.org/2000/01/rdf-schema#'),
             ('owl', 'http://www.w3.org/2002/07/owl#'),
             ('cheminf', 'http://semanticscience.org/resource/CHEMINF_'),
-            ('chebi', 'https://identifiers.org/chebi/'),
+            ('chebi', 'https://identifiers.org/chebi/CHEBI:'),
             ('cas', 'https://identifiers.org/cas/'),
             ('edam', 'http://edamontology.org/'),
             ('ncbigene', 'https://identifiers.org/ncbigene/'),
@@ -695,7 +695,7 @@ class TestExternalIriLabelsFlagOn:
         from rdflib import Graph, Namespace, URIRef
 
         RDFS = Namespace('http://www.w3.org/2000/01/rdf-schema#')
-        chebi_iri = URIRef('https://identifiers.org/chebi/16842')
+        chebi_iri = URIRef('https://identifiers.org/chebi/CHEBI:16842')
         entrez_iri = URIRef('https://identifiers.org/ncbigene/7157')
         go_iri = URIRef('http://purl.obolibrary.org/obo/GO_0008150')
 
@@ -723,7 +723,7 @@ class TestExternalIriLabelsFlagOn:
         from rdflib import Graph, Namespace, URIRef
 
         RDFS = Namespace('http://www.w3.org/2000/01/rdf-schema#')
-        unmapped_iri = URIRef('https://identifiers.org/chebi/99999')
+        unmapped_iri = URIRef('https://identifiers.org/chebi/CHEBI:99999')
 
         with tempfile.TemporaryDirectory() as tmpdir:
             prefix_csv = os.path.join(tmpdir, 'prefixes.csv')
@@ -864,7 +864,7 @@ class TestExternalIriLabelsFlagOn:
         from rdflib import Graph, Namespace, URIRef
 
         RDFS = Namespace('http://www.w3.org/2000/01/rdf-schema#')
-        chebi_iri = URIRef('https://identifiers.org/chebi/16842')
+        chebi_iri = URIRef('https://identifiers.org/chebi/CHEBI:16842')
 
         entities = _label_entities()
         entities['listofchebi'] = ['chebi:16842']

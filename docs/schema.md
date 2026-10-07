@@ -47,7 +47,7 @@ Together these files provide a complete semantic web representation of AOP-Wiki 
 |--------|-----|-------|
 | `cas` | `https://identifiers.org/cas/` | CAS Registry Numbers |
 | `inchikey` | `https://identifiers.org/inchikey/` | InChIKey identifiers |
-| `chebi` | `https://identifiers.org/chebi/` | ChEBI identifiers |
+| `chebi` | `https://identifiers.org/chebi/CHEBI:` | ChEBI identifiers |
 | `chemspider` | `https://identifiers.org/chemspider/` | ChemSpider identifiers |
 | `wikidata` | `https://identifiers.org/wikidata/` | Wikidata identifiers |
 | `chembl.compound` | `https://identifiers.org/chembl.compound/` | ChEMBL compound identifiers |

@@ -50,7 +50,7 @@ The RDF data uses the following namespace prefixes:
 | aop.relationships | https://identifiers.org/aop.relationships/ | AOP Relationships |
 | aop.stressor | https://identifiers.org/aop.stressor/ | AOP Stressors |
 | aopo | http://aopkb.org/aop_ontology# | AOP Ontology |
-| chebi | https://identifiers.org/chebi/ | ChEBI identifiers |
+| chebi | https://identifiers.org/chebi/CHEBI: | ChEBI identifiers |
 | go | http://purl.obolibrary.org/obo/GO_ | Gene Ontology |
 | pato | http://purl.obolibrary.org/obo/PATO_ | Phenotype and Trait Ontology |
 | uniprot | https://identifiers.org/uniprot/ | UniProt identifiers |
@@ -191,7 +191,7 @@ DB.DBA.XML_SET_NS_DECL ('cheminf', 'http://semanticscience.org/resource/CHEMINF_
 DB.DBA.XML_SET_NS_DECL ('ncit', 'http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#',2);
 DB.DBA.XML_SET_NS_DECL ('comptox', 'https://comptox.epa.gov/dashboard/',2);
 DB.DBA.XML_SET_NS_DECL ('mmo', 'http://purl.obolibrary.org/obo/MMO_',2);
-DB.DBA.XML_SET_NS_DECL ('chebi', 'https://identifiers.org/chebi/',2);
+DB.DBA.XML_SET_NS_DECL ('chebi', 'https://identifiers.org/chebi/CHEBI:',2);
 DB.DBA.XML_SET_NS_DECL ('chemspider', 'https://identifiers.org/chemspider/',2);
 DB.DBA.XML_SET_NS_DECL ('wikidata', 'https://identifiers.org/wikidata/',2);
 DB.DBA.XML_SET_NS_DECL ('chembl.compound', 'https://identifiers.org/chembl.compound/',2);

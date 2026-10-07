@@ -31,7 +31,7 @@ cheminf,http://semanticscience.org/resource/CHEMINF_
 nci,http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#
 comptox,https://identifiers.org/comptox/
 mmo,http://purl.obolibrary.org/obo/MMO_
-chebi,https://identifiers.org/chebi/
+chebi,https://identifiers.org/chebi/CHEBI:
 chemspider,https://identifiers.org/chemspider/
 wikidata,https://identifiers.org/wikidata/
 chembl.compound,https://identifiers.org/chembl.compound/

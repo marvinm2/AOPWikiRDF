@@ -19,7 +19,7 @@ AOPWIKI = Namespace("http://aopwiki.org/")
 # Cross-reference target namespaces that should NOT appear in the pure file
 # These must match the NS_* constants in src/aopwiki_rdf/rdf/namespaces.py
 ENRICHED_OBJECT_PREFIXES = [
-    "https://identifiers.org/chebi/",           # NS_CHEBI
+    "https://identifiers.org/chebi/CHEBI:",      # NS_CHEBI
     "https://identifiers.org/chemspider/",      # NS_CHEMSPIDER
     "https://identifiers.org/wikidata/",        # NS_WIKIDATA
     "https://identifiers.org/chembl.compound/", # NS_CHEMBL_COMPOUND

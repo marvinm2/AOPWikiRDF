@@ -188,7 +188,7 @@ def test_flag_off_emits_no_iri_labels():
                 ("rdfs", "http://www.w3.org/2000/01/rdf-schema#"),
                 ("owl", "http://www.w3.org/2002/07/owl#"),
                 ("cheminf", "http://semanticscience.org/resource/CHEMINF_"),
-                ("chebi", "https://identifiers.org/chebi/"),
+                ("chebi", "https://identifiers.org/chebi/CHEBI:"),
                 ("cas", "https://identifiers.org/cas/"),
                 ("edam", "http://edamontology.org/"),
                 ("ncbigene", "https://identifiers.org/ncbigene/"),
