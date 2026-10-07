@@ -3204,6 +3204,9 @@ aop.relationships:2810	edam:data_1025	hgnc:8048,hgnc:23063,hgnc:26194,hgnc:8052,
 	:geneDetectedByRegex	hgnc:8048,hgnc:23063,hgnc:26194,hgnc:8052,hgnc:8125,hgnc:587 ;
 	:geneDetectedByNER	hgnc:23063,hgnc:26194,hgnc:587,hgnc:8048,hgnc:8052,hgnc:8125,hgnc:9179 .
 
+aop.relationships:3480	edam:data_1025	hgnc:795,hgnc:882,hgnc:16627,hgnc:1925,hgnc:4739,hgnc:11998 ;
+	:geneDetectedByRegex	hgnc:795,hgnc:882,hgnc:16627,hgnc:1925,hgnc:4739,hgnc:11998 .
+
 aop.relationships:3363	edam:data_1025	hgnc:7107,hgnc:8729,hgnc:10640,hgnc:11998,hgnc:1722,hgnc:1784,hgnc:1925,hgnc:20570 ;
 	:geneDetectedByRegex	hgnc:7107,hgnc:8729 ;
 	:geneDetectedByNER	hgnc:10640,hgnc:11998,hgnc:1722,hgnc:1784,hgnc:1925,hgnc:20570,hgnc:7107,hgnc:8729 .

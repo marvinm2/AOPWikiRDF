@@ -30,7 +30,7 @@
 @prefix nci: <http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#> .
 @prefix comptox: <https://identifiers.org/comptox/> .
 @prefix mmo: <http://purl.obolibrary.org/obo/MMO_> .
-@prefix chebi: <https://identifiers.org/chebi/> .
+@prefix chebi: <https://identifiers.org/chebi/CHEBI:> .
 @prefix chemspider: <https://identifiers.org/chemspider/> .
 @prefix wikidata: <https://identifiers.org/wikidata/> .
 @prefix chembl.compound: <https://identifiers.org/chembl.compound/> .
@@ -81,7 +81,7 @@
 [] sh:declare [ sh:prefix "nci" ; sh:namespace "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#"^^xsd:anyURI ] .
 [] sh:declare [ sh:prefix "comptox" ; sh:namespace "https://identifiers.org/comptox/"^^xsd:anyURI ] .
 [] sh:declare [ sh:prefix "mmo" ; sh:namespace "http://purl.obolibrary.org/obo/MMO_"^^xsd:anyURI ] .
-[] sh:declare [ sh:prefix "chebi" ; sh:namespace "https://identifiers.org/chebi/"^^xsd:anyURI ] .
+[] sh:declare [ sh:prefix "chebi" ; sh:namespace "https://identifiers.org/chebi/CHEBI:"^^xsd:anyURI ] .
 [] sh:declare [ sh:prefix "chemspider" ; sh:namespace "https://identifiers.org/chemspider/"^^xsd:anyURI ] .
 [] sh:declare [ sh:prefix "wikidata" ; sh:namespace "https://identifiers.org/wikidata/"^^xsd:anyURI ] .
 [] sh:declare [ sh:prefix "chembl.compound" ; sh:namespace "https://identifiers.org/chembl.compound/"^^xsd:anyURI ] .
@@ -32749,7 +32749,7 @@ aop:324
 	dcterms:alternative	"ROS leading to growth inhibition via oxidative DNA damage and cell cycle disruption" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-18T05:18:10" ;
-	dcterms:modified	"2026-09-02T03:18:49" ;
+	dcterms:modified	"2026-10-06T07:22:21" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and are also generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, while excessive ROS can disturb redox homeostasis and initiate oxidative damage to cellular macromolecules (Schieber and Chandel, 2014; Sies et al., 2017). DNA is a major target of oxidative attack. Oxidative DNA lesions such as 8-oxo-2&#39;-deoxyguanosine and other oxidized bases can arise endogenously or following toxic insult, and these lesions may contribute to mutation, strand break formation, and activation of DNA damage responses if they are not repaired correctly or efficiently (Cooke et al., 2003; OECD, 2023).
 
 This AOP was developed to represent the DNA damage-driven linear route within the broader ROS-growth AOP network. The route was selected because oxidative DNA damage is a well-established consequence of oxidative stress and because downstream events such as inadequate DNA repair, strand breaks, cell cycle disruption, and reduced cell proliferation provide a mechanistically coherent bridge between molecular damage and decreased organismal growth (Cuddihy and O&#39;Connell, 2003; Conlon and Raff, 1999; OECD, 2022; OECD, 2023). The AOP was therefore designed to provide a focused, reviewable linear representation of one major mechanistic branch by which excessive ROS can impair growth.
@@ -33427,7 +33427,7 @@ aop:325
 	dcterms:alternative	"ROS leading to growth inhibition via oxidative DNA damage and cell death" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-18T05:18:37" ;
-	dcterms:modified	"2026-09-02T03:19:29" ;
+	dcterms:modified	"2026-10-06T07:22:29" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and are also generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative damage to cellular macromolecules (Schieber and Chandel, 2014; Sies et al., 2017). DNA is a major target of oxidative attack. Oxidative DNA lesions such as 8-oxo-2&#39;-deoxyguanosine and other oxidized bases can arise endogenously or following toxic insult, and these lesions may contribute to mutation, strand break formation, activation of DNA damage responses, and cell death if they are not repaired correctly or efficiently (Cooke et al., 2003; OECD, 2023).
 
 &nbsp;&nbsp;&nbsp; AOP 325 was developed to represent the cell injury/death-driven linear route within the broader ROS-growth AOP network. The route was selected because oxidative DNA damage is a well-established consequence of oxidative stress and because downstream events such as inadequate DNA repair, DNA strand breaks, and cell injury/death provide a mechanistically coherent bridge between molecular damage and decreased organismal growth. This pathway complements AOP 324, which emphasizes cell cycle disruption and reduced cell proliferation as the downstream route from DNA damage to growth impairment. AOP 325 instead captures the alternative but biologically connected route in which unrepaired or severe DNA damage contributes to cell loss, thereby reducing growth capacity at the organ or organism level.
@@ -34025,7 +34025,7 @@ aop:326
 	dcterms:alternative	"ROS leading to growth inhibition via LPO and decreased cell proliferation" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-18T05:19:06" ;
-	dcterms:modified	"2026-09-02T03:20:06" ;
+	dcterms:modified	"2026-10-06T07:22:37" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Lipids are important targets of oxidative attack because membrane phospholipids, especially those containing polyunsaturated fatty acyl chains, can undergo radical-driven peroxidation. Lipid peroxidation generates lipid hydroperoxides and secondary reactive products, including malondialdehyde and 4-hydroxy-2-nonenal, which can alter membrane structure, propagate oxidative damage, and affect protein and organelle function (Ayala et al., 2014).
 
 &nbsp;&nbsp;&nbsp; AOP 326 was developed to represent the lipid peroxidation-driven linear route within the broader ROS-growth AOP network. This route was selected because lipid peroxidation is a well-established consequence of oxidative stress and because mitochondrial membranes are central determinants of OXPHOS coupling. Peroxidative modification of mitochondrial membrane lipids can alter membrane fluidity, proton leak, respiratory control, and mitochondrial membrane potential, providing a mechanistically coherent bridge from oxidative stress to impaired ATP production (Murphy, 2009; Nicholls and Ferguson, 2013; Ouillon et al., 2021). The downstream sequence from decreased coupling of OXPHOS to decreased ATP pool, decreased cell proliferation, and decreased growth is already represented in AOP 263 and provides the growth-relevant terminal module for AOP 326 (AOP-Wiki, 2026b; OECD, 2022; Song and Villeneuve, 2021).
@@ -34795,7 +34795,7 @@ aop:331
 	dcterms:alternative	"ROS leading to growth inhibition via LPO and cell death" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-19T04:50:03" ;
-	dcterms:modified	"2026-09-02T03:20:21" ;
+	dcterms:modified	"2026-10-06T07:22:46" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Lipid membranes are important targets of oxidative attack because phospholipids containing polyunsaturated fatty acids can undergo radical-driven peroxidation. Lipid peroxidation generates lipid hydroperoxides and secondary reactive aldehydes, including malondialdehyde and 4-hydroxy-2-nonenal, which can propagate oxidative injury and alter membrane-associated protein and organelle function (Ayala et al., 2014).
 
 &nbsp;&nbsp;&nbsp; AOP 331 was developed to represent the lipid peroxidation and cell injury/death-driven linear route within the broader ROS-growth AOP network. This route was selected because lipid peroxidation is a well-established consequence of oxidative stress and because mitochondrial membranes are central determinants of OXPHOS coupling. Peroxidative modification of mitochondrial membrane lipids can alter membrane fluidity, proton leak, respiratory control, and mitochondrial membrane potential, providing a mechanistically coherent bridge from oxidative stress to impaired ATP production (Murphy, 2009; Nicholls and Ferguson, 2013; Ouillon et al., 2021). ATP depletion is a well-established contributor to loss of cell viability because cellular survival depends on ATP-dependent ion gradients, membrane repair, protein turnover, stress-response pathways, and the execution of regulated death processes. Depletion of ATP can shift cells from adaptive responses to injury and death, and severe ATP loss can affect the mode of cell death (Leist et al., 1997; Bonora et al., 2012).
@@ -35433,7 +35433,7 @@ aop:332
 	dcterms:alternative	"ROS leading to growth inhibition via protein oxidation and decreased cell proliferation" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-19T04:52:14" ;
-	dcterms:modified	"2026-09-02T03:20:26" ;
+	dcterms:modified	"2026-10-06T07:23:01" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Proteins are major targets of oxidative attack because many amino acid side chains and prosthetic groups are susceptible to oxidation, carbonylation, thiol oxidation, nitration, or other oxidative modifications. Protein oxidation can alter enzyme activity, protein-protein interactions, protein folding, stability, and degradation, and it is widely used as a marker of severe oxidative damage and cellular dysfunction (Dalle-Donne et al., 2006).
 
 AOP 332 was developed to represent the protein oxidation-driven linear route within the broader ROS-growth AOP network. This route was selected because oxidative stress can directly modify proteins, including mitochondrial proteins involved in electron transport, OXPHOS coupling, ATP synthesis, metabolite transport, and maintenance of mitochondrial integrity. Oxidation of mitochondrial proteins can impair the efficiency of electron transfer and proton motive force utilization, thereby providing a mechanistically coherent bridge from oxidative stress to decreased coupling of OXPHOS (Murphy, 2009; Nicholls and Ferguson, 2013; Sokolov et al., 2019). The downstream sequence from decreased coupling of OXPHOS to decreased ATP pool, decreased cell proliferation, and decreased growth is represented in AOP 263 and provides the growth-relevant terminal module for AOP 332 (AOP-Wiki, 2026b; OECD, 2022; Song and Villeneuve, 2021).
@@ -36069,7 +36069,7 @@ aop:333
 	dcterms:alternative	"ROS leading to growth inhibition via protein oxidation and cell death" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-19T04:52:38" ;
-	dcterms:modified	"2026-09-02T03:20:30" ;
+	dcterms:modified	"2026-10-06T07:23:10" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Proteins are major targets of oxidative attack because amino acid side chains, thiol groups, metal centers, and prosthetic groups can undergo oxidative modification. Protein oxidation can reduce enzyme activity, alter protein-protein interactions, impair folding, increase aggregation, disrupt degradation by proteasomal and lysosomal systems, and contribute to cellular dysfunction (Dalle-Donne et al., 2006).
 
 &nbsp;&nbsp;&nbsp; AOP 333 was developed to represent the protein oxidation and cell injury/death-driven linear route within the broader ROS-growth AOP network. This route was selected because protein oxidation is a well-established consequence of oxidative stress and because mitochondrial proteins are central determinants of OXPHOS coupling and ATP production. Oxidative modification of respiratory-chain proteins, ATP synthase subunits, mitochondrial carriers, or proteins involved in maintaining mitochondrial membrane potential can reduce respiratory efficiency and ATP synthesis (Murphy, 2009; Nicholls and Ferguson, 2013; Sokolov et al., 2019). ATP depletion is an established contributor to loss of cell viability because cell survival depends on ATP-dependent ion gradients, membrane repair, stress responses, proteostasis, and execution of regulated cell death pathways. Severe ATP depletion can shift cellular outcomes toward irreversible injury or necrosis, whereas less severe depletion may permit apoptosis or adaptive responses (Leist et al., 1997; Bonora et al., 2012).
@@ -73768,10 +73768,8 @@ aop:620
 	dcterms:alternative	"Deposition on energy to infertility" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2025-12-04T06:37:35" ;
-	dcterms:modified	"2025-12-05T10:07:42" ;
-	dc:creator	"""Jessica D&#39;Urbano, Awurakua Asamoah-Mensah, Saadia Khilji, Shiven Gupta, Amy Michelle Simms, Biyanka Hati, Vinita Chauhan
-
-Jean Calleja Agius, Edouard Azzam, Ruth Farrell, Begum Aydogan Mathyk, Haley Race, Aylin Yaba Ucar, Marcelo Vasquez
+	dcterms:modified	"2026-10-05T09:34:41" ;
+	dc:creator	"""Jessica D&rsquo;Urbano (University of Trieste, Italy), Awurakua Asamoah-Mensah (John Hopkins University, USA), Saadia Khilji (Health Canada, Canada), Amy Michelle Simms (University of South Florida, USA), Biyanka Hati (Thomas Jefferson University, USA), Shiven Gupta (University of Ottawa, Canada), Aylin Yaba Ucar (Yeditepe University, T&uuml;rkiye),&nbsp; Haley Race (Boca Fertility IVF Clinic Centre, USA), Ruth Farrell (Cleveland Clinic Lerner College Of Medicine, USA), Begum Aydogan Mathyk (University of South Florida Morsani College of Medicine, USA),&nbsp; Edouard Azzam (CANDU Owner&rsquo;s Group; Rutgers University, USA), Vinita Chauhan (Health Canada, Canada).
 
 
 
@@ -179298,7 +179296,7 @@ aop.relationships:2203
 	foaf:page	<https://identifiers.org/aop.relationships/2203> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.relationships/2203> ;
 	dcterms:created	"2020-11-12T17:57:43" ;
-	dcterms:modified	"2022-07-06T07:39:36" ;
+	dcterms:modified	"2026-10-06T06:40:55" ;
 	aopo:has_upstream_key_event	aop.events:1446 ;
 	aopo:has_downstream_key_event	aop.events:1771 ;
 	dc:description	"""This key event relationship describes the dissipation of protonmotive force across the inner mitochondrial membrane by uncouplers (uncoupling of oxidative phosphorylation), leading to reduced total adenosine triphosphate (ATP) pool in cells or organisms.
@@ -179330,6 +179328,39 @@ Evidence:
 	A significant decrease followed by a significant increase in total ATP was observed in human RD cells during a 48h exposure to the uncoupler FCCP&nbsp;(Kuruvilla 2003), possibly due to the enhancement of other ATP synthetic pathways (e.g., glycolysis) as a compensatory action to impaired OXPHOS (Jose 2011
 
 """ ;
+	nci:C103159	"""Update - non-endorsed (by You Song, 06/10/2026)
+
+The evidence for this KER was collected through a manual review of the published literature, without the use of AI-based tools. Canonical knowledge on ATP production pathways and the efficiency of oxidative phosphorylation was taken from the review literature (Bonora et al., 2012; Schmidt-Rohr, 2020). Studies that measured both uncoupling of OXPHOS and ATP in the same experiment after exposure to uncouplers were identified for empirical support (Bestman et al., 2015; Shim et al., 2016; Weatherly et al., 2016, 2018; Kuruvilla et al., 2003; Sithara et al., 2017; Sweet and Singh, 1999; Koczor et al., 2009; Luz et al., 2016). Mathematical models and a regression-based relationship were reviewed for quantitative understanding (Beard, 2005; Schmitz et al., 2011; Heiske et al., 2017; Kubo et al., 2020; Song et al., 2020). No formal study quality assessment was performed.
+""" ;
+	nci:C68821	"""Update - non-endorsed (by You Song, 06/10/2026)
+
+No modulating factors with quantified effects on this KER have been identified. The factors below are indicated by the studies cited in this KER.
+
+
+	
+		
+			Modulating factor
+			Details
+			Effects on the KER
+			References
+		
+	
+	
+		
+			Compensatory ATP production
+			Increased activity of the electron transport chain and activation of other ATP-synthesizing pathways (e.g., glycolysis)
+			Mild uncoupling can be compensated, so ATP decreases less than the degree of uncoupling would suggest. In human RD cells exposed to FCCP for 48 h, a significant decrease in ATP was followed by a significant increase.
+			Jose et al., 2011; Kuruvilla et al., 2003
+		
+		
+			Metabolic phenotype of the cell or tissue
+			Relative reliance on glycolysis versus oxidative phosphorylation for ATP production
+			Systems with higher glycolytic capacity are expected to maintain ATP better when OXPHOS coupling decreases.
+			Jose et al., 2011
+		
+	
+
+""" ;
 	nci:C17469	"""Taxonomic applicability
 
 Relationship 2203 is considered applicable to eukaryotes, as mitochondrial oxidative phosphorylation and ATP synthesis are highly conserved in these organisms. Uncoupling of oxidative phosphorylation leading to ATP depletion is a well-documented relationship in many taxa, such as human, rodents and fish.
@@ -179351,10 +179382,22 @@ Relationship 2203 is considered applicable to all life-stages, as mitochondrial 
 Rationale: Multiple mathematical models have been developed for describing the quantitative relationships between uncoupling of OXPHOS and ATP synthesis in vertebrates&nbsp;(Beard 2005; Schmitz 2011; Heiske 2017; Kubo 2020). These models, however, are highly complex metabolic or systems biological models and warrant further simplification to be used for this AOP. 
 """ ;
 	edam:operation_3438	"""A regression based quantitative response-response relationship between uncoupling of OXPHOS and ATP depletion was proposed for the crustacean Daphnia magna under UVB stress (Song 2020).
+
+Update - non-endorsed (by You Song, 06/10/2026)
+
+Across the other studies, ATP decreased in the same direction as uncoupling but usually by a smaller amount at the same exposure. For example, 50 &micro;M CCCP for 1 h caused 77% uncoupling and a 25% ATP reduction in human HeLa cells (Koczor et al., 2009), 50 &micro;M arsenite for 1 h caused about 45% uncoupling and a 20% ATP reduction in Caenorhabditis elegans (Luz et al., 2016), and 5 &micro;M CCCP caused 71% uncoupling and a 64% ATP reduction in human HL-60 cells (Sweet and Singh, 1999). Likewise, higher concentrations were needed to reduce ATP than to uncouple OXPHOS, such as 15 versus 30 &micro;M triclosan in zebrafish embryos (Shim et al., 2016), 10 versus 30 &micro;M triclosan in rat RBL-2H3 cells (Weatherly et al., 2018), and 2 versus 20 &micro;M FCCP in human RD cells (Kuruvilla et al., 2003). These data come from different uncouplers, cell types, and exposure durations, so they cannot be combined into a single function, and the general form of the relationship and the precision with which ATP depletion can be predicted from a measured degree of uncoupling have not been defined.
+""" ;
+	nci:C25207	"""Update - non-endorsed (by You Song, 06/10/2026)
+
+The time-scale varies with the system. Reductions in ATP were observed within 1 h of exposure to uncouplers in human HeLa cells and C. elegans (Koczor et al., 2009; Luz et al., 2016). In zebrafish embryos exposed to 0.5 &micro;M 2,4-DNP, uncoupling of OXPHOS was significant after 21 h, whereas a significant reduction in ATP was observed only after 45 h (Bestman et al., 2015). In human RD cells exposed to FCCP, ATP decreased and then increased again within 48 h (Kuruvilla et al., 2003). The lag between uncoupling and ATP depletion can therefore range from less than an hour to about a day, depending on the organism, the stressor, and the compensatory capacity.
 """ ;
 	nci:C25343	"""
-	It is known that mild uncoupling of oxidative phosphorylation can enhance the activity of the mitochondrial electron transport chain to produce more ATP, and/or activate other ATP synthetic pathways (e.g., glycolysis) as a compensatory action to impaired OXPHOS (Jose 2011).
+	It is known that mild uncoupling of oxidative phosphorylation can enhance the activity of the mitochondrial electron transport chain to produce more ATP, and/or activate other ATP synthetic pathways (e.g., glycolysis) as a compensatory action to impaired OXPHOS (Jose 2011)
 
+
+Update - non-endorsed (by You Song, 06/10/2026)
+
+Compensatory mechanisms act as negative feedback on this KER. ATP levels are normally balanced between production and consumption (Bonora et al., 2012), and mild uncoupling of oxidative phosphorylation can increase the activity of the electron transport chain to produce more ATP and activate other ATP-synthesizing pathways such as glycolysis (Jose et al., 2011). This compensation explains the transient decrease in ATP in RD cells (Kuruvilla et al., 2003). Its extent and homeostatic limits have not been quantified for this KER, but it is expected to be exceeded when uncoupling is strong or sustained. These mechanisms mainly shape the magnitude and time course of the ATP response and are therefore described here and not represented as separate KEs. No positive feedback or feedforward loops have been identified for this KER.
 """ ;
 	pato:0000047	"Unspecific" ;
 	aopo:LifeStageContext	"Embryo", "Juvenile" ;
@@ -179368,7 +179411,7 @@ aop.relationships:2204
 	foaf:page	<https://identifiers.org/aop.relationships/2204> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.relationships/2204> ;
 	dcterms:created	"2020-11-12T17:57:54" ;
-	dcterms:modified	"2020-12-07T07:43:07" ;
+	dcterms:modified	"2026-10-06T06:37:05" ;
 	aopo:has_upstream_key_event	aop.events:1771 ;
 	aopo:has_downstream_key_event	aop.events:1821 ;
 	dc:description	"""This key event relationship describes reduced adenosine triphosphate (ATP) supply leading to reduced cell proliferation (cell growth, division or a combination of these).
@@ -179391,6 +179434,39 @@ Evidence:
 """ ;
 	nci:C71478	"""There are currently no inconsistencies based on the supporting literature.
 """ ;
+	nci:C103159	"""Update - non-endorsed (by You Song, 06/10/2026)
+
+The evidence for this KER was collected through a manual review of the published literature, without the use of AI-based tools. Canonical knowledge on the ATP dependence of cell proliferation was taken from the review literature (Kingston and Narlikar, 1999; Bonora et al., 2012). Studies that measured both ATP and cell proliferation in the same experiment after exposure to chemicals that deplete ATP were identified for empirical support (Koczor et al., 2009; Kuruvilla et al., 2003; Sithara et al., 2017). Studies on the quantitative relationship between cellular ATP content and proliferation were reviewed for quantitative understanding (Ahmann et al., 1987; Crouch et al., 1993; Nieminen et al., 1994). No formal study quality assessment was performed.
+""" ;
+	nci:C68821	"""Update - non-endorsed (by You Song, 06/10/2026)
+
+No modulating factors with quantified effects on this KER have been identified. The factors below are indicated by the literature cited in this KER.
+
+
+	
+		
+			Modulating factor
+			Details
+			Effects on the KER
+			References
+		
+	
+	
+		
+			Cell type and species
+			Cell types and species in which ATP and proliferation are measured
+			The quantitative relationship between cellular ATP and cell proliferation varies across biological systems.
+			Ahmann et al., 1987; Crouch et al., 1993
+		
+		
+			Severity of ATP depletion
+			Degree of ATP depletion relative to the normal ATP level
+			In mammalian cells, ATP depletion beyond a threshold of about 85&ndash;90% of normal is associated with cell death rather than proliferation arrest.
+			Nieminen et al., 1994
+		
+	
+
+""" ;
 	nci:C17469	"""Taxonomic applicability
 
 Relationship 2204 is considered applicable to all eukaryotes, as ATP and cell proliferation are known to be tightly coupled in animals, plants and some microorganisms.
@@ -179411,6 +179487,18 @@ Relationship 2204 is considered applicable to all life stages, as ATP-dependent 
 
 Rationale: Quantitative relationships between total ATP and cell proliferation have been extensively investigated&nbsp;(Ahmann 1987; Crouch 1993). In general, a monotonic positive relationship can be assumed for the two events, albeit the actual quantitative relationship can vary across biological systems (e.g. cell types and species). It has also been suggested that a threshold of ATP depletion (85-90% compared to normal status) may exist to determine whether proliferation arrest (&lt;85-90%) or cell death (&gt;85-90%) will be triggered in mammals&nbsp;(Nieminen 1994).
 """ ;
+	edam:operation_3438	"""Update - non-endorsed (by You Song, 06/10/2026)
+
+A monotonic positive relationship between total cellular ATP and cell proliferation can be assumed (Ahmann et al., 1987; Crouch et al., 1993). The available studies that measured both events in the same experiment suggest that small decreases in ATP are not sufficient to reduce proliferation. In human HeLa and RD cells, ATP reductions of 25% (50 &micro;M CCCP, 1 h) and 20% (20 &micro;M CCCP, 2 h) were accompanied by non-significant decreases in proliferation (Koczor et al., 2009; Kuruvilla et al., 2003). In human SW480 cells, a 35% ATP depletion after 48 h of exposure to 150 &micro;M morin was accompanied by a 35% reduction in proliferation (Sithara et al., 2017). These data points come from different stressors, cell types, and exposure durations, so they cannot be combined into a single response-response function, and the general form of the relationship (linear, threshold, or sigmoidal) has not been defined. In mammalian cells, a threshold of ATP depletion of about 85&ndash;90% relative to normal has been suggested to separate proliferation arrest (depletion below the threshold) from cell death (depletion above it) (Nieminen et al., 1994). The precision with which a measured decrease in ATP predicts a decrease in proliferation has not been quantified.
+""" ;
+	nci:C25207	"""Update - non-endorsed (by You Song, 06/10/2026)
+
+The time-scale of this KER has not been quantified. In the available studies, ATP was reduced by 20&ndash;25% after 1&ndash;2 h of exposure to CCCP without a significant decrease in proliferation, whereas a 35% reduction in ATP after 48 h of exposure to morin was accompanied by a 35% reduction in proliferation (Koczor et al., 2009; Kuruvilla et al., 2003; Sithara et al., 2017). This is consistent with a lag between ATP depletion and measurable effects on proliferation, but because the studies used different stressors and cell types, the length of the lag cannot be estimated.
+""" ;
+	nci:C25343	"""Update - non-endorsed (by You Song, 06/10/2026)
+
+No feedforward or feedback loops have been characterized for this KER in the studies cited here. Cells can maintain ATP by increasing ATP production or by reducing ATP consumption, which would influence how much ATP depletion is needed to reduce proliferation, but the extent, time course, and homeostatic limits of these compensatory responses have not been quantified for this KER. They are therefore described here and not represented as separate KEs.
+""" ;
 	pato:0000047	"Unspecific" ;
 	aopo:LifeStageContext	"Embryo" ;
 	ncbitaxon:131567	"WCS_7955", "WCS_9606" ;
@@ -179423,7 +179511,7 @@ aop.relationships:2205
 	foaf:page	<https://identifiers.org/aop.relationships/2205> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.relationships/2205> ;
 	dcterms:created	"2020-11-12T17:58:06" ;
-	dcterms:modified	"2022-07-06T07:43:26" ;
+	dcterms:modified	"2026-10-05T12:16:00" ;
 	aopo:has_upstream_key_event	aop.events:1821 ;
 	aopo:has_downstream_key_event	aop.events:1521 ;
 	dc:description	"""This key event relationship describes reduced cell proliferation (cell growth, division or a combination of these) leading to reduced tissue, organ or individual growth.
@@ -179438,6 +179526,49 @@ Rationale: Because cell proliferation is typically measured in vitro, while grow
 """ ;
 	nci:C71478	"""
 	In zebrafish embryos exposed to 2,4-DNP, significant growth inhibition (AO), as indicated by whole embryo length, caudal primary (CaP) motor neuron axons and otic vesicle length (OVL) ratio after 21h, somite width and eye diameter after 45h exposure was identified, after 21h, &nbsp;whereas a non- significant reduction in cell proliferation was observed (Bestman 2015).
+
+""" ;
+	nci:C103159	"""Update - non-endorsed (by You Song, 05/10/2026)
+
+The evidence for this KER was collected through a manual review of the published literature, without the use of AI-based tools. Canonical knowledge on the dependence of tissue and organism size on cell number was taken from the review literature (Conlon and Raff, 1999). Studies reporting both cell proliferation and growth in the same experimental system were identified for empirical support; because cell proliferation is typically measured in vitro and growth in vivo, few such studies exist (Bestman et al., 2015). Literature on mathematical models describing the relationship between cell proliferation and tissue growth was reviewed for quantitative understanding (Binder et al., 2008; Mosca et al., 2018; Jarrett et al., 2018). No formal study quality assessment was performed.
+""" ;
+	nci:C68821	"""Update - non-endorsed (by You Song, 05/10/2026)
+
+
+	
+		
+			Modulating factor
+			Details
+			Effects on the KER
+			References
+		
+	
+	
+		
+			Cell size
+			Cell volume, which can change independently of cell number
+			An increase in cell size can partly compensate for fewer cells, so a given decrease in proliferation produces a smaller decrease in tissue or organ growth. A decrease in cell size adds to the effect.
+			Conlon and Raff, 1999
+		
+		
+			Extracellular matrix and fluid content
+			Amount of extracellular matrix and fluids in the tissue
+			Tissue and organ size depend on these components as well as on cell number, so growth can change independently of proliferation.
+			Conlon and Raff, 1999
+		
+		
+			Cell death
+			Rate of cell loss in the tissue
+			Net cell number depends on the balance between proliferation and cell loss. Increased cell death adds to the effect of reduced proliferation, and decreased cell death can offset it.
+			Conlon and Raff, 1999
+		
+		
+			Growth mode of the organism
+			Animals and plants: growth by cell division and by cell expansion. Unicellular algae: population growth by cell division
+			In plants, tissue growth results from both cell division and cell expansion, so reduced division can be partly offset by expansion. In unicellular algae, population growth is achieved through cell proliferation, so the relationship is direct.
+			Mosca et al., 2018 (plants)
+		
+	
 
 """ ;
 	nci:C17469	"""Taxonomic applicability
@@ -179459,6 +179590,93 @@ Relationship 2205 is considered applicable to all life stages, as cell prolifera
 	edam:operation_3799	"""The quantitative understanding of Relationship 2205 is moderate.
 
 Rationale: Multiple mathematical models describing the quantitative relationships between cell proliferation and tissue growth exist for both animals (Binder 2008) and plants (Mosca 2018). There are also numerous models that are specifically developed for predicting tumor growth based on the proliferation rate (Jarrett 2018).
+""" ;
+	edam:operation_3438	"""Update - non-endorsed (by You Song, 05/10/2026)
+
+Tissue, organ, and organism size depend on the total number and volume of cells and on the amount of extracellular matrix and fluids (Conlon and Raff, 1999). A decrease in proliferation therefore reduces growth in proportion to the resulting loss of cell number, modified by changes in cell size and matrix content. This relationship has been formalized in mathematical models of proliferative tissue growth in animals (Binder et al., 2008) and of tissue growth and cell division in plants (Mosca et al., 2018), and numerous models predict tumor growth from the rate of proliferation (Jarrett et al., 2018). These models describe growth as a function of proliferation rate, but they have not been fitted to data on stressor-induced decreases in proliferation, so the precision with which a measured decrease in proliferation predicts a decrease in growth has not been quantified. The only study that measured both events in the same experiment, in zebrafish embryos exposed to 2,4-DNP, showed that growth was significantly inhibited after 21 h while the reduction in cell proliferation was not significant (Bestman et al., 2015), so the relationship cannot be quantified from that study.
+
+&nbsp;
+""" ;
+	nci:C25207	"""Update - non-endorsed (by You Song, 05/10/2026)
+
+The time-scale of this KER has not been quantified. Growth is the cumulative result of cell divisions, so effects on growth are expected to lag behind effects on proliferation, with the lag depending on the cell-cycle length and growth rate of the system. In the zebrafish study, growth inhibition was detected after 21 h, whereas the reduction in cell proliferation was not yet significant (Bestman et al., 2015). Studies that measure both events at a single time point cannot resolve their temporal order.
+""" ;
+	nci:C25343	"""Update - non-endorsed (by You Song, 05/10/2026)
+
+
+	
+		
+			
+			Modulating factor
+			
+			
+			Details
+			
+			
+			Effects on the KER
+			
+			
+			References
+			
+		
+		
+			
+			Cell size
+			
+			
+			Cell volume, which can change independently of cell number
+			
+			
+			An increase in cell size can partly compensate for fewer cells, so a given decrease in proliferation produces a smaller decrease in tissue or organ growth; a decrease in cell size adds to the effect.
+			
+			
+			Conlon and Raff, 1999
+			
+		
+		
+			
+			Extracellular matrix and fluid content
+			
+			
+			Amount of extracellular matrix and fluids in the tissue
+			
+			
+			Tissue and organ size depend on these components as well as on cell number, so growth can change independently of proliferation.
+			
+			
+			Conlon and Raff, 1999
+			
+		
+		
+			
+			Cell death
+			
+			
+			Rate of cell loss in the tissue
+			
+			
+			Net cell number depends on the balance between proliferation and cell loss; increased cell death adds to the effect of reduced proliferation, and decreased cell death can offset it.
+			
+			
+			Conlon and Raff, 1999
+			
+		
+		
+			
+			Growth mode of the organism
+			
+			
+			Growth by cell division and by cell expansion (plants); population growth by cell division (unicellular algae)
+			
+			
+			In plants, reduced division can be partly offset by cell expansion; in unicellular algae, population growth is achieved through cell proliferation, so the relationship is direct.
+			
+			
+			Mosca et al., 2018
+			
+		
+	
+
 """ ;
 	pato:0000047	"Unspecific" ;
 	aopo:LifeStageContext	"Embryo" ;
@@ -195448,9 +195666,242 @@ aop.relationships:3480
 	foaf:page	<https://identifiers.org/aop.relationships/3480> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3480> ;
 	dcterms:created	"2025-01-20T03:50:53" ;
-	dcterms:modified	"2025-01-20T03:50:53" ;
+	dcterms:modified	"2026-10-05T07:44:56" ;
 	aopo:has_upstream_key_event	aop.events:1635 ;
 	aopo:has_downstream_key_event	aop.events:1505 ;
+	dc:description	"""This KER describes the causal relationship whereby increased DNA strand breaks lead to cell cycle disruption. DNA strand breaks include single-strand breaks (SSBs) and double-strand breaks (DSBs); DSBs are generally considered the most genotoxic lesions. Strand breaks are detected by sensor complexes that activate the apical kinases ATM (mainly in response to DSBs) and ATR (in response to single-stranded DNA at resected breaks and stalled replication forks). These kinases activate the effector kinases CHK2 and CHK1 and p53&ndash;p21 signaling, which inhibit the CDC25 phosphatases and cyclin-dependent kinases and thereby delay or arrest progression through G1/S, S, or G2/M (Hartwell and Weinert, 1989; O&#39;Connell et al., 2000; Cuddihy and O&#39;Connell, 2003; Jackson and Bartek, 2009; Ciccia and Elledge, 2010).
+
+The relationship is conditional. Whether strand breaks cause a detectable disruption of the cell cycle depends on the number and type of breaks, whether they are repaired before the checkpoint response is sustained, the cell-cycle phase at the time of damage, and checkpoint competence. A single DSB at a defined genomic site can trigger a checkpoint response that delays cell cycle progression in human cells (van den Berg et al., 2018), whereas transient SSBs generated during normal DNA repair are usually resolved without arrest. If damage is repaired, arrest is reversible; persistent or irreparable damage can lead to prolonged arrest or permanent exit from the cell cycle (Jackson and Bartek, 2009). The relationship is not stressor-specific and can be triggered by ionizing radiation, oxidative stress, redox-active chemicals, metals, nanoparticles, or endogenous processes that generate strand breaks directly or indirectly.
+""" ;
+	nci:C80263	"""The biological plausibility of this KER is high. DNA strand breaks are recognized by DNA damage response pathways. DSBs are sensed by the MRN complex (MRE11&ndash;RAD50&ndash;NBS1), which recruits and activates ATM; ATM phosphorylates H2AX (forming &gamma;H2AX) and CHK2 and contributes to p53 stabilization. SSBs and stalled replication forks generate RPA-coated single-stranded DNA that activates ATR and its effector CHK1. CHK1 and CHK2 inhibit the CDC25 phosphatases, which prevents activation of cyclin-dependent kinases and causes arrest at G1/S, in S phase, or at G2/M, while p53-dependent induction of p21 maintains prolonged arrest when damage persists (Hartwell and Weinert, 1989; O&#39;Connell et al., 2000; Cuddihy and O&#39;Connell, 2003; Jackson and Bartek, 2009; Ciccia and Elledge, 2010). This relationship is canonical knowledge in DNA damage response biology and is the basis of the DNA damage checkpoint concept.
+
+Mechanistically, the response depends on the damage load and the cell-cycle context. A limited number of DSBs is sufficient to activate the checkpoint in human cells: a single Cas9-induced DSB delayed cell cycle progression, and G1-to-S progression decreased in a graded manner as the number of breaks increased (van den Berg et al., 2018). In non-mammalian taxa, DNA-damage-induced cell cycle responses have been described in green algae, although the effectors and the dependence on cell-cycle phase differ from those in animals (Hlavov&aacute; et al., 2011). The KER is therefore biologically plausible across eukaryotes but conditional on lesion type, damage persistence, cell-cycle phase, and checkpoint competence.
+
+&nbsp;
+""" ;
+	edam:data_2042	"""Empirical support is moderate. Several studies show co-occurrence of DNA strand breaks or DNA damage responses with cell cycle disruption after exposure to genotoxic stressors, but the evidence is stressor- and system-specific, relies on proxy endpoints in some taxa, and does not include direct manipulation of strand breaks as an isolated upstream event. In Scenedesmus quadricauda, zeocin (a DSB-inducing radiomimetic) applied before S phase caused S-phase delay and a permanent G2 block, whereas zeocin applied during G2 did not arrest most cells (Hlavov&aacute; et al., 2011). In embryonic zebrafish cells exposed to silver nanoparticles and ionic silver, cell cycle arrest that prevented entry into S phase occurred together with high percentages of DNA breaks, and the smaller nanoparticles and ionic silver triggered the strongest responses (Quevedo et al., 2021). In the copepod Tigriopus japonicus, gamma irradiation increased expression of DSB repair genes (DNA-PK, Ku70, Ku80) and p53, which was used here as an indirect indicator of checkpoint activation (Han et al., 2014). In Pacific oyster embryos and larvae, DNA strand breaks measured with the comet assay were positively related to larval abnormalities, which are a distal developmental endpoint rather than a direct measure of cell cycle disruption (Wessel et al., 2007; Mai et al., 2012).
+
+
+	
+		
+			
+			Biological system
+			
+			
+			Stressor
+			
+			
+			Evidence for KE 1635 (DNA strand breaks)
+			
+			
+			Evidence for KE 1505 (cell cycle disruption)
+			
+			
+			Interpretation
+			
+			
+			Reference
+			
+		
+	
+	
+		
+			
+			Green alga (Scenedesmus quadricauda)
+			
+			
+			Zeocin (DSB-inducing radiomimetic)
+			
+			
+			DNA damage induced by zeocin, a radiomimetic that causes DNA strand breaks.
+			
+			
+			Zeocin applied from the beginning of the cell cycle: S-phase delay and permanent G2 block. Zeocin applied during G2: no arrest in about two thirds of the cells.
+			
+			
+			Supports the KER when damage occurs before S phase; shows that the response depends on cell-cycle phase.
+			
+			
+			Hlavov&aacute; et al. (2011)
+			
+		
+		
+			
+			Embryonic zebrafish cells (ZF4)
+			
+			
+			Silver nanoparticles (10, 30, and 100 nm) and ionic silver (AgNO₃)
+			
+			
+			High percentages of DNA breaks after exposure to the smaller nanoparticles and ionic silver.
+			
+			
+			Cell cycle arrest preventing entry into S phase; the 100 nm nanoparticles led to activation of G1 and G2 phases, suggesting that cells could overcome the damage.
+			
+			
+			DNA breaks and cell cycle arrest co-occurred, and responses were strongest for the smaller nanoparticles and ionic silver.
+			
+			
+			Quevedo et al. (2021)
+			
+		
+		
+			
+			Marine copepod (Tigriopus japonicus)
+			
+			
+			Gamma radiation
+			
+			
+			Increased expression of DSB repair genes (DNA-PK, Ku70, Ku80), indicating DSB formation.
+			
+			
+			Increased p53 expression (indirect indicator of checkpoint activation).
+			
+			
+			Concurrent DNA damage response and p53 activation; cell-cycle phase was not measured.
+			
+			
+			Han et al. (2014)
+			
+		
+		
+			
+			Pacific oyster embryos and larvae (Crassostrea gigas)
+			
+			
+			Copper, cadmium, metolachlor, irgarol; benzo[a]pyrene and endosulfan
+			
+			
+			DNA strand breaks (comet assay): significant increases after 24 h from 0.1 &micro;g/L Cu, 10 &micro;g/L Cd, and 0.01 &micro;g/L irgarol and metolachlor (Mai et al., 2012).
+			
+			
+			Percentage of abnormal D-larvae (developmental endpoint; not a direct measure of cell cycle disruption).
+			
+			
+			Strong positive relationship between DNA strand breaks and larval abnormalities; indirect support only.
+			
+			
+			Mai et al. (2012); Wessel et al. (2007)
+			
+		
+	
+
+""" ;
+	nci:C71478	"""The main uncertainty is that not all strand breaks trigger cell cycle disruption. Transient SSBs generated during normal DNA repair may be resolved without checkpoint activation, and the probability of checkpoint induction depends on lesion type (SSB or DSB), the number and clustering of breaks, the cell-cycle phase at the time of damage, and p53 and checkpoint pathway status.
+
+A second uncertainty is that checkpoint activation is reversible when damage is repaired. Transient G1/S or G2/M arrest followed by recovery would not cause a persistent reduction in proliferation; arrest becomes prolonged or permanent only when strand break accumulation exceeds repair capacity. The response also differs among taxa and cell-cycle contexts. In Scenedesmus quadricauda, zeocin caused a permanent G2 block when applied before S phase but did not arrest most cells when applied during G2 (Hlavov&aacute; et al., 2011). In Chlamydomonas reinhardtii, the genotoxicant N-OH-2-AAF produced DNA strand breaks (David et al., 2009), but cell-cycle endpoints were not measured, so that study cannot be used to assess this KER.
+
+A third uncertainty is that the available empirical evidence comes from a small number of stressors and systems, uses proxy endpoints for cell cycle disruption in invertebrates, and was generated with genotoxic stressors in which oxidative strand breaks are not clearly separated from other genotoxic mechanisms. Evidence from oxidative-stress-specific stressors with concurrent measurement of strand breaks and cell-cycle endpoints in the same system is limited. Finally, comet assay endpoints detect strand-break-like DNA migration that may include alkali-labile sites and repair intermediates, so results must be interpreted in light of assay design and exposure duration.
+""" ;
+	nci:C103159	"""Evidence for this KER was assembled using the same AI-human hybrid workflow applied to the ROS-growth AOP network. Search terms were developed for both KEs and included DNA strand breaks, DNA double-strand breaks, DNA single-strand breaks, comet assay, &gamma;H2AX, ATM, ATR, CHK1, CHK2, p53, cell cycle arrest, G1/S checkpoint, G2/M checkpoint, and cell cycle disruption, combined with taxa of interest (algae, zebrafish, fish, copepods, and Daphnia). AOP-helpFinder and targeted literature searches were used to identify studies reporting both DNA strand break measurements and cell-cycle endpoints. Records were prioritized when they co-measured strand breaks (comet assay, &gamma;H2AX, PFGE) and cell-cycle distribution (flow cytometry, G-phase markers) in the same biological system, and when they reported dose or concentration, exposure duration, and evidence relevant to dose-response, temporal, or incidence concordance.
+
+LLM-assisted screening (ChatGPT, OpenAI, San Francisco, CA, USA) was used for metadata extraction and preliminary prioritization only. All LLM outputs were checked manually against the original literature before inclusion, and final evidence selection and interpretation were performed by expert human review. Mechanistic reviews were used to support biological plausibility, and primary studies were used for empirical support where possible. Supporting evidence from endorsed AOP contexts (AOP 296 and AOP 212) was also considered.
+""" ;
+	nci:C68821	"""
+	
+		
+			
+			Modulating factor
+			
+			
+			Details
+			
+			
+			Effect on this KER
+			
+			
+			References
+			
+		
+	
+	
+		
+			
+			DNA repair capacity
+			
+			
+			Capacity of base excision repair, single-strand break repair, homologous recombination, and non-homologous end joining.
+			
+			
+			Higher repair capacity reduces the persistence of strand breaks and the probability of checkpoint activation; impaired repair prolongs checkpoint signaling.
+			
+			
+			Jackson and Bartek, 2009; Ciccia and Elledge, 2010
+			
+		
+		
+			
+			Cell-cycle phase at the time of damage
+			
+			
+			G1, S, G2, or M phase when strand breaks occur.
+			
+			
+			Determines which checkpoint is engaged and whether arrest occurs. In Scenedesmus quadricauda, zeocin before S phase caused a permanent G2 block, whereas treatment during G2 did not arrest most cells. S-phase cells are vulnerable to replication-associated conversion of lesions into DSBs.
+			
+			
+			Hlavov&aacute; et al., 2011; Cuddihy and O&rsquo;Connell, 2003
+			
+		
+		
+			
+			p53 and checkpoint pathway integrity
+			
+			
+			p53, p21, ATM/ATR, CHK1/CHK2, and related checkpoint signaling.
+			
+			
+			Loss of function reduces checkpoint stringency and can allow cells to continue dividing despite damage; functional p53 maintains prolonged arrest when damage persists.
+			
+			
+			Jackson and Bartek, 2009; O&rsquo;Connell et al., 2000
+			
+		
+		
+			
+			Number, type, and clustering of strand breaks
+			
+			
+			SSB or DSB; isolated or clustered lesions; repeated or chronic exposure.
+			
+			
+			A higher DSB burden and clustered lesions increase the probability and duration of checkpoint activation; in human cells even a single DSB can delay cell cycle progression.
+			
+			
+			van den Berg et al., 2018; Jackson and Bartek, 2009
+			
+		
+		
+			
+			Species and cell type
+			
+			
+			Conservation and effectors of the checkpoint pathway; proliferative state of the cells.
+			
+			
+			Checkpoint stringency and effectors vary among taxa and cell types; for example, plant lineages lack CHK1/CHK2 kinases. Non-proliferating cells show little cell cycle response.
+			
+			
+			Hlavov&aacute; et al., 2011
+			
+		
+	
+
+""" ;
+	nci:C17469	"""The domain of applicability of this KER is broad but conditional. It is applicable to eukaryotic cells and organisms in which DNA strand breaks can accumulate and the DNA damage checkpoint is functional. ATM/ATR-dependent checkpoint signaling is highly conserved, and cell-cycle responses to DNA damage have been described in yeast (Hartwell and Weinert, 1989), green algae (Hlavov&aacute; et al., 2011), invertebrates, fish cells, and mammalian cells; the downstream effectors differ among lineages. Applicability is highest in actively proliferating systems, including dividing cells in embryonic and juvenile organisms, cell cultures, and proliferating tissues, and is lower in post-mitotic tissues. The KER is not sex-specific. Empirical support is strongest for mammalian cell systems, while evidence from other taxa comes mainly from green algae, a fish embryonic cell line, copepods, and oyster embryos and larvae. The KER is not stressor-specific: any stressor that generates DNA strand breaks, including ionizing radiation, oxidative stress, redox-active chemicals, metals, and nanoparticles, falls within its stressor domain. Taxonomic extrapolation is supported by the conservation of the DNA damage response across eukaryotes, but quantitative predictions should be made cautiously because repair capacity, checkpoint stringency, and cell-cycle structure vary among taxa and life stages.
+""" ;
+	edam:operation_3799	"""Quantitative understanding of this KER is moderate. The qualitative relationship is strongly supported and threshold-like behavior is biologically expected. However, quantitative data linking the number of strand breaks to the magnitude of cell cycle disruption exist for only a limited set of systems, mainly human cells, and a general model across taxa, stressors, and exposure durations is not yet available.
+""" ;
+	edam:operation_3438	"""The best data defining the response-response relationship come from human cells, in which Cas9 was used to introduce a defined number of double-strand breaks. A single break at one genomic site was sufficient to trigger a checkpoint response that delayed cell cycle progression, and G1-to-S progression decreased in a graded manner as the number of breaks increased (van den Berg et al., 2018). The response also depends on repair: breaks that are repaired cause a transient delay, whereas persistent damage can lead to prolonged arrest or permanent exit from the cell cycle (Jackson and Bartek, 2009). In other taxa only semi-quantitative information is available. In Scenedesmus quadricauda, the G2 block after zeocin depended on the cell-cycle phase at the time of damage (Hlavov&aacute; et al., 2011), and in embryonic zebrafish cells the co-occurrence of DNA breaks and cell cycle arrest varied with silver nanoparticle size (Quevedo et al., 2021). No mathematical function or computational model describing the relationship across taxa has been defined, and the precision with which cell cycle disruption can be predicted from a measured level of strand breaks has not been quantified. Quantitative interpretation should therefore be system-specific.
+""" ;
+	nci:C25207	"""Checkpoint signaling is activated within minutes of break formation (rapid ATM/ATR activation), and delay or arrest of cell cycle progression develops over hours. The duration depends on damage severity and repair kinetics. When damage persists, permanent exit from the cell cycle can develop over days (Jackson and Bartek, 2009). Because strand breaks and checkpoint activation both occur within hours, studies that measure both events only at one late time point cannot resolve their temporal order.
+""" ;
+	nci:C25343	"""Negative feedback operates through repair: once the breaks are repaired, the activating signal disappears, checkpoint signaling is switched off, and cells re-enter the cycle, so a transient disruption causes only a delay (Cuddihy and O&#39;Connell, 2003; Jackson and Bartek, 2009). Positive feedback and feedforward mechanisms amplify and sustain the response. ATM-dependent formation of &gamma;H2AX at breaks recruits further DNA damage response proteins and amplifies signaling (Ciccia and Elledge, 2010), and persistent p53-p21 signaling can convert a reversible arrest into permanent cell cycle exit (Jackson and Bartek, 2009). The homeostatic limit of the negative loop is the repair capacity of the cell: when strand breaks exceed it, checkpoint recovery fails and the disruption becomes prolonged. The kinetics of these loops have not been quantified for this KER. They mainly shape the time course and duration of the response, so they are described here and not represented as separate KEs.
+""" ;
+	pato:0000047	"Unspecific" ;
+	aopo:LifeStageContext	"All life stages" ;
+	ncbitaxon:131567	"WCS_9606", ncbitaxon:10090, ncbitaxon:10116, "WikiUser_17", "WikiUser_6", "WCS_35525", "WCS_63659" ;
 	dcterms:isPartOf	aop:324, aop:602 .
 
 aop.relationships:3363

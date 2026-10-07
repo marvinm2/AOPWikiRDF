@@ -1,4 +1,4 @@
-# Generated: 2026-10-03
+# Generated: 2026-10-07
 # Load alongside AOPWikiRDF.ttl for full cross-reference capability
 # AOPWikiRDF-Enriched.ttl
 # Cross-reference enrichment triples for AOP-Wiki RDF
@@ -7,7 +7,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix cas: <https://identifiers.org/cas/> .
 @prefix pr: <http://purl.obolibrary.org/obo/PR_> .
-@prefix chebi: <https://identifiers.org/chebi/> .
+@prefix chebi: <https://identifiers.org/chebi/CHEBI:> .
 @prefix chemspider: <https://identifiers.org/chemspider/> .
 @prefix wikidata: <https://identifiers.org/wikidata/> .
 @prefix chembl.compound: <https://identifiers.org/chembl.compound/> .
