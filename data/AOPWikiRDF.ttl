@@ -29360,7 +29360,7 @@ aop:297
 	dcterms:alternative	"retinaldehyde dehydrogenase inhibition,population decline" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2019-05-22T04:45:03" ;
-	dcterms:modified	"2023-04-29T16:03:02" ;
+	dcterms:modified	"2026-10-09T04:18:02" ;
 	dc:description	"""
 	
 		
@@ -29483,7 +29483,7 @@ Environmental Safety Group, Korea Institute of Science and Technology (KIST) Eur
 """ ;
 	nci:C25688	"Under Development" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	aopo:has_key_event	aop.events:1640, aop.events:1641, aop.events:1642, aop.events:1643, aop.events:1637, aop.events:360 ;
+	aopo:has_key_event	aop.events:1641, aop.events:1642, aop.events:1640, aop.events:1643, aop.events:1637, aop.events:360 ;
 	aopo:has_key_event_relationship	aop.relationships:1915, aop.relationships:1916, aop.relationships:1917, aop.relationships:1918, aop.relationships:2143 ;
 	aopo:has_molecular_initiating_event	aop.events:1637 ;
 	aopo:has_adverse_outcome	aop.events:360 ;
@@ -79391,6 +79391,23 @@ aop:655
 	aopo:has_key_event_relationship	aop.relationships:3859, aop.relationships:3860, aop.relationships:1723, aop.relationships:3861, aop.relationships:1708 ;
 	aopo:has_molecular_initiating_event	aop.events:1215 ;
 	aopo:has_adverse_outcome	aop.events:1458 .
+
+aop:656
+	a	aopo:AdverseOutcomePathway ;
+	dc:identifier	aop:656 ;
+	rdfs:label	"AOP 656" ;
+	rdfs:seeAlso	<https://identifiers.org/aop/656> ;
+	foaf:page	<https://identifiers.org/aop/656> ;
+	dc:title	"Competitive inhibition of lactate dehydrogenase leading to impaired vascular development" ;
+	dcterms:alternative	"Competitive LDH inhibition leading to impaired vascular development" ;
+	dc:source	"AOPWiki" ;
+	dcterms:created	"2026-10-07T07:54:43" ;
+	dcterms:modified	"2026-10-07T10:34:15" ;
+	dc:creator	"""Yanhong Wei1,&nbsp;Xiaolian Cao1, Yingying&nbsp;Zhou1
+
+1&nbsp;Sun Yat-sen University, Guangzhou, 510080, China.
+""" ;
+	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> .
 
 aop.events:888
 	a	aopo:KeyEvent ;
