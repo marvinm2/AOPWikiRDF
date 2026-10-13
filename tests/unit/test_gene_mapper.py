@@ -17,7 +17,9 @@ from aopwiki_rdf.mapping.gene_mapper import (
     build_gene_xrefs,
     build_gene_xrefs,
     _map_genes_in_text,
+    map_genes_in_entities,
 )
+import aopwiki_rdf.mapping.gene_mapper as gene_mapper
 
 
 # ---------------------------------------------------------------------------
@@ -220,3 +222,61 @@ def test_batch_xrefs_normalizes_base_url(base):
                          symbol_lookup={"1100": "BRCA1"})
 
     assert captured["url"] == "https://webservice.bridgedb.org/Human/xrefsBatch/H"
+
+
+# ---------------------------------------------------------------------------
+# Test: KER weight-of-evidence fields use the shared automaton (issue #126)
+# ---------------------------------------------------------------------------
+
+_NS = "http://www.aopkb.org/aop-xml"
+_KER_XML = f"""<data xmlns="{_NS}">
+  <key-event id="ke1"><description>Plain text.</description></key-event>
+  <key-event-relationship id="ker1">
+    <description>The BRCA1 gene.</description>
+    <weight-of-evidence>
+      <biological-plausibility>Loss of FANCS impairs repair.</biological-plausibility>
+      <emperical-support-linkage>FANCS knockdown in vitro.</emperical-support-linkage>
+    </weight-of-evidence>
+  </key-event-relationship>
+</data>"""
+
+
+def _ker_inputs():
+    from xml.etree.ElementTree import fromstring
+    root = fromstring(_KER_XML)
+    kedict = {"ke1": {"dc:description": "Plain text."}}
+    kerdict = {"ker1": {
+        "dc:description": "The BRCA1 gene.",
+        "nci:C80263": "Loss of FANCS impairs repair.",
+        "edam:data_2042": "FANCS knockdown in vitro.",
+    }}
+    # "FANCS" is contested: it is BRCA1's alias and the approved symbol of 9999.
+    genedict1 = {"1100": ["BRCA1", "FANCS"], "9999": ["FANCS"]}
+    symbol_lookup = {"1100": "BRCA1", "9999": "FANCS"}
+    return kedict, kerdict, genedict1, symbol_lookup, root
+
+
+def test_ker_weight_of_evidence_reuses_one_automaton(monkeypatch):
+    built = []
+    real = gene_mapper.GeneAutomaton
+
+    def counting(index):
+        built.append(1)
+        return real(index)
+
+    monkeypatch.setattr(gene_mapper, "GeneAutomaton", counting)
+    kedict, kerdict, genedict1, symbol_lookup, root = _ker_inputs()
+    map_genes_in_entities(kedict, kerdict, genedict1, {}, root, "{" + _NS + "}",
+                          symbol_lookup=symbol_lookup)
+    assert len(built) == 1
+
+
+def test_ker_weight_of_evidence_resolves_contested_tokens():
+    """Contested tokens go to their approved-symbol owner in every KER field,
+    not only in the description."""
+    kedict, kerdict, genedict1, symbol_lookup, root = _ker_inputs()
+    _, kerdict, _ = map_genes_in_entities(
+        kedict, kerdict, genedict1, {}, root, "{" + _NS + "}",
+        symbol_lookup=symbol_lookup)
+    assert kerdict["ker1"]["edam:data_1025"] == ["hgnc:1100", "hgnc:9999"]
+
