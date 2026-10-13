@@ -18,6 +18,7 @@ from aopwiki_rdf.rdf.namespaces import (
     GENES_PROVENANCE_ACTIVITIES, GENES_MINTED_PREDICATE_LABELS,
     VOID_PREFIXES, ENRICHED_PREFIXES,
 )
+from aopwiki_rdf.rdf.void_stats import partition_id
 from aopwiki_rdf.utils import clean_html_tags
 
 logger = logging.getLogger(__name__)
@@ -975,7 +976,9 @@ def write_void_rdf(filepath, metadata):
         'HGNCmodificationTime', 'PromodificationTime',
         'service_desc_filepath'.
         Optional: 'triple_counts' dict with 'main', 'enriched', 'genes' keys,
-        'bridgedb_url' string.
+        'bridgedb_url' string, 'void_stats' (see void_stats.compute_void_stats),
+        'data_graph', 'void_graph' and 'service_description_graph' IRIs for
+        the ServiceDescription.
     """
     aopwikixmlfilename = metadata['aopwikixmlfilename']
     x = metadata['datetime_obj']
@@ -994,6 +997,10 @@ def write_void_rdf(filepath, metadata):
     # emitted with a placeholder value.
     dataset_version = metadata.get('dataset_version')
     source_commit = metadata.get('source_commit_url')
+    void_stats = metadata.get('void_stats')
+    data_graph = metadata.get('data_graph', 'http://aopwiki.org/')
+    void_graph = metadata.get('void_graph', 'http://aopwiki.org/void')
+    sd_graph = metadata.get('service_description_graph', 'http://aopwiki.org/servicedescription')
 
     logger.info(f"Writing VoID RDF file: {filepath}")
 
@@ -1026,6 +1033,8 @@ def write_void_rdf(filepath, metadata):
         # DATA; this versions the CODE.
         if source_commit:
             g.write(' ;\n\tpav:createdWith\t<' + source_commit + '>')
+        if void_stats:
+            _write_void_summary(g, void_stats)
         g.write(' .\n')
 
         # --- Pure source subset ---
@@ -1068,15 +1077,19 @@ def write_void_rdf(filepath, metadata):
         g.write('\n:HGNCgenes.txt\ta\tvoid:Dataset, void:Linkset')
         g.write(' ;\n\tdc:description\t"HGNC approved symbols and names for genes"')
         g.write(' ;\n\tdcat:downloadURL\t<https://www.genenames.org/download/custom/>')
-        g.write(' ;\n\tpav:importedOn\t"' + HGNCmodificationTime + '"')
+        g.write(' ;\n\tpav:importedOn\t' + _imported_on_literal(HGNCmodificationTime))
         g.write(' .\n')
 
         # --- Promapping linkset ---
         g.write('\n<https://proconsortium.org/download/current/promapping.txt>\ta\tvoid:Dataset, void:Linkset')
         g.write(' ;\n\tdc:description\t"PRotein ontology mappings to protein database identifiers"')
         g.write(' ;\n\tdcat:downloadURL\t<https://proconsortium.org/download/current/promapping.txt>')
-        g.write(' ;\n\tpav:importedOn\t"' + PromodificationTime + '"')
+        g.write(' ;\n\tpav:importedOn\t' + _imported_on_literal(PromodificationTime))
         g.write(' .\n')
+
+        # --- Class / property partitions (issue #121) ---
+        if void_stats:
+            _write_void_partitions(g, void_stats)
 
     logger.info("VoID file created successfully")
 
@@ -1084,39 +1097,123 @@ def write_void_rdf(filepath, metadata):
     if service_desc_filepath:
         logger.info(f"Writing ServiceDescription.ttl file: {service_desc_filepath}")
 
-        service_desc_content = f'''@prefix sd: <http://www.w3.org/ns/sparql-service-description#> .
-    @prefix dcterms: <http://purl.org/dc/terms/> .
-    @prefix void: <http://rdfs.org/ns/void#> .
-    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-    <https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/> a sd:Service ;
-        sd:endpoint <https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/> ;
-        sd:supportedLanguage sd:SPARQL11Query ;
-        sd:resultFormat
-            <http://www.w3.org/ns/formats/SPARQL_Results_XML>,
-            <http://www.w3.org/ns/formats/SPARQL_Results_JSON>,
-            <http://www.w3.org/ns/formats/SPARQL_Results_CSV>,
-            <http://www.w3.org/ns/formats/SPARQL_Results_TSV>,
-            <http://www.w3.org/ns/formats/RDF_XML>,
-            <http://www.w3.org/ns/formats/Turtle>,
-            <http://www.w3.org/ns/formats/N-Triples>,
-            <http://www.w3.org/ns/formats/RDF_JSON>,
-            <http://www.w3.org/ns/formats/JSON-LD> ;
-        sd:feature
-            sd:DereferencesURIs,
-            sd:UnionDefaultGraph,
-            sd:BasicFederatedQuery ;
-        sd:defaultDataset [
-            a sd:Dataset ;
-            sd:defaultGraph <http://aopwiki.org/> ;
-            dcterms:title "AOP-Wiki RDF Dataset" ;
-            dcterms:description "Adverse Outcome Pathway data in RDF format" ;
-            dcterms:modified "{x.isoformat()}"^^xsd:dateTime
-        ] ;
-        dcterms:title "AOP-Wiki SPARQL Endpoint" ;
-        dcterms:description "SPARQL endpoint for querying Adverse Outcome Pathway data" .
-    '''
+        service_desc_content = _service_description(
+            sparql_endpoint, data_graph, void_graph, sd_graph, x)
 
         with open(service_desc_filepath, 'w', encoding='utf-8') as f:
             f.write(service_desc_content)
         logger.info("ServiceDescription.ttl file created successfully")
+
+
+def _imported_on_literal(value):
+    """Render an import timestamp: typed xsd:dateTime when ISO, else a string."""
+    try:
+        datetime.datetime.fromisoformat(value)
+    except (TypeError, ValueError):
+        return '"' + str(value) + '"'
+    return '"' + value + '"^^xsd:dateTime'
+
+
+def _write_void_summary(g, stats):
+    """Append dataset-level counts and partition links to the open :AOPWikiRDF block.
+
+    One predicate-object pair per line, so that a run which adds partitions
+    only adds lines (the COMPAT gate compares predicate lines as sets).
+    """
+    g.write(f' ;\n\tvoid:triples\t{stats["triples"]}')
+    g.write(f' ;\n\tvoid:entities\t{stats["entities"]}')
+    g.write(f' ;\n\tvoid:classes\t{stats["classes"]}')
+    g.write(f' ;\n\tvoid:properties\t{stats["properties"]}')
+    g.write(f' ;\n\tvoid:distinctSubjects\t{stats["distinct_subjects"]}')
+    g.write(f' ;\n\tvoid:distinctObjects\t{stats["distinct_objects"]}')
+    for ns in stats["vocabularies"]:
+        g.write(f' ;\n\tvoid:vocabulary\t<{ns}>')
+    for cp in stats["class_partitions"]:
+        g.write(f' ;\n\tvoid:classPartition\t:void-cp-{partition_id(cp["class"])}')
+    for pp in stats["property_partitions"]:
+        g.write(f' ;\n\tvoid:propertyPartition\t:void-p-{partition_id(pp["property"])}')
+
+
+def _write_void_partitions(g, stats):
+    """Write the nested void-generator partition tree as separate subject blocks.
+
+    Every partition is typed void:Dataset (the range of void:classPartition and
+    void:propertyPartition); the endpoint's /.well-known/void rewrite selects
+    VoID subjects by that type.
+    """
+    for cp in stats["class_partitions"]:
+        c = cp["class"]
+        g.write(f'\n:void-cp-{partition_id(c)}\ta\tvoid:Dataset')
+        g.write(f' ;\n\tvoid:class\t<{c}>')
+        g.write(f' ;\n\tvoid:entities\t{cp["entities"]}')
+        for pp in cp["properties"]:
+            g.write(f' ;\n\tvoid:propertyPartition\t:void-pp-{partition_id(c, pp["property"])}')
+        g.write(' .\n')
+
+        for pp in cp["properties"]:
+            p = pp["property"]
+            g.write(f'\n:void-pp-{partition_id(c, p)}\ta\tvoid:Dataset')
+            g.write(f' ;\n\tvoid:property\t<{p}>')
+            g.write(f' ;\n\tvoid:triples\t{pp["triples"]}')
+            for oc, _ in pp["object_classes"]:
+                g.write(f' ;\n\tvoid:classPartition\t:void-ocp-{partition_id(c, p, oc)}')
+            for dt, _ in pp["datatypes"]:
+                g.write(f' ;\n\tvoid-ext:datatypePartition\t:void-dtp-{partition_id(c, p, "datatype", dt)}')
+            g.write(' .\n')
+
+            for oc, n in pp["object_classes"]:
+                g.write(f'\n:void-ocp-{partition_id(c, p, oc)}\ta\tvoid:Dataset')
+                g.write(f' ;\n\tvoid:class\t<{oc}>')
+                g.write(f' ;\n\tvoid:triples\t{n} .\n')
+            for dt, n in pp["datatypes"]:
+                g.write(f'\n:void-dtp-{partition_id(c, p, "datatype", dt)}\ta\tvoid:Dataset')
+                g.write(f' ;\n\tvoid-ext:datatype\t<{dt}>')
+                g.write(f' ;\n\tvoid:triples\t{n} .\n')
+
+    for pp in stats["property_partitions"]:
+        p = pp["property"]
+        g.write(f'\n:void-p-{partition_id(p)}\ta\tvoid:Dataset')
+        g.write(f' ;\n\tvoid:property\t<{p}>')
+        g.write(f' ;\n\tvoid:triples\t{pp["triples"]}')
+        g.write(f' ;\n\tvoid:distinctSubjects\t{pp["distinct_subjects"]}')
+        g.write(f' ;\n\tvoid:distinctObjects\t{pp["distinct_objects"]} .\n')
+
+
+def _service_description(sparql_endpoint, data_graph, void_graph, sd_graph, modified):
+    """Build ServiceDescription.ttl, linking the data graph to its VoID dataset (issue #124)."""
+    return f"""@prefix : <https://aopwiki.rdf.bigcat-bioinformatics.org/> .
+@prefix sd: <http://www.w3.org/ns/sparql-service-description#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<{sparql_endpoint}>\ta\tsd:Service ;
+\tsd:endpoint\t<{sparql_endpoint}> ;
+\tsd:supportedLanguage\tsd:SPARQL11Query ;
+\tsd:resultFormat\t<http://www.w3.org/ns/formats/SPARQL_Results_XML>, <http://www.w3.org/ns/formats/SPARQL_Results_JSON>, <http://www.w3.org/ns/formats/SPARQL_Results_CSV>, <http://www.w3.org/ns/formats/SPARQL_Results_TSV>, <http://www.w3.org/ns/formats/RDF_XML>, <http://www.w3.org/ns/formats/Turtle>, <http://www.w3.org/ns/formats/N-Triples>, <http://www.w3.org/ns/formats/RDF_JSON>, <http://www.w3.org/ns/formats/JSON-LD> ;
+\tsd:feature\tsd:DereferencesURIs, sd:UnionDefaultGraph, sd:BasicFederatedQuery ;
+\tsd:defaultDataset\t:ServiceDataset ;
+\tdcterms:title\t"AOP-Wiki SPARQL Endpoint" ;
+\tdcterms:description\t"SPARQL endpoint for querying Adverse Outcome Pathway data" .
+
+:ServiceDataset\ta\tsd:Dataset ;
+\tsd:defaultGraph\t<{data_graph}> ;
+\tsd:namedGraph\t:DataNamedGraph ;
+\tsd:namedGraph\t:VoidNamedGraph ;
+\tsd:namedGraph\t:ServiceDescriptionNamedGraph ;
+\tdcterms:title\t"AOP-Wiki RDF Dataset" ;
+\tdcterms:description\t"Adverse Outcome Pathway data in RDF format" ;
+\tdcterms:modified\t"{modified.isoformat()}"^^xsd:dateTime .
+
+:DataNamedGraph\ta\tsd:NamedGraph ;
+\tsd:name\t<{data_graph}> ;
+\tsd:graph\t:AOPWikiRDF .
+
+:VoidNamedGraph\ta\tsd:NamedGraph ;
+\tsd:name\t<{void_graph}> .
+
+:ServiceDescriptionNamedGraph\ta\tsd:NamedGraph ;
+\tsd:name\t<{sd_graph}> .
+
+:AOPWikiRDF\ta\tsd:Graph, void:Dataset .
+"""

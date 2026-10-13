@@ -7,6 +7,7 @@ parses protein-to-identifier mappings (HGNC, UniProt, NCBIGene) for Protein
 Ontology terms that appear in the AOP-Wiki biological objects.
 """
 
+import datetime
 import logging
 import os
 import stat
@@ -127,7 +128,8 @@ def download_and_parse_promapping(
     # File modification time ----------------------------------------------------
     try:
         file_stats = os.stat(filepath)
-        modification_time = time.ctime(file_stats[stat.ST_MTIME])
+        modification_time = datetime.datetime.fromtimestamp(
+            file_stats[stat.ST_MTIME]).isoformat(timespec="seconds")
         logger.info("Protein mapping file last modified: %s", modification_time)
     except OSError as exc:
         logger.error("Could not get file stats for %s: %s", pro_filename, exc)

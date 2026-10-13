@@ -215,9 +215,10 @@ grant execute on "DB.DBA.SPARQL_SINV_IMP" to "SPARQL";
 
 ```
 ld_dir('data', 'AOPWikiRDF.ttl', 'http://aopwiki.org/');
-ld_dir('data', 'AOPWikiRDF-Void.ttl', 'http://aopwiki.org/');
+ld_dir('data', 'AOPWikiRDF-Enriched.ttl', 'http://aopwiki.org/');
 ld_dir('data', 'AOPWikiRDF-Genes.ttl', 'http://aopwiki.org/');
-ld_dir('data', 'ServiceDescription.ttl', 'servicedescription');
+ld_dir('data', 'AOPWikiRDF-Void.ttl', 'http://aopwiki.org/void');
+ld_dir('data', 'ServiceDescription.ttl', 'http://aopwiki.org/servicedescription');
 ```
 
 To finalize the loading of data, use:
