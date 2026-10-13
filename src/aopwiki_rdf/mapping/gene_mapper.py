@@ -694,7 +694,8 @@ def map_genes_in_entities(kedict: dict, kerdict: dict, genedict1: dict,
                     and 'nci:C80263' in kerdict[ker.get('id')]):
                 bio_genes = _map_genes_in_text(
                     kerdict[ker.get('id')]['nci:C80263'],
-                    genedict1, hgnclist, genedict2,
+                    genedict1, hgnclist, genedict2, token_owners, symbol_lookup,
+                    automaton,
                 )
                 all_found_genes.extend(bio_genes)
 
@@ -702,7 +703,8 @@ def map_genes_in_entities(kedict: dict, kerdict: dict, genedict1: dict,
                     and 'edam:data_2042' in kerdict[ker.get('id')]):
                 emp_genes = _map_genes_in_text(
                     kerdict[ker.get('id')]['edam:data_2042'],
-                    genedict1, hgnclist, genedict2,
+                    genedict1, hgnclist, genedict2, token_owners, symbol_lookup,
+                    automaton,
                 )
                 all_found_genes.extend(emp_genes)
 
