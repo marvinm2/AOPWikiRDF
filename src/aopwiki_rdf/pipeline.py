@@ -38,6 +38,7 @@ from aopwiki_rdf.mapping.iri_labels import (
     report_label_coverage_from_results,
 )
 from aopwiki_rdf.mapping.protein_ontology import download_and_parse_promapping
+from aopwiki_rdf.rdf.void_stats import data_file_void_stats
 from aopwiki_rdf.rdf.writer import write_aop_rdf, write_enriched_rdf, write_genes_rdf, write_void_rdf
 from aopwiki_rdf.provenance import release_metadata
 
@@ -363,7 +364,7 @@ def _stage_gene_mapping(config, context):
     hgnc_filepath = str(config.data_dir) + "/HGNCgenes.txt"
     try:
         file_stats = os.stat(hgnc_filepath)
-        hgnc_mod_time = time.ctime(file_stats[stat.ST_MTIME])
+        hgnc_mod_time = datetime.datetime.fromtimestamp(file_stats[stat.ST_MTIME]).isoformat(timespec="seconds")
     except OSError:
         hgnc_mod_time = "Unknown"
     logger.info("HGNC data last modified: %s", hgnc_mod_time)
@@ -580,6 +581,8 @@ def _stage_write_void_rdf(config, context):
     metadata["bridgedb_url"] = config.bridgedb_url
     metadata["sparql_endpoint"] = config.sparql_endpoint
     metadata["data_dump_base"] = config.data_dump_base
+    metadata.update(data_graph=config.data_graph, void_graph=config.void_graph,
+                    void_stats=data_file_void_stats(filepath))  # issue #121
 
     # Release identity (issue #101): derived, so pav:version cannot go stale.
     metadata.update(release_metadata(aopwikixmlfilename))

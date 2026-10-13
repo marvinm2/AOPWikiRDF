@@ -118,7 +118,7 @@ MASK_PATTERNS = (
     #    ONLY -- the ^^xsd:dateTime tag is what distinguishes it from the bare
     #    XML-sourced dcterms:modified in AOPWikiRDF.ttl).
     (
-        re.compile(rb'dcterms:modified "[^"]*"\^\^xsd:dateTime'),
+        re.compile(rb'dcterms:modified\s+"[^"]*"\^\^xsd:dateTime'),
         b'dcterms:modified "<MASKED>"^^xsd:dateTime',
     ),
     # 5. Void void:triples per-subset counts. NOT a date, but a DERIVED AGGREGATE
@@ -131,6 +131,14 @@ MASK_PATTERNS = (
     (
         re.compile(rb'void:triples\s+[0-9]+'),
         b'void:triples\t<MASKED>',
+    ),
+    # 5b. The other VoID statistics (issue #121): dataset totals and partition
+    #     counts. Same reasoning as void:triples -- derived aggregates that grow
+    #     under an additive flip. New partitions appear as new subject blocks and
+    #     new link lines, which the subset check already accepts.
+    (
+        re.compile(rb'void:(entities|classes|properties|distinctSubjects|distinctObjects)\s+[0-9]+'),
+        rb'void:\1\t<MASKED>',
     ),
     # 6. Void pav:version calendar release string. Run-varying since issue #101
     #    made it derive from the AOP-Wiki XML export date instead of a

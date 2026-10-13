@@ -396,6 +396,46 @@ Contains VoID dataset metadata:
 5. Genes subset (`:AOPWikiRDF-Genes.ttl`) with HGNC provenance
 6. HGNC linkset metadata
 7. Promapping linkset metadata
+8. Class and property partitions describing the schema of the data graph
+
+#### Schema partitions
+
+`:AOPWikiRDF` also carries summary statistics for the data graph: `void:triples`,
+`void:entities`, `void:classes`, `void:properties`, `void:distinctSubjects`,
+`void:distinctObjects` and one `void:vocabulary` per namespace in use. The schema
+itself is published as a nested partition tree in the shape written by the SIB
+void-generator, which is what tools such as rdfsolve and the SPARQL editor read:
+
+```turtle
+:AOPWikiRDF void:classPartition :void-cp-… .
+:void-cp-…  void:class aopo:KeyEvent ; void:entities 1602 ;
+            void:propertyPartition :void-pp-… .
+:void-pp-…  void:property dcterms:isPartOf ; void:triples 3750 ;
+            void:classPartition :void-ocp-… .        # IRI objects, per object class
+:void-ocp-… void:class aopo:AdverseOutcomePathway ; void:triples 3750 .
+# literal objects instead get void-ext:datatypePartition [ void-ext:datatype xsd:string ; void:triples n ]
+```
+
+Dataset-level `void:propertyPartition` nodes (`:void-p-…`) give per-property
+`void:triples`, `void:distinctSubjects` and `void:distinctObjects`. The statistics
+cover the union of the three data files, i.e. what is loaded into
+`http://aopwiki.org/`; they are computed by `aopwiki_rdf.rdf.void_stats`. Partition
+IRIs are derived from a hash of their key, so they are stable between releases.
+
+This query lists every class → property → class/datatype pattern:
+
+```sparql
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX void-ext: <http://ldf.fi/void-ext#>
+SELECT ?subjectClass ?property ?objectClass ?datatype ?count
+FROM <http://aopwiki.org/void> WHERE {
+  ?dataset void:classPartition ?cp . ?cp void:class ?subjectClass ; void:propertyPartition ?pp .
+  ?pp void:property ?property .
+  { ?pp void:classPartition [ void:class ?objectClass ; void:triples ?count ] }
+  UNION
+  { ?pp void-ext:datatypePartition [ void-ext:datatype ?datatype ; void:triples ?count ] }
+}
+```
 
 #### Versioning
 
@@ -440,3 +480,8 @@ consumers to expect refreshes four times less often than they actually happen.
 ### ServiceDescription.ttl
 
 SPARQL service description for the public endpoint at `https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/`.
+Its `sd:defaultDataset` lists two named graphs: `http://aopwiki.org/`, whose
+`sd:graph` is the `:AOPWikiRDF` VoID dataset, and `http://aopwiki.org/void`, which
+holds `AOPWikiRDF-Void.ttl` and `ServiceDescription.ttl` themselves. Keeping the
+metadata out of the data graph means schema statistics and mined schemas describe
+AOP-Wiki data only.

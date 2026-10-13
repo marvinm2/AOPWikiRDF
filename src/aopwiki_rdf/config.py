@@ -27,6 +27,10 @@ class PipelineConfig:
     # multi-endpoint) override these so per-version VoID points at their host.
     sparql_endpoint: str = "https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/"
     data_dump_base: str = "https://raw.githubusercontent.com/marvinm2/AOPWikiRDF/master/data"
+    # Named graphs advertised in ServiceDescription.ttl: the graph holding the
+    # data, and the separate graph the VoID + ServiceDescription are loaded into.
+    data_graph: str = "http://aopwiki.org/"
+    void_graph: str = "http://aopwiki.org/void"
     max_retries: int = 3
     request_timeout: int = 30
     log_level: str = "INFO"

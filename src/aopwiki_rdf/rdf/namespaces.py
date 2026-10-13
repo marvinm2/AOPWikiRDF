@@ -250,6 +250,7 @@ VOID_PREFIXES = (
     "@prefix dc: <http://purl.org/dc/elements/1.1/> .\n"
     "@prefix dcterms: <http://purl.org/dc/terms/> .\n"
     "@prefix void:  <http://rdfs.org/ns/void#> .\n"
+    "@prefix void-ext: <http://ldf.fi/void-ext#> .\n"
     "@prefix pav:   <http://purl.org/pav/> .\n"
     "@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .\n"
     "@prefix dcat:  <http://www.w3.org/ns/dcat#> .\n"

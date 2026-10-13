@@ -118,6 +118,24 @@ def test_mask_neutralizes_void_triples_count():
     assert masked_off == masked_on
 
 
+def test_mask_neutralizes_void_partition_counts():
+    """The VoID summary and partition counts (issue #121) grow under additive
+    flips just like void:triples, so they are masked too."""
+    off = (b':void-cp-abc\tvoid:class\t<x> ;\n\tvoid:entities\t1550 ;\n'
+           b'\tvoid:distinctSubjects\t10 ;\n\tvoid:classes\t28 .')
+    on = (b':void-cp-abc\tvoid:class\t<x> ;\n\tvoid:entities\t1602 ;\n'
+          b'\tvoid:distinctSubjects\t12 ;\n\tvoid:classes\t29 .')
+    assert gate.mask(off) == gate.mask(on)
+    assert b"void:entities\t<MASKED>" in gate.mask(off)
+
+
+def test_mask_neutralizes_tab_separated_service_modified():
+    """ServiceDescription now separates predicate and object with a tab."""
+    off = b'\tdcterms:modified\t"2026-10-13T12:00:00"^^xsd:dateTime .'
+    on = b'\tdcterms:modified\t"2026-10-14T09:30:00"^^xsd:dateTime .'
+    assert gate.mask(off) == gate.mask(on)
+
+
 def test_mask_is_idempotent():
     """mask(mask(x)) == mask(x) — masking an already-masked corpus is a no-op."""
     raw = _all_tokens_ttl(
