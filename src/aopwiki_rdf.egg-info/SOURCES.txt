@@ -27,4 +27,5 @@ src/aopwiki_rdf/parser/__init__.py
 src/aopwiki_rdf/parser/xml_parser.py
 src/aopwiki_rdf/rdf/__init__.py
 src/aopwiki_rdf/rdf/namespaces.py
+src/aopwiki_rdf/rdf/void_stats.py
 src/aopwiki_rdf/rdf/writer.py

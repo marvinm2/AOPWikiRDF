@@ -70223,7 +70223,7 @@ aop:578
 	dcterms:alternative	"AhR activation leading to cancer progression" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2025-05-15T10:42:07" ;
-	dcterms:modified	"2026-02-25T04:39:30" ;
+	dcterms:modified	"2026-10-12T05:11:51" ;
 	dc:description	"""The AHR can be activated by several structurally diverse chemicals, but binds preferentially to planar halogenated aromatic hydrocarbons and polycyclic aromatic hydrocarbons. Dioxin-like compounds (DLCs), which include polychlorinated dibenzo-p-dioxins (PCDDs), polychlorinated dibenzofurans (PCDFs) and certain polychlorinated biphenyls (PCBs), are among the most potent AHR ligands[38]. Only a subset of PCDD, PCDF and PCB congeners has been shown to bind to the AHR and cause toxic effects to those elicited by TCDD. Until recently, TCDD was considered to be the most potent DLC in birds[39]; however, recent reports indicate that 2,3,4,7,8-pentachlorodibenzofuran (PeCDF) is more potent than TCDD in some species of birds.[40][13][41][21][42][43] When screened for their ability to induce aryl hydrocarbon hydroxylase (AHH) activity, dioxins with chlorine atoms at a minimum of three out of the four lateral ring positions, and with at least one non-chlorinated ring position are the most active[44]. Of the dioxin-like PCBs, non-ortho congeners are the most toxicologically active, while mono-ortho PCBs are generally less potent[45][9]. Chlorine substitution at ortho positions increases the energetic costs of assuming the coplanar conformation required for binding to the AHR [45]. Thus, a smaller proportion of mono-ortho PCB molecules are able to bind to the AHR and elicit toxic effects, resulting in reduced potency of these congeners. Other PCB congeners, such as di-ortho substituted PCBs, are very weak AHR agonists and do not likely contribute to dioxin-like effects [9].
 
 
@@ -70251,7 +70251,8 @@ These analyses bring together scientific results in vitro and in vivo, several t
 	aopo:has_key_event_relationship	aop.relationships:3533, aop.relationships:3534, aop.relationships:3538, aop.relationships:3541 ;
 	aopo:has_molecular_initiating_event	aop.events:18 ;
 	aopo:has_adverse_outcome	aop.events:1971 ;
-	nci:C54571	aop.stressor:249 .
+	nci:C54571	aop.stressor:249 ;
+	pato:0000047	"Male", "Female" .
 
 aop:579
 	a	aopo:AdverseOutcomePathway ;
@@ -72202,6 +72203,7 @@ aop:604
 	dcterms:modified	"2026-09-09T12:42:00" ;
 	dc:description	"""The increase in depression is associated with high suicide rates and a significant socioeconomic impact.&nbsp;
 """ ;
+	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:2371, aop.events:381, aop.events:1330, aop.events:2370, aop.events:1346 ;
 	aopo:has_key_event_relationship	aop.relationships:3645, aop.relationships:3846, aop.relationships:3847, aop.relationships:1449 ;
 	aopo:has_molecular_initiating_event	aop.events:2370 ;

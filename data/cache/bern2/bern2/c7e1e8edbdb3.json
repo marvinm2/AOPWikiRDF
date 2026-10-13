@@ -1,1 +1,1 @@
-{"_error": "404 Client Error: NOT FOUND for url: http://bern2.korea.ac.kr/plain"}
+{"annotations": [{"id": ["mesh:D011658"], "is_neural_normalized": false, "mention": "pulmonary fibrosis", "obj": "disease", "prob": 0.9999920725822449, "span": {"begin": 15, "end": 33}}], "text": "By definition, pulmonary fibrosis is characterized by excessive deposition of extracellular matrix and destruction of native lung architecture (Fukuda 1985, Richeldi 2017, Thannickal 2004). Thus, the plausibility of this association is undisputed.", "timestamp": "Tue Oct 13 16:00:25 +0000 2026"}
