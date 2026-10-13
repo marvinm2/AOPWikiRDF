@@ -28,8 +28,7 @@
 	pav:version	"2026.10.13" ;
 	foaf:homepage	<https://aopwiki.org> ;
 	pav:createdBy	<https://zenodo.org/badge/latestdoi/146466058> ;
-	pav:createdWith	<https://github.com/marvinm2/AOPWikiRDF/commit/933f1a1033e6ada81f61c8e0c7a77100b1b1e1b5> ;
-	void:triples	347381 ;
+	pav:createdWith	<https://github.com/marvinm2/AOPWikiRDF/commit/b4293210b1a20ae71217d04755df65d17ed913c6> ;
 	void:entities	34926 ;
 	void:classes	28 ;
 	void:properties	82 ;
@@ -192,15 +191,14 @@
 :HGNCgenes.txt	a	void:Dataset, void:Linkset ;
 	dc:description	"HGNC approved symbols and names for genes" ;
 	dcat:downloadURL	<https://www.genenames.org/download/custom/> ;
-	pav:importedOn	"2026-10-13T15:39:48"^^xsd:dateTime .
+	pav:importedOn	"2026-10-13T20:16:49"^^xsd:dateTime .
 
 <https://proconsortium.org/download/current/promapping.txt>	a	void:Dataset, void:Linkset ;
 	dc:description	"PRotein ontology mappings to protein database identifiers" ;
 	dcat:downloadURL	<https://proconsortium.org/download/current/promapping.txt> ;
-	pav:importedOn	"2026-10-13T15:39:28"^^xsd:dateTime .
+	pav:importedOn	"2026-10-13T20:16:46"^^xsd:dateTime .
 
-:void-cp-0e5aa7500705d536	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
+:void-cp-0e5aa7500705d536	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
 	void:entities	600 ;
 	void:propertyPartition	:void-pp-fd17f479c6186a7f ;
 	void:propertyPartition	:void-pp-c361e8c6839fbb05 ;
@@ -232,281 +230,220 @@
 	void:propertyPartition	:void-pp-559743a1a8db4790 ;
 	void:propertyPartition	:void-pp-c256d47bce07aa44 .
 
-:void-pp-fd17f479c6186a7f	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#AopContext> ;
+:void-pp-fd17f479c6186a7f	void:property	<http://aopkb.org/aop_ontology#AopContext> ;
 	void:triples	236 ;
 	void-ext:datatypePartition	:void-dtp-47a3699917d3afc2 .
 
-:void-dtp-47a3699917d3afc2	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-47a3699917d3afc2	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	236 .
 
-:void-pp-c361e8c6839fbb05	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#LifeStageContext> ;
+:void-pp-c361e8c6839fbb05	void:property	<http://aopkb.org/aop_ontology#LifeStageContext> ;
 	void:triples	381 ;
 	void-ext:datatypePartition	:void-dtp-e35f4c0a243510dc .
 
-:void-dtp-e35f4c0a243510dc	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-e35f4c0a243510dc	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	381 .
 
-:void-pp-72fe06ea73b09ecf	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_adverse_outcome> ;
+:void-pp-72fe06ea73b09ecf	void:property	<http://aopkb.org/aop_ontology#has_adverse_outcome> ;
 	void:triples	656 ;
 	void:classPartition	:void-ocp-4e4a44d40e9c3026 .
 
-:void-ocp-4e4a44d40e9c3026	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
+:void-ocp-4e4a44d40e9c3026	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
 	void:triples	656 .
 
-:void-pp-17bb0b61574b69ca	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_evidence> ;
+:void-pp-17bb0b61574b69ca	void:property	<http://aopkb.org/aop_ontology#has_evidence> ;
 	void:triples	216 ;
 	void-ext:datatypePartition	:void-dtp-4bc60198a88b957d .
 
-:void-dtp-4bc60198a88b957d	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-4bc60198a88b957d	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	216 .
 
-:void-pp-8ce110e066fc1321	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_key_event> ;
+:void-pp-8ce110e066fc1321	void:property	<http://aopkb.org/aop_ontology#has_key_event> ;
 	void:triples	3750 ;
 	void:classPartition	:void-ocp-843dc706cb6b5b01 .
 
-:void-ocp-843dc706cb6b5b01	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
+:void-ocp-843dc706cb6b5b01	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
 	void:triples	3750 .
 
-:void-pp-5cd590ace6924535	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_key_event_relationship> ;
+:void-pp-5cd590ace6924535	void:property	<http://aopkb.org/aop_ontology#has_key_event_relationship> ;
 	void:triples	3340 ;
 	void:classPartition	:void-ocp-4924817477fc0be7 .
 
-:void-ocp-4924817477fc0be7	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#KeyEventRelationship> ;
+:void-ocp-4924817477fc0be7	void:class	<http://aopkb.org/aop_ontology#KeyEventRelationship> ;
 	void:triples	3340 .
 
-:void-pp-255facf94e49f87a	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_molecular_initiating_event> ;
+:void-pp-255facf94e49f87a	void:property	<http://aopkb.org/aop_ontology#has_molecular_initiating_event> ;
 	void:triples	547 ;
 	void:classPartition	:void-ocp-5afab9235d162feb .
 
-:void-ocp-5afab9235d162feb	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
+:void-ocp-5afab9235d162feb	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
 	void:triples	547 .
 
-:void-pp-7bd0bf0d1a2a4dd7	a	void:Dataset ;
-	void:property	<http://edamontology.org/operation_3799> ;
+:void-pp-7bd0bf0d1a2a4dd7	void:property	<http://edamontology.org/operation_3799> ;
 	void:triples	173 ;
 	void-ext:datatypePartition	:void-dtp-81eaab89b2d101bd .
 
-:void-dtp-81eaab89b2d101bd	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-81eaab89b2d101bd	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	173 .
 
-:void-pp-5beb11e309b061d6	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25217> ;
+:void-pp-5beb11e309b061d6	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25217> ;
 	void:triples	200 ;
 	void-ext:datatypePartition	:void-dtp-5b0d20566c4e36c9 .
 
-:void-dtp-5b0d20566c4e36c9	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-5b0d20566c4e36c9	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	200 .
 
-:void-pp-66b9f7ef5766dfde	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25688> ;
+:void-pp-66b9f7ef5766dfde	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25688> ;
 	void:triples	152 ;
 	void-ext:datatypePartition	:void-dtp-c767c0621b0a57b4 .
 
-:void-dtp-c767c0621b0a57b4	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-c767c0621b0a57b4	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	152 .
 
-:void-pp-8d727cf8aab4c88a	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25725> ;
+:void-pp-8d727cf8aab4c88a	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25725> ;
 	void:triples	157 ;
 	void-ext:datatypePartition	:void-dtp-214e4569de4f4226 .
 
-:void-dtp-214e4569de4f4226	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-214e4569de4f4226	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	157 .
 
-:void-pp-a60d8a72e9711c56	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C48192> ;
+:void-pp-a60d8a72e9711c56	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C48192> ;
 	void:triples	221 ;
 	void-ext:datatypePartition	:void-dtp-e74d1373b5b05e58 .
 
-:void-dtp-e74d1373b5b05e58	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-e74d1373b5b05e58	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	221 .
 
-:void-pp-a6ad3ac31eda7781	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
+:void-pp-a6ad3ac31eda7781	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
 	void:triples	870 ;
 	void:classPartition	:void-ocp-194c16f578a79fcf .
 
-:void-ocp-194c16f578a79fcf	a	void:Dataset ;
-	void:class	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
+:void-ocp-194c16f578a79fcf	void:class	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
 	void:triples	870 .
 
-:void-pp-7feef2ad3ca625bc	a	void:Dataset ;
-	void:property	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
+:void-pp-7feef2ad3ca625bc	void:property	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
 	void:triples	839 ;
 	void:classPartition	:void-ocp-04b38d68820902a6 ;
 	void-ext:datatypePartition	:void-dtp-6c448ceb0c38e882 .
 
-:void-ocp-04b38d68820902a6	a	void:Dataset ;
-	void:class	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
+:void-ocp-04b38d68820902a6	void:class	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
 	void:triples	439 .
 
-:void-dtp-6c448ceb0c38e882	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-6c448ceb0c38e882	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	400 .
 
-:void-pp-c91f14d83b8ba9d5	a	void:Dataset ;
-	void:property	<http://purl.obolibrary.org/obo/PATO_0000047> ;
+:void-pp-c91f14d83b8ba9d5	void:property	<http://purl.obolibrary.org/obo/PATO_0000047> ;
 	void:triples	364 ;
 	void-ext:datatypePartition	:void-dtp-ecfd523db1148ad1 .
 
-:void-dtp-ecfd523db1148ad1	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-ecfd523db1148ad1	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	364 .
 
-:void-pp-ebce4378d4c8134d	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/creator> ;
+:void-pp-ebce4378d4c8134d	void:property	<http://purl.org/dc/elements/1.1/creator> ;
 	void:triples	451 ;
 	void-ext:datatypePartition	:void-dtp-facbd7be817ac3c8 .
 
-:void-dtp-facbd7be817ac3c8	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-facbd7be817ac3c8	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	451 .
 
-:void-pp-194bc6809aacdd82	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/description> ;
+:void-pp-194bc6809aacdd82	void:property	<http://purl.org/dc/elements/1.1/description> ;
 	void:triples	749 ;
 	void-ext:datatypePartition	:void-dtp-57f628a5d2263484 .
 
-:void-dtp-57f628a5d2263484	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-57f628a5d2263484	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	749 .
 
-:void-pp-e20ee2cd97f6a20b	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-e20ee2cd97f6a20b	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	600 ;
 	void:classPartition	:void-ocp-0274be009151338b .
 
-:void-ocp-0274be009151338b	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
+:void-ocp-0274be009151338b	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
 	void:triples	600 .
 
-:void-pp-e04c12a8eee14748	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-e04c12a8eee14748	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	600 ;
 	void-ext:datatypePartition	:void-dtp-99143e0fa8120d02 .
 
-:void-dtp-99143e0fa8120d02	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-99143e0fa8120d02	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	600 .
 
-:void-pp-ef05832a250b85e2	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/title> ;
+:void-pp-ef05832a250b85e2	void:property	<http://purl.org/dc/elements/1.1/title> ;
 	void:triples	600 ;
 	void-ext:datatypePartition	:void-dtp-1af3abf975ed849c .
 
-:void-dtp-1af3abf975ed849c	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-1af3abf975ed849c	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	600 .
 
-:void-pp-d697e7c08ad0ef7c	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/abstract> ;
+:void-pp-d697e7c08ad0ef7c	void:property	<http://purl.org/dc/terms/abstract> ;
 	void:triples	361 ;
 	void-ext:datatypePartition	:void-dtp-39fc52b9d1a1c579 .
 
-:void-dtp-39fc52b9d1a1c579	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-39fc52b9d1a1c579	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	361 .
 
-:void-pp-bc3fe732e21eadfe	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/alternative> ;
+:void-pp-bc3fe732e21eadfe	void:property	<http://purl.org/dc/terms/alternative> ;
 	void:triples	600 ;
 	void-ext:datatypePartition	:void-dtp-75f8b2ea348c7bec .
 
-:void-dtp-75f8b2ea348c7bec	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-75f8b2ea348c7bec	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	600 .
 
-:void-pp-f243429b6e6afee2	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/created> ;
+:void-pp-f243429b6e6afee2	void:property	<http://purl.org/dc/terms/created> ;
 	void:triples	600 ;
 	void-ext:datatypePartition	:void-dtp-12b5df98e6885f63 .
 
-:void-dtp-12b5df98e6885f63	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-12b5df98e6885f63	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	600 .
 
-:void-pp-c7298169a28f1e00	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/license> ;
+:void-pp-c7298169a28f1e00	void:property	<http://purl.org/dc/terms/license> ;
 	void:triples	530 .
 
-:void-pp-088f070041b17ed2	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/modified> ;
+:void-pp-088f070041b17ed2	void:property	<http://purl.org/dc/terms/modified> ;
 	void:triples	600 ;
 	void-ext:datatypePartition	:void-dtp-59704ff3290b3268 .
 
-:void-dtp-59704ff3290b3268	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-59704ff3290b3268	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	600 .
 
-:void-pp-ea14f984f93c50b4	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-ea14f984f93c50b4	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	600 .
 
-:void-pp-9f25cf496f80f6e6	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-9f25cf496f80f6e6	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	600 ;
 	void-ext:datatypePartition	:void-dtp-efcdc78102a16de5 .
 
-:void-dtp-efcdc78102a16de5	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-efcdc78102a16de5	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	600 .
 
-:void-pp-559743a1a8db4790	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
+:void-pp-559743a1a8db4790	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
 	void:triples	600 ;
 	void:classPartition	:void-ocp-5c89111969e11dee .
 
-:void-ocp-5c89111969e11dee	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
+:void-ocp-5c89111969e11dee	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
 	void:triples	600 .
 
-:void-pp-c256d47bce07aa44	a	void:Dataset ;
-	void:property	<http://xmlns.com/foaf/0.1/page> ;
+:void-pp-c256d47bce07aa44	void:property	<http://xmlns.com/foaf/0.1/page> ;
 	void:triples	600 ;
 	void:classPartition	:void-ocp-87c0d79004fba9cb .
 
-:void-ocp-87c0d79004fba9cb	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
+:void-ocp-87c0d79004fba9cb	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
 	void:triples	600 .
 
-:void-cp-c0a1c9d5f04373ad	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#BiologicalEvent> ;
+:void-cp-c0a1c9d5f04373ad	void:class	<http://aopkb.org/aop_ontology#BiologicalEvent> ;
 	void:entities	1123 ;
 	void:propertyPartition	:void-pp-b09ce1e8059415a3 ;
 	void:propertyPartition	:void-pp-5a509d9fb45844e7 ;
 	void:propertyPartition	:void-pp-0dca78d2670fc016 ;
 	void:propertyPartition	:void-pp-8e6e0a6048f56607 .
 
-:void-pp-b09ce1e8059415a3	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#hasAction> ;
+:void-pp-b09ce1e8059415a3	void:property	<http://aopkb.org/aop_ontology#hasAction> ;
 	void:triples	1123 ;
 	void-ext:datatypePartition	:void-dtp-9424480dc243597a .
 
-:void-dtp-9424480dc243597a	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-9424480dc243597a	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	1123 .
 
-:void-pp-5a509d9fb45844e7	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#hasObject> ;
+:void-pp-5a509d9fb45844e7	void:property	<http://aopkb.org/aop_ontology#hasObject> ;
 	void:triples	809 ;
 	void:classPartition	:void-ocp-59948210340ac082 ;
 	void:classPartition	:void-ocp-65dbe11323fdf407 ;
@@ -514,46 +451,36 @@
 	void:classPartition	:void-ocp-bf8e7fffa79d08c4 ;
 	void-ext:datatypePartition	:void-dtp-993f1133eeec49cd .
 
-:void-ocp-59948210340ac082	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
+:void-ocp-59948210340ac082	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
 	void:triples	62 .
 
-:void-ocp-65dbe11323fdf407	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
+:void-ocp-65dbe11323fdf407	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
 	void:triples	50 .
 
-:void-ocp-f509df4c046be81d	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/GO_0008150> ;
+:void-ocp-f509df4c046be81d	void:class	<http://purl.obolibrary.org/obo/GO_0008150> ;
 	void:triples	15 .
 
-:void-ocp-bf8e7fffa79d08c4	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+:void-ocp-bf8e7fffa79d08c4	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
 	void:triples	806 .
 
-:void-dtp-993f1133eeec49cd	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-993f1133eeec49cd	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	3 .
 
-:void-pp-0dca78d2670fc016	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#hasProcess> ;
+:void-pp-0dca78d2670fc016	void:property	<http://aopkb.org/aop_ontology#hasProcess> ;
 	void:triples	957 ;
 	void:classPartition	:void-ocp-f83ac39fb1164d95 ;
 	void:classPartition	:void-ocp-78ddf08ed7efeb29 .
 
-:void-ocp-f83ac39fb1164d95	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/GO_0008150> ;
+:void-ocp-f83ac39fb1164d95	void:class	<http://purl.obolibrary.org/obo/GO_0008150> ;
 	void:triples	957 .
 
-:void-ocp-78ddf08ed7efeb29	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+:void-ocp-78ddf08ed7efeb29	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
 	void:triples	7 .
 
-:void-pp-8e6e0a6048f56607	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-8e6e0a6048f56607	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	1123 .
 
-:void-cp-1d1e6fa8574d6f3e	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
+:void-cp-1d1e6fa8574d6f3e	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
 	void:entities	68 ;
 	void:propertyPartition	:void-pp-4b9aad181a903883 ;
 	void:propertyPartition	:void-pp-29007c12ad1e3359 ;
@@ -561,58 +488,46 @@
 	void:propertyPartition	:void-pp-fa30ac1899c4e499 ;
 	void:propertyPartition	:void-pp-b2dd8851f45daf61 .
 
-:void-pp-4b9aad181a903883	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-4b9aad181a903883	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	68 ;
 	void:classPartition	:void-ocp-0801af58e56417ba ;
 	void:classPartition	:void-ocp-d8811374f1aa3b2a ;
 	void:classPartition	:void-ocp-4f07fe208a1ac3fd .
 
-:void-ocp-0801af58e56417ba	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
+:void-ocp-0801af58e56417ba	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
 	void:triples	68 .
 
-:void-ocp-d8811374f1aa3b2a	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
+:void-ocp-d8811374f1aa3b2a	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
 	void:triples	1 .
 
-:void-ocp-4f07fe208a1ac3fd	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+:void-ocp-4f07fe208a1ac3fd	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
 	void:triples	33 .
 
-:void-pp-29007c12ad1e3359	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-29007c12ad1e3359	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	68 ;
 	void-ext:datatypePartition	:void-dtp-551b51ac27df2d7d .
 
-:void-dtp-551b51ac27df2d7d	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-551b51ac27df2d7d	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	68 .
 
-:void-pp-def7d32290479b9c	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/title> ;
+:void-pp-def7d32290479b9c	void:property	<http://purl.org/dc/elements/1.1/title> ;
 	void:triples	69 ;
 	void-ext:datatypePartition	:void-dtp-0bb35d524356fc52 .
 
-:void-dtp-0bb35d524356fc52	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-0bb35d524356fc52	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	69 .
 
-:void-pp-fa30ac1899c4e499	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-fa30ac1899c4e499	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	102 .
 
-:void-pp-b2dd8851f45daf61	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-b2dd8851f45daf61	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	69 ;
 	void-ext:datatypePartition	:void-dtp-f6c17880581972c6 .
 
-:void-dtp-f6c17880581972c6	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-f6c17880581972c6	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	69 .
 
-:void-cp-eaeee096646bdce3	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
+:void-cp-eaeee096646bdce3	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
 	void:entities	1602 ;
 	void:propertyPartition	:void-pp-7303812ad88545d7 ;
 	void:propertyPartition	:void-pp-53ca9a4ba22ba63f ;
@@ -640,161 +555,127 @@
 	void:propertyPartition	:void-pp-8ccf7b6817e8a4d2 ;
 	void:propertyPartition	:void-pp-a254ec4f93e8f2d9 .
 
-:void-pp-7303812ad88545d7	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#CellTypeContext> ;
+:void-pp-7303812ad88545d7	void:property	<http://aopkb.org/aop_ontology#CellTypeContext> ;
 	void:triples	429 ;
 	void:classPartition	:void-ocp-9109340cca39a962 ;
 	void:classPartition	:void-ocp-af88d134784f5f56 ;
 	void:classPartition	:void-ocp-f21027e9fb42b4d5 ;
 	void-ext:datatypePartition	:void-dtp-49874f2aba02654b .
 
-:void-ocp-9109340cca39a962	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
+:void-ocp-9109340cca39a962	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
 	void:triples	428 .
 
-:void-ocp-af88d134784f5f56	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
+:void-ocp-af88d134784f5f56	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
 	void:triples	1 .
 
-:void-ocp-f21027e9fb42b4d5	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+:void-ocp-f21027e9fb42b4d5	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
 	void:triples	202 .
 
-:void-dtp-49874f2aba02654b	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-49874f2aba02654b	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	1 .
 
-:void-pp-53ca9a4ba22ba63f	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#LifeStageContext> ;
+:void-pp-53ca9a4ba22ba63f	void:property	<http://aopkb.org/aop_ontology#LifeStageContext> ;
 	void:triples	579 ;
 	void-ext:datatypePartition	:void-dtp-084d02d0e699cab5 .
 
-:void-dtp-084d02d0e699cab5	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-084d02d0e699cab5	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	579 .
 
-:void-pp-26ec78b0e64600a3	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#OrganContext> ;
+:void-pp-26ec78b0e64600a3	void:property	<http://aopkb.org/aop_ontology#OrganContext> ;
 	void:triples	348 ;
 	void:classPartition	:void-ocp-b3480ca663e5516d ;
 	void:classPartition	:void-ocp-10bb0ca9e0af9121 ;
 	void:classPartition	:void-ocp-917d68b7b59ae28d ;
 	void-ext:datatypePartition	:void-dtp-3df43134650c4b69 .
 
-:void-ocp-b3480ca663e5516d	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
+:void-ocp-b3480ca663e5516d	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
 	void:triples	2 .
 
-:void-ocp-10bb0ca9e0af9121	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
+:void-ocp-10bb0ca9e0af9121	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
 	void:triples	347 .
 
-:void-ocp-917d68b7b59ae28d	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+:void-ocp-917d68b7b59ae28d	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
 	void:triples	219 .
 
-:void-dtp-3df43134650c4b69	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-3df43134650c4b69	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	1 .
 
-:void-pp-ae141393cb1e7dc5	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#hasBiologicalEvent> ;
+:void-pp-ae141393cb1e7dc5	void:property	<http://aopkb.org/aop_ontology#hasBiologicalEvent> ;
 	void:triples	1123 ;
 	void:classPartition	:void-ocp-c6af1f4e7452ff2a .
 
-:void-ocp-c6af1f4e7452ff2a	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#BiologicalEvent> ;
+:void-ocp-c6af1f4e7452ff2a	void:class	<http://aopkb.org/aop_ontology#BiologicalEvent> ;
 	void:triples	1123 .
 
-:void-pp-7a5973c01504d5ec	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_1025> ;
+:void-pp-7a5973c01504d5ec	void:property	<http://edamontology.org/data_1025> ;
 	void:triples	3869 ;
 	void:classPartition	:void-ocp-2a3fcdc8d9eedf7b ;
 	void:classPartition	:void-ocp-f7367bd42d5baa81 .
 
-:void-ocp-2a3fcdc8d9eedf7b	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1025> ;
+:void-ocp-2a3fcdc8d9eedf7b	void:class	<http://edamontology.org/data_1025> ;
 	void:triples	3869 .
 
-:void-ocp-f7367bd42d5baa81	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2298> ;
+:void-ocp-f7367bd42d5baa81	void:class	<http://edamontology.org/data_2298> ;
 	void:triples	3869 .
 
-:void-pp-b1d60b7bc95543f1	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C17469> ;
+:void-pp-b1d60b7bc95543f1	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C17469> ;
 	void:triples	528 ;
 	void-ext:datatypePartition	:void-dtp-8f2ee0a990ef408b .
 
-:void-dtp-8f2ee0a990ef408b	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-8f2ee0a990ef408b	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	528 .
 
-:void-pp-fa73095e5873d9b9	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25664> ;
+:void-pp-fa73095e5873d9b9	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25664> ;
 	void:triples	1602 ;
 	void-ext:datatypePartition	:void-dtp-90c92fc176a63a02 .
 
-:void-dtp-90c92fc176a63a02	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-90c92fc176a63a02	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	1602 .
 
-:void-pp-c102ccfaf34cf8ab	a	void:Dataset ;
-	void:property	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
+:void-pp-c102ccfaf34cf8ab	void:property	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
 	void:triples	1562 ;
 	void:classPartition	:void-ocp-a93f591f46c18a96 ;
 	void-ext:datatypePartition	:void-dtp-dd0a4abfc9e2bc18 .
 
-:void-ocp-a93f591f46c18a96	a	void:Dataset ;
-	void:class	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
+:void-ocp-a93f591f46c18a96	void:class	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
 	void:triples	815 .
 
-:void-dtp-dd0a4abfc9e2bc18	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-dd0a4abfc9e2bc18	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	747 .
 
-:void-pp-fbc16424550b3b06	a	void:Dataset ;
-	void:property	<http://purl.obolibrary.org/obo/GO_0008150> ;
+:void-pp-fbc16424550b3b06	void:property	<http://purl.obolibrary.org/obo/GO_0008150> ;
 	void:triples	914 ;
 	void:classPartition	:void-ocp-5c8cf1224fd3827f ;
 	void:classPartition	:void-ocp-bfb90aae4c0a3353 .
 
-:void-ocp-5c8cf1224fd3827f	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/GO_0008150> ;
+:void-ocp-5c8cf1224fd3827f	void:class	<http://purl.obolibrary.org/obo/GO_0008150> ;
 	void:triples	914 .
 
-:void-ocp-bfb90aae4c0a3353	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+:void-ocp-bfb90aae4c0a3353	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
 	void:triples	6 .
 
-:void-pp-cfa769fd56549305	a	void:Dataset ;
-	void:property	<http://purl.obolibrary.org/obo/MMO_0000000> ;
+:void-pp-cfa769fd56549305	void:property	<http://purl.obolibrary.org/obo/MMO_0000000> ;
 	void:triples	605 ;
 	void-ext:datatypePartition	:void-dtp-93ad4ec86c3e4f2c .
 
-:void-dtp-93ad4ec86c3e4f2c	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-93ad4ec86c3e4f2c	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	605 .
 
-:void-pp-b00c9e5943f146a9	a	void:Dataset ;
-	void:property	<http://purl.obolibrary.org/obo/PATO_0000001> ;
+:void-pp-b00c9e5943f146a9	void:property	<http://purl.obolibrary.org/obo/PATO_0000001> ;
 	void:triples	936 ;
 	void-ext:datatypePartition	:void-dtp-fccdb35a899d3d0f .
 
-:void-dtp-fccdb35a899d3d0f	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-fccdb35a899d3d0f	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	936 .
 
-:void-pp-bd17f647032849da	a	void:Dataset ;
-	void:property	<http://purl.obolibrary.org/obo/PATO_0000047> ;
+:void-pp-bd17f647032849da	void:property	<http://purl.obolibrary.org/obo/PATO_0000047> ;
 	void:triples	537 ;
 	void-ext:datatypePartition	:void-dtp-aef2ed258ba235b9 .
 
-:void-dtp-aef2ed258ba235b9	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-aef2ed258ba235b9	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	537 .
 
-:void-pp-4427c5073f7ae654	a	void:Dataset ;
-	void:property	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+:void-pp-4427c5073f7ae654	void:property	<http://purl.obolibrary.org/obo/PATO_0001241> ;
 	void:triples	764 ;
 	void:classPartition	:void-ocp-29447786462e2dee ;
 	void:classPartition	:void-ocp-0d7452ba05586d4e ;
@@ -802,141 +683,110 @@
 	void:classPartition	:void-ocp-ab13ced370572988 ;
 	void-ext:datatypePartition	:void-dtp-7231e0605eb5ce9c .
 
-:void-ocp-29447786462e2dee	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
+:void-ocp-29447786462e2dee	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
 	void:triples	60 .
 
-:void-ocp-0d7452ba05586d4e	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
+:void-ocp-0d7452ba05586d4e	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
 	void:triples	48 .
 
-:void-ocp-66bf3a5078c73e5d	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/GO_0008150> ;
+:void-ocp-66bf3a5078c73e5d	void:class	<http://purl.obolibrary.org/obo/GO_0008150> ;
 	void:triples	14 .
 
-:void-ocp-ab13ced370572988	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+:void-ocp-ab13ced370572988	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
 	void:triples	761 .
 
-:void-dtp-7231e0605eb5ce9c	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-7231e0605eb5ce9c	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	3 .
 
-:void-pp-2e5c1b8e2adcbcd7	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/description> ;
+:void-pp-2e5c1b8e2adcbcd7	void:property	<http://purl.org/dc/elements/1.1/description> ;
 	void:triples	640 ;
 	void-ext:datatypePartition	:void-dtp-3142364f2fbd6c7e .
 
-:void-dtp-3142364f2fbd6c7e	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-3142364f2fbd6c7e	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	640 .
 
-:void-pp-21f97a155e0b18a5	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-21f97a155e0b18a5	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	1602 ;
 	void:classPartition	:void-ocp-f7342b8483459e08 .
 
-:void-ocp-f7342b8483459e08	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
+:void-ocp-f7342b8483459e08	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
 	void:triples	1602 .
 
-:void-pp-b75bb25fd214c390	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-b75bb25fd214c390	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	1602 ;
 	void-ext:datatypePartition	:void-dtp-29904973aaddd42a .
 
-:void-dtp-29904973aaddd42a	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-29904973aaddd42a	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	1602 .
 
-:void-pp-29949b81069e8188	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/title> ;
+:void-pp-29949b81069e8188	void:property	<http://purl.org/dc/elements/1.1/title> ;
 	void:triples	1602 ;
 	void-ext:datatypePartition	:void-dtp-864fa416030c9116 .
 
-:void-dtp-864fa416030c9116	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-864fa416030c9116	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	1602 .
 
-:void-pp-45bf8da96fadeb9b	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/alternative> ;
+:void-pp-45bf8da96fadeb9b	void:property	<http://purl.org/dc/terms/alternative> ;
 	void:triples	1602 ;
 	void-ext:datatypePartition	:void-dtp-578320fd523e335f .
 
-:void-dtp-578320fd523e335f	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-578320fd523e335f	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	1602 .
 
-:void-pp-19dbd40bce895175	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/isPartOf> ;
+:void-pp-19dbd40bce895175	void:property	<http://purl.org/dc/terms/isPartOf> ;
 	void:triples	3750 ;
 	void:classPartition	:void-ocp-9205e032406d4e0f .
 
-:void-ocp-9205e032406d4e0f	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
+:void-ocp-9205e032406d4e0f	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
 	void:triples	3750 .
 
-:void-pp-dbad541a940c49eb	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-dbad541a940c49eb	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	1602 .
 
-:void-pp-b7799d49c52ce86a	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-b7799d49c52ce86a	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	1602 ;
 	void-ext:datatypePartition	:void-dtp-1e92497f04d3ed56 .
 
-:void-dtp-1e92497f04d3ed56	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-1e92497f04d3ed56	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	1602 .
 
-:void-pp-caedfa893cb0096e	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
+:void-pp-caedfa893cb0096e	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
 	void:triples	1602 ;
 	void:classPartition	:void-ocp-1b92b4babd0ea355 .
 
-:void-ocp-1b92b4babd0ea355	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
+:void-ocp-1b92b4babd0ea355	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
 	void:triples	1602 .
 
-:void-pp-8170dd36028e11ad	a	void:Dataset ;
-	void:property	<http://xmlns.com/foaf/0.1/page> ;
+:void-pp-8170dd36028e11ad	void:property	<http://xmlns.com/foaf/0.1/page> ;
 	void:triples	1602 ;
 	void:classPartition	:void-ocp-ebec55ce4ec9a917 .
 
-:void-ocp-ebec55ce4ec9a917	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
+:void-ocp-ebec55ce4ec9a917	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
 	void:triples	1602 .
 
-:void-pp-8ccf7b6817e8a4d2	a	void:Dataset ;
-	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByNER> ;
+:void-pp-8ccf7b6817e8a4d2	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByNER> ;
 	void:triples	3683 ;
 	void:classPartition	:void-ocp-1be619628c8cc407 ;
 	void:classPartition	:void-ocp-7454afbfd284d792 .
 
-:void-ocp-1be619628c8cc407	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1025> ;
+:void-ocp-1be619628c8cc407	void:class	<http://edamontology.org/data_1025> ;
 	void:triples	3683 .
 
-:void-ocp-7454afbfd284d792	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2298> ;
+:void-ocp-7454afbfd284d792	void:class	<http://edamontology.org/data_2298> ;
 	void:triples	3683 .
 
-:void-pp-a254ec4f93e8f2d9	a	void:Dataset ;
-	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByRegex> ;
+:void-pp-a254ec4f93e8f2d9	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByRegex> ;
 	void:triples	1264 ;
 	void:classPartition	:void-ocp-45004c93fd339f93 ;
 	void:classPartition	:void-ocp-5d661238c0fa26f7 .
 
-:void-ocp-45004c93fd339f93	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1025> ;
+:void-ocp-45004c93fd339f93	void:class	<http://edamontology.org/data_1025> ;
 	void:triples	1264 .
 
-:void-ocp-5d661238c0fa26f7	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2298> ;
+:void-ocp-5d661238c0fa26f7	void:class	<http://edamontology.org/data_2298> ;
 	void:triples	1264 .
 
-:void-cp-ccc014ec9a1d9442	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#KeyEventRelationship> ;
+:void-cp-ccc014ec9a1d9442	void:class	<http://aopkb.org/aop_ontology#KeyEventRelationship> ;
 	void:entities	2381 ;
 	void:propertyPartition	:void-pp-b4f0345e7e244e6d ;
 	void:propertyPartition	:void-pp-bead9f99104b2555 ;
@@ -966,266 +816,208 @@
 	void:propertyPartition	:void-pp-6514c5be0a831dca ;
 	void:propertyPartition	:void-pp-4a966749a05715fa .
 
-:void-pp-b4f0345e7e244e6d	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#LifeStageContext> ;
+:void-pp-b4f0345e7e244e6d	void:property	<http://aopkb.org/aop_ontology#LifeStageContext> ;
 	void:triples	715 ;
 	void-ext:datatypePartition	:void-dtp-7868397de20f6332 .
 
-:void-dtp-7868397de20f6332	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-7868397de20f6332	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	715 .
 
-:void-pp-bead9f99104b2555	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_downstream_key_event> ;
+:void-pp-bead9f99104b2555	void:property	<http://aopkb.org/aop_ontology#has_downstream_key_event> ;
 	void:triples	2381 ;
 	void:classPartition	:void-ocp-e3dd78f759f70b49 .
 
-:void-ocp-e3dd78f759f70b49	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
+:void-ocp-e3dd78f759f70b49	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
 	void:triples	2381 .
 
-:void-pp-40ebc95d0ea2e1e8	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_upstream_key_event> ;
+:void-pp-40ebc95d0ea2e1e8	void:property	<http://aopkb.org/aop_ontology#has_upstream_key_event> ;
 	void:triples	2381 ;
 	void:classPartition	:void-ocp-4ff278fcd506ba6e .
 
-:void-ocp-4ff278fcd506ba6e	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
+:void-ocp-4ff278fcd506ba6e	void:class	<http://aopkb.org/aop_ontology#KeyEvent> ;
 	void:triples	2381 .
 
-:void-pp-31dfd1a225d05741	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_1025> ;
+:void-pp-31dfd1a225d05741	void:property	<http://edamontology.org/data_1025> ;
 	void:triples	6810 ;
 	void:classPartition	:void-ocp-d19116d3eae7b64a ;
 	void:classPartition	:void-ocp-7f1ade9c2025d2f7 .
 
-:void-ocp-d19116d3eae7b64a	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1025> ;
+:void-ocp-d19116d3eae7b64a	void:class	<http://edamontology.org/data_1025> ;
 	void:triples	6810 .
 
-:void-ocp-7f1ade9c2025d2f7	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2298> ;
+:void-ocp-7f1ade9c2025d2f7	void:class	<http://edamontology.org/data_2298> ;
 	void:triples	6810 .
 
-:void-pp-43309ba2ef7ad938	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_2042> ;
+:void-pp-43309ba2ef7ad938	void:property	<http://edamontology.org/data_2042> ;
 	void:triples	706 ;
 	void-ext:datatypePartition	:void-dtp-61d14e72b8aeb144 .
 
-:void-dtp-61d14e72b8aeb144	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-61d14e72b8aeb144	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	706 .
 
-:void-pp-c272cac5d1eb8997	a	void:Dataset ;
-	void:property	<http://edamontology.org/operation_3438> ;
+:void-pp-c272cac5d1eb8997	void:property	<http://edamontology.org/operation_3438> ;
 	void:triples	261 ;
 	void-ext:datatypePartition	:void-dtp-69cfc06548760555 .
 
-:void-dtp-69cfc06548760555	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-69cfc06548760555	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	261 .
 
-:void-pp-3c4aa64faa31f1c7	a	void:Dataset ;
-	void:property	<http://edamontology.org/operation_3799> ;
+:void-pp-3c4aa64faa31f1c7	void:property	<http://edamontology.org/operation_3799> ;
 	void:triples	436 ;
 	void-ext:datatypePartition	:void-dtp-8420f9038117e5a5 .
 
-:void-dtp-8420f9038117e5a5	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-8420f9038117e5a5	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	436 .
 
-:void-pp-5a2d780aa3755d56	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C103159> ;
+:void-pp-5a2d780aa3755d56	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C103159> ;
 	void:triples	292 ;
 	void-ext:datatypePartition	:void-dtp-17c11e1a8a1fbe5c .
 
-:void-dtp-17c11e1a8a1fbe5c	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-17c11e1a8a1fbe5c	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	292 .
 
-:void-pp-f96efee69035a3b0	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C17469> ;
+:void-pp-f96efee69035a3b0	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C17469> ;
 	void:triples	578 ;
 	void-ext:datatypePartition	:void-dtp-5d2639096647906a .
 
-:void-dtp-5d2639096647906a	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-5d2639096647906a	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	578 .
 
-:void-pp-80222f1061c6069c	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25207> ;
+:void-pp-80222f1061c6069c	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25207> ;
 	void:triples	264 ;
 	void-ext:datatypePartition	:void-dtp-64800be8e5f2eeef .
 
-:void-dtp-64800be8e5f2eeef	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-64800be8e5f2eeef	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	264 .
 
-:void-pp-b3542e94577e35ed	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25343> ;
+:void-pp-b3542e94577e35ed	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25343> ;
 	void:triples	251 ;
 	void-ext:datatypePartition	:void-dtp-c4f6e8a5b83d2a14 .
 
-:void-dtp-c4f6e8a5b83d2a14	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-c4f6e8a5b83d2a14	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	251 .
 
-:void-pp-1c3f03c6faa8a17f	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C68821> ;
+:void-pp-1c3f03c6faa8a17f	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C68821> ;
 	void:triples	252 ;
 	void-ext:datatypePartition	:void-dtp-8ba8b919f7cc32dc .
 
-:void-dtp-8ba8b919f7cc32dc	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-8ba8b919f7cc32dc	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	252 .
 
-:void-pp-49edff6764206fbc	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C71478> ;
+:void-pp-49edff6764206fbc	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C71478> ;
 	void:triples	596 ;
 	void-ext:datatypePartition	:void-dtp-5ef18c59b663b350 .
 
-:void-dtp-5ef18c59b663b350	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-5ef18c59b663b350	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	596 .
 
-:void-pp-f1d0f08269f65d19	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C80263> ;
+:void-pp-f1d0f08269f65d19	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C80263> ;
 	void:triples	722 ;
 	void-ext:datatypePartition	:void-dtp-965cc0aceacd861a .
 
-:void-dtp-965cc0aceacd861a	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-965cc0aceacd861a	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	722 .
 
-:void-pp-4fab426073fa10fc	a	void:Dataset ;
-	void:property	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
+:void-pp-4fab426073fa10fc	void:property	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
 	void:triples	1632 ;
 	void:classPartition	:void-ocp-783299a25106c445 ;
 	void-ext:datatypePartition	:void-dtp-73011978144dd338 .
 
-:void-ocp-783299a25106c445	a	void:Dataset ;
-	void:class	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
+:void-ocp-783299a25106c445	void:class	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
 	void:triples	806 .
 
-:void-dtp-73011978144dd338	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-73011978144dd338	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	826 .
 
-:void-pp-66c59ecc05cddab2	a	void:Dataset ;
-	void:property	<http://purl.obolibrary.org/obo/PATO_0000047> ;
+:void-pp-66c59ecc05cddab2	void:property	<http://purl.obolibrary.org/obo/PATO_0000047> ;
 	void:triples	716 ;
 	void-ext:datatypePartition	:void-dtp-a42440ec39b986c4 .
 
-:void-dtp-a42440ec39b986c4	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-a42440ec39b986c4	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	716 .
 
-:void-pp-cbffef2452bcff6d	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/description> ;
+:void-pp-cbffef2452bcff6d	void:property	<http://purl.org/dc/elements/1.1/description> ;
 	void:triples	727 ;
 	void-ext:datatypePartition	:void-dtp-4ed5afcc3f42aee8 .
 
-:void-dtp-4ed5afcc3f42aee8	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-4ed5afcc3f42aee8	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	727 .
 
-:void-pp-d8d7dfdf37b5988f	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-d8d7dfdf37b5988f	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	2381 ;
 	void:classPartition	:void-ocp-669c007842dd08a3 .
 
-:void-ocp-669c007842dd08a3	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#KeyEventRelationship> ;
+:void-ocp-669c007842dd08a3	void:class	<http://aopkb.org/aop_ontology#KeyEventRelationship> ;
 	void:triples	2381 .
 
-:void-pp-d11bcf851704340d	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/created> ;
+:void-pp-d11bcf851704340d	void:property	<http://purl.org/dc/terms/created> ;
 	void:triples	2381 ;
 	void-ext:datatypePartition	:void-dtp-58be527863353be8 .
 
-:void-dtp-58be527863353be8	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-58be527863353be8	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2381 .
 
-:void-pp-4ac8291c060e29dd	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/isPartOf> ;
+:void-pp-4ac8291c060e29dd	void:property	<http://purl.org/dc/terms/isPartOf> ;
 	void:triples	3340 ;
 	void:classPartition	:void-ocp-1c415a05f9ea9b2a .
 
-:void-ocp-1c415a05f9ea9b2a	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
+:void-ocp-1c415a05f9ea9b2a	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
 	void:triples	3340 .
 
-:void-pp-3bbc370dd9428b73	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/modified> ;
+:void-pp-3bbc370dd9428b73	void:property	<http://purl.org/dc/terms/modified> ;
 	void:triples	2381 ;
 	void-ext:datatypePartition	:void-dtp-b6f8ad037ef6eace .
 
-:void-dtp-b6f8ad037ef6eace	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-b6f8ad037ef6eace	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2381 .
 
-:void-pp-1acf77da152047b0	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-1acf77da152047b0	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	2381 .
 
-:void-pp-4b40f26dc3f89594	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-4b40f26dc3f89594	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	2381 ;
 	void-ext:datatypePartition	:void-dtp-11f3387324fc44f1 .
 
-:void-dtp-11f3387324fc44f1	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-11f3387324fc44f1	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2381 .
 
-:void-pp-005c3a2e84528da2	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
+:void-pp-005c3a2e84528da2	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
 	void:triples	2381 ;
 	void:classPartition	:void-ocp-a2faaf9fb67705c1 .
 
-:void-ocp-a2faaf9fb67705c1	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#KeyEventRelationship> ;
+:void-ocp-a2faaf9fb67705c1	void:class	<http://aopkb.org/aop_ontology#KeyEventRelationship> ;
 	void:triples	2381 .
 
-:void-pp-bd55b6c0b0e7f2f5	a	void:Dataset ;
-	void:property	<http://xmlns.com/foaf/0.1/page> ;
+:void-pp-bd55b6c0b0e7f2f5	void:property	<http://xmlns.com/foaf/0.1/page> ;
 	void:triples	2381 ;
 	void:classPartition	:void-ocp-10a5648f22996a7d .
 
-:void-ocp-10a5648f22996a7d	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#KeyEventRelationship> ;
+:void-ocp-10a5648f22996a7d	void:class	<http://aopkb.org/aop_ontology#KeyEventRelationship> ;
 	void:triples	2381 .
 
-:void-pp-6514c5be0a831dca	a	void:Dataset ;
-	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByNER> ;
+:void-pp-6514c5be0a831dca	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByNER> ;
 	void:triples	6391 ;
 	void:classPartition	:void-ocp-14eeff5e990f8310 ;
 	void:classPartition	:void-ocp-46a0028a2e4fb8a7 .
 
-:void-ocp-14eeff5e990f8310	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1025> ;
+:void-ocp-14eeff5e990f8310	void:class	<http://edamontology.org/data_1025> ;
 	void:triples	6391 .
 
-:void-ocp-46a0028a2e4fb8a7	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2298> ;
+:void-ocp-46a0028a2e4fb8a7	void:class	<http://edamontology.org/data_2298> ;
 	void:triples	6391 .
 
-:void-pp-4a966749a05715fa	a	void:Dataset ;
-	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByRegex> ;
+:void-pp-4a966749a05715fa	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByRegex> ;
 	void:triples	2258 ;
 	void:classPartition	:void-ocp-25e22cb7b2b277ef ;
 	void:classPartition	:void-ocp-54e1326a5ae00d4f .
 
-:void-ocp-25e22cb7b2b277ef	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1025> ;
+:void-ocp-25e22cb7b2b277ef	void:class	<http://edamontology.org/data_1025> ;
 	void:triples	2258 .
 
-:void-ocp-54e1326a5ae00d4f	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2298> ;
+:void-ocp-54e1326a5ae00d4f	void:class	<http://edamontology.org/data_2298> ;
 	void:triples	2258 .
 
-:void-cp-45b105c50647a68b	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
+:void-cp-45b105c50647a68b	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
 	void:entities	98 ;
 	void:propertyPartition	:void-pp-f4d73a8aff893671 ;
 	void:propertyPartition	:void-pp-5fe4a4dcfb175f16 ;
@@ -1233,58 +1025,46 @@
 	void:propertyPartition	:void-pp-5770dbec4e5caa13 ;
 	void:propertyPartition	:void-pp-1cca8a19126b3e7d .
 
-:void-pp-f4d73a8aff893671	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-f4d73a8aff893671	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	98 ;
 	void:classPartition	:void-ocp-5349d9a96ae3917b ;
 	void:classPartition	:void-ocp-77a9124d0bfce742 ;
 	void:classPartition	:void-ocp-6be3d6f6889b094c .
 
-:void-ocp-5349d9a96ae3917b	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
+:void-ocp-5349d9a96ae3917b	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
 	void:triples	1 .
 
-:void-ocp-77a9124d0bfce742	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
+:void-ocp-77a9124d0bfce742	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
 	void:triples	98 .
 
-:void-ocp-6be3d6f6889b094c	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+:void-ocp-6be3d6f6889b094c	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
 	void:triples	33 .
 
-:void-pp-5fe4a4dcfb175f16	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-5fe4a4dcfb175f16	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	98 ;
 	void-ext:datatypePartition	:void-dtp-8569a99511fe8e6c .
 
-:void-dtp-8569a99511fe8e6c	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-8569a99511fe8e6c	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	98 .
 
-:void-pp-c21a2b9910daf85f	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/title> ;
+:void-pp-c21a2b9910daf85f	void:property	<http://purl.org/dc/elements/1.1/title> ;
 	void:triples	99 ;
 	void-ext:datatypePartition	:void-dtp-b844133249aff022 .
 
-:void-dtp-b844133249aff022	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-b844133249aff022	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	99 .
 
-:void-pp-5770dbec4e5caa13	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-5770dbec4e5caa13	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	132 .
 
-:void-pp-1cca8a19126b3e7d	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-1cca8a19126b3e7d	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	99 ;
 	void-ext:datatypePartition	:void-dtp-4712c8fa422f79f7 .
 
-:void-dtp-4712c8fa422f79f7	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-4712c8fa422f79f7	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	99 .
 
-:void-cp-bb1bc8424b232908	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1025> ;
+:void-cp-bb1bc8424b232908	void:class	<http://edamontology.org/data_1025> ;
 	void:entities	23201 ;
 	void:propertyPartition	:void-pp-0620807671726508 ;
 	void:propertyPartition	:void-pp-8dc7d7d06031dc8b ;
@@ -1298,127 +1078,100 @@
 	void:propertyPartition	:void-pp-a0b1935166e295d5 ;
 	void:propertyPartition	:void-pp-6f48743ababee65e .
 
-:void-pp-0620807671726508	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_1027> ;
+:void-pp-0620807671726508	void:property	<http://edamontology.org/data_1027> ;
 	void:triples	2916 ;
 	void-ext:datatypePartition	:void-dtp-f327bd5f3e74cdce .
 
-:void-dtp-f327bd5f3e74cdce	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-f327bd5f3e74cdce	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2916 .
 
-:void-pp-8dc7d7d06031dc8b	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_1033> ;
+:void-pp-8dc7d7d06031dc8b	void:property	<http://edamontology.org/data_1033> ;
 	void:triples	2851 ;
 	void-ext:datatypePartition	:void-dtp-47b3323075b6816a .
 
-:void-dtp-47b3323075b6816a	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-47b3323075b6816a	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2851 .
 
-:void-pp-722a9960d18c714b	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_2291> ;
+:void-pp-722a9960d18c714b	void:property	<http://edamontology.org/data_2291> ;
 	void:triples	14562 ;
 	void-ext:datatypePartition	:void-dtp-4ea13020034bc301 .
 
-:void-dtp-4ea13020034bc301	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-4ea13020034bc301	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	14562 .
 
-:void-pp-1385ac11cccf3134	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_2298> ;
+:void-pp-1385ac11cccf3134	void:property	<http://edamontology.org/data_2298> ;
 	void:triples	2872 ;
 	void-ext:datatypePartition	:void-dtp-997eb3aacda13b46 .
 
-:void-dtp-997eb3aacda13b46	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-997eb3aacda13b46	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2872 .
 
-:void-pp-f05608a68732730b	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-f05608a68732730b	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	23201 ;
 	void-ext:datatypePartition	:void-dtp-dd6ba083f33b225c .
 
-:void-dtp-dd6ba083f33b225c	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-dd6ba083f33b225c	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	23201 .
 
-:void-pp-f9f674ca1ea977c1	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-f9f674ca1ea977c1	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	23201 ;
 	void-ext:datatypePartition	:void-dtp-0a1a7d0804a85cc2 .
 
-:void-dtp-0a1a7d0804a85cc2	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-0a1a7d0804a85cc2	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	23201 .
 
-:void-pp-ddbfddb22ac1c907	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-ddbfddb22ac1c907	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	46402 .
 
-:void-pp-38b690023ec4291f	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-38b690023ec4291f	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	22766 ;
 	void-ext:datatypePartition	:void-dtp-2b34f350622efc72 .
 
-:void-dtp-2b34f350622efc72	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-2b34f350622efc72	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	22766 .
 
-:void-pp-efb098cecde2ddf7	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
+:void-pp-efb098cecde2ddf7	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
 	void:triples	501 .
 
-:void-pp-a0b1935166e295d5	a	void:Dataset ;
-	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
+:void-pp-a0b1935166e295d5	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
 	void:triples	20402 ;
 	void:classPartition	:void-ocp-2dff49a5cf049a0b ;
 	void:classPartition	:void-ocp-62d3ea6bae8fd0f0 ;
 	void:classPartition	:void-ocp-f7c1e86c124692f2 ;
 	void:classPartition	:void-ocp-ee6b84305df29413 .
 
-:void-ocp-2dff49a5cf049a0b	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1025> ;
+:void-ocp-2dff49a5cf049a0b	void:class	<http://edamontology.org/data_1025> ;
 	void:triples	19901 .
 
-:void-ocp-62d3ea6bae8fd0f0	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1027> ;
+:void-ocp-62d3ea6bae8fd0f0	void:class	<http://edamontology.org/data_1027> ;
 	void:triples	2874 .
 
-:void-ocp-f7c1e86c124692f2	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1033> ;
+:void-ocp-f7c1e86c124692f2	void:class	<http://edamontology.org/data_1033> ;
 	void:triples	2851 .
 
-:void-ocp-ee6b84305df29413	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2291> ;
+:void-ocp-ee6b84305df29413	void:class	<http://edamontology.org/data_2291> ;
 	void:triples	14176 .
 
-:void-pp-6f48743ababee65e	a	void:Dataset ;
-	void:property	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+:void-pp-6f48743ababee65e	void:property	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
 	void:triples	19901 ;
 	void:classPartition	:void-ocp-9a732bbb6f685cfd ;
 	void:classPartition	:void-ocp-fa32ee4ab535b3a9 ;
 	void:classPartition	:void-ocp-18b3d169fbf2dbed ;
 	void:classPartition	:void-ocp-61cf1f2e8efd9dd5 .
 
-:void-ocp-9a732bbb6f685cfd	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1025> ;
+:void-ocp-9a732bbb6f685cfd	void:class	<http://edamontology.org/data_1025> ;
 	void:triples	19901 .
 
-:void-ocp-fa32ee4ab535b3a9	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1027> ;
+:void-ocp-fa32ee4ab535b3a9	void:class	<http://edamontology.org/data_1027> ;
 	void:triples	2874 .
 
-:void-ocp-18b3d169fbf2dbed	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1033> ;
+:void-ocp-18b3d169fbf2dbed	void:class	<http://edamontology.org/data_1033> ;
 	void:triples	2851 .
 
-:void-ocp-61cf1f2e8efd9dd5	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2291> ;
+:void-ocp-61cf1f2e8efd9dd5	void:class	<http://edamontology.org/data_2291> ;
 	void:triples	14176 .
 
-:void-cp-8d21a9219a790934	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1027> ;
+:void-cp-8d21a9219a790934	void:class	<http://edamontology.org/data_1027> ;
 	void:entities	2916 ;
 	void:propertyPartition	:void-pp-738585bdbca33667 ;
 	void:propertyPartition	:void-pp-eca488bd9dce1d76 ;
@@ -1426,48 +1179,38 @@
 	void:propertyPartition	:void-pp-67478ea3c268f166 ;
 	void:propertyPartition	:void-pp-8ca9b671811a2132 .
 
-:void-pp-738585bdbca33667	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_1027> ;
+:void-pp-738585bdbca33667	void:property	<http://edamontology.org/data_1027> ;
 	void:triples	2916 ;
 	void-ext:datatypePartition	:void-dtp-817535804635e70e .
 
-:void-dtp-817535804635e70e	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-817535804635e70e	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2916 .
 
-:void-pp-eca488bd9dce1d76	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-eca488bd9dce1d76	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	2916 ;
 	void-ext:datatypePartition	:void-dtp-9855fb4a17718daf .
 
-:void-dtp-9855fb4a17718daf	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-9855fb4a17718daf	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2916 .
 
-:void-pp-d9a8dbe8b3278a55	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-d9a8dbe8b3278a55	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	2916 ;
 	void-ext:datatypePartition	:void-dtp-50f748d74d1fdf02 .
 
-:void-dtp-50f748d74d1fdf02	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-50f748d74d1fdf02	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2916 .
 
-:void-pp-67478ea3c268f166	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-67478ea3c268f166	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	5832 .
 
-:void-pp-8ca9b671811a2132	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-8ca9b671811a2132	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	2872 ;
 	void-ext:datatypePartition	:void-dtp-1388ce05012a2df0 .
 
-:void-dtp-1388ce05012a2df0	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-1388ce05012a2df0	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2872 .
 
-:void-cp-c17b3ea26ef579dd	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1033> ;
+:void-cp-c17b3ea26ef579dd	void:class	<http://edamontology.org/data_1033> ;
 	void:entities	2851 ;
 	void:propertyPartition	:void-pp-8de5f83e81234cc0 ;
 	void:propertyPartition	:void-pp-e1da3de58f56465e ;
@@ -1475,48 +1218,38 @@
 	void:propertyPartition	:void-pp-5bee56a30502ba15 ;
 	void:propertyPartition	:void-pp-45f746f4e6aabe43 .
 
-:void-pp-8de5f83e81234cc0	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_1033> ;
+:void-pp-8de5f83e81234cc0	void:property	<http://edamontology.org/data_1033> ;
 	void:triples	2851 ;
 	void-ext:datatypePartition	:void-dtp-6936404eb674528a .
 
-:void-dtp-6936404eb674528a	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-6936404eb674528a	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2851 .
 
-:void-pp-e1da3de58f56465e	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-e1da3de58f56465e	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	2851 ;
 	void-ext:datatypePartition	:void-dtp-6618c3fb1766906b .
 
-:void-dtp-6618c3fb1766906b	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-6618c3fb1766906b	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2851 .
 
-:void-pp-99515f15a330b932	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-99515f15a330b932	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	2851 ;
 	void-ext:datatypePartition	:void-dtp-addedcbd7e80cc23 .
 
-:void-dtp-addedcbd7e80cc23	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-addedcbd7e80cc23	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2851 .
 
-:void-pp-5bee56a30502ba15	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-5bee56a30502ba15	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	5702 .
 
-:void-pp-45f746f4e6aabe43	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-45f746f4e6aabe43	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	2851 ;
 	void-ext:datatypePartition	:void-dtp-fd8f5d333fa44c15 .
 
-:void-dtp-fd8f5d333fa44c15	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-fd8f5d333fa44c15	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2851 .
 
-:void-cp-e12dabbc8f4a7eb4	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2291> ;
+:void-cp-e12dabbc8f4a7eb4	void:class	<http://edamontology.org/data_2291> ;
 	void:entities	14562 ;
 	void:propertyPartition	:void-pp-2b53d1f76061420d ;
 	void:propertyPartition	:void-pp-85515feaa5ce9c6d ;
@@ -1526,56 +1259,44 @@
 	void:propertyPartition	:void-pp-843d99e4c5327bdc ;
 	void:propertyPartition	:void-pp-814114911187c2d0 .
 
-:void-pp-2b53d1f76061420d	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_2291> ;
+:void-pp-2b53d1f76061420d	void:property	<http://edamontology.org/data_2291> ;
 	void:triples	14562 ;
 	void-ext:datatypePartition	:void-dtp-3fef54d41b12c2c0 .
 
-:void-dtp-3fef54d41b12c2c0	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-3fef54d41b12c2c0	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	14562 .
 
-:void-pp-85515feaa5ce9c6d	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-85515feaa5ce9c6d	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	14562 ;
 	void-ext:datatypePartition	:void-dtp-c81a1f0ae627874e .
 
-:void-dtp-c81a1f0ae627874e	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-c81a1f0ae627874e	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	14562 .
 
-:void-pp-d94c17b876abd1f5	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-d94c17b876abd1f5	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	14562 ;
 	void-ext:datatypePartition	:void-dtp-f48e12d7d67288d0 .
 
-:void-dtp-f48e12d7d67288d0	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-f48e12d7d67288d0	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	14562 .
 
-:void-pp-8d7138cc87cbde24	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-8d7138cc87cbde24	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	29124 .
 
-:void-pp-7d09193d5b72452f	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-7d09193d5b72452f	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	14171 ;
 	void-ext:datatypePartition	:void-dtp-1687c9b3e2251e2a .
 
-:void-dtp-1687c9b3e2251e2a	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-1687c9b3e2251e2a	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	14171 .
 
-:void-pp-843d99e4c5327bdc	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
+:void-pp-843d99e4c5327bdc	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
 	void:triples	501 .
 
-:void-pp-814114911187c2d0	a	void:Dataset ;
-	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
+:void-pp-814114911187c2d0	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
 	void:triples	501 .
 
-:void-cp-256e6d864d94bcbf	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2298> ;
+:void-cp-256e6d864d94bcbf	void:class	<http://edamontology.org/data_2298> ;
 	void:entities	2872 ;
 	void:propertyPartition	:void-pp-2d1b3759a591e40e ;
 	void:propertyPartition	:void-pp-6deb71f64f2a0a26 ;
@@ -1585,96 +1306,76 @@
 	void:propertyPartition	:void-pp-435acd9bc5c1e804 ;
 	void:propertyPartition	:void-pp-ae7c43e282a41aa5 .
 
-:void-pp-2d1b3759a591e40e	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_2298> ;
+:void-pp-2d1b3759a591e40e	void:property	<http://edamontology.org/data_2298> ;
 	void:triples	2872 ;
 	void-ext:datatypePartition	:void-dtp-8507c64238806338 .
 
-:void-dtp-8507c64238806338	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-8507c64238806338	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2872 .
 
-:void-pp-6deb71f64f2a0a26	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-6deb71f64f2a0a26	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	2872 ;
 	void-ext:datatypePartition	:void-dtp-67fe32513d030c75 .
 
-:void-dtp-67fe32513d030c75	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-67fe32513d030c75	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2872 .
 
-:void-pp-23092e69f1a84937	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-23092e69f1a84937	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	2872 ;
 	void-ext:datatypePartition	:void-dtp-362bb2b73c028d64 .
 
-:void-dtp-362bb2b73c028d64	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-362bb2b73c028d64	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2872 .
 
-:void-pp-bd1495a0daef1c29	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-bd1495a0daef1c29	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	5744 .
 
-:void-pp-b15761ae38ed76a0	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-b15761ae38ed76a0	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	2872 ;
 	void-ext:datatypePartition	:void-dtp-f65d0e89f8eee296 .
 
-:void-dtp-f65d0e89f8eee296	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-f65d0e89f8eee296	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2872 .
 
-:void-pp-435acd9bc5c1e804	a	void:Dataset ;
-	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
+:void-pp-435acd9bc5c1e804	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
 	void:triples	19901 ;
 	void:classPartition	:void-ocp-445a2cc86ef09bf6 ;
 	void:classPartition	:void-ocp-bbe44d9027ca80b2 ;
 	void:classPartition	:void-ocp-740d618b493e19e6 ;
 	void:classPartition	:void-ocp-05613d1dad84305e .
 
-:void-ocp-445a2cc86ef09bf6	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1025> ;
+:void-ocp-445a2cc86ef09bf6	void:class	<http://edamontology.org/data_1025> ;
 	void:triples	19901 .
 
-:void-ocp-bbe44d9027ca80b2	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1027> ;
+:void-ocp-bbe44d9027ca80b2	void:class	<http://edamontology.org/data_1027> ;
 	void:triples	2874 .
 
-:void-ocp-740d618b493e19e6	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1033> ;
+:void-ocp-740d618b493e19e6	void:class	<http://edamontology.org/data_1033> ;
 	void:triples	2851 .
 
-:void-ocp-05613d1dad84305e	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2291> ;
+:void-ocp-05613d1dad84305e	void:class	<http://edamontology.org/data_2291> ;
 	void:triples	14176 .
 
-:void-pp-ae7c43e282a41aa5	a	void:Dataset ;
-	void:property	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+:void-pp-ae7c43e282a41aa5	void:property	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
 	void:triples	19901 ;
 	void:classPartition	:void-ocp-ef104eccb8e8ef44 ;
 	void:classPartition	:void-ocp-3c263eee4df77afd ;
 	void:classPartition	:void-ocp-4d56c0ab20ccfb48 ;
 	void:classPartition	:void-ocp-2e8e96d3a6092a23 .
 
-:void-ocp-ef104eccb8e8ef44	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1025> ;
+:void-ocp-ef104eccb8e8ef44	void:class	<http://edamontology.org/data_1025> ;
 	void:triples	19901 .
 
-:void-ocp-3c263eee4df77afd	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1027> ;
+:void-ocp-3c263eee4df77afd	void:class	<http://edamontology.org/data_1027> ;
 	void:triples	2874 .
 
-:void-ocp-4d56c0ab20ccfb48	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1033> ;
+:void-ocp-4d56c0ab20ccfb48	void:class	<http://edamontology.org/data_1033> ;
 	void:triples	2851 .
 
-:void-ocp-2e8e96d3a6092a23	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2291> ;
+:void-ocp-2e8e96d3a6092a23	void:class	<http://edamontology.org/data_2291> ;
 	void:triples	14176 .
 
-:void-cp-a2c4ad01ba3de317	a	void:Dataset ;
-	void:class	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
+:void-cp-a2c4ad01ba3de317	void:class	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
 	void:entities	757 ;
 	void:propertyPartition	:void-pp-9e9da33111dcf8db ;
 	void:propertyPartition	:void-pp-6f661d29e05c89e2 ;
@@ -1687,103 +1388,81 @@
 	void:propertyPartition	:void-pp-988adfb35698f341 ;
 	void:propertyPartition	:void-pp-37442fa038da8c3e .
 
-:void-pp-9e9da33111dcf8db	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_chemical_entity> ;
+:void-pp-9e9da33111dcf8db	void:property	<http://aopkb.org/aop_ontology#has_chemical_entity> ;
 	void:triples	449 ;
 	void:classPartition	:void-ocp-2544db73a090295c ;
 	void:classPartition	:void-ocp-653dd6a039d35e6e ;
 	void-ext:datatypePartition	:void-dtp-5b1e21de8a4dba62 .
 
-:void-ocp-2544db73a090295c	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000000> ;
+:void-ocp-2544db73a090295c	void:class	<http://semanticscience.org/resource/CHEMINF_000000> ;
 	void:triples	442 .
 
-:void-ocp-653dd6a039d35e6e	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000446> ;
+:void-ocp-653dd6a039d35e6e	void:class	<http://semanticscience.org/resource/CHEMINF_000446> ;
 	void:triples	442 .
 
-:void-dtp-5b1e21de8a4dba62	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-5b1e21de8a4dba62	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	7 .
 
-:void-pp-6f661d29e05c89e2	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/description> ;
+:void-pp-6f661d29e05c89e2	void:property	<http://purl.org/dc/elements/1.1/description> ;
 	void:triples	17 ;
 	void-ext:datatypePartition	:void-dtp-cf9a2efadfa08a44 .
 
-:void-dtp-cf9a2efadfa08a44	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-cf9a2efadfa08a44	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	17 .
 
-:void-pp-5c807a53ae150232	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-5c807a53ae150232	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	757 ;
 	void:classPartition	:void-ocp-54bfa5000cb593d1 .
 
-:void-ocp-54bfa5000cb593d1	a	void:Dataset ;
-	void:class	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
+:void-ocp-54bfa5000cb593d1	void:class	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
 	void:triples	757 .
 
-:void-pp-d90f00180ea3fb0d	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/title> ;
+:void-pp-d90f00180ea3fb0d	void:property	<http://purl.org/dc/elements/1.1/title> ;
 	void:triples	757 ;
 	void-ext:datatypePartition	:void-dtp-8749acd68817ea4a .
 
-:void-dtp-8749acd68817ea4a	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-8749acd68817ea4a	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	757 .
 
-:void-pp-d64ac18b02d88843	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/created> ;
+:void-pp-d64ac18b02d88843	void:property	<http://purl.org/dc/terms/created> ;
 	void:triples	757 ;
 	void-ext:datatypePartition	:void-dtp-3b64d8ae93554104 .
 
-:void-dtp-3b64d8ae93554104	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-3b64d8ae93554104	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	757 .
 
-:void-pp-ffddaf0fa1a675f1	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/isPartOf> ;
+:void-pp-ffddaf0fa1a675f1	void:property	<http://purl.org/dc/terms/isPartOf> ;
 	void:triples	870 ;
 	void:classPartition	:void-ocp-6c50c9b63be5ed1a .
 
-:void-ocp-6c50c9b63be5ed1a	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
+:void-ocp-6c50c9b63be5ed1a	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
 	void:triples	870 .
 
-:void-pp-98a31fbf808b466d	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/modified> ;
+:void-pp-98a31fbf808b466d	void:property	<http://purl.org/dc/terms/modified> ;
 	void:triples	757 ;
 	void-ext:datatypePartition	:void-dtp-f080fd772e8ac23c .
 
-:void-dtp-f080fd772e8ac23c	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-f080fd772e8ac23c	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	757 .
 
-:void-pp-2941ba9807873f73	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-2941ba9807873f73	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	757 .
 
-:void-pp-988adfb35698f341	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-988adfb35698f341	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	757 ;
 	void-ext:datatypePartition	:void-dtp-b21db7608ff35670 .
 
-:void-dtp-b21db7608ff35670	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-b21db7608ff35670	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	757 .
 
-:void-pp-37442fa038da8c3e	a	void:Dataset ;
-	void:property	<http://xmlns.com/foaf/0.1/page> ;
+:void-pp-37442fa038da8c3e	void:property	<http://xmlns.com/foaf/0.1/page> ;
 	void:triples	757 ;
 	void:classPartition	:void-ocp-66646c32366edc40 .
 
-:void-ocp-66646c32366edc40	a	void:Dataset ;
-	void:class	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
+:void-ocp-66646c32366edc40	void:class	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
 	void:triples	757 .
 
-:void-cp-fef95b2aa4d8e2d2	a	void:Dataset ;
-	void:class	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
+:void-cp-fef95b2aa4d8e2d2	void:class	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
 	void:entities	182 ;
 	void:propertyPartition	:void-pp-42524c170300bf9c ;
 	void:propertyPartition	:void-pp-d30756d968e778f6 ;
@@ -1791,48 +1470,38 @@
 	void:propertyPartition	:void-pp-a32bf1f8d3a8dc88 ;
 	void:propertyPartition	:void-pp-1d6185a239df5b91 .
 
-:void-pp-42524c170300bf9c	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-42524c170300bf9c	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	182 ;
 	void:classPartition	:void-ocp-fe904850bb0b1855 .
 
-:void-ocp-fe904850bb0b1855	a	void:Dataset ;
-	void:class	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
+:void-ocp-fe904850bb0b1855	void:class	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
 	void:triples	182 .
 
-:void-pp-d30756d968e778f6	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-d30756d968e778f6	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	182 ;
 	void-ext:datatypePartition	:void-dtp-0bd5c0cbc8dc9007 .
 
-:void-dtp-0bd5c0cbc8dc9007	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-0bd5c0cbc8dc9007	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	182 .
 
-:void-pp-0543394db15cf2ad	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/title> ;
+:void-pp-0543394db15cf2ad	void:property	<http://purl.org/dc/elements/1.1/title> ;
 	void:triples	221 ;
 	void-ext:datatypePartition	:void-dtp-22b0506551168ba5 .
 
-:void-dtp-22b0506551168ba5	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-22b0506551168ba5	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	221 .
 
-:void-pp-a32bf1f8d3a8dc88	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-a32bf1f8d3a8dc88	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	182 .
 
-:void-pp-1d6185a239df5b91	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-1d6185a239df5b91	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	221 ;
 	void-ext:datatypePartition	:void-dtp-b357034ed5779f3a .
 
-:void-dtp-b357034ed5779f3a	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-b357034ed5779f3a	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	221 .
 
-:void-cp-2cc92ef00dc9a5af	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/GO_0008150> ;
+:void-cp-2cc92ef00dc9a5af	void:class	<http://purl.obolibrary.org/obo/GO_0008150> ;
 	void:entities	561 ;
 	void:propertyPartition	:void-pp-74aa9d1bfe9ed48b ;
 	void:propertyPartition	:void-pp-3c9a49fa7cd72091 ;
@@ -1840,53 +1509,42 @@
 	void:propertyPartition	:void-pp-8b5725006122ef91 ;
 	void:propertyPartition	:void-pp-e1e2169685f0652b .
 
-:void-pp-74aa9d1bfe9ed48b	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-74aa9d1bfe9ed48b	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	561 ;
 	void:classPartition	:void-ocp-9b8662292dd55e04 ;
 	void:classPartition	:void-ocp-d12dc6f8292d3991 .
 
-:void-ocp-9b8662292dd55e04	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/GO_0008150> ;
+:void-ocp-9b8662292dd55e04	void:class	<http://purl.obolibrary.org/obo/GO_0008150> ;
 	void:triples	561 .
 
-:void-ocp-d12dc6f8292d3991	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+:void-ocp-d12dc6f8292d3991	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
 	void:triples	5 .
 
-:void-pp-3c9a49fa7cd72091	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-3c9a49fa7cd72091	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	561 ;
 	void-ext:datatypePartition	:void-dtp-e47117bd073a16b2 .
 
-:void-dtp-e47117bd073a16b2	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-e47117bd073a16b2	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	561 .
 
-:void-pp-31292a7b4a0b364a	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/title> ;
+:void-pp-31292a7b4a0b364a	void:property	<http://purl.org/dc/elements/1.1/title> ;
 	void:triples	561 ;
 	void-ext:datatypePartition	:void-dtp-737dc74a565163c3 .
 
-:void-dtp-737dc74a565163c3	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-737dc74a565163c3	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	561 .
 
-:void-pp-8b5725006122ef91	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-8b5725006122ef91	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	566 .
 
-:void-pp-e1e2169685f0652b	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-e1e2169685f0652b	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	561 ;
 	void-ext:datatypePartition	:void-dtp-1b4849e4a5315abf .
 
-:void-dtp-1b4849e4a5315abf	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-1b4849e4a5315abf	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	561 .
 
-:void-cp-77a05044b2829d21	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+:void-cp-77a05044b2829d21	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
 	void:entities	497 ;
 	void:propertyPartition	:void-pp-e4f6768278cb258c ;
 	void:propertyPartition	:void-pp-cb4bfd03ef9b54c4 ;
@@ -1896,111 +1554,88 @@
 	void:propertyPartition	:void-pp-475f38e33891304c ;
 	void:propertyPartition	:void-pp-2e6083e98a09fb7f .
 
-:void-pp-e4f6768278cb258c	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-e4f6768278cb258c	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	497 ;
 	void:classPartition	:void-ocp-5df1651ed90b662d ;
 	void:classPartition	:void-ocp-2563115e4401f25e ;
 	void:classPartition	:void-ocp-5da67194001da153 ;
 	void:classPartition	:void-ocp-a3877a8d2ad984ea .
 
-:void-ocp-5df1651ed90b662d	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
+:void-ocp-5df1651ed90b662d	void:class	<http://aopkb.org/aop_ontology#CellTypeContext> ;
 	void:triples	33 .
 
-:void-ocp-2563115e4401f25e	a	void:Dataset ;
-	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
+:void-ocp-2563115e4401f25e	void:class	<http://aopkb.org/aop_ontology#OrganContext> ;
 	void:triples	33 .
 
-:void-ocp-5da67194001da153	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/GO_0008150> ;
+:void-ocp-5da67194001da153	void:class	<http://purl.obolibrary.org/obo/GO_0008150> ;
 	void:triples	5 .
 
-:void-ocp-a3877a8d2ad984ea	a	void:Dataset ;
-	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+:void-ocp-a3877a8d2ad984ea	void:class	<http://purl.obolibrary.org/obo/PATO_0001241> ;
 	void:triples	497 .
 
-:void-pp-cb4bfd03ef9b54c4	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-cb4bfd03ef9b54c4	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	497 ;
 	void-ext:datatypePartition	:void-dtp-1a1dcadb814bf728 .
 
-:void-dtp-1a1dcadb814bf728	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-1a1dcadb814bf728	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	497 .
 
-:void-pp-390d41f04b727fa2	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/title> ;
+:void-pp-390d41f04b727fa2	void:property	<http://purl.org/dc/elements/1.1/title> ;
 	void:triples	498 ;
 	void-ext:datatypePartition	:void-dtp-b366ddc0f2413372 .
 
-:void-dtp-b366ddc0f2413372	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-b366ddc0f2413372	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	498 .
 
-:void-pp-8277b90a088871a0	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-8277b90a088871a0	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	568 .
 
-:void-pp-bec1ae6b8de34e8a	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-bec1ae6b8de34e8a	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	498 ;
 	void-ext:datatypePartition	:void-dtp-9ba80eae872e0885 .
 
-:void-dtp-9ba80eae872e0885	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-9ba80eae872e0885	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	498 .
 
-:void-pp-475f38e33891304c	a	void:Dataset ;
-	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
+:void-pp-475f38e33891304c	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
 	void:triples	671 ;
 	void:classPartition	:void-ocp-a43f121edad59807 ;
 	void:classPartition	:void-ocp-02aba0e18e19f866 ;
 	void:classPartition	:void-ocp-7ee5935b5d771e78 ;
 	void:classPartition	:void-ocp-0296bd8b982b2740 .
 
-:void-ocp-a43f121edad59807	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1025> ;
+:void-ocp-a43f121edad59807	void:class	<http://edamontology.org/data_1025> ;
 	void:triples	671 .
 
-:void-ocp-02aba0e18e19f866	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1027> ;
+:void-ocp-02aba0e18e19f866	void:class	<http://edamontology.org/data_1027> ;
 	void:triples	44 .
 
-:void-ocp-7ee5935b5d771e78	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2291> ;
+:void-ocp-7ee5935b5d771e78	void:class	<http://edamontology.org/data_2291> ;
 	void:triples	501 .
 
-:void-ocp-0296bd8b982b2740	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2298> ;
+:void-ocp-0296bd8b982b2740	void:class	<http://edamontology.org/data_2298> ;
 	void:triples	126 .
 
-:void-pp-2e6083e98a09fb7f	a	void:Dataset ;
-	void:property	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+:void-pp-2e6083e98a09fb7f	void:property	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
 	void:triples	671 ;
 	void:classPartition	:void-ocp-41baa485d5e9eba8 ;
 	void:classPartition	:void-ocp-36b386360726e13d ;
 	void:classPartition	:void-ocp-63609ff9add0baf2 ;
 	void:classPartition	:void-ocp-48473859f421c7b8 .
 
-:void-ocp-41baa485d5e9eba8	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1025> ;
+:void-ocp-41baa485d5e9eba8	void:class	<http://edamontology.org/data_1025> ;
 	void:triples	671 .
 
-:void-ocp-36b386360726e13d	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_1027> ;
+:void-ocp-36b386360726e13d	void:class	<http://edamontology.org/data_1027> ;
 	void:triples	44 .
 
-:void-ocp-63609ff9add0baf2	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2291> ;
+:void-ocp-63609ff9add0baf2	void:class	<http://edamontology.org/data_2291> ;
 	void:triples	501 .
 
-:void-ocp-48473859f421c7b8	a	void:Dataset ;
-	void:class	<http://edamontology.org/data_2298> ;
+:void-ocp-48473859f421c7b8	void:class	<http://edamontology.org/data_2298> ;
 	void:triples	126 .
 
-:void-cp-ea2a1917c52e7535	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000000> ;
+:void-cp-ea2a1917c52e7535	void:class	<http://semanticscience.org/resource/CHEMINF_000000> ;
 	void:entities	433 ;
 	void:propertyPartition	:void-pp-93e3c5e7ded50bd8 ;
 	void:propertyPartition	:void-pp-5da90e0bdbb940ba ;
@@ -2015,88 +1650,69 @@
 	void:propertyPartition	:void-pp-990adccce9890019 ;
 	void:propertyPartition	:void-pp-d20efeffdf1fc4f2 .
 
-:void-pp-93e3c5e7ded50bd8	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-93e3c5e7ded50bd8	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	433 ;
 	void:classPartition	:void-ocp-8658affedfb398b1 ;
 	void:classPartition	:void-ocp-6229d28359636b6e .
 
-:void-ocp-8658affedfb398b1	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000000> ;
+:void-ocp-8658affedfb398b1	void:class	<http://semanticscience.org/resource/CHEMINF_000000> ;
 	void:triples	433 .
 
-:void-ocp-6229d28359636b6e	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000446> ;
+:void-ocp-6229d28359636b6e	void:class	<http://semanticscience.org/resource/CHEMINF_000446> ;
 	void:triples	433 .
 
-:void-pp-5da90e0bdbb940ba	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-5da90e0bdbb940ba	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	433 ;
 	void-ext:datatypePartition	:void-dtp-8495000aecba4f60 .
 
-:void-dtp-8495000aecba4f60	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-8495000aecba4f60	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	433 .
 
-:void-pp-80e541ce0b1a16f8	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/title> ;
+:void-pp-80e541ce0b1a16f8	void:property	<http://purl.org/dc/elements/1.1/title> ;
 	void:triples	433 ;
 	void-ext:datatypePartition	:void-dtp-f29a0b3d7627d01e .
 
-:void-dtp-f29a0b3d7627d01e	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-f29a0b3d7627d01e	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	433 .
 
-:void-pp-c9048771d714dffb	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/alternative> ;
+:void-pp-c9048771d714dffb	void:property	<http://purl.org/dc/terms/alternative> ;
 	void:triples	13757 ;
 	void-ext:datatypePartition	:void-dtp-11a369890bf97e8c .
 
-:void-dtp-11a369890bf97e8c	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-11a369890bf97e8c	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	13757 .
 
-:void-pp-637af49783053e65	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/isPartOf> ;
+:void-pp-637af49783053e65	void:property	<http://purl.org/dc/terms/isPartOf> ;
 	void:triples	442 ;
 	void:classPartition	:void-ocp-d8538d60e16cc3f5 .
 
-:void-ocp-d8538d60e16cc3f5	a	void:Dataset ;
-	void:class	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
+:void-ocp-d8538d60e16cc3f5	void:class	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
 	void:triples	442 .
 
-:void-pp-1befabe98ea74110	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000059> ;
+:void-pp-1befabe98ea74110	void:property	<http://semanticscience.org/resource/CHEMINF_000059> ;
 	void:triples	416 .
 
-:void-pp-436aaba0542cda0c	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000446> ;
+:void-pp-436aaba0542cda0c	void:property	<http://semanticscience.org/resource/CHEMINF_000446> ;
 	void:triples	433 ;
 	void-ext:datatypePartition	:void-dtp-1e1dc7871001f055 .
 
-:void-dtp-1e1dc7871001f055	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-1e1dc7871001f055	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	433 .
 
-:void-pp-849bb03df0e01569	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000568> ;
+:void-pp-849bb03df0e01569	void:property	<http://semanticscience.org/resource/CHEMINF_000568> ;
 	void:triples	433 .
 
-:void-pp-accac71cc699144c	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-accac71cc699144c	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	866 .
 
-:void-pp-5028b37b24734512	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-5028b37b24734512	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	433 ;
 	void-ext:datatypePartition	:void-dtp-0a4c5afc79095c41 .
 
-:void-dtp-0a4c5afc79095c41	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-0a4c5afc79095c41	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	433 .
 
-:void-pp-990adccce9890019	a	void:Dataset ;
-	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
+:void-pp-990adccce9890019	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
 	void:triples	3491 ;
 	void:classPartition	:void-ocp-ca44f56876de6228 ;
 	void:classPartition	:void-ocp-89d803ba41a9b0a4 ;
@@ -2108,44 +1724,34 @@
 	void:classPartition	:void-ocp-8499f74545401e5b ;
 	void:classPartition	:void-ocp-04ac14e57554a3cc .
 
-:void-ocp-ca44f56876de6228	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000140> ;
+:void-ocp-ca44f56876de6228	void:class	<http://semanticscience.org/resource/CHEMINF_000140> ;
 	void:triples	492 .
 
-:void-ocp-89d803ba41a9b0a4	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000405> ;
+:void-ocp-89d803ba41a9b0a4	void:class	<http://semanticscience.org/resource/CHEMINF_000405> ;
 	void:triples	449 .
 
-:void-ocp-d09848ccfb47eb0e	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000406> ;
+:void-ocp-d09848ccfb47eb0e	void:class	<http://semanticscience.org/resource/CHEMINF_000406> ;
 	void:triples	224 .
 
-:void-ocp-73d71e6a35eac203	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000407> ;
+:void-ocp-73d71e6a35eac203	void:class	<http://semanticscience.org/resource/CHEMINF_000407> ;
 	void:triples	445 .
 
-:void-ocp-80d019ee80ff4e24	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000408> ;
+:void-ocp-80d019ee80ff4e24	void:class	<http://semanticscience.org/resource/CHEMINF_000408> ;
 	void:triples	553 .
 
-:void-ocp-faa49f3f3c5b42be	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000409> ;
+:void-ocp-faa49f3f3c5b42be	void:class	<http://semanticscience.org/resource/CHEMINF_000409> ;
 	void:triples	479 .
 
-:void-ocp-ad2743f0adec5fed	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000412> ;
+:void-ocp-ad2743f0adec5fed	void:class	<http://semanticscience.org/resource/CHEMINF_000412> ;
 	void:triples	370 .
 
-:void-ocp-8499f74545401e5b	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000564> ;
+:void-ocp-8499f74545401e5b	void:class	<http://semanticscience.org/resource/CHEMINF_000564> ;
 	void:triples	35 .
 
-:void-ocp-04ac14e57554a3cc	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000567> ;
+:void-ocp-04ac14e57554a3cc	void:class	<http://semanticscience.org/resource/CHEMINF_000567> ;
 	void:triples	444 .
 
-:void-pp-d20efeffdf1fc4f2	a	void:Dataset ;
-	void:property	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+:void-pp-d20efeffdf1fc4f2	void:property	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
 	void:triples	3491 ;
 	void:classPartition	:void-ocp-efc0aa1715372232 ;
 	void:classPartition	:void-ocp-75c9f97d4f70586d ;
@@ -2157,44 +1763,34 @@
 	void:classPartition	:void-ocp-d002b5c157216d18 ;
 	void:classPartition	:void-ocp-0bef562dfab99a35 .
 
-:void-ocp-efc0aa1715372232	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000140> ;
+:void-ocp-efc0aa1715372232	void:class	<http://semanticscience.org/resource/CHEMINF_000140> ;
 	void:triples	492 .
 
-:void-ocp-75c9f97d4f70586d	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000405> ;
+:void-ocp-75c9f97d4f70586d	void:class	<http://semanticscience.org/resource/CHEMINF_000405> ;
 	void:triples	449 .
 
-:void-ocp-2d48724e85447606	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000406> ;
+:void-ocp-2d48724e85447606	void:class	<http://semanticscience.org/resource/CHEMINF_000406> ;
 	void:triples	224 .
 
-:void-ocp-740ca589de829ff1	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000407> ;
+:void-ocp-740ca589de829ff1	void:class	<http://semanticscience.org/resource/CHEMINF_000407> ;
 	void:triples	445 .
 
-:void-ocp-4e7aeaf87934f0d7	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000408> ;
+:void-ocp-4e7aeaf87934f0d7	void:class	<http://semanticscience.org/resource/CHEMINF_000408> ;
 	void:triples	553 .
 
-:void-ocp-9b1c52d22afeec09	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000409> ;
+:void-ocp-9b1c52d22afeec09	void:class	<http://semanticscience.org/resource/CHEMINF_000409> ;
 	void:triples	479 .
 
-:void-ocp-3ab7121be920f579	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000412> ;
+:void-ocp-3ab7121be920f579	void:class	<http://semanticscience.org/resource/CHEMINF_000412> ;
 	void:triples	370 .
 
-:void-ocp-d002b5c157216d18	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000564> ;
+:void-ocp-d002b5c157216d18	void:class	<http://semanticscience.org/resource/CHEMINF_000564> ;
 	void:triples	35 .
 
-:void-ocp-0bef562dfab99a35	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000567> ;
+:void-ocp-0bef562dfab99a35	void:class	<http://semanticscience.org/resource/CHEMINF_000567> ;
 	void:triples	444 .
 
-:void-cp-782ff3513817ed53	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000140> ;
+:void-cp-782ff3513817ed53	void:class	<http://semanticscience.org/resource/CHEMINF_000140> ;
 	void:entities	492 ;
 	void:propertyPartition	:void-pp-d3a6a8439c78ab69 ;
 	void:propertyPartition	:void-pp-686aca7cd29acaa3 ;
@@ -2202,48 +1798,38 @@
 	void:propertyPartition	:void-pp-9680b2ff342e66b0 ;
 	void:propertyPartition	:void-pp-c2674423f07ea687 .
 
-:void-pp-d3a6a8439c78ab69	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-d3a6a8439c78ab69	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	492 ;
 	void-ext:datatypePartition	:void-dtp-3b1065f8e3f12427 .
 
-:void-dtp-3b1065f8e3f12427	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-3b1065f8e3f12427	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	492 .
 
-:void-pp-686aca7cd29acaa3	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-686aca7cd29acaa3	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	492 ;
 	void-ext:datatypePartition	:void-dtp-9533c11bf624ca9d .
 
-:void-dtp-9533c11bf624ca9d	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-9533c11bf624ca9d	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	492 .
 
-:void-pp-269e8ffdaa8055aa	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000140> ;
+:void-pp-269e8ffdaa8055aa	void:property	<http://semanticscience.org/resource/CHEMINF_000140> ;
 	void:triples	492 ;
 	void-ext:datatypePartition	:void-dtp-d6996a5523689209 .
 
-:void-dtp-d6996a5523689209	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-d6996a5523689209	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	492 .
 
-:void-pp-9680b2ff342e66b0	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-9680b2ff342e66b0	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	492 .
 
-:void-pp-c2674423f07ea687	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-c2674423f07ea687	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	492 ;
 	void-ext:datatypePartition	:void-dtp-62eede7e4a000ed0 .
 
-:void-dtp-62eede7e4a000ed0	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-62eede7e4a000ed0	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	492 .
 
-:void-cp-6993c40853893c1c	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000405> ;
+:void-cp-6993c40853893c1c	void:class	<http://semanticscience.org/resource/CHEMINF_000405> ;
 	void:entities	449 ;
 	void:propertyPartition	:void-pp-bc7c7814b7e378d2 ;
 	void:propertyPartition	:void-pp-a8543c7ef8eb14a5 ;
@@ -2251,48 +1837,38 @@
 	void:propertyPartition	:void-pp-98e6406e963d6d9d ;
 	void:propertyPartition	:void-pp-982432a607513578 .
 
-:void-pp-bc7c7814b7e378d2	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-bc7c7814b7e378d2	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	449 ;
 	void-ext:datatypePartition	:void-dtp-70c27e2bd178dc6d .
 
-:void-dtp-70c27e2bd178dc6d	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-70c27e2bd178dc6d	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	449 .
 
-:void-pp-a8543c7ef8eb14a5	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-a8543c7ef8eb14a5	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	449 ;
 	void-ext:datatypePartition	:void-dtp-3bd2cba98eee7ac2 .
 
-:void-dtp-3bd2cba98eee7ac2	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-3bd2cba98eee7ac2	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	449 .
 
-:void-pp-caf245d21d63bc2c	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000405> ;
+:void-pp-caf245d21d63bc2c	void:property	<http://semanticscience.org/resource/CHEMINF_000405> ;
 	void:triples	449 ;
 	void-ext:datatypePartition	:void-dtp-f2f43ec82549b8b0 .
 
-:void-dtp-f2f43ec82549b8b0	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-f2f43ec82549b8b0	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	449 .
 
-:void-pp-98e6406e963d6d9d	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-98e6406e963d6d9d	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	449 .
 
-:void-pp-982432a607513578	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-982432a607513578	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	449 ;
 	void-ext:datatypePartition	:void-dtp-70c1c4eb3fc9d76c .
 
-:void-dtp-70c1c4eb3fc9d76c	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-70c1c4eb3fc9d76c	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	449 .
 
-:void-cp-50c3bf5de71d906a	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000406> ;
+:void-cp-50c3bf5de71d906a	void:class	<http://semanticscience.org/resource/CHEMINF_000406> ;
 	void:entities	224 ;
 	void:propertyPartition	:void-pp-da523955b8a468ca ;
 	void:propertyPartition	:void-pp-e1485aa491406e31 ;
@@ -2300,48 +1876,38 @@
 	void:propertyPartition	:void-pp-1c8efd95aa66596e ;
 	void:propertyPartition	:void-pp-e6474976671ce7b5 .
 
-:void-pp-da523955b8a468ca	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-da523955b8a468ca	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	224 ;
 	void-ext:datatypePartition	:void-dtp-c85d43e988b017f6 .
 
-:void-dtp-c85d43e988b017f6	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-c85d43e988b017f6	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	224 .
 
-:void-pp-e1485aa491406e31	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-e1485aa491406e31	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	224 ;
 	void-ext:datatypePartition	:void-dtp-51c50b11e2799667 .
 
-:void-dtp-51c50b11e2799667	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-51c50b11e2799667	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	224 .
 
-:void-pp-480063aefa321b0c	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000406> ;
+:void-pp-480063aefa321b0c	void:property	<http://semanticscience.org/resource/CHEMINF_000406> ;
 	void:triples	224 ;
 	void-ext:datatypePartition	:void-dtp-1c3a54a8b8c8873c .
 
-:void-dtp-1c3a54a8b8c8873c	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-1c3a54a8b8c8873c	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	224 .
 
-:void-pp-1c8efd95aa66596e	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-1c8efd95aa66596e	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	224 .
 
-:void-pp-e6474976671ce7b5	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-e6474976671ce7b5	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	224 ;
 	void-ext:datatypePartition	:void-dtp-cafc767b7852a3ae .
 
-:void-dtp-cafc767b7852a3ae	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-cafc767b7852a3ae	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	224 .
 
-:void-cp-dca259038efb8e7a	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000407> ;
+:void-cp-dca259038efb8e7a	void:class	<http://semanticscience.org/resource/CHEMINF_000407> ;
 	void:entities	445 ;
 	void:propertyPartition	:void-pp-4a8f22553dbc01c1 ;
 	void:propertyPartition	:void-pp-6ba151b3c59730a5 ;
@@ -2349,48 +1915,38 @@
 	void:propertyPartition	:void-pp-207f32c5cde3abd1 ;
 	void:propertyPartition	:void-pp-fdfeb1ab64011a36 .
 
-:void-pp-4a8f22553dbc01c1	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-4a8f22553dbc01c1	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	445 ;
 	void-ext:datatypePartition	:void-dtp-555174a1d7734aac .
 
-:void-dtp-555174a1d7734aac	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-555174a1d7734aac	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	445 .
 
-:void-pp-6ba151b3c59730a5	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-6ba151b3c59730a5	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	445 ;
 	void-ext:datatypePartition	:void-dtp-a1ae48dffe750579 .
 
-:void-dtp-a1ae48dffe750579	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-a1ae48dffe750579	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	445 .
 
-:void-pp-1c990c2c9bd2e9fb	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000407> ;
+:void-pp-1c990c2c9bd2e9fb	void:property	<http://semanticscience.org/resource/CHEMINF_000407> ;
 	void:triples	445 ;
 	void-ext:datatypePartition	:void-dtp-14a44208cadcb21f .
 
-:void-dtp-14a44208cadcb21f	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-14a44208cadcb21f	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	445 .
 
-:void-pp-207f32c5cde3abd1	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-207f32c5cde3abd1	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	445 .
 
-:void-pp-fdfeb1ab64011a36	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-fdfeb1ab64011a36	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	445 ;
 	void-ext:datatypePartition	:void-dtp-4ce4dd97f18b3010 .
 
-:void-dtp-4ce4dd97f18b3010	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-4ce4dd97f18b3010	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	445 .
 
-:void-cp-3f29956feb4c9a05	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000408> ;
+:void-cp-3f29956feb4c9a05	void:class	<http://semanticscience.org/resource/CHEMINF_000408> ;
 	void:entities	553 ;
 	void:propertyPartition	:void-pp-a05f0061d4718cf5 ;
 	void:propertyPartition	:void-pp-35366614b9e56bf2 ;
@@ -2398,48 +1954,38 @@
 	void:propertyPartition	:void-pp-4f7669a4cf6414c8 ;
 	void:propertyPartition	:void-pp-5b57ce200c3de732 .
 
-:void-pp-a05f0061d4718cf5	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-a05f0061d4718cf5	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	553 ;
 	void-ext:datatypePartition	:void-dtp-6c6f0e4253865c7d .
 
-:void-dtp-6c6f0e4253865c7d	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-6c6f0e4253865c7d	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	553 .
 
-:void-pp-35366614b9e56bf2	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-35366614b9e56bf2	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	553 ;
 	void-ext:datatypePartition	:void-dtp-ba045e4faaf44e5e .
 
-:void-dtp-ba045e4faaf44e5e	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-ba045e4faaf44e5e	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	553 .
 
-:void-pp-db6f78009a1e5b6b	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000408> ;
+:void-pp-db6f78009a1e5b6b	void:property	<http://semanticscience.org/resource/CHEMINF_000408> ;
 	void:triples	553 ;
 	void-ext:datatypePartition	:void-dtp-0860a1e56b0f9eed .
 
-:void-dtp-0860a1e56b0f9eed	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-0860a1e56b0f9eed	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	553 .
 
-:void-pp-4f7669a4cf6414c8	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-4f7669a4cf6414c8	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	553 .
 
-:void-pp-5b57ce200c3de732	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-5b57ce200c3de732	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	553 ;
 	void-ext:datatypePartition	:void-dtp-59e193b005223275 .
 
-:void-dtp-59e193b005223275	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-59e193b005223275	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	553 .
 
-:void-cp-c88dfbab51f59a54	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000409> ;
+:void-cp-c88dfbab51f59a54	void:class	<http://semanticscience.org/resource/CHEMINF_000409> ;
 	void:entities	479 ;
 	void:propertyPartition	:void-pp-ee2be208a21c228a ;
 	void:propertyPartition	:void-pp-837782ae377e16f2 ;
@@ -2447,48 +1993,38 @@
 	void:propertyPartition	:void-pp-104e3f2813e87176 ;
 	void:propertyPartition	:void-pp-c9097fe56d09c993 .
 
-:void-pp-ee2be208a21c228a	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-ee2be208a21c228a	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	479 ;
 	void-ext:datatypePartition	:void-dtp-dd34f03e8ae08977 .
 
-:void-dtp-dd34f03e8ae08977	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-dd34f03e8ae08977	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	479 .
 
-:void-pp-837782ae377e16f2	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-837782ae377e16f2	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	479 ;
 	void-ext:datatypePartition	:void-dtp-2d57ed97745c5973 .
 
-:void-dtp-2d57ed97745c5973	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-2d57ed97745c5973	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	479 .
 
-:void-pp-f01f406712c5b1f5	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000409> ;
+:void-pp-f01f406712c5b1f5	void:property	<http://semanticscience.org/resource/CHEMINF_000409> ;
 	void:triples	479 ;
 	void-ext:datatypePartition	:void-dtp-ccb352ddb6cd7b95 .
 
-:void-dtp-ccb352ddb6cd7b95	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-ccb352ddb6cd7b95	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	479 .
 
-:void-pp-104e3f2813e87176	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-104e3f2813e87176	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	479 .
 
-:void-pp-c9097fe56d09c993	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-c9097fe56d09c993	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	479 ;
 	void-ext:datatypePartition	:void-dtp-7f333d19b47ab3c4 .
 
-:void-dtp-7f333d19b47ab3c4	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-7f333d19b47ab3c4	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	479 .
 
-:void-cp-06bd284db93d9e65	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000412> ;
+:void-cp-06bd284db93d9e65	void:class	<http://semanticscience.org/resource/CHEMINF_000412> ;
 	void:entities	370 ;
 	void:propertyPartition	:void-pp-3464ac0c5b3fb208 ;
 	void:propertyPartition	:void-pp-5f88da3994a92859 ;
@@ -2496,48 +2032,38 @@
 	void:propertyPartition	:void-pp-d1dc685b7af6d6fe ;
 	void:propertyPartition	:void-pp-c777d1ebd18884fc .
 
-:void-pp-3464ac0c5b3fb208	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-3464ac0c5b3fb208	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	370 ;
 	void-ext:datatypePartition	:void-dtp-8a6a3d9baa840192 .
 
-:void-dtp-8a6a3d9baa840192	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-8a6a3d9baa840192	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	370 .
 
-:void-pp-5f88da3994a92859	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-5f88da3994a92859	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	370 ;
 	void-ext:datatypePartition	:void-dtp-131016185b14a21c .
 
-:void-dtp-131016185b14a21c	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-131016185b14a21c	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	370 .
 
-:void-pp-7a317c8ac0f6d438	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000412> ;
+:void-pp-7a317c8ac0f6d438	void:property	<http://semanticscience.org/resource/CHEMINF_000412> ;
 	void:triples	370 ;
 	void-ext:datatypePartition	:void-dtp-79f230818c0d32fa .
 
-:void-dtp-79f230818c0d32fa	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-79f230818c0d32fa	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	370 .
 
-:void-pp-d1dc685b7af6d6fe	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-d1dc685b7af6d6fe	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	370 .
 
-:void-pp-c777d1ebd18884fc	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-c777d1ebd18884fc	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	370 ;
 	void-ext:datatypePartition	:void-dtp-6fa063cbded9c9d5 .
 
-:void-dtp-6fa063cbded9c9d5	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-6fa063cbded9c9d5	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	370 .
 
-:void-cp-e92b03403f7407f0	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000446> ;
+:void-cp-e92b03403f7407f0	void:class	<http://semanticscience.org/resource/CHEMINF_000446> ;
 	void:entities	433 ;
 	void:propertyPartition	:void-pp-4ec96c9c5a410ec7 ;
 	void:propertyPartition	:void-pp-eb50bae172a69b31 ;
@@ -2552,88 +2078,69 @@
 	void:propertyPartition	:void-pp-fb1a71f8777746b1 ;
 	void:propertyPartition	:void-pp-c8764aef6f885983 .
 
-:void-pp-4ec96c9c5a410ec7	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-4ec96c9c5a410ec7	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	433 ;
 	void:classPartition	:void-ocp-96d4007c53f19302 ;
 	void:classPartition	:void-ocp-3d7b7ab1ce0c6615 .
 
-:void-ocp-96d4007c53f19302	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000000> ;
+:void-ocp-96d4007c53f19302	void:class	<http://semanticscience.org/resource/CHEMINF_000000> ;
 	void:triples	433 .
 
-:void-ocp-3d7b7ab1ce0c6615	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000446> ;
+:void-ocp-3d7b7ab1ce0c6615	void:class	<http://semanticscience.org/resource/CHEMINF_000446> ;
 	void:triples	433 .
 
-:void-pp-eb50bae172a69b31	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-eb50bae172a69b31	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	433 ;
 	void-ext:datatypePartition	:void-dtp-9897481b88956667 .
 
-:void-dtp-9897481b88956667	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-9897481b88956667	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	433 .
 
-:void-pp-c9a4099a476c9810	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/title> ;
+:void-pp-c9a4099a476c9810	void:property	<http://purl.org/dc/elements/1.1/title> ;
 	void:triples	433 ;
 	void-ext:datatypePartition	:void-dtp-b0b619bcff14b746 .
 
-:void-dtp-b0b619bcff14b746	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-b0b619bcff14b746	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	433 .
 
-:void-pp-01fc525aea19587c	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/alternative> ;
+:void-pp-01fc525aea19587c	void:property	<http://purl.org/dc/terms/alternative> ;
 	void:triples	13757 ;
 	void-ext:datatypePartition	:void-dtp-27d9f70e2ad46e64 .
 
-:void-dtp-27d9f70e2ad46e64	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-27d9f70e2ad46e64	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	13757 .
 
-:void-pp-27d3b78d7501c55f	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/isPartOf> ;
+:void-pp-27d3b78d7501c55f	void:property	<http://purl.org/dc/terms/isPartOf> ;
 	void:triples	442 ;
 	void:classPartition	:void-ocp-84ca4aee76ba75f0 .
 
-:void-ocp-84ca4aee76ba75f0	a	void:Dataset ;
-	void:class	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
+:void-ocp-84ca4aee76ba75f0	void:class	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
 	void:triples	442 .
 
-:void-pp-2402dd5d59faaf21	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000059> ;
+:void-pp-2402dd5d59faaf21	void:property	<http://semanticscience.org/resource/CHEMINF_000059> ;
 	void:triples	416 .
 
-:void-pp-4b21f7db672046a5	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000446> ;
+:void-pp-4b21f7db672046a5	void:property	<http://semanticscience.org/resource/CHEMINF_000446> ;
 	void:triples	433 ;
 	void-ext:datatypePartition	:void-dtp-7188ed45b64aba1d .
 
-:void-dtp-7188ed45b64aba1d	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-7188ed45b64aba1d	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	433 .
 
-:void-pp-86290a396b483b12	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000568> ;
+:void-pp-86290a396b483b12	void:property	<http://semanticscience.org/resource/CHEMINF_000568> ;
 	void:triples	433 .
 
-:void-pp-076c5dc3db15ace2	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-076c5dc3db15ace2	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	866 .
 
-:void-pp-d02a1a5a4ab0522c	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-d02a1a5a4ab0522c	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	433 ;
 	void-ext:datatypePartition	:void-dtp-cec76519e168dee0 .
 
-:void-dtp-cec76519e168dee0	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-cec76519e168dee0	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	433 .
 
-:void-pp-fb1a71f8777746b1	a	void:Dataset ;
-	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
+:void-pp-fb1a71f8777746b1	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
 	void:triples	3491 ;
 	void:classPartition	:void-ocp-cddaec42769d1df2 ;
 	void:classPartition	:void-ocp-66af8c3fd3ad19ca ;
@@ -2645,44 +2152,34 @@
 	void:classPartition	:void-ocp-342c36709fec5a29 ;
 	void:classPartition	:void-ocp-93f1d06f2a963278 .
 
-:void-ocp-cddaec42769d1df2	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000140> ;
+:void-ocp-cddaec42769d1df2	void:class	<http://semanticscience.org/resource/CHEMINF_000140> ;
 	void:triples	492 .
 
-:void-ocp-66af8c3fd3ad19ca	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000405> ;
+:void-ocp-66af8c3fd3ad19ca	void:class	<http://semanticscience.org/resource/CHEMINF_000405> ;
 	void:triples	449 .
 
-:void-ocp-dd9bc07226f97d68	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000406> ;
+:void-ocp-dd9bc07226f97d68	void:class	<http://semanticscience.org/resource/CHEMINF_000406> ;
 	void:triples	224 .
 
-:void-ocp-13091ebca27c1c52	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000407> ;
+:void-ocp-13091ebca27c1c52	void:class	<http://semanticscience.org/resource/CHEMINF_000407> ;
 	void:triples	445 .
 
-:void-ocp-3d4b0ceb2ed87a8f	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000408> ;
+:void-ocp-3d4b0ceb2ed87a8f	void:class	<http://semanticscience.org/resource/CHEMINF_000408> ;
 	void:triples	553 .
 
-:void-ocp-4d0b7cf5ff5dc358	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000409> ;
+:void-ocp-4d0b7cf5ff5dc358	void:class	<http://semanticscience.org/resource/CHEMINF_000409> ;
 	void:triples	479 .
 
-:void-ocp-cc789c172a138048	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000412> ;
+:void-ocp-cc789c172a138048	void:class	<http://semanticscience.org/resource/CHEMINF_000412> ;
 	void:triples	370 .
 
-:void-ocp-342c36709fec5a29	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000564> ;
+:void-ocp-342c36709fec5a29	void:class	<http://semanticscience.org/resource/CHEMINF_000564> ;
 	void:triples	35 .
 
-:void-ocp-93f1d06f2a963278	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000567> ;
+:void-ocp-93f1d06f2a963278	void:class	<http://semanticscience.org/resource/CHEMINF_000567> ;
 	void:triples	444 .
 
-:void-pp-c8764aef6f885983	a	void:Dataset ;
-	void:property	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+:void-pp-c8764aef6f885983	void:property	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
 	void:triples	3491 ;
 	void:classPartition	:void-ocp-1f177d5feaad615b ;
 	void:classPartition	:void-ocp-44e31c17cc7e04e9 ;
@@ -2694,44 +2191,34 @@
 	void:classPartition	:void-ocp-18048bc5818da793 ;
 	void:classPartition	:void-ocp-4403e8440143bccd .
 
-:void-ocp-1f177d5feaad615b	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000140> ;
+:void-ocp-1f177d5feaad615b	void:class	<http://semanticscience.org/resource/CHEMINF_000140> ;
 	void:triples	492 .
 
-:void-ocp-44e31c17cc7e04e9	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000405> ;
+:void-ocp-44e31c17cc7e04e9	void:class	<http://semanticscience.org/resource/CHEMINF_000405> ;
 	void:triples	449 .
 
-:void-ocp-76e4231f0f9ff5eb	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000406> ;
+:void-ocp-76e4231f0f9ff5eb	void:class	<http://semanticscience.org/resource/CHEMINF_000406> ;
 	void:triples	224 .
 
-:void-ocp-ac57d81dec1d2f1b	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000407> ;
+:void-ocp-ac57d81dec1d2f1b	void:class	<http://semanticscience.org/resource/CHEMINF_000407> ;
 	void:triples	445 .
 
-:void-ocp-b5eb34045da5edc4	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000408> ;
+:void-ocp-b5eb34045da5edc4	void:class	<http://semanticscience.org/resource/CHEMINF_000408> ;
 	void:triples	553 .
 
-:void-ocp-d0d4f76511865fc8	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000409> ;
+:void-ocp-d0d4f76511865fc8	void:class	<http://semanticscience.org/resource/CHEMINF_000409> ;
 	void:triples	479 .
 
-:void-ocp-02fa4baa39f58b89	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000412> ;
+:void-ocp-02fa4baa39f58b89	void:class	<http://semanticscience.org/resource/CHEMINF_000412> ;
 	void:triples	370 .
 
-:void-ocp-18048bc5818da793	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000564> ;
+:void-ocp-18048bc5818da793	void:class	<http://semanticscience.org/resource/CHEMINF_000564> ;
 	void:triples	35 .
 
-:void-ocp-4403e8440143bccd	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000567> ;
+:void-ocp-4403e8440143bccd	void:class	<http://semanticscience.org/resource/CHEMINF_000567> ;
 	void:triples	444 .
 
-:void-cp-d9f5c63ac2dcc8a3	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000564> ;
+:void-cp-d9f5c63ac2dcc8a3	void:class	<http://semanticscience.org/resource/CHEMINF_000564> ;
 	void:entities	35 ;
 	void:propertyPartition	:void-pp-1618c2c5f2895173 ;
 	void:propertyPartition	:void-pp-409af91bba8d449e ;
@@ -2739,48 +2226,38 @@
 	void:propertyPartition	:void-pp-420f1547a1f5a268 ;
 	void:propertyPartition	:void-pp-f062112f8d4dd2d3 .
 
-:void-pp-1618c2c5f2895173	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-1618c2c5f2895173	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	35 ;
 	void-ext:datatypePartition	:void-dtp-6bb48e40cd83d0c1 .
 
-:void-dtp-6bb48e40cd83d0c1	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-6bb48e40cd83d0c1	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	35 .
 
-:void-pp-409af91bba8d449e	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-409af91bba8d449e	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	35 ;
 	void-ext:datatypePartition	:void-dtp-5443f2a935223976 .
 
-:void-dtp-5443f2a935223976	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-5443f2a935223976	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	35 .
 
-:void-pp-7823a9f8e6051428	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000564> ;
+:void-pp-7823a9f8e6051428	void:property	<http://semanticscience.org/resource/CHEMINF_000564> ;
 	void:triples	35 ;
 	void-ext:datatypePartition	:void-dtp-dc5ed47400371376 .
 
-:void-dtp-dc5ed47400371376	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-dc5ed47400371376	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	35 .
 
-:void-pp-420f1547a1f5a268	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-420f1547a1f5a268	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	35 .
 
-:void-pp-f062112f8d4dd2d3	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-f062112f8d4dd2d3	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	35 ;
 	void-ext:datatypePartition	:void-dtp-245b578ca6175fc0 .
 
-:void-dtp-245b578ca6175fc0	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-245b578ca6175fc0	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	35 .
 
-:void-cp-e76d04f6b9b04574	a	void:Dataset ;
-	void:class	<http://semanticscience.org/resource/CHEMINF_000567> ;
+:void-cp-e76d04f6b9b04574	void:class	<http://semanticscience.org/resource/CHEMINF_000567> ;
 	void:entities	444 ;
 	void:propertyPartition	:void-pp-54588efd4d699f18 ;
 	void:propertyPartition	:void-pp-c05430899618c9b0 ;
@@ -2788,48 +2265,38 @@
 	void:propertyPartition	:void-pp-ed360ebeca25c876 ;
 	void:propertyPartition	:void-pp-db92267ca9e377f5 .
 
-:void-pp-54588efd4d699f18	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-pp-54588efd4d699f18	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	444 ;
 	void-ext:datatypePartition	:void-dtp-dc686880ec8847c2 .
 
-:void-dtp-dc686880ec8847c2	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-dc686880ec8847c2	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	444 .
 
-:void-pp-c05430899618c9b0	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-pp-c05430899618c9b0	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	444 ;
 	void-ext:datatypePartition	:void-dtp-972f3d98ea481fb1 .
 
-:void-dtp-972f3d98ea481fb1	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-972f3d98ea481fb1	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	444 .
 
-:void-pp-b3c0b4c9065350f7	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000567> ;
+:void-pp-b3c0b4c9065350f7	void:property	<http://semanticscience.org/resource/CHEMINF_000567> ;
 	void:triples	444 ;
 	void-ext:datatypePartition	:void-dtp-770c278e73afb26c .
 
-:void-dtp-770c278e73afb26c	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-770c278e73afb26c	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	444 .
 
-:void-pp-ed360ebeca25c876	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-ed360ebeca25c876	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	444 .
 
-:void-pp-db92267ca9e377f5	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-db92267ca9e377f5	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	444 ;
 	void-ext:datatypePartition	:void-dtp-5adf65eb8a0a7d92 .
 
-:void-dtp-5adf65eb8a0a7d92	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-5adf65eb8a0a7d92	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	444 .
 
-:void-cp-c5c2930929e1afbd	a	void:Dataset ;
-	void:class	<http://www.w3.org/ns/prov#Activity> ;
+:void-cp-c5c2930929e1afbd	void:class	<http://www.w3.org/ns/prov#Activity> ;
 	void:entities	2 ;
 	void:propertyPartition	:void-pp-b26606f8019773fc ;
 	void:propertyPartition	:void-pp-17be6ff4646505d0 ;
@@ -2838,557 +2305,461 @@
 	void:propertyPartition	:void-pp-8011ff8cef7b3288 ;
 	void:propertyPartition	:void-pp-a9683920897af038 .
 
-:void-pp-b26606f8019773fc	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-b26606f8019773fc	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	2 .
 
-:void-pp-17be6ff4646505d0	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-17be6ff4646505d0	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	2 ;
 	void-ext:datatypePartition	:void-dtp-eda8b6a796a599a8 .
 
-:void-dtp-eda8b6a796a599a8	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-eda8b6a796a599a8	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	2 .
 
-:void-pp-bdd427ef09407b06	a	void:Dataset ;
-	void:property	<http://www.w3.org/ns/prov#used> ;
+:void-pp-bdd427ef09407b06	void:property	<http://www.w3.org/ns/prov#used> ;
 	void:triples	2 .
 
-:void-pp-b3f4e925d8f3b890	a	void:Dataset ;
-	void:property	<http://www.w3.org/ns/prov#wasDerivedFrom> ;
+:void-pp-b3f4e925d8f3b890	void:property	<http://www.w3.org/ns/prov#wasDerivedFrom> ;
 	void:triples	2 ;
 	void:classPartition	:void-ocp-3ab23c39ca475a68 .
 
-:void-ocp-3ab23c39ca475a68	a	void:Dataset ;
-	void:class	<http://www.w3.org/ns/prov#Entity> ;
+:void-ocp-3ab23c39ca475a68	void:class	<http://www.w3.org/ns/prov#Entity> ;
 	void:triples	2 .
 
-:void-pp-8011ff8cef7b3288	a	void:Dataset ;
-	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/isFeaturedMethod> ;
+:void-pp-8011ff8cef7b3288	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/isFeaturedMethod> ;
 	void:triples	2 ;
 	void-ext:datatypePartition	:void-dtp-1368b6c1c2fab268 .
 
-:void-dtp-1368b6c1c2fab268	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#boolean> ;
+:void-dtp-1368b6c1c2fab268	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#boolean> ;
 	void:triples	2 .
 
-:void-pp-a9683920897af038	a	void:Dataset ;
-	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/minConfidence> ;
+:void-pp-a9683920897af038	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/minConfidence> ;
 	void:triples	1 ;
 	void-ext:datatypePartition	:void-dtp-ac4551da7e9163df .
 
-:void-dtp-ac4551da7e9163df	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#decimal> ;
+:void-dtp-ac4551da7e9163df	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#decimal> ;
 	void:triples	1 .
 
-:void-cp-a973d9b595ea5c6f	a	void:Dataset ;
-	void:class	<http://www.w3.org/ns/prov#Entity> ;
+:void-cp-a973d9b595ea5c6f	void:class	<http://www.w3.org/ns/prov#Entity> ;
 	void:entities	1 ;
 	void:propertyPartition	:void-pp-727bae1ef58a0459 ;
 	void:propertyPartition	:void-pp-0cff7f3faf6b5235 .
 
-:void-pp-727bae1ef58a0459	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-pp-727bae1ef58a0459	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	1 .
 
-:void-pp-0cff7f3faf6b5235	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-pp-0cff7f3faf6b5235	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	1 ;
 	void-ext:datatypePartition	:void-dtp-a15c95b608807e9d .
 
-:void-dtp-a15c95b608807e9d	a	void:Dataset ;
-	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+:void-dtp-a15c95b608807e9d	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	1 .
 
-:void-p-b4eb1e1475f58a73	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#AopContext> ;
+:void-p-b4eb1e1475f58a73	void:property	<http://aopkb.org/aop_ontology#AopContext> ;
 	void:triples	236 ;
 	void:distinctSubjects	236 ;
 	void:distinctObjects	228 .
 
-:void-p-1d1e6fa8574d6f3e	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#CellTypeContext> ;
+:void-p-1d1e6fa8574d6f3e	void:property	<http://aopkb.org/aop_ontology#CellTypeContext> ;
 	void:triples	429 ;
 	void:distinctSubjects	429 ;
 	void:distinctObjects	69 .
 
-:void-p-ba195fc1a1baaa5b	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#LifeStageContext> ;
+:void-p-ba195fc1a1baaa5b	void:property	<http://aopkb.org/aop_ontology#LifeStageContext> ;
 	void:triples	1675 ;
 	void:distinctSubjects	1305 ;
 	void:distinctObjects	30 .
 
-:void-p-45b105c50647a68b	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#OrganContext> ;
+:void-p-45b105c50647a68b	void:property	<http://aopkb.org/aop_ontology#OrganContext> ;
 	void:triples	348 ;
 	void:distinctSubjects	348 ;
 	void:distinctObjects	99 .
 
-:void-p-21b459a70d0561d7	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#hasAction> ;
+:void-p-21b459a70d0561d7	void:property	<http://aopkb.org/aop_ontology#hasAction> ;
 	void:triples	1123 ;
 	void:distinctSubjects	1123 ;
 	void:distinctObjects	11 .
 
-:void-p-4fd702215a515959	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#hasBiologicalEvent> ;
+:void-p-4fd702215a515959	void:property	<http://aopkb.org/aop_ontology#hasBiologicalEvent> ;
 	void:triples	1123 ;
 	void:distinctSubjects	892 ;
 	void:distinctObjects	1123 .
 
-:void-p-7a913f7da39bdd3c	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#hasObject> ;
+:void-p-7a913f7da39bdd3c	void:property	<http://aopkb.org/aop_ontology#hasObject> ;
 	void:triples	809 ;
 	void:distinctSubjects	809 ;
 	void:distinctObjects	499 .
 
-:void-p-d93a195c9c58e1cd	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#hasProcess> ;
+:void-p-d93a195c9c58e1cd	void:property	<http://aopkb.org/aop_ontology#hasProcess> ;
 	void:triples	957 ;
 	void:distinctSubjects	957 ;
 	void:distinctObjects	561 .
 
-:void-p-be4ff900a7552801	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_adverse_outcome> ;
+:void-p-be4ff900a7552801	void:property	<http://aopkb.org/aop_ontology#has_adverse_outcome> ;
 	void:triples	656 ;
 	void:distinctSubjects	515 ;
 	void:distinctObjects	241 .
 
-:void-p-be37b5f13322444e	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_chemical_entity> ;
+:void-p-be37b5f13322444e	void:property	<http://aopkb.org/aop_ontology#has_chemical_entity> ;
 	void:triples	449 ;
 	void:distinctSubjects	442 ;
 	void:distinctObjects	434 .
 
-:void-p-61829bd8ca695746	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_downstream_key_event> ;
+:void-p-61829bd8ca695746	void:property	<http://aopkb.org/aop_ontology#has_downstream_key_event> ;
 	void:triples	2381 ;
 	void:distinctSubjects	2381 ;
 	void:distinctObjects	1235 .
 
-:void-p-d536ad5342516dca	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_evidence> ;
+:void-p-d536ad5342516dca	void:property	<http://aopkb.org/aop_ontology#has_evidence> ;
 	void:triples	216 ;
 	void:distinctSubjects	216 ;
 	void:distinctObjects	209 .
 
-:void-p-e907e08fcb2e37ef	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_key_event> ;
+:void-p-e907e08fcb2e37ef	void:property	<http://aopkb.org/aop_ontology#has_key_event> ;
 	void:triples	3750 ;
 	void:distinctSubjects	544 ;
 	void:distinctObjects	1602 .
 
-:void-p-a7cb821db8e27b0c	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_key_event_relationship> ;
+:void-p-a7cb821db8e27b0c	void:property	<http://aopkb.org/aop_ontology#has_key_event_relationship> ;
 	void:triples	3340 ;
 	void:distinctSubjects	485 ;
 	void:distinctObjects	2381 .
 
-:void-p-99d440ad9c620919	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_molecular_initiating_event> ;
+:void-p-99d440ad9c620919	void:property	<http://aopkb.org/aop_ontology#has_molecular_initiating_event> ;
 	void:triples	547 ;
 	void:distinctSubjects	496 ;
 	void:distinctObjects	285 .
 
-:void-p-057d0428e3ca318d	a	void:Dataset ;
-	void:property	<http://aopkb.org/aop_ontology#has_upstream_key_event> ;
+:void-p-057d0428e3ca318d	void:property	<http://aopkb.org/aop_ontology#has_upstream_key_event> ;
 	void:triples	2381 ;
 	void:distinctSubjects	2381 ;
 	void:distinctObjects	1283 .
 
-:void-p-bb1bc8424b232908	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_1025> ;
+:void-p-bb1bc8424b232908	void:property	<http://edamontology.org/data_1025> ;
 	void:triples	10679 ;
 	void:distinctSubjects	1158 ;
 	void:distinctObjects	2854 .
 
-:void-p-8d21a9219a790934	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_1027> ;
+:void-p-8d21a9219a790934	void:property	<http://edamontology.org/data_1027> ;
 	void:triples	2916 ;
 	void:distinctSubjects	2916 ;
 	void:distinctObjects	2916 .
 
-:void-p-c17b3ea26ef579dd	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_1033> ;
+:void-p-c17b3ea26ef579dd	void:property	<http://edamontology.org/data_1033> ;
 	void:triples	2851 ;
 	void:distinctSubjects	2851 ;
 	void:distinctObjects	2851 .
 
-:void-p-5f5b808da619bf1c	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_2042> ;
+:void-p-5f5b808da619bf1c	void:property	<http://edamontology.org/data_2042> ;
 	void:triples	706 ;
 	void:distinctSubjects	706 ;
 	void:distinctObjects	696 .
 
-:void-p-e12dabbc8f4a7eb4	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_2291> ;
+:void-p-e12dabbc8f4a7eb4	void:property	<http://edamontology.org/data_2291> ;
 	void:triples	14562 ;
 	void:distinctSubjects	14562 ;
 	void:distinctObjects	14562 .
 
-:void-p-256e6d864d94bcbf	a	void:Dataset ;
-	void:property	<http://edamontology.org/data_2298> ;
+:void-p-256e6d864d94bcbf	void:property	<http://edamontology.org/data_2298> ;
 	void:triples	2872 ;
 	void:distinctSubjects	2872 ;
 	void:distinctObjects	2872 .
 
-:void-p-57056b32c47cb872	a	void:Dataset ;
-	void:property	<http://edamontology.org/operation_3438> ;
+:void-p-57056b32c47cb872	void:property	<http://edamontology.org/operation_3438> ;
 	void:triples	261 ;
 	void:distinctSubjects	261 ;
 	void:distinctObjects	232 .
 
-:void-p-749d62ba7233312c	a	void:Dataset ;
-	void:property	<http://edamontology.org/operation_3799> ;
+:void-p-749d62ba7233312c	void:property	<http://edamontology.org/operation_3799> ;
 	void:triples	609 ;
 	void:distinctSubjects	609 ;
 	void:distinctObjects	562 .
 
-:void-p-f676076bb862c7db	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C103159> ;
+:void-p-f676076bb862c7db	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C103159> ;
 	void:triples	292 ;
 	void:distinctSubjects	292 ;
 	void:distinctObjects	203 .
 
-:void-p-69070c11332e6fe4	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C17469> ;
+:void-p-69070c11332e6fe4	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C17469> ;
 	void:triples	1106 ;
 	void:distinctSubjects	1106 ;
 	void:distinctObjects	1034 .
 
-:void-p-bebdbf8682bd6996	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25207> ;
+:void-p-bebdbf8682bd6996	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25207> ;
 	void:triples	264 ;
 	void:distinctSubjects	264 ;
 	void:distinctObjects	249 .
 
-:void-p-cd7798893f4b5421	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25217> ;
+:void-p-cd7798893f4b5421	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25217> ;
 	void:triples	200 ;
 	void:distinctSubjects	200 ;
 	void:distinctObjects	184 .
 
-:void-p-2fdb0bce36091015	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25343> ;
+:void-p-2fdb0bce36091015	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25343> ;
 	void:triples	251 ;
 	void:distinctSubjects	251 ;
 	void:distinctObjects	166 .
 
-:void-p-1117f0f0224b4078	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25664> ;
+:void-p-1117f0f0224b4078	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25664> ;
 	void:triples	1602 ;
 	void:distinctSubjects	1602 ;
 	void:distinctObjects	6 .
 
-:void-p-a5dc3759e6ba90f0	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25688> ;
+:void-p-a5dc3759e6ba90f0	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25688> ;
 	void:triples	152 ;
 	void:distinctSubjects	152 ;
 	void:distinctObjects	3 .
 
-:void-p-c974665869fd5ea1	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25725> ;
+:void-p-c974665869fd5ea1	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25725> ;
 	void:triples	157 ;
 	void:distinctSubjects	157 ;
 	void:distinctObjects	152 .
 
-:void-p-a67f08b6c88e1988	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C48192> ;
+:void-p-a67f08b6c88e1988	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C48192> ;
 	void:triples	221 ;
 	void:distinctSubjects	221 ;
 	void:distinctObjects	220 .
 
-:void-p-a2c4ad01ba3de317	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
+:void-p-a2c4ad01ba3de317	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
 	void:triples	870 ;
 	void:distinctSubjects	260 ;
 	void:distinctObjects	537 .
 
-:void-p-14209560da52cb67	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C68821> ;
+:void-p-14209560da52cb67	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C68821> ;
 	void:triples	252 ;
 	void:distinctSubjects	252 ;
 	void:distinctObjects	223 .
 
-:void-p-47ed61f00370fb3e	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C71478> ;
+:void-p-47ed61f00370fb3e	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C71478> ;
 	void:triples	596 ;
 	void:distinctSubjects	596 ;
 	void:distinctObjects	567 .
 
-:void-p-980151f28d754515	a	void:Dataset ;
-	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C80263> ;
+:void-p-980151f28d754515	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C80263> ;
 	void:triples	722 ;
 	void:distinctSubjects	722 ;
 	void:distinctObjects	711 .
 
-:void-p-fef95b2aa4d8e2d2	a	void:Dataset ;
-	void:property	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
+:void-p-fef95b2aa4d8e2d2	void:property	<http://purl.bioontology.org/ontology/NCBITAXON/131567> ;
 	void:triples	4033 ;
 	void:distinctSubjects	1550 ;
 	void:distinctObjects	297 .
 
-:void-p-2cc92ef00dc9a5af	a	void:Dataset ;
-	void:property	<http://purl.obolibrary.org/obo/GO_0008150> ;
+:void-p-2cc92ef00dc9a5af	void:property	<http://purl.obolibrary.org/obo/GO_0008150> ;
 	void:triples	914 ;
 	void:distinctSubjects	770 ;
 	void:distinctObjects	561 .
 
-:void-p-4d06d4f0c20ad17c	a	void:Dataset ;
-	void:property	<http://purl.obolibrary.org/obo/MMO_0000000> ;
+:void-p-4d06d4f0c20ad17c	void:property	<http://purl.obolibrary.org/obo/MMO_0000000> ;
 	void:triples	605 ;
 	void:distinctSubjects	605 ;
 	void:distinctObjects	602 .
 
-:void-p-cf5d04b0e2f409f2	a	void:Dataset ;
-	void:property	<http://purl.obolibrary.org/obo/PATO_0000001> ;
+:void-p-cf5d04b0e2f409f2	void:property	<http://purl.obolibrary.org/obo/PATO_0000001> ;
 	void:triples	936 ;
 	void:distinctSubjects	892 ;
 	void:distinctObjects	11 .
 
-:void-p-8790d0102d24bea4	a	void:Dataset ;
-	void:property	<http://purl.obolibrary.org/obo/PATO_0000047> ;
+:void-p-8790d0102d24bea4	void:property	<http://purl.obolibrary.org/obo/PATO_0000047> ;
 	void:triples	1617 ;
 	void:distinctSubjects	1345 ;
 	void:distinctObjects	5 .
 
-:void-p-77a05044b2829d21	a	void:Dataset ;
-	void:property	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+:void-p-77a05044b2829d21	void:property	<http://purl.obolibrary.org/obo/PATO_0001241> ;
 	void:triples	764 ;
 	void:distinctSubjects	660 ;
 	void:distinctObjects	499 .
 
-:void-p-54aed229df691a2f	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/creator> ;
+:void-p-54aed229df691a2f	void:property	<http://purl.org/dc/elements/1.1/creator> ;
 	void:triples	451 ;
 	void:distinctSubjects	451 ;
 	void:distinctObjects	305 .
 
-:void-p-2298d2f28daae5f0	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/description> ;
+:void-p-2298d2f28daae5f0	void:property	<http://purl.org/dc/elements/1.1/description> ;
 	void:triples	2151 ;
 	void:distinctSubjects	1808 ;
 	void:distinctObjects	1728 .
 
-:void-p-15d84f796008b7ac	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
+:void-p-15d84f796008b7ac	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
 	void:triples	33800 ;
 	void:distinctSubjects	33800 ;
 	void:distinctObjects	33800 .
 
-:void-p-e5bfaa671e3963e2	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/source> ;
+:void-p-e5bfaa671e3963e2	void:property	<http://purl.org/dc/elements/1.1/source> ;
 	void:triples	31519 ;
 	void:distinctSubjects	31519 ;
 	void:distinctObjects	34 .
 
-:void-p-5bb8348058bfded2	a	void:Dataset ;
-	void:property	<http://purl.org/dc/elements/1.1/title> ;
+:void-p-5bb8348058bfded2	void:property	<http://purl.org/dc/elements/1.1/title> ;
 	void:triples	4767 ;
 	void:distinctSubjects	4727 ;
 	void:distinctObjects	4391 .
 
-:void-p-e5d875e8889861bc	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/abstract> ;
+:void-p-e5d875e8889861bc	void:property	<http://purl.org/dc/terms/abstract> ;
 	void:triples	361 ;
 	void:distinctSubjects	361 ;
 	void:distinctObjects	336 .
 
-:void-p-63e69c4e1023e8a0	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/alternative> ;
+:void-p-63e69c4e1023e8a0	void:property	<http://purl.org/dc/terms/alternative> ;
 	void:triples	15959 ;
 	void:distinctSubjects	2563 ;
 	void:distinctObjects	15957 .
 
-:void-p-cc2f6ab752405022	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/created> ;
+:void-p-cc2f6ab752405022	void:property	<http://purl.org/dc/terms/created> ;
 	void:triples	3738 ;
 	void:distinctSubjects	3738 ;
 	void:distinctObjects	2786 .
 
-:void-p-b0df241f96d4d4af	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/isPartOf> ;
+:void-p-b0df241f96d4d4af	void:property	<http://purl.org/dc/terms/isPartOf> ;
 	void:triples	8402 ;
 	void:distinctSubjects	4953 ;
 	void:distinctObjects	981 .
 
-:void-p-85a6d6b1baac606b	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/license> ;
+:void-p-85a6d6b1baac606b	void:property	<http://purl.org/dc/terms/license> ;
 	void:triples	530 ;
 	void:distinctSubjects	530 ;
 	void:distinctObjects	1 .
 
-:void-p-0eaf924e28e259ee	a	void:Dataset ;
-	void:property	<http://purl.org/dc/terms/modified> ;
+:void-p-0eaf924e28e259ee	void:property	<http://purl.org/dc/terms/modified> ;
 	void:triples	3738 ;
 	void:distinctSubjects	3738 ;
 	void:distinctObjects	2867 .
 
-:void-p-cd10d04c07ce01e3	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000059> ;
+:void-p-cd10d04c07ce01e3	void:property	<http://semanticscience.org/resource/CHEMINF_000059> ;
 	void:triples	416 ;
 	void:distinctSubjects	416 ;
 	void:distinctObjects	416 .
 
-:void-p-782ff3513817ed53	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000140> ;
+:void-p-782ff3513817ed53	void:property	<http://semanticscience.org/resource/CHEMINF_000140> ;
 	void:triples	492 ;
 	void:distinctSubjects	492 ;
 	void:distinctObjects	492 .
 
-:void-p-6993c40853893c1c	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000405> ;
+:void-p-6993c40853893c1c	void:property	<http://semanticscience.org/resource/CHEMINF_000405> ;
 	void:triples	449 ;
 	void:distinctSubjects	449 ;
 	void:distinctObjects	449 .
 
-:void-p-50c3bf5de71d906a	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000406> ;
+:void-p-50c3bf5de71d906a	void:property	<http://semanticscience.org/resource/CHEMINF_000406> ;
 	void:triples	224 ;
 	void:distinctSubjects	224 ;
 	void:distinctObjects	224 .
 
-:void-p-dca259038efb8e7a	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000407> ;
+:void-p-dca259038efb8e7a	void:property	<http://semanticscience.org/resource/CHEMINF_000407> ;
 	void:triples	445 ;
 	void:distinctSubjects	445 ;
 	void:distinctObjects	445 .
 
-:void-p-3f29956feb4c9a05	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000408> ;
+:void-p-3f29956feb4c9a05	void:property	<http://semanticscience.org/resource/CHEMINF_000408> ;
 	void:triples	553 ;
 	void:distinctSubjects	553 ;
 	void:distinctObjects	553 .
 
-:void-p-c88dfbab51f59a54	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000409> ;
+:void-p-c88dfbab51f59a54	void:property	<http://semanticscience.org/resource/CHEMINF_000409> ;
 	void:triples	479 ;
 	void:distinctSubjects	479 ;
 	void:distinctObjects	479 .
 
-:void-p-06bd284db93d9e65	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000412> ;
+:void-p-06bd284db93d9e65	void:property	<http://semanticscience.org/resource/CHEMINF_000412> ;
 	void:triples	370 ;
 	void:distinctSubjects	370 ;
 	void:distinctObjects	370 .
 
-:void-p-e92b03403f7407f0	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000446> ;
+:void-p-e92b03403f7407f0	void:property	<http://semanticscience.org/resource/CHEMINF_000446> ;
 	void:triples	433 ;
 	void:distinctSubjects	433 ;
 	void:distinctObjects	433 .
 
-:void-p-d9f5c63ac2dcc8a3	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000564> ;
+:void-p-d9f5c63ac2dcc8a3	void:property	<http://semanticscience.org/resource/CHEMINF_000564> ;
 	void:triples	35 ;
 	void:distinctSubjects	35 ;
 	void:distinctObjects	35 .
 
-:void-p-e76d04f6b9b04574	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000567> ;
+:void-p-e76d04f6b9b04574	void:property	<http://semanticscience.org/resource/CHEMINF_000567> ;
 	void:triples	444 ;
 	void:distinctSubjects	444 ;
 	void:distinctObjects	444 .
 
-:void-p-828a93496131288a	a	void:Dataset ;
-	void:property	<http://semanticscience.org/resource/CHEMINF_000568> ;
+:void-p-828a93496131288a	void:property	<http://semanticscience.org/resource/CHEMINF_000568> ;
 	void:triples	433 ;
 	void:distinctSubjects	433 ;
 	void:distinctObjects	433 .
 
-:void-p-3c197cb1f6842dc4	a	void:Dataset ;
-	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+:void-p-3c197cb1f6842dc4	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 	void:triples	58631 ;
 	void:distinctSubjects	34926 ;
 	void:distinctObjects	28 .
 
-:void-p-9ac796fdb3c1f82a	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+:void-p-9ac796fdb3c1f82a	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
 	void:triples	34325 ;
 	void:distinctSubjects	34285 ;
 	void:distinctObjects	10086 .
 
-:void-p-02f0e6a4fb4db018	a	void:Dataset ;
-	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
+:void-p-02f0e6a4fb4db018	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
 	void:triples	5084 ;
 	void:distinctSubjects	5084 ;
 	void:distinctObjects	5084 .
 
-:void-p-a58bb0b7b521b35d	a	void:Dataset ;
-	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
+:void-p-a58bb0b7b521b35d	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
 	void:triples	24564 ;
 	void:distinctSubjects	3923 ;
 	void:distinctObjects	24447 .
 
-:void-p-31d5c2a9776698c4	a	void:Dataset ;
-	void:property	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+:void-p-31d5c2a9776698c4	void:property	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
 	void:triples	24063 ;
 	void:distinctSubjects	3422 ;
 	void:distinctObjects	23946 .
 
-:void-p-600e32e62974367d	a	void:Dataset ;
-	void:property	<http://www.w3.org/ns/prov#used> ;
+:void-p-600e32e62974367d	void:property	<http://www.w3.org/ns/prov#used> ;
 	void:triples	2 ;
 	void:distinctSubjects	2 ;
 	void:distinctObjects	2 .
 
-:void-p-406811b6d16321cb	a	void:Dataset ;
-	void:property	<http://www.w3.org/ns/prov#wasDerivedFrom> ;
+:void-p-406811b6d16321cb	void:property	<http://www.w3.org/ns/prov#wasDerivedFrom> ;
 	void:triples	2 ;
 	void:distinctSubjects	2 ;
 	void:distinctObjects	1 .
 
-:void-p-76e38e0c836914ca	a	void:Dataset ;
-	void:property	<http://www.w3.org/ns/prov#wasGeneratedBy> ;
+:void-p-76e38e0c836914ca	void:property	<http://www.w3.org/ns/prov#wasGeneratedBy> ;
 	void:triples	2 ;
 	void:distinctSubjects	2 ;
 	void:distinctObjects	2 .
 
-:void-p-0900701eeaea6ac6	a	void:Dataset ;
-	void:property	<http://www.w3.org/ns/shacl#declare> ;
+:void-p-0900701eeaea6ac6	void:property	<http://www.w3.org/ns/shacl#declare> ;
 	void:triples	50 ;
 	void:distinctSubjects	50 ;
 	void:distinctObjects	50 .
 
-:void-p-eea3b234aa53bb1d	a	void:Dataset ;
-	void:property	<http://www.w3.org/ns/shacl#namespace> ;
+:void-p-eea3b234aa53bb1d	void:property	<http://www.w3.org/ns/shacl#namespace> ;
 	void:triples	50 ;
 	void:distinctSubjects	50 ;
 	void:distinctObjects	50 .
 
-:void-p-83e8cb0d59d5d82f	a	void:Dataset ;
-	void:property	<http://www.w3.org/ns/shacl#prefix> ;
+:void-p-83e8cb0d59d5d82f	void:property	<http://www.w3.org/ns/shacl#prefix> ;
 	void:triples	50 ;
 	void:distinctSubjects	50 ;
 	void:distinctObjects	50 .
 
-:void-p-8221021eeaec16ff	a	void:Dataset ;
-	void:property	<http://xmlns.com/foaf/0.1/page> ;
+:void-p-8221021eeaec16ff	void:property	<http://xmlns.com/foaf/0.1/page> ;
 	void:triples	5340 ;
 	void:distinctSubjects	5340 ;
 	void:distinctObjects	5340 .
 
-:void-p-a74a0a9639a62ceb	a	void:Dataset ;
-	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByNER> ;
+:void-p-a74a0a9639a62ceb	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByNER> ;
 	void:triples	10074 ;
 	void:distinctSubjects	1137 ;
 	void:distinctObjects	2718 .
 
-:void-p-c555bc45b6b71624	a	void:Dataset ;
-	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByRegex> ;
+:void-p-c555bc45b6b71624	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByRegex> ;
 	void:triples	3522 ;
 	void:distinctSubjects	883 ;
 	void:distinctObjects	1085 .
 
-:void-p-795420ae54b016bd	a	void:Dataset ;
-	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/isFeaturedMethod> ;
+:void-p-795420ae54b016bd	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/isFeaturedMethod> ;
 	void:triples	2 ;
 	void:distinctSubjects	2 ;
 	void:distinctObjects	2 .
 
-:void-p-184e76cfef1ed0a4	a	void:Dataset ;
-	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/minConfidence> ;
+:void-p-184e76cfef1ed0a4	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/minConfidence> ;
 	void:triples	1 ;
 	void:distinctSubjects	1 ;
 	void:distinctObjects	1 .
