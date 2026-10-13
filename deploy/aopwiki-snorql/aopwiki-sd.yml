@@ -1,0 +1,93 @@
+# Traefik dynamic — endpoint metadata documents for the AOP-Wiki RDF endpoint:
+# the SPARQL 1.1 Service Description, and the VoID description at /.well-known/void.
+#
+# Deliberately a file-provider router rather than Traefik labels on aopwiki-snorql_virtuoso:
+# adding a label forces a service update, which restarts a Virtuoso holding a GlusterFS-backed
+# database. This needs no restart and is reverted by deleting this file.
+#
+# It shadows the label router `aopwiki-snorql-sparql@swarm` (priority 100) for this one case
+# only, so it declares its own backend pointing at the same container.
+#
+# NOTE: no CORS middleware here on purpose. Virtuoso already emits Access-Control-Allow-Origin
+# on this endpoint; adding Traefik's would send two, and browsers reject a response carrying
+# duplicate Access-Control-Allow-Origin headers outright.
+#
+# 2026-08-06 (second pass, marvinm2/AOP-Wiki-Snorql-UI#9): the target is now Virtuoso's
+# /sparql-sd-full, a URL-rewrite rule defined in the Virtuoso DB that CONSTRUCTs over the
+# curated `servicedescription` graph — NOT the built-in /sparql-sd, whose generated output
+# carries no dcterms:modified and no typed sd:Dataset. See services/aopwiki-snorql.md.
+
+http:
+  routers:
+    aopwiki-sd:
+      # The cluster sets `core.defaultRuleSyntax: v2`; QueryRegexp is v3-only, and under v3
+      # syntax Host() takes a single value, hence the explicit ||.
+      ruleSyntax: v3
+      # Accept list widened on 2026-08-06 because /sparql-sd-full content-negotiates, which
+      # the old /sparql-sd target could not: it was Turtle-only and 406'd on everything else.
+      # Verified before widening — none of these is a regression on the bare endpoint:
+      #   rdf+xml  200 but 170 bytes (empty)  -> 200, 2386 bytes
+      #   n3       200 but 15 bytes (empty)   -> 200, 1310 bytes
+      #   ld+json  406                        -> 200, 2472 bytes
+      #   n-triples 406                       -> 200, 3474 bytes
+      # `application/xml` is deliberately absent: browsers send it in their default Accept and
+      # would be pulled off the Snorql UI. text/html and */* do not match and still get the UI.
+      # Matches the service endpoint, its trailing-slash form (which Snorql's own config and
+      # the stored ServiceDescription.ttl both use), and the site root, which is the URL
+      # wikipathways/GPML2RDF#66 actually asks for.
+      rule: '(Host(`aopwiki-rdf.vhp4safety.nl`) || Host(`aopwiki.rdf.bigcat-bioinformatics.org`)) && (Path(`/sparql`) || Path(`/sparql/`) || Path(`/`)) && Method(`GET`) && !QueryRegexp(`query`, `.+`) && HeaderRegexp(`Accept`, `(?i)(text/turtle|text/n3|application/rdf\+xml|application/ld\+json|application/n-triples)`)'
+      entryPoints:
+        - websecure
+      priority: 200
+      service: aopwiki-sd-backend
+      middlewares:
+        - aopwiki-sd-path
+        - aopwiki-sd-headers
+      tls:
+        certResolver: letsencrypt
+
+    # Restores /.well-known/void, which strato1 served and which the 2026-07-16 migration
+    # dropped — the old loader copied the VoID into the Snorql UI's bind-mounted document
+    # root, and the cluster's UI runs from a GHCR image with no mount. 404 here since 16 July.
+    # /void-full is a Virtuoso rewrite rule CONSTRUCTing the VoID back out of the store, which
+    # reproduces strato1's document exactly (58 triples, verified at the same vintage).
+    # No Accept matcher: there is no other content at this path, so there is nothing to steal
+    # from. Virtuoso returns Turtle for `*/*` and negotiates rdf+xml, ld+json, n-triples and
+    # n3; a browser sending text/html gets Virtuoso's HTML rendering, where strato1 served raw
+    # Turtle. `/.well-known/acme-challenge/…` is a different path on a different entrypoint and
+    # is unaffected.
+    aopwiki-void:
+      ruleSyntax: v3
+      rule: '(Host(`aopwiki-rdf.vhp4safety.nl`) || Host(`aopwiki.rdf.bigcat-bioinformatics.org`)) && Path(`/.well-known/void`) && Method(`GET`)'
+      entryPoints:
+        - websecure
+      priority: 200
+      service: aopwiki-sd-backend
+      middlewares:
+        - aopwiki-void-path
+        - aopwiki-sd-headers
+      tls:
+        certResolver: letsencrypt
+
+  middlewares:
+    aopwiki-sd-path:
+      replacePath:
+        path: "/sparql-sd-full"
+
+    aopwiki-void-path:
+      replacePath:
+        path: "/void-full"
+
+    # Virtuoso tags a CONSTRUCT response with `Content-disposition: filename=sparql_<ts>.ttl`,
+    # which makes a browser download the service description rather than display it. An empty
+    # value removes the header.
+    aopwiki-sd-headers:
+      headers:
+        customResponseHeaders:
+          Content-Disposition: ""
+
+  services:
+    aopwiki-sd-backend:
+      loadBalancer:
+        servers:
+          - url: "http://aopwiki-snorql_virtuoso:8890"
