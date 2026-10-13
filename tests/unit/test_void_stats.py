@@ -157,15 +157,28 @@ def test_service_description_links_data_graph_to_void(tmp_path):
                      "http://aopwiki.org/servicedescription"}
 
 
-def test_every_partition_is_typed_void_dataset(tmp_path):
-    """The endpoint's /.well-known/void CONSTRUCT keeps only subjects typed
-    void:Dataset or void:Linkset, so untyped partitions would be dropped."""
-    void = Graph().parse(_write(tmp_path, _stats()), format="turtle")
-    untyped = list(void.query("""
-        PREFIX void: <http://rdfs.org/ns/void#>
-        SELECT ?n WHERE {
-          { ?x void:classPartition ?n } UNION { ?x void:propertyPartition ?n }
-          UNION { ?x <http://ldf.fi/void-ext#datatypePartition> ?n }
-          FILTER NOT EXISTS { ?n a void:Dataset } }
+def test_yummydata_triple_count_is_not_inflated(tmp_path):
+    """YummyData's data_entry sums void:triples over every subject typed
+    void:Dataset (umakadata_gem rdf/void.rb). Only the three file subsets may
+    contribute, so partitions stay untyped and the parent carries no total."""
+    stats = _stats()
+    path = tmp_path / "AOPWikiRDF-Void.ttl"
+    write_void_rdf(str(path), {
+        "aopwikixmlfilename": "aop-wiki-xml-2026-10-10",
+        "date": "2026-10-13",
+        "datetime_obj": datetime.datetime(2026, 10, 13, 12, 0, 0),
+        "HGNCmodificationTime": "Unknown",
+        "PromodificationTime": "Unknown",
+        "void_stats": stats,
+        "triple_counts": {"main": 5, "enriched": 2, "genes": 4},
+    })
+    void = Graph().parse(path, format="turtle")
+    rows = list(void.query("""
+        SELECT ?s ?triples WHERE {
+          ?s a ?type ; <http://rdfs.org/ns/void#triples> ?triples .
+          FILTER(?type = <http://rdfs.org/ns/void#Dataset>
+              || ?type = <http://www.w3.org/ns/sparql-service-description#Dataset>
+              || ?type = <http://www.w3.org/ns/sparql-service-description#Graph>) }
     """))
-    assert untyped == []
+    assert sum(int(r.triples) for r in rows) == 11
+    assert len(rows) == 3
