@@ -12,9 +12,11 @@
 -- Restored by CONSTRUCTing the VoID back out of the store rather than by re-copying a file:
 -- the VoID is already loaded weekly as one of the five TTLs, so this needs no loader change,
 -- no bind mount and no container restart. Verified to reproduce strato1's served document
--- exactly — 58 triples, zero difference, compared at the same generation vintage. All the
--- triples in AOPWikiRDF-Void.ttl hang off typed, named subjects, with no blank nodes, so
--- nothing is orphaned by selecting on rdf:type.
+-- exactly — 58 triples, zero difference, compared at the same generation vintage.
+--
+-- Since marvinm2/AOPWikiRDF#125 the VoID has its own graph, http://aopwiki.org/void, so the
+-- rule CONSTRUCTs that whole graph. Before, it shared http://aopwiki.org/ with the data and
+-- the rule had to pick out subjects typed void:Dataset or void:Linkset.
 --
 -- Traefik maps /.well-known/void onto /void-full. It is deliberately NOT mapped onto
 -- Virtuoso's own `/.well-known` vhost, which already carries url_rewrite
@@ -47,7 +49,7 @@ DB.DBA.URLREWRITE_CREATE_REGEX_RULE (
     '/void-full',
     vector (),
     0,
-    '/sparql?query=CONSTRUCT+%%7B+%%3Fs+%%3Fp+%%3Fo+%%7D+WHERE+%%7B+GRAPH+%%3Chttp%%3A%%2F%%2Faopwiki.org%%2F%%3E+%%7B+%%3Fs+a+%%3Ft+.+%%3Fs+%%3Fp+%%3Fo+.+FILTER%%28%%3Ft+%%3D+%%3Chttp%%3A%%2F%%2Frdfs.org%%2Fns%%2Fvoid%%23Dataset%%3E+%%7C%%7C+%%3Ft+%%3D+%%3Chttp%%3A%%2F%%2Frdfs.org%%2Fns%%2Fvoid%%23Linkset%%3E%%29+%%7D+%%7D',
+    '/sparql?query=CONSTRUCT+%%7B+%%3Fs+%%3Fp+%%3Fo+%%7D+WHERE+%%7B+GRAPH+%%3Chttp%%3A%%2F%%2Faopwiki.org%%2Fvoid%%3E+%%7B+%%3Fs+%%3Fp+%%3Fo+%%7D+%%7D',
     vector (),
     null,
     null,

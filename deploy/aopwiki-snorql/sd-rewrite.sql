@@ -1,7 +1,8 @@
 -- AOP-Wiki RDF endpoint — serve the curated service description.
 -- marvinm2/AOP-Wiki-Snorql-UI#9
 --
--- Maps /sparql-sd-full onto a CONSTRUCT over the `servicedescription` graph, so the
+-- Maps /sparql-sd-full onto a CONSTRUCT over the `http://aopwiki.org/servicedescription`
+-- graph (named `servicedescription` before marvinm2/AOPWikiRDF#125), so the
 -- endpoint serves the 23 curated triples (dcterms:modified, dcterms:description,
 -- sd:defaultDataset/defaultGraph, https:// endpoint URI) instead of Virtuoso's
 -- generated /sparql-sd (~4.5 KB of virtrdf: internals with no modified date).
@@ -25,7 +26,7 @@ DB.DBA.URLREWRITE_CREATE_REGEX_RULE (
     '/sparql-sd-full',
     vector (),
     0,
-    '/sparql?query=CONSTRUCT+%%7B+%%3Fs+%%3Fp+%%3Fo+%%7D+WHERE+%%7B+GRAPH+%%3Cservicedescription%%3E+%%7B+%%3Fs+%%3Fp+%%3Fo+%%7D+%%7D',
+    '/sparql?query=CONSTRUCT+%%7B+%%3Fs+%%3Fp+%%3Fo+%%7D+WHERE+%%7B+GRAPH+%%3Chttp%%3A%%2F%%2Faopwiki.org%%2Fservicedescription%%3E+%%7B+%%3Fs+%%3Fp+%%3Fo+%%7D+%%7D',
     vector (),
     null,
     null,
