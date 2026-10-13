@@ -151,3 +151,21 @@ def test_service_description_links_data_graph_to_void(tmp_path):
     assert [(str(r.name), str(r.graph)) for r in rows] == [
         ("http://aopwiki.org/", "https://aopwiki.rdf.bigcat-bioinformatics.org/AOPWikiRDF")
     ]
+    names = {str(n) for n in sd.objects(None, URIRef(
+        "http://www.w3.org/ns/sparql-service-description#name"))}
+    assert names == {"http://aopwiki.org/", "http://aopwiki.org/void",
+                     "http://aopwiki.org/servicedescription"}
+
+
+def test_every_partition_is_typed_void_dataset(tmp_path):
+    """The endpoint's /.well-known/void CONSTRUCT keeps only subjects typed
+    void:Dataset or void:Linkset, so untyped partitions would be dropped."""
+    void = Graph().parse(_write(tmp_path, _stats()), format="turtle")
+    untyped = list(void.query("""
+        PREFIX void: <http://rdfs.org/ns/void#>
+        SELECT ?n WHERE {
+          { ?x void:classPartition ?n } UNION { ?x void:propertyPartition ?n }
+          UNION { ?x <http://ldf.fi/void-ext#datatypePartition> ?n }
+          FILTER NOT EXISTS { ?n a void:Dataset } }
+    """))
+    assert untyped == []

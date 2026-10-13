@@ -480,8 +480,13 @@ consumers to expect refreshes four times less often than they actually happen.
 ### ServiceDescription.ttl
 
 SPARQL service description for the public endpoint at `https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/`.
-Its `sd:defaultDataset` lists two named graphs: `http://aopwiki.org/`, whose
-`sd:graph` is the `:AOPWikiRDF` VoID dataset, and `http://aopwiki.org/void`, which
-holds `AOPWikiRDF-Void.ttl` and `ServiceDescription.ttl` themselves. Keeping the
-metadata out of the data graph means schema statistics and mined schemas describe
-AOP-Wiki data only.
+Its `sd:defaultDataset` lists three named graphs: `http://aopwiki.org/`, whose
+`sd:graph` is the `:AOPWikiRDF` VoID dataset; `http://aopwiki.org/void`, which holds
+`AOPWikiRDF-Void.ttl`; and `http://aopwiki.org/servicedescription`, which holds
+`ServiceDescription.ttl`. Keeping the metadata out of the data graph means schema
+statistics and mined schemas describe AOP-Wiki data only, and keeping the two metadata
+files apart lets an endpoint serve either one by CONSTRUCTing a single graph.
+
+Every partition node is typed `void:Dataset`, so a CONSTRUCT that selects VoID
+subjects by type (as the cluster's `/.well-known/void` rewrite does) returns the
+whole partition tree.

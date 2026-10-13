@@ -582,6 +582,7 @@ def _stage_write_void_rdf(config, context):
     metadata["sparql_endpoint"] = config.sparql_endpoint
     metadata["data_dump_base"] = config.data_dump_base
     metadata.update(data_graph=config.data_graph, void_graph=config.void_graph,
+                    service_description_graph=config.service_description_graph,
                     void_stats=data_file_void_stats(filepath))  # issue #121
 
     # Release identity (issue #101): derived, so pav:version cannot go stale.

@@ -977,7 +977,8 @@ def write_void_rdf(filepath, metadata):
         'service_desc_filepath'.
         Optional: 'triple_counts' dict with 'main', 'enriched', 'genes' keys,
         'bridgedb_url' string, 'void_stats' (see void_stats.compute_void_stats),
-        'data_graph' and 'void_graph' IRIs for the ServiceDescription.
+        'data_graph', 'void_graph' and 'service_description_graph' IRIs for
+        the ServiceDescription.
     """
     aopwikixmlfilename = metadata['aopwikixmlfilename']
     x = metadata['datetime_obj']
@@ -999,6 +1000,7 @@ def write_void_rdf(filepath, metadata):
     void_stats = metadata.get('void_stats')
     data_graph = metadata.get('data_graph', 'http://aopwiki.org/')
     void_graph = metadata.get('void_graph', 'http://aopwiki.org/void')
+    sd_graph = metadata.get('service_description_graph', 'http://aopwiki.org/servicedescription')
 
     logger.info(f"Writing VoID RDF file: {filepath}")
 
@@ -1096,7 +1098,7 @@ def write_void_rdf(filepath, metadata):
         logger.info(f"Writing ServiceDescription.ttl file: {service_desc_filepath}")
 
         service_desc_content = _service_description(
-            sparql_endpoint, data_graph, void_graph, x)
+            sparql_endpoint, data_graph, void_graph, sd_graph, x)
 
         with open(service_desc_filepath, 'w', encoding='utf-8') as f:
             f.write(service_desc_content)
@@ -1133,10 +1135,16 @@ def _write_void_summary(g, stats):
 
 
 def _write_void_partitions(g, stats):
-    """Write the nested void-generator partition tree as separate subject blocks."""
+    """Write the nested void-generator partition tree as separate subject blocks.
+
+    Every partition is typed void:Dataset (the range of void:classPartition and
+    void:propertyPartition); the endpoint's /.well-known/void rewrite selects
+    VoID subjects by that type.
+    """
     for cp in stats["class_partitions"]:
         c = cp["class"]
-        g.write(f'\n:void-cp-{partition_id(c)}\tvoid:class\t<{c}>')
+        g.write(f'\n:void-cp-{partition_id(c)}\ta\tvoid:Dataset')
+        g.write(f' ;\n\tvoid:class\t<{c}>')
         g.write(f' ;\n\tvoid:entities\t{cp["entities"]}')
         for pp in cp["properties"]:
             g.write(f' ;\n\tvoid:propertyPartition\t:void-pp-{partition_id(c, pp["property"])}')
@@ -1144,7 +1152,8 @@ def _write_void_partitions(g, stats):
 
         for pp in cp["properties"]:
             p = pp["property"]
-            g.write(f'\n:void-pp-{partition_id(c, p)}\tvoid:property\t<{p}>')
+            g.write(f'\n:void-pp-{partition_id(c, p)}\ta\tvoid:Dataset')
+            g.write(f' ;\n\tvoid:property\t<{p}>')
             g.write(f' ;\n\tvoid:triples\t{pp["triples"]}')
             for oc, _ in pp["object_classes"]:
                 g.write(f' ;\n\tvoid:classPartition\t:void-ocp-{partition_id(c, p, oc)}')
@@ -1153,21 +1162,24 @@ def _write_void_partitions(g, stats):
             g.write(' .\n')
 
             for oc, n in pp["object_classes"]:
-                g.write(f'\n:void-ocp-{partition_id(c, p, oc)}\tvoid:class\t<{oc}>')
+                g.write(f'\n:void-ocp-{partition_id(c, p, oc)}\ta\tvoid:Dataset')
+                g.write(f' ;\n\tvoid:class\t<{oc}>')
                 g.write(f' ;\n\tvoid:triples\t{n} .\n')
             for dt, n in pp["datatypes"]:
-                g.write(f'\n:void-dtp-{partition_id(c, p, "datatype", dt)}\tvoid-ext:datatype\t<{dt}>')
+                g.write(f'\n:void-dtp-{partition_id(c, p, "datatype", dt)}\ta\tvoid:Dataset')
+                g.write(f' ;\n\tvoid-ext:datatype\t<{dt}>')
                 g.write(f' ;\n\tvoid:triples\t{n} .\n')
 
     for pp in stats["property_partitions"]:
         p = pp["property"]
-        g.write(f'\n:void-p-{partition_id(p)}\tvoid:property\t<{p}>')
+        g.write(f'\n:void-p-{partition_id(p)}\ta\tvoid:Dataset')
+        g.write(f' ;\n\tvoid:property\t<{p}>')
         g.write(f' ;\n\tvoid:triples\t{pp["triples"]}')
         g.write(f' ;\n\tvoid:distinctSubjects\t{pp["distinct_subjects"]}')
         g.write(f' ;\n\tvoid:distinctObjects\t{pp["distinct_objects"]} .\n')
 
 
-def _service_description(sparql_endpoint, data_graph, void_graph, modified):
+def _service_description(sparql_endpoint, data_graph, void_graph, sd_graph, modified):
     """Build ServiceDescription.ttl, linking the data graph to its VoID dataset (issue #124)."""
     return f"""@prefix : <https://aopwiki.rdf.bigcat-bioinformatics.org/> .
 @prefix sd: <http://www.w3.org/ns/sparql-service-description#> .
@@ -1188,6 +1200,7 @@ def _service_description(sparql_endpoint, data_graph, void_graph, modified):
 \tsd:defaultGraph\t<{data_graph}> ;
 \tsd:namedGraph\t:DataNamedGraph ;
 \tsd:namedGraph\t:VoidNamedGraph ;
+\tsd:namedGraph\t:ServiceDescriptionNamedGraph ;
 \tdcterms:title\t"AOP-Wiki RDF Dataset" ;
 \tdcterms:description\t"Adverse Outcome Pathway data in RDF format" ;
 \tdcterms:modified\t"{modified.isoformat()}"^^xsd:dateTime .
@@ -1198,6 +1211,9 @@ def _service_description(sparql_endpoint, data_graph, void_graph, modified):
 
 :VoidNamedGraph\ta\tsd:NamedGraph ;
 \tsd:name\t<{void_graph}> .
+
+:ServiceDescriptionNamedGraph\ta\tsd:NamedGraph ;
+\tsd:name\t<{sd_graph}> .
 
 :AOPWikiRDF\ta\tsd:Graph, void:Dataset .
 """
