@@ -400,7 +400,7 @@ Contains VoID dataset metadata:
 
 #### Schema partitions
 
-`:AOPWikiRDF` also carries summary statistics for the data graph: `void:triples`,
+`:AOPWikiRDF` also carries summary statistics for the data graph:
 `void:entities`, `void:classes`, `void:properties`, `void:distinctSubjects`,
 `void:distinctObjects` and one `void:vocabulary` per namespace in use. The schema
 itself is published as a nested partition tree in the shape written by the SIB
@@ -487,6 +487,7 @@ Its `sd:defaultDataset` lists three named graphs: `http://aopwiki.org/`, whose
 statistics and mined schemas describe AOP-Wiki data only, and keeping the two metadata
 files apart lets an endpoint serve either one by CONSTRUCTing a single graph.
 
-Every partition node is typed `void:Dataset`, so a CONSTRUCT that selects VoID
-subjects by type (as the cluster's `/.well-known/void` rewrite does) returns the
-whole partition tree.
+Partition nodes are deliberately **not** typed `void:Dataset`, and `:AOPWikiRDF` carries
+no `void:triples` of its own (its three file subsets do). YummyData's crawler sums
+`void:triples` over every subject typed `void:Dataset`, so either would inflate the
+triple count it reports for the endpoint.

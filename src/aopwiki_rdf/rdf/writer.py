@@ -1119,8 +1119,11 @@ def _write_void_summary(g, stats):
 
     One predicate-object pair per line, so that a run which adds partitions
     only adds lines (the COMPAT gate compares predicate lines as sets).
+
+    No void:triples here: the three file subsets already carry theirs, and
+    consumers that sum void:triples over every void:Dataset (YummyData's
+    data_entry) would otherwise count the dataset twice.
     """
-    g.write(f' ;\n\tvoid:triples\t{stats["triples"]}')
     g.write(f' ;\n\tvoid:entities\t{stats["entities"]}')
     g.write(f' ;\n\tvoid:classes\t{stats["classes"]}')
     g.write(f' ;\n\tvoid:properties\t{stats["properties"]}')
@@ -1137,14 +1140,14 @@ def _write_void_summary(g, stats):
 def _write_void_partitions(g, stats):
     """Write the nested void-generator partition tree as separate subject blocks.
 
-    Every partition is typed void:Dataset (the range of void:classPartition and
-    void:propertyPartition); the endpoint's /.well-known/void rewrite selects
-    VoID subjects by that type.
+    Partitions are deliberately not typed void:Dataset (the type is implied by
+    the range of void:classPartition / void:propertyPartition). YummyData sums
+    void:triples over every subject typed void:Dataset, so typed partitions
+    inflated its triple count about sixfold.
     """
     for cp in stats["class_partitions"]:
         c = cp["class"]
-        g.write(f'\n:void-cp-{partition_id(c)}\ta\tvoid:Dataset')
-        g.write(f' ;\n\tvoid:class\t<{c}>')
+        g.write(f'\n:void-cp-{partition_id(c)}\tvoid:class\t<{c}>')
         g.write(f' ;\n\tvoid:entities\t{cp["entities"]}')
         for pp in cp["properties"]:
             g.write(f' ;\n\tvoid:propertyPartition\t:void-pp-{partition_id(c, pp["property"])}')
@@ -1152,8 +1155,7 @@ def _write_void_partitions(g, stats):
 
         for pp in cp["properties"]:
             p = pp["property"]
-            g.write(f'\n:void-pp-{partition_id(c, p)}\ta\tvoid:Dataset')
-            g.write(f' ;\n\tvoid:property\t<{p}>')
+            g.write(f'\n:void-pp-{partition_id(c, p)}\tvoid:property\t<{p}>')
             g.write(f' ;\n\tvoid:triples\t{pp["triples"]}')
             for oc, _ in pp["object_classes"]:
                 g.write(f' ;\n\tvoid:classPartition\t:void-ocp-{partition_id(c, p, oc)}')
@@ -1162,18 +1164,15 @@ def _write_void_partitions(g, stats):
             g.write(' .\n')
 
             for oc, n in pp["object_classes"]:
-                g.write(f'\n:void-ocp-{partition_id(c, p, oc)}\ta\tvoid:Dataset')
-                g.write(f' ;\n\tvoid:class\t<{oc}>')
+                g.write(f'\n:void-ocp-{partition_id(c, p, oc)}\tvoid:class\t<{oc}>')
                 g.write(f' ;\n\tvoid:triples\t{n} .\n')
             for dt, n in pp["datatypes"]:
-                g.write(f'\n:void-dtp-{partition_id(c, p, "datatype", dt)}\ta\tvoid:Dataset')
-                g.write(f' ;\n\tvoid-ext:datatype\t<{dt}>')
+                g.write(f'\n:void-dtp-{partition_id(c, p, "datatype", dt)}\tvoid-ext:datatype\t<{dt}>')
                 g.write(f' ;\n\tvoid:triples\t{n} .\n')
 
     for pp in stats["property_partitions"]:
         p = pp["property"]
-        g.write(f'\n:void-p-{partition_id(p)}\ta\tvoid:Dataset')
-        g.write(f' ;\n\tvoid:property\t<{p}>')
+        g.write(f'\n:void-p-{partition_id(p)}\tvoid:property\t<{p}>')
         g.write(f' ;\n\tvoid:triples\t{pp["triples"]}')
         g.write(f' ;\n\tvoid:distinctSubjects\t{pp["distinct_subjects"]}')
         g.write(f' ;\n\tvoid:distinctObjects\t{pp["distinct_objects"]} .\n')
