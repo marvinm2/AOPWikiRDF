@@ -27,7 +27,7 @@ isql_cmd_check="isql -U dba -P $VIRT_PSWD exec=\"checkpoint;\""
 
 reset="RDF_GLOBAL_RESET();"
 cleanup1="DELETE FROM load_list WHERE ll_graph = 'http://aopwiki.org/';"
-cleanup2="DELETE FROM load_list WHERE ll_graph = 'servicedescription';"
+cleanup2="DELETE FROM load_list WHERE ll_graph IN ('servicedescription', 'http://aopwiki.org/void', 'http://aopwiki.org/servicedescription');"
 cleanup3="DELETE FROM DB.DBA.SYS_XML_PERSISTENT_NS_DECL WHERE NS_PREFIX = 'go';"
 setupgo1="INSERT INTO DB.DBA.SYS_XML_PERSISTENT_NS_DECL (NS_PREFIX, NS_URL) VALUES ('go', 'http://purl.obolibrary.org/obo/GO_');"
 logenable2="log_enable(2);"
@@ -103,8 +103,11 @@ grant5="grant SPARQL_SPONGE to \"SPARQL\";"
 load_func1="ld_dir('$VAD', 'AOPWikiRDF.ttl', 'http://aopwiki.org/');"
 load_func2="ld_dir('$VAD', 'AOPWikiRDF-Enriched.ttl', 'http://aopwiki.org/');"
 load_func3="ld_dir('$VAD', 'AOPWikiRDF-Genes.ttl', 'http://aopwiki.org/');"
-load_func4="ld_dir('$VAD', 'AOPWikiRDF-Void.ttl', 'http://aopwiki.org/');"
-load_func5="ld_dir('$VAD', 'ServiceDescription.ttl', 'servicedescription');"
+# VoID and service description each get their own graph (marvinm2/AOPWikiRDF#125), so
+# schema statistics and mined schemas see AOP-Wiki data only, and the URL-rewrite rules
+# can serve either document by CONSTRUCTing one whole graph.
+load_func4="ld_dir('$VAD', 'AOPWikiRDF-Void.ttl', 'http://aopwiki.org/void');"
+load_func5="ld_dir('$VAD', 'ServiceDescription.ttl', 'http://aopwiki.org/servicedescription');"
 run_func="rdf_loader_run();"
 select_func="select * from DB.DBA.load_list;"
 
