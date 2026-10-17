@@ -29360,7 +29360,7 @@ aop:297
 	dcterms:alternative	"retinaldehyde dehydrogenase inhibition,population decline" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2019-05-22T04:45:03" ;
-	dcterms:modified	"2026-10-09T04:18:02" ;
+	dcterms:modified	"2026-10-14T03:23:26" ;
 	dc:description	"""
 	
 		
@@ -29483,9 +29483,9 @@ Environmental Safety Group, Korea Institute of Science and Technology (KIST) Eur
 """ ;
 	nci:C25688	"Under Development" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	aopo:has_key_event	aop.events:1641, aop.events:1642, aop.events:1640, aop.events:1643, aop.events:1637, aop.events:360 ;
-	aopo:has_key_event_relationship	aop.relationships:1915, aop.relationships:1916, aop.relationships:1917, aop.relationships:1918, aop.relationships:2143 ;
-	aopo:has_molecular_initiating_event	aop.events:1637 ;
+	aopo:has_key_event	aop.events:1881, aop.events:2419, aop.events:1640, aop.events:1643, aop.events:1880, aop.events:360 ;
+	aopo:has_key_event_relationship	aop.relationships:2401, aop.relationships:3776, aop.relationships:3862, aop.relationships:1918, aop.relationships:2143 ;
+	aopo:has_molecular_initiating_event	aop.events:1880 ;
 	aopo:has_adverse_outcome	aop.events:360 ;
 	nci:C54571	aop.stressor:461, aop.stressor:462, aop.stressor:463, aop.stressor:464, aop.stressor:465, aop.stressor:466, aop.stressor:467, aop.stressor:468 ;
 	pato:0000047	"Mixed" ;
@@ -79404,11 +79404,20 @@ aop:656
 	dcterms:alternative	"Competitive LDH inhibition leading to impaired vascular development" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-10-07T07:54:43" ;
-	dcterms:modified	"2026-10-07T10:34:15" ;
-	dc:creator	"""Yanhong Wei1,&nbsp;Xiaolian Cao1, Yingying&nbsp;Zhou1
+	dcterms:modified	"2026-10-13T05:07:30" ;
+	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> .
 
-1&nbsp;Sun Yat-sen University, Guangzhou, 510080, China.
-""" ;
+aop:657
+	a	aopo:AdverseOutcomePathway ;
+	dc:identifier	aop:657 ;
+	rdfs:label	"AOP 657" ;
+	rdfs:seeAlso	<https://identifiers.org/aop/657> ;
+	foaf:page	<https://identifiers.org/aop/657> ;
+	dc:title	"Atrazine-induced photosystem II inhibition leading to yield loss in rice (Oryza sativa)" ;
+	dcterms:alternative	"PSII inhibition by atrazine leading to rice yield loss" ;
+	dc:source	"AOPWiki" ;
+	dcterms:created	"2026-10-16T09:10:44" ;
+	dcterms:modified	"2026-10-16T09:10:44" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> .
 
 aop.events:888
@@ -110122,18 +110131,6 @@ aop.events:1631
 	nci:C25664	"""Individual""" ;
 	dcterms:isPartOf	aop:292 .
 
-aop.events:1637
-	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:1637 ;
-	rdfs:label	"KE 1637" ;
-	foaf:page	<https://identifiers.org/aop.events/1637> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/1637> ;
-	dc:title	"Retinaldehyde dehydrogenase inhibition" ;
-	dcterms:alternative	"Retinaldehyde dehydrogenase" ;
-	dc:source	"AOPWiki" ;
-	nci:C25664	"""Molecular""" ;
-	dcterms:isPartOf	aop:297 .
-
 aop.events:1640
 	a	aopo:KeyEvent ;
 	dc:identifier	aop.events:1640 ;
@@ -110232,30 +110229,6 @@ Alterations in normal photoreceptor patterning can be expected to occur across s
 	aopo:OrganContext	uberon:0000966 ;
 	dcterms:isPartOf	aop:297, aop:365 .
 
-aop.events:1641
-	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:1641 ;
-	rdfs:label	"KE 1641" ;
-	foaf:page	<https://identifiers.org/aop.events/1641> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/1641> ;
-	dc:title	"Decreased retinoic acid (RA) synthesis" ;
-	dcterms:alternative	"retinoic acid" ;
-	dc:source	"AOPWiki" ;
-	nci:C25664	"""Cellular""" ;
-	dcterms:isPartOf	aop:297 .
-
-aop.events:1642
-	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:1642 ;
-	rdfs:label	"KE 1642" ;
-	foaf:page	<https://identifiers.org/aop.events/1642> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/1642> ;
-	dc:title	"Decreased plasma RA level" ;
-	dcterms:alternative	"plasma retinoic acid" ;
-	dc:source	"AOPWiki" ;
-	nci:C25664	"""Tissue""" ;
-	dcterms:isPartOf	aop:297 .
-
 aop.events:1643
 	a	aopo:KeyEvent ;
 	dc:identifier	aop.events:1643 ;
@@ -110319,6 +110292,93 @@ Sex applicability: Sex does not seem&nbsp;relevant for most of the visual functi
 	pato:0000001	"functional change" ;
 	pato:0001241	uberon:0000970 ;
 	dcterms:isPartOf	aop:297, aop:363, aop:364, aop:365, aop:399 .
+
+aop.events:1880
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:1880 ;
+	rdfs:label	"KE 1880" ;
+	foaf:page	<https://identifiers.org/aop.events/1880> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/1880> ;
+	dc:title	"Decreased, ALDH1A (RALDH) enzyme activity" ;
+	dcterms:alternative	"Decreased, ALDH1A activity" ;
+	dc:source	"AOPWiki" ;
+	dc:description	"""The oxidation of retinal to all-trans retinoic acid (atRA) is an irreversible reaction carried out by retinaldehyde dehydrogenases ALDH1A1, ALDH1A2, ALDH1A3 (RALDH1, RALDH2, RALDH3). ALDH1A2 is responsible for the second step of the metabolism of vitamin A into atRA (Chatzi et al, 2013; Shannon et al, 2017).The role of that reaction is to maintain atRA concentrations, with ALDH1A2 being most active during early development (Koppaka et al, 2012; Shannon et al, 2017). Raldh2-deficient mice exhibit severe developmental defects due to loss of atRA, but the phenotype is rescued by administration of exogenous RA (Niederreither et al, 1999). Thus, ALDH1A2 activity is essential for atRA-dependent developmental processes.
+""" ;
+	mmo:0000000	"""There are no OECD validated assays for measuring ALDH1A2 inhibition. 
+
+ALDH1A2 mRNA and protein levels can be measured using various probes, antibodies as well as ELISA kits that are commercially available. 
+
+Enzyme activity can be assessed in assays including measurement of atRA formation (Arnold et al, 2015) or NADH formation (Harper et al, 2018; Schindler et al, 1998) and several ALDH activity assay kits using different approaches are commercially available; e.g. AldeflourTM kit (Flahaut et al, 2016).
+""" ;
+	nci:C25664	"""Molecular""" ;
+	nci:C17469	"""The retinoid signaling system is highly conserved across distant animal species (Bushue &amp; Wan, 2010; Rhinn &amp; Doll&eacute;, 2012).
+""" ;
+	pato:0000047	"Male", "Female" ;
+	aopo:LifeStageContext	"All life stages" ;
+	ncbitaxon:131567	"WCS_9606", ncbitaxon:10090, ncbitaxon:10116 ;
+	aopo:CellTypeContext	cl:0000255 ;
+	aopo:hasBiologicalEvent	<1880_bioevent_0> ;
+	go:0008150	go:0002138 ;
+	pato:0000001	"decreased" ;
+	pato:0001241	pr:000003920 ;
+	dcterms:isPartOf	aop:297, aop:398, aop:436 .
+
+aop.events:1881
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:1881 ;
+	rdfs:label	"KE 1881" ;
+	foaf:page	<https://identifiers.org/aop.events/1881> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/1881> ;
+	dc:title	"Decreased, all-trans retinoic acid (atRA) concentration" ;
+	dcterms:alternative	"Decreased, atRA concentration" ;
+	dc:source	"AOPWiki" ;
+	dc:description	"""All-trans retinoic acid (atRA) is the active form of vitamin A/all-trans retinol and is involved in regulating a large number of developmental processes (Bushue &amp; Wan, 2010a; Ghyselinck &amp; Duester, 2019). Although 9-cis RA and 13-cis RA are other metabolic derivatives of vitamin A, atRA is generally considered the primary active metabolite during development, mainly acting as a short-range paracrine signaling molecule (Cunningham &amp; Duester, 2015). atRA exerts dose-dependent effects on morphogenesis, so disruption to atRA concentrations during development can lead to malformations in numerous tissues and organs. During development the spatiotemporal regulation of atRA concentrations in target tissues is tightly controlled by a balance of synthesis and degradation enzymes (Kedishvili, 2013). 
+
+Cellular atRA synthesis starts by oxidation of vitamin A to retinaldehyde (RAL) by retinol dehydrogenase-10 (RDH10). RAL is then irreversibly converted to atRA by RAL dehydrogenases (ALDH1A1, ALD1A2, or ALDH1A3). To maintain appropriate retinoid levels in tissues, RAL can be converted back to retinol by enzymatic reactions; further retinoid levels can be controlled by enzymatic degradation of atRA by the cytochrome P450 enzymes CYP26A1, CYP26B1, or CYP26C1, which are differentially expressed throughout the mammalian body (Isoherranen &amp; Zhong, 2019; Shimozono et al, 2013). Inhibition/disruption of any of the enzymes of the atRA synthesis pathway, or increased expression of the atRA degradation enzymes can lead to decreased concentrations of atRA in target cells (Kedishvili, 2013).
+
+The atRA functions as a ligand for the nuclear retinoic acid receptors (RARs), which form heterodimers with the retinoid X receptors (RXRs); the atRA:RAR:RXR complex then binds to retinoic acid response elements (RAREs) upstream of target genes, leading to activation or repression of gene expression in target cells (Chambon, 1996; le Maire et al, 2019). The type and number of RAR/RXRs differ between evolutionary distant animals, but functionally they are all involved in the regulation of development (Gutierrez-Mazariegos et al, 2014).
+""" ;
+	mmo:0000000	"""Direct measurements of atRA in serum (humans, animals) can be performed by various chromatographic methods (Gundersen, 2006), including high performance liquid chromatography (HPLC) or liquid chromatography-tandem mass spectrometry (LC-MS) (Morgenstern et al, 2021). 
+
+Indirect measurements in cells and animal models can be performed with reporter assays utilizing RAR-RXR-RARE or RXR-RXR-RARE promoter elements, which are activated by atRA, driving expression of reporter proteins. These reporter assays can detect the presence of atRA in tissues in a semi-quantitative manner. Examples include reporter mouse lines (Carlsen et al, 2021; Rossant et al, 1991; Solomin et al, 1998), reporter cell lines (Wagner et al, 1992) and transient transfection of constructs for in vitro cell-based assays (Chassot et al, 2020).
+""" ;
+	nci:C25664	"""Tissue""" ;
+	nci:C17469	"""The retinoid signaling system is highly conserved across animal species (Bushue &amp; Wan, 2010b; Rhinn &amp; Doll&eacute;, 2012). atRA acts as a ligand for the nuclear retinoic acid (RAR) receptors, which upon activation regulate gene transcription in target cells. The type and number of RARs differ between evolutionary distant animals, but functionally they are all involved in the regulation of development.&nbsp;&nbsp;&nbsp; 
+""" ;
+	pato:0000047	"Male", "Female" ;
+	aopo:LifeStageContext	"All life stages" ;
+	ncbitaxon:131567	ncbitaxon:10090, ncbitaxon:10116, "WCS_9606", "WikiUser_28" ;
+	aopo:hasBiologicalEvent	<1881_bioevent_0> ;
+	go:0008150	go:0002138 ;
+	pato:0000001	"decreased" ;
+	pato:0001241	chebio:15367 ;
+	dcterms:isPartOf	aop:297, aop:398, aop:436 .
+
+aop.events:2419
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2419 ;
+	rdfs:label	"KE 2419" ;
+	foaf:page	<https://identifiers.org/aop.events/2419> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2419> ;
+	dc:title	"Decreased, Retinoic Acid Receptor Activation" ;
+	dcterms:alternative	"Decreased, RAR activation" ;
+	dc:source	"AOPWiki" ;
+	dc:description	"""This KE refers to decreased activation of the retinoic acid receptor (RAR) occurring in complex biological systems in vivo, such as tissues and organs. Thus, decreased activation of RAR is here distinguished from direct antagonism of the RAR and from reduced availability or synthesis of its endogenous ligand, all‑trans retinoic acid (atRA). Instead, it is downstream of these events. This KE occurs in tissues and organs in vivo, and it is not a tissue‑specific event.
+
+RARs are ligand-activated receptors regulated by retinoid ligands, particularly atRA. They mediate several crucial biological processes (e.g., morphogenesis, cell growth regulation, apoptosis, homeostasis etc.). Perturbations of RAR signaling are associated with adverse developmental and physiological outcomes. RARs are members of the nuclear hormone receptor superfamily. There are three major subtypes: RAR&alpha;, RAR&beta;, and RAR&gamma;. RAR&alpha; may be broadly expressed, while RAR&beta; is related to neurogenesis and development of epithelial tissues, and RAR&gamma; in bone and cartilage development. There are different isoforms for each subtypes arising from alternative splicing (RAR&alpha;1-2, RAR&beta;1&ndash;4, and RAR&gamma;1-2) (Germain et al, 2006, Petkovich et al, 2022). 
+
+The canonical signaling mechanism of RARs involves heterodimerization with retinoid X receptors (RXRs), DNA binding to retinoic acid response elements (RAREs), and ligand‑dependent regulation of transcription. RARs heterodimerize with RXRs, with the RAR-RXR complex binding to RAREs in promoters of target genes. In the absence of ligand, RAR&ndash;RXR complexes are often associated with co‑repressor proteins (e.g., NCoR and SMRT), maintaining transcriptional repression. Upon ligand binding with atRA or other retinoids, the RAR&ndash;RXR heterodimers undergo conformational changes that promote dissociation of co‑repressors and recruitment of co‑activator proteins (e.g., SRC1-3), leading to chromatin remodeling and transcriptional activation of several target genes (Germain et al, 2006, Petkovich et al, 2022, Rhinn et al, 2012, Gutierrez et al, 2014).
+
+Decreased RAR activation can result from direct antagonism of RAR or from reduced availability of atRA, its main endogenous ligand. RAR antagonists act through the impairment of ligand‑dependent receptor activation, while decreased atRA levels (e.g., due to altered synthesis) acts through the reduction of the available ligand that can bind the receptor and lead to transcriptional activation. Both mechanisms reduce RAR‑dependent gene expression and disrupt retinoid‑regulated biological processes (Germain et al, 2006, Altucci et al, 2007, Stevison et al, 2017, Kedishvili et al, 2013).
+
+Non‑canonical RAR signaling mechanisms, independent of direct transcriptional regulation, have been described in some experimental systems. However, their conservation and quantitative contribution to adverse outcomes in vivo remain unclear (Al Tanoury et al 2013). Accordingly, this KE addresses decreased RAR activation via the canonical, transcription‑dependent pathway.
+""" ;
+	mmo:0000000	"""This KE describes decreased RAR activation in vivo. However, currently there are no methods available for direct measurement of this KE. Hence, only indirect measurements are available by in vitro RAR and RAR-RXR transactivation assays (OECD Detailed review paper on the Retinoid System, 2021, OECD Validation report on a RAR transactivation method, 2025), as measured in upstream KEs. AOP developers are encouraged to add new methods to measure RAR activation levels in vivo whenever they become available.
+""" ;
+	nci:C25664	"""Tissue""" ;
+	nci:C17469	"""RARs are well-conserved throughout vertebrate evolution; therefore, this KE should be considered broadly applicable across vertebrate species. Regarding invertebrates, evidence for the presence of RARs has been reported within chordate phyla, including non-vertebrate chordates. However, multiple invertebrate lineages appear to have lost RAR genes. Although components of RA signaling have been described in some invertebrate species, it remains debated whether they possess a functional RA signaling pathway (Stevison et al, 2017). AOP developers are encouraged to add additional relevant knowledge to expand on the applicability to also include other vertebrates.
+""" ;
+	dcterms:isPartOf	aop:297, aop:398 .
 
 aop.events:1754
 	a	aopo:KeyEvent ;
@@ -116504,67 +116564,6 @@ aop.events:997
 	nci:C25664	"""Population""" ;
 	dcterms:isPartOf	aop:396 .
 
-aop.events:1880
-	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:1880 ;
-	rdfs:label	"KE 1880" ;
-	foaf:page	<https://identifiers.org/aop.events/1880> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/1880> ;
-	dc:title	"Decreased, ALDH1A (RALDH) enzyme activity" ;
-	dcterms:alternative	"Decreased, ALDH1A activity" ;
-	dc:source	"AOPWiki" ;
-	dc:description	"""The oxidation of retinal to all-trans retinoic acid (atRA) is an irreversible reaction carried out by retinaldehyde dehydrogenases ALDH1A1, ALDH1A2, ALDH1A3 (RALDH1, RALDH2, RALDH3). ALDH1A2 is responsible for the second step of the metabolism of vitamin A into atRA (Chatzi et al, 2013; Shannon et al, 2017).The role of that reaction is to maintain atRA concentrations, with ALDH1A2 being most active during early development (Koppaka et al, 2012; Shannon et al, 2017). Raldh2-deficient mice exhibit severe developmental defects due to loss of atRA, but the phenotype is rescued by administration of exogenous RA (Niederreither et al, 1999). Thus, ALDH1A2 activity is essential for atRA-dependent developmental processes.
-""" ;
-	mmo:0000000	"""There are no OECD validated assays for measuring ALDH1A2 inhibition. 
-
-ALDH1A2 mRNA and protein levels can be measured using various probes, antibodies as well as ELISA kits that are commercially available. 
-
-Enzyme activity can be assessed in assays including measurement of atRA formation (Arnold et al, 2015) or NADH formation (Harper et al, 2018; Schindler et al, 1998) and several ALDH activity assay kits using different approaches are commercially available; e.g. AldeflourTM kit (Flahaut et al, 2016).
-""" ;
-	nci:C25664	"""Molecular""" ;
-	nci:C17469	"""The retinoid signaling system is highly conserved across distant animal species (Bushue &amp; Wan, 2010; Rhinn &amp; Doll&eacute;, 2012).
-""" ;
-	pato:0000047	"Male", "Female" ;
-	aopo:LifeStageContext	"All life stages" ;
-	ncbitaxon:131567	"WCS_9606", ncbitaxon:10090, ncbitaxon:10116 ;
-	aopo:CellTypeContext	cl:0000255 ;
-	aopo:hasBiologicalEvent	<1880_bioevent_0> ;
-	go:0008150	go:0002138 ;
-	pato:0000001	"decreased" ;
-	pato:0001241	pr:000003920 ;
-	dcterms:isPartOf	aop:398, aop:436 .
-
-aop.events:1881
-	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:1881 ;
-	rdfs:label	"KE 1881" ;
-	foaf:page	<https://identifiers.org/aop.events/1881> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/1881> ;
-	dc:title	"Decreased, all-trans retinoic acid (atRA) concentration" ;
-	dcterms:alternative	"Decreased, atRA concentration" ;
-	dc:source	"AOPWiki" ;
-	dc:description	"""All-trans retinoic acid (atRA) is the active form of vitamin A/all-trans retinol and is involved in regulating a large number of developmental processes (Bushue &amp; Wan, 2010a; Ghyselinck &amp; Duester, 2019). Although 9-cis RA and 13-cis RA are other metabolic derivatives of vitamin A, atRA is generally considered the primary active metabolite during development, mainly acting as a short-range paracrine signaling molecule (Cunningham &amp; Duester, 2015). atRA exerts dose-dependent effects on morphogenesis, so disruption to atRA concentrations during development can lead to malformations in numerous tissues and organs. During development the spatiotemporal regulation of atRA concentrations in target tissues is tightly controlled by a balance of synthesis and degradation enzymes (Kedishvili, 2013). 
-
-Cellular atRA synthesis starts by oxidation of vitamin A to retinaldehyde (RAL) by retinol dehydrogenase-10 (RDH10). RAL is then irreversibly converted to atRA by RAL dehydrogenases (ALDH1A1, ALD1A2, or ALDH1A3). To maintain appropriate retinoid levels in tissues, RAL can be converted back to retinol by enzymatic reactions; further retinoid levels can be controlled by enzymatic degradation of atRA by the cytochrome P450 enzymes CYP26A1, CYP26B1, or CYP26C1, which are differentially expressed throughout the mammalian body (Isoherranen &amp; Zhong, 2019; Shimozono et al, 2013). Inhibition/disruption of any of the enzymes of the atRA synthesis pathway, or increased expression of the atRA degradation enzymes can lead to decreased concentrations of atRA in target cells (Kedishvili, 2013).
-
-The atRA functions as a ligand for the nuclear retinoic acid receptors (RARs), which form heterodimers with the retinoid X receptors (RXRs); the atRA:RAR:RXR complex then binds to retinoic acid response elements (RAREs) upstream of target genes, leading to activation or repression of gene expression in target cells (Chambon, 1996; le Maire et al, 2019). The type and number of RAR/RXRs differ between evolutionary distant animals, but functionally they are all involved in the regulation of development (Gutierrez-Mazariegos et al, 2014).
-""" ;
-	mmo:0000000	"""Direct measurements of atRA in serum (humans, animals) can be performed by various chromatographic methods (Gundersen, 2006), including high performance liquid chromatography (HPLC) or liquid chromatography-tandem mass spectrometry (LC-MS) (Morgenstern et al, 2021). 
-
-Indirect measurements in cells and animal models can be performed with reporter assays utilizing RAR-RXR-RARE or RXR-RXR-RARE promoter elements, which are activated by atRA, driving expression of reporter proteins. These reporter assays can detect the presence of atRA in tissues in a semi-quantitative manner. Examples include reporter mouse lines (Carlsen et al, 2021; Rossant et al, 1991; Solomin et al, 1998), reporter cell lines (Wagner et al, 1992) and transient transfection of constructs for in vitro cell-based assays (Chassot et al, 2020).
-""" ;
-	nci:C25664	"""Tissue""" ;
-	nci:C17469	"""The retinoid signaling system is highly conserved across animal species (Bushue &amp; Wan, 2010b; Rhinn &amp; Doll&eacute;, 2012). atRA acts as a ligand for the nuclear retinoic acid (RAR) receptors, which upon activation regulate gene transcription in target cells. The type and number of RARs differ between evolutionary distant animals, but functionally they are all involved in the regulation of development.&nbsp;&nbsp;&nbsp; 
-""" ;
-	pato:0000047	"Male", "Female" ;
-	aopo:LifeStageContext	"All life stages" ;
-	ncbitaxon:131567	ncbitaxon:10090, ncbitaxon:10116, "WCS_9606", "WikiUser_28" ;
-	aopo:hasBiologicalEvent	<1881_bioevent_0> ;
-	go:0008150	go:0002138 ;
-	pato:0000001	"decreased" ;
-	pato:0001241	chebio:15367 ;
-	dcterms:isPartOf	aop:398, aop:436 .
-
 aop.events:1882
 	a	aopo:KeyEvent ;
 	dc:identifier	aop.events:1882 ;
@@ -116638,32 +116637,6 @@ The size of the pool can also be measured indirectly by mRNA and protein express
 	pato:0000001	"decreased" ;
 	pato:0001241	uberon:0001305 ;
 	dcterms:isPartOf	aop:398, aop:563 .
-
-aop.events:2419
-	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:2419 ;
-	rdfs:label	"KE 2419" ;
-	foaf:page	<https://identifiers.org/aop.events/2419> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/2419> ;
-	dc:title	"Decreased, Retinoic Acid Receptor Activation" ;
-	dcterms:alternative	"Decreased, RAR activation" ;
-	dc:source	"AOPWiki" ;
-	dc:description	"""This KE refers to decreased activation of the retinoic acid receptor (RAR) occurring in complex biological systems in vivo, such as tissues and organs. Thus, decreased activation of RAR is here distinguished from direct antagonism of the RAR and from reduced availability or synthesis of its endogenous ligand, all‑trans retinoic acid (atRA). Instead, it is downstream of these events. This KE occurs in tissues and organs in vivo, and it is not a tissue‑specific event.
-
-RARs are ligand-activated receptors regulated by retinoid ligands, particularly atRA. They mediate several crucial biological processes (e.g., morphogenesis, cell growth regulation, apoptosis, homeostasis etc.). Perturbations of RAR signaling are associated with adverse developmental and physiological outcomes. RARs are members of the nuclear hormone receptor superfamily. There are three major subtypes: RAR&alpha;, RAR&beta;, and RAR&gamma;. RAR&alpha; may be broadly expressed, while RAR&beta; is related to neurogenesis and development of epithelial tissues, and RAR&gamma; in bone and cartilage development. There are different isoforms for each subtypes arising from alternative splicing (RAR&alpha;1-2, RAR&beta;1&ndash;4, and RAR&gamma;1-2) (Germain et al, 2006, Petkovich et al, 2022). 
-
-The canonical signaling mechanism of RARs involves heterodimerization with retinoid X receptors (RXRs), DNA binding to retinoic acid response elements (RAREs), and ligand‑dependent regulation of transcription. RARs heterodimerize with RXRs, with the RAR-RXR complex binding to RAREs in promoters of target genes. In the absence of ligand, RAR&ndash;RXR complexes are often associated with co‑repressor proteins (e.g., NCoR and SMRT), maintaining transcriptional repression. Upon ligand binding with atRA or other retinoids, the RAR&ndash;RXR heterodimers undergo conformational changes that promote dissociation of co‑repressors and recruitment of co‑activator proteins (e.g., SRC1-3), leading to chromatin remodeling and transcriptional activation of several target genes (Germain et al, 2006, Petkovich et al, 2022, Rhinn et al, 2012, Gutierrez et al, 2014).
-
-Decreased RAR activation can result from direct antagonism of RAR or from reduced availability of atRA, its main endogenous ligand. RAR antagonists act through the impairment of ligand‑dependent receptor activation, while decreased atRA levels (e.g., due to altered synthesis) acts through the reduction of the available ligand that can bind the receptor and lead to transcriptional activation. Both mechanisms reduce RAR‑dependent gene expression and disrupt retinoid‑regulated biological processes (Germain et al, 2006, Altucci et al, 2007, Stevison et al, 2017, Kedishvili et al, 2013).
-
-Non‑canonical RAR signaling mechanisms, independent of direct transcriptional regulation, have been described in some experimental systems. However, their conservation and quantitative contribution to adverse outcomes in vivo remain unclear (Al Tanoury et al 2013). Accordingly, this KE addresses decreased RAR activation via the canonical, transcription‑dependent pathway.
-""" ;
-	mmo:0000000	"""This KE describes decreased RAR activation in vivo. However, currently there are no methods available for direct measurement of this KE. Hence, only indirect measurements are available by in vitro RAR and RAR-RXR transactivation assays (OECD Detailed review paper on the Retinoid System, 2021, OECD Validation report on a RAR transactivation method, 2025), as measured in upstream KEs. AOP developers are encouraged to add new methods to measure RAR activation levels in vivo whenever they become available.
-""" ;
-	nci:C25664	"""Tissue""" ;
-	nci:C17469	"""RARs are well-conserved throughout vertebrate evolution; therefore, this KE should be considered broadly applicable across vertebrate species. Regarding invertebrates, evidence for the presence of RARs has been reported within chordate phyla, including non-vertebrate chordates. However, multiple invertebrate lineages appear to have lost RAR genes. Although components of RA signaling have been described in some invertebrate species, it remains debated whether they possess a functional RA signaling pathway (Stevison et al, 2017). AOP developers are encouraged to add additional relevant knowledge to expand on the applicability to also include other vertebrates.
-""" ;
-	dcterms:isPartOf	aop:398 .
 
 aop.events:1885
 	a	aopo:KeyEvent ;
@@ -134685,6 +134658,16 @@ aop.events:2454
 	aopo:hasObject	uberon:0000970 ;
 	aopo:hasAction	"functional change" .
 
+<1880_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	go:0002138 ;
+	aopo:hasObject	pr:000003920 ;
+	aopo:hasAction	"decreased" .
+
+<1881_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	go:0002138 ;
+	aopo:hasObject	chebio:15367 ;
+	aopo:hasAction	"decreased" .
+
 <1754_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	go:0061355 ;
 	aopo:hasObject	pr:000030936 ;
@@ -135032,16 +135015,6 @@ aop.events:2454
 <2096_bioevent_3> a aopo:BiologicalEvent ;
 	aopo:hasProcess	go:0010496 ;
 	aopo:hasAction	"disrupted" .
-
-<1880_bioevent_0> a aopo:BiologicalEvent ;
-	aopo:hasProcess	go:0002138 ;
-	aopo:hasObject	pr:000003920 ;
-	aopo:hasAction	"decreased" .
-
-<1881_bioevent_0> a aopo:BiologicalEvent ;
-	aopo:hasProcess	go:0002138 ;
-	aopo:hasObject	chebio:15367 ;
-	aopo:hasAction	"decreased" .
 
 <1882_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	go:0007127 ;
@@ -187556,39 +187529,64 @@ In vivo studies
 	ncbitaxon:131567	"WCS_9606", ncbitaxon:10116, ncbitaxon:10095 ;
 	dcterms:isPartOf	aop:296 .
 
-aop.relationships:1915
+aop.relationships:2401
 	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:1915 ;
-	rdfs:label	"KER 1915" ;
-	foaf:page	<https://identifiers.org/aop.relationships/1915> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/1915> ;
-	dcterms:created	"2019-05-22T05:13:50" ;
-	dcterms:modified	"2019-05-22T05:13:50" ;
-	aopo:has_upstream_key_event	aop.events:1637 ;
-	aopo:has_downstream_key_event	aop.events:1641 ;
-	dcterms:isPartOf	aop:297 .
+	dc:identifier	aop.relationships:2401 ;
+	rdfs:label	"KER 2401" ;
+	foaf:page	<https://identifiers.org/aop.relationships/2401> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/2401> ;
+	dcterms:created	"2021-05-24T11:40:55" ;
+	dcterms:modified	"2024-12-18T03:16:10" ;
+	aopo:has_upstream_key_event	aop.events:1880 ;
+	aopo:has_downstream_key_event	aop.events:1881 ;
+	dc:description	"""All-trans retinoic acid (atRA) is the active metabolite of vitamin A in developing mammals and its physiological levels is tightly regulated by enzymatic pathways. This KER is particularly relevant for mammalian embryogenesis/fetal development stages. 
 
-aop.relationships:1916
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:1916 ;
-	rdfs:label	"KER 1916" ;
-	foaf:page	<https://identifiers.org/aop.relationships/1916> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/1916> ;
-	dcterms:created	"2019-05-22T05:14:20" ;
-	dcterms:modified	"2019-05-22T05:14:20" ;
-	aopo:has_upstream_key_event	aop.events:1641 ;
-	aopo:has_downstream_key_event	aop.events:1642 ;
-	dcterms:isPartOf	aop:297 .
+atRA is synthesized from dietary vitamin A (retinol) by a two-step oxidation pathway (Chatzi et al, 2013; Kedishvili, 2016): 1) retinol dehydrogenase (RDH10) metabolizes retinol to retinaldehyde (reversible step), 2) retinaldehyde dehydrogenase ALDH1A (ALDH1A1, ALDH1A2, ALDH1A3) metabolizes retinaldehyde to RA (irreversible step). All three isoenzymes can carry out the second (irreversible step) to produce atRA, but ALDH1A2 is the most active form during development (Kedishvili, 2016). Thus, inhibition of ALDH1A2 during development will decrease atRA concentrations.
+""" ;
+	nci:C80263	"""Embryogenesis/fetal development in mammals
 
-aop.relationships:1917
+Of the three isoenzymes, ALDH1A2 is the most active form during early development in mammals. This is evidenced in mice ablated for Aldh1a2 (Raldh2-/-), which are incapable of producing atRA and present with severe developmental defects (Niederreither et al, 1999). Conversely, mice lacking Aldh1a1 or Aldh1a3 survive fetal development, with phenotypes presenting postnatally (Dup&eacute; et al, 2003; Fan et al, 2003; Molotkov &amp; Duester, 2003). Thus, the biological plausibility that inhibition of ALDH1A2 will lead to decreased atRA in cells and tissues during development is strong. 
+""" ;
+	edam:data_2042	"""The empirical evidence for linkage is strong and widely accepted. The enzymatic activity of ALDH1A2 and capacity to oxidize retinal has been proven in vitro (see KE 1880). In vivo, the strongest evidence comes from the Aldh1a2-deficient mice that fail to synthesize retinoic acid during embryogenesis (Niederreither et al, 1999). Additionally, ovary culture with the potent ALDH1A2 inhibitor WIN18,446 results in failure to upregulate the atRA-regulated gene Stra8 in oocytes, resulting in germ cell loss (Rosario et al, 2020). Additional evidence for this relationship using WIN18,466 also comes from in vivo studies looking at spermatogenesis; inhibition of ALDH1A2 via WIN18,466 results in loss of atRA expression and halted spermatogenesis in diverse species such as mice, rabbits and zebrafish (Amory et al, 2011; Paik et al, 2014; Pradhan &amp; Olsson, 2015).
+""" ;
+	nci:C71478	"""There are redundant pathways for atRA synthesis (e.g. ALDH isoforms) which may buffer a decrease in atRA concentrations caused by reduced ALDH1A activity, complicating the prediction of changes to atRA concentration. There is also tissue-specific expression of various components of the atRA synthesis pathways, which introduces additional variability in atRA concentration outcomes depending on biological context. 
+""" ;
+	nci:C103159	"""This KER is considered canonical knowledge and supporting literature was sourced from e.g. key review articles from open literature. I.e. evidence was not sourced by systematic literature search strategies. 
+""" ;
+	edam:operation_3799	"""The distribution of retinoic acid in cells and tissues are highly variable, as has been shown across species including chicken (Maden et al, 1998), frogs (Chen et al, 1994), mice (Kane et al, 2005; Obrochta et al, 2014) and rats (Bhat, 1997), as well as serum/plasma from humans (Kane et al, 2008; Miyagi et al, 2001; Napoli et al, 1985). 
+
+The exact relationship between ALDH1A2 inhibition and resulting atRA concentrations in mammalian ovaries is unclear. The ALDH1A2 inhibitor WIN18,446 inhibits enzyme activity in vitro with an IC(50) of 0.3 &mu;M (Amory et al, 2011), and a dose of only 0.01 &micro;M is sufficient to significantly reduce expression of Stra8 in cultured mouse fetal ovaries and with actual loss of oocytes from 2 &micro;M (Rosario et al, 2020). 
+""" ;
+	nci:C25207	"""Since atRA must be enzymatically synthesized by ALDH1A enzymes (in this case ALDH1A2), the temporal and linear relationship between the two KEs are essential.
+""" ;
+	nci:C25343	"""Retinoic acid status is regulated by complex feedback loops. For instance, atRA induces expression of retinoid enzymes to promote synthesis of retinyl esters, but simultaneously atRA induces expression of its own catabolizing CYP26 enzymes (Kedishvili, 2013; Kedishvili, 2016; Teletin et al, 2017).
+""" ;
+	pato:0000047	"Male", "Female" ;
+	aopo:LifeStageContext	"All life stages" ;
+	ncbitaxon:131567	"WCS_9606", ncbitaxon:10090, ncbitaxon:10116 ;
+	dcterms:isPartOf	aop:297, aop:398, aop:436 .
+
+aop.relationships:3776
 	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:1917 ;
-	rdfs:label	"KER 1917" ;
-	foaf:page	<https://identifiers.org/aop.relationships/1917> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/1917> ;
-	dcterms:created	"2019-05-22T05:14:41" ;
-	dcterms:modified	"2019-05-22T05:14:41" ;
-	aopo:has_upstream_key_event	aop.events:1642 ;
+	dc:identifier	aop.relationships:3776 ;
+	rdfs:label	"KER 3776" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3776> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3776> ;
+	dcterms:created	"2026-04-24T03:39:27" ;
+	dcterms:modified	"2026-04-24T03:39:27" ;
+	aopo:has_upstream_key_event	aop.events:1881 ;
+	aopo:has_downstream_key_event	aop.events:2419 ;
+	dcterms:isPartOf	aop:297, aop:398 .
+
+aop.relationships:3862
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3862 ;
+	rdfs:label	"KER 3862" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3862> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3862> ;
+	dcterms:created	"2026-10-14T03:19:53" ;
+	dcterms:modified	"2026-10-14T03:19:53" ;
+	aopo:has_upstream_key_event	aop.events:2419 ;
 	aopo:has_downstream_key_event	aop.events:1640 ;
 	dcterms:isPartOf	aop:297 .
 
@@ -207664,43 +207662,6 @@ There are also studies demonstrating the quantitative dose-response between bulk
 	ncbitaxon:131567	"WikiUser_25", "WCS_9606", ncbitaxon:10116, ncbitaxon:10090, ncbitaxon:4932 ;
 	dcterms:isPartOf	aop:397, aop:644 .
 
-aop.relationships:2401
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:2401 ;
-	rdfs:label	"KER 2401" ;
-	foaf:page	<https://identifiers.org/aop.relationships/2401> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/2401> ;
-	dcterms:created	"2021-05-24T11:40:55" ;
-	dcterms:modified	"2024-12-18T03:16:10" ;
-	aopo:has_upstream_key_event	aop.events:1880 ;
-	aopo:has_downstream_key_event	aop.events:1881 ;
-	dc:description	"""All-trans retinoic acid (atRA) is the active metabolite of vitamin A in developing mammals and its physiological levels is tightly regulated by enzymatic pathways. This KER is particularly relevant for mammalian embryogenesis/fetal development stages. 
-
-atRA is synthesized from dietary vitamin A (retinol) by a two-step oxidation pathway (Chatzi et al, 2013; Kedishvili, 2016): 1) retinol dehydrogenase (RDH10) metabolizes retinol to retinaldehyde (reversible step), 2) retinaldehyde dehydrogenase ALDH1A (ALDH1A1, ALDH1A2, ALDH1A3) metabolizes retinaldehyde to RA (irreversible step). All three isoenzymes can carry out the second (irreversible step) to produce atRA, but ALDH1A2 is the most active form during development (Kedishvili, 2016). Thus, inhibition of ALDH1A2 during development will decrease atRA concentrations.
-""" ;
-	nci:C80263	"""Embryogenesis/fetal development in mammals
-
-Of the three isoenzymes, ALDH1A2 is the most active form during early development in mammals. This is evidenced in mice ablated for Aldh1a2 (Raldh2-/-), which are incapable of producing atRA and present with severe developmental defects (Niederreither et al, 1999). Conversely, mice lacking Aldh1a1 or Aldh1a3 survive fetal development, with phenotypes presenting postnatally (Dup&eacute; et al, 2003; Fan et al, 2003; Molotkov &amp; Duester, 2003). Thus, the biological plausibility that inhibition of ALDH1A2 will lead to decreased atRA in cells and tissues during development is strong. 
-""" ;
-	edam:data_2042	"""The empirical evidence for linkage is strong and widely accepted. The enzymatic activity of ALDH1A2 and capacity to oxidize retinal has been proven in vitro (see KE 1880). In vivo, the strongest evidence comes from the Aldh1a2-deficient mice that fail to synthesize retinoic acid during embryogenesis (Niederreither et al, 1999). Additionally, ovary culture with the potent ALDH1A2 inhibitor WIN18,446 results in failure to upregulate the atRA-regulated gene Stra8 in oocytes, resulting in germ cell loss (Rosario et al, 2020). Additional evidence for this relationship using WIN18,466 also comes from in vivo studies looking at spermatogenesis; inhibition of ALDH1A2 via WIN18,466 results in loss of atRA expression and halted spermatogenesis in diverse species such as mice, rabbits and zebrafish (Amory et al, 2011; Paik et al, 2014; Pradhan &amp; Olsson, 2015).
-""" ;
-	nci:C71478	"""There are redundant pathways for atRA synthesis (e.g. ALDH isoforms) which may buffer a decrease in atRA concentrations caused by reduced ALDH1A activity, complicating the prediction of changes to atRA concentration. There is also tissue-specific expression of various components of the atRA synthesis pathways, which introduces additional variability in atRA concentration outcomes depending on biological context. 
-""" ;
-	nci:C103159	"""This KER is considered canonical knowledge and supporting literature was sourced from e.g. key review articles from open literature. I.e. evidence was not sourced by systematic literature search strategies. 
-""" ;
-	edam:operation_3799	"""The distribution of retinoic acid in cells and tissues are highly variable, as has been shown across species including chicken (Maden et al, 1998), frogs (Chen et al, 1994), mice (Kane et al, 2005; Obrochta et al, 2014) and rats (Bhat, 1997), as well as serum/plasma from humans (Kane et al, 2008; Miyagi et al, 2001; Napoli et al, 1985). 
-
-The exact relationship between ALDH1A2 inhibition and resulting atRA concentrations in mammalian ovaries is unclear. The ALDH1A2 inhibitor WIN18,446 inhibits enzyme activity in vitro with an IC(50) of 0.3 &mu;M (Amory et al, 2011), and a dose of only 0.01 &micro;M is sufficient to significantly reduce expression of Stra8 in cultured mouse fetal ovaries and with actual loss of oocytes from 2 &micro;M (Rosario et al, 2020). 
-""" ;
-	nci:C25207	"""Since atRA must be enzymatically synthesized by ALDH1A enzymes (in this case ALDH1A2), the temporal and linear relationship between the two KEs are essential.
-""" ;
-	nci:C25343	"""Retinoic acid status is regulated by complex feedback loops. For instance, atRA induces expression of retinoid enzymes to promote synthesis of retinyl esters, but simultaneously atRA induces expression of its own catabolizing CYP26 enzymes (Kedishvili, 2013; Kedishvili, 2016; Teletin et al, 2017).
-""" ;
-	pato:0000047	"Male", "Female" ;
-	aopo:LifeStageContext	"All life stages" ;
-	ncbitaxon:131567	"WCS_9606", ncbitaxon:10090, ncbitaxon:10116 ;
-	dcterms:isPartOf	aop:398, aop:436 .
-
 aop.relationships:2477
 	a	aopo:KeyEventRelationship ;
 	dc:identifier	aop.relationships:2477 ;
@@ -208139,18 +208100,6 @@ The expression of&nbsp;Aldh1a2&nbsp;and&nbsp;Cyp26a1&nbsp;can act as part of a n
 	pato:0000047	"Female" ;
 	aopo:LifeStageContext	"Foetal" ;
 	ncbitaxon:131567	ncbitaxon:10090, "WCS_9606", ncbitaxon:10116 ;
-	dcterms:isPartOf	aop:398 .
-
-aop.relationships:3776
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3776 ;
-	rdfs:label	"KER 3776" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3776> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3776> ;
-	dcterms:created	"2026-04-24T03:39:27" ;
-	dcterms:modified	"2026-04-24T03:39:27" ;
-	aopo:has_upstream_key_event	aop.events:1881 ;
-	aopo:has_downstream_key_event	aop.events:2419 ;
 	dcterms:isPartOf	aop:398 .
 
 aop.relationships:3777
@@ -267521,6 +267470,85 @@ aop.stressor:468
 	dcterms:modified	"2019-05-22T05:19:22" ;
 	dcterms:isPartOf	aop:297 .
 
+aop.stressor:682
+	a	nci:C54571 ;
+	dc:identifier	aop.stressor:682 ;
+	rdfs:label	"Stressor 682" ;
+	foaf:page	<https://identifiers.org/aop.stressor/682> ;
+	dc:title	"WIN18,466" ;
+	dcterms:created	"2021-10-30T06:33:51" ;
+	dcterms:modified	"2021-10-30T06:33:51" .
+
+aop.stressor:683
+	a	nci:C54571 ;
+	dc:identifier	aop.stressor:683 ;
+	rdfs:label	"Stressor 683" ;
+	foaf:page	<https://identifiers.org/aop.stressor/683> ;
+	dc:title	"(~13~C,~15~N_2_)Cyanamide" ;
+	dcterms:created	"2021-10-30T07:14:10" ;
+	dcterms:modified	"2021-10-30T07:14:10" ;
+	aopo:has_chemical_entity	cas:87009-57-2 .
+
+aop.stressor:684
+	a	nci:C54571 ;
+	dc:identifier	aop.stressor:684 ;
+	rdfs:label	"Stressor 684" ;
+	foaf:page	<https://identifiers.org/aop.stressor/684> ;
+	dc:title	"Molinate" ;
+	dcterms:created	"2021-10-30T07:14:59" ;
+	dcterms:modified	"2021-10-30T07:14:59" ;
+	aopo:has_chemical_entity	cas:2212-67-1 .
+
+aop.stressor:685
+	a	nci:C54571 ;
+	dc:identifier	aop.stressor:685 ;
+	rdfs:label	"Stressor 685" ;
+	foaf:page	<https://identifiers.org/aop.stressor/685> ;
+	dc:title	"Pebulate" ;
+	dcterms:created	"2021-10-30T07:15:21" ;
+	dcterms:modified	"2021-10-30T07:15:21" ;
+	aopo:has_chemical_entity	cas:1114-71-2 .
+
+aop.stressor:686
+	a	nci:C54571 ;
+	dc:identifier	aop.stressor:686 ;
+	rdfs:label	"Stressor 686" ;
+	foaf:page	<https://identifiers.org/aop.stressor/686> ;
+	dc:title	"Vernolate" ;
+	dcterms:created	"2021-10-30T07:15:49" ;
+	dcterms:modified	"2021-10-30T07:15:49" ;
+	aopo:has_chemical_entity	cas:1929-77-7 .
+
+aop.stressor:687
+	a	nci:C54571 ;
+	dc:identifier	aop.stressor:687 ;
+	rdfs:label	"Stressor 687" ;
+	foaf:page	<https://identifiers.org/aop.stressor/687> ;
+	dc:title	"Butylate" ;
+	dcterms:created	"2021-10-30T07:18:12" ;
+	dcterms:modified	"2021-10-30T07:18:12" ;
+	aopo:has_chemical_entity	cas:2008-41-5 .
+
+aop.stressor:688
+	a	nci:C54571 ;
+	dc:identifier	aop.stressor:688 ;
+	rdfs:label	"Stressor 688" ;
+	foaf:page	<https://identifiers.org/aop.stressor/688> ;
+	dc:title	"Tri-allate" ;
+	dcterms:created	"2021-10-30T07:19:13" ;
+	dcterms:modified	"2021-10-30T07:19:13" ;
+	aopo:has_chemical_entity	cas:2303-17-5 .
+
+aop.stressor:689
+	a	nci:C54571 ;
+	dc:identifier	aop.stressor:689 ;
+	rdfs:label	"Stressor 689" ;
+	foaf:page	<https://identifiers.org/aop.stressor/689> ;
+	dc:title	"Cycloate" ;
+	dcterms:created	"2021-10-30T07:19:37" ;
+	dcterms:modified	"2021-10-30T07:19:37" ;
+	aopo:has_chemical_entity	cas:1134-23-2 .
+
 aop.stressor:470
 	a	nci:C54571 ;
 	dc:identifier	aop.stressor:470 ;
@@ -268387,85 +268415,6 @@ aop.stressor:548
 	dcterms:modified	"2020-03-30T16:54:36" ;
 	aopo:has_chemical_entity	cas:115-86-6 ;
 	dcterms:isPartOf	aop:393, aop:401 .
-
-aop.stressor:682
-	a	nci:C54571 ;
-	dc:identifier	aop.stressor:682 ;
-	rdfs:label	"Stressor 682" ;
-	foaf:page	<https://identifiers.org/aop.stressor/682> ;
-	dc:title	"WIN18,466" ;
-	dcterms:created	"2021-10-30T06:33:51" ;
-	dcterms:modified	"2021-10-30T06:33:51" .
-
-aop.stressor:683
-	a	nci:C54571 ;
-	dc:identifier	aop.stressor:683 ;
-	rdfs:label	"Stressor 683" ;
-	foaf:page	<https://identifiers.org/aop.stressor/683> ;
-	dc:title	"(~13~C,~15~N_2_)Cyanamide" ;
-	dcterms:created	"2021-10-30T07:14:10" ;
-	dcterms:modified	"2021-10-30T07:14:10" ;
-	aopo:has_chemical_entity	cas:87009-57-2 .
-
-aop.stressor:684
-	a	nci:C54571 ;
-	dc:identifier	aop.stressor:684 ;
-	rdfs:label	"Stressor 684" ;
-	foaf:page	<https://identifiers.org/aop.stressor/684> ;
-	dc:title	"Molinate" ;
-	dcterms:created	"2021-10-30T07:14:59" ;
-	dcterms:modified	"2021-10-30T07:14:59" ;
-	aopo:has_chemical_entity	cas:2212-67-1 .
-
-aop.stressor:685
-	a	nci:C54571 ;
-	dc:identifier	aop.stressor:685 ;
-	rdfs:label	"Stressor 685" ;
-	foaf:page	<https://identifiers.org/aop.stressor/685> ;
-	dc:title	"Pebulate" ;
-	dcterms:created	"2021-10-30T07:15:21" ;
-	dcterms:modified	"2021-10-30T07:15:21" ;
-	aopo:has_chemical_entity	cas:1114-71-2 .
-
-aop.stressor:686
-	a	nci:C54571 ;
-	dc:identifier	aop.stressor:686 ;
-	rdfs:label	"Stressor 686" ;
-	foaf:page	<https://identifiers.org/aop.stressor/686> ;
-	dc:title	"Vernolate" ;
-	dcterms:created	"2021-10-30T07:15:49" ;
-	dcterms:modified	"2021-10-30T07:15:49" ;
-	aopo:has_chemical_entity	cas:1929-77-7 .
-
-aop.stressor:687
-	a	nci:C54571 ;
-	dc:identifier	aop.stressor:687 ;
-	rdfs:label	"Stressor 687" ;
-	foaf:page	<https://identifiers.org/aop.stressor/687> ;
-	dc:title	"Butylate" ;
-	dcterms:created	"2021-10-30T07:18:12" ;
-	dcterms:modified	"2021-10-30T07:18:12" ;
-	aopo:has_chemical_entity	cas:2008-41-5 .
-
-aop.stressor:688
-	a	nci:C54571 ;
-	dc:identifier	aop.stressor:688 ;
-	rdfs:label	"Stressor 688" ;
-	foaf:page	<https://identifiers.org/aop.stressor/688> ;
-	dc:title	"Tri-allate" ;
-	dcterms:created	"2021-10-30T07:19:13" ;
-	dcterms:modified	"2021-10-30T07:19:13" ;
-	aopo:has_chemical_entity	cas:2303-17-5 .
-
-aop.stressor:689
-	a	nci:C54571 ;
-	dc:identifier	aop.stressor:689 ;
-	rdfs:label	"Stressor 689" ;
-	foaf:page	<https://identifiers.org/aop.stressor/689> ;
-	dc:title	"Cycloate" ;
-	dcterms:created	"2021-10-30T07:19:37" ;
-	dcterms:modified	"2021-10-30T07:19:37" ;
-	aopo:has_chemical_entity	cas:1134-23-2 .
 
 aop.stressor:665
 	a	nci:C54571 ;
@@ -272528,6 +272477,12 @@ vt:0002090	a	go:0008150 ;
 	dc:source	"VT" ;
 	rdfs:label	"vision trait" . 
 
+go:0002138	a	go:0008150 ;
+	dc:identifier	go:0002138 ;
+	dc:title	"retinoic acid biosynthetic process" ;
+	dc:source	"GO" ;
+	rdfs:label	"retinoic acid biosynthetic process" . 
+
 go:2001038	a	go:0008150 ;
 	dc:identifier	go:2001038 ;
 	dc:title	"regulation of cellular response to drug" ;
@@ -272929,12 +272884,6 @@ mp:0001863	a	go:0008150 ;
 	dc:title	"vascular inflammation" ;
 	dc:source	"MP" ;
 	rdfs:label	"vascular inflammation" . 
-
-go:0002138	a	go:0008150 ;
-	dc:identifier	go:0002138 ;
-	dc:title	"retinoic acid biosynthetic process" ;
-	dc:source	"GO" ;
-	rdfs:label	"retinoic acid biosynthetic process" . 
 
 go:0007127	a	go:0008150 ;
 	dc:identifier	go:0007127 ;
@@ -275882,6 +275831,18 @@ uberon:0000970	a	pato:0001241 ;
 	dc:source	"UBERON" ;
 	rdfs:label	"eye". 
 
+pr:000003920	a	pato:0001241 ;
+	dc:identifier	pr:000003920 ;
+	dc:title	"retinal dehydrogenase 1" ;
+	dc:source	"PR" ;
+	rdfs:label	"retinal dehydrogenase 1". 
+
+chebio:15367	a	pato:0001241 ;
+	dc:identifier	chebio:15367 ;
+	dc:title	"all-trans-retinoic acid" ;
+	dc:source	"CHEBI" ;
+	rdfs:label	"all-trans-retinoic acid". 
+
 pr:000030936	a	pato:0001241 ;
 	dc:identifier	pr:000030936 ;
 	dc:title	"protein-serine O-palmitoleoyltransferase porcupine" ;
@@ -276115,18 +276076,6 @@ cl:0000669	a	pato:0001241 ;
 	dc:title	"pericyte cell" ;
 	dc:source	"CL" ;
 	rdfs:label	"pericyte cell". 
-
-pr:000003920	a	pato:0001241 ;
-	dc:identifier	pr:000003920 ;
-	dc:title	"retinal dehydrogenase 1" ;
-	dc:source	"PR" ;
-	rdfs:label	"retinal dehydrogenase 1". 
-
-chebio:15367	a	pato:0001241 ;
-	dc:identifier	chebio:15367 ;
-	dc:title	"all-trans-retinoic acid" ;
-	dc:source	"CHEBI" ;
-	rdfs:label	"all-trans-retinoic acid". 
 
 cl:0000023	a	pato:0001241 ;
 	dc:identifier	cl:0000023 ;
@@ -280744,6 +280693,74 @@ cas:1836-75-5
 	dcterms:alternative	"Benzene, 2,4-dichloro-1-(4-nitrophenoxy)-", "2,4-Dichloro-1-(4-nitrophenoxy)benzene", "2',4'-Dichloro-4-nitrodiphenyl ether", "2,4-Dichloro-4'-nitrodiphenyl ether", "2,4-Dichlorophenyl 4-nitrophenyl ether", "2,4-Dichlorophenyl p-nitrophenyl ether", "2,4-Dichlorophenyl-4'-nitrophenylether", "4-(2,4-Dichlorophenoxy)nitrobenzene", "4'-Nitro-2,4-dichlorodiphenyl ether", "4-Nitro-2',4'-dichlorophenyl ether", "Ether, 2,4-dichlorophenyl p-nitrophenyl", "Mezotox", "Niclofen", "Nitrochlor", "Nitrofen [benzene, 2,4-dichloro-1-(4-nitrophenoxy)-]", "nitrofene", "Preparation 125", "Trizilin", "Trizilin 25" ;
 	dcterms:isPartOf	aop.stressor:465 .
 
+cas:87009-57-2
+	dc:identifier	cas:87009-57-2 ;
+	a	cheminf:000000, cheminf:000446 ;
+	cheminf:000446	"87009-57-2" ;
+	cheminf:000059	inchikey:XZMCDFZZKTWFGF-VMIGTVKRSA-N ;
+	dc:title	"(~13~C,~15~N_2_)Cyanamide" ;
+	cheminf:000568	comptox:DTXSID90745933 ;
+	dcterms:isPartOf	aop.stressor:683 .
+
+cas:2212-67-1
+	dc:identifier	cas:2212-67-1 ;
+	a	cheminf:000000, cheminf:000446 ;
+	cheminf:000446	"2212-67-1" ;
+	cheminf:000059	inchikey:DEDOPGXGGQYYMW-UHFFFAOYSA-N ;
+	dc:title	"Molinate" ;
+	cheminf:000568	comptox:DTXSID6024206 ;
+	dcterms:alternative	"1H-Azepine-1-carbothioic acid, hexahydro-, S-ethyl ester", "Ethyl 1-hexamethyleneiminecarbothiolate", "Hexahydro-1H-azepin-1-carbothioic acid S-ethyl ester", "Molinat", "molinato", "S-Ethyl hexahydro-1H-azepine-1-carbothioate", "S-Ethyl hexahydroazepine-1-carbothioate", "S-Ethyl N,N-hexamethylenethiocarbamate", "Stauffer R 4572" ;
+	dcterms:isPartOf	aop.stressor:684 .
+
+cas:1114-71-2
+	dc:identifier	cas:1114-71-2 ;
+	a	cheminf:000000, cheminf:000446 ;
+	cheminf:000446	"1114-71-2" ;
+	cheminf:000059	inchikey:SGEJQUSYQTVSIU-UHFFFAOYSA-N ;
+	dc:title	"Pebulate" ;
+	cheminf:000568	comptox:DTXSID8021199 ;
+	dcterms:alternative	"Propyl N-ethyl-N-butylthiocarbamate" ;
+	dcterms:isPartOf	aop.stressor:685 .
+
+cas:1929-77-7
+	dc:identifier	cas:1929-77-7 ;
+	a	cheminf:000000, cheminf:000446 ;
+	cheminf:000446	"1929-77-7" ;
+	cheminf:000059	inchikey:OKUGPJPKMAEJOE-UHFFFAOYSA-N ;
+	dc:title	"Vernolate" ;
+	cheminf:000568	comptox:DTXSID7024376 ;
+	dcterms:alternative	"Vernam" ;
+	dcterms:isPartOf	aop.stressor:686 .
+
+cas:2008-41-5
+	dc:identifier	cas:2008-41-5 ;
+	a	cheminf:000000, cheminf:000446 ;
+	cheminf:000446	"2008-41-5" ;
+	cheminf:000059	inchikey:BMTAFVWTTFSTOG-UHFFFAOYSA-N ;
+	dc:title	"Butylate" ;
+	cheminf:000568	comptox:DTXSID7023936 ;
+	dcterms:isPartOf	aop.stressor:687 .
+
+cas:2303-17-5
+	dc:identifier	cas:2303-17-5 ;
+	a	cheminf:000000, cheminf:000446 ;
+	cheminf:000446	"2303-17-5" ;
+	cheminf:000059	inchikey:MWBPRDONLNQCFV-UHFFFAOYSA-N ;
+	dc:title	"Tri-allate" ;
+	cheminf:000568	comptox:DTXSID5024344 ;
+	dcterms:alternative	"Triallate", "Carbamothioic acid, bis(1-methylethyl)-, S-(2,3,3-trichloro-2-propenyl) ester", "2,3,3-Trichloroallyl N,N-diisopropylthiocarbamate", "Avadex BW", "Carbamic acid, diisopropylthio-, S-(2,3,3-trichloroallyl) ester", "Carbamothioic acid, N,N-bis(1-methylethyl)-, S-(2,3,3-trichloro-2-propen-1-yl) ester", "Dipthal", "NSC 379698", "S-(2,3,3-Trichloro-2-propenyl) bis(1-methylethyl)carbamothioate", "S-(2,3,3-Trichloroallyl) diisopropylthiocarbamate", "S-2,3,3-Trichloroallyl diisopropylthiocarbamate", "S-2,3,3-Trichloroallyl N,N-diisopropylthiocarbamate", "trialato", "Triallat", "Triamyl", "Trillate" ;
+	dcterms:isPartOf	aop.stressor:688 .
+
+cas:1134-23-2
+	dc:identifier	cas:1134-23-2 ;
+	a	cheminf:000000, cheminf:000446 ;
+	cheminf:000446	"1134-23-2" ;
+	cheminf:000059	inchikey:DFCAFRGABIXSDS-UHFFFAOYSA-N ;
+	dc:title	"Cycloate" ;
+	cheminf:000568	comptox:DTXSID6032356 ;
+	dcterms:alternative	"Ethyl cyclohexylethylthiocarbamate" ;
+	dcterms:isPartOf	aop.stressor:689 .
+
 cas:645-88-5
 	dc:identifier	cas:645-88-5 ;
 	a	cheminf:000000, cheminf:000446 ;
@@ -281067,74 +281084,6 @@ cas:115-86-6
 	cheminf:000568	comptox:DTXSID1021952 ;
 	dcterms:alternative	"Phosphoric acid, triphenyl ester", "Celluflex TPP", "Disflamoll TP", "fosfato de trifenilo", "NSC 57868", "Phenyl phosphate", "Phoscon FR 903N", "Phosflex TPP", "Phosphate de triphenyle", "Reofos TPP", "Sumilizer TPP", "Triphenoxyphosphine oxide", "Triphenylphosphat", "Triphenylphosphate", "Wako TPP" ;
 	dcterms:isPartOf	aop.stressor:548 .
-
-cas:87009-57-2
-	dc:identifier	cas:87009-57-2 ;
-	a	cheminf:000000, cheminf:000446 ;
-	cheminf:000446	"87009-57-2" ;
-	cheminf:000059	inchikey:XZMCDFZZKTWFGF-VMIGTVKRSA-N ;
-	dc:title	"(~13~C,~15~N_2_)Cyanamide" ;
-	cheminf:000568	comptox:DTXSID90745933 ;
-	dcterms:isPartOf	aop.stressor:683 .
-
-cas:2212-67-1
-	dc:identifier	cas:2212-67-1 ;
-	a	cheminf:000000, cheminf:000446 ;
-	cheminf:000446	"2212-67-1" ;
-	cheminf:000059	inchikey:DEDOPGXGGQYYMW-UHFFFAOYSA-N ;
-	dc:title	"Molinate" ;
-	cheminf:000568	comptox:DTXSID6024206 ;
-	dcterms:alternative	"1H-Azepine-1-carbothioic acid, hexahydro-, S-ethyl ester", "Ethyl 1-hexamethyleneiminecarbothiolate", "Hexahydro-1H-azepin-1-carbothioic acid S-ethyl ester", "Molinat", "molinato", "S-Ethyl hexahydro-1H-azepine-1-carbothioate", "S-Ethyl hexahydroazepine-1-carbothioate", "S-Ethyl N,N-hexamethylenethiocarbamate", "Stauffer R 4572" ;
-	dcterms:isPartOf	aop.stressor:684 .
-
-cas:1114-71-2
-	dc:identifier	cas:1114-71-2 ;
-	a	cheminf:000000, cheminf:000446 ;
-	cheminf:000446	"1114-71-2" ;
-	cheminf:000059	inchikey:SGEJQUSYQTVSIU-UHFFFAOYSA-N ;
-	dc:title	"Pebulate" ;
-	cheminf:000568	comptox:DTXSID8021199 ;
-	dcterms:alternative	"Propyl N-ethyl-N-butylthiocarbamate" ;
-	dcterms:isPartOf	aop.stressor:685 .
-
-cas:1929-77-7
-	dc:identifier	cas:1929-77-7 ;
-	a	cheminf:000000, cheminf:000446 ;
-	cheminf:000446	"1929-77-7" ;
-	cheminf:000059	inchikey:OKUGPJPKMAEJOE-UHFFFAOYSA-N ;
-	dc:title	"Vernolate" ;
-	cheminf:000568	comptox:DTXSID7024376 ;
-	dcterms:alternative	"Vernam" ;
-	dcterms:isPartOf	aop.stressor:686 .
-
-cas:2008-41-5
-	dc:identifier	cas:2008-41-5 ;
-	a	cheminf:000000, cheminf:000446 ;
-	cheminf:000446	"2008-41-5" ;
-	cheminf:000059	inchikey:BMTAFVWTTFSTOG-UHFFFAOYSA-N ;
-	dc:title	"Butylate" ;
-	cheminf:000568	comptox:DTXSID7023936 ;
-	dcterms:isPartOf	aop.stressor:687 .
-
-cas:2303-17-5
-	dc:identifier	cas:2303-17-5 ;
-	a	cheminf:000000, cheminf:000446 ;
-	cheminf:000446	"2303-17-5" ;
-	cheminf:000059	inchikey:MWBPRDONLNQCFV-UHFFFAOYSA-N ;
-	dc:title	"Tri-allate" ;
-	cheminf:000568	comptox:DTXSID5024344 ;
-	dcterms:alternative	"Triallate", "Carbamothioic acid, bis(1-methylethyl)-, S-(2,3,3-trichloro-2-propenyl) ester", "2,3,3-Trichloroallyl N,N-diisopropylthiocarbamate", "Avadex BW", "Carbamic acid, diisopropylthio-, S-(2,3,3-trichloroallyl) ester", "Carbamothioic acid, N,N-bis(1-methylethyl)-, S-(2,3,3-trichloro-2-propen-1-yl) ester", "Dipthal", "NSC 379698", "S-(2,3,3-Trichloro-2-propenyl) bis(1-methylethyl)carbamothioate", "S-(2,3,3-Trichloroallyl) diisopropylthiocarbamate", "S-2,3,3-Trichloroallyl diisopropylthiocarbamate", "S-2,3,3-Trichloroallyl N,N-diisopropylthiocarbamate", "trialato", "Triallat", "Triamyl", "Trillate" ;
-	dcterms:isPartOf	aop.stressor:688 .
-
-cas:1134-23-2
-	dc:identifier	cas:1134-23-2 ;
-	a	cheminf:000000, cheminf:000446 ;
-	cheminf:000446	"1134-23-2" ;
-	cheminf:000059	inchikey:DFCAFRGABIXSDS-UHFFFAOYSA-N ;
-	dc:title	"Cycloate" ;
-	cheminf:000568	comptox:DTXSID6032356 ;
-	dcterms:alternative	"Ethyl cyclohexylethylthiocarbamate" ;
-	dcterms:isPartOf	aop.stressor:689 .
 
 cas:115385-04-1
 	dc:identifier	cas:115385-04-1 ;
@@ -282793,6 +282742,27 @@ cas:76738-62-0	dc:source	"CAS" ;
 cas:1836-75-5	dc:source	"CAS" ;
 	rdfs:label	"Nitrofen".
 
+cas:87009-57-2	dc:source	"CAS" ;
+	rdfs:label	"(~13~C,~15~N_2_)Cyanamide".
+
+cas:2212-67-1	dc:source	"CAS" ;
+	rdfs:label	"Molinate".
+
+cas:1114-71-2	dc:source	"CAS" ;
+	rdfs:label	"Pebulate".
+
+cas:1929-77-7	dc:source	"CAS" ;
+	rdfs:label	"Vernolate".
+
+cas:2008-41-5	dc:source	"CAS" ;
+	rdfs:label	"Butylate".
+
+cas:2303-17-5	dc:source	"CAS" ;
+	rdfs:label	"Tri-allate".
+
+cas:1134-23-2	dc:source	"CAS" ;
+	rdfs:label	"Cycloate".
+
 cas:645-88-5	dc:source	"CAS" ;
 	rdfs:label	"Aminooxyacetic acid".
 
@@ -282891,27 +282861,6 @@ cas:564-35-2	dc:source	"CAS" ;
 
 cas:115-86-6	dc:source	"CAS" ;
 	rdfs:label	"Triphenyl phosphate".
-
-cas:87009-57-2	dc:source	"CAS" ;
-	rdfs:label	"(~13~C,~15~N_2_)Cyanamide".
-
-cas:2212-67-1	dc:source	"CAS" ;
-	rdfs:label	"Molinate".
-
-cas:1114-71-2	dc:source	"CAS" ;
-	rdfs:label	"Pebulate".
-
-cas:1929-77-7	dc:source	"CAS" ;
-	rdfs:label	"Vernolate".
-
-cas:2008-41-5	dc:source	"CAS" ;
-	rdfs:label	"Butylate".
-
-cas:2303-17-5	dc:source	"CAS" ;
-	rdfs:label	"Tri-allate".
-
-cas:1134-23-2	dc:source	"CAS" ;
-	rdfs:label	"Cycloate".
 
 cas:115385-04-1	dc:source	"CAS" ;
 	rdfs:label	"Bis(2,4,6-trimethylphenyl)-lambda~2~-germane--selenium (1/1)".
@@ -284101,6 +284050,27 @@ inchikey:RMOGWMIKYWRTKW-DUXBJXIBNA-N	dc:source	"InChIKey" ;
 inchikey:XITQUSLLOSKDTB-UHFFFAOYSA-N	dc:source	"InChIKey" ;
 	rdfs:label	"Nitrofen".
 
+inchikey:XZMCDFZZKTWFGF-VMIGTVKRSA-N	dc:source	"InChIKey" ;
+	rdfs:label	"(~13~C,~15~N_2_)Cyanamide".
+
+inchikey:DEDOPGXGGQYYMW-UHFFFAOYSA-N	dc:source	"InChIKey" ;
+	rdfs:label	"Molinate".
+
+inchikey:SGEJQUSYQTVSIU-UHFFFAOYSA-N	dc:source	"InChIKey" ;
+	rdfs:label	"Pebulate".
+
+inchikey:OKUGPJPKMAEJOE-UHFFFAOYSA-N	dc:source	"InChIKey" ;
+	rdfs:label	"Vernolate".
+
+inchikey:BMTAFVWTTFSTOG-UHFFFAOYSA-N	dc:source	"InChIKey" ;
+	rdfs:label	"Butylate".
+
+inchikey:MWBPRDONLNQCFV-UHFFFAOYSA-N	dc:source	"InChIKey" ;
+	rdfs:label	"Tri-allate".
+
+inchikey:DFCAFRGABIXSDS-UHFFFAOYSA-N	dc:source	"InChIKey" ;
+	rdfs:label	"Cycloate".
+
 inchikey:NQRKYASMKDDGHT-UHFFFAOYSA-N	dc:source	"InChIKey" ;
 	rdfs:label	"Aminooxyacetic acid".
 
@@ -284202,27 +284172,6 @@ inchikey:WTPMRQZHJLJSBO-XQALERBDSA-N	dc:source	"InChIKey" ;
 
 inchikey:XZZNDPSIHUTMOC-UHFFFAOYSA-N	dc:source	"InChIKey" ;
 	rdfs:label	"Triphenyl phosphate".
-
-inchikey:XZMCDFZZKTWFGF-VMIGTVKRSA-N	dc:source	"InChIKey" ;
-	rdfs:label	"(~13~C,~15~N_2_)Cyanamide".
-
-inchikey:DEDOPGXGGQYYMW-UHFFFAOYSA-N	dc:source	"InChIKey" ;
-	rdfs:label	"Molinate".
-
-inchikey:SGEJQUSYQTVSIU-UHFFFAOYSA-N	dc:source	"InChIKey" ;
-	rdfs:label	"Pebulate".
-
-inchikey:OKUGPJPKMAEJOE-UHFFFAOYSA-N	dc:source	"InChIKey" ;
-	rdfs:label	"Vernolate".
-
-inchikey:BMTAFVWTTFSTOG-UHFFFAOYSA-N	dc:source	"InChIKey" ;
-	rdfs:label	"Butylate".
-
-inchikey:MWBPRDONLNQCFV-UHFFFAOYSA-N	dc:source	"InChIKey" ;
-	rdfs:label	"Tri-allate".
-
-inchikey:DFCAFRGABIXSDS-UHFFFAOYSA-N	dc:source	"InChIKey" ;
-	rdfs:label	"Cycloate".
 
 inchikey:JJXLNCSLISNMIT-UHFFFAOYSA-N	dc:source	"InChIKey" ;
 	rdfs:label	"Bis(2,4,6-trimethylphenyl)-lambda~2~-germane--selenium (1/1)".
@@ -285421,6 +285370,27 @@ comptox:DTXSID2024242	dc:source	"CompTox" ;
 comptox:DTXSID7020970	dc:source	"CompTox" ;
 	rdfs:label	"Nitrofen".
 
+comptox:DTXSID90745933	dc:source	"CompTox" ;
+	rdfs:label	"(~13~C,~15~N_2_)Cyanamide".
+
+comptox:DTXSID6024206	dc:source	"CompTox" ;
+	rdfs:label	"Molinate".
+
+comptox:DTXSID8021199	dc:source	"CompTox" ;
+	rdfs:label	"Pebulate".
+
+comptox:DTXSID7024376	dc:source	"CompTox" ;
+	rdfs:label	"Vernolate".
+
+comptox:DTXSID7023936	dc:source	"CompTox" ;
+	rdfs:label	"Butylate".
+
+comptox:DTXSID5024344	dc:source	"CompTox" ;
+	rdfs:label	"Tri-allate".
+
+comptox:DTXSID6032356	dc:source	"CompTox" ;
+	rdfs:label	"Cycloate".
+
 comptox:DTXSID50214756	dc:source	"CompTox" ;
 	rdfs:label	"Aminooxyacetic acid".
 
@@ -285522,27 +285492,6 @@ comptox:DTXSID8036499	dc:source	"CompTox" ;
 
 comptox:DTXSID1021952	dc:source	"CompTox" ;
 	rdfs:label	"Triphenyl phosphate".
-
-comptox:DTXSID90745933	dc:source	"CompTox" ;
-	rdfs:label	"(~13~C,~15~N_2_)Cyanamide".
-
-comptox:DTXSID6024206	dc:source	"CompTox" ;
-	rdfs:label	"Molinate".
-
-comptox:DTXSID8021199	dc:source	"CompTox" ;
-	rdfs:label	"Pebulate".
-
-comptox:DTXSID7024376	dc:source	"CompTox" ;
-	rdfs:label	"Vernolate".
-
-comptox:DTXSID7023936	dc:source	"CompTox" ;
-	rdfs:label	"Butylate".
-
-comptox:DTXSID5024344	dc:source	"CompTox" ;
-	rdfs:label	"Tri-allate".
-
-comptox:DTXSID6032356	dc:source	"CompTox" ;
-	rdfs:label	"Cycloate".
 
 comptox:DTXSID10556604	dc:source	"CompTox" ;
 	rdfs:label	"Bis(2,4,6-trimethylphenyl)-lambda~2~-germane--selenium (1/1)".
@@ -287800,6 +287749,42 @@ chebi:7590	a	cheminf:000407 ;
 	dc:source	"ChEBI" ;
 	rdfs:label	"Nitrofen".
 
+chebi:6964	a	cheminf:000407 ;
+	cheminf:000407	"6964";
+	dc:identifier	"chebi:6964";
+	dc:source	"ChEBI" ;
+	rdfs:label	"Molinate".
+
+chebi:81939	a	cheminf:000407 ;
+	cheminf:000407	"81939";
+	dc:identifier	"chebi:81939";
+	dc:source	"ChEBI" ;
+	rdfs:label	"Pebulate".
+
+chebi:82219	a	cheminf:000407 ;
+	cheminf:000407	"82219";
+	dc:identifier	"chebi:82219";
+	dc:source	"ChEBI" ;
+	rdfs:label	"Vernolate".
+
+chebi:34594	a	cheminf:000407 ;
+	cheminf:000407	"34594";
+	dc:identifier	"chebi:34594";
+	dc:source	"ChEBI" ;
+	rdfs:label	"Butylate".
+
+chebi:81978	a	cheminf:000407 ;
+	cheminf:000407	"81978";
+	dc:identifier	"chebi:81978";
+	dc:source	"ChEBI" ;
+	rdfs:label	"Tri-allate".
+
+chebi:81955	a	cheminf:000407 ;
+	cheminf:000407	"81955";
+	dc:identifier	"chebi:81955";
+	dc:source	"ChEBI" ;
+	rdfs:label	"Cycloate".
+
 chebi:40823	a	cheminf:000407 ;
 	cheminf:000407	"40823";
 	dc:identifier	"chebi:40823";
@@ -287967,42 +287952,6 @@ chebi:35033	a	cheminf:000407 ;
 	dc:identifier	"chebi:35033";
 	dc:source	"ChEBI" ;
 	rdfs:label	"Triphenyl phosphate".
-
-chebi:6964	a	cheminf:000407 ;
-	cheminf:000407	"6964";
-	dc:identifier	"chebi:6964";
-	dc:source	"ChEBI" ;
-	rdfs:label	"Molinate".
-
-chebi:81939	a	cheminf:000407 ;
-	cheminf:000407	"81939";
-	dc:identifier	"chebi:81939";
-	dc:source	"ChEBI" ;
-	rdfs:label	"Pebulate".
-
-chebi:82219	a	cheminf:000407 ;
-	cheminf:000407	"82219";
-	dc:identifier	"chebi:82219";
-	dc:source	"ChEBI" ;
-	rdfs:label	"Vernolate".
-
-chebi:34594	a	cheminf:000407 ;
-	cheminf:000407	"34594";
-	dc:identifier	"chebi:34594";
-	dc:source	"ChEBI" ;
-	rdfs:label	"Butylate".
-
-chebi:81978	a	cheminf:000407 ;
-	cheminf:000407	"81978";
-	dc:identifier	"chebi:81978";
-	dc:source	"ChEBI" ;
-	rdfs:label	"Tri-allate".
-
-chebi:81955	a	cheminf:000407 ;
-	cheminf:000407	"81955";
-	dc:identifier	"chebi:81955";
-	dc:source	"ChEBI" ;
-	rdfs:label	"Cycloate".
 
 chebi:47458	a	cheminf:000407 ;
 	cheminf:000407	"47458";
@@ -290470,6 +290419,42 @@ chemspider:15010	a	cheminf:000405 ;
 	dc:source	"ChemSpider" ;
 	rdfs:label	"Nitrofen".
 
+chemspider:15790	a	cheminf:000405 ;
+	cheminf:000405	"15790";
+	dc:identifier	"chemspider:15790";
+	dc:source	"ChemSpider" ;
+	rdfs:label	"Molinate".
+
+chemspider:13579	a	cheminf:000405 ;
+	cheminf:000405	"13579";
+	dc:identifier	"chemspider:13579";
+	dc:source	"ChemSpider" ;
+	rdfs:label	"Pebulate".
+
+chemspider:15204	a	cheminf:000405 ;
+	cheminf:000405	"15204";
+	dc:identifier	"chemspider:15204";
+	dc:source	"ChemSpider" ;
+	rdfs:label	"Vernolate".
+
+chemspider:15357	a	cheminf:000405 ;
+	cheminf:000405	"15357";
+	dc:identifier	"chemspider:15357";
+	dc:source	"ChemSpider" ;
+	rdfs:label	"Butylate".
+
+chemspider:5342	a	cheminf:000405 ;
+	cheminf:000405	"5342";
+	dc:identifier	"chemspider:5342";
+	dc:source	"ChemSpider" ;
+	rdfs:label	"Tri-allate".
+
+chemspider:13698	a	cheminf:000405 ;
+	cheminf:000405	"13698";
+	dc:identifier	"chemspider:13698";
+	dc:source	"ChemSpider" ;
+	rdfs:label	"Cycloate".
+
 chemspider:280	a	cheminf:000405 ;
 	cheminf:000405	"280";
 	dc:identifier	"chemspider:280";
@@ -290667,42 +290652,6 @@ chemspider:7988	a	cheminf:000405 ;
 	dc:identifier	"chemspider:7988";
 	dc:source	"ChemSpider" ;
 	rdfs:label	"Triphenyl phosphate".
-
-chemspider:15790	a	cheminf:000405 ;
-	cheminf:000405	"15790";
-	dc:identifier	"chemspider:15790";
-	dc:source	"ChemSpider" ;
-	rdfs:label	"Molinate".
-
-chemspider:13579	a	cheminf:000405 ;
-	cheminf:000405	"13579";
-	dc:identifier	"chemspider:13579";
-	dc:source	"ChemSpider" ;
-	rdfs:label	"Pebulate".
-
-chemspider:15204	a	cheminf:000405 ;
-	cheminf:000405	"15204";
-	dc:identifier	"chemspider:15204";
-	dc:source	"ChemSpider" ;
-	rdfs:label	"Vernolate".
-
-chemspider:15357	a	cheminf:000405 ;
-	cheminf:000405	"15357";
-	dc:identifier	"chemspider:15357";
-	dc:source	"ChemSpider" ;
-	rdfs:label	"Butylate".
-
-chemspider:5342	a	cheminf:000405 ;
-	cheminf:000405	"5342";
-	dc:identifier	"chemspider:5342";
-	dc:source	"ChemSpider" ;
-	rdfs:label	"Tri-allate".
-
-chemspider:13698	a	cheminf:000405 ;
-	cheminf:000405	"13698";
-	dc:identifier	"chemspider:13698";
-	dc:source	"ChemSpider" ;
-	rdfs:label	"Cycloate".
 
 chemspider:8477917	a	cheminf:000405 ;
 	cheminf:000405	"8477917";
@@ -293110,6 +293059,48 @@ wikidata:Q414023	a	cheminf:000567 ;
 	dc:source	"Wikidata" ;
 	rdfs:label	"Nitrofen".
 
+wikidata:Q82694199	a	cheminf:000567 ;
+	cheminf:000567	"Q82694199";
+	dc:identifier	"wikidata:Q82694199";
+	dc:source	"Wikidata" ;
+	rdfs:label	"(~13~C,~15~N_2_)Cyanamide".
+
+wikidata:Q1943471	a	cheminf:000567 ;
+	cheminf:000567	"Q1943471";
+	dc:identifier	"wikidata:Q1943471";
+	dc:source	"Wikidata" ;
+	rdfs:label	"Molinate".
+
+wikidata:Q2425263	a	cheminf:000567 ;
+	cheminf:000567	"Q2425263";
+	dc:identifier	"wikidata:Q2425263";
+	dc:source	"Wikidata" ;
+	rdfs:label	"Pebulate".
+
+wikidata:Q3555984	a	cheminf:000567 ;
+	cheminf:000567	"Q3555984";
+	dc:identifier	"wikidata:Q3555984";
+	dc:source	"Wikidata" ;
+	rdfs:label	"Vernolate".
+
+wikidata:Q16724472	a	cheminf:000567 ;
+	cheminf:000567	"Q16724472";
+	dc:identifier	"wikidata:Q16724472";
+	dc:source	"Wikidata" ;
+	rdfs:label	"Butylate".
+
+wikidata:Q904371	a	cheminf:000567 ;
+	cheminf:000567	"Q904371";
+	dc:identifier	"wikidata:Q904371";
+	dc:source	"Wikidata" ;
+	rdfs:label	"Tri-allate".
+
+wikidata:Q1147426	a	cheminf:000567 ;
+	cheminf:000567	"Q1147426";
+	dc:identifier	"wikidata:Q1147426";
+	dc:source	"Wikidata" ;
+	rdfs:label	"Cycloate".
+
 wikidata:Q4746466	a	cheminf:000567 ;
 	cheminf:000567	"Q4746466";
 	dc:identifier	"wikidata:Q4746466";
@@ -293301,48 +293292,6 @@ wikidata:Q418573	a	cheminf:000567 ;
 	dc:identifier	"wikidata:Q418573";
 	dc:source	"Wikidata" ;
 	rdfs:label	"Triphenyl phosphate".
-
-wikidata:Q82694199	a	cheminf:000567 ;
-	cheminf:000567	"Q82694199";
-	dc:identifier	"wikidata:Q82694199";
-	dc:source	"Wikidata" ;
-	rdfs:label	"(~13~C,~15~N_2_)Cyanamide".
-
-wikidata:Q1943471	a	cheminf:000567 ;
-	cheminf:000567	"Q1943471";
-	dc:identifier	"wikidata:Q1943471";
-	dc:source	"Wikidata" ;
-	rdfs:label	"Molinate".
-
-wikidata:Q2425263	a	cheminf:000567 ;
-	cheminf:000567	"Q2425263";
-	dc:identifier	"wikidata:Q2425263";
-	dc:source	"Wikidata" ;
-	rdfs:label	"Pebulate".
-
-wikidata:Q3555984	a	cheminf:000567 ;
-	cheminf:000567	"Q3555984";
-	dc:identifier	"wikidata:Q3555984";
-	dc:source	"Wikidata" ;
-	rdfs:label	"Vernolate".
-
-wikidata:Q16724472	a	cheminf:000567 ;
-	cheminf:000567	"Q16724472";
-	dc:identifier	"wikidata:Q16724472";
-	dc:source	"Wikidata" ;
-	rdfs:label	"Butylate".
-
-wikidata:Q904371	a	cheminf:000567 ;
-	cheminf:000567	"Q904371";
-	dc:identifier	"wikidata:Q904371";
-	dc:source	"Wikidata" ;
-	rdfs:label	"Tri-allate".
-
-wikidata:Q1147426	a	cheminf:000567 ;
-	cheminf:000567	"Q1147426";
-	dc:identifier	"wikidata:Q1147426";
-	dc:source	"Wikidata" ;
-	rdfs:label	"Cycloate".
 
 wikidata:Q82438207	a	cheminf:000567 ;
 	cheminf:000567	"Q82438207";
@@ -295444,6 +295393,42 @@ chembl.compound:CHEMBL561004	a	cheminf:000412 ;
 	dc:source	"ChEMBL" ;
 	rdfs:label	"Nitrofen".
 
+chembl.compound:CHEMBL1865916	a	cheminf:000412 ;
+	cheminf:000412	"CHEMBL1865916";
+	dc:identifier	"chembl.compound:CHEMBL1865916";
+	dc:source	"ChEMBL" ;
+	rdfs:label	"Molinate".
+
+chembl.compound:CHEMBL2251585	a	cheminf:000412 ;
+	cheminf:000412	"CHEMBL2251585";
+	dc:identifier	"chembl.compound:CHEMBL2251585";
+	dc:source	"ChEMBL" ;
+	rdfs:label	"Pebulate".
+
+chembl.compound:CHEMBL1865907	a	cheminf:000412 ;
+	cheminf:000412	"CHEMBL1865907";
+	dc:identifier	"chembl.compound:CHEMBL1865907";
+	dc:source	"ChEMBL" ;
+	rdfs:label	"Vernolate".
+
+chembl.compound:CHEMBL1873329	a	cheminf:000412 ;
+	cheminf:000412	"CHEMBL1873329";
+	dc:identifier	"chembl.compound:CHEMBL1873329";
+	dc:source	"ChEMBL" ;
+	rdfs:label	"Butylate".
+
+chembl.compound:CHEMBL1884767	a	cheminf:000412 ;
+	cheminf:000412	"CHEMBL1884767";
+	dc:identifier	"chembl.compound:CHEMBL1884767";
+	dc:source	"ChEMBL" ;
+	rdfs:label	"Tri-allate".
+
+chembl.compound:CHEMBL1889969	a	cheminf:000412 ;
+	cheminf:000412	"CHEMBL1889969";
+	dc:identifier	"chembl.compound:CHEMBL1889969";
+	dc:source	"ChEMBL" ;
+	rdfs:label	"Cycloate".
+
 chembl.compound:CHEMBL347862	a	cheminf:000412 ;
 	cheminf:000412	"CHEMBL347862";
 	dc:identifier	"chembl.compound:CHEMBL347862";
@@ -295605,42 +295590,6 @@ chembl.compound:CHEMBL454511	a	cheminf:000412 ;
 	dc:identifier	"chembl.compound:CHEMBL454511";
 	dc:source	"ChEMBL" ;
 	rdfs:label	"Triphenyl phosphate".
-
-chembl.compound:CHEMBL1865916	a	cheminf:000412 ;
-	cheminf:000412	"CHEMBL1865916";
-	dc:identifier	"chembl.compound:CHEMBL1865916";
-	dc:source	"ChEMBL" ;
-	rdfs:label	"Molinate".
-
-chembl.compound:CHEMBL2251585	a	cheminf:000412 ;
-	cheminf:000412	"CHEMBL2251585";
-	dc:identifier	"chembl.compound:CHEMBL2251585";
-	dc:source	"ChEMBL" ;
-	rdfs:label	"Pebulate".
-
-chembl.compound:CHEMBL1865907	a	cheminf:000412 ;
-	cheminf:000412	"CHEMBL1865907";
-	dc:identifier	"chembl.compound:CHEMBL1865907";
-	dc:source	"ChEMBL" ;
-	rdfs:label	"Vernolate".
-
-chembl.compound:CHEMBL1873329	a	cheminf:000412 ;
-	cheminf:000412	"CHEMBL1873329";
-	dc:identifier	"chembl.compound:CHEMBL1873329";
-	dc:source	"ChEMBL" ;
-	rdfs:label	"Butylate".
-
-chembl.compound:CHEMBL1884767	a	cheminf:000412 ;
-	cheminf:000412	"CHEMBL1884767";
-	dc:identifier	"chembl.compound:CHEMBL1884767";
-	dc:source	"ChEMBL" ;
-	rdfs:label	"Tri-allate".
-
-chembl.compound:CHEMBL1889969	a	cheminf:000412 ;
-	cheminf:000412	"CHEMBL1889969";
-	dc:identifier	"chembl.compound:CHEMBL1889969";
-	dc:source	"ChEMBL" ;
-	rdfs:label	"Cycloate".
 
 chembl.compound:CHEMBL217092	a	cheminf:000412 ;
 	cheminf:000412	"CHEMBL217092";
@@ -298270,6 +298219,48 @@ pubchem.compound:15787	a	cheminf:000140 ;
 	dc:source	"PubChem" ;
 	rdfs:label	"Nitrofen".
 
+pubchem.compound:71309593	a	cheminf:000140 ;
+	cheminf:000140	"71309593";
+	dc:identifier	"pubchem.compound:71309593";
+	dc:source	"PubChem" ;
+	rdfs:label	"(~13~C,~15~N_2_)Cyanamide".
+
+pubchem.compound:16653	a	cheminf:000140 ;
+	cheminf:000140	"16653";
+	dc:identifier	"pubchem.compound:16653";
+	dc:source	"PubChem" ;
+	rdfs:label	"Molinate".
+
+pubchem.compound:14215	a	cheminf:000140 ;
+	cheminf:000140	"14215";
+	dc:identifier	"pubchem.compound:14215";
+	dc:source	"PubChem" ;
+	rdfs:label	"Pebulate".
+
+pubchem.compound:16003	a	cheminf:000140 ;
+	cheminf:000140	"16003";
+	dc:identifier	"pubchem.compound:16003";
+	dc:source	"PubChem" ;
+	rdfs:label	"Vernolate".
+
+pubchem.compound:16181	a	cheminf:000140 ;
+	cheminf:000140	"16181";
+	dc:identifier	"pubchem.compound:16181";
+	dc:source	"PubChem" ;
+	rdfs:label	"Butylate".
+
+pubchem.compound:5543	a	cheminf:000140 ;
+	cheminf:000140	"5543";
+	dc:identifier	"pubchem.compound:5543";
+	dc:source	"PubChem" ;
+	rdfs:label	"Tri-allate".
+
+pubchem.compound:14337	a	cheminf:000140 ;
+	cheminf:000140	"14337";
+	dc:identifier	"pubchem.compound:14337";
+	dc:source	"PubChem" ;
+	rdfs:label	"Cycloate".
+
 pubchem.compound:286	a	cheminf:000140 ;
 	cheminf:000140	"286";
 	dc:identifier	"pubchem.compound:286";
@@ -298467,48 +298458,6 @@ pubchem.compound:8289	a	cheminf:000140 ;
 	dc:identifier	"pubchem.compound:8289";
 	dc:source	"PubChem" ;
 	rdfs:label	"Triphenyl phosphate".
-
-pubchem.compound:71309593	a	cheminf:000140 ;
-	cheminf:000140	"71309593";
-	dc:identifier	"pubchem.compound:71309593";
-	dc:source	"PubChem" ;
-	rdfs:label	"(~13~C,~15~N_2_)Cyanamide".
-
-pubchem.compound:16653	a	cheminf:000140 ;
-	cheminf:000140	"16653";
-	dc:identifier	"pubchem.compound:16653";
-	dc:source	"PubChem" ;
-	rdfs:label	"Molinate".
-
-pubchem.compound:14215	a	cheminf:000140 ;
-	cheminf:000140	"14215";
-	dc:identifier	"pubchem.compound:14215";
-	dc:source	"PubChem" ;
-	rdfs:label	"Pebulate".
-
-pubchem.compound:16003	a	cheminf:000140 ;
-	cheminf:000140	"16003";
-	dc:identifier	"pubchem.compound:16003";
-	dc:source	"PubChem" ;
-	rdfs:label	"Vernolate".
-
-pubchem.compound:16181	a	cheminf:000140 ;
-	cheminf:000140	"16181";
-	dc:identifier	"pubchem.compound:16181";
-	dc:source	"PubChem" ;
-	rdfs:label	"Butylate".
-
-pubchem.compound:5543	a	cheminf:000140 ;
-	cheminf:000140	"5543";
-	dc:identifier	"pubchem.compound:5543";
-	dc:source	"PubChem" ;
-	rdfs:label	"Tri-allate".
-
-pubchem.compound:14337	a	cheminf:000140 ;
-	cheminf:000140	"14337";
-	dc:identifier	"pubchem.compound:14337";
-	dc:source	"PubChem" ;
-	rdfs:label	"Cycloate".
 
 pubchem.compound:14148003	a	cheminf:000140 ;
 	cheminf:000140	"14148003";
@@ -302584,6 +302533,42 @@ kegg.compound:C11065	a	cheminf:000409 ;
 	dc:source	"KEGG" ;
 	rdfs:label	"Nitrofen".
 
+kegg.compound:C11086	a	cheminf:000409 ;
+	cheminf:000409	"C11086";
+	dc:identifier	"kegg.compound:C11086";
+	dc:source	"KEGG" ;
+	rdfs:label	"Molinate".
+
+kegg.compound:C18755	a	cheminf:000409 ;
+	cheminf:000409	"C18755";
+	dc:identifier	"kegg.compound:C18755";
+	dc:source	"KEGG" ;
+	rdfs:label	"Pebulate".
+
+kegg.compound:C19097	a	cheminf:000409 ;
+	cheminf:000409	"C19097";
+	dc:identifier	"kegg.compound:C19097";
+	dc:source	"KEGG" ;
+	rdfs:label	"Vernolate".
+
+kegg.compound:C14323	a	cheminf:000409 ;
+	cheminf:000409	"C14323";
+	dc:identifier	"kegg.compound:C14323";
+	dc:source	"KEGG" ;
+	rdfs:label	"Butylate".
+
+kegg.compound:C18813	a	cheminf:000409 ;
+	cheminf:000409	"C18813";
+	dc:identifier	"kegg.compound:C18813";
+	dc:source	"KEGG" ;
+	rdfs:label	"Tri-allate".
+
+kegg.compound:C18780	a	cheminf:000409 ;
+	cheminf:000409	"C18780";
+	dc:identifier	"kegg.compound:C18780";
+	dc:source	"KEGG" ;
+	rdfs:label	"Cycloate".
+
 kegg.compound:C00187	a	cheminf:000409 ;
 	cheminf:000409	"C00187";
 	dc:identifier	"kegg.compound:C00187";
@@ -302763,42 +302748,6 @@ kegg.compound:C14235	a	cheminf:000409 ;
 	dc:identifier	"kegg.compound:C14235";
 	dc:source	"KEGG" ;
 	rdfs:label	"Triphenyl phosphate".
-
-kegg.compound:C11086	a	cheminf:000409 ;
-	cheminf:000409	"C11086";
-	dc:identifier	"kegg.compound:C11086";
-	dc:source	"KEGG" ;
-	rdfs:label	"Molinate".
-
-kegg.compound:C18755	a	cheminf:000409 ;
-	cheminf:000409	"C18755";
-	dc:identifier	"kegg.compound:C18755";
-	dc:source	"KEGG" ;
-	rdfs:label	"Pebulate".
-
-kegg.compound:C19097	a	cheminf:000409 ;
-	cheminf:000409	"C19097";
-	dc:identifier	"kegg.compound:C19097";
-	dc:source	"KEGG" ;
-	rdfs:label	"Vernolate".
-
-kegg.compound:C14323	a	cheminf:000409 ;
-	cheminf:000409	"C14323";
-	dc:identifier	"kegg.compound:C14323";
-	dc:source	"KEGG" ;
-	rdfs:label	"Butylate".
-
-kegg.compound:C18813	a	cheminf:000409 ;
-	cheminf:000409	"C18813";
-	dc:identifier	"kegg.compound:C18813";
-	dc:source	"KEGG" ;
-	rdfs:label	"Tri-allate".
-
-kegg.compound:C18780	a	cheminf:000409 ;
-	cheminf:000409	"C18780";
-	dc:identifier	"kegg.compound:C18780";
-	dc:source	"KEGG" ;
-	rdfs:label	"Cycloate".
 
 kegg.compound:C02079	a	cheminf:000409 ;
 	cheminf:000409	"C02079";
@@ -305956,6 +305905,36 @@ hmdb:HMDB41951	a	cheminf:000408 ;
 	dc:source	"HMDB" ;
 	rdfs:label	"Nitrofen".
 
+hmdb:HMDB0256192	a	cheminf:000408 ;
+	cheminf:000408	"HMDB0256192";
+	dc:identifier	"hmdb:HMDB0256192";
+	dc:source	"HMDB" ;
+	rdfs:label	"Pebulate".
+
+hmdb:HMDB0259792	a	cheminf:000408 ;
+	cheminf:000408	"HMDB0259792";
+	dc:identifier	"hmdb:HMDB0259792";
+	dc:source	"HMDB" ;
+	rdfs:label	"Vernolate".
+
+hmdb:HMDB0249477	a	cheminf:000408 ;
+	cheminf:000408	"HMDB0249477";
+	dc:identifier	"hmdb:HMDB0249477";
+	dc:source	"HMDB" ;
+	rdfs:label	"Butylate".
+
+hmdb:HMDB0259144	a	cheminf:000408 ;
+	cheminf:000408	"HMDB0259144";
+	dc:identifier	"hmdb:HMDB0259144";
+	dc:source	"HMDB" ;
+	rdfs:label	"Tri-allate".
+
+hmdb:HMDB0250636	a	cheminf:000408 ;
+	cheminf:000408	"HMDB0250636";
+	dc:identifier	"hmdb:HMDB0250636";
+	dc:source	"HMDB" ;
+	rdfs:label	"Cycloate".
+
 hmdb:HMDB0248327	a	cheminf:000408 ;
 	cheminf:000408	"HMDB0248327";
 	dc:identifier	"hmdb:HMDB0248327";
@@ -306207,36 +306186,6 @@ hmdb:HMDB0259262	a	cheminf:000408 ;
 	dc:identifier	"hmdb:HMDB0259262";
 	dc:source	"HMDB" ;
 	rdfs:label	"Triphenyl phosphate".
-
-hmdb:HMDB0256192	a	cheminf:000408 ;
-	cheminf:000408	"HMDB0256192";
-	dc:identifier	"hmdb:HMDB0256192";
-	dc:source	"HMDB" ;
-	rdfs:label	"Pebulate".
-
-hmdb:HMDB0259792	a	cheminf:000408 ;
-	cheminf:000408	"HMDB0259792";
-	dc:identifier	"hmdb:HMDB0259792";
-	dc:source	"HMDB" ;
-	rdfs:label	"Vernolate".
-
-hmdb:HMDB0249477	a	cheminf:000408 ;
-	cheminf:000408	"HMDB0249477";
-	dc:identifier	"hmdb:HMDB0249477";
-	dc:source	"HMDB" ;
-	rdfs:label	"Butylate".
-
-hmdb:HMDB0259144	a	cheminf:000408 ;
-	cheminf:000408	"HMDB0259144";
-	dc:identifier	"hmdb:HMDB0259144";
-	dc:source	"HMDB" ;
-	rdfs:label	"Tri-allate".
-
-hmdb:HMDB0250636	a	cheminf:000408 ;
-	cheminf:000408	"HMDB0250636";
-	dc:identifier	"hmdb:HMDB0250636";
-	dc:source	"HMDB" ;
-	rdfs:label	"Cycloate".
 
 hmdb:HMDB0257490	a	cheminf:000408 ;
 	cheminf:000408	"HMDB0257490";
