@@ -32749,7 +32749,7 @@ aop:324
 	dcterms:alternative	"ROS leading to growth inhibition via oxidative DNA damage and cell cycle disruption" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-18T05:18:10" ;
-	dcterms:modified	"2026-10-06T07:22:21" ;
+	dcterms:modified	"2026-10-21T06:19:18" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and are also generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, while excessive ROS can disturb redox homeostasis and initiate oxidative damage to cellular macromolecules (Schieber and Chandel, 2014; Sies et al., 2017). DNA is a major target of oxidative attack. Oxidative DNA lesions such as 8-oxo-2&#39;-deoxyguanosine and other oxidized bases can arise endogenously or following toxic insult, and these lesions may contribute to mutation, strand break formation, and activation of DNA damage responses if they are not repaired correctly or efficiently (Cooke et al., 2003; OECD, 2023).
 
 This AOP was developed to represent the DNA damage-driven linear route within the broader ROS-growth AOP network. The route was selected because oxidative DNA damage is a well-established consequence of oxidative stress and because downstream events such as inadequate DNA repair, strand breaks, cell cycle disruption, and reduced cell proliferation provide a mechanistically coherent bridge between molecular damage and decreased organismal growth (Cuddihy and O&#39;Connell, 2003; Conlon and Raff, 1999; OECD, 2022; OECD, 2023). The AOP was therefore designed to provide a focused, reviewable linear representation of one major mechanistic branch by which excessive ROS can impair growth.
@@ -33378,11 +33378,11 @@ The following BMD/POD concordance table provides quantitative anchoring for AOP 
 
 &nbsp;
 """ ;
-	nci:C25725	"""AOP 324 can support mechanistic interpretation of toxicity data where ROS generation, oxidative stress, DNA damage, cell cycle disruption, or reduced proliferation are observed together with growth effects. The AOP may be useful for hazard identification, prioritization of stressors that generate oxidative DNA damage, and organization of evidence in IATA or defined approaches. It can also support chemical grouping or read-across where chemicals share evidence of ROS-mediated DNA damage and downstream checkpoint or proliferation effects.
+	nci:C25725	"""AOP 324 can support mechanistic interpretation of toxicity data where ROS generation, oxidative stress, DNA damage, cell cycle disruption, or reduced proliferation are observed together with growth effects. Because growth rates and cell proliferation are highest during early life stages (embryonic, larval, and juvenile), these stages are expected to be particularly sensitive to the pathway, and the AOP is especially relevant for interpreting growth effects observed in early-life-stage tests. Reduced growth in early life stages can reduce survival (e.g., in fish; Sogard, 1997), and changes in survival, development, and reproduction are outcomes of demographic significance for population sustainability and are therefore of regulatory relevance. The AOP may be useful for hazard identification, prioritization of stressors that generate oxidative DNA damage, and organization of evidence in IATA or defined approaches. It can also support chemical grouping or read-across where chemicals share evidence of ROS-mediated DNA damage and downstream checkpoint or proliferation effects.
 
-&nbsp;&nbsp;&nbsp; The AOP also highlights assay opportunities and gaps. Several KEs can be measured using established or standardized methods, including DNA strand breaks using OECD TG 489 and growth using OECD growth-related test guidelines such as TG 201 and TG 210 (OECD, 2011, 2013, 2014). Other KEs, such as ROS increase, oxidative DNA damage, inadequate DNA repair, and cell cycle disruption, are supported by mechanistic assays but may require careful interpretation of assay specificity and biological context. High-throughput or other new approach methodology (NAM) assays measuring oxidative stress responses, DNA damage signaling, cell cycle arrest, and proliferation may be mapped to the AOP to support screening and prioritization.
+The AOP also highlights assay opportunities and gaps. Several KEs can be measured using established or standardized methods, including DNA strand breaks using OECD TG 489 and growth using OECD growth-related test guidelines such as TG 201 (algal growth inhibition) and TG 210 (fish early-life stage toxicity), which assesses growth in early life stages (OECD, 2011, 2013, 2014). Other KEs, such as ROS increase, oxidative DNA damage, inadequate DNA repair, and cell cycle disruption, are supported by mechanistic assays but may require careful interpretation of assay specificity and biological context. High-throughput or other new approach methodology (NAM) assays measuring oxidative stress responses, DNA damage signaling, cell cycle arrest, and proliferation, including assays based on embryonic cells or embryo models, may be mapped to the AOP to support screening and prioritization.
 
-For regulatory application, the AOP is currently most suitable for qualitative or semi-quantitative use, such as supporting biological plausibility, organizing mechanistic evidence, and identifying data gaps. More quantitative applications, such as prediction of decreased growth from upstream ROS or oxidative DNA damage measurements, will require further development of response-response relationships, better characterization of modulating factors, and additional studies measuring multiple KEs in the same biological system over time.
+For regulatory application, the AOP is currently most suitable for qualitative or semi-quantitative use, such as supporting biological plausibility, organizing mechanistic evidence, and identifying data gaps. More quantitative applications, such as prediction of decreased growth from upstream ROS or oxidative DNA damage measurements, will require further development of response-response relationships, better characterization of modulating factors, and additional studies measuring multiple KEs in the same biological system over time, including in early life stages.
 """ ;
 	dc:creator	"""You Song, Li Xie, Knut Erik Tollefsen
 
@@ -33427,7 +33427,7 @@ aop:325
 	dcterms:alternative	"ROS leading to growth inhibition via oxidative DNA damage and cell death" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-18T05:18:37" ;
-	dcterms:modified	"2026-10-06T07:22:29" ;
+	dcterms:modified	"2026-10-21T06:38:03" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and are also generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative damage to cellular macromolecules (Schieber and Chandel, 2014; Sies et al., 2017). DNA is a major target of oxidative attack. Oxidative DNA lesions such as 8-oxo-2&#39;-deoxyguanosine and other oxidized bases can arise endogenously or following toxic insult, and these lesions may contribute to mutation, strand break formation, activation of DNA damage responses, and cell death if they are not repaired correctly or efficiently (Cooke et al., 2003; OECD, 2023).
 
 &nbsp;&nbsp;&nbsp; AOP 325 was developed to represent the cell injury/death-driven linear route within the broader ROS-growth AOP network. The route was selected because oxidative DNA damage is a well-established consequence of oxidative stress and because downstream events such as inadequate DNA repair, DNA strand breaks, and cell injury/death provide a mechanistically coherent bridge between molecular damage and decreased organismal growth. This pathway complements AOP 324, which emphasizes cell cycle disruption and reduced cell proliferation as the downstream route from DNA damage to growth impairment. AOP 325 instead captures the alternative but biologically connected route in which unrepaired or severe DNA damage contributes to cell loss, thereby reducing growth capacity at the organ or organism level.
@@ -33974,11 +33974,11 @@ The following BMD/POD concordance table provides quantitative anchoring for AOP 
 
 &nbsp;
 """ ;
-	nci:C25725	"""AOP 325 can support mechanistic interpretation of toxicity data when evidence indicates that a stressor increases ROS or oxidative stress and produces DNA damage, cytotoxicity, and growth impairment. The AOP is particularly useful for evaluating stressors such as radiation, redox-active chemicals, metals, and nanoparticles that may act through oxidative DNA damage. It can also support chemical prioritization and screening by linking early oxidative stress and DNA damage assays to potential effects on growth.
+	nci:C25725	"""AOP 325 can support mechanistic interpretation of toxicity data when evidence indicates that a stressor increases ROS or oxidative stress and produces DNA damage, cytotoxicity, and growth impairment. Because growth depends on the maintenance of viable cell populations, and because DNA damage and cell death during development can strongly affect tissue formation, early life stages (embryonic, larval, and juvenile) are expected to be particularly sensitive to this pathway. The AOP is therefore especially relevant for interpreting growth effects observed in early-life-stage tests. Reduced growth in early life stages can reduce survival (e.g., in fish; Sogard, 1997), and changes in survival, development, and reproduction are outcomes of demographic significance for population sustainability and are therefore of regulatory relevance. The AOP is particularly useful for evaluating stressors such as radiation, redox-active chemicals, metals, and nanoparticles that may act through oxidative DNA damage. It can also support chemical prioritization and screening by linking early oxidative stress and DNA damage assays to potential effects on growth.
 
-&nbsp;&nbsp;&nbsp; The AOP is relevant to integrated approaches to testing and assessment because many of its KEs can be measured using established assays. ROS can be measured using DCFH-DA, DHE, MitoSOX, or electron spin resonance; oxidative stress can be assessed through antioxidant enzyme activity, GSH/GSSG ratio, or Nrf2/ARE reporter assays; oxidative DNA damage can be assessed using 8-oxo-dG measurements or enzyme-modified comet assays; DNA strand breaks can be assessed using alkaline comet assays or gamma-H2AX staining; and cell injury/death can be measured using viability, LDH release, Annexin V/PI staining, caspase activity, or TUNEL assays. The final AO, decreased growth, is directly relevant to standardized ecotoxicological endpoints measured in algae, aquatic invertebrates, fish, amphibians, and plants.
+The AOP is relevant to integrated approaches to testing and assessment because many of its KEs can be measured using established assays. ROS can be measured using DCFH-DA, DHE, MitoSOX, or electron spin resonance; oxidative stress can be assessed through antioxidant enzyme activity, GSH/GSSG ratio, or Nrf2/ARE reporter assays; oxidative DNA damage can be assessed using 8-oxo-dG measurements or enzyme-modified comet assays; DNA strand breaks can be assessed using alkaline comet assays or gamma-H2AX staining; and cell injury/death can be measured using viability, LDH release, Annexin V/PI staining, caspase activity, or TUNEL assays. Several of these endpoints can also be applied in embryonic cells or embryo models, which may support screening and prioritization of early-life-stage effects. The final AO, decreased growth, is directly relevant to standardized ecotoxicological endpoints measured in algae, aquatic invertebrates, fish, amphibians, and plants, including growth endpoints assessed in early-life-stage tests with fish and amphibians.
 
-&nbsp;&nbsp;&nbsp; The AOP also identifies important limitations. Quantitative prediction of growth from upstream DNA damage or cell death remains underdeveloped, and cell injury/death is not the only route by which ROS can impair growth. The AOP should therefore be applied as part of a broader weight-of-evidence evaluation and, where relevant, considered together with other ROS-growth AOPs that describe cell cycle disruption, reduced proliferation, mitochondrial dysfunction, lipid peroxidation, and protein oxidation pathways.
+The AOP also identifies important limitations. Quantitative prediction of growth from upstream DNA damage or cell death remains underdeveloped, and cell injury/death is not the only route by which ROS can impair growth. The AOP should therefore be applied as part of a broader weight-of-evidence evaluation and, where relevant, considered together with other ROS-growth AOPs that describe cell cycle disruption, reduced proliferation, mitochondrial dysfunction, lipid peroxidation, and protein oxidation pathways. Further studies that measure multiple KEs in the same biological system over time, including in early life stages, would strengthen quantitative application.
 """ ;
 	dc:creator	"""You Song, Li Xie, Knut Erik Tollefsen
 
@@ -34025,7 +34025,7 @@ aop:326
 	dcterms:alternative	"ROS leading to growth inhibition via LPO and decreased cell proliferation" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-18T05:19:06" ;
-	dcterms:modified	"2026-10-06T07:22:37" ;
+	dcterms:modified	"2026-10-21T05:51:16" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Lipids are important targets of oxidative attack because membrane phospholipids, especially those containing polyunsaturated fatty acyl chains, can undergo radical-driven peroxidation. Lipid peroxidation generates lipid hydroperoxides and secondary reactive products, including malondialdehyde and 4-hydroxy-2-nonenal, which can alter membrane structure, propagate oxidative damage, and affect protein and organelle function (Ayala et al., 2014).
 
 &nbsp;&nbsp;&nbsp; AOP 326 was developed to represent the lipid peroxidation-driven linear route within the broader ROS-growth AOP network. This route was selected because lipid peroxidation is a well-established consequence of oxidative stress and because mitochondrial membranes are central determinants of OXPHOS coupling. Peroxidative modification of mitochondrial membrane lipids can alter membrane fluidity, proton leak, respiratory control, and mitochondrial membrane potential, providing a mechanistically coherent bridge from oxidative stress to impaired ATP production (Murphy, 2009; Nicholls and Ferguson, 2013; Ouillon et al., 2021). The downstream sequence from decreased coupling of OXPHOS to decreased ATP pool, decreased cell proliferation, and decreased growth is already represented in AOP 263 and provides the growth-relevant terminal module for AOP 326 (AOP-Wiki, 2026b; OECD, 2022; Song and Villeneuve, 2021).
@@ -34616,9 +34616,9 @@ The following benchmark-dose/point-of-departure (BMD/POD) concordance table anch
 
 &nbsp;
 """ ;
-	nci:C25725	"""AOP 326 can support mechanistic interpretation of growth impairment caused by oxidative stressors that induce lipid peroxidation and mitochondrial bioenergetic dysfunction. The AOP is particularly relevant for hazard identification and chemical prioritization when evidence indicates increased ROS or oxidative stress together with lipid peroxidation, mitochondrial membrane potential changes, OXPHOS impairment, ATP depletion, reduced proliferation, or growth inhibition. The AOP may also support IATA development by linking upstream NAM endpoints, such as ROS assays, lipid peroxidation markers, mitochondrial membrane potential, oxygen consumption rate, ATP content, and proliferation assays, to an apical growth endpoint.
+	nci:C25725	"""AOP 326 can support mechanistic interpretation of growth impairment caused by oxidative stressors that induce lipid peroxidation and mitochondrial bioenergetic dysfunction. Because rapidly growing and proliferating early life stages (embryonic, larval, and juvenile) have high energy demands and depend on sustained ATP supply, these stages are expected to be particularly sensitive to this pathway, and the AOP is especially relevant for interpreting growth effects observed in early-life-stage tests. Reduced growth in early life stages can reduce survival (e.g., in fish; Sogard, 1997), and changes in survival, development, and reproduction are outcomes of demographic significance for population sustainability and are therefore of regulatory relevance. The AOP is particularly relevant for hazard identification and chemical prioritization when evidence indicates increased ROS or oxidative stress together with lipid peroxidation, mitochondrial membrane potential changes, OXPHOS impairment, ATP depletion, reduced proliferation, or growth inhibition. The AOP may also support IATA development by linking upstream NAM endpoints, such as ROS assays, lipid peroxidation markers, mitochondrial membrane potential, oxygen consumption rate, ATP content, and proliferation assays, including assays based on embryonic cells or embryo models, to an apical growth endpoint.
 
-AOP 326 can also support chemical grouping and read-across for stressors that share evidence of oxidative lipid damage and mitochondrial bioenergetic impairment. Because oxidative stress and lipid peroxidation are not chemical-specific, this AOP should not be used as a stand-alone basis for regulatory decisions. Instead, it should be used as part of a weight-of-evidence framework that considers stressor mode of action, exposure context, taxonomic relevance, assay specificity, and concordance across multiple KEs. The AOP also highlights important method-development needs, particularly standardized assays for lipid peroxidation, mitochondrial coupling, and ATP depletion that can be applied across taxa and integrated into quantitative AOP approaches.
+AOP 326 can also support chemical grouping and read-across for stressors that share evidence of oxidative lipid damage and mitochondrial bioenergetic impairment. Because oxidative stress and lipid peroxidation are not chemical-specific, this AOP should not be used as a stand-alone basis for regulatory decisions. Instead, it should be used as part of a weight-of-evidence framework that considers stressor mode of action, exposure context, life stage and taxonomic relevance, assay specificity, and concordance across multiple KEs. The AOP also highlights important method-development needs, particularly standardized assays for lipid peroxidation, mitochondrial coupling, and ATP depletion that can be applied across taxa and life stages, including early life stages, and integrated into quantitative AOP approaches.
 """ ;
 	dc:creator	"""You Song, Li Xie, Knut Erik Tollefsen
 
@@ -34795,7 +34795,7 @@ aop:331
 	dcterms:alternative	"ROS leading to growth inhibition via LPO and cell death" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-19T04:50:03" ;
-	dcterms:modified	"2026-10-06T07:22:46" ;
+	dcterms:modified	"2026-10-21T06:20:51" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Lipid membranes are important targets of oxidative attack because phospholipids containing polyunsaturated fatty acids can undergo radical-driven peroxidation. Lipid peroxidation generates lipid hydroperoxides and secondary reactive aldehydes, including malondialdehyde and 4-hydroxy-2-nonenal, which can propagate oxidative injury and alter membrane-associated protein and organelle function (Ayala et al., 2014).
 
 &nbsp;&nbsp;&nbsp; AOP 331 was developed to represent the lipid peroxidation and cell injury/death-driven linear route within the broader ROS-growth AOP network. This route was selected because lipid peroxidation is a well-established consequence of oxidative stress and because mitochondrial membranes are central determinants of OXPHOS coupling. Peroxidative modification of mitochondrial membrane lipids can alter membrane fluidity, proton leak, respiratory control, and mitochondrial membrane potential, providing a mechanistically coherent bridge from oxidative stress to impaired ATP production (Murphy, 2009; Nicholls and Ferguson, 2013; Ouillon et al., 2021). ATP depletion is a well-established contributor to loss of cell viability because cellular survival depends on ATP-dependent ion gradients, membrane repair, protein turnover, stress-response pathways, and the execution of regulated death processes. Depletion of ATP can shift cells from adaptive responses to injury and death, and severe ATP loss can affect the mode of cell death (Leist et al., 1997; Bonora et al., 2012).
@@ -35388,9 +35388,9 @@ The following benchmark-dose/point-of-departure (BMD/POD) concordance table anch
 
 &nbsp;
 """ ;
-	nci:C25725	"""AOP 331 can support mechanistic interpretation of growth impairment caused by oxidative stressors that induce lipid peroxidation, mitochondrial bioenergetic dysfunction, ATP depletion, and cell injury/death. The AOP is particularly relevant for hazard identification and chemical prioritization when evidence indicates increased ROS or oxidative stress together with lipid peroxidation, mitochondrial membrane potential changes, reduced respiratory control, ATP depletion, cytotoxicity, or growth inhibition. The AOP may also support IATA development by linking upstream NAM endpoints, such as ROS assays, lipid peroxidation markers, mitochondrial membrane potential, oxygen consumption rate, ATP content, cytotoxicity assays, and organismal growth measurements.
+	nci:C25725	"""AOP 331 can support mechanistic interpretation of growth impairment caused by oxidative stressors that induce lipid peroxidation, mitochondrial bioenergetic dysfunction, ATP depletion, and cell injury/death. Because rapidly growing early life stages (embryonic, larval, and juvenile) depend on sustained ATP supply and on the maintenance of viable cell populations, these stages are expected to be particularly sensitive to this pathway, and the AOP is especially relevant for interpreting growth effects observed in early-life-stage tests. Reduced growth in early life stages can reduce survival (e.g., in fish; Sogard, 1997), and changes in survival, development, and reproduction are outcomes of demographic significance for population sustainability and are therefore of regulatory relevance. The AOP is particularly relevant for hazard identification and chemical prioritization when evidence indicates increased ROS or oxidative stress together with lipid peroxidation, mitochondrial membrane potential changes, reduced respiratory control, ATP depletion, cytotoxicity, or growth inhibition. The AOP may also support IATA development by linking upstream NAM endpoints, such as ROS assays, lipid peroxidation markers, mitochondrial membrane potential, oxygen consumption rate, ATP content, cytotoxicity assays (including assays based on embryonic cells or embryo models), and organismal growth measurements.
 
-AOP 331 can support chemical grouping and read-across for stressors that share evidence of oxidative lipid damage, mitochondrial bioenergetic impairment, and ATP-associated cell injury. Because oxidative stress and lipid peroxidation are not chemical-specific, this AOP should not be used as a stand-alone basis for regulatory decisions. Instead, it should be applied as part of a weight-of-evidence framework that considers stressor mode of action, exposure context, assay specificity, taxonomic relevance, and concordance across multiple KEs. The AOP also highlights method-development needs, particularly standardized assays for lipid peroxidation, OXPHOS coupling, ATP depletion, and cell injury/death endpoints that can be connected quantitatively to apical growth outcomes.
+AOP 331 can support chemical grouping and read-across for stressors that share evidence of oxidative lipid damage, mitochondrial bioenergetic impairment, and ATP-associated cell injury. Because oxidative stress and lipid peroxidation are not chemical-specific, this AOP should not be used as a stand-alone basis for regulatory decisions. Instead, it should be applied as part of a weight-of-evidence framework that considers stressor mode of action, exposure context, assay specificity, life stage and taxonomic relevance, and concordance across multiple KEs. The AOP also highlights method-development needs, particularly standardized assays for lipid peroxidation, OXPHOS coupling, ATP depletion, and cell injury/death endpoints that can be applied across life stages, including early life stages, and connected quantitatively to apical growth outcomes.
 """ ;
 	dc:creator	"""You Song, Li Xie, Knut Erik Tollefsen
 
@@ -35433,7 +35433,7 @@ aop:332
 	dcterms:alternative	"ROS leading to growth inhibition via protein oxidation and decreased cell proliferation" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-19T04:52:14" ;
-	dcterms:modified	"2026-10-06T07:23:01" ;
+	dcterms:modified	"2026-10-21T06:21:42" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Proteins are major targets of oxidative attack because many amino acid side chains and prosthetic groups are susceptible to oxidation, carbonylation, thiol oxidation, nitration, or other oxidative modifications. Protein oxidation can alter enzyme activity, protein-protein interactions, protein folding, stability, and degradation, and it is widely used as a marker of severe oxidative damage and cellular dysfunction (Dalle-Donne et al., 2006).
 
 AOP 332 was developed to represent the protein oxidation-driven linear route within the broader ROS-growth AOP network. This route was selected because oxidative stress can directly modify proteins, including mitochondrial proteins involved in electron transport, OXPHOS coupling, ATP synthesis, metabolite transport, and maintenance of mitochondrial integrity. Oxidation of mitochondrial proteins can impair the efficiency of electron transfer and proton motive force utilization, thereby providing a mechanistically coherent bridge from oxidative stress to decreased coupling of OXPHOS (Murphy, 2009; Nicholls and Ferguson, 2013; Sokolov et al., 2019). The downstream sequence from decreased coupling of OXPHOS to decreased ATP pool, decreased cell proliferation, and decreased growth is represented in AOP 263 and provides the growth-relevant terminal module for AOP 332 (AOP-Wiki, 2026b; OECD, 2022; Song and Villeneuve, 2021).
@@ -35534,10 +35534,10 @@ AOP 332 was developed to represent the protein oxidation-driven linear route wit
 			Moderate
 			
 			
-			Protein carbonylation and related oxidative modifications can impair enzyme activity, protein folding, degradation, and mitochondrial function (Dalle-Donne et al., 2006). Cadmium-induced protein carbonylation and actin glutathionylation in mussel hemocytes were reduced by oxidase/NOS inhibitors, supporting causal involvement of oxidative signaling (Canesi et al., 2010).
+			Protein carbonylation and related oxidative modifications can impair enzyme activity, protein folding, degradation, and mitochondrial function (Dalle-Donne et al., 2006). Cadmium-induced protein carbonylation and actin glutathionylation in mussel hemocytes were reduced by oxidase/NOS inhibitors, supporting causal involvement of oxidative signaling (Dailianis et al., 2009).
 			
 			
-			Direct (partial): cadmium-induced protein carbonylation and actin glutathionylation reduced by oxidase/NOS inhibitors in mussel hemocytes (Canesi et al., 2010); GSTA4 silencing raised mitochondrial protein carbonylation and target knockdown reduced respiration (Curtis et al., 2012).
+			Direct (partial): cadmium-induced protein carbonylation and actin glutathionylation reduced by oxidase/NOS inhibitors in mussel hemocytes (Dailianis et al., 2009); GSTA4 silencing raised mitochondrial protein carbonylation and target knockdown reduced respiration (Curtis et al., 2012).
 			
 			
 			Protein oxidation can be cause, consequence, or marker of cellular stress; selective intervention evidence is limited.
@@ -35621,8 +35621,6 @@ AOP 332 was developed to represent the protein oxidation-driven linear route wit
 &nbsp;&nbsp;&nbsp; The stressor domain includes direct oxidants, redox-cycling chemicals, metals, radiation, hypoxia-reoxygenation, temperature or salinity stress, and endogenous oxidative stress. Because the MIE is defined operationally as increased ROS rather than as a chemical-specific interaction, AOP 332 should be applied when evidence demonstrates increased ROS or oxidative stress and when downstream evidence supports protein oxidation and mitochondrial bioenergetic impairment. Important modifiers include antioxidant capacity, protein repair and degradation capacity, mitochondrial reserve capacity, temperature, oxygen availability, nutrient status, species metabolic rate, and growth stage.
 """ ;
 	aopo:has_evidence	"""Evidence assessment is organized by KER. Calls follow OECD weight-of-evidence considerations for biological plausibility, empirical support, and quantitative understanding (OECD, 2018, 2021).
-
-&nbsp;
 
 Biological plausibility of KERs
 
@@ -35750,7 +35748,7 @@ Empirical support for KERs
 			High
 			
 			
-			Oxidative stressors increase protein carbonyls or related protein oxidation endpoints. Cadmium and hydrogen peroxide increased protein carbonylation and redox modification in Chlamydomonas systems (Zaffagnini et al., 2012). Cadmium induced protein carbonylation and actin glutathionylation in mussel hemocytes (Canesi et al., 2010). Thermal stress in zebrafish increased protein carbonyls with antioxidant responses (Tseng et al., 2011).
+			Oxidative stressors increase protein carbonyls or related protein oxidation endpoints. Cadmium and hydrogen peroxide increased protein carbonylation and redox modification in Chlamydomonas systems (Zaffagnini et al., 2012). Cadmium induced protein carbonylation and actin glutathionylation in mussel hemocytes (Dailianis et al., 2009). Thermal stress in zebrafish increased protein carbonyls with antioxidant responses (Tseng et al., 2011).
 			
 			
 			Protein oxidation endpoints are heterogeneous; some studies measure total carbonyls whereas others identify specific oxidized proteins.
@@ -36024,9 +36022,9 @@ The following benchmark-dose/point-of-departure (BMD/POD) concordance table anch
 
 &nbsp;
 """ ;
-	nci:C25725	"""AOP 332 can support mechanistic interpretation of growth impairment caused by oxidative stressors that produce protein oxidation and mitochondrial bioenergetic dysfunction. It is particularly useful for organizing evidence from assays measuring protein carbonyls, redox proteomics, mitochondrial respiration, mitochondrial membrane potential, ATP content, cell proliferation, and organismal growth. Because the downstream module is shared with AOP 263, the AOP can contribute to IATA and NAM-based screening strategies that use mitochondrial function, ATP status, and proliferation as early warning indicators for growth effects.
+	nci:C25725	"""AOP 332 can support mechanistic interpretation of growth impairment caused by oxidative stressors that produce protein oxidation and mitochondrial bioenergetic dysfunction. Because rapidly growing and proliferating early life stages (embryonic, larval, and juvenile) depend on sustained ATP supply and high rates of cell proliferation, these stages are expected to be particularly sensitive to this pathway, and the AOP is especially relevant for interpreting growth effects observed in early-life-stage tests. Reduced growth in early life stages can reduce survival (e.g., in fish; Sogard, 1997), and changes in survival, development, and reproduction are outcomes of demographic significance for population sustainability and are therefore of regulatory relevance. It is particularly useful for organizing evidence from assays measuring protein carbonyls, redox proteomics, mitochondrial respiration, mitochondrial membrane potential, ATP content, cell proliferation, and organismal growth. Because the downstream module is shared with AOP 263, the AOP can contribute to IATA and NAM-based screening strategies that use mitochondrial function, ATP status, and proliferation as early warning indicators for growth effects, including strategies based on embryonic cells or embryo models.
 
-The AOP may also support chemical prioritization and grouping for stressors that induce ROS generation or oxidative stress and that show evidence for protein oxidation or mitochondrial impairment. Potential stressor classes include metals, redox-active organic chemicals, radiation, hypoxia-reoxygenation, and other environmental conditions that increase oxidative protein damage. The AOP should not be used as a stand-alone quantitative predictor of growth inhibition without additional empirical support, because the protein oxidation to OXPHOS transition remains less quantitatively resolved than the downstream AOP 263 module.
+The AOP may also support chemical prioritization and grouping for stressors that induce ROS generation or oxidative stress and that show evidence for protein oxidation or mitochondrial impairment. Potential stressor classes include metals, redox-active organic chemicals, radiation, hypoxia-reoxygenation, and other environmental conditions that increase oxidative protein damage. The AOP should not be used as a stand-alone quantitative predictor of growth inhibition without additional empirical support, because the protein oxidation to OXPHOS transition remains less quantitatively resolved than the downstream AOP 263 module. Studies that measure protein oxidation, mitochondrial function, and growth in the same biological system, including in early life stages, would help resolve this transition and strengthen life-stage-specific application.
 """ ;
 	dc:creator	"""You Song, Li Xie, Knut Erik Tollefsen
 
@@ -36069,7 +36067,7 @@ aop:333
 	dcterms:alternative	"ROS leading to growth inhibition via protein oxidation and cell death" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-19T04:52:38" ;
-	dcterms:modified	"2026-10-06T07:23:10" ;
+	dcterms:modified	"2026-10-21T06:36:33" ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Proteins are major targets of oxidative attack because amino acid side chains, thiol groups, metal centers, and prosthetic groups can undergo oxidative modification. Protein oxidation can reduce enzyme activity, alter protein-protein interactions, impair folding, increase aggregation, disrupt degradation by proteasomal and lysosomal systems, and contribute to cellular dysfunction (Dalle-Donne et al., 2006).
 
 &nbsp;&nbsp;&nbsp; AOP 333 was developed to represent the protein oxidation and cell injury/death-driven linear route within the broader ROS-growth AOP network. This route was selected because protein oxidation is a well-established consequence of oxidative stress and because mitochondrial proteins are central determinants of OXPHOS coupling and ATP production. Oxidative modification of respiratory-chain proteins, ATP synthase subunits, mitochondrial carriers, or proteins involved in maintaining mitochondrial membrane potential can reduce respiratory efficiency and ATP synthesis (Murphy, 2009; Nicholls and Ferguson, 2013; Sokolov et al., 2019). ATP depletion is an established contributor to loss of cell viability because cell survival depends on ATP-dependent ion gradients, membrane repair, stress responses, proteostasis, and execution of regulated cell death pathways. Severe ATP depletion can shift cellular outcomes toward irreversible injury or necrosis, whereas less severe depletion may permit apoptosis or adaptive responses (Leist et al., 1997; Bonora et al., 2012).
@@ -36174,10 +36172,10 @@ The AOP was designed to maximize reuse of existing AOP-Wiki content. AOP 478 was
 			Moderate
 			
 			
-			Protein carbonylation and other oxidative modifications impair protein function and can contribute to mitochondrial dysfunction (Dalle-Donne et al., 2006). Cadmium-induced protein carbonylation and actin glutathionylation were reduced by oxidase/NOS inhibitors in mussel hemocytes (Canesi et al., 2010).
+			Protein carbonylation and other oxidative modifications impair protein function and can contribute to mitochondrial dysfunction (Dalle-Donne et al., 2006). Cadmium-induced protein carbonylation and actin glutathionylation were reduced by oxidase/NOS inhibitors in mussel hemocytes (Dailianis et al., 2009).
 			
 			
-			Direct (partial): cadmium-induced protein carbonylation and actin glutathionylation reduced by oxidase/NOS inhibitors in mussel hemocytes (Canesi et al., 2010); GSTA4 silencing raised mitochondrial protein carbonylation and target knockdown reduced respiration (Curtis et al., 2012).
+			Direct (partial): cadmium-induced protein carbonylation and actin glutathionylation reduced by oxidase/NOS inhibitors in mussel hemocytes (Dailianis et al., 2009); GSTA4 silencing raised mitochondrial protein carbonylation and target knockdown reduced respiration (Curtis et al., 2012).
 			
 			
 			Selective rescue of protein oxidation alone is uncommon; protein oxidation can be both causal and a marker of broader damage.
@@ -36390,7 +36388,7 @@ Empirical support for KERs
 			High
 			
 			
-			Oxidative stressors increase protein carbonyls or related protein oxidation endpoints. Cadmium and hydrogen peroxide increased protein carbonylation and redox modification in Chlamydomonas systems (Zaffagnini et al., 2012). Cadmium induced protein carbonylation and actin glutathionylation in mussel hemocytes (Canesi et al., 2010). Thermal stress in zebrafish increased protein carbonyls with antioxidant responses (Tseng et al., 2011).
+			Oxidative stressors increase protein carbonyls or related protein oxidation endpoints. Cadmium and hydrogen peroxide increased protein carbonylation and redox modification in Chlamydomonas systems (Zaffagnini et al., 2012). Cadmium induced protein carbonylation and actin glutathionylation in mussel hemocytes (Dailianis et al., 2009). Thermal stress in zebrafish increased protein carbonyls with antioxidant responses (Tseng et al., 2011).
 			
 			
 			Protein oxidation endpoints are heterogeneous; some studies measure total carbonyls whereas others identify specific oxidized proteins.
@@ -36664,9 +36662,9 @@ The following benchmark-dose/point-of-departure (BMD/POD) concordance table anch
 
 &nbsp;
 """ ;
-	nci:C25725	"""AOP 333 can support mechanistic interpretation of growth impairment caused by oxidative stressors that induce protein oxidation, mitochondrial bioenergetic dysfunction, ATP depletion, and cell injury/death. The AOP is particularly relevant for hazard identification and chemical prioritization when evidence indicates increased ROS or oxidative stress together with protein carbonylation, redox proteomic signatures, mitochondrial membrane potential changes, reduced respiratory control, ATP depletion, cytotoxicity, or growth inhibition. The AOP may also support IATA development by linking upstream NAM endpoints, such as ROS assays, oxidative stress biomarkers, protein carbonyl assays, redox proteomics, mitochondrial membrane potential, oxygen consumption rate, ATP content, cytotoxicity assays, and organismal growth measurements.
+	nci:C25725	"""AOP 333 can support mechanistic interpretation of growth impairment caused by oxidative stressors that induce protein oxidation, mitochondrial bioenergetic dysfunction, ATP depletion, and cell injury/death. Because rapidly growing early life stages (embryonic, larval, and juvenile) depend on sustained ATP supply and on the maintenance of viable cell populations, these stages are expected to be particularly sensitive to this pathway, and the AOP is especially relevant for interpreting growth effects observed in early-life-stage tests. Reduced growth in early life stages can reduce survival (e.g., in fish; Sogard, 1997), and changes in survival, development, and reproduction are outcomes of demographic significance for population sustainability and are therefore of regulatory relevance. The AOP is particularly relevant for hazard identification and chemical prioritization when evidence indicates increased ROS or oxidative stress together with protein carbonylation, redox proteomic signatures, mitochondrial membrane potential changes, reduced respiratory control, ATP depletion, cytotoxicity, or growth inhibition. The AOP may also support IATA development by linking upstream NAM endpoints, such as ROS assays, oxidative stress biomarkers, protein carbonyl assays, redox proteomics, mitochondrial membrane potential, oxygen consumption rate, ATP content, cytotoxicity assays (including assays based on embryonic cells or embryo models), and organismal growth measurements.
 
-AOP 333 can support chemical grouping and read-across for stressors that share evidence of oxidative protein damage, mitochondrial bioenergetic impairment, and ATP-associated cell injury. Because oxidative stress and protein oxidation are not chemical-specific, this AOP should not be used as a stand-alone basis for regulatory decisions. Instead, it should be applied as part of a weight-of-evidence framework that considers stressor mode of action, exposure context, assay specificity, taxonomic relevance, and concordance across multiple KEs. The AOP also highlights method-development needs, particularly standardized assays for protein oxidation, OXPHOS coupling, ATP depletion, and cell injury/death endpoints that can be connected quantitatively to apical growth outcomes.
+AOP 333 can support chemical grouping and read-across for stressors that share evidence of oxidative protein damage, mitochondrial bioenergetic impairment, and ATP-associated cell injury. Because oxidative stress and protein oxidation are not chemical-specific, this AOP should not be used as a stand-alone basis for regulatory decisions. Instead, it should be applied as part of a weight-of-evidence framework that considers stressor mode of action, exposure context, assay specificity, life stage and taxonomic relevance, and concordance across multiple KEs. The AOP also highlights method-development needs, particularly standardized assays for protein oxidation, OXPHOS coupling, ATP depletion, and cell injury/death endpoints that can be applied across life stages, including early life stages, and connected quantitatively to apical growth outcomes.
 """ ;
 	dc:creator	"""You Song, Li Xie, Knut Erik Tollefsen
 
@@ -79413,12 +79411,106 @@ aop:657
 	rdfs:label	"AOP 657" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/657> ;
 	foaf:page	<https://identifiers.org/aop/657> ;
-	dc:title	"Atrazine-induced photosystem II inhibition leading to yield loss in rice (Oryza sativa)" ;
+	dc:title	"Photosystem II inhibition leading to yield loss in rice (Oryza sativa)" ;
 	dcterms:alternative	"PSII inhibition by atrazine leading to rice yield loss" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-10-16T09:10:44" ;
-	dcterms:modified	"2026-10-16T09:10:44" ;
-	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> .
+	dcterms:modified	"2026-10-23T13:13:27" ;
+	dc:description	"""This AOP was developed to address a critical gap in the ecological risk assessment of triazine herbicides in agricultural settings. Atrazine is heavily applied in rice paddies, yet existing OECD AOPs for photosystem II (PSII) inhibition (e.g., AOP 245, AOP 567) focus almost exclusively on algae and aquatic plants.&nbsp;
+
+There is a clear regulatory need for a mechanistic pathway that links PSII inhibition to adverse outcomes in terrestrial crop species, specifically rice (Oryza sativa), to inform food security and crop protection regulations.
+
+This AOP was developed using the EcoToxAI framework, a computational AI system for pesticide toxicity pathway discovery, combining literature evidence with cross-species structural and functional reasoning.
+""", """Yield loss corresponds to a direct impact on agricultural productivity and food security. It is highly relevant for EFSA/OECD risk assessments for crop protection and setting safe limits for herbicide application in paddy fields.
+""" ;
+	nci:C25217	"""Taxonomic Applicability:&nbsp;
+Empirical domain: Oryza sativa (rice).&nbsp;
+Biologically plausible domain: Other cereal crops sharing the D1 protein target (e.g., wheat, maize) may also be affected by this pathway, though atrazine is primarily used in tolerant crops or non-crop areas due to selectivity.
+
+Life Stage Applicability:&nbsp;
+Seedling, vegetative, and reproductive stages. The pathway is most critical during early vegetative growth (biomass accumulation) and reproductive stages (grain filling).
+
+Sex Applicability:&nbsp;
+Not applicable (Oryza sativa is a hermaphroditic plant species).
+""" ;
+	nci:C48192	"""The sequence of key events (KEs) in this pathway is strictly causal and essential for the progression to the adverse outcome.&nbsp;
+
+Experimental evidence from plant physiology demonstrates that preventing the MIE (e.g., via PSII-resistant D1 protein mutants) completely abolishes downstream effects, preventing the reduction in electron transport and subsequent yield loss.&nbsp;
+
+Similarly, attenuation of early KEs directly correlates with proportional changes in downstream KEs (e.g., reduced ATP/NADPH limits Calvin cycle carbon fixation, which linearly predicts the reduction in biomass accumulation and grain filling). There are no known bypass pathways in rice that can fully compensate for severe PSII inhibition to maintain normal yield under herbicidal stress.
+""" ;
+	aopo:AopContext	"""The overall confidence in this AOP is HIGH.
+
+1. Biological Plausibility: High. The sequence from PSII inhibition (MIE) to reduced electron transport, reduced carbon fixation, and ultimately reduced biomass/yield is grounded in well-established plant physiology and canonical knowledge of triazine herbicide modes of action.
+
+2. Empirical Support: Moderate to High. Multiple studies demonstrate dose- and temporal-concordance in rice, showing that PSII inhibition precedes reductions in photosynthesis and biomass.&nbsp;
+
+3. Essentiality of KEs: High. Experimental evidence in plants shows that blocking the MIE (e.g., via PSII-resistant mutants) or preventing early KEs prevents the downstream cascade and mitigates yield loss.
+
+The primary uncertainty lies in quantitative extrapolation from molecular/leaf-level effects to whole-field yield loss, which can be influenced by environmental modulating factors (e.g., light intensity, nutrient availability).
+""" ;
+	aopo:has_evidence	"""The overall Evidence Assessment integrates biological plausibility, empirical support, and quantitative understanding:
+
+- Biological Plausibility: HIGH. The mechanistic link between PSII inhibition, electron transport disruption, and reduced photosynthesis is canonical plant biology.
+- Empirical Support: MODERATE-HIGH. Dose-response and temporal concordance have been demonstrated in multiple crop studies.&nbsp;
+- Quantitative Understanding: MODERATE. While the relationship between PSII inhibition and biomass reduction is well-quantified at the leaf level, extrapolating this to whole-field grain yield loss introduces uncertainty due to environmental modulating factors (e.g., temperature, light, soil nutrients).
+
+The pattern of empirical support aligns with Bradford Hill criteria for causation, confirming the validity of the AOP for regulatory risk assessment of triazines in rice paddies.
+""" ;
+	edam:operation_3799	"""Quantitative understanding of this AOP is currently MODERATE.&nbsp;
+
+The relationship between PSII inhibition and reduced electron transport is highly quantified and follows classic receptor-ligand kinetics. Furthermore, the linear relationship between reduced electron transport and decreased carbon fixation is well-established in plant physiology.
+
+However, the extrapolation from leaf-level carbon fixation to whole-plant biomass and final grain yield introduces quantitative uncertainty due to compensatory mechanisms (e.g., increased root-to-shoot ratio) and environmental modulating factors. Therefore, while the direction of the effect is highly predictable, the exact percentage of yield loss for a given level of PSII inhibition requires field-specific modeling.
+""" ;
+	nci:C25725	"""This AOP can be used in several regulatory and scientific contexts:
+1. Ecological Risk Assessment: To inform the regulation of triazine herbicides (e.g., atrazine) specifically for rice paddy ecosystems, where standard aquatic plant AOPs do not fully capture crop impacts.
+2. Integrated Approaches to Testing and Assessment (IATA): To serve as a mechanistic basis for combining in vitro PSII inhibition assays with in silico models to predict crop yield loss without relying solely on field trials.
+3. Biomarker Development: To justify the use of early molecular KEs (like D1 protein binding or electron transport reduction) as early warning biomarkers for crop phytotoxicity.
+""" ;
+	dc:creator	"""Suriya S (Vels University / Bioscience Research Foundation)
+""" ;
+	dcterms:abstract	"""Atrazine is one of the most widely detected herbicides in global&nbsp;
+surface water, with significant concentrations reported in rice&nbsp;
+paddy ecosystems where it is applied for weed control. This AOP&nbsp;
+describes a novel mechanistic pathway specific to rice (Oryza&nbsp;
+sativa) whereby atrazine-induced inhibition of photosystem II leads&nbsp;
+to crop yield loss.
+
+The molecular initiating event (MIE) is inhibition of photosystem II&nbsp;
+via atrazine binding to the D1 protein at the plastoquinone B (QB)&nbsp;
+binding site, blocking electron transfer from QA to QB. This triggers&nbsp;
+a dependent cascade of key events: (1) reduced electron transport in&nbsp;
+photosystem II, (2) reduced ATP/NADPH production, (3) reduced carbon&nbsp;
+fixation in the Calvin cycle, (4) reduced biomass accumulation, and&nbsp;
+(5) reduced grain filling. The adverse outcome (AO) is yield loss in&nbsp;
+rice paddy ecosystems, a regulatory-relevant endpoint for crop&nbsp;
+protection and food security.
+
+The overall weight of evidence is supported by: (a) canonical&nbsp;
+understanding of PSII inhibition by triazine herbicides (biological&nbsp;
+plausibility: high), (b) empirical evidence from multiple studies&nbsp;
+showing dose- and temporal-concordance between PSII inhibition and&nbsp;
+reduced photosynthesis in rice, and (c) quantitative data from&nbsp;
+concentration-response studies linking PSII inhibition to biomass&nbsp;
+reduction. The main knowledge gap is limited quantitative understanding&nbsp;
+of the relationship between reduced photosystem II electron transport&nbsp;
+and grain filling under field-relevant exposure scenarios.
+
+This AOP extends existing PSII inhibition AOPs (developed for algae&nbsp;
+and aquatic plants) to rice as a terrestrial crop species, providing&nbsp;
+a mechanistic basis for ecological risk assessment of triazine&nbsp;
+herbicides in paddy ecosystems.
+""" ;
+	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
+	aopo:has_key_event	aop.events:2457, aop.events:2458, aop.events:2459, aop.events:2460, aop.events:2461, aop.events:2456, aop.events:2462 ;
+	aopo:has_key_event_relationship	aop.relationships:3863, aop.relationships:3864, aop.relationships:3865, aop.relationships:3866, aop.relationships:3867, aop.relationships:3868 ;
+	aopo:has_molecular_initiating_event	aop.events:2456 ;
+	aopo:has_adverse_outcome	aop.events:2462 ;
+	nci:C54571	aop.stressor:177 ;
+	pato:0000047	"Hermaphrodite" ;
+	aopo:LifeStageContext	"All life stages" ;
+	ncbitaxon:131567	"WCS_4530" .
 
 aop.events:888
 	a	aopo:KeyEvent ;
@@ -86796,6 +86888,30 @@ Taxonomic: Possible in any animal species that has females and males. &nbsp;
 	pato:0000001	"increased" ;
 	pato:0001241	pco:0000001 ;
 	dcterms:isPartOf	aop:641 .
+
+aop.events:2462
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2462 ;
+	rdfs:label	"KE 2462" ;
+	foaf:page	<https://identifiers.org/aop.events/2462> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2462> ;
+	dc:title	"Yield loss in rice" ;
+	dcterms:alternative	"Rice yield loss" ;
+	dc:source	"AOPWiki" ;
+	dc:description	"""A reduction in the total harvested biomass of marketable rice grains per unit area (e.g., tons per hectare) due to the cumulative effects of reduced photosynthesis and grain filling.
+""" ;
+	mmo:0000000	"""Measured by harvesting a defined area at maturity, threshing, and weighing the grains to calculate yield per hectare.
+""" ;
+	nci:C25664	"""Population""" ;
+	nci:C17469	"""Taxonomic Applicability: Oryza sativa (rice).&nbsp;
+Life Stage: Harvest / Maturity.
+Sex: Not applicable.
+""" ;
+	aopo:hasBiologicalEvent	<2462_bioevent_0> ;
+	go:0008150	go:0022414 ;
+	pato:0000001	"decreased" ;
+	pato:0001241	pco:0000001 ;
+	dcterms:isPartOf	aop:657 .
 
 aop.events:142
 	a	aopo:KeyEvent ;
@@ -130624,6 +130740,146 @@ aop.events:2454
 	nci:C25664	"""Organ""" ;
 	dcterms:isPartOf	aop:653 .
 
+aop.events:2456
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2456 ;
+	rdfs:label	"KE 2456" ;
+	foaf:page	<https://identifiers.org/aop.events/2456> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2456> ;
+	dc:title	"Photosystem II inhibition" ;
+	dcterms:alternative	"PSII inhibition" ;
+	dc:source	"AOPWiki" ;
+	dc:description	"""Inhibition of the photosystem II (PSII) complex, specifically via binding to the D1 protein at the plastoquinone B (QB) binding site. This prevents the transfer of electrons from the primary electron acceptor (QA) to the secondary electron acceptor (QB), blocking the light-dependent reactions of photosynthesis.
+""" ;
+	mmo:0000000	"""Measured via chlorophyll fluorescence (Fv/Fm ratio) using a pulse-amplitude-modulated (PAM) fluorometer, or via direct measurement of oxygen evolution (Hill reaction) in isolated chloroplasts.
+""" ;
+	nci:C25664	"""Molecular""" ;
+	nci:C17469	"""Oryza sativa
+""" ;
+	aopo:hasBiologicalEvent	<2456_bioevent_0> ;
+	go:0008150	go:0019684 ;
+	pato:0000001	"decreased" ;
+	pato:0001241	go:0009523 ;
+	dcterms:isPartOf	aop:657 .
+
+aop.events:2457
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2457 ;
+	rdfs:label	"KE 2457" ;
+	foaf:page	<https://identifiers.org/aop.events/2457> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2457> ;
+	dc:title	"Decreased, electron transport in photosystem II" ;
+	dcterms:alternative	"Decreased PSII electron transport" ;
+	dc:source	"AOPWiki" ;
+	dc:description	"""A decrease in the rate of electron flow through the photosystem II (PSII) complex due to the blocked QB site, preventing the reduction of plastoquinone and halting the flow of electrons to the cytochrome b6f complex.
+""" ;
+	mmo:0000000	"""Measured via electron transport rate (ETR) derived from chlorophyll fluorescence, or by measuring the reduction of artificial electron acceptors (e.g., DCPIP) in isolated thylakoid membranes.
+""" ;
+	nci:C25664	"""Cellular""" ;
+	nci:C17469	"""Taxonomic Applicability: Oryza sativa (rice) and other higher plants.&nbsp;
+Life Stage: Vegetative and reproductive stages.
+Sex: Not applicable.
+""" ;
+	aopo:hasBiologicalEvent	<2457_bioevent_0> ;
+	go:0008150	go:0009767 ;
+	pato:0000001	"decreased" ;
+	pato:0001241	go:0009523 ;
+	dcterms:isPartOf	aop:657 .
+
+aop.events:2458
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2458 ;
+	rdfs:label	"KE 2458" ;
+	foaf:page	<https://identifiers.org/aop.events/2458> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2458> ;
+	dc:title	"Reduced, assimilatory power" ;
+	dcterms:alternative	"Reduced assimilatory power" ;
+	dc:source	"AOPWiki" ;
+	dc:description	"""Reduced electron transport in photosystem II limits the proton gradient across the thylakoid membrane and prevents the reduction of NADP+ to NADPH. This results in a decreased availability of ATP and NADPH for the light-independent reactions (Calvin cycle).
+""" ;
+	mmo:0000000	"""Measured by quantifying ATP and NADPH levels in isolated chloroplasts using luminescence assays or HPLC, respectively.
+""" ;
+	nci:C25664	"""Cellular""" ;
+	nci:C17469	"""Taxonomic Applicability: Oryza sativa (rice) and other higher plants.&nbsp;
+Life Stage: Vegetative and reproductive stages.
+Sex: Not applicable.
+""" ;
+	aopo:hasBiologicalEvent	<2458_bioevent_0> ;
+	go:0008150	go:0006754 ;
+	pato:0000001	"decreased" ;
+	pato:0001241	go:0009544 ;
+	dcterms:isPartOf	aop:657 .
+
+aop.events:2459
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2459 ;
+	rdfs:label	"KE 2459" ;
+	foaf:page	<https://identifiers.org/aop.events/2459> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2459> ;
+	dc:title	"Reduced carbon fixation in Calvin cycle" ;
+	dcterms:alternative	"Reduced carbon fixation" ;
+	dc:source	"AOPWiki" ;
+	dc:description	"""Decreased availability of ATP and NADPH limits the activity of the Calvin cycle enzymes (e.g., RuBisCO), reducing the rate of CO2 assimilation and carbon fixation into organic compounds.
+""" ;
+	mmo:0000000	"""Measured via gas exchange analysis (CO2 uptake) using an infrared gas analyzer (IRGA), or by measuring RuBisCO enzyme activity in leaf extracts.
+""" ;
+	nci:C25664	"""Cellular""" ;
+	nci:C17469	"""Taxonomic Applicability: Oryza sativa (rice) and other higher plants.&nbsp;
+Life Stage: Vegetative and reproductive stages.
+Sex: Not applicable.
+""" ;
+	aopo:hasBiologicalEvent	<2459_bioevent_0> ;
+	go:0008150	go:0015977 ;
+	pato:0000001	"decreased" ;
+	pato:0001241	go:0009507 ;
+	dcterms:isPartOf	aop:657 .
+
+aop.events:2460
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2460 ;
+	rdfs:label	"KE 2460" ;
+	foaf:page	<https://identifiers.org/aop.events/2460> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2460> ;
+	dc:title	"Reduced, biomass accumulation" ;
+	dcterms:alternative	"Reduced biomass" ;
+	dc:source	"AOPWiki" ;
+	dc:description	"""Reduced carbon fixation over time limits the production of structural and storage carbohydrates, resulting in a decrease in overall plant biomass (dry weight).
+""" ;
+	mmo:0000000	"""Measured by harvesting plants at specific time points and determining dry weight (g) after oven-drying to constant weight.
+""" ;
+	nci:C25664	"""Individual""" ;
+	nci:C17469	"""Taxonomic Applicability: Oryza sativa (rice).&nbsp;
+Life Stage: Vegetative and reproductive stages.
+Sex: Not applicable.
+""" ;
+	aopo:hasBiologicalEvent	<2460_bioevent_0> ;
+	go:0008150	go:0040007 ;
+	pato:0000001	"decreased" ;
+	dcterms:isPartOf	aop:657 .
+
+aop.events:2461
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2461 ;
+	rdfs:label	"KE 2461" ;
+	foaf:page	<https://identifiers.org/aop.events/2461> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2461> ;
+	dc:title	"Reduced, grain filling" ;
+	dcterms:alternative	"Reduced grain filling" ;
+	dc:source	"AOPWiki" ;
+	dc:description	"""Insufficient accumulation of photosynthates (sugars and starches) during the grain-filling stage prevents the proper development and weight gain of rice grains.
+""" ;
+	mmo:0000000	"""Measured by assessing the 1000-grain weight (g) or the percentage of filled vs. unfilled spikelets at harvest.
+""" ;
+	nci:C25664	"""Individual""" ;
+	nci:C17469	"""Taxonomic Applicability: Oryza sativa (rice).&nbsp;
+Life Stage: Reproductive stage.
+Sex: Not applicable.
+""" ;
+	aopo:hasBiologicalEvent	<2461_bioevent_0> ;
+	go:0008150	go:0048316 ;
+	pato:0000001	"decreased" ;
+	dcterms:isPartOf	aop:657 .
+
 <888_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	go:0006120 ;
 	aopo:hasObject	pr:000031316 ;
@@ -131198,6 +131454,11 @@ aop.events:2454
 	aopo:hasProcess	go:0030237 ;
 	aopo:hasObject	pco:0000001 ;
 	aopo:hasAction	"increased" .
+
+<2462_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	go:0022414 ;
+	aopo:hasObject	pco:0000001 ;
+	aopo:hasAction	"decreased" .
 
 <142_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	mesh:D006965 ;
@@ -135758,6 +136019,34 @@ aop.events:2454
 	aopo:hasProcess	go:0008585 ;
 	aopo:hasObject	uberon:2005272 ;
 	aopo:hasAction	"increased" .
+
+<2456_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	go:0019684 ;
+	aopo:hasObject	go:0009523 ;
+	aopo:hasAction	"decreased" .
+
+<2457_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	go:0009767 ;
+	aopo:hasObject	go:0009523 ;
+	aopo:hasAction	"decreased" .
+
+<2458_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	go:0006754 ;
+	aopo:hasObject	go:0009544 ;
+	aopo:hasAction	"decreased" .
+
+<2459_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	go:0015977 ;
+	aopo:hasObject	go:0009507 ;
+	aopo:hasAction	"decreased" .
+
+<2460_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	go:0040007 ;
+	aopo:hasAction	"decreased" .
+
+<2461_bioevent_0> a aopo:BiologicalEvent ;
+	aopo:hasProcess	go:0048316 ;
+	aopo:hasAction	"decreased" .
 
 aop.relationships:324
 	a	aopo:KeyEventRelationship ;
@@ -179288,7 +179577,7 @@ aop.relationships:2203
 	foaf:page	<https://identifiers.org/aop.relationships/2203> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.relationships/2203> ;
 	dcterms:created	"2020-11-12T17:57:43" ;
-	dcterms:modified	"2026-10-06T06:40:55" ;
+	dcterms:modified	"2026-10-21T06:43:05" ;
 	aopo:has_upstream_key_event	aop.events:1446 ;
 	aopo:has_downstream_key_event	aop.events:1771 ;
 	dc:description	"""This key event relationship describes the dissipation of protonmotive force across the inner mitochondrial membrane by uncouplers (uncoupling of oxidative phosphorylation), leading to reduced total adenosine triphosphate (ATP) pool in cells or organisms.
@@ -179317,7 +179606,7 @@ Evidence:
 
 """ ;
 	nci:C71478	"""
-	A significant decrease followed by a significant increase in total ATP was observed in human RD cells during a 48h exposure to the uncoupler FCCP&nbsp;(Kuruvilla 2003), possibly due to the enhancement of other ATP synthetic pathways (e.g., glycolysis) as a compensatory action to impaired OXPHOS (Jose 2011
+	A significant decrease followed by a significant increase in total ATP was observed in human RD cells during a 48h exposure to the uncoupler FCCP&nbsp;(Kuruvilla 2003), possibly due to the enhancement of other ATP synthetic pathways (e.g., glycolysis) as a compensatory action to impaired OXPHOS (Jose 2011).
 
 """ ;
 	nci:C103159	"""Update - non-endorsed (by You Song, 06/10/2026)
@@ -195928,7 +196217,7 @@ aop.relationships:3363
 	foaf:page	<https://identifiers.org/aop.relationships/3363> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3363> ;
 	dcterms:created	"2024-10-08T04:53:03" ;
-	dcterms:modified	"2026-06-23T08:08:30" ;
+	dcterms:modified	"2026-10-21T06:06:10" ;
 	aopo:has_upstream_key_event	aop.events:1505 ;
 	aopo:has_downstream_key_event	aop.events:1821 ;
 	dc:description	"""This KER describes the causal and predictive relationship by which disruption of the cell cycle leads to decreased cell proliferation. Cell proliferation requires cells to progress through an ordered series of phases, including G1, S, G2 and M phase, with checkpoints that monitor cell size, DNA replication, DNA damage, spindle assembly and other conditions necessary for successful division. When these processes are disrupted, cells may arrest at a checkpoint, delay progression, fail to replicate DNA, fail mitosis, enter senescence, or undergo cell death. Any of these outcomes reduces the fraction of cells completing successful division and therefore decreases the net rate of cell proliferation (Hartwell and Weinert, 1989; Nurse, 2000; Malumbres and Barbacid, 2009).
@@ -195971,7 +196260,7 @@ Empirical Evidence Table
 			DNA-damaging agents such as zeocin or N-OH-2-AAF
 			
 			
-			DNA damage-induced changes in cell-cycle progression and division outcomes were reported in green algal systems, demonstrating that damage-associated cell-cycle responses can alter cell division behavior (David et al., 2009; Hlavov&aacute; et al., 2011).
+			DNA damage-induced changes in cell-cycle progression and division outcomes were reported in green algal systems, demonstrating that damage-associated cell-cycle responses can alter cell division behavior (Hlavov&aacute; et al., 2011).
 			
 			
 			Supports relevance of cell-cycle disruption to algal cell division/proliferation, although responses can be species- and phase-specific.
@@ -204155,7 +204444,7 @@ aop.relationships:2360
 	foaf:page	<https://identifiers.org/aop.relationships/2360> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.relationships/2360> ;
 	dcterms:created	"2021-04-20T03:50:27" ;
-	dcterms:modified	"2024-06-21T02:20:08" ;
+	dcterms:modified	"2026-10-23T02:13:50" ;
 	aopo:has_upstream_key_event	aop.events:1845 ;
 	aopo:has_downstream_key_event	aop.events:1869 ;
 	dc:description	"""Blood coagulation through activation and recruitment of platelets following vessel-wall injury induces formation of thrombin through coagulation cascade, which induces reactive oxygen species generation by NOX enzymes in vascular cells (Andr&eacute;-L&eacute;vigne D et al., 2017).&nbsp;Coagulation is a complex process that involves the formation of blood clots to prevent excessive bleeding.&nbsp;During injury or infection, tissue damage activates the coagulation cascade. Coagulation factors, such as tissue factor (TF), initiate clot formation by converting fibrinogen to fibrin.&nbsp;Simultaneously, inflammation is triggered, involving immune cells, cytokines, and chemokines.&nbsp;Reactive oxygen species (ROS) are produced during cell metabolism.&nbsp;ROS include radicals (e.g., superoxide anion, hydroxyl radical, nitric oxide) and non-radicals (e.g., hydrogen peroxide) and&nbsp;play dual roles: harmful (e.g., cell death pathways) and beneficial (e.g., microbial killing).&nbsp;Neutrophils and macrophages use ROS to kill engulfed pathogens.&nbsp;Chronic granulomatous disease (CGD), caused by NADPH oxidase deficiency, impairs ROS-dependent pathogen killing. ROS contribute to inflammation, signal transduction, cell migration, and gene expression. Hydrogen peroxide (H₂O₂) modulates gene expression via redox-based epigenetic modifications and transcriptional regulation. ROS are essential for immune system function. Coagulation and ROS intersect in immune responses, impacting both protective immunity and potential harm.
@@ -204170,6 +204459,33 @@ aop.relationships:2360
 	nci:C103159	"""The references were searched with terms &quot;ROS&quot; or &quot;reactive oxygen species&quot; and &quot;coagulation&quot; in NCBI database. The references that have relevant insights where coagulation leads to diminished protective response to ROS were selected and cited.
 
 Copilot GPT was input with a question &quot;Please write Key Event Relationship starts from coagulation leading to diminished protective response to reactive oxygen species&quot; on June 7th 2024 (ChatGPT4). The answers of Co-pilot were&nbsp;modified to fit the AOP-Wiki.
+""" ;
+	nci:C68821	"""
+
+	
+		
+			Modulating Factor (MF)
+			MF Specification
+			Effect(s) on the KER
+			Reference(s)
+		
+	
+	
+		
+			Genetic variation / Baseline antioxidant capacity
+			Functional promoter polymorphisms or deficiencies in antioxidant genes (e.g., GPX3, SOD, erythrocyte redox enzymes) and baseline inducibility of the Nrf2-Keap1 master regulatory pathway (NFE2L2)
+			Impairs baseline peroxide scavenging and reduces vascular redox buffering capacity, lowering the threshold at which prothrombotic and platelet-derived ROS bursts overwhelm endogenous defenses.
+			Jin et al., 2011; Chien et al., 2017; Ooi et al., 2017; Wang &amp; Zennadi, 2020
+		
+		
+			Age
+			Advanced chronological age, vascular cellular senescence, and chronic low-grade inflammation (inflammaging)
+			Blunts stress-induced Nrf2 nuclear translocation and transcriptional activation of target antioxidant genes; increases erythrocyte membrane oxidation and phosphatidylserine exposure, accelerating antioxidant depletion during coagulation.
+			Ungvari et al., 2011; Ungvari et al., 2020; Wang &amp; Zennadi, 2020
+		
+	
+
+
 """ ;
 	nci:C17469	"""The KER applies to Homo sapiens (Robea, Balmus et al. 2023), Mus musculus (Alabanza, Esmon et al. 2013).
 """ ;
@@ -260553,6 +260869,98 @@ aop.relationships:1708
 	ncbitaxon:131567	ncbitaxon:10090, ncbitaxon:10116, "WCS_9606" ;
 	dcterms:isPartOf	aop:655 .
 
+aop.relationships:3863
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3863 ;
+	rdfs:label	"KER 3863" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3863> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3863> ;
+	dcterms:created	"2026-10-20T12:06:46" ;
+	dcterms:modified	"2026-10-20T12:15:00" ;
+	aopo:has_upstream_key_event	aop.events:2456 ;
+	aopo:has_downstream_key_event	aop.events:2457 ;
+	dc:description	"""Inhibition of the photosystem II complex blocks the transfer of electrons from QA to QB, directly resulting in a decreased rate of electron transport through the photosystem II complex.
+""" ;
+	nci:C80263	"""High. The structural and functional relationship between the D1 protein binding site and the electron transport chain is canonically established in plant physiology.
+""" ;
+	edam:data_2042	"""Multiple studies demonstrate temporal and dose concordance. Binding of atrazine to the D1 protein occurs rapidly (within minutes), followed immediately by a measurable decrease in electron transport rate (ETR). The inhibition is dose-dependent, with higher concentrations of atrazine causing a near-complete block of electron flow from QA to QB.
+""" ;
+	nci:C71478	"""No significant inconsistencies in the core mechanism exist; the relationship is universally conserved across higher plants. Minor uncertainties may arise from differences in experimental conditions (e.g., light intensity, temperature) affecting baseline ETR values.
+""" ;
+	nci:C103159	"""A literature search was conducted in PubMed and Google Scholar using keywords: &quot;atrazine&quot;, &quot;photosystem II&quot;, &quot;D1 protein&quot;, and &quot;electron transport&quot;. Studies measuring chlorophyll fluorescence (Fv/Fm) and oxygen evolution in isolated chloroplasts or whole leaves were prioritized.
+""" ;
+	nci:C17469	"""Taxonomic: Higher plants (Embryophyta), specifically Oryza sativa.
+Life Stage: All photosynthetic life stages.
+Sex: Not applicable.
+""" ;
+	edam:operation_3799	"""The relationship is highly quantitative. The binding affinity (Kd) of atrazine to the QB site directly predicts the fractional inhibition of electron transport, which can be modeled using standard receptor-ligand kinetics.
+""" ;
+	edam:operation_3438	"""A sigmoidal dose-response curve describes the relationship, where increasing the concentration of bound atrazine leads to a proportional decrease in electron transport rate.
+""" ;
+	nci:C25207	"""Rapid: Inhibition of electron transport occurs within seconds to minutes of exposure to atrazine.
+""" ;
+	dcterms:isPartOf	aop:657 .
+
+aop.relationships:3864
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3864 ;
+	rdfs:label	"KER 3864" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3864> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3864> ;
+	dcterms:created	"2026-10-21T11:19:24" ;
+	dcterms:modified	"2026-10-21T11:19:54" ;
+	aopo:has_upstream_key_event	aop.events:2457 ;
+	aopo:has_downstream_key_event	aop.events:2458 ;
+	dcterms:isPartOf	aop:657 .
+
+aop.relationships:3865
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3865 ;
+	rdfs:label	"KER 3865" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3865> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3865> ;
+	dcterms:created	"2026-10-21T11:20:45" ;
+	dcterms:modified	"2026-10-21T11:20:58" ;
+	aopo:has_upstream_key_event	aop.events:2458 ;
+	aopo:has_downstream_key_event	aop.events:2459 ;
+	dcterms:isPartOf	aop:657 .
+
+aop.relationships:3866
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3866 ;
+	rdfs:label	"KER 3866" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3866> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3866> ;
+	dcterms:created	"2026-10-21T11:21:30" ;
+	dcterms:modified	"2026-10-21T11:21:50" ;
+	aopo:has_upstream_key_event	aop.events:2459 ;
+	aopo:has_downstream_key_event	aop.events:2460 ;
+	dcterms:isPartOf	aop:657 .
+
+aop.relationships:3867
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3867 ;
+	rdfs:label	"KER 3867" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3867> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3867> ;
+	dcterms:created	"2026-10-21T11:22:13" ;
+	dcterms:modified	"2026-10-21T11:22:46" ;
+	aopo:has_upstream_key_event	aop.events:2460 ;
+	aopo:has_downstream_key_event	aop.events:2461 ;
+	dcterms:isPartOf	aop:657 .
+
+aop.relationships:3868
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3868 ;
+	rdfs:label	"KER 3868" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3868> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3868> ;
+	dcterms:created	"2026-10-21T11:25:20" ;
+	dcterms:modified	"2026-10-21T11:25:43" ;
+	aopo:has_upstream_key_event	aop.events:2461 ;
+	aopo:has_downstream_key_event	aop.events:2462 ;
+	dcterms:isPartOf	aop:657 .
+
 ncbitaxon:10116
 	a	ncbitaxon:131567 ;
 	dc:identifier	ncbitaxon:10116 ;
@@ -265204,7 +265612,7 @@ aop.stressor:177
 	dcterms:created	"2016-11-29T18:42:27" ;
 	dcterms:modified	"2016-11-29T18:42:27" ;
 	aopo:has_chemical_entity	cas:1912-24-9 ;
-	dcterms:isPartOf	aop:168, aop:169, aop:492, aop:561, aop:567 .
+	dcterms:isPartOf	aop:168, aop:169, aop:492, aop:561, aop:567, aop:657 .
 
 aop.stressor:178
 	a	nci:C54571 ;
@@ -273557,6 +273965,30 @@ go:0030237	a	go:0008150 ;
 	dc:source	"GO" ;
 	rdfs:label	"female sex determination" . 
 
+go:0019684	a	go:0008150 ;
+	dc:identifier	go:0019684 ;
+	dc:title	"photosynthesis, light reaction" ;
+	dc:source	"GO" ;
+	rdfs:label	"photosynthesis, light reaction" . 
+
+go:0009767	a	go:0008150 ;
+	dc:identifier	go:0009767 ;
+	dc:title	"photosynthetic electron transport chain" ;
+	dc:source	"GO" ;
+	rdfs:label	"photosynthetic electron transport chain" . 
+
+go:0015977	a	go:0008150 ;
+	dc:identifier	go:0015977 ;
+	dc:title	"carbon fixation" ;
+	dc:source	"GO" ;
+	rdfs:label	"carbon fixation" . 
+
+go:0048316	a	go:0008150 ;
+	dc:identifier	go:0048316 ;
+	dc:title	"seed development" ;
+	dc:source	"GO" ;
+	rdfs:label	"seed development" . 
+
 pr:000031316	a	pato:0001241 ;
 	dc:identifier	pr:000031316 ;
 	dc:title	"NADH-ubiquinone oxidoreductase chain 1" ;
@@ -276538,6 +276970,24 @@ uberon:0009853	a	pato:0001241 ;
 	dc:title	"body of uterus" ;
 	dc:source	"UBERON" ;
 	rdfs:label	"body of uterus". 
+
+go:0009523	a	pato:0001241 ;
+	dc:identifier	go:0009523 ;
+	dc:title	"photosystem II" ;
+	dc:source	"GO" ;
+	rdfs:label	"photosystem II". 
+
+go:0009544	a	pato:0001241 ;
+	dc:identifier	go:0009544 ;
+	dc:title	"chloroplast ATP synthase complex" ;
+	dc:source	"GO" ;
+	rdfs:label	"chloroplast ATP synthase complex". 
+
+go:0009507	a	pato:0001241 ;
+	dc:identifier	go:0009507 ;
+	dc:title	"chloroplast" ;
+	dc:source	"GO" ;
+	rdfs:label	"chloroplast". 
 
 cl:0000255	a	aopo:CellTypeContext ;
 	dc:identifier	cl:0000255 ;

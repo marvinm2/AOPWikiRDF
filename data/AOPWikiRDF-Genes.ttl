@@ -1790,6 +1790,12 @@ aop.events:2414	edam:data_1025	hgnc:2201 ;
 aop.events:2417	edam:data_1025	hgnc:3465 ;
 	:geneDetectedByRegex	hgnc:3465 .
 
+aop.events:2456	edam:data_1025	hgnc:6647 ;
+	:geneDetectedByRegex	hgnc:6647 .
+
+aop.events:2459	edam:data_1025	hgnc:7421 ;
+	:geneDetectedByRegex	hgnc:7421 .
+
 aop.relationships:908	edam:data_1025	hgnc:11180,hgnc:14929,hgnc:12435,hgnc:404,hgnc:11782,hgnc:21689,hgnc:2769,hgnc:7716 ;
 	:geneDetectedByRegex	hgnc:11180,hgnc:14929,hgnc:12435,hgnc:404,hgnc:11782 ;
 	:geneDetectedByNER	hgnc:21689,hgnc:2769,hgnc:7716 .
@@ -4370,6 +4376,9 @@ aop.relationships:3834	edam:data_1025	hgnc:43734,hgnc:4762 ;
 
 aop.relationships:1708	edam:data_1025	hgnc:2200 ;
 	:geneDetectedByNER	hgnc:2200 .
+
+aop.relationships:3863	edam:data_1025	hgnc:6647 ;
+	:geneDetectedByRegex	hgnc:6647 .
 
 hgnc:7456	a	edam:data_2298, edam:data_1025 ;
 	rdfs:label	"MT-ND2" ;
@@ -9391,6 +9400,14 @@ hgnc:11571	a	edam:data_2298, edam:data_1025 ;
 	skos:exactMatch	ncbigene:23435,ensembl:ENSG00000120948,uniprot:A0A087X260,uniprot:K7EJM5,uniprot:A0A087WYE7,uniprot:G3V162,uniprot:K7EL26,uniprot:A0A087WX29,uniprot:A0A0A0MSV7,uniprot:A0A087WTZ4,uniprot:A0A0A0N0M3,uniprot:A0A087WXQ5,uniprot:K7EN94,uniprot:A0A087WZC9,uniprot:A0A087WTG4,uniprot:B1AKP7,uniprot:K7ENM9,uniprot:A0A087WVX6,uniprot:A0A087WV68,uniprot:Q13148,uniprot:A0A024R4E2,uniprot:A0A087WZM1,uniprot:A0A087WW61,uniprot:K7EJ99,uniprot:A0A087WX67,uniprot:A0A087WYY0,uniprot:A0A087WXV3 ;
 	owl:sameAs	ncbigene:23435,ensembl:ENSG00000120948,uniprot:A0A087X260,uniprot:K7EJM5,uniprot:A0A087WYE7,uniprot:G3V162,uniprot:K7EL26,uniprot:A0A087WX29,uniprot:A0A0A0MSV7,uniprot:A0A087WTZ4,uniprot:A0A0A0N0M3,uniprot:A0A087WXQ5,uniprot:K7EN94,uniprot:A0A087WZC9,uniprot:A0A087WTG4,uniprot:B1AKP7,uniprot:K7ENM9,uniprot:A0A087WVX6,uniprot:A0A087WV68,uniprot:Q13148,uniprot:A0A024R4E2,uniprot:A0A087WZM1,uniprot:A0A087WW61,uniprot:K7EJ99,uniprot:A0A087WX67,uniprot:A0A087WYY0,uniprot:A0A087WXV3.
 
+hgnc:7421	a	edam:data_2298, edam:data_1025 ;
+	rdfs:label	"MT-CO2" ;
+	edam:data_2298	"7421" ;
+	dc:identifier	"hgnc:7421" ;
+	dc:source	"HGNC" ;
+	skos:exactMatch	ncbigene:4513,ensembl:ENSG00000198712,uniprot:P00403,uniprot:U5Z487 ;
+	owl:sameAs	ncbigene:4513,ensembl:ENSG00000198712,uniprot:P00403,uniprot:U5Z487.
+
 hgnc:404	a	edam:data_2298, edam:data_1025 ;
 	rdfs:label	"ALDH2" ;
 	edam:data_2298	"404" ;
@@ -13530,14 +13547,6 @@ hgnc:7419	a	edam:data_2298, edam:data_1025 ;
 	dc:source	"HGNC" ;
 	skos:exactMatch	ncbigene:4512,ensembl:ENSG00000198804,uniprot:P00395,uniprot:U5YWV7 ;
 	owl:sameAs	ncbigene:4512,ensembl:ENSG00000198804,uniprot:P00395,uniprot:U5YWV7.
-
-hgnc:7421	a	edam:data_2298, edam:data_1025 ;
-	rdfs:label	"MT-CO2" ;
-	edam:data_2298	"7421" ;
-	dc:identifier	"hgnc:7421" ;
-	dc:source	"HGNC" ;
-	skos:exactMatch	ncbigene:4513,ensembl:ENSG00000198712,uniprot:P00403,uniprot:U5Z487 ;
-	owl:sameAs	ncbigene:4513,ensembl:ENSG00000198712,uniprot:P00403,uniprot:U5Z487.
 
 hgnc:7422	a	edam:data_2298, edam:data_1025 ;
 	rdfs:label	"MT-CO3" ;
@@ -30229,6 +30238,12 @@ ncbigene:23435	a	edam:data_1027, edam:data_1025 ;
 	dc:source	"Entrez Gene" ;
 	rdfs:label	"TARDBP".
 
+ncbigene:4513	a	edam:data_1027, edam:data_1025 ;
+	edam:data_1027	"4513";
+	dc:identifier	"ncbigene:4513";
+	dc:source	"Entrez Gene" ;
+	rdfs:label	"MT-CO2".
+
 ncbigene:217	a	edam:data_1027, edam:data_1025 ;
 	edam:data_1027	"217";
 	dc:identifier	"ncbigene:217";
@@ -33306,12 +33321,6 @@ ncbigene:4512	a	edam:data_1027, edam:data_1025 ;
 	dc:identifier	"ncbigene:4512";
 	dc:source	"Entrez Gene" ;
 	rdfs:label	"MT-CO1".
-
-ncbigene:4513	a	edam:data_1027, edam:data_1025 ;
-	edam:data_1027	"4513";
-	dc:identifier	"ncbigene:4513";
-	dc:source	"Entrez Gene" ;
-	rdfs:label	"MT-CO2".
 
 ncbigene:4514	a	edam:data_1027, edam:data_1025 ;
 	edam:data_1027	"4514";
@@ -46861,6 +46870,12 @@ ensembl:ENSG00000120948	a	edam:data_1033, edam:data_1025 ;
 	dc:source	"Ensembl" ;
 	rdfs:label	"TARDBP".
 
+ensembl:ENSG00000198712	a	edam:data_1033, edam:data_1025 ;
+	edam:data_1033	"ENSG00000198712";
+	dc:identifier	"ensembl:ENSG00000198712";
+	dc:source	"Ensembl" ;
+	rdfs:label	"MT-CO2".
+
 ensembl:ENSG00000111275	a	edam:data_1033, edam:data_1025 ;
 	edam:data_1033	"ENSG00000111275";
 	dc:identifier	"ensembl:ENSG00000111275";
@@ -49956,12 +49971,6 @@ ensembl:ENSG00000198804	a	edam:data_1033, edam:data_1025 ;
 	dc:identifier	"ensembl:ENSG00000198804";
 	dc:source	"Ensembl" ;
 	rdfs:label	"MT-CO1".
-
-ensembl:ENSG00000198712	a	edam:data_1033, edam:data_1025 ;
-	edam:data_1033	"ENSG00000198712";
-	dc:identifier	"ensembl:ENSG00000198712";
-	dc:source	"Ensembl" ;
-	rdfs:label	"MT-CO2".
 
 ensembl:ENSG00000198938	a	edam:data_1033, edam:data_1025 ;
 	edam:data_1033	"ENSG00000198938";
@@ -81403,6 +81412,18 @@ uniprot:A0A087WXV3	a	edam:data_2291, edam:data_1025 ;
 	dc:source	"UniProt" ;
 	rdfs:label	"TARDBP".
 
+uniprot:P00403	a	edam:data_2291, edam:data_1025 ;
+	edam:data_2291	"P00403";
+	dc:identifier	"uniprot:P00403";
+	dc:source	"UniProt" ;
+	rdfs:label	"MT-CO2".
+
+uniprot:U5Z487	a	edam:data_2291, edam:data_1025 ;
+	edam:data_2291	"U5Z487";
+	dc:identifier	"uniprot:U5Z487";
+	dc:source	"UniProt" ;
+	rdfs:label	"MT-CO2".
+
 uniprot:S4R3S4	a	edam:data_2291, edam:data_1025 ;
 	edam:data_2291	"S4R3S4";
 	dc:identifier	"uniprot:S4R3S4";
@@ -96654,18 +96675,6 @@ uniprot:U5YWV7	a	edam:data_2291, edam:data_1025 ;
 	dc:identifier	"uniprot:U5YWV7";
 	dc:source	"UniProt" ;
 	rdfs:label	"MT-CO1".
-
-uniprot:P00403	a	edam:data_2291, edam:data_1025 ;
-	edam:data_2291	"P00403";
-	dc:identifier	"uniprot:P00403";
-	dc:source	"UniProt" ;
-	rdfs:label	"MT-CO2".
-
-uniprot:U5Z487	a	edam:data_2291, edam:data_1025 ;
-	edam:data_2291	"U5Z487";
-	dc:identifier	"uniprot:U5Z487";
-	dc:source	"UniProt" ;
-	rdfs:label	"MT-CO2".
 
 uniprot:P00414	a	edam:data_2291, edam:data_1025 ;
 	edam:data_2291	"P00414";
