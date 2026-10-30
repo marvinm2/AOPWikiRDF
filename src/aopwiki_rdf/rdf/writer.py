@@ -23,6 +23,10 @@ from aopwiki_rdf.utils import clean_html_tags
 
 logger = logging.getLogger(__name__)
 
+# Publisher of the RDF dataset (dcterms:publisher in the VoID): Maastricht
+# University's ROR id; the VoID labels it with the department.
+PUBLISHER = 'https://ror.org/02jz4aj89'
+
 # Map AOP-Wiki wiki-license codes to stable rights URIs for dcterms:license.
 # BY-SA  → CC-BY-SA 4.0 (creativecommons.org canonical URI)
 # ARR    → rightsstatements.org "In Copyright" — a machine-readable Resource
@@ -991,7 +995,10 @@ def write_void_rdf(filepath, metadata):
     # SPARQL endpoint + RDF dump location advertised in the VoID. Overridable so
     # the same writer can describe other deployments (e.g. the multi-version
     # endpoint); defaults describe the production single-snapshot service.
-    sparql_endpoint = metadata.get('sparql_endpoint', 'https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/')
+    # No trailing slash: it must equal the endpoint URL registries hold
+    # (YummyData reads dcterms:publisher only from the dataset whose
+    # void:sparqlEndpoint matches its registered URL exactly).
+    sparql_endpoint = metadata.get('sparql_endpoint', 'https://aopwiki.rdf.bigcat-bioinformatics.org/sparql')
     data_dump_base = metadata.get('data_dump_base', 'https://raw.githubusercontent.com/marvinm2/AOPWikiRDF/master/data')
     # Both may be None -- the corresponding triple is then omitted rather than
     # emitted with a placeholder value.
@@ -1011,6 +1018,7 @@ def write_void_rdf(filepath, metadata):
         g.write('\n\n:AOPWikiRDF\ta\tvoid:Dataset, dcat:Dataset')
         g.write(' ;\n\tdc:description\t"AOP-Wiki RDF -- complete dataset"')
         g.write(' ;\n\tdcterms:license\t<https://creativecommons.org/licenses/by-sa/4.0/>')
+        g.write(' ;\n\tdcterms:publisher\t<' + PUBLISHER + '>')
         g.write(' ;\n\tvoid:sparqlEndpoint\t<' + sparql_endpoint + '>')
         g.write(' ;\n\tvoid:dataDump\t<' + data_dump_base + '/AOPWikiRDF.ttl>, <' + data_dump_base + '/AOPWikiRDF-Enriched.ttl>, <' + data_dump_base + '/AOPWikiRDF-Genes.ttl>')
         g.write(' ;\n\tdcat:accrualPeriodicity\tfreq:weekly')
@@ -1035,6 +1043,10 @@ def write_void_rdf(filepath, metadata):
             g.write(' ;\n\tpav:createdWith\t<' + source_commit + '>')
         if void_stats:
             _write_void_summary(g, void_stats)
+        g.write(' .\n')
+
+        g.write('\n<' + PUBLISHER + '>\ta\tfoaf:Organization')
+        g.write(' ;\n\tfoaf:name\t"Department of Translational Genomics, Maastricht University"')
         g.write(' .\n')
 
         # --- Pure source subset ---
@@ -1090,6 +1102,7 @@ def write_void_rdf(filepath, metadata):
         # --- Class / property partitions (issue #121) ---
         if void_stats:
             _write_void_partitions(g, void_stats)
+            _write_void_linksets(g, void_stats)
 
     logger.info("VoID file created successfully")
 
@@ -1176,6 +1189,21 @@ def _write_void_partitions(g, stats):
         g.write(f' ;\n\tvoid:triples\t{pp["triples"]}')
         g.write(f' ;\n\tvoid:distinctSubjects\t{pp["distinct_subjects"]}')
         g.write(f' ;\n\tvoid:distinctObjects\t{pp["distinct_objects"]} .\n')
+
+
+def _write_void_linksets(g, stats):
+    """Write one void:Linkset per external target dataset and linking property.
+
+    Typed void:Linkset only, not also void:Dataset, for the same reason as the
+    partitions: their void:triples must stay out of YummyData's data_entry sum.
+    """
+    for ls in stats.get("linksets", []):
+        t, p = ls["target"], ls["property"]
+        g.write(f'\n:void-ls-{partition_id(t, p)}\ta\tvoid:Linkset')
+        g.write(' ;\n\tvoid:subjectsTarget\t:AOPWikiRDF')
+        g.write(f' ;\n\tvoid:objectsTarget\t<{t}>')
+        g.write(f' ;\n\tvoid:linkPredicate\t<{p}>')
+        g.write(f' ;\n\tvoid:triples\t{ls["triples"]} .\n')
 
 
 def _service_description(sparql_endpoint, data_graph, void_graph, sd_graph, modified):

@@ -6,7 +6,7 @@ import datetime
 from rdflib import Graph, URIRef
 from rdflib.namespace import XSD
 
-from aopwiki_rdf.rdf.void_stats import compute_void_stats, partition_id
+from aopwiki_rdf.rdf.void_stats import compute_void_stats, link_target, partition_id
 from aopwiki_rdf.rdf.writer import write_void_rdf
 
 FIXTURE = """
@@ -182,3 +182,85 @@ def test_yummydata_triple_count_is_not_inflated(tmp_path):
     """))
     assert sum(int(r.triples) for r in rows) == 11
     assert len(rows) == 3
+
+
+LINK_FIXTURE = """
+@prefix aopo: <http://aopkb.org/aop_ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix edam: <http://edamontology.org/> .
+
+<https://identifiers.org/aop.stressor/1> a aopo:Stressor ;
+    aopo:has_chemical_entity <https://identifiers.org/cas/50-00-0> .
+<https://identifiers.org/cas/50-00-0>
+    owl:sameAs <https://identifiers.org/chebi/CHEBI:16842>, <https://identifiers.org/wikidata/Q161210> ;
+    skos:exactMatch <https://identifiers.org/chebi/CHEBI:16842> .
+<https://identifiers.org/aop.events/1> a aopo:KeyEvent ;
+    edam:data_1025 <https://identifiers.org/hgnc/1100>, <https://identifiers.org/hgnc/1101> ;
+    aopo:hasProcess <http://purl.obolibrary.org/obo/GO_0006915> ;
+    aopo:has_key_event <https://identifiers.org/aop.events/2> .
+"""
+
+# umakadata_gem lib/umakadata/rdf/void.rb, Query::LINK_SETS and Query::PUBLISHERS.
+YUMMYDATA_LINK_SETS = """
+SELECT DISTINCT ?target WHERE {
+  { ?s a <http://rdfs.org/ns/void#Linkset> ; <http://rdfs.org/ns/void#target> ?target }
+  UNION
+  { ?s a <http://rdfs.org/ns/void#Linkset> ; <http://rdfs.org/ns/void#objectsTarget> ?target } }
+"""
+YUMMYDATA_PUBLISHERS = """
+SELECT DISTINCT ?publisher WHERE {
+  ?s <http://purl.org/dc/terms/publisher> ?publisher ;
+     <http://rdfs.org/ns/void#sparqlEndpoint> <https://aopwiki.rdf.bigcat-bioinformatics.org/sparql> . }
+"""
+
+
+def _link_stats():
+    return compute_void_stats(Graph().parse(data=LINK_FIXTURE, format="turtle"))
+
+
+def test_link_target():
+    assert link_target("https://identifiers.org/hgnc/1100") == \
+        "https://registry.identifiers.org/registry/hgnc"
+    assert link_target("https://identifiers.org/chebi/CHEBI:16842") == \
+        "https://registry.identifiers.org/registry/chebi"
+    assert link_target("http://purl.uniprot.org/uniprot/P04637") == \
+        "https://registry.identifiers.org/registry/uniprot"
+    assert link_target("http://purl.obolibrary.org/obo/GO_0006915") == \
+        "http://purl.obolibrary.org/obo/go.owl"
+    # AOP-Wiki's own namespaces and anything unrecognised are not links out.
+    assert link_target("https://identifiers.org/aop/1") is None
+    assert link_target("https://identifiers.org/aop.events/1") is None
+    assert link_target("https://example.org/x") is None
+
+
+def test_linksets_counted_per_target_and_property():
+    rows = {(ls["target"], str(ls["property"])): ls["triples"]
+            for ls in _link_stats()["linksets"]}
+    reg = "https://registry.identifiers.org/registry/"
+    assert rows == {
+        (reg + "cas", AOPO + "has_chemical_entity"): 1,
+        (reg + "chebi", "http://www.w3.org/2002/07/owl#sameAs"): 1,
+        (reg + "chebi", "http://www.w3.org/2004/02/skos/core#exactMatch"): 1,
+        (reg + "hgnc", "http://edamontology.org/data_1025"): 2,
+        (reg + "wikidata", "http://www.w3.org/2002/07/owl#sameAs"): 1,
+        ("http://purl.obolibrary.org/obo/go.owl", AOPO + "hasProcess"): 1,
+    }
+
+
+def test_yummydata_reads_linksets_and_publisher(tmp_path):
+    void = Graph().parse(_write(tmp_path, _link_stats()), format="turtle")
+    targets = {str(r.target) for r in void.query(YUMMYDATA_LINK_SETS)}
+    assert "https://registry.identifiers.org/registry/hgnc" in targets
+    assert len(targets) == 5
+    assert [str(r.publisher) for r in void.query(YUMMYDATA_PUBLISHERS)] == \
+        ["https://ror.org/02jz4aj89"]
+
+
+def test_linksets_do_not_inflate_yummydata_triple_count(tmp_path):
+    """Linksets carry void:triples but are typed void:Linkset only."""
+    void = Graph().parse(_write(tmp_path, _link_stats()), format="turtle")
+    rows = list(void.query("""
+        SELECT ?s WHERE { ?s a <http://rdfs.org/ns/void#Dataset> ;
+                             <http://rdfs.org/ns/void#triples> ?n }"""))
+    assert rows == []

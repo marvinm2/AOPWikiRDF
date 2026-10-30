@@ -389,7 +389,8 @@ Contains cross-reference enrichment triples:
 Contains VoID dataset metadata:
 
 1. VoID prefix declarations
-2. Parent dataset (`:AOPWikiRDF`) with `void:subset` links to the three content files, plus
+2. Parent dataset (`:AOPWikiRDF`) with `void:subset` links to the three content files,
+   `dcterms:publisher` (Maastricht University's ROR id, labelled with the department), plus
    the release-identity fields described under *Versioning* below
 3. Pure source subset (`:AOPWikiRDF.ttl`) with provenance and triple counts
 4. Enriched subset (`:AOPWikiRDF-Enriched.ttl`) with BridgeDb provenance
@@ -397,6 +398,27 @@ Contains VoID dataset metadata:
 6. HGNC linkset metadata
 7. Promapping linkset metadata
 8. Class and property partitions describing the schema of the data graph
+9. Linksets to the external datasets the data points into
+
+#### Linksets
+
+One `void:Linkset` per external dataset and linking property, computed from the data
+files by `aopwiki_rdf.rdf.void_stats.link_target`. Object IRIs in an identifiers.org
+collection (other than AOP-Wiki's own `aop.*`) or a UniProt PURL target that collection's
+identifiers.org registry page; OBO terms target the ontology's `.owl` IRI.
+
+```turtle
+:void-ls-…  a void:Linkset ;
+    void:subjectsTarget :AOPWikiRDF ;
+    void:objectsTarget <https://registry.identifiers.org/registry/hgnc> ;
+    void:linkPredicate edam:data_1025 ;
+    void:triples 10304 .
+```
+
+Like the partitions, linksets are typed `void:Linkset` only, so their `void:triples`
+stay out of the dataset triple count (see the YummyData note below). The publisher is
+read by YummyData only from the dataset whose `void:sparqlEndpoint` equals the
+endpoint URL it has registered, so that IRI is written without a trailing slash.
 
 #### Schema partitions
 
@@ -479,7 +501,7 @@ consumers to expect refreshes four times less often than they actually happen.
 
 ### ServiceDescription.ttl
 
-SPARQL service description for the public endpoint at `https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/`.
+SPARQL service description for the public endpoint at `https://aopwiki.rdf.bigcat-bioinformatics.org/sparql`.
 Its `sd:defaultDataset` lists three named graphs: `http://aopwiki.org/`, whose
 `sd:graph` is the `:AOPWikiRDF` VoID dataset; `http://aopwiki.org/void`, which holds
 `AOPWikiRDF-Void.ttl`; and `http://aopwiki.org/servicedescription`, which holds

@@ -19,6 +19,7 @@ byte-stable for identical input.
 
 import hashlib
 import logging
+import re
 from collections import defaultdict
 
 from rdflib import Graph, Literal, URIRef
@@ -58,6 +59,33 @@ def namespace_of(iri):
     return iri[:cut + 1] if cut > 0 else iri
 
 
+_IDENTIFIERS_ORG = re.compile(r"^https?://identifiers\.org/([^/:]+)[/:]")
+_OBO = re.compile(r"^http://purl\.obolibrary\.org/obo/([A-Za-z]+)_")
+
+
+def link_target(iri):
+    """Return the external dataset an object IRI points into, or None.
+
+    Covers identifiers.org collections (other than AOP-Wiki's own aop.*
+    namespaces), UniProt PURLs and OBO ontology terms; those are the external
+    datasets the data links to with stable IRIs. Used for the void:Linkset
+    descriptions.
+    """
+    iri = str(iri)
+    m = _IDENTIFIERS_ORG.match(iri)
+    if m:
+        collection = m.group(1)
+        if collection == "aop" or collection.startswith("aop."):
+            return None
+        return "https://registry.identifiers.org/registry/" + collection
+    if iri.startswith("http://purl.uniprot.org/uniprot/"):
+        return "https://registry.identifiers.org/registry/uniprot"
+    m = _OBO.match(iri)
+    if m:
+        return "http://purl.obolibrary.org/obo/" + m.group(1).lower() + ".owl"
+    return None
+
+
 def partition_id(*parts):
     """Stable short identifier for a partition, derived from its key."""
     key = "\x1f".join(str(p) for p in parts)
@@ -89,6 +117,8 @@ def compute_void_stats(graph):
         object_classes: [(class, n)], datatypes: [(datatype, n)]}``.
         ``property_partitions``: list of ``{property, triples,
         distinct_subjects, distinct_objects}``.
+        ``linksets``: list of ``{target, property, triples}``, one per
+        external dataset (see ``link_target``) and linking property.
         All lists sorted by IRI.
     """
     types = defaultdict(set)
@@ -107,6 +137,7 @@ def compute_void_stats(graph):
     p_triples = defaultdict(int)
     p_subjects = defaultdict(set)
     p_objects = defaultdict(set)
+    links = defaultdict(int)                 # (target, property) -> n
     subjects = set()
     objects = set()
 
@@ -116,6 +147,10 @@ def compute_void_stats(graph):
         p_triples[p] += 1
         p_subjects[p].add(s)
         p_objects[p].add(o)
+        if isinstance(o, URIRef) and p != RDF.type:
+            target = link_target(o)
+            if target:
+                links[(target, p)] += 1
 
         s_classes = types.get(s)
         if not s_classes:
@@ -178,6 +213,10 @@ def compute_void_stats(graph):
         "vocabularies": vocabularies,
         "class_partitions": class_partitions,
         "property_partitions": property_partitions,
+        "linksets": [
+            {"target": t, "property": p, "triples": n}
+            for (t, p), n in sorted(links.items(), key=lambda x: (x[0][0], str(x[0][1])))
+        ],
     }
     logger.info(
         "VoID stats: %d triples, %d entities, %d classes, %d properties",

@@ -25,7 +25,7 @@ class PipelineConfig:
     # VoID metadata advertisement. Defaults match the production endpoint and
     # data dump; deployments serving the data elsewhere (e.g. the versioned
     # multi-endpoint) override these so per-version VoID points at their host.
-    sparql_endpoint: str = "https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/"
+    sparql_endpoint: str = "https://aopwiki.rdf.bigcat-bioinformatics.org/sparql"
     data_dump_base: str = "https://raw.githubusercontent.com/marvinm2/AOPWikiRDF/master/data"
     # Named graphs advertised in ServiceDescription.ttl: the data, the VoID and
     # the service description itself are each loaded into their own graph.
