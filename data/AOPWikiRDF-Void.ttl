@@ -19,21 +19,22 @@
 :AOPWikiRDF	a	void:Dataset, dcat:Dataset ;
 	dc:description	"AOP-Wiki RDF -- complete dataset" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	void:sparqlEndpoint	<https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/> ;
+	dcterms:publisher	<https://ror.org/02jz4aj89> ;
+	void:sparqlEndpoint	<https://aopwiki.rdf.bigcat-bioinformatics.org/sparql> ;
 	void:dataDump	<https://raw.githubusercontent.com/marvinm2/AOPWikiRDF/master/data/AOPWikiRDF.ttl>, <https://raw.githubusercontent.com/marvinm2/AOPWikiRDF/master/data/AOPWikiRDF-Enriched.ttl>, <https://raw.githubusercontent.com/marvinm2/AOPWikiRDF/master/data/AOPWikiRDF-Genes.ttl> ;
 	dcat:accrualPeriodicity	freq:weekly ;
 	void:subset	:AOPWikiRDF.ttl, :AOPWikiRDF-Enriched.ttl, :AOPWikiRDF-Genes.ttl ;
 	void:exampleResource	aop:1, aop.events:1, aop.relationships:1, cas:83-79-4, aop.stressor:1 ;
-	pav:createdOn	"2026-10-24"^^xsd:date ;
-	pav:version	"2026.10.24" ;
+	pav:createdOn	"2026-10-31"^^xsd:date ;
+	pav:version	"2026.10.31" ;
 	foaf:homepage	<https://aopwiki.org> ;
 	pav:createdBy	<https://zenodo.org/badge/latestdoi/146466058> ;
-	pav:createdWith	<https://github.com/marvinm2/AOPWikiRDF/commit/60d80bedd7f9550fdc4e4ef6bbaae9650ebff2cf> ;
-	void:entities	34199 ;
+	pav:createdWith	<https://github.com/marvinm2/AOPWikiRDF/commit/ca48500a4d7a7f62971e6f795d5fc4cec32e2b9b> ;
+	void:entities	34165 ;
 	void:classes	28 ;
 	void:properties	82 ;
-	void:distinctSubjects	35216 ;
-	void:distinctObjects	127463 ;
+	void:distinctSubjects	35182 ;
+	void:distinctObjects	127359 ;
 	void:vocabulary	<http://aopkb.org/aop_ontology#> ;
 	void:vocabulary	<http://edamontology.org/> ;
 	void:vocabulary	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#> ;
@@ -161,42 +162,45 @@
 	void:propertyPartition	:void-p-795420ae54b016bd ;
 	void:propertyPartition	:void-p-184e76cfef1ed0a4 .
 
+<https://ror.org/02jz4aj89>	a	foaf:Organization ;
+	foaf:name	"Department of Translational Genomics, Maastricht University" .
+
 :AOPWikiRDF.ttl	a	void:Dataset ;
 	dc:description	"AOP-Wiki source-derived triples" ;
 	void:triples	140024 ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	pav:createdOn	"2026-10-24"^^xsd:date ;
-	pav:createdWith	"aop-wiki-xml-2026-10-24", :Promapping ;
+	pav:createdOn	"2026-10-31"^^xsd:date ;
+	pav:createdWith	"aop-wiki-xml-2026-10-31", :Promapping ;
 	foaf:homepage	<https://aopwiki.org> ;
 	dcat:accrualPeriodicity	freq:weekly ;
-	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-10-24> .
+	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-10-31> .
 
 :AOPWikiRDF-Enriched.ttl	a	void:Dataset ;
 	dc:description	"Chemical and protein cross-reference enrichment triples" ;
 	void:triples	8324 ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	pav:importedFrom	<https://webservice.bridgedb.org/Human/> ;
-	pav:createdOn	"2026-10-24"^^xsd:date .
+	pav:createdOn	"2026-10-31"^^xsd:date .
 
 :AOPWikiRDF-Genes.ttl	a	void:Dataset ;
 	dc:description	"Gene mapping enrichment triples" ;
-	void:triples	193867 ;
+	void:triples	193574 ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	pav:createdOn	"2026-10-24"^^xsd:date ;
-	pav:createdWith	"aop-wiki-xml-2026-10-24", :HGNCgenes ;
+	pav:createdOn	"2026-10-31"^^xsd:date ;
+	pav:createdWith	"aop-wiki-xml-2026-10-31", :HGNCgenes ;
 	foaf:homepage	<https://aopwiki.org> ;
 	dcat:accrualPeriodicity	freq:weekly ;
-	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-10-24>, <https://www.genenames.org/download/custom/> .
+	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-10-31>, <https://www.genenames.org/download/custom/> .
 
 :HGNCgenes.txt	a	void:Dataset, void:Linkset ;
 	dc:description	"HGNC approved symbols and names for genes" ;
 	dcat:downloadURL	<https://www.genenames.org/download/custom/> ;
-	pav:importedOn	"2026-10-24T12:30:35"^^xsd:dateTime .
+	pav:importedOn	"2026-10-31T14:23:28"^^xsd:dateTime .
 
 <https://proconsortium.org/download/current/promapping.txt>	a	void:Dataset, void:Linkset ;
 	dc:description	"PRotein ontology mappings to protein database identifiers" ;
 	dcat:downloadURL	<https://proconsortium.org/download/current/promapping.txt> ;
-	pav:importedOn	"2026-10-24T12:30:33"^^xsd:dateTime .
+	pav:importedOn	"2026-10-31T14:23:25"^^xsd:dateTime .
 
 :void-cp-0e5aa7500705d536	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
 	void:entities	601 ;
@@ -608,15 +612,15 @@
 	void:triples	1130 .
 
 :void-pp-7a5973c01504d5ec	void:property	<http://edamontology.org/data_1025> ;
-	void:triples	3871 ;
+	void:triples	3860 ;
 	void:classPartition	:void-ocp-2a3fcdc8d9eedf7b ;
 	void:classPartition	:void-ocp-f7367bd42d5baa81 .
 
 :void-ocp-2a3fcdc8d9eedf7b	void:class	<http://edamontology.org/data_1025> ;
-	void:triples	3871 .
+	void:triples	3860 .
 
 :void-ocp-f7367bd42d5baa81	void:class	<http://edamontology.org/data_2298> ;
-	void:triples	3871 .
+	void:triples	3860 .
 
 :void-pp-b1d60b7bc95543f1	void:property	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C17469> ;
 	void:triples	535 ;
@@ -765,15 +769,15 @@
 	void:triples	1606 .
 
 :void-pp-8ccf7b6817e8a4d2	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByNER> ;
-	void:triples	3683 ;
+	void:triples	3667 ;
 	void:classPartition	:void-ocp-1be619628c8cc407 ;
 	void:classPartition	:void-ocp-7454afbfd284d792 .
 
 :void-ocp-1be619628c8cc407	void:class	<http://edamontology.org/data_1025> ;
-	void:triples	3683 .
+	void:triples	3667 .
 
 :void-ocp-7454afbfd284d792	void:class	<http://edamontology.org/data_2298> ;
-	void:triples	3683 .
+	void:triples	3667 .
 
 :void-pp-a254ec4f93e8f2d9	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByRegex> ;
 	void:triples	1266 ;
@@ -1065,7 +1069,7 @@
 	void:triples	99 .
 
 :void-cp-bb1bc8424b232908	void:class	<http://edamontology.org/data_1025> ;
-	void:entities	22451 ;
+	void:entities	22417 ;
 	void:propertyPartition	:void-pp-0620807671726508 ;
 	void:propertyPartition	:void-pp-8dc7d7d06031dc8b ;
 	void:propertyPartition	:void-pp-722a9960d18c714b ;
@@ -1079,100 +1083,100 @@
 	void:propertyPartition	:void-pp-6f48743ababee65e .
 
 :void-pp-0620807671726508	void:property	<http://edamontology.org/data_1027> ;
-	void:triples	2822 ;
+	void:triples	2819 ;
 	void-ext:datatypePartition	:void-dtp-f327bd5f3e74cdce .
 
 :void-dtp-f327bd5f3e74cdce	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	2822 .
+	void:triples	2819 .
 
 :void-pp-8dc7d7d06031dc8b	void:property	<http://edamontology.org/data_1033> ;
-	void:triples	2758 ;
+	void:triples	2755 ;
 	void-ext:datatypePartition	:void-dtp-47b3323075b6816a .
 
 :void-dtp-47b3323075b6816a	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	2758 .
+	void:triples	2755 .
 
 :void-pp-722a9960d18c714b	void:property	<http://edamontology.org/data_2291> ;
-	void:triples	14092 ;
+	void:triples	14067 ;
 	void-ext:datatypePartition	:void-dtp-4ea13020034bc301 .
 
 :void-dtp-4ea13020034bc301	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	14092 .
+	void:triples	14067 .
 
 :void-pp-1385ac11cccf3134	void:property	<http://edamontology.org/data_2298> ;
-	void:triples	2779 ;
+	void:triples	2776 ;
 	void-ext:datatypePartition	:void-dtp-997eb3aacda13b46 .
 
 :void-dtp-997eb3aacda13b46	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	2779 .
+	void:triples	2776 .
 
 :void-pp-f05608a68732730b	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
-	void:triples	22451 ;
+	void:triples	22417 ;
 	void-ext:datatypePartition	:void-dtp-dd6ba083f33b225c .
 
 :void-dtp-dd6ba083f33b225c	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	22451 .
+	void:triples	22417 .
 
 :void-pp-f9f674ca1ea977c1	void:property	<http://purl.org/dc/elements/1.1/source> ;
-	void:triples	22451 ;
+	void:triples	22417 ;
 	void-ext:datatypePartition	:void-dtp-0a1a7d0804a85cc2 .
 
 :void-dtp-0a1a7d0804a85cc2	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	22451 .
+	void:triples	22417 .
 
 :void-pp-ddbfddb22ac1c907	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
-	void:triples	44902 .
+	void:triples	44834 .
 
 :void-pp-38b690023ec4291f	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
-	void:triples	22016 ;
+	void:triples	21982 ;
 	void-ext:datatypePartition	:void-dtp-2b34f350622efc72 .
 
 :void-dtp-2b34f350622efc72	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	22016 .
+	void:triples	21982 .
 
 :void-pp-efb098cecde2ddf7	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
 	void:triples	501 .
 
 :void-pp-a0b1935166e295d5	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
-	void:triples	19745 ;
+	void:triples	19714 ;
 	void:classPartition	:void-ocp-2dff49a5cf049a0b ;
 	void:classPartition	:void-ocp-62d3ea6bae8fd0f0 ;
 	void:classPartition	:void-ocp-f7c1e86c124692f2 ;
 	void:classPartition	:void-ocp-ee6b84305df29413 .
 
 :void-ocp-2dff49a5cf049a0b	void:class	<http://edamontology.org/data_1025> ;
-	void:triples	19244 .
+	void:triples	19213 .
 
 :void-ocp-62d3ea6bae8fd0f0	void:class	<http://edamontology.org/data_1027> ;
-	void:triples	2780 .
+	void:triples	2777 .
 
 :void-ocp-f7c1e86c124692f2	void:class	<http://edamontology.org/data_1033> ;
-	void:triples	2758 .
+	void:triples	2755 .
 
 :void-ocp-ee6b84305df29413	void:class	<http://edamontology.org/data_2291> ;
-	void:triples	13706 .
+	void:triples	13681 .
 
 :void-pp-6f48743ababee65e	void:property	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
-	void:triples	19244 ;
+	void:triples	19213 ;
 	void:classPartition	:void-ocp-9a732bbb6f685cfd ;
 	void:classPartition	:void-ocp-fa32ee4ab535b3a9 ;
 	void:classPartition	:void-ocp-18b3d169fbf2dbed ;
 	void:classPartition	:void-ocp-61cf1f2e8efd9dd5 .
 
 :void-ocp-9a732bbb6f685cfd	void:class	<http://edamontology.org/data_1025> ;
-	void:triples	19244 .
+	void:triples	19213 .
 
 :void-ocp-fa32ee4ab535b3a9	void:class	<http://edamontology.org/data_1027> ;
-	void:triples	2780 .
+	void:triples	2777 .
 
 :void-ocp-18b3d169fbf2dbed	void:class	<http://edamontology.org/data_1033> ;
-	void:triples	2758 .
+	void:triples	2755 .
 
 :void-ocp-61cf1f2e8efd9dd5	void:class	<http://edamontology.org/data_2291> ;
-	void:triples	13706 .
+	void:triples	13681 .
 
 :void-cp-8d21a9219a790934	void:class	<http://edamontology.org/data_1027> ;
-	void:entities	2822 ;
+	void:entities	2819 ;
 	void:propertyPartition	:void-pp-738585bdbca33667 ;
 	void:propertyPartition	:void-pp-eca488bd9dce1d76 ;
 	void:propertyPartition	:void-pp-d9a8dbe8b3278a55 ;
@@ -1180,38 +1184,38 @@
 	void:propertyPartition	:void-pp-8ca9b671811a2132 .
 
 :void-pp-738585bdbca33667	void:property	<http://edamontology.org/data_1027> ;
-	void:triples	2822 ;
+	void:triples	2819 ;
 	void-ext:datatypePartition	:void-dtp-817535804635e70e .
 
 :void-dtp-817535804635e70e	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	2822 .
+	void:triples	2819 .
 
 :void-pp-eca488bd9dce1d76	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
-	void:triples	2822 ;
+	void:triples	2819 ;
 	void-ext:datatypePartition	:void-dtp-9855fb4a17718daf .
 
 :void-dtp-9855fb4a17718daf	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	2822 .
+	void:triples	2819 .
 
 :void-pp-d9a8dbe8b3278a55	void:property	<http://purl.org/dc/elements/1.1/source> ;
-	void:triples	2822 ;
+	void:triples	2819 ;
 	void-ext:datatypePartition	:void-dtp-50f748d74d1fdf02 .
 
 :void-dtp-50f748d74d1fdf02	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	2822 .
+	void:triples	2819 .
 
 :void-pp-67478ea3c268f166	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
-	void:triples	5644 .
+	void:triples	5638 .
 
 :void-pp-8ca9b671811a2132	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
-	void:triples	2778 ;
+	void:triples	2775 ;
 	void-ext:datatypePartition	:void-dtp-1388ce05012a2df0 .
 
 :void-dtp-1388ce05012a2df0	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	2778 .
+	void:triples	2775 .
 
 :void-cp-c17b3ea26ef579dd	void:class	<http://edamontology.org/data_1033> ;
-	void:entities	2758 ;
+	void:entities	2755 ;
 	void:propertyPartition	:void-pp-8de5f83e81234cc0 ;
 	void:propertyPartition	:void-pp-e1da3de58f56465e ;
 	void:propertyPartition	:void-pp-99515f15a330b932 ;
@@ -1219,38 +1223,38 @@
 	void:propertyPartition	:void-pp-45f746f4e6aabe43 .
 
 :void-pp-8de5f83e81234cc0	void:property	<http://edamontology.org/data_1033> ;
-	void:triples	2758 ;
+	void:triples	2755 ;
 	void-ext:datatypePartition	:void-dtp-6936404eb674528a .
 
 :void-dtp-6936404eb674528a	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	2758 .
+	void:triples	2755 .
 
 :void-pp-e1da3de58f56465e	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
-	void:triples	2758 ;
+	void:triples	2755 ;
 	void-ext:datatypePartition	:void-dtp-6618c3fb1766906b .
 
 :void-dtp-6618c3fb1766906b	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	2758 .
+	void:triples	2755 .
 
 :void-pp-99515f15a330b932	void:property	<http://purl.org/dc/elements/1.1/source> ;
-	void:triples	2758 ;
+	void:triples	2755 ;
 	void-ext:datatypePartition	:void-dtp-addedcbd7e80cc23 .
 
 :void-dtp-addedcbd7e80cc23	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	2758 .
+	void:triples	2755 .
 
 :void-pp-5bee56a30502ba15	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
-	void:triples	5516 .
+	void:triples	5510 .
 
 :void-pp-45f746f4e6aabe43	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
-	void:triples	2758 ;
+	void:triples	2755 ;
 	void-ext:datatypePartition	:void-dtp-fd8f5d333fa44c15 .
 
 :void-dtp-fd8f5d333fa44c15	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	2758 .
+	void:triples	2755 .
 
 :void-cp-e12dabbc8f4a7eb4	void:class	<http://edamontology.org/data_2291> ;
-	void:entities	14092 ;
+	void:entities	14067 ;
 	void:propertyPartition	:void-pp-2b53d1f76061420d ;
 	void:propertyPartition	:void-pp-85515feaa5ce9c6d ;
 	void:propertyPartition	:void-pp-d94c17b876abd1f5 ;
@@ -1260,35 +1264,35 @@
 	void:propertyPartition	:void-pp-814114911187c2d0 .
 
 :void-pp-2b53d1f76061420d	void:property	<http://edamontology.org/data_2291> ;
-	void:triples	14092 ;
+	void:triples	14067 ;
 	void-ext:datatypePartition	:void-dtp-3fef54d41b12c2c0 .
 
 :void-dtp-3fef54d41b12c2c0	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	14092 .
+	void:triples	14067 .
 
 :void-pp-85515feaa5ce9c6d	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
-	void:triples	14092 ;
+	void:triples	14067 ;
 	void-ext:datatypePartition	:void-dtp-c81a1f0ae627874e .
 
 :void-dtp-c81a1f0ae627874e	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	14092 .
+	void:triples	14067 .
 
 :void-pp-d94c17b876abd1f5	void:property	<http://purl.org/dc/elements/1.1/source> ;
-	void:triples	14092 ;
+	void:triples	14067 ;
 	void-ext:datatypePartition	:void-dtp-f48e12d7d67288d0 .
 
 :void-dtp-f48e12d7d67288d0	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	14092 .
+	void:triples	14067 .
 
 :void-pp-8d7138cc87cbde24	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
-	void:triples	28184 .
+	void:triples	28134 .
 
 :void-pp-7d09193d5b72452f	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
-	void:triples	13701 ;
+	void:triples	13676 ;
 	void-ext:datatypePartition	:void-dtp-1687c9b3e2251e2a .
 
 :void-dtp-1687c9b3e2251e2a	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	13701 .
+	void:triples	13676 .
 
 :void-pp-843d99e4c5327bdc	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
 	void:triples	501 .
@@ -1297,7 +1301,7 @@
 	void:triples	501 .
 
 :void-cp-256e6d864d94bcbf	void:class	<http://edamontology.org/data_2298> ;
-	void:entities	2779 ;
+	void:entities	2776 ;
 	void:propertyPartition	:void-pp-2d1b3759a591e40e ;
 	void:propertyPartition	:void-pp-6deb71f64f2a0a26 ;
 	void:propertyPartition	:void-pp-23092e69f1a84937 ;
@@ -1307,73 +1311,73 @@
 	void:propertyPartition	:void-pp-ae7c43e282a41aa5 .
 
 :void-pp-2d1b3759a591e40e	void:property	<http://edamontology.org/data_2298> ;
-	void:triples	2779 ;
+	void:triples	2776 ;
 	void-ext:datatypePartition	:void-dtp-8507c64238806338 .
 
 :void-dtp-8507c64238806338	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	2779 .
+	void:triples	2776 .
 
 :void-pp-6deb71f64f2a0a26	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
-	void:triples	2779 ;
+	void:triples	2776 ;
 	void-ext:datatypePartition	:void-dtp-67fe32513d030c75 .
 
 :void-dtp-67fe32513d030c75	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	2779 .
+	void:triples	2776 .
 
 :void-pp-23092e69f1a84937	void:property	<http://purl.org/dc/elements/1.1/source> ;
-	void:triples	2779 ;
+	void:triples	2776 ;
 	void-ext:datatypePartition	:void-dtp-362bb2b73c028d64 .
 
 :void-dtp-362bb2b73c028d64	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	2779 .
+	void:triples	2776 .
 
 :void-pp-bd1495a0daef1c29	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
-	void:triples	5558 .
+	void:triples	5552 .
 
 :void-pp-b15761ae38ed76a0	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
-	void:triples	2779 ;
+	void:triples	2776 ;
 	void-ext:datatypePartition	:void-dtp-f65d0e89f8eee296 .
 
 :void-dtp-f65d0e89f8eee296	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
-	void:triples	2779 .
+	void:triples	2776 .
 
 :void-pp-435acd9bc5c1e804	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
-	void:triples	19244 ;
+	void:triples	19213 ;
 	void:classPartition	:void-ocp-445a2cc86ef09bf6 ;
 	void:classPartition	:void-ocp-bbe44d9027ca80b2 ;
 	void:classPartition	:void-ocp-740d618b493e19e6 ;
 	void:classPartition	:void-ocp-05613d1dad84305e .
 
 :void-ocp-445a2cc86ef09bf6	void:class	<http://edamontology.org/data_1025> ;
-	void:triples	19244 .
+	void:triples	19213 .
 
 :void-ocp-bbe44d9027ca80b2	void:class	<http://edamontology.org/data_1027> ;
-	void:triples	2780 .
+	void:triples	2777 .
 
 :void-ocp-740d618b493e19e6	void:class	<http://edamontology.org/data_1033> ;
-	void:triples	2758 .
+	void:triples	2755 .
 
 :void-ocp-05613d1dad84305e	void:class	<http://edamontology.org/data_2291> ;
-	void:triples	13706 .
+	void:triples	13681 .
 
 :void-pp-ae7c43e282a41aa5	void:property	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
-	void:triples	19244 ;
+	void:triples	19213 ;
 	void:classPartition	:void-ocp-ef104eccb8e8ef44 ;
 	void:classPartition	:void-ocp-3c263eee4df77afd ;
 	void:classPartition	:void-ocp-4d56c0ab20ccfb48 ;
 	void:classPartition	:void-ocp-2e8e96d3a6092a23 .
 
 :void-ocp-ef104eccb8e8ef44	void:class	<http://edamontology.org/data_1025> ;
-	void:triples	19244 .
+	void:triples	19213 .
 
 :void-ocp-3c263eee4df77afd	void:class	<http://edamontology.org/data_1027> ;
-	void:triples	2780 .
+	void:triples	2777 .
 
 :void-ocp-4d56c0ab20ccfb48	void:class	<http://edamontology.org/data_1033> ;
-	void:triples	2758 .
+	void:triples	2755 .
 
 :void-ocp-2e8e96d3a6092a23	void:class	<http://edamontology.org/data_2291> ;
-	void:triples	13706 .
+	void:triples	13681 .
 
 :void-cp-a2c4ad01ba3de317	void:class	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571> ;
 	void:entities	757 ;
@@ -2435,19 +2439,19 @@
 	void:distinctObjects	1286 .
 
 :void-p-bb1bc8424b232908	void:property	<http://edamontology.org/data_1025> ;
-	void:triples	10304 ;
+	void:triples	10293 ;
 	void:distinctSubjects	1161 ;
-	void:distinctObjects	2761 .
+	void:distinctObjects	2758 .
 
 :void-p-8d21a9219a790934	void:property	<http://edamontology.org/data_1027> ;
-	void:triples	2822 ;
-	void:distinctSubjects	2822 ;
-	void:distinctObjects	2822 .
+	void:triples	2819 ;
+	void:distinctSubjects	2819 ;
+	void:distinctObjects	2819 .
 
 :void-p-c17b3ea26ef579dd	void:property	<http://edamontology.org/data_1033> ;
-	void:triples	2758 ;
-	void:distinctSubjects	2758 ;
-	void:distinctObjects	2758 .
+	void:triples	2755 ;
+	void:distinctSubjects	2755 ;
+	void:distinctObjects	2755 .
 
 :void-p-5f5b808da619bf1c	void:property	<http://edamontology.org/data_2042> ;
 	void:triples	707 ;
@@ -2455,14 +2459,14 @@
 	void:distinctObjects	697 .
 
 :void-p-e12dabbc8f4a7eb4	void:property	<http://edamontology.org/data_2291> ;
-	void:triples	14092 ;
-	void:distinctSubjects	14092 ;
-	void:distinctObjects	14092 .
+	void:triples	14067 ;
+	void:distinctSubjects	14067 ;
+	void:distinctObjects	14067 .
 
 :void-p-256e6d864d94bcbf	void:property	<http://edamontology.org/data_2298> ;
-	void:triples	2779 ;
-	void:distinctSubjects	2779 ;
-	void:distinctObjects	2779 .
+	void:triples	2776 ;
+	void:distinctSubjects	2776 ;
+	void:distinctObjects	2776 .
 
 :void-p-57056b32c47cb872	void:property	<http://edamontology.org/operation_3438> ;
 	void:triples	262 ;
@@ -2580,13 +2584,13 @@
 	void:distinctObjects	1738 .
 
 :void-p-15d84f796008b7ac	void:property	<http://purl.org/dc/elements/1.1/identifier> ;
-	void:triples	33066 ;
-	void:distinctSubjects	33066 ;
-	void:distinctObjects	33066 .
+	void:triples	33032 ;
+	void:distinctSubjects	33032 ;
+	void:distinctObjects	33032 .
 
 :void-p-e5bfaa671e3963e2	void:property	<http://purl.org/dc/elements/1.1/source> ;
-	void:triples	30781 ;
-	void:distinctSubjects	30781 ;
+	void:triples	30747 ;
+	void:distinctSubjects	30747 ;
 	void:distinctObjects	34 .
 
 :void-p-5bb8348058bfded2	void:property	<http://purl.org/dc/elements/1.1/title> ;
@@ -2685,14 +2689,14 @@
 	void:distinctObjects	433 .
 
 :void-p-3c197cb1f6842dc4	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
-	void:triples	57154 ;
-	void:distinctSubjects	34199 ;
+	void:triples	57086 ;
+	void:distinctSubjects	34165 ;
 	void:distinctObjects	28 .
 
 :void-p-9ac796fdb3c1f82a	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
-	void:triples	33591 ;
-	void:distinctSubjects	33551 ;
-	void:distinctObjects	10009 .
+	void:triples	33557 ;
+	void:distinctSubjects	33517 ;
+	void:distinctObjects	10006 .
 
 :void-p-02f0e6a4fb4db018	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
 	void:triples	5093 ;
@@ -2700,14 +2704,14 @@
 	void:distinctObjects	5093 .
 
 :void-p-a58bb0b7b521b35d	void:property	<http://www.w3.org/2002/07/owl#sameAs> ;
-	void:triples	23907 ;
-	void:distinctSubjects	3830 ;
-	void:distinctObjects	23790 .
+	void:triples	23876 ;
+	void:distinctSubjects	3827 ;
+	void:distinctObjects	23759 .
 
 :void-p-31d5c2a9776698c4	void:property	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
-	void:triples	23406 ;
-	void:distinctSubjects	3329 ;
-	void:distinctObjects	23289 .
+	void:triples	23375 ;
+	void:distinctSubjects	3326 ;
+	void:distinctObjects	23258 .
 
 :void-p-600e32e62974367d	void:property	<http://www.w3.org/ns/prov#used> ;
 	void:triples	2 ;
@@ -2745,9 +2749,9 @@
 	void:distinctObjects	5349 .
 
 :void-p-a74a0a9639a62ceb	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByNER> ;
-	void:triples	9543 ;
-	void:distinctSubjects	1134 ;
-	void:distinctObjects	2608 .
+	void:triples	9527 ;
+	void:distinctSubjects	1133 ;
+	void:distinctObjects	2605 .
 
 :void-p-c555bc45b6b71624	void:property	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByRegex> ;
 	void:triples	3525 ;
@@ -2763,3 +2767,513 @@
 	void:triples	1 ;
 	void:distinctSubjects	1 ;
 	void:distinctObjects	1 .
+
+:void-ls-93176420b7227bd2	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/chebi.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasObject> ;
+	void:triples	173 .
+
+:void-ls-540fb2f14cacc274	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/chebi.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+	void:triples	165 .
+
+:void-ls-c4e9b660f9442afb	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/chebi.owl> ;
+	void:linkPredicate	<http://purl.org/dc/elements/1.1/identifier> ;
+	void:triples	87 .
+
+:void-ls-a45ee63363133227	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/cl.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#CellTypeContext> ;
+	void:triples	427 .
+
+:void-ls-b6a463ab9798b5c5	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/cl.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasObject> ;
+	void:triples	91 .
+
+:void-ls-b99a5c6cbfe996a1	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/cl.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+	void:triples	87 .
+
+:void-ls-629c5a92683d24c4	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/cl.owl> ;
+	void:linkPredicate	<http://purl.org/dc/elements/1.1/identifier> ;
+	void:triples	91 .
+
+:void-ls-750f84e94bc15087	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/fma.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasObject> ;
+	void:triples	28 .
+
+:void-ls-15091c627ed26bb9	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/fma.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+	void:triples	28 .
+
+:void-ls-6ae63b0275065296	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/fma.owl> ;
+	void:linkPredicate	<http://purl.org/dc/elements/1.1/identifier> ;
+	void:triples	22 .
+
+:void-ls-801580758a9071e8	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/go.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasObject> ;
+	void:triples	77 .
+
+:void-ls-96d183e1be4b28dd	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/go.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasProcess> ;
+	void:triples	711 .
+
+:void-ls-169367e01799cba2	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/go.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/GO_0008150> ;
+	void:triples	681 .
+
+:void-ls-e94f4d2baf6fb11d	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/go.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+	void:triples	70 .
+
+:void-ls-698c8ce544d34b48	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/go.owl> ;
+	void:linkPredicate	<http://purl.org/dc/elements/1.1/identifier> ;
+	void:triples	441 .
+
+:void-ls-f1831ce68f0e65c9	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/hp.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasProcess> ;
+	void:triples	39 .
+
+:void-ls-5f8141b20e1f5d3a	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/hp.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/GO_0008150> ;
+	void:triples	39 .
+
+:void-ls-59cdb4ed0c0549e9	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/hp.owl> ;
+	void:linkPredicate	<http://purl.org/dc/elements/1.1/identifier> ;
+	void:triples	34 .
+
+:void-ls-f15a261ef2d90efc	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/ido.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasProcess> ;
+	void:triples	1 .
+
+:void-ls-23ae443b550fc5bb	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/ido.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/GO_0008150> ;
+	void:triples	1 .
+
+:void-ls-7d34a31be27c2f25	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/ido.owl> ;
+	void:linkPredicate	<http://purl.org/dc/elements/1.1/identifier> ;
+	void:triples	1 .
+
+:void-ls-054ffc1c736c7c9d	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/mi.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasProcess> ;
+	void:triples	9 .
+
+:void-ls-68458f8e8c5b1dfd	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/mi.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/GO_0008150> ;
+	void:triples	6 .
+
+:void-ls-cb248d544761df57	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/mi.owl> ;
+	void:linkPredicate	<http://purl.org/dc/elements/1.1/identifier> ;
+	void:triples	4 .
+
+:void-ls-15839d7269b0ce78	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/mp.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasObject> ;
+	void:triples	1 .
+
+:void-ls-25fc8c0380eced5a	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/mp.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasProcess> ;
+	void:triples	118 .
+
+:void-ls-77a9ef56276c4451	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/mp.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/GO_0008150> ;
+	void:triples	110 .
+
+:void-ls-e3d5871dd75faed4	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/mp.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+	void:triples	1 .
+
+:void-ls-3a9205162f7fa12f	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/mp.owl> ;
+	void:linkPredicate	<http://purl.org/dc/elements/1.1/identifier> ;
+	void:triples	88 .
+
+:void-ls-26380f6e31718819	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/nbo.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasProcess> ;
+	void:triples	11 .
+
+:void-ls-b9652a2fff651789	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/nbo.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/GO_0008150> ;
+	void:triples	11 .
+
+:void-ls-08f233d57e591993	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/nbo.owl> ;
+	void:linkPredicate	<http://purl.org/dc/elements/1.1/identifier> ;
+	void:triples	8 .
+
+:void-ls-ecad70eb2352e4d2	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/pco.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasObject> ;
+	void:triples	7 .
+
+:void-ls-7c855ef3a0035585	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/pco.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasProcess> ;
+	void:triples	5 .
+
+:void-ls-79644d2e684134ed	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/pco.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/GO_0008150> ;
+	void:triples	5 .
+
+:void-ls-6c18fb315ac3233e	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/pco.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+	void:triples	7 .
+
+:void-ls-706798d4d19b83e0	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/pco.owl> ;
+	void:linkPredicate	<http://purl.org/dc/elements/1.1/identifier> ;
+	void:triples	3 .
+
+:void-ls-39eb8238fa9c206b	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/pr.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasObject> ;
+	void:triples	265 .
+
+:void-ls-5f9886594ea40573	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/pr.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+	void:triples	246 .
+
+:void-ls-f92f21e898292a44	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/pr.owl> ;
+	void:linkPredicate	<http://purl.org/dc/elements/1.1/identifier> ;
+	void:triples	176 .
+
+:void-ls-a8daca8af4d3f7b2	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/rbo.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasProcess> ;
+	void:triples	1 .
+
+:void-ls-2e5b5e9b73923d3b	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/rbo.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/GO_0008150> ;
+	void:triples	1 .
+
+:void-ls-38fadba19ea3e8db	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/rbo.owl> ;
+	void:linkPredicate	<http://purl.org/dc/elements/1.1/identifier> ;
+	void:triples	1 .
+
+:void-ls-b62c49eeaae59459	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/uberon.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#CellTypeContext> ;
+	void:triples	1 .
+
+:void-ls-3502387d5e1da8a4	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/uberon.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#OrganContext> ;
+	void:triples	347 .
+
+:void-ls-ec2ccc75ab8dc3a4	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/uberon.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasObject> ;
+	void:triples	80 .
+
+:void-ls-6b729fc1c39e27d1	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/uberon.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/PATO_0001241> ;
+	void:triples	78 .
+
+:void-ls-a48225661b378160	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/uberon.owl> ;
+	void:linkPredicate	<http://purl.org/dc/elements/1.1/identifier> ;
+	void:triples	123 .
+
+:void-ls-758a595627e729ff	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/vt.owl> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#hasProcess> ;
+	void:triples	15 .
+
+:void-ls-eb688750c2e980e5	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/vt.owl> ;
+	void:linkPredicate	<http://purl.obolibrary.org/obo/GO_0008150> ;
+	void:triples	15 .
+
+:void-ls-4bff69fe5883daea	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<http://purl.obolibrary.org/obo/vt.owl> ;
+	void:linkPredicate	<http://purl.org/dc/elements/1.1/identifier> ;
+	void:triples	13 .
+
+:void-ls-95d775e1cc453aa7	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/cas> ;
+	void:linkPredicate	<http://aopkb.org/aop_ontology#has_chemical_entity> ;
+	void:triples	442 .
+
+:void-ls-dfab6507f5072fab	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/cas> ;
+	void:linkPredicate	<http://purl.org/dc/elements/1.1/identifier> ;
+	void:triples	433 .
+
+:void-ls-5ec2ad4f439518e5	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/chebi> ;
+	void:linkPredicate	<http://www.w3.org/2002/07/owl#sameAs> ;
+	void:triples	445 .
+
+:void-ls-c25d26ab5698cbfb	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/chebi> ;
+	void:linkPredicate	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+	void:triples	445 .
+
+:void-ls-bff13e3047ddc5f3	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/chembl.compound> ;
+	void:linkPredicate	<http://www.w3.org/2002/07/owl#sameAs> ;
+	void:triples	370 .
+
+:void-ls-73193b17d6576910	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/chembl.compound> ;
+	void:linkPredicate	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+	void:triples	370 .
+
+:void-ls-61f22dd1b621130c	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/chemspider> ;
+	void:linkPredicate	<http://www.w3.org/2002/07/owl#sameAs> ;
+	void:triples	449 .
+
+:void-ls-c7c069926ce8df78	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/chemspider> ;
+	void:linkPredicate	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+	void:triples	449 .
+
+:void-ls-d31f25e3e3de5ea9	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/comptox> ;
+	void:linkPredicate	<http://semanticscience.org/resource/CHEMINF_000568> ;
+	void:triples	433 .
+
+:void-ls-5dfe346869a86b10	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/drugbank> ;
+	void:linkPredicate	<http://www.w3.org/2002/07/owl#sameAs> ;
+	void:triples	224 .
+
+:void-ls-731f532a1c7c87e0	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/drugbank> ;
+	void:linkPredicate	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+	void:triples	224 .
+
+:void-ls-e9ebb776f0145ea7	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/ensembl> ;
+	void:linkPredicate	<http://www.w3.org/2002/07/owl#sameAs> ;
+	void:triples	2755 .
+
+:void-ls-ddbf5f17a728be89	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/ensembl> ;
+	void:linkPredicate	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+	void:triples	2755 .
+
+:void-ls-4de284056e1b1553	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/hgnc> ;
+	void:linkPredicate	<http://edamontology.org/data_1025> ;
+	void:triples	10293 .
+
+:void-ls-fc7a36a87a0b6c82	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/hgnc> ;
+	void:linkPredicate	<http://www.w3.org/2002/07/owl#sameAs> ;
+	void:triples	126 .
+
+:void-ls-468c9b45e8ce71e6	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/hgnc> ;
+	void:linkPredicate	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+	void:triples	126 .
+
+:void-ls-f96661af4d51a92b	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/hgnc> ;
+	void:linkPredicate	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByNER> ;
+	void:triples	9527 .
+
+:void-ls-9b96a5e112a99a81	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/hgnc> ;
+	void:linkPredicate	<https://aopwiki.rdf.bigcat-bioinformatics.org/geneDetectedByRegex> ;
+	void:triples	3525 .
+
+:void-ls-ec3675199a11cb94	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/hmdb> ;
+	void:linkPredicate	<http://www.w3.org/2002/07/owl#sameAs> ;
+	void:triples	553 .
+
+:void-ls-2bc917c3d199e7a7	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/hmdb> ;
+	void:linkPredicate	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+	void:triples	553 .
+
+:void-ls-54052f075c1f315c	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/inchikey> ;
+	void:linkPredicate	<http://semanticscience.org/resource/CHEMINF_000059> ;
+	void:triples	416 .
+
+:void-ls-1bf1d8aab64a5de0	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/kegg.compound> ;
+	void:linkPredicate	<http://www.w3.org/2002/07/owl#sameAs> ;
+	void:triples	479 .
+
+:void-ls-b26ead19eb44e01c	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/kegg.compound> ;
+	void:linkPredicate	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+	void:triples	479 .
+
+:void-ls-5c0175bb3aacbfee	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/lipidmaps> ;
+	void:linkPredicate	<http://www.w3.org/2002/07/owl#sameAs> ;
+	void:triples	35 .
+
+:void-ls-b4a7e1a0036fc586	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/lipidmaps> ;
+	void:linkPredicate	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+	void:triples	35 .
+
+:void-ls-071cedc2c1ed40f1	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/ncbigene> ;
+	void:linkPredicate	<http://www.w3.org/2002/07/owl#sameAs> ;
+	void:triples	2821 .
+
+:void-ls-795e0f916b8527a6	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/ncbigene> ;
+	void:linkPredicate	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+	void:triples	2821 .
+
+:void-ls-7f034b4a35cb54ec	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/pubchem.compound> ;
+	void:linkPredicate	<http://www.w3.org/2002/07/owl#sameAs> ;
+	void:triples	492 .
+
+:void-ls-6e70ec650f303d32	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/pubchem.compound> ;
+	void:linkPredicate	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+	void:triples	492 .
+
+:void-ls-e21746ae657d8800	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/uniprot> ;
+	void:linkPredicate	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
+	void:triples	501 .
+
+:void-ls-a562eea0d0b2e2a4	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/uniprot> ;
+	void:linkPredicate	<http://www.w3.org/2002/07/owl#sameAs> ;
+	void:triples	14683 .
+
+:void-ls-88f60382cb1d0853	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/uniprot> ;
+	void:linkPredicate	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+	void:triples	14182 .
+
+:void-ls-c27ea654114172a1	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/wikidata> ;
+	void:linkPredicate	<http://www.w3.org/2002/07/owl#sameAs> ;
+	void:triples	444 .
+
+:void-ls-b7a01e3a59f80fef	a	void:Linkset ;
+	void:subjectsTarget	:AOPWikiRDF ;
+	void:objectsTarget	<https://registry.identifiers.org/registry/wikidata> ;
+	void:linkPredicate	<http://www.w3.org/2004/02/skos/core#exactMatch> ;
+	void:triples	444 .

@@ -4,8 +4,8 @@
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/>	a	sd:Service ;
-	sd:endpoint	<https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/> ;
+<https://aopwiki.rdf.bigcat-bioinformatics.org/sparql>	a	sd:Service ;
+	sd:endpoint	<https://aopwiki.rdf.bigcat-bioinformatics.org/sparql> ;
 	sd:supportedLanguage	sd:SPARQL11Query ;
 	sd:resultFormat	<http://www.w3.org/ns/formats/SPARQL_Results_XML>, <http://www.w3.org/ns/formats/SPARQL_Results_JSON>, <http://www.w3.org/ns/formats/SPARQL_Results_CSV>, <http://www.w3.org/ns/formats/SPARQL_Results_TSV>, <http://www.w3.org/ns/formats/RDF_XML>, <http://www.w3.org/ns/formats/Turtle>, <http://www.w3.org/ns/formats/N-Triples>, <http://www.w3.org/ns/formats/RDF_JSON>, <http://www.w3.org/ns/formats/JSON-LD> ;
 	sd:feature	sd:DereferencesURIs, sd:UnionDefaultGraph, sd:BasicFederatedQuery ;
@@ -20,7 +20,7 @@
 	sd:namedGraph	:ServiceDescriptionNamedGraph ;
 	dcterms:title	"AOP-Wiki RDF Dataset" ;
 	dcterms:description	"Adverse Outcome Pathway data in RDF format" ;
-	dcterms:modified	"2026-10-24T13:05:15.984699"^^xsd:dateTime .
+	dcterms:modified	"2026-10-31T14:58:23.063045"^^xsd:dateTime .
 
 :DataNamedGraph	a	sd:NamedGraph ;
 	sd:name	<http://aopwiki.org/> ;
