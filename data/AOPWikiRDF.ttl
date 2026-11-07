@@ -78695,11 +78695,11 @@ aop:647
 	rdfs:label	"AOP 647" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/647> ;
 	foaf:page	<https://identifiers.org/aop/647> ;
-	dc:title	"ROS formation leading to growth inhibition modulated by the Keap1–Nrf2 antioxidant response" ;
-	dcterms:alternative	"ROS leading to growth inhibition moduleated by the Keap1–Nrf2 antioxidant response" ;
+	dc:title	"Increase in reactive oxygen species leading to growth inhibition via increased caspase activation" ;
+	dcterms:alternative	"ROS leading to growth inhibition via caspase activation" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-07-22T02:54:27" ;
-	dcterms:modified	"2026-09-02T16:07:58" ;
+	dcterms:modified	"2026-11-05T03:14:11" ;
 	dc:description	"""Reactive oxygen species (ROS) are produced during normal aerobic metabolism and act as physiological signalling molecules. Their biological effects depend on concentration, duration, cellular location and antioxidant capacity. At controlled levels, ROS participate in redox regulation; when ROS production exceeds antioxidant and repair capacity, oxidative stress can disrupt redox signalling and damage cellular macromolecules (Sies and Jones, 2020; Sies, 2015). In aquatic animals, environmentally induced oxidative stress is a common response to chemical and non-chemical stressors, including metals, pesticides, nanoparticles, radiation and changes in environmental conditions (Lushchak, 2011; Song et al., 2023).&nbsp;
 
 Cells maintain redox homeostasis through antioxidant enzymes, low-molecular-weight redox buffers and stress-response pathways. The Keap1-Nrf2 pathway is a major adaptive defence system against oxidative and electrophilic stress. Keap1 represses Nrf2-dependent activation of antioxidant response elements under basal conditions, while oxidative or electrophilic modification of Keap1 promotes Nrf2 activation and induction of antioxidant and detoxification genes (Itoh et al., 1999; Baird and Yamamoto, 2020). This adaptive response is important for interpreting oxidative-stress outcomes because it can delay, reduce or modify downstream toxicity depending on exposure intensity, duration and biological capacity for compensation.&nbsp;Sustained oxidative stress can affect cell fate through damage to lipids, proteins and other macromolecules, and through interactions with mitochondrial and endoplasmic-reticulum (ER) stress responses. Cytochrome c has a central role in mitochondrial apoptosis, including cardiolipin oxidation and release of proapoptotic factors, followed by Apaf-1/caspase-9 complex formation and activation of the apoptotic protease cascade (Kagan et al., 2005; Li et al., 1997). ER stress is also linked to cell-fate decisions and can contribute to apoptosis when adaptive unfolded-protein responses are insufficient (Cao and Kaufman, 2014; Chen et al., 2023).
@@ -78745,8 +78745,8 @@ Growth impairment is a regulatory and ecotoxicologically relevant apical outcome
 """ ;
 	dcterms:abstract	"""This AOP describes the linkage between increased reactive oxygen species (ROS) formation and decreased organismal growth. The molecular initiating event is increased ROS formation. When ROS production exceeds the buffering capacity of endogenous antioxidant systems, oxidative stress increases. This oxidative burden leads to oxidative damage to cellular macromolecules through two key-event branches: increased lipid oxidation and increased protein oxidation.&nbsp;Increased lipid and protein oxidation can disrupt cellular homeostasis and contribute to mitochondrial and endoplasmic-reticulum stress responses. These processes are represented by increased cytochrome c release and increased endoplasmic-reticulum stress, which promote increased caspase activation. Caspase activation contributes to increased cell injury and cell death. At the organism level, cumulative cellular injury and loss of viable or functional cells can result in decreased growth.&nbsp;The Keap1-Nrf2 antioxidant response is included as a modulating component of this AOP. ROS-mediated modification of Keap1 cysteine residues promotes Nrf2 nuclear accumulation and induction of antioxidant enzymes. This adaptive response can reduce oxidative stress and influence the threshold, magnitude and progression of downstream key events.&nbsp;This AOP provides a mechanistic framework for linking ROS formation, oxidative macromolecular damage, stress-response signalling, apoptotic activation, cell injury and growth impairment. It is considered broadly applicable across aerobic eukaryotes because ROS formation, oxidative damage, antioxidant defence and regulated cell-death processes are conserved biological features. Growth impairment is included as the adverse outcome because it is a biologically and ecotoxicologically relevant endpoint across multiple taxa.
 """ ;
-	aopo:has_key_event	aop.events:1392, aop.events:1445, aop.events:1767, aop.events:1812, aop.events:1815, aop.events:2188, aop.events:55, aop.events:1115, aop.events:1521 ;
-	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:3116, aop.relationships:3632, aop.relationships:3837, aop.relationships:3838, aop.relationships:3050, aop.relationships:3839, aop.relationships:3840, aop.relationships:2767 ;
+	aopo:has_key_event	aop.events:1392, aop.events:1445, aop.events:1767, aop.events:2188, aop.events:55, aop.events:1115, aop.events:1521 ;
+	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:3116, aop.relationships:3632, aop.relationships:3870, aop.relationships:3871, aop.relationships:3840, aop.relationships:2767 ;
 	aopo:has_molecular_initiating_event	aop.events:1115 ;
 	aopo:has_adverse_outcome	aop.events:1521 ;
 	nci:C54571	aop.stressor:252 ;
@@ -79511,6 +79511,23 @@ herbicides in paddy ecosystems.
 	pato:0000047	"Hermaphrodite" ;
 	aopo:LifeStageContext	"All life stages" ;
 	ncbitaxon:131567	"WCS_4530" .
+
+aop:658
+	a	aopo:AdverseOutcomePathway ;
+	dc:identifier	aop:658 ;
+	rdfs:label	"AOP 658" ;
+	rdfs:seeAlso	<https://identifiers.org/aop/658> ;
+	foaf:page	<https://identifiers.org/aop/658> ;
+	dc:title	"Activation, estrogen receptor alpha leads to early vaginal opening via increased kisspeptin release" ;
+	dcterms:alternative	"Activation, ERα leads to early vaginal opening via increased kisspeptin" ;
+	dc:source	"AOPWiki" ;
+	dcterms:created	"2026-11-02T04:21:58" ;
+	dcterms:modified	"2026-11-02T08:03:52" ;
+	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
+	aopo:has_key_event	aop.events:1985, aop.events:1047, aop.events:2137, aop.events:2402, aop.events:2294, aop.events:1065, aop.events:2463 ;
+	aopo:has_key_event_relationship	aop.relationships:2665, aop.relationships:3714, aop.relationships:3715, aop.relationships:3716, aop.relationships:3717, aop.relationships:3869 ;
+	aopo:has_molecular_initiating_event	aop.events:1065 ;
+	aopo:has_adverse_outcome	aop.events:2463 .
 
 aop.events:888
 	a	aopo:KeyEvent ;
@@ -101779,7 +101796,7 @@ Taxonomic: Primarily studied in laboratory rodents and humans. &nbsp;Plausible f
 	go:0008150	go:0046879 ;
 	pato:0000001	"increased" ;
 	pato:0001241	mesh:D007987 ;
-	dcterms:isPartOf	aop:165, aop:440, aop:623, aop:637, aop:639, aop:640 .
+	dcterms:isPartOf	aop:165, aop:440, aop:623, aop:637, aop:639, aop:640, aop:658 .
 
 aop.events:1049
 	a	aopo:KeyEvent ;
@@ -115069,7 +115086,7 @@ aop.events:1815
 	dcterms:alternative	"Increase, ER stress" ;
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Cellular""" ;
-	dcterms:isPartOf	aop:362, aop:447, aop:626, aop:629, aop:647 .
+	dcterms:isPartOf	aop:362, aop:447, aop:626, aop:629 .
 
 aop.events:1877
 	a	aopo:KeyEvent ;
@@ -119442,7 +119459,7 @@ Taxonomic: Primarily studied in laboratory rodents and humans. &nbsp;Plausible f
 	go:0008150	go:0007269 ;
 	pato:0000001	"increased" ;
 	pato:0001241	chebio:80304 ;
-	dcterms:isPartOf	aop:445, aop:623, aop:637, aop:639, aop:640 .
+	dcterms:isPartOf	aop:445, aop:623, aop:637, aop:639, aop:640, aop:658 .
 
 aop.events:1986
 	a	aopo:KeyEvent ;
@@ -119628,7 +119645,7 @@ Sex Applicability: This KE is applicable to females and males.
 	go:0008150	go:0030284, go:0030520 ;
 	pato:0000001	"increased" ;
 	pato:0001241	pr:000027727 ;
-	dcterms:isPartOf	aop:445, aop:503, aop:504, aop:561, aop:565, aop:609, aop:623, aop:637, aop:639, aop:640, aop:641 .
+	dcterms:isPartOf	aop:445, aop:503, aop:504, aop:561, aop:565, aop:609, aop:623, aop:637, aop:639, aop:640, aop:641, aop:658 .
 
 aop.events:2023
 	a	aopo:KeyEvent ;
@@ -120634,7 +120651,7 @@ aop.events:1812
 	dcterms:alternative	"Increase, Cyt c release" ;
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Cellular""" ;
-	dcterms:isPartOf	aop:464, aop:647 .
+	dcterms:isPartOf	aop:464 .
 
 aop.events:2045
 	a	aopo:KeyEvent ;
@@ -123975,7 +123992,7 @@ Taxonomic: Primarily studied in laboratory rodents and humans. &nbsp;Plausible f
 	go:0008150	go:0046879 ;
 	pato:0000001	"increased" ;
 	pato:0001241	cl:0011111 ;
-	dcterms:isPartOf	aop:496, aop:623, aop:637, aop:639, aop:640 .
+	dcterms:isPartOf	aop:496, aop:623, aop:637, aop:639, aop:640, aop:658 .
 
 aop.events:2139
 	a	aopo:KeyEvent ;
@@ -127997,7 +128014,7 @@ Taxonomic: Primarily studied in laboratory rodents and humans. &nbsp;Plausible f
 	go:0008150	mp:0005182 ;
 	pato:0000001	"increased" ;
 	pato:0001241	chebio:16469 ;
-	dcterms:isPartOf	aop:561, aop:623, aop:637, aop:639, aop:640 .
+	dcterms:isPartOf	aop:561, aop:623, aop:637, aop:639, aop:640, aop:658 .
 
 aop.events:2295
 	a	aopo:KeyEvent ;
@@ -130174,7 +130191,7 @@ Taxonomic: Primarily studied in laboratory rodents and humans. &nbsp;Plausible f
 	go:0008150	go:0090030 ;
 	pato:0000001	"increased" ;
 	pato:0001241	chebio:16469 ;
-	dcterms:isPartOf	aop:623, aop:637, aop:639, aop:640 .
+	dcterms:isPartOf	aop:623, aop:637, aop:639, aop:640, aop:658 .
 
 aop.events:2410
 	a	aopo:KeyEvent ;
@@ -130879,6 +130896,18 @@ Sex: Not applicable.
 	go:0008150	go:0048316 ;
 	pato:0000001	"decreased" ;
 	dcterms:isPartOf	aop:657 .
+
+aop.events:2463
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2463 ;
+	rdfs:label	"KE 2463" ;
+	foaf:page	<https://identifiers.org/aop.events/2463> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2463> ;
+	dc:title	"Early vaginal opening" ;
+	dcterms:alternative	"Early vaginal opening" ;
+	dc:source	"AOPWiki" ;
+	nci:C25664	"""Organ""" ;
+	dcterms:isPartOf	aop:658 .
 
 <888_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	go:0006120 ;
@@ -180598,9 +180627,126 @@ aop.relationships:1769
 	foaf:page	<https://identifiers.org/aop.relationships/1769> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.relationships/1769> ;
 	dcterms:created	"2018-09-18T20:55:24" ;
-	dcterms:modified	"2018-09-18T20:55:24" ;
+	dcterms:modified	"2026-11-03T03:27:56" ;
 	aopo:has_upstream_key_event	aop.events:221 ;
 	aopo:has_downstream_key_event	aop.events:78 ;
+	dc:description	"""Vitellogenin is a hepatically derived protein in maternal circulation that is sequestered by vitellogenic oocytes, where it accounts for the greatest proportion of oocyte growth and yields yolk protein derivatives needed for early embryonic development; in teleosts, this uptake from the maternal circulation is selective and receptor-mediated (Tyler &amp; Lancaster, 1993). Reduced plasma vitellogenin is therefore expected to limit vitellogenin available for uptake into developing oocytes, and studies in fathead minnows show that reduced plasma vitellogenin is associated with reduced eggs per spawn, disrupted spawning, and reduced cumulative fecundity (Ankley et al., 2002; Li et al., 2011; Watanabe et al., 2016).
+
+This KER is supported most directly by short-term reproduction studies in female fathead minnows exposed to steroidogenesis inhibitors. In fadrozole-exposed females, concentration-dependent reductions in plasma vitellogenin occurred together with marked reductions in fecundity, and at higher concentrations the fish largely stopped spawning within 2 days of exposure (Ankley et al., 2002). In integrated analysis across five chemicals that reduce vitellogenin through different mechanisms, fecundity and plasma vitellogenin were strongly linearly related in female fathead minnows (Miller et al., 2007). A later oocyte growth dynamics model also predicted mean fecundity from plasma vitellogenin for several steroidogenesis inhibitors, further supporting a biologically based linkage between reduced circulating vitellogenin and reduced reproductive output (Watanabe et al., 2016).
+
+For this KER, direct evidence is strongest for cumulative fecundity, and somewhat more limited, but still persuasive, for spawning occurrence. In the fadrozole study, reduced fecundity reflected both fewer eggs per spawn at low concentration and cessation of spawning at higher concentrations, indicating that reduced plasma vitellogenin can manifest through more than one reproductive output metric (Ankley et al., 2002).
+
+Evidence Collection Strategy
+
+Scientific evidence supporting the causal relationships between each pair of key events was assembled through a combination of expert knowledge and AI-assisted literature search and synthesis. Specifically, EPA AI, using GPT 5.4, was used to identify, retrieve, and summarize relevant primary and secondary literature, and to draft the initial content of this page.&nbsp; Users of this page are advised that AI-assisted evidence assembly may introduce selection bias or gaps in coverage that differ from a fully systematic human-conducted review, and independent verification of the evidence base is encouraged.&nbsp; 
+
+Key search concepts represented in the evidence base include: &ldquo;plasma vitellogenin fecundity fathead minnow&rdquo;, &ldquo;fadrozole reproduction vitellogenin spawning&rdquo;, &ldquo;oocyte growth dynamics vitellogenin fecundity&rdquo;, and &ldquo;vitellogenin receptor oocyte uptake teleost&rdquo;. The final evidence base for this KER is listed in the References section.
+
+This was a targeted, mechanism-informed evidence assembly rather than a formal systematic review. Consequently, the evidence base is strong for fathead minnow and moderate for broader teleost extrapolation, but it is not exhaustive for all fish species.
+""" ;
+	nci:C80263	"""Biological plausibility for this KER is centered around vitellogenin as a hepatically derived protein in maternal circulation that is sequestered by vitellogenic oocytes during teleost vitellogenesis, where it accounts for the greatest proportion of oocyte growth and yields yolk protein derivatives needed for early embryonic development (Tyler &amp; Lancaster, 1993). In teleosts, this uptake from the maternal circulation is selective and receptor-mediated; Tyler and Lancaster (1993) identified specific vitellogenin receptors in rainbow trout follicle membranes, providing a mechanistic basis for linking circulating vitellogenin availability to oocyte growth. Consistent with this mechanism, Li et al. (2011) modeled oocyte growth after recruitment into the growth phase as dependent on vitellogenin uptake, with uptake rate proportional to plasma vitellogenin concentration and oocyte volume. In that framework, reduced plasma vitellogenin would be expected to reduce vitellogenin uptake by growing oocytes, slow their growth, and delay or prevent attainment of the size threshold required for spawning (Li et al., 2011). This provides a mechanistic basis for expecting reduced plasma vitellogenin to decrease eggs per spawn, disrupt spawning dynamics, and reduce cumulative fecundity (Li et al., 2011; Watanabe et al., 2016). Additional teleost support comes from Kishida and Specker (1993), who quantified vitellogenin in plasma and characterized it in oocyte extract in tilapia. Watanabe et al. (2016) further concluded that oocyte growth and development are driven by absorption of vitellogenin from plasma, reinforcing the mechanistic linkage between reduced circulating vitellogenin and reduced reproductive output.
+""" ;
+	edam:data_2042	"""Direct empirical support for this KER comes primarily from short-term reproduction studies in adult female fathead minnows. In the 21-day fadrozole assay, mean fecundity declined from 20.5 eggs/female/day in controls to 8.9, 1.5, and 1.2 eggs/female/day at 2, 10, and 50 &mu;g/L, respectively, while plasma vitellogenin also decreased in a concentration-dependent manner (Ankley et al., 2002). At 10 and 50 &mu;g/L, reduced fecundity was almost solely because the fish stopped spawning within 2 days of exposure; at 2 &mu;g/L, decreased fecundity reflected both a slight reduction in number of spawns and about a 50% decrease in eggs per spawn (Ankley et al., 2002). This study therefore provides direct evidence that reduced plasma vitellogenin was associated with both reduced cumulative fecundity and reduced spawning occurrence in reproductively active female fathead minnows (Ankley et al., 2002).
+
+Cross-chemical evidence indicates that this relationship is not unique to fadrozole. Using data from 21-day reproduction studies with 17&beta;-trenbolone, 17&alpha;-trenbolone, prochloraz, fenarimol, and fadrozole, Miller et al. (2007) found a highly significant linear relationship between fecundity and plasma vitellogenin concentration in female fathead minnows. This analysis shows that reduced plasma vitellogenin was consistently associated with reduced fecundity across chemicals with different upstream modes of action that converge on reduced plasma vitellogenin (Miller et al., 2007).
+
+Additional quantitative support comes from oocyte growth dynamics model evaluation against empirical fathead minnow data. Watanabe et al. (2016) reported that the model robustly predicted the fecundity of control fish and the impact of five steroidogenesis inhibitors, fadrozole, propiconazole, prochloraz, fenarimol, and trilostane, on reproduction metrics using plasma vitellogenin as the key input variable. The same study found weaker prediction for ketoconazole, with average fecundity generally overpredicted, and attributed this discrepancy to compensatory changes in plasma vitellogenin during exposure that were not represented in the simulation (Watanabe et al., 2016). Together, these studies support a strong empirical association, and moderate quantitative understanding, between reduced plasma vitellogenin and reduced reproductive output in female fathead minnows.
+""" ;
+	nci:C71478	"""Most direct quantitative evidence for this KER derives from fathead minnow assays. Extrapolation across fish taxa should be made cautiously because reproductive strategy can influence how reduced plasma vitellogenin is expressed in downstream reproductive metrics. Li et al. (2011) noted that oviparous fish include both total-spawning and batch-spawning species, and their oocyte growth dynamics model for fathead minnows used clutch size and spawning interval distributions specific to a batch-spawning teleost (Li et al., 2011). The same authors further noted that adaptation of the model to other batch- or total-spawning fishes would require modification of fish-specific parameters, including oocyte recruitment size, oocyte recruitment interval, and critical size for spawning (Li et al., 2011). Evidence is therefore strongest for batch-spawning teleosts, especially fathead minnow, and weaker for broader extrapolation to all fish taxa.
+
+Second, not all chemicals produce identical quantitative relationships. Watanabe et al. (2016) found that the vitellogenin-based model robustly predicted fecundity for several steroidogenesis inhibitors but overpredicted mean fecundity for ketoconazole-exposed fish, likely because compensatory responses increased plasma vitellogenin during prolonged exposure and were not represented in the model. This suggests that time-varying endocrine compensation can weaken prediction of fecundity from a single terminal plasma vitellogenin measurement (Ankley et al., 2007; Watanabe et al., 2016).
+
+Third, the evidence is stronger for reduced cumulative fecundity than for reduced spawning per se when considered across the full dataset. Ankley et al. (2002) directly documented spawning cessation at higher fadrozole concentrations and also distinguished effects on number of spawns and eggs per spawn at the lowest concentration. However, across many 21-day studies and their integrative analyses, fecundity is more consistently represented as total eggs over time, such as eggs/female/day or cumulative fecundity, than as separately quantified spawning frequency and eggs per spawn, particularly in group spawning designs where individual female contributions cannot always be resolved (Ankley et al., 2002; Watanabe et al., 2016). Consequently, the linkage to reduced spawning is well supported, but less uniformly quantified across the full dataset than the linkage to reduced cumulative fecundity.
+
+Fourth, plasma vitellogenin is often measured at the end of a 21-day assay, which can support correlation and prediction but may not capture time-varying endocrine dynamics during exposure. This is particularly important when compensatory responses alter plasma vitellogenin over time or when vitellogenin protein persists after the exposure pattern has changed (Watanabe et al., 2016; Craft et al., 2004).
+
+&nbsp;
+""" ;
+	nci:C103159	"""Scientific evidence supporting the causal relationships between each pair of key events was assembled through a combination of expert knowledge and AI-assisted literature search and synthesis. Specifically, EPA AI, using GPT 5.4, was used to identify, retrieve, and summarize relevant primary and secondary literature, and to draft the initial content of this page.&nbsp; Users of this page are advised that AI-assisted evidence assembly may introduce selection bias or gaps in coverage that differ from a fully systematic human-conducted review, and independent verification of the evidence base is encouraged.&nbsp; 
+
+Key search concepts represented in the evidence base include: &ldquo;plasma vitellogenin fecundity fathead minnow&rdquo;, &ldquo;fadrozole reproduction vitellogenin spawning&rdquo;, &ldquo;oocyte growth dynamics vitellogenin fecundity&rdquo;, and &ldquo;vitellogenin receptor oocyte uptake teleost&rdquo;. The final evidence base for this KER is listed in the References section.
+
+This was a targeted, mechanism-informed evidence assembly rather than a formal systematic review. Consequently, the evidence base is strong for fathead minnow and moderate for broader teleost extrapolation, but it is not exhaustive for all fish species.
+""" ;
+	nci:C68821	"""
+
+	
+		
+			Modulating Factor (MF)
+			MF Specification
+			Effect(s) on the KER
+			Reference(s)
+		
+	
+	
+		
+			
+			Time-varying endocrine compensation
+
+			&nbsp;
+
+			Oocyte developmental stage
+			
+			
+			Compensatory responses to steroidogenesis inhibition, especially during prolonged ketoconazole exposure
+
+			&nbsp;
+
+			Vitellogenic state and stage structure of oocyte cohorts within the ovary
+			
+			
+			Time-varying compensation can increase or stabilize plasma vitellogenin relative to what would be expected from the initial upstream perturbation. This can weaken quantitative prediction of reduced fecundity from a single terminal plasma vitellogenin measurement by altering the apparent response-response relationship between the two KEs.
+
+			Reduced plasma vitellogenin is expected to have the greatest effect on actively growing vitellogenic oocytes, because oocyte growth during vitellogenesis depends on sequestration of vitellogenin from maternal circulation. Consequently, ovarian stage structure may influence both the delay and the magnitude of downstream effects on fecundity and spawning.
+			
+			
+			Ankley et al. (2007); Watanabe et al. (2016)
+
+			Tyler and Lancaster (1993); Ankley et al. (2002)
+			
+		
+	
+
+
+
+&nbsp;
+""" ;
+	nci:C17469	"""Taxonomic Applicability
+
+The KER is best supported in teleost fish, especially the fathead minnow (Pimephales promelas), where direct measurements of plasma vitellogenin and reproductive output have been made in 21-day reproduction studies (Ankley et al., 2002; Miller et al., 2007; Watanabe et al., 2016). Mechanistic support from other teleosts strengthens broader applicability within this group. In rainbow trout, follicle membranes contain specific receptors for vitellogenin and vitellogenin uptake into teleost oocytes is receptor-mediated (Tyler &amp; Lancaster, 1993). In tilapia, vitellogenin was quantified in plasma and characterized in oocyte extract, supporting the broader relevance of this biology within teleosts (Kishida &amp; Specker, 1993).
+
+Life Stage Applicability
+
+This KER is most applicable to adult, reproductively mature females undergoing active vitellogenesis and spawning. The downstream consequences of reduced plasma vitellogenin depend on the presence of vitellogenic oocyte cohorts, because oocyte growth during vitellogenesis relies on sequestration of vitellogenin from maternal circulation and disruption of this process is associated with impaired follicle maturation and reduced fecundity in spawning females (Tyler &amp; Lancaster, 1993; Ankley et al., 2002).
+
+Sex Applicability
+
+This KER is specific to female fish because vitellogenin functions physiologically as the precursor of egg yolk proteins that support oocyte growth and egg production in oviparous vertebrates (Miller et al., 2007). Although vitellogenin can be induced and measured in males as a biomarker of estrogen exposure, the linkage to fecundity and spawning is relevant to females producing oocytes (Miller et al., 2007; Tyler et al., 1996).
+""" ;
+	edam:operation_3799	"""Miller et al. (2007) reported a highly significant linear relationship between plasma vitellogenin concentration and fecundity in female fathead minnows across five 21-day studies, with fecundity = -0.042 + 0.95 &times; VTG, r = 0.94, and r2 = 0.88 (Miller et al., 2007). This provides a strong quantitative basis for the KER because the relationship was derived from chemicals that affect different nodes in the hypothalamic-pituitary-gonadal axis and converge on depressed plasma vitellogenin concentrations in female fish (Miller et al., 2007).
+
+The tabulated values in Miller et al. (2007) also show that large reductions in plasma vitellogenin were associated with large reductions in fecundity. For fadrozole, median female plasma vitellogenin declined from 15.1 mg/mL in controls to 7.6, 1.0, and 0.0 mg/mL at 2, 10, and 50 &mu;g/L, while fecundity declined from 20.5 to 8.9, 0.0, and 0.0 eggs/female/day, respectively (Miller et al., 2007). Similar concentration-related reductions in both plasma vitellogenin and fecundity were also evident for prochloraz and fenarimol, supporting quantitative convergence across chemicals (Miller et al., 2007).
+
+Li et al. (2011) developed an oocyte growth dynamics model in which oocyte batches grow by absorbing vitellogenin, water, and other essential nutrients until they reach a threshold volume required for spawning (Li et al., 2011). Watanabe et al. (2016) subsequently implemented and evaluated this framework, and concluded that plasma vitellogenin can serve as the primary input parameter for predicting average fecundity in fathead minnows, with robust performance for several steroidogenesis inhibitors (Watanabe et al., 2016).
+
+The major quantitative limitation is that a single end-of-test plasma vitellogenin measurement may not fully capture time-varying endocrine responses during exposure, especially when compensation or delayed protein clearance occurs. Quantitative confidence is therefore greater when plasma vitellogenin measurements reflect exposure-period dynamics rather than a terminal value alone (Watanabe et al., 2016; Craft et al., 2004).
+""" ;
+	edam:operation_3438	"""Response-response data for this KER are available from both direct empirical studies and model evaluation. Miller et al. (2007) reported a highly significant linear relationship between plasma vitellogenin concentration and fecundity in female fathead minnows across five 21-day reproduction studies, with the model fecundity = -0.042 + 0.95 &times; VTG, r = 0.94, and r2 = 0.88 (Miller et al., 2007). This provides the clearest quantitative description of how decreasing plasma vitellogenin is associated with decreasing cumulative fecundity.
+
+Data from the fadrozole study show a similar graded relationship. Median plasma vitellogenin declined from 15.1 mg/mL in controls to 7.6, 1.0, and 0.0 mg/mL at 2, 10, and 50 &mu;g/L, while fecundity declined from 20.5 to 8.9, 0.0, and 0.0 eggs/female/day, respectively (Miller et al., 2007). In the corresponding primary study, reduced fecundity at 2 &mu;g/L reflected both fewer eggs per spawn and a slight reduction in number of spawns, whereas at 10 and 50 &mu;g/L the fish stopped spawning within 2 days of exposure (Ankley et al., 2002). These data indicate that the downstream response can be expressed as graded reduction in cumulative fecundity at moderate upstream change and loss of spawning at more severe upstream change.
+
+Watanabe et al. (2016) further evaluated this relationship using an oocyte growth dynamics model parameterized with plasma vitellogenin as the primary input variable. The model robustly predicted fecundity for control fish and for fish exposed to fadrozole, propiconazole, prochloraz, fenarimol, and trilostane, supporting the quantitative linkage between measured plasma vitellogenin and downstream reproductive output (Watanabe et al., 2016). Prediction was weaker for ketoconazole, indicating that time-varying compensation can modify the apparent response-response relationship when only terminal plasma vitellogenin values are used (Watanabe et al., 2016).
+""" ;
+	nci:C25207	"""Available evidence indicates that downstream changes in cumulative fecundity and spawning can occur within days in strongly affected female fathead minnows under conditions associated with marked reduction in plasma vitellogenin.
+
+In the fadrozole study, fish in the 10 and 50 &mu;g/L treatments almost stopped spawning within 2 days of exposure, indicating that the downstream reproductive effect can emerge very quickly when vitellogenin is strongly suppressed (Ankley et al., 2002). At the lower concentration, the effect manifested over the assay as both fewer spawns and fewer eggs per spawn (Ankley et al., 2002).
+
+The mechanistic time-scale is biologically consistent with the need for continuously available circulating vitellogenin to support growth of maturing oocyte cohorts. Li et al. and Watanabe et al. model oocyte growth as a continuous vitellogenin-dependent process that determines when oocytes reach spawning threshold size, which provides a basis for understanding why sustained vitellogenin reduction can alter both spawning interval and total egg output over a 21-day test (Li et al., 2011; Watanabe et al., 2016).
+
+A remaining uncertainty is that plasma vitellogenin is often measured terminally rather than serially. Thus, empirical precision on lag time between vitellogenin decline and fecundity decline is limited in many assays, even though temporal concordance is supported overall (Craft et al., 2004; Watanabe et al., 2016).
+""" ;
+	nci:C25343	"""No well-characterized feedforward or feedback loop has been identified at the level of vitellogenin uptake into oocytes for this KER. The principal feedback influencing this relationship appears to occur upstream in the endocrine axis, where compensatory responses to steroidogenesis inhibition can partially offset expected reductions in plasma vitellogenin and thereby alter the apparent strength of the linkage to fecundity (Ankley et al., 2007; Watanabe et al., 2016). Watanabe et al. (2016) specifically concluded that overprediction of fecundity for ketoconazole likely reflected compensatory changes in plasma vitellogenin that were not represented in the model
+""" ;
 	ncbitaxon:131567	"WikiUser_6" ;
 	dcterms:isPartOf	aop:271, aop:289 .
 
@@ -215697,7 +215843,7 @@ Following initial human effort in AOP development, artificial Intelligence (AI)-
 	pato:0000047	"Male", "Female" ;
 	aopo:LifeStageContext	"Adult, reproductively mature", "Juvenile" ;
 	ncbitaxon:131567	"WikiUser_26", "WikiUser_17", "WikiUser_6" ;
-	dcterms:isPartOf	aop:445, aop:623, aop:637, aop:639, aop:640 .
+	dcterms:isPartOf	aop:445, aop:623, aop:637, aop:639, aop:640, aop:658 .
 
 aop.relationships:2627
 	a	aopo:KeyEventRelationship ;
@@ -219097,7 +219243,7 @@ aop.relationships:3050
 	dcterms:modified	"2023-09-14T09:02:15" ;
 	aopo:has_upstream_key_event	aop.events:1812 ;
 	aopo:has_downstream_key_event	aop.events:2188 ;
-	dcterms:isPartOf	aop:464, aop:647 .
+	dcterms:isPartOf	aop:464 .
 
 aop.relationships:3051
 	a	aopo:KeyEventRelationship ;
@@ -257401,7 +257547,7 @@ Taxonomic: Primarily studied in humans and laboratory rodents. &nbsp;Plausible f
 	pato:0000047	"Unspecific" ;
 	aopo:LifeStageContext	"Adult, reproductively mature", "Juvenile" ;
 	ncbitaxon:131567	"WikiUser_17" ;
-	dcterms:isPartOf	aop:623, aop:637, aop:639, aop:640 .
+	dcterms:isPartOf	aop:623, aop:637, aop:639, aop:640, aop:658 .
 
 aop.relationships:3715
 	a	aopo:KeyEventRelationship ;
@@ -257579,7 +257725,7 @@ Taxonomic: Primarily studied in humans and laboratory rodents. &nbsp;Plausible f
 	pato:0000047	"Unspecific" ;
 	aopo:LifeStageContext	"Adult, reproductively mature", "Juvenile" ;
 	ncbitaxon:131567	"WikiUser_17" ;
-	dcterms:isPartOf	aop:623, aop:637, aop:639, aop:640 .
+	dcterms:isPartOf	aop:623, aop:637, aop:639, aop:640, aop:658 .
 
 aop.relationships:3716
 	a	aopo:KeyEventRelationship ;
@@ -257799,7 +257945,7 @@ Taxonomic: Primarily studied in humans and laboratory rodents. &nbsp;Plausible f
 	pato:0000047	"Female" ;
 	aopo:LifeStageContext	"Adult, reproductively mature", "Juvenile" ;
 	ncbitaxon:131567	"WikiUser_17" ;
-	dcterms:isPartOf	aop:623, aop:637, aop:639, aop:640 .
+	dcterms:isPartOf	aop:623, aop:637, aop:639, aop:640, aop:658 .
 
 aop.relationships:3717
 	a	aopo:KeyEventRelationship ;
@@ -258029,7 +258175,7 @@ Taxonomic: Primarily studied in humans and laboratory rodents. &nbsp;Plausible f
 	pato:0000047	"Female" ;
 	aopo:LifeStageContext	"Adult, reproductively mature", "Juvenile" ;
 	ncbitaxon:131567	"WikiUser_17" ;
-	dcterms:isPartOf	aop:623, aop:637, aop:639, aop:640 .
+	dcterms:isPartOf	aop:623, aop:637, aop:639, aop:640, aop:658 .
 
 aop.relationships:3718
 	a	aopo:KeyEventRelationship ;
@@ -258984,7 +259130,7 @@ aop.relationships:3761
 	foaf:page	<https://identifiers.org/aop.relationships/3761> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3761> ;
 	dcterms:created	"2026-03-26T11:42:35" ;
-	dcterms:modified	"2026-07-09T11:11:35" ;
+	dcterms:modified	"2026-11-02T12:22:37" ;
 	aopo:has_upstream_key_event	aop.events:2294 ;
 	aopo:has_downstream_key_event	aop.events:2415 ;
 	dc:description	"""Estradiol (E2) is a key signalling estrogen hormone in the hypothalamic&ndash;pituitary-gonadal (HPG) axis cueing the initiation of development of reproductive organs and puberty in females.
@@ -259152,6 +259298,22 @@ Puberty occurs when reproductive organs mature and hormone levels are altered to
 	Taxonomic differences in onset of puberty
 	
 		Age of typical onset of puberty and detection methods vary considerably in different taxonomic groups (Laffen et al. 2018) with laboratory rodents and humans most studied; care should be taken to choose appropriate methods for the species of interest, with recognition of key differences in the hypothalamic&ndash;pituitary-gonadal (HPG) axis among different vertebrate groups.
+		Vaginal opening (VO) is commonly used as a marker of puberty onset in rodents. However, its reliability as an indicator varies between species. In rat models, VO is a well-established and reliable indicator, as it closely coincides with the first ovulation, typically within a one-day span, making it a useful proxy for assessing puberty onset under physiological conditions. In contrast, the situation in mice is more complex. In this species, VO can precede first ovulation by several days, often up to a week, indicating a weaker relationship between the two events (Gaytan et al., 2017). 
+	
+	
+	Hormonal effects independent of HPG axis
+	
+		In laboratory rodents, early VO can be induced locally without central puberty onset by external estrogens (Nass et al., 1984), androgens (Iwasa et al., 2015 and 2016; Lephart et al., 1989; Nass et al., 1984) or endocrine disrupting compounds (Posobiec et al., 2015; Silbergeld et al., 2002). The plausible mechanisms of induction of early VO includes local interaction with ER in vaginal tissue for estrogens and estrogenic compounds (Silbergeld et al., 2002), whereas aromatizable androgens (testosterone and androstendione) and androgenic compounds are converted to estrogens via aromatase and further interact with ER locally (Lephart et al., 1989). Therefore, VO might not be&nbsp; a reliable marker for puberty onset per se (Silbergeld et al., 2002) and should be interpreted together with other pubertal endpoints, including decreased age at first estrus, changes in estrus cyclicity and organ weight and histopathological changes in uterus and ovaries (US EPA OPPTS 890.1450).
+	
+	
+	Human relevance 
+	
+		VO is not a relevant marker of puberty onset in humans, since in humans VO is present at birth (Nguyen et al., 2025). Apart from the VO, when considering rodent models as a human-relevant models for puberty onset, it is important to consider that there are key differences in HPG axis programming between humans and rodents. Here, we briefly discuss two examples of differences: 
+		
+			Kisspeptin neuron distribution and function: Rodent females have functionally distinct kisspeptin populations - KNDy neurons in the ARC regulate negative feedback and GnRH pulsatility, while AVPV controls positive feedback and GnRH surge (Hu et al., 2015). In humans, kisspeptin neurons are located in the preoptic and infundibular areas but lack clear functional segregation into distinct populations with specific functions as in rodents (Skorupskaite et al., 2014). 
+			Developmental timing: In humans, critical stage of HPG axis programming occurs primarily prenatally (Bizzarri &amp; Cappa, 2020). In rodents, KNDy neuron maturation and AVPV growth and development continue postnatally, during mini-puberty and up to the pubertal stage (Roa et al., 2022; Velasco et al., 2022). 
+		
+		
 	
 	
 
@@ -259164,7 +259326,7 @@ Empirical studies are focused on increased plasma estradiol and resulting precio
 
 Authors of KER 3761 did a further evaluation of published peer-reviewed literature to provide additional evidence in support of the key event relationship. &nbsp;The literature used to support this KER began with the test guidelines and followed to primary, secondary, and/or tertiary works concerning the relevant underlying biology. &nbsp;In addition, search engines were used to target journal articles with term &lsquo;Estradiol&rsquo; and &lsquo;Precocious puberty&rsquo; to locate representative empirical studies that support the key event relationship.
 
-Following initial human effort in AOP development, artificial Intelligence (AI)-assisted literature search and synthesis, using EPA-AI GPT5, was used to identify additional literature, and draft Uncertainties and Inconsistencies content of this KER page. Additionally, EPA-AI GPT5 was also used to check for additional text improvement in other sections. All content generated through this process were reviewed and verified by the KER author against literature sources, prior to inclusion.
+Following initial human effort in AOP development, artificial Intelligence (AI)-assisted literature search and synthesis, using EPA-AI GPT5, was used to identify additional literature, and draft Uncertainties and Inconsistencies content of this KER page. Additionally, EPA-AI GPT5 was also used to check for additional text improvement in other sections. All content generated through this process were reviewed and verified by the KER author against literature sources, prior to inclusion.&nbsp;&nbsp;Anna Beronius, Henrieta Hlisnikova, and Anna Itkonen made substantial improvements to the Uncertainties and Inconsistencies content by adding bullets related to early vaginal opening.
 """ ;
 	nci:C17469	"""Life Stage: Applies to adult, reproductively mature and juveniles.
 
@@ -260282,39 +260444,27 @@ aop.relationships:3831
 	aopo:has_downstream_key_event	aop.events:1995 ;
 	dcterms:isPartOf	aop:646 .
 
-aop.relationships:3837
+aop.relationships:3870
 	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3837 ;
-	rdfs:label	"KER 3837" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3837> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3837> ;
-	dcterms:created	"2026-08-20T08:05:01" ;
-	dcterms:modified	"2026-08-20T08:05:01" ;
+	dc:identifier	aop.relationships:3870 ;
+	rdfs:label	"KER 3870" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3870> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3870> ;
+	dcterms:created	"2026-11-05T03:13:33" ;
+	dcterms:modified	"2026-11-05T03:13:33" ;
 	aopo:has_upstream_key_event	aop.events:1445 ;
-	aopo:has_downstream_key_event	aop.events:1812 ;
+	aopo:has_downstream_key_event	aop.events:2188 ;
 	dcterms:isPartOf	aop:647 .
 
-aop.relationships:3838
+aop.relationships:3871
 	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3838 ;
-	rdfs:label	"KER 3838" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3838> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3838> ;
-	dcterms:created	"2026-08-20T08:05:13" ;
-	dcterms:modified	"2026-08-20T08:05:13" ;
+	dc:identifier	aop.relationships:3871 ;
+	rdfs:label	"KER 3871" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3871> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3871> ;
+	dcterms:created	"2026-11-05T03:14:11" ;
+	dcterms:modified	"2026-11-05T03:14:11" ;
 	aopo:has_upstream_key_event	aop.events:1767 ;
-	aopo:has_downstream_key_event	aop.events:1815 ;
-	dcterms:isPartOf	aop:647 .
-
-aop.relationships:3839
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3839 ;
-	rdfs:label	"KER 3839" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3839> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3839> ;
-	dcterms:created	"2026-08-20T08:05:45" ;
-	dcterms:modified	"2026-08-20T08:05:45" ;
-	aopo:has_upstream_key_event	aop.events:1815 ;
 	aopo:has_downstream_key_event	aop.events:2188 ;
 	dcterms:isPartOf	aop:647 .
 
@@ -260960,6 +261110,18 @@ aop.relationships:3868
 	aopo:has_upstream_key_event	aop.events:2461 ;
 	aopo:has_downstream_key_event	aop.events:2462 ;
 	dcterms:isPartOf	aop:657 .
+
+aop.relationships:3869
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3869 ;
+	rdfs:label	"KER 3869" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3869> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3869> ;
+	dcterms:created	"2026-11-02T05:11:17" ;
+	dcterms:modified	"2026-11-02T05:11:17" ;
+	aopo:has_upstream_key_event	aop.events:2294 ;
+	aopo:has_downstream_key_event	aop.events:2463 ;
+	dcterms:isPartOf	aop:658 .
 
 ncbitaxon:10116
 	a	ncbitaxon:131567 ;

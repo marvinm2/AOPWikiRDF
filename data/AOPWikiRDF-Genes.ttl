@@ -2825,6 +2825,9 @@ aop.relationships:1732	edam:data_1025	hgnc:3449,hgnc:3255,hgnc:2726,hgnc:791 ;
 aop.relationships:2768	edam:data_1025	hgnc:1499 ;
 	:geneDetectedByNER	hgnc:1499 .
 
+aop.relationships:1769	edam:data_1025	hgnc:4552 ;
+	:geneDetectedByRegex	hgnc:4552 .
+
 aop.relationships:1981	edam:data_1025	hgnc:10447,hgnc:3467,hgnc:7765 ;
 	:geneDetectedByNER	hgnc:10447,hgnc:3467,hgnc:7765 .
 
@@ -10994,6 +10997,14 @@ hgnc:6857	a	edam:data_2298, edam:data_1025 ;
 	dc:source	"HGNC" ;
 	skos:exactMatch	ncbigene:4217,ensembl:ENSG00000197442,uniprot:Q99683,uniprot:A0A8V8TMH5 ;
 	owl:sameAs	ncbigene:4217,ensembl:ENSG00000197442,uniprot:Q99683,uniprot:A0A8V8TMH5.
+
+hgnc:4552	a	edam:data_2298, edam:data_1025 ;
+	rdfs:label	"GPT" ;
+	edam:data_2298	"4552" ;
+	dc:identifier	"hgnc:4552" ;
+	dc:source	"HGNC" ;
+	skos:exactMatch	ncbigene:2875,ensembl:ENSG00000167701,uniprot:P24298 ;
+	owl:sameAs	ncbigene:2875,ensembl:ENSG00000167701,uniprot:P24298.
 
 hgnc:5172	a	edam:data_2298, edam:data_1025 ;
 	rdfs:label	"HR" ;
@@ -21393,14 +21404,6 @@ hgnc:4298	a	edam:data_2298, edam:data_1025 ;
 	skos:exactMatch	ncbigene:2720,ensembl:ENSG00000170266,uniprot:C9J4G9,uniprot:F8WEN1,uniprot:C9JF15,uniprot:P16278,uniprot:C9JWX1,uniprot:E7EQ29,uniprot:F8WF40,uniprot:C9J539 ;
 	owl:sameAs	ncbigene:2720,ensembl:ENSG00000170266,uniprot:C9J4G9,uniprot:F8WEN1,uniprot:C9JF15,uniprot:P16278,uniprot:C9JWX1,uniprot:E7EQ29,uniprot:F8WF40,uniprot:C9J539.
 
-hgnc:4552	a	edam:data_2298, edam:data_1025 ;
-	rdfs:label	"GPT" ;
-	edam:data_2298	"4552" ;
-	dc:identifier	"hgnc:4552" ;
-	dc:source	"HGNC" ;
-	skos:exactMatch	ncbigene:2875,ensembl:ENSG00000167701,uniprot:P24298 ;
-	owl:sameAs	ncbigene:2875,ensembl:ENSG00000167701,uniprot:P24298.
-
 hgnc:24157	a	edam:data_2298, edam:data_1025 ;
 	rdfs:label	"ACOT7" ;
 	edam:data_2298	"24157" ;
@@ -31383,6 +31386,12 @@ ncbigene:4217	a	edam:data_1027, edam:data_1025 ;
 	dc:source	"Entrez Gene" ;
 	rdfs:label	"MAP3K5".
 
+ncbigene:2875	a	edam:data_1027, edam:data_1025 ;
+	edam:data_1027	"2875";
+	dc:identifier	"ncbigene:2875";
+	dc:source	"Entrez Gene" ;
+	rdfs:label	"GPT".
+
 ncbigene:55806	a	edam:data_1027, edam:data_1025 ;
 	edam:data_1027	"55806";
 	dc:identifier	"ncbigene:55806";
@@ -39284,12 +39293,6 @@ ncbigene:2720	a	edam:data_1027, edam:data_1025 ;
 	dc:identifier	"ncbigene:2720";
 	dc:source	"Entrez Gene" ;
 	rdfs:label	"GLB1".
-
-ncbigene:2875	a	edam:data_1027, edam:data_1025 ;
-	edam:data_1027	"2875";
-	dc:identifier	"ncbigene:2875";
-	dc:source	"Entrez Gene" ;
-	rdfs:label	"GPT".
 
 ncbigene:11332	a	edam:data_1027, edam:data_1025 ;
 	edam:data_1027	"11332";
@@ -48015,6 +48018,12 @@ ensembl:ENSG00000197442	a	edam:data_1033, edam:data_1025 ;
 	dc:source	"Ensembl" ;
 	rdfs:label	"MAP3K5".
 
+ensembl:ENSG00000167701	a	edam:data_1033, edam:data_1025 ;
+	edam:data_1033	"ENSG00000167701";
+	dc:identifier	"ensembl:ENSG00000167701";
+	dc:source	"Ensembl" ;
+	rdfs:label	"GPT".
+
 ensembl:ENSG00000168453	a	edam:data_1033, edam:data_1025 ;
 	edam:data_1033	"ENSG00000168453";
 	dc:identifier	"ensembl:ENSG00000168453";
@@ -55850,12 +55859,6 @@ ensembl:ENSG00000170266	a	edam:data_1033, edam:data_1025 ;
 	dc:identifier	"ensembl:ENSG00000170266";
 	dc:source	"Ensembl" ;
 	rdfs:label	"GLB1".
-
-ensembl:ENSG00000167701	a	edam:data_1033, edam:data_1025 ;
-	edam:data_1033	"ENSG00000167701";
-	dc:identifier	"ensembl:ENSG00000167701";
-	dc:source	"Ensembl" ;
-	rdfs:label	"GPT".
 
 ensembl:ENSG00000097021	a	edam:data_1033, edam:data_1025 ;
 	edam:data_1033	"ENSG00000097021";
@@ -87332,6 +87335,12 @@ uniprot:A0A8V8TMH5	a	edam:data_2291, edam:data_1025 ;
 	dc:identifier	"uniprot:A0A8V8TMH5";
 	dc:source	"UniProt" ;
 	rdfs:label	"MAP3K5".
+
+uniprot:P24298	a	edam:data_2291, edam:data_1025 ;
+	edam:data_2291	"P24298";
+	dc:identifier	"uniprot:P24298";
+	dc:source	"UniProt" ;
+	rdfs:label	"GPT".
 
 uniprot:E5RK80	a	edam:data_2291, edam:data_1025 ;
 	edam:data_2291	"E5RK80";
@@ -125330,12 +125339,6 @@ uniprot:C9J539	a	edam:data_2291, edam:data_1025 ;
 	dc:identifier	"uniprot:C9J539";
 	dc:source	"UniProt" ;
 	rdfs:label	"GLB1".
-
-uniprot:P24298	a	edam:data_2291, edam:data_1025 ;
-	edam:data_2291	"P24298";
-	dc:identifier	"uniprot:P24298";
-	dc:source	"UniProt" ;
-	rdfs:label	"GPT".
 
 uniprot:O00154	a	edam:data_2291, edam:data_1025 ;
 	edam:data_2291	"O00154";
