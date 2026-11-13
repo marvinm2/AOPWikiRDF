@@ -2,7 +2,7 @@
 #
 # Virtuoso Loader Script (AOP-Wiki single-graph endpoint, tgx1 swarm)
 #
-# Ported from strato1 /home/MarvinMartens/AOP-Wiki-EP/db/data/load.sh.
+# Ported from the strato1 AOP-Wiki-EP db/data/load.sh.
 # Only change vs strato1: ld_dir uses the absolute /database/data path (the
 # swarm mount is /mnt/gluster/docker/aopwiki-snorql/virtuoso-data:/database),
 # which is included in VIRT_Parameters_DirsAllowed.
