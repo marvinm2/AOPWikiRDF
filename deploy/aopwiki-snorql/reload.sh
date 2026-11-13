@@ -2,7 +2,7 @@
 #
 # AOP-Wiki single-graph endpoint — weekly RDF reload (tgx1/tgx2 swarm)
 #
-# Swarm port of strato1 /home/MarvinMartens/AOP-Wiki-EP/aopwiki.sh.
+# Swarm port of the strato1 AOP-Wiki-EP aopwiki.sh.
 # The aopwiki-snorql_virtuoso service is NOT node-pinned, so this cron is
 # installed on BOTH nodes. The guard below makes only the node that currently
 # hosts the Virtuoso task do the work; the other node exits immediately. Because
