@@ -79529,6 +79529,38 @@ aop:658
 	aopo:has_molecular_initiating_event	aop.events:1065 ;
 	aopo:has_adverse_outcome	aop.events:2463 .
 
+aop:659
+	a	aopo:AdverseOutcomePathway ;
+	dc:identifier	aop:659 ;
+	rdfs:label	"AOP 659" ;
+	rdfs:seeAlso	<https://identifiers.org/aop/659> ;
+	foaf:page	<https://identifiers.org/aop/659> ;
+	dc:title	"Renal tubular epithelial injury leading to renal interstitial fibrosis via maladaptive repair" ;
+	dcterms:alternative	"Renal tubular injury to fibrosis via maladaptive repair" ;
+	dc:source	"AOPWiki" ;
+	dcterms:created	"2026-11-08T16:45:42" ;
+	dcterms:modified	"2026-11-09T02:37:02" ;
+	dc:description	"""Renal interstitial fibrosis is an important histopathological outcome in the assessment of nephrotoxic substances. Although renal tubular epithelial cells have substantial regenerative capacity, recovery from tubular injury does not always result in restoration of normal epithelial structure and function. Understanding why some injured tubular epithelial cells undergo successful repair whereas others persist in an abnormal state is an important challenge in renal toxicology.
+
+This AOP is being developed to organize and integrate mechanistic evidence concerning maladaptive renal tubular epithelial repair and its contribution to renal interstitial fibrosis. Particular emphasis is placed on the proximal tubule, which is a major target of nephrotoxic substances. Rather than focusing on a specific chemical or molecular initiating event, the AOP aims to provide a framework applicable to renal tubular injury induced by different nephrotoxic mechanisms.
+
+This AOP is intended to provide a framework for organizing and evaluating measurable biological events associated with maladaptive tubular repair and for interpreting renal toxicity findings from a mechanistic perspective. Such a framework may also contribute to the development and evaluation of in vitro renal toxicity models and integrated approaches to chemical safety assessment.
+""" ;
+	dc:creator	"""Kohei Matsushita
+
+National Institute of Health Sciences, Japan
+""" ;
+	dcterms:abstract	"""Renal interstitial fibrosis is a major pathological consequence of persistent or incompletely resolved renal tubular injury and is an important outcome in the assessment of nephrotoxic substances. Although renal tubular epithelial cells possess substantial regenerative capacity, some injured cells fail to restore their normal differentiated phenotype and instead undergo maladaptive repair. This adverse outcome pathway (AOP) describes a proposed sequence of biological events linking renal tubular epithelial injury to renal interstitial fibrosis through the persistence of tubular epithelial cells exhibiting a failed-repair phenotype. The molecular initiating event is not specified, as multiple nephrotoxic stressors may converge on tubular epithelial injury.
+
+The proposed pathway involves renal tubular epithelial injury, an increase in tubular epithelial cells exhibiting a failed-repair phenotype, and subsequent renal interstitial fibrosis as the adverse outcome (AO). Failed-repair tubular epithelial cells, particularly those originating from the proximal tubule, may exhibit persistent alterations in differentiation status and proinflammatory and profibrotic signaling. Persistent signaling from maladaptively repaired tubular epithelial cells may contribute to interstitial inflammation, fibroblast activation, and extracellular matrix accumulation.
+
+Evidence from experimental kidney injury models, histopathological studies, and single-cell and single-nucleus transcriptomic analyses supports the association between failed tubular repair and renal fibrosis. Although substantial evidence supports a role for maladaptive tubular repair in renal fibrosis, the quantitative relationships between key events and the extent to which this pathway applies across different nephrotoxic stressors remain to be fully characterized. This AOP aims to provide a mechanistic framework for organizing existing evidence and identifying measurable endpoints relevant to the assessment of chemical-induced renal fibrosis.
+""" ;
+	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
+	aopo:has_key_event	aop.events:2465, aop.events:2464, aop.events:2404 ;
+	aopo:has_key_event_relationship	aop.relationships:3872, aop.relationships:3873 ;
+	aopo:has_adverse_outcome	aop.events:2404 .
+
 aop.events:888
 	a	aopo:KeyEvent ;
 	dc:identifier	aop.events:888 ;
@@ -130078,7 +130110,7 @@ aop.events:2404
 	dcterms:alternative	"Increase, kidney fibrosis" ;
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Tissue""" ;
-	dcterms:isPartOf	aop:622 .
+	dcterms:isPartOf	aop:622, aop:659 .
 
 aop.events:2402
 	a	aopo:KeyEvent ;
@@ -130908,6 +130940,32 @@ aop.events:2463
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Organ""" ;
 	dcterms:isPartOf	aop:658 .
+
+aop.events:2464
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2464 ;
+	rdfs:label	"KE 2464" ;
+	foaf:page	<https://identifiers.org/aop.events/2464> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2464> ;
+	dc:title	"Increase, tubular epithelial cells exhibiting a failed-repair phenotype" ;
+	dcterms:alternative	"Increase, failed-repair tubular epithelial cells" ;
+	dc:source	"AOPWiki" ;
+	nci:C25664	"""Cellular""" ;
+	dcterms:isPartOf	aop:659 .
+
+aop.events:2465
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2465 ;
+	rdfs:label	"KE 2465" ;
+	foaf:page	<https://identifiers.org/aop.events/2465> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2465> ;
+	dc:title	"Increase, renal tubular epithelial cell injury" ;
+	dcterms:alternative	"Increase, renal tubular epithelial injury" ;
+	dc:source	"AOPWiki" ;
+	nci:C25664	"""Cellular""" ;
+	aopo:CellTypeContext	cl:1000507 ;
+	aopo:OrganContext	uberon:0002113 ;
+	dcterms:isPartOf	aop:659 .
 
 <888_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	go:0006120 ;
@@ -261122,6 +261180,30 @@ aop.relationships:3869
 	aopo:has_upstream_key_event	aop.events:2294 ;
 	aopo:has_downstream_key_event	aop.events:2463 ;
 	dcterms:isPartOf	aop:658 .
+
+aop.relationships:3872
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3872 ;
+	rdfs:label	"KER 3872" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3872> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3872> ;
+	dcterms:created	"2026-11-09T02:20:10" ;
+	dcterms:modified	"2026-11-09T02:20:10" ;
+	aopo:has_upstream_key_event	aop.events:2465 ;
+	aopo:has_downstream_key_event	aop.events:2464 ;
+	dcterms:isPartOf	aop:659 .
+
+aop.relationships:3873
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3873 ;
+	rdfs:label	"KER 3873" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3873> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3873> ;
+	dcterms:created	"2026-11-09T02:21:28" ;
+	dcterms:modified	"2026-11-09T02:21:28" ;
+	aopo:has_upstream_key_event	aop.events:2464 ;
+	aopo:has_downstream_key_event	aop.events:2404 ;
+	dcterms:isPartOf	aop:659 .
 
 ncbitaxon:10116
 	a	ncbitaxon:131567 ;

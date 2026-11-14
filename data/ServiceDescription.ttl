@@ -20,7 +20,7 @@
 	sd:namedGraph	:ServiceDescriptionNamedGraph ;
 	dcterms:title	"AOP-Wiki RDF Dataset" ;
 	dcterms:description	"Adverse Outcome Pathway data in RDF format" ;
-	dcterms:modified	"2026-11-07T15:20:29.340007"^^xsd:dateTime .
+	dcterms:modified	"2026-11-14T15:34:09.862537"^^xsd:dateTime .
 
 :DataNamedGraph	a	sd:NamedGraph ;
 	sd:name	<http://aopwiki.org/> ;
