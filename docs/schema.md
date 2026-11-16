@@ -106,7 +106,7 @@ Together these files provide a complete semantic web representation of AOP-Wiki 
 | `nci:C48192` | Literal | 0..1 | Applicability |
 | `aopo:AopContext` | Literal | 0..1 | AOP context |
 | `aopo:has_evidence` | Literal | 0..1 | Overall evidence assessment |
-| `edam:operation_3799` | Literal | 0..1 | Quantitative consideration |
+| `edam:operation_3799` | Literal | 0..1 | Quantitative considerations (on KERs: quantitative understanding) |
 | `nci:C25725` | Literal | 0..1 | Essentiality of KEs |
 | `dc:creator` | Literal | 0..1 | Author(s) |
 | `dcterms:accessRights` | Literal | 0..1 | Access rights |
@@ -133,7 +133,7 @@ Together these files provide a complete semantic web representation of AOP-Wiki 
 | `dc:source` | Literal | 1 | Source identifier |
 | `dc:description` | Literal | 0..1 | Description text |
 | `mmo:0000000` | Literal | 0..1 | Measurement method |
-| `nci:C25664` | Literal | 0..1 | Evidence level |
+| `nci:C25664` | Literal | 0..1 | Level of biological organisation (Molecular, Cellular, Tissue, Organ, Individual, Population) |
 | `aopo:CellTypeContext` | URI | 0..1 | Cell type context |
 | `aopo:OrganContext` | URI | 0..1 | Organ context |
 | `aopo:hasBiologicalEvent` | URI | 0..n | Biological events |
@@ -301,8 +301,19 @@ human-readable `rdfs:label` values so they self-describe in a SPARQL editor:
 - `:minConfidence rdfs:label "minimum BERN2 annotation confidence retained"`
 
 These label rows are double-gated (emitted only when both BERN2 and IRI labels are on).
-Reused external ontology predicates (Dublin Core, OWL/RDFS, AOP Ontology, EDAM) likewise
-carry `rdfs:label` rows in the main `AOPWikiRDF.ttl` file under the same IRI-label flag.
+Reused external ontology predicates (Dublin Core, OWL/RDFS, AOP Ontology, EDAM, NCIt, PATO,
+GO, MMO, CHEMINF) likewise carry `rdfs:label` rows in the main `AOPWikiRDF.ttl` file under the
+same IRI-label flag. For opaque ontology predicates the label names the AOP-Wiki XML field they
+carry, because the source label rarely does (`nci:C25664` is "Scale" in NCIt; here it is "level of
+biological organisation"). Terms whose use needs more than a label also get an `rdfs:comment`:
+what they sit on, what their values look like, and IRIs used both as a class and as a predicate
+(`nci:C54571`, `ncbitaxon:131567`, `edam:data_1025`, ...), which keep their single class label.
+The classes from `typelabels.txt` are typed `owl:Class`, and their descriptions are repeated as
+`rdfs:comment`, because LLM query tools such as SIB's sparql-llm read labels and comments only
+for `owl:Class` subjects. The authoritative source is `EXTERNAL_PREDICATE_LABELS`,
+`EXTERNAL_TERM_COMMENTS` and `EXTRA_OWL_CLASSES` in `src/aopwiki_rdf/rdf/writer.py`;
+`tests/integration/test_predicate_label_coverage.py` fails when a predicate in the production
+output has no label.
 The authoritative source for the minted-predicate labels is
 `src/aopwiki_rdf/rdf/namespaces.py` (`GENES_MINTED_PREDICATE_LABELS`).
 
