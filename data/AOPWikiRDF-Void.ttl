@@ -25,16 +25,16 @@
 	dcat:accrualPeriodicity	freq:weekly ;
 	void:subset	:AOPWikiRDF.ttl, :AOPWikiRDF-Enriched.ttl, :AOPWikiRDF-Genes.ttl ;
 	void:exampleResource	aop:1, aop.events:1, aop.relationships:1, cas:83-79-4, aop.stressor:1 ;
-	pav:createdOn	"2026-11-14"^^xsd:date ;
-	pav:version	"2026.11.14" ;
+	pav:createdOn	"2026-11-16"^^xsd:date ;
+	pav:version	"2026.11.16" ;
 	foaf:homepage	<https://aopwiki.org> ;
 	pav:createdBy	<https://zenodo.org/badge/latestdoi/146466058> ;
-	pav:createdWith	<https://github.com/marvinm2/AOPWikiRDF/commit/8ce7386e7f12d5863f87af8673b0f5993678266f> ;
-	void:entities	34172 ;
-	void:classes	28 ;
-	void:properties	82 ;
-	void:distinctSubjects	35189 ;
-	void:distinctObjects	127402 ;
+	pav:createdWith	<https://github.com/marvinm2/AOPWikiRDF/commit/993b5b659968b555ae2387cd83135f5e752b639e> ;
+	void:entities	34197 ;
+	void:classes	29 ;
+	void:properties	83 ;
+	void:distinctSubjects	35212 ;
+	void:distinctObjects	127442 ;
 	void:vocabulary	<http://aopkb.org/aop_ontology#> ;
 	void:vocabulary	<http://edamontology.org/> ;
 	void:vocabulary	<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#> ;
@@ -77,6 +77,7 @@
 	void:classPartition	:void-cp-e92b03403f7407f0 ;
 	void:classPartition	:void-cp-d9f5c63ac2dcc8a3 ;
 	void:classPartition	:void-cp-e76d04f6b9b04574 ;
+	void:classPartition	:void-cp-79cc46c1dbe722a6 ;
 	void:classPartition	:void-cp-c5c2930929e1afbd ;
 	void:classPartition	:void-cp-a973d9b595ea5c6f ;
 	void:propertyPartition	:void-p-b4eb1e1475f58a73 ;
@@ -146,6 +147,7 @@
 	void:propertyPartition	:void-p-e76d04f6b9b04574 ;
 	void:propertyPartition	:void-p-828a93496131288a ;
 	void:propertyPartition	:void-p-3c197cb1f6842dc4 ;
+	void:propertyPartition	:void-p-9f60f23de250fb62 ;
 	void:propertyPartition	:void-p-9ac796fdb3c1f82a ;
 	void:propertyPartition	:void-p-02f0e6a4fb4db018 ;
 	void:propertyPartition	:void-p-a58bb0b7b521b35d ;
@@ -167,40 +169,40 @@
 
 :AOPWikiRDF.ttl	a	void:Dataset ;
 	dc:description	"AOP-Wiki source-derived triples" ;
-	void:triples	140138 ;
+	void:triples	140217 ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	pav:createdOn	"2026-11-14"^^xsd:date ;
-	pav:createdWith	"aop-wiki-xml-2026-11-14", :Promapping ;
+	pav:createdOn	"2026-11-16"^^xsd:date ;
+	pav:createdWith	"aop-wiki-xml-2026-11-16", :Promapping ;
 	foaf:homepage	<https://aopwiki.org> ;
 	dcat:accrualPeriodicity	freq:weekly ;
-	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-11-14> .
+	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-11-16> .
 
 :AOPWikiRDF-Enriched.ttl	a	void:Dataset ;
 	dc:description	"Chemical and protein cross-reference enrichment triples" ;
 	void:triples	8324 ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	pav:importedFrom	<https://webservice.bridgedb.org/Human/> ;
-	pav:createdOn	"2026-11-14"^^xsd:date .
+	pav:createdOn	"2026-11-16"^^xsd:date .
 
 :AOPWikiRDF-Genes.ttl	a	void:Dataset ;
 	dc:description	"Gene mapping enrichment triples" ;
 	void:triples	193576 ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	pav:createdOn	"2026-11-14"^^xsd:date ;
-	pav:createdWith	"aop-wiki-xml-2026-11-14", :HGNCgenes ;
+	pav:createdOn	"2026-11-16"^^xsd:date ;
+	pav:createdWith	"aop-wiki-xml-2026-11-16", :HGNCgenes ;
 	foaf:homepage	<https://aopwiki.org> ;
 	dcat:accrualPeriodicity	freq:weekly ;
-	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-11-14>, <https://www.genenames.org/download/custom/> .
+	dcat:downloadURL	<https://aopwiki.org/downloads/aop-wiki-xml-2026-11-16>, <https://www.genenames.org/download/custom/> .
 
 :HGNCgenes.txt	a	void:Dataset, void:Linkset ;
 	dc:description	"HGNC approved symbols and names for genes" ;
 	dcat:downloadURL	<https://www.genenames.org/download/custom/> ;
-	pav:importedOn	"2026-11-14T14:51:43"^^xsd:dateTime .
+	pav:importedOn	"2026-11-16T21:45:26"^^xsd:dateTime .
 
 <https://proconsortium.org/download/current/promapping.txt>	a	void:Dataset, void:Linkset ;
 	dc:description	"PRotein ontology mappings to protein database identifiers" ;
 	dcat:downloadURL	<https://proconsortium.org/download/current/promapping.txt> ;
-	pav:importedOn	"2026-11-14T14:51:41"^^xsd:dateTime .
+	pav:importedOn	"2026-11-16T21:45:24"^^xsd:dateTime .
 
 :void-cp-0e5aa7500705d536	void:class	<http://aopkb.org/aop_ontology#AdverseOutcomePathway> ;
 	void:entities	603 ;
@@ -410,6 +412,10 @@
 	void:triples	603 .
 
 :void-pp-ea14f984f93c50b4	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	603 ;
+	void:classPartition	:void-ocp-6d78e0a10f5d2a85 .
+
+:void-ocp-6d78e0a10f5d2a85	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	603 .
 
 :void-pp-9f25cf496f80f6e6	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -522,6 +528,10 @@
 	void:triples	69 .
 
 :void-pp-fa30ac1899c4e499	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	102 ;
+	void:classPartition	:void-ocp-2c1e886326112dff .
+
+:void-ocp-2c1e886326112dff	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	102 .
 
 :void-pp-b2dd8851f45daf61	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -745,6 +755,10 @@
 	void:triples	3765 .
 
 :void-pp-dbad541a940c49eb	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	1609 ;
+	void:classPartition	:void-ocp-25a60fbd152007e6 .
+
+:void-ocp-25a60fbd152007e6	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	1609 .
 
 :void-pp-b7799d49c52ce86a	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -976,6 +990,10 @@
 	void:triples	2387 .
 
 :void-pp-1acf77da152047b0	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	2387 ;
+	void:classPartition	:void-ocp-61a104bc501b5dcb .
+
+:void-ocp-61a104bc501b5dcb	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	2387 .
 
 :void-pp-4b40f26dc3f89594	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1059,6 +1077,10 @@
 	void:triples	99 .
 
 :void-pp-5770dbec4e5caa13	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	132 ;
+	void:classPartition	:void-ocp-5b95a95fa286a99e .
+
+:void-ocp-5b95a95fa286a99e	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	132 .
 
 :void-pp-1cca8a19126b3e7d	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1125,6 +1147,10 @@
 	void:triples	22417 .
 
 :void-pp-ddbfddb22ac1c907	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	44834 ;
+	void:classPartition	:void-ocp-459d534d2355996c .
+
+:void-ocp-459d534d2355996c	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	44834 .
 
 :void-pp-38b690023ec4291f	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1205,6 +1231,10 @@
 	void:triples	2819 .
 
 :void-pp-67478ea3c268f166	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	5638 ;
+	void:classPartition	:void-ocp-444e7640cc6b2f9f .
+
+:void-ocp-444e7640cc6b2f9f	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	5638 .
 
 :void-pp-8ca9b671811a2132	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1244,6 +1274,10 @@
 	void:triples	2755 .
 
 :void-pp-5bee56a30502ba15	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	5510 ;
+	void:classPartition	:void-ocp-05135f65fc8cbc9f .
+
+:void-ocp-05135f65fc8cbc9f	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	5510 .
 
 :void-pp-45f746f4e6aabe43	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1285,6 +1319,10 @@
 	void:triples	14067 .
 
 :void-pp-8d7138cc87cbde24	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	28134 ;
+	void:classPartition	:void-ocp-f22b38b84789ae36 .
+
+:void-ocp-f22b38b84789ae36	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	28134 .
 
 :void-pp-7d09193d5b72452f	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1332,6 +1370,10 @@
 	void:triples	2776 .
 
 :void-pp-bd1495a0daef1c29	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	5552 ;
+	void:classPartition	:void-ocp-c50d165af37bde34 .
+
+:void-ocp-c50d165af37bde34	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	5552 .
 
 :void-pp-b15761ae38ed76a0	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1450,6 +1492,10 @@
 	void:triples	757 .
 
 :void-pp-2941ba9807873f73	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	757 ;
+	void:classPartition	:void-ocp-3c905a26479b0eb1 .
+
+:void-ocp-3c905a26479b0eb1	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	757 .
 
 :void-pp-988adfb35698f341	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1496,6 +1542,10 @@
 	void:triples	221 .
 
 :void-pp-a32bf1f8d3a8dc88	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	182 ;
+	void:classPartition	:void-ocp-e8b5c2cfa3c8935e .
+
+:void-ocp-e8b5c2cfa3c8935e	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	182 .
 
 :void-pp-1d6185a239df5b91	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1539,6 +1589,10 @@
 	void:triples	565 .
 
 :void-pp-8b5725006122ef91	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	570 ;
+	void:classPartition	:void-ocp-f643074214f42d29 .
+
+:void-ocp-f643074214f42d29	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	570 .
 
 :void-pp-e1e2169685f0652b	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1592,6 +1646,10 @@
 	void:triples	501 .
 
 :void-pp-8277b90a088871a0	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	571 ;
+	void:classPartition	:void-ocp-f61cdf3a74f53319 .
+
+:void-ocp-f61cdf3a74f53319	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	571 .
 
 :void-pp-bec1ae6b8de34e8a	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1707,6 +1765,10 @@
 	void:triples	433 .
 
 :void-pp-accac71cc699144c	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	866 ;
+	void:classPartition	:void-ocp-3b03d15f15f7fca8 .
+
+:void-ocp-3b03d15f15f7fca8	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	866 .
 
 :void-pp-5028b37b24734512	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1824,6 +1886,10 @@
 	void:triples	492 .
 
 :void-pp-9680b2ff342e66b0	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	492 ;
+	void:classPartition	:void-ocp-d708ebc62d81d164 .
+
+:void-ocp-d708ebc62d81d164	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	492 .
 
 :void-pp-c2674423f07ea687	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1863,6 +1929,10 @@
 	void:triples	449 .
 
 :void-pp-98e6406e963d6d9d	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	449 ;
+	void:classPartition	:void-ocp-6dd833b1e850de2f .
+
+:void-ocp-6dd833b1e850de2f	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	449 .
 
 :void-pp-982432a607513578	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1902,6 +1972,10 @@
 	void:triples	224 .
 
 :void-pp-1c8efd95aa66596e	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	224 ;
+	void:classPartition	:void-ocp-fe40d6a60243cbd0 .
+
+:void-ocp-fe40d6a60243cbd0	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	224 .
 
 :void-pp-e6474976671ce7b5	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1941,6 +2015,10 @@
 	void:triples	445 .
 
 :void-pp-207f32c5cde3abd1	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	445 ;
+	void:classPartition	:void-ocp-6f3a615469735082 .
+
+:void-ocp-6f3a615469735082	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	445 .
 
 :void-pp-fdfeb1ab64011a36	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -1980,6 +2058,10 @@
 	void:triples	553 .
 
 :void-pp-4f7669a4cf6414c8	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	553 ;
+	void:classPartition	:void-ocp-b0aa84f7a89213a9 .
+
+:void-ocp-b0aa84f7a89213a9	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	553 .
 
 :void-pp-5b57ce200c3de732	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -2019,6 +2101,10 @@
 	void:triples	479 .
 
 :void-pp-104e3f2813e87176	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	479 ;
+	void:classPartition	:void-ocp-e94c001f533dd1ce .
+
+:void-ocp-e94c001f533dd1ce	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	479 .
 
 :void-pp-c9097fe56d09c993	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -2058,6 +2144,10 @@
 	void:triples	370 .
 
 :void-pp-d1dc685b7af6d6fe	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	370 ;
+	void:classPartition	:void-ocp-5fb5f8ac3585301e .
+
+:void-ocp-5fb5f8ac3585301e	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	370 .
 
 :void-pp-c777d1ebd18884fc	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -2135,6 +2225,10 @@
 	void:triples	433 .
 
 :void-pp-076c5dc3db15ace2	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	866 ;
+	void:classPartition	:void-ocp-adba7a70260f71b2 .
+
+:void-ocp-adba7a70260f71b2	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	866 .
 
 :void-pp-d02a1a5a4ab0522c	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -2252,6 +2346,10 @@
 	void:triples	35 .
 
 :void-pp-420f1547a1f5a268	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	35 ;
+	void:classPartition	:void-ocp-db946cba9f3f2355 .
+
+:void-ocp-db946cba9f3f2355	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	35 .
 
 :void-pp-f062112f8d4dd2d3	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -2291,6 +2389,10 @@
 	void:triples	444 .
 
 :void-pp-ed360ebeca25c876	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	444 ;
+	void:classPartition	:void-ocp-e68121a0ea0f504b .
+
+:void-ocp-e68121a0ea0f504b	void:class	<http://www.w3.org/2002/07/owl#Class> ;
 	void:triples	444 .
 
 :void-pp-db92267ca9e377f5	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
@@ -2299,6 +2401,37 @@
 
 :void-dtp-5adf65eb8a0a7d92	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
 	void:triples	444 .
+
+:void-cp-79cc46c1dbe722a6	void:class	<http://www.w3.org/2002/07/owl#Class> ;
+	void:entities	25 ;
+	void:propertyPartition	:void-pp-0ffc0b0e3773d733 ;
+	void:propertyPartition	:void-pp-30b2cd00d48b43b4 ;
+	void:propertyPartition	:void-pp-63fb01410d566b60 ;
+	void:propertyPartition	:void-pp-3ba81811e2092478 .
+
+:void-pp-0ffc0b0e3773d733	void:property	<http://purl.org/dc/elements/1.1/description> ;
+	void:triples	17 ;
+	void-ext:datatypePartition	:void-dtp-ab4b30ddb64dd806 .
+
+:void-dtp-ab4b30ddb64dd806	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+	void:triples	17 .
+
+:void-pp-30b2cd00d48b43b4	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	void:triples	25 .
+
+:void-pp-63fb01410d566b60	void:property	<http://www.w3.org/2000/01/rdf-schema#comment> ;
+	void:triples	24 ;
+	void-ext:datatypePartition	:void-dtp-2e89d021010c72d1 .
+
+:void-dtp-2e89d021010c72d1	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+	void:triples	24 .
+
+:void-pp-3ba81811e2092478	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
+	void:triples	25 ;
+	void-ext:datatypePartition	:void-dtp-1dc41c1e9c1e3566 .
+
+:void-dtp-1dc41c1e9c1e3566	void-ext:datatype	<http://www.w3.org/2001/XMLSchema#string> ;
+	void:triples	25 .
 
 :void-cp-c5c2930929e1afbd	void:class	<http://www.w3.org/ns/prov#Activity> ;
 	void:entities	2 ;
@@ -2689,14 +2822,19 @@
 	void:distinctObjects	433 .
 
 :void-p-3c197cb1f6842dc4	void:property	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
-	void:triples	57093 ;
-	void:distinctSubjects	34172 ;
-	void:distinctObjects	28 .
+	void:triples	57118 ;
+	void:distinctSubjects	34197 ;
+	void:distinctObjects	29 .
+
+:void-p-9f60f23de250fb62	void:property	<http://www.w3.org/2000/01/rdf-schema#comment> ;
+	void:triples	31 ;
+	void:distinctSubjects	31 ;
+	void:distinctObjects	31 .
 
 :void-p-9ac796fdb3c1f82a	void:property	<http://www.w3.org/2000/01/rdf-schema#label> ;
-	void:triples	33564 ;
-	void:distinctSubjects	33524 ;
-	void:distinctObjects	10013 .
+	void:triples	33587 ;
+	void:distinctSubjects	33547 ;
+	void:distinctObjects	10036 .
 
 :void-p-02f0e6a4fb4db018	void:property	<http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
 	void:triples	5100 ;

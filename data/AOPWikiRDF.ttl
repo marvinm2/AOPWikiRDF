@@ -312105,7 +312105,7 @@ owl:sameAs	rdfs:label	"same as" .
 rdfs:seeAlso	rdfs:label	"see also" .
 rdfs:label	rdfs:label	"label" .
 foaf:page	rdfs:label	"page" .
-edam:operation_3799	rdfs:label	"gene functional annotation" .
+edam:operation_3799	rdfs:label	"quantitative understanding" .
 aopo:has_key_event	rdfs:label	"has key event" .
 aopo:has_key_event_relationship	rdfs:label	"has key event relationship" .
 aopo:has_molecular_initiating_event	rdfs:label	"has molecular initiating event" .
@@ -312118,3 +312118,82 @@ aopo:hasBiologicalEvent	rdfs:label	"has biological event" .
 aopo:hasObject	rdfs:label	"has object" .
 aopo:hasProcess	rdfs:label	"has process" .
 aopo:hasAction	rdfs:label	"has action" .
+nci:C17469	rdfs:label	"evidence for taxonomic applicability" .
+aopo:LifeStageContext	rdfs:label	"life stage applicability" .
+pato:0000047	rdfs:label	"sex applicability" .
+nci:C25688	rdfs:label	"OECD or SAAOP status" .
+nci:C25217	rdfs:label	"overall assessment" .
+nci:C48192	rdfs:label	"key event essentiality" .
+aopo:AopContext	rdfs:label	"domain of applicability" .
+nci:C25725	rdfs:label	"potential applications" .
+nci:C25664	rdfs:label	"level of biological organisation" .
+mmo:0000000	rdfs:label	"measurement methodology" .
+go:0008150	rdfs:label	"biological process" .
+pato:0000001	rdfs:label	"biological event action" .
+nci:C80263	rdfs:label	"biological plausibility" .
+edam:data_2042	rdfs:label	"empirical support" .
+nci:C71478	rdfs:label	"uncertainties and inconsistencies" .
+nci:C103159	rdfs:label	"evidence collection strategy" .
+nci:C68821	rdfs:label	"known modulating factors" .
+edam:operation_3438	rdfs:label	"response-response relationship" .
+nci:C25207	rdfs:label	"time scale" .
+nci:C25343	rdfs:label	"known feedforward/feedback loops" .
+cheminf:000059	rdfs:label	"InChIKey" .
+cheminf:000568	rdfs:label	"CompTox (DTXSID) identifier" .
+skos:exactMatch	rdfs:label	"exact match" .
+aopo:AdverseOutcomePathway	rdfs:comment	"An AOP from the AOP-Wiki, IRI https://identifiers.org/aop/<n>. Links to its molecular initiating events (aopo:has_molecular_initiating_event), adverse outcomes (aopo:has_adverse_outcome), all of its key events including those MIEs and AOs (aopo:has_key_event), its key event relationships (aopo:has_key_event_relationship) and its stressors (nci:C54571)." .
+aopo:KeyEvent	rdfs:comment	"A key event from the AOP-Wiki, IRI https://identifiers.org/aop.events/<n>; molecular initiating events and adverse outcomes are key events too. Linked to the AOPs it is part of by dcterms:isPartOf." .
+aopo:KeyEventRelationship	rdfs:comment	"A key event relationship from the AOP-Wiki, IRI https://identifiers.org/aop.relationships/<n>. It has no title of its own: it links aopo:has_upstream_key_event to aopo:has_downstream_key_event and carries the weight-of-evidence text (nci:C80263, edam:data_2042, nci:C71478)." .
+aopo:has_key_event	rdfs:comment	"On an AOP: every key event of the AOP, including its MIEs and adverse outcomes." .
+aopo:has_evidence	rdfs:comment	"On an AOP: the weight-of-evidence summary (text)." .
+nci:C54571	rdfs:comment	"Used both as the class of stressors (IRI https://identifiers.org/aop.stressor/<n>) and, on an AOP or key event, as the predicate linking to its stressors. A chemical stressor links to its chemical with aopo:has_chemical_entity." .
+ncbitaxon:131567	rdfs:comment	"Used as the predicate for taxonomic applicability on AOPs, key events and KERs, and as the class of the taxon nodes. Values are NCBITaxon IRIs, or plain strings for AOP-Wiki taxonomy terms whose source is not NCBI." .
+edam:data_1025	rdfs:comment	"On a key event or KER: a gene (HGNC IRI) found in its text by gene mapping, so text-mined rather than curated; :geneDetectedByNER and :geneDetectedByRegex record the method. Also the class of gene identifier nodes." .
+pato:0001241	rdfs:comment	"On a key event: the object of its biological event (a ChEBI, PR, GO or MeSH IRI). Also used as a class." .
+go:0008150	rdfs:comment	"On a key event: the biological process of its biological event (a GO or MeSH IRI). Also the class of those process nodes." .
+pato:0000001	rdfs:comment	"On a key event: the action of its biological event, such as increased or decreased." .
+aopo:CellTypeContext	rdfs:comment	"On a key event: the cell type it occurs in (a CL or UBERON IRI). Also used as a class." .
+aopo:OrganContext	rdfs:comment	"On a key event: the organ it occurs in (an UBERON IRI). Also used as a class." .
+nci:C25664	rdfs:comment	"On a key event: its level of biological organisation, a string: Molecular, Cellular, Tissue, Organ, Individual or Population." .
+nci:C25688	rdfs:comment	"On an AOP: its OECD status and its SAAOP status, both written to this one predicate, so the values mix the two vocabularies." .
+edam:operation_3799	rdfs:comment	"On an AOP: quantitative considerations (text). On a KER: quantitative understanding (text)." .
+pato:0000047	rdfs:comment	"On an AOP, key event or KER: the sex it applies to, a string such as Male, Female, Mixed or Unspecific." .
+<http://edamontology.org/data_1027>	rdfs:comment	"An NCBI unique identifier of a gene." .
+<http://edamontology.org/data_2298>	rdfs:comment	"Identifier for a gene approved by the HUGO Gene Nomenclature Committee." .
+<http://semanticscience.org/resource/CHEMINF_000407>	rdfs:comment	"Database identifier used by ChEBI." .
+<http://semanticscience.org/resource/CHEMINF_000412>	rdfs:comment	"Identifier used by the ChEMBL database for compounds, assays, target, etc." .
+<http://semanticscience.org/resource/CHEMINF_000405>	rdfs:comment	"Database identifier used by ChemSpider." .
+<http://semanticscience.org/resource/CHEMINF_000406>	rdfs:comment	"Database identifier used by DrugBank." .
+<http://semanticscience.org/resource/CHEMINF_000408>	rdfs:comment	"Database identifier used by Human Metabolome Database." .
+<http://semanticscience.org/resource/CHEMINF_000409>	rdfs:comment	"Database identifier used by KEGG." .
+<http://semanticscience.org/resource/CHEMINF_000564>	rdfs:comment	"Identifier used by the LipidMaps database, http://www.lipidmaps.org/." .
+<http://semanticscience.org/resource/CHEMINF_000567>	rdfs:comment	"Database identifier used by Wikidata." .
+<http://edamontology.org/data_1033>	rdfs:comment	"Unique identifier for a gene (or other feature) from the Ensembl database." .
+<http://semanticscience.org/resource/CHEMINF_000000>	rdfs:comment	"A chemical entity is any molecular entity or chemical substance." .
+<http://semanticscience.org/resource/CHEMINF_000446>	rdfs:comment	"Identifier used by the Chemical Abstracts Service database." .
+<http://edamontology.org/data_2291>	rdfs:comment	"An identifier of a polypeptide in the UniProt database." .
+<http://edamontology.org/data_1027>	a	owl:Class .
+<http://edamontology.org/data_1025>	a	owl:Class .
+<http://edamontology.org/data_2298>	a	owl:Class .
+<http://aopkb.org/aop_ontology#CellTypeContext>	a	owl:Class .
+<http://aopkb.org/aop_ontology#OrganContext>	a	owl:Class .
+<http://semanticscience.org/resource/CHEMINF_000407>	a	owl:Class .
+<http://semanticscience.org/resource/CHEMINF_000412>	a	owl:Class .
+<http://semanticscience.org/resource/CHEMINF_000405>	a	owl:Class .
+<http://semanticscience.org/resource/CHEMINF_000406>	a	owl:Class .
+<http://semanticscience.org/resource/CHEMINF_000408>	a	owl:Class .
+<http://semanticscience.org/resource/CHEMINF_000409>	a	owl:Class .
+<http://semanticscience.org/resource/CHEMINF_000564>	a	owl:Class .
+<http://semanticscience.org/resource/CHEMINF_000140>	a	owl:Class .
+<http://semanticscience.org/resource/CHEMINF_000567>	a	owl:Class .
+<http://aopkb.org/aop_ontology#KeyEvent>	a	owl:Class .
+<http://aopkb.org/aop_ontology#KeyEventRelationship>	a	owl:Class .
+<http://edamontology.org/data_1033>	a	owl:Class .
+<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C54571>	a	owl:Class .
+<http://aopkb.org/aop_ontology#AdverseOutcomePathway>	a	owl:Class .
+<http://semanticscience.org/resource/CHEMINF_000000>	a	owl:Class .
+<http://semanticscience.org/resource/CHEMINF_000446>	a	owl:Class .
+<http://edamontology.org/data_2291>	a	owl:Class .
+<http://purl.bioontology.org/ontology/NCBITAXON/131567>	a	owl:Class .
+<http://purl.obolibrary.org/obo/PATO_0001241>	a	owl:Class .
+go:0008150	a	owl:Class .
