@@ -67,8 +67,10 @@ EXTERNAL_PREDICATE_LABELS = {
     'rdfs:label': 'label',
     # FOAF
     'foaf:page': 'page',
-    # EDAM operation (gene-mapping provenance on AOPs/KEs)
-    'edam:operation_3799': 'gene functional annotation',
+    # EDAM operation: quantitative-considerations text on AOPs and
+    # quantitative-understanding text on KERs (it was labelled 'gene functional
+    # annotation' until 2026-11, which described neither use).
+    'edam:operation_3799': 'quantitative understanding',
     # AOP Ontology relationship + structural predicates
     'aopo:has_key_event': 'has key event',
     'aopo:has_key_event_relationship': 'has key event relationship',
@@ -82,10 +84,115 @@ EXTERNAL_PREDICATE_LABELS = {
     'aopo:hasObject': 'has object',
     'aopo:hasProcess': 'has process',
     'aopo:hasAction': 'has action',
+    # Opaque ontology predicates. Their source labels ("Scale", "Rationale",
+    # "Time", ...) say little about what AOP-Wiki RDF stores under them, so the
+    # label names the AOP-Wiki XML field they carry (see xml_parser.py).
+    # Applicability (AOP, KE, KER)
+    'nci:C17469': 'evidence for taxonomic applicability',
+    'aopo:LifeStageContext': 'life stage applicability',
+    'pato:0000047': 'sex applicability',
+    # AOP
+    'nci:C25688': 'OECD or SAAOP status',
+    'nci:C25217': 'overall assessment',
+    'nci:C48192': 'key event essentiality',
+    'aopo:AopContext': 'domain of applicability',
+    'nci:C25725': 'potential applications',
+    # Key event
+    'nci:C25664': 'level of biological organisation',
+    'mmo:0000000': 'measurement methodology',
+    'go:0008150': 'biological process',
+    'pato:0000001': 'biological event action',
+    # Key event relationship: weight of evidence and quantitative understanding
+    'nci:C80263': 'biological plausibility',
+    'edam:data_2042': 'empirical support',
+    'nci:C71478': 'uncertainties and inconsistencies',
+    'nci:C103159': 'evidence collection strategy',
+    'nci:C68821': 'known modulating factors',
+    'edam:operation_3438': 'response-response relationship',
+    'nci:C25207': 'time scale',
+    'nci:C25343': 'known feedforward/feedback loops',
+    # Chemical identifiers not covered by typelabels.txt
+    'cheminf:000059': 'InChIKey',
+    'cheminf:000568': 'CompTox (DTXSID) identifier',
+    'skos:exactMatch': 'exact match',
 }
 
+# rdfs:comment text, flag-gated with the labels, for terms whose label alone
+# does not say how AOP-Wiki RDF uses them: what they sit on, what their values
+# look like, and IRIs used both as a class and as a predicate (those keep their
+# single class label from typelabels.txt and are explained here instead).
+EXTERNAL_TERM_COMMENTS = {
+    'aopo:AdverseOutcomePathway': (
+        'An AOP from the AOP-Wiki, IRI https://identifiers.org/aop/<n>. Links to its molecular initiating '
+        'events (aopo:has_molecular_initiating_event), adverse outcomes (aopo:has_adverse_outcome), all of '
+        'its key events including those MIEs and AOs (aopo:has_key_event), its key event relationships '
+        '(aopo:has_key_event_relationship) and its stressors (nci:C54571).'
+    ),
+    'aopo:KeyEvent': (
+        'A key event from the AOP-Wiki, IRI https://identifiers.org/aop.events/<n>; molecular initiating '
+        'events and adverse outcomes are key events too. Linked to the AOPs it is part of by dcterms:isPartOf.'
+    ),
+    'aopo:KeyEventRelationship': (
+        'A key event relationship from the AOP-Wiki, IRI https://identifiers.org/aop.relationships/<n>. It '
+        'has no title of its own: it links aopo:has_upstream_key_event to aopo:has_downstream_key_event and '
+        'carries the weight-of-evidence text (nci:C80263, edam:data_2042, nci:C71478).'
+    ),
+    'aopo:has_key_event': 'On an AOP: every key event of the AOP, including its MIEs and adverse outcomes.',
+    'aopo:has_evidence': 'On an AOP: the weight-of-evidence summary (text).',
+    'nci:C54571': (
+        'Used both as the class of stressors (IRI https://identifiers.org/aop.stressor/<n>) and, on an AOP '
+        'or key event, as the predicate linking to its stressors. A chemical stressor links to its chemical '
+        'with aopo:has_chemical_entity.'
+    ),
+    'ncbitaxon:131567': (
+        'Used as the predicate for taxonomic applicability on AOPs, key events and KERs, and as the class '
+        'of the taxon nodes. Values are NCBITaxon IRIs, or plain strings for AOP-Wiki taxonomy terms whose '
+        'source is not NCBI.'
+    ),
+    'edam:data_1025': (
+        'On a key event or KER: a gene (HGNC IRI) found in its text by gene mapping, so text-mined rather '
+        'than curated; :geneDetectedByNER and :geneDetectedByRegex record the method. Also the class of '
+        'gene identifier nodes.'
+    ),
+    'pato:0001241': (
+        'On a key event: the object of its biological event (a ChEBI, PR, GO or MeSH IRI). Also used as a class.'
+    ),
+    'go:0008150': (
+        'On a key event: the biological process of its biological event (a GO or MeSH IRI). Also the class '
+        'of those process nodes.'
+    ),
+    'pato:0000001': 'On a key event: the action of its biological event, such as increased or decreased.',
+    'aopo:CellTypeContext': 'On a key event: the cell type it occurs in (a CL or UBERON IRI). Also used as a class.',
+    'aopo:OrganContext': 'On a key event: the organ it occurs in (an UBERON IRI). Also used as a class.',
+    'nci:C25664': (
+        'On a key event: its level of biological organisation, a string: Molecular, Cellular, Tissue, '
+        'Organ, Individual or Population.'
+    ),
+    'nci:C25688': (
+        'On an AOP: its OECD status and its SAAOP status, both written to this one predicate, so the '
+        'values mix the two vocabularies.'
+    ),
+    'edam:operation_3799': (
+        'On an AOP: quantitative considerations (text). On a KER: quantitative understanding (text).'
+    ),
+    'pato:0000047': 'On an AOP, key event or KER: the sex it applies to, a string such as Male, Female, Mixed or Unspecific.',
+}
 
-def _external_predicate_label_block(emit_labels, known_prefixes=None):
+# Classes typed owl:Class in the flag-gated block. SIB's sparql-llm (and similar
+# tools) read rdfs:label / rdfs:comment only for owl:Class subjects. These are
+# the rdf:type objects the main file uses; typelabels.txt rows are added at
+# write time (minus the VoID terms and its stale GO IRI).
+EXTRA_OWL_CLASSES = ('go:0008150',)
+_TYPELABELS_NOT_CLASSES = (
+    '<http://rdfs.org/ns/void#Dataset>',
+    '<http://rdfs.org/ns/void#Linkset>',
+    # Stale GO IRI form; the file types processes as go:0008150 (GO_0008150).
+    '<http://purl.org/obo/owl/GO#0008150>',
+)
+
+
+def _external_predicate_label_block(emit_labels, known_prefixes=None, already_labelled=(),
+                                    class_terms=(), extra_comments=()):
     """Return the flag-gated Turtle block of ``<predicate> rdfs:label "…" .`` rows.
 
     D-06: every reused external ontology predicate the main file asserts carries
@@ -103,12 +210,24 @@ def _external_predicate_label_block(emit_labels, known_prefixes=None):
     """
     if not emit_labels:
         return ''
+
+    def declared(term):
+        if term.startswith('<'):
+            return True
+        return known_prefixes is None or term.split(':', 1)[0] in known_prefixes
+
+    skip = set(already_labelled)
     rows = ['\n\n# External predicate labels (flag-gated, D-06)']
     for predicate, label in EXTERNAL_PREDICATE_LABELS.items():
-        prefix = predicate.split(':', 1)[0]
-        if known_prefixes is not None and prefix not in known_prefixes:
+        if not declared(predicate) or predicate in skip:
             continue
         rows.append(predicate + '\trdfs:label\t"' + _turtle_escape(label) + '" .')
+    for term, comment in list(EXTERNAL_TERM_COMMENTS.items()) + list(extra_comments):
+        if declared(term):
+            rows.append(term + '\trdfs:comment\t"' + _turtle_escape(comment) + '" .')
+    for term in dict.fromkeys(class_terms):
+        if declared(term):
+            rows.append(term + '\ta\towl:Class .')
     return '\n'.join(rows)
 
 # ---------------------------------------------------------------------------
@@ -735,8 +854,10 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
         # --- Class labels ---
         filepath_dir = str(filepath).rsplit('/', 1)[0] + '/' if '/' in str(filepath) else ''
         typelabels_path = filepath_dir + 'typelabels.txt'
+        typelabel_rows = []
         try:
             df = pd.read_csv(typelabels_path)
+            typelabel_rows = [(r['URI'], r['description']) for _, r in df.iterrows()]
             for row, index in df.iterrows():
                 g.write('\n\n' + index['URI'] + '\trdfs:label\t"' + index['label'])
                 if index['description'] != '-':
@@ -754,9 +875,36 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
         # excluded from EXTERNAL_PREDICATE_LABELS to avoid duplicate triples.
         # '' when flag-off -> byte-identical output (COMPAT-01). Rows are gated
         # on declared prefixes so the block never references an unbound prefix.
-        g.write(_external_predicate_label_block(
-            emit_labels, set(prefixes['prefix'].astype(str)),
-        ))
+        # Terms already labelled in this file (typelabels.txt rows, GO/PATO
+        # component nodes) keep that single label; the block only adds a comment.
+        if emit_labels:
+            namespaces = dict(zip(prefixes['prefix'].astype(str), prefixes['uri'].astype(str)))
+
+            def _expand(term):
+                if not isinstance(term, str):
+                    return None
+                if term.startswith('<'):
+                    return term
+                prefix, _, local = term.partition(':')
+                return '<' + namespaces[prefix] + local + '>' if prefix in namespaces else term
+
+            labelled = {iri for iri, _ in typelabel_rows}
+            for component_dict in (bioprodict, bioobjdict, bioactdict):
+                labelled.update(_expand(v.get('dc:identifier')) for v in component_dict.values())
+            already_labelled = [t for t in EXTERNAL_PREDICATE_LABELS if _expand(t) in labelled]
+            commented = {_expand(t) for t in EXTERNAL_TERM_COMMENTS}
+            class_terms = [iri for iri, _ in typelabel_rows if iri not in _TYPELABELS_NOT_CLASSES]
+            class_terms += list(EXTRA_OWL_CLASSES)
+            extra_comments = [
+                (iri, desc) for iri, desc in typelabel_rows
+                if iri not in _TYPELABELS_NOT_CLASSES and isinstance(desc, str) and desc != '-'
+                and iri not in commented
+            ]
+            g.write(_external_predicate_label_block(
+                emit_labels, set(prefixes['prefix'].astype(str)),
+                already_labelled=already_labelled, class_terms=class_terms,
+                extra_comments=extra_comments,
+            ))
 
     logger.info("AOP-Wiki RDF conversion completed successfully!")
     logger.info("=== Conversion Summary ===")
