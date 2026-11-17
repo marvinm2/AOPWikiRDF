@@ -296,6 +296,51 @@ def _component_label_clause(emit_labels, title_literal):
     return ' ;\n\trdfs:label\t"' + _turtle_escape(inner) + '"'
 
 
+def _write_taxon_nodes(fh, taxdict, emit_labels):
+    """Write one node per taxon IRI (used with ``normalise_taxa``, #145).
+
+    Several AOP-Wiki taxonomy terms can share an NCBITaxon IRI (``rats``,
+    ``rat`` and ``Rattus norvegicus`` are all ncbitaxon:10116, and so are
+    normalised WCS terms). Each IRI gets one block: every distinct AOP-Wiki name
+    as ``dc:title``, every distinct source as ``dc:source`` and, when labels
+    are on, a single ``rdfs:label`` (the first NCBI-sourced name, else the first
+    name). Terms that are still strings get no node, as before.
+    """
+    nodes = {}
+    for entry in taxdict.values():
+        identifier = entry.get('dc:identifier')
+        if not identifier or '"' in identifier:
+            continue
+        node = nodes.setdefault(identifier, {'titles': [], 'sources': [], 'ncbi_name': None})
+        title = (entry.get('dc:title') or '').strip()
+        if title and title not in node['titles']:
+            node['titles'].append(title)
+        source = entry.get('dc:source')
+        if source and source not in node['sources']:
+            node['sources'].append(source)
+        if source == 'NCBI' and title and node['ncbi_name'] is None:
+            node['ncbi_name'] = title
+    for identifier, node in nodes.items():
+        fh.write(identifier + '\n\ta\tncbitaxon:131567 ;\n\tdc:identifier\t' + identifier)
+        for title in node['titles']:
+            fh.write(' ;\n\tdc:title\t"' + _turtle_escape(title) + '"')
+        for source in node['sources']:
+            fh.write(' ;\n\tdc:source\t"' + _turtle_escape(source) + '"')
+        label = node['ncbi_name'] or (node['titles'][0] if node['titles'] else None)
+        fh.write(_component_label_clause(emit_labels, label) + ' .\n\n')
+
+
+def _taxon_values(applicability, normalise):
+    """Object values for ncbitaxon:131567; de-duplicated when normalising (#145).
+
+    Normalising can map two AOP-Wiki terms of one entity to the same IRI
+    (NCBI "Homo sapiens" and WCS_9606 "human"); the IRI is then written once.
+    Without the flag the list is returned unchanged.
+    """
+    values = [tax[2] for tax in applicability]
+    return list(dict.fromkeys(values)) if normalise else values
+
+
 _XSD_DATETIME = re.compile(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}')
 
 
@@ -452,6 +497,8 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
     # literals, byte-identical. Values that do not parse are collected here.
     typed_dates = bool(config and getattr(config, 'typed_dates', False))
     date_fallbacks = []
+    # Taxon normalisation (#145): one node per taxon IRI. Off -> unchanged loop.
+    normalise_taxa = bool(config and getattr(config, 'normalise_taxa', False))
     chem_label_by_iri = entities.get('chem_label_by_iri', {})
     gene_label_by_iri = entities.get('gene_label_by_iri', {})
 
@@ -518,7 +565,7 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
             if 'aopo:LifeStageContext' in aopdict[aop]:
                 _write_multivalue_triple(g, 'aopo:LifeStageContext', [stage[1] for stage in aopdict[aop]['aopo:LifeStageContext']], quote=True)
             if 'ncbitaxon:131567' in aopdict[aop]:
-                _write_multivalue_triple(g, 'ncbitaxon:131567', [tax[2] for tax in aopdict[aop]['ncbitaxon:131567']])
+                _write_multivalue_triple(g, 'ncbitaxon:131567', _taxon_values(aopdict[aop]['ncbitaxon:131567'], normalise_taxa))
 
             g.write(' .\n\n')
 
@@ -558,7 +605,7 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
             if 'aopo:LifeStageContext' in kedict[ke]:
                 _write_multivalue_triple(g, 'aopo:LifeStageContext', [stage[1] for stage in kedict[ke]['aopo:LifeStageContext']], quote=True)
             if 'ncbitaxon:131567' in kedict[ke]:
-                _write_multivalue_triple(g, 'ncbitaxon:131567', [tax[2] for tax in kedict[ke]['ncbitaxon:131567']])
+                _write_multivalue_triple(g, 'ncbitaxon:131567', _taxon_values(kedict[ke]['ncbitaxon:131567'], normalise_taxa))
             if 'nci:C54571' in kedict[ke]:
                 _write_multivalue_triple(g, 'nci:C54571', [kedict[ke]['nci:C54571'][s]['dc:identifier'] for s in kedict[ke]['nci:C54571']])
 
@@ -659,7 +706,7 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
             if 'aopo:LifeStageContext' in kerdict[ker]:
                 _write_multivalue_triple(g, 'aopo:LifeStageContext', [stage[1] for stage in kerdict[ker]['aopo:LifeStageContext']], quote=True)
             if 'ncbitaxon:131567' in kerdict[ker]:
-                _write_multivalue_triple(g, 'ncbitaxon:131567', [tax[2] for tax in kerdict[ker]['ncbitaxon:131567']])
+                _write_multivalue_triple(g, 'ncbitaxon:131567', _taxon_values(kerdict[ker]['ncbitaxon:131567'], normalise_taxa))
 
             aop_links = [
                 aopdict[aop]['dc:identifier']
@@ -673,7 +720,9 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
         logger.info("Section completed")
 
         # --- Taxonomy triples ---
-        for tax in taxdict:
+        if normalise_taxa:
+            _write_taxon_nodes(g, taxdict, emit_labels)
+        for tax in ([] if normalise_taxa else taxdict):
             if 'dc:identifier' in taxdict[tax]:
                 if '"' not in taxdict[tax]['dc:identifier']:
                     g.write(taxdict[tax]['dc:identifier'] + '\n\ta\tncbitaxon:131567 ;\n\tdc:identifier\t' + taxdict[tax]['dc:identifier'] + ' ;\n\tdc:title\t"' + taxdict[tax]['dc:title'])

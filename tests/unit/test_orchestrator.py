@@ -51,12 +51,13 @@ def test_orchestrator_line_count():
     monolith (pipeline_monolith.py) is ~2,300 lines. The orchestrator has
     grown with added stages (ARR filter, BERN2 enrichment), the COMPAT
     pinned-snapshot branch in _stage_parse (COMPAT-01), and the VoID endpoint
-    overrides (PR #95); 650 lines leaves headroom for a few more while still
-    catching a real slide back toward monolithic logic.
+    overrides (PR #95), and taxon normalisation plus the taxonomy report
+    (#145); 680 lines leaves headroom for a few more while still catching a
+    real slide back toward monolithic logic.
     """
     src = inspect.getsource(pipeline)
     line_count = len(src.splitlines())
-    assert line_count < 650, f"pipeline.py has {line_count} lines (limit: 650)"
+    assert line_count < 680, f"pipeline.py has {line_count} lines (limit: 680)"
 
 
 def test_monolith_preserved():

@@ -65,6 +65,15 @@ def build_config(argv=None):
         ),
     )
     parser.add_argument(
+        "--normalise-taxa",
+        action="store_true",
+        help=(
+            "Write taxonomy terms that carry an NCBI taxid (WCS_<taxid>, NCBI "
+            "Taxonomy Browser URLs) as ncbitaxon:<taxid> IRIs instead of strings, "
+            "with one taxon node per IRI. WikiUser_<n> terms stay strings. OFF by default."
+        ),
+    )
+    parser.add_argument(
         "--xml-file",
         default=None,
         help=(
@@ -84,6 +93,7 @@ def build_config(argv=None):
         enable_bern2=args.enable_bern2,
         enable_iri_labels=args.enable_iri_labels,
         typed_dates=args.typed_dates,
+        normalise_taxa=args.normalise_taxa,
         xml_file=Path(args.xml_file) if args.xml_file else None,
     )
 

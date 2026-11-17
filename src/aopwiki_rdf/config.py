@@ -80,6 +80,13 @@ class PipelineConfig:
     # the log. Default False keeps the plain literals (COMPAT-01).
     typed_dates: bool = False
 
+    # Taxon normalisation (#145). When True, taxonomy terms that carry an NCBI
+    # taxid without an NCBI source (WCS_<taxid>, NCBI Taxonomy Browser URLs) are
+    # written as ncbitaxon:<taxid>, and the writer emits one taxon node per IRI.
+    # WikiUser_<n> terms stay strings. Default False keeps the output unchanged
+    # (COMPAT-01); the taxonomy count in data/taxonomy-report.json runs always.
+    normalise_taxa: bool = False
+
     # Pinned-snapshot knob (COMPAT-01). When set, _stage_parse reads this XML
     # file (gunzip if .gz) instead of downloading config.aopwiki_xml_url, so the
     # COMPAT gate can regenerate the pipeline deterministically against a
