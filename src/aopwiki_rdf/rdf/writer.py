@@ -296,6 +296,24 @@ def _component_label_clause(emit_labels, title_literal):
     return ' ;\n\trdfs:label\t"' + _turtle_escape(inner) + '"'
 
 
+_XSD_DATETIME = re.compile(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}')
+
+
+def _date_literal(value, typed, fallbacks=None):
+    """Turtle literal for an XML-sourced creation/modification timestamp.
+
+    Untyped (the default) gives the plain quoted string, byte-identical to the
+    earlier output. Typed gives ``"..."^^xsd:dateTime`` when the value is
+    ``YYYY-MM-DDThh:mm:ss`` and the plain string otherwise; each such fallback
+    is appended to ``fallbacks`` so the run can report them.
+    """
+    if typed and _XSD_DATETIME.fullmatch(value):
+        return '"' + value + '"^^xsd:dateTime'
+    if typed and fallbacks is not None:
+        fallbacks.append(value)
+    return '"' + value + '"'
+
+
 def _write_multivalue_triple(fh, predicate, values, quote=False, first=False):
     """Write multiple values for a single predicate."""
     if not values:
@@ -430,6 +448,10 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
     # '' when emit_labels is False. The label maps (xref-IRI -> name) are threaded
     # in by the pipeline (Plan 08-01); absent in unit tests, defaulting to {}.
     emit_labels = bool(config and getattr(config, 'enable_iri_labels', False))
+    # Typed dates (#143): xsd:dateTime for the XML timestamps. Off -> plain
+    # literals, byte-identical. Values that do not parse are collected here.
+    typed_dates = bool(config and getattr(config, 'typed_dates', False))
+    date_fallbacks = []
     chem_label_by_iri = entities.get('chem_label_by_iri', {})
     gene_label_by_iri = entities.get('gene_label_by_iri', {})
 
@@ -460,8 +482,8 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
                 ' ;\n\tdc:title\t' + aopdict[aop]['dc:title'] +
                 ' ;\n\tdcterms:alternative\t"' + aopdict[aop]['dcterms:alternative'] + '"' +
                 ' ;\n\tdc:source\t"' + aopdict[aop]['dc:source'] + '"' +
-                ' ;\n\tdcterms:created\t"' + aopdict[aop]['dcterms:created'] + '"' +
-                ' ;\n\tdcterms:modified\t"' + aopdict[aop]['dcterms:modified'] + '"'
+                ' ;\n\tdcterms:created\t' + _date_literal(aopdict[aop]['dcterms:created'], typed_dates, date_fallbacks) +
+                ' ;\n\tdcterms:modified\t' + _date_literal(aopdict[aop]['dcterms:modified'], typed_dates, date_fallbacks)
             )
 
             if 'dc:description' in aopdict[aop] and aopdict[aop]['dc:description']:
@@ -604,8 +626,8 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
                 ' ;\n\trdfs:label\t' + kerdict[ker]['rdfs:label'] +
                 ' ;\n\tfoaf:page\t' + kerdict[ker]['foaf:page'] +
                 ' ;\n\trdfs:seeAlso\t' + kerdict[ker]['foaf:page'] +
-                ' ;\n\tdcterms:created\t"' + kerdict[ker]['dcterms:created'] + '"' +
-                ' ;\n\tdcterms:modified\t"' + kerdict[ker]['dcterms:modified'] + '"' +
+                ' ;\n\tdcterms:created\t' + _date_literal(kerdict[ker]['dcterms:created'], typed_dates, date_fallbacks) +
+                ' ;\n\tdcterms:modified\t' + _date_literal(kerdict[ker]['dcterms:modified'], typed_dates, date_fallbacks) +
                 ' ;\n\taopo:has_upstream_key_event\t' + kerdict[ker]['aopo:has_upstream_key_event']['dc:identifier'] +
                 ' ;\n\taopo:has_downstream_key_event\t' + kerdict[ker]['aopo:has_downstream_key_event']['dc:identifier']
             )
@@ -671,8 +693,8 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
                 ' ;\n\trdfs:label\t' + strdict[stressor]['rdfs:label'] +
                 ' ;\n\tfoaf:page\t' + strdict[stressor]['foaf:page'] +
                 ' ;\n\tdc:title\t' + strdict[stressor]['dc:title'] +
-                ' ;\n\tdcterms:created\t"' + strdict[stressor]['dcterms:created'] + '"' +
-                ' ;\n\tdcterms:modified\t"' + strdict[stressor]['dcterms:modified'] + '"'
+                ' ;\n\tdcterms:created\t' + _date_literal(strdict[stressor]['dcterms:created'], typed_dates, date_fallbacks) +
+                ' ;\n\tdcterms:modified\t' + _date_literal(strdict[stressor]['dcterms:modified'], typed_dates, date_fallbacks)
             )
 
             if 'dc:description' in strdict[stressor]:
@@ -906,6 +928,14 @@ def write_aop_rdf(filepath, entities, prefix_csv_path, config=None):
                 extra_comments=extra_comments,
             ))
 
+    if typed_dates:
+        if date_fallbacks:
+            logger.warning(
+                f"Typed dates: {len(date_fallbacks)} created/modified values are not "
+                f"YYYY-MM-DDThh:mm:ss and stay plain literals, e.g. {date_fallbacks[:3]}"
+            )
+        else:
+            logger.info("Typed dates: every created/modified value written as xsd:dateTime")
     logger.info("AOP-Wiki RDF conversion completed successfully!")
     logger.info("=== Conversion Summary ===")
     logger.info(f"Total AOPs processed: {len(aopdict)}")

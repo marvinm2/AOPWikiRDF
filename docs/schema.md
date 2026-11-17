@@ -94,8 +94,8 @@ Together these files provide a complete semantic web representation of AOP-Wiki 
 | `rdfs:seeAlso` | URI | 1 | Same as foaf:page |
 | `dcterms:alternative` | Literal | 1 | Short name |
 | `dc:source` | Literal | 1 | Source identifier |
-| `dcterms:created` | Literal | 1 | Creation date |
-| `dcterms:modified` | Literal | 1 | Last modification date |
+| `dcterms:created` | Literal | 1 | Creation timestamp (`xsd:dateTime` with `--typed-dates`, else a plain string) |
+| `dcterms:modified` | Literal | 1 | Last modification timestamp (`xsd:dateTime` with `--typed-dates`, else a plain string) |
 | `dc:description` | Literal | 0..n | Abstract/description text |
 | `aopo:has_key_event` | URI | 0..n | Links to Key Events in this AOP |
 | `aopo:has_key_event_relationship` | URI | 0..n | Links to KERs in this AOP |
@@ -157,8 +157,8 @@ Together these files provide a complete semantic web representation of AOP-Wiki 
 | `rdfs:label` | Literal | 1 | KER label |
 | `foaf:page` | URI | 1 | AOP-Wiki page URL |
 | `rdfs:seeAlso` | URI | 1 | Same as foaf:page |
-| `dcterms:created` | Literal | 1 | Creation date |
-| `dcterms:modified` | Literal | 1 | Last modification date |
+| `dcterms:created` | Literal | 1 | Creation timestamp (`xsd:dateTime` with `--typed-dates`, else a plain string) |
+| `dcterms:modified` | Literal | 1 | Last modification timestamp (`xsd:dateTime` with `--typed-dates`, else a plain string) |
 | `aopo:has_upstream_key_event` | URI | 1 | Upstream Key Event |
 | `aopo:has_downstream_key_event` | URI | 1 | Downstream Key Event |
 | `dc:description` | Literal | 0..1 | Description text |
@@ -181,8 +181,8 @@ Together these files provide a complete semantic web representation of AOP-Wiki 
 | `rdfs:label` | Literal | 1 | Stressor label |
 | `dc:title` | Literal | 1 | Stressor title |
 | `foaf:page` | URI | 1 | AOP-Wiki page URL |
-| `dcterms:created` | Literal | 1 | Creation date |
-| `dcterms:modified` | Literal | 1 | Last modification date |
+| `dcterms:created` | Literal | 1 | Creation timestamp (`xsd:dateTime` with `--typed-dates`, else a plain string) |
+| `dcterms:modified` | Literal | 1 | Last modification timestamp (`xsd:dateTime` with `--typed-dates`, else a plain string) |
 | `dc:description` | Literal | 0..1 | Description text |
 | `aopo:has_chemical_entity` | URI | 0..n | Associated chemicals |
 | `dcterms:isPartOf` | URI | 0..n | Parent AOPs and KEs |

@@ -160,9 +160,13 @@ MASK_PATTERNS = (
 )
 
 
+# Index of family #4 (ServiceDescription dcterms:modified) in MASK_PATTERNS.
+SD_MODIFIED_MASK = 3
+
+
 # Pure helpers -----------------------------------------------------------------
 
-def mask(raw):
+def mask(raw, filename=None):
     """Mask the four run-varying date-token families in a TTL byte string.
 
     Byte-in / byte-out. Applies each of the four anchored regexes via
@@ -174,6 +178,10 @@ def mask(raw):
     raw : bytes
         Raw TTL file content.
 
+    filename : str, optional
+        Corpus file name. When given, family #4 is masked only in
+        ``ServiceDescription.ttl``; ``None`` masks every family everywhere.
+
     Returns
     -------
     bytes
@@ -181,7 +189,12 @@ def mask(raw):
         XML-sourced bare literal left untouched.
     """
     out = raw
-    for pattern, replacement in MASK_PATTERNS:
+    for index, (pattern, replacement) in enumerate(MASK_PATTERNS):
+        # Family #4 belongs to ServiceDescription.ttl only. With --typed-dates the
+        # XML-sourced dcterms:modified in AOPWikiRDF.ttl carries ^^xsd:dateTime as
+        # well, so the datatype tag alone no longer tells them apart (#143).
+        if index == SD_MODIFIED_MASK and filename not in (None, "ServiceDescription.ttl"):
+            continue
         out = pattern.sub(replacement, out)
     return out
 
@@ -363,7 +376,7 @@ def _read_masked(directory, filename):
     if not os.path.exists(path):
         return None
     with open(path, "rb") as fh:
-        return mask(fh.read())
+        return mask(fh.read(), filename)
 
 
 def _compare_dirs(expected_dir, actual_dir, mode, max_blocks):

@@ -56,6 +56,15 @@ def build_config(argv=None):
         ),
     )
     parser.add_argument(
+        "--typed-dates",
+        action="store_true",
+        help=(
+            "Write dcterms:created/modified on AOPs, KERs and stressors as "
+            "xsd:dateTime literals instead of plain strings. Values not in "
+            "YYYY-MM-DDThh:mm:ss form stay plain. OFF by default."
+        ),
+    )
+    parser.add_argument(
         "--xml-file",
         default=None,
         help=(
@@ -74,6 +83,7 @@ def build_config(argv=None):
         log_level=args.log_level,
         enable_bern2=args.enable_bern2,
         enable_iri_labels=args.enable_iri_labels,
+        typed_dates=args.typed_dates,
         xml_file=Path(args.xml_file) if args.xml_file else None,
     )
 
