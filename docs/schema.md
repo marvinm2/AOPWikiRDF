@@ -115,7 +115,7 @@ Together these files provide a complete semantic web representation of AOP-Wiki 
 | `dcterms:license` | URI | 0..1 | Per-AOP licence URI. Derived from the upstream `<wiki-license>` XML element. Values: `<https://creativecommons.org/licenses/by-sa/4.0/>` for AOPs published under CC-BY-SA 4.0, or `<https://rightsstatements.org/page/InC/1.0/>` for AOPs still under All Rights Reserved during their 30-day grace period (auto-conversion to CC-BY-SA activated upstream on 2026-04-30). |
 | `pato:0000047` | Literal | 0..n | Sex applicability |
 | `aopo:LifeStageContext` | Literal | 0..n | Life stage applicability |
-| `ncbitaxon:131567` | URI | 0..n | Taxonomic applicability |
+| `ncbitaxon:131567` | URI or Literal | 0..n | Taxonomic applicability (NCBITaxon IRI; plain string for non-NCBI AOP-Wiki terms, see Taxonomy below) |
 
 ### Key Event (`aopo:KeyEvent`)
 
@@ -144,7 +144,7 @@ Together these files provide a complete semantic web representation of AOP-Wiki 
 | `dcterms:isPartOf` | URI | 0..n | Parent AOPs |
 | `pato:0000047` | Literal | 0..n | Sex applicability |
 | `aopo:LifeStageContext` | Literal | 0..n | Life stage applicability |
-| `ncbitaxon:131567` | URI | 0..n | Taxonomic applicability |
+| `ncbitaxon:131567` | URI or Literal | 0..n | Taxonomic applicability (NCBITaxon IRI; plain string for non-NCBI AOP-Wiki terms, see Taxonomy below) |
 
 ### Key Event Relationship (`aopo:KeyEventRelationship`)
 
@@ -168,7 +168,7 @@ Together these files provide a complete semantic web representation of AOP-Wiki 
 | `dcterms:isPartOf` | URI | 0..n | Parent AOPs |
 | `pato:0000047` | Literal | 0..n | Sex applicability |
 | `aopo:LifeStageContext` | Literal | 0..n | Life stage applicability |
-| `ncbitaxon:131567` | URI | 0..n | Taxonomic applicability |
+| `ncbitaxon:131567` | URI or Literal | 0..n | Taxonomic applicability (NCBITaxon IRI; plain string for non-NCBI AOP-Wiki terms, see Taxonomy below) |
 
 ### Stressor (`nci:C54571`)
 
@@ -326,6 +326,26 @@ This file contains `owl:sameAs` triples that link AOP-Wiki entities to external 
 **Chemical cross-references:** Link CAS-identified chemicals to ChEBI, ChemSpider, Wikidata, ChEMBL, PubChem, DrugBank, KEGG, LIPID MAPS, and HMDB identifiers via `owl:sameAs`.
 
 **Protein ontology cross-references:** Link biological objects (from Protein Ontology mapping) to external identifiers via `owl:sameAs`.
+
+## Taxonomic applicability
+
+AOP-Wiki taxonomy terms come from several sources, and only `NCBI`-sourced terms are written as
+`ncbitaxon:<id>` IRIs by default. With `--normalise-taxa` (#145), two more sources become IRIs,
+because they carry an NCBI taxid anyway:
+
+- "common ecological/toxicological species" terms with source-id `WCS_<taxid>`;
+- terms whose source is an NCBI Taxonomy Browser URL (`...wwwtax.cgi?...&id=<taxid>`).
+
+`WikiUser_<n>` terms are wiki account ids, not taxa, and stay plain strings. With the flag each
+taxon IRI is written once: every AOP-Wiki name for it as `dc:title`, every source as
+`dc:source`, and one `rdfs:label` (the first NCBI-sourced name, else the first name). Some
+AOP-Wiki names are broader than the taxid they point at (`WCS_35525` is Daphnia magna but is also
+used for "crustaceans"); the `dc:title` values keep that visible.
+
+Every run writes `data/taxonomy-report.json`: applicability references on AOPs, KEs and KERs by
+kind (`ncbi`, `normalised`, `ncbi_resolvable`, `wiki_user`, `other`) and the WikiUser terms with
+their use counts. On the 2026-11-16 export, 2,061 of 4,048 references are NCBI IRIs without the
+flag and 3,463 with it; the remaining 585 are WikiUser terms.
 
 ## Entity Relationship Diagram
 

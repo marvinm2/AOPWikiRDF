@@ -19,6 +19,7 @@ import requests
 
 from aopwiki_rdf.config import PipelineConfig
 from aopwiki_rdf.parser.xml_parser import parse_aopwiki_xml, AOPXML_NS
+from aopwiki_rdf.parser.taxonomy import normalise_taxa, taxonomy_report
 from aopwiki_rdf.hgnc import download_hgnc_data
 from aopwiki_rdf.mapping.gene_mapper import (
     build_gene_dicts,
@@ -179,6 +180,8 @@ def _stage_parse(config, context):
     # Parse entities via the parser module (config=None to skip internal
     # promapping -- we call protein_ontology module separately)
     entities = parse_aopwiki_xml(xml_path, config=None)
+    if config.normalise_taxa:
+        normalise_taxa(entities)
 
     context["entities"] = entities
     context["xml_root"] = xml_root
@@ -477,6 +480,10 @@ def _stage_write_aop_rdf(config, context):
 
     prefix_csv = "prefixes.csv"
     write_aop_rdf(filepath + "AOPWikiRDF.ttl", writer_entities, prefix_csv, config=config)
+    # Always-on count of taxonomic-applicability references by kind (#145),
+    # next to qc-status.txt. Not one of the TTL corpus files, so flag-off TTL
+    # output is unaffected.
+    taxonomy_report(entities, report_path=filepath + "taxonomy-report.json")
     context["triple_count_main"] = _count_triples(filepath + "AOPWikiRDF.ttl")
     logger.info("RDF file created: %sAOPWikiRDF.ttl", filepath)
 
