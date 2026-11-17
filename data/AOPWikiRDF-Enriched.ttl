@@ -1,4 +1,4 @@
-# Generated: 2026-11-16
+# Generated: 2026-11-17
 # Load alongside AOPWikiRDF.ttl for full cross-reference capability
 # AOPWikiRDF-Enriched.ttl
 # Cross-reference enrichment triples for AOP-Wiki RDF
@@ -2167,6 +2167,11 @@ cas:191-24-2
 cas:182431-12-5
 	skos:exactMatch	chebi:72297, chebi:72297, chemspider:8028764, wikidata:Q1268941, chembl.compound:CHEMBL354541, pubchem.compound:9853053, drugbank:DB08827, hmdb:HMDB0254156, kegg.compound:D09637 ;
 	owl:sameAs	chebi:72297, chebi:72297, chemspider:8028764, wikidata:Q1268941, chembl.compound:CHEMBL354541, pubchem.compound:9853053, drugbank:DB08827, hmdb:HMDB0254156, kegg.compound:D09637 .
+
+
+cas:5746-04-3
+	skos:exactMatch	chebi:53014, chebi:53014, chemspider:110350, wikidata:Q76010404, pubchem.compound:123800, pubchem.compound:40430212, hmdb:HMDB0240347 ;
+	owl:sameAs	chebi:53014, chebi:53014, chemspider:110350, wikidata:Q76010404, pubchem.compound:123800, pubchem.compound:40430212, hmdb:HMDB0240347 .
 
 
 pr:000031316

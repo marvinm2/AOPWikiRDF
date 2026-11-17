@@ -1,7 +1,7 @@
 {
   "per_source": {
     "ChEBI": {
-      "labeled": 445,
+      "labeled": 446,
       "unlabeled": 0
     },
     "ChEMBL": {
@@ -9,7 +9,7 @@
       "unlabeled": 0
     },
     "ChemSpider": {
-      "labeled": 449,
+      "labeled": 450,
       "unlabeled": 0
     },
     "DrugBank": {
@@ -21,7 +21,7 @@
       "unlabeled": 0
     },
     "HMDB": {
-      "labeled": 553,
+      "labeled": 554,
       "unlabeled": 0
     },
     "KEGG": {
@@ -37,7 +37,7 @@
       "unlabeled": 0
     },
     "PubChem": {
-      "labeled": 492,
+      "labeled": 494,
       "unlabeled": 0
     },
     "UniProt": {
@@ -45,7 +45,7 @@
       "unlabeled": 0
     },
     "Wikidata": {
-      "labeled": 444,
+      "labeled": 445,
       "unlabeled": 0
     }
   },

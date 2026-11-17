@@ -1,0 +1,196 @@
+{
+  "references": {
+    "aop": {
+      "ncbi": 439,
+      "normalised": 273,
+      "ncbi_resolvable": 0,
+      "wiki_user": 129,
+      "other": 0
+    },
+    "key_event": {
+      "ncbi": 815,
+      "normalised": 529,
+      "ncbi_resolvable": 0,
+      "wiki_user": 232,
+      "other": 0
+    },
+    "ker": {
+      "ncbi": 807,
+      "normalised": 600,
+      "ncbi_resolvable": 0,
+      "wiki_user": 227,
+      "other": 0
+    }
+  },
+  "total": {
+    "ncbi": 2061,
+    "normalised": 1402,
+    "ncbi_resolvable": 0,
+    "wiki_user": 588,
+    "other": 0
+  },
+  "wiki_user_terms": [
+    {
+      "taxonomy_id": "6ecfa95f-a2ff-4b54-959a-e85db4ef6051",
+      "source_id": "WikiUser_17",
+      "name": "mammals",
+      "uses": 183
+    },
+    {
+      "taxonomy_id": "5f22e239-aff6-4138-95b2-4ed3a4191447",
+      "source_id": "WikiUser_28",
+      "name": "Vertebrates",
+      "uses": 99
+    },
+    {
+      "taxonomy_id": "5eef5ba7-4c9e-4407-883f-5a5b1dd6dc3b",
+      "source_id": "WikiUser_6",
+      "name": "fish",
+      "uses": 85
+    },
+    {
+      "taxonomy_id": "71883117-d3c5-422e-b9ae-7bd6df76a9bd",
+      "source_id": "WikiUser_25",
+      "name": "human and other cells in culture",
+      "uses": 35
+    },
+    {
+      "taxonomy_id": "c93a2f1e-c026-4772-aa90-3c2c4d077087",
+      "source_id": "WikiUser_15",
+      "name": "Sprague-Dawley",
+      "uses": 35
+    },
+    {
+      "taxonomy_id": "4807ba7d-62b1-4e9a-936c-de127b834066",
+      "source_id": "WikiUser_26",
+      "name": "rodents",
+      "uses": 33
+    },
+    {
+      "taxonomy_id": "79a5ba3d-1d7a-47fb-8e5c-3c61579477f1",
+      "source_id": "WikiUser_4",
+      "name": "Human, rat, mouse",
+      "uses": 16
+    },
+    {
+      "taxonomy_id": "42b6b8a2-4546-4689-adb4-0bf9ce2b4904",
+      "source_id": "WikiUser_29",
+      "name": "Invertebrates",
+      "uses": 14
+    },
+    {
+      "taxonomy_id": "b430724b-b077-4243-a14c-0d73e19edd3d",
+      "source_id": "WikiUser_1",
+      "name": "human, mouse, rat",
+      "uses": 14
+    },
+    {
+      "taxonomy_id": "70682fb2-6348-4807-8f02-ad2b1697c117",
+      "source_id": "WikiUser_2",
+      "name": "Honey bee",
+      "uses": 13
+    },
+    {
+      "taxonomy_id": "c9385300-724e-4699-8583-192867090ef4",
+      "source_id": "WikiUser_14",
+      "name": "Monkey",
+      "uses": 11
+    },
+    {
+      "taxonomy_id": "cde60f6d-3de9-4f7b-a0ae-7794ebc160f8",
+      "source_id": "WikiUser_24",
+      "name": "Pig",
+      "uses": 11
+    },
+    {
+      "taxonomy_id": "dc4a8cd6-d690-4e71-af20-682a5fc276cf",
+      "source_id": "WikiUser_19",
+      "name": "rodentia",
+      "uses": 8
+    },
+    {
+      "taxonomy_id": "73395cd3-e40d-4b65-bdb3-3b7fdf8dc525",
+      "source_id": "WikiUser_9",
+      "name": "Hamster",
+      "uses": 6
+    },
+    {
+      "taxonomy_id": "9801bb6b-ac3e-40f2-86ce-69097df8241e",
+      "source_id": "WikiUser_5",
+      "name": "insects",
+      "uses": 6
+    },
+    {
+      "taxonomy_id": "cb187d96-004d-4de4-a958-628ad03429b5",
+      "source_id": "WikiUser_22",
+      "name": "all species",
+      "uses": 6
+    },
+    {
+      "taxonomy_id": "75557748-b886-420d-ac00-b04aca3a64ce",
+      "source_id": "WikiUser_8",
+      "name": "Melibe leonine",
+      "uses": 2
+    },
+    {
+      "taxonomy_id": "9e555def-8edb-4aa4-81db-9e730b216ca1",
+      "source_id": "WikiUser_20",
+      "name": "Double-crested cormorant",
+      "uses": 2
+    },
+    {
+      "taxonomy_id": "19124387-0f35-42a4-ab2a-252c876382fb",
+      "source_id": "WikiUser_23",
+      "name": "chickens, ducks, turkeys",
+      "uses": 1
+    },
+    {
+      "taxonomy_id": "5e01b5db-e7f3-4d80-92c5-c0678229e2e5",
+      "source_id": "WikiUser_10",
+      "name": "chaetanaphothrips orchidii",
+      "uses": 1
+    },
+    {
+      "taxonomy_id": "5eb9d015-f43d-4195-a029-45ec1cc29463",
+      "source_id": "WikiUser_16",
+      "name": "Common Starling",
+      "uses": 1
+    },
+    {
+      "taxonomy_id": "66d0ea5c-acf3-4e01-83ea-293a97230fad",
+      "source_id": "WikiUser_7",
+      "name": "tritonea diomedea",
+      "uses": 1
+    },
+    {
+      "taxonomy_id": "722e09c6-d83a-43ca-8a5f-0312a74f1b7a",
+      "source_id": "WikiUser_12",
+      "name": "lepidoptera",
+      "uses": 1
+    },
+    {
+      "taxonomy_id": "adc957f5-e2e9-4ae7-bdd1-e836d3d75e98",
+      "source_id": "WikiUser_11",
+      "name": "hymenoptera",
+      "uses": 1
+    },
+    {
+      "taxonomy_id": "dcdd4567-5da2-4c91-b0fe-631554871f84",
+      "source_id": "WikiUser_3",
+      "name": "hydra",
+      "uses": 1
+    },
+    {
+      "taxonomy_id": "eb2022a0-3c83-471b-b487-f45baf8bd2ce",
+      "source_id": "WikiUser_13",
+      "name": "orius isidiosus",
+      "uses": 1
+    },
+    {
+      "taxonomy_id": "f0a82a21-d840-42a1-a98b-4f235fe5a311",
+      "source_id": "WikiUser_21",
+      "name": "Eastern bluebird",
+      "uses": 1
+    }
+  ]
+}

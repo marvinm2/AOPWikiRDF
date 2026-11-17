@@ -4382,6 +4382,9 @@ aop.relationships:1708	edam:data_1025	hgnc:2200 ;
 aop.relationships:3863	edam:data_1025	hgnc:6647 ;
 	:geneDetectedByRegex	hgnc:6647 .
 
+aop.relationships:3869	edam:data_1025	hgnc:6553 ;
+	:geneDetectedByRegex	hgnc:6553 .
+
 hgnc:7456	a	edam:data_2298, edam:data_1025 ;
 	rdfs:label	"MT-ND2" ;
 	edam:data_2298	"7456" ;
