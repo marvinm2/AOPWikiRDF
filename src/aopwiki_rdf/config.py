@@ -73,6 +73,13 @@ class PipelineConfig:
     # in production this phase.
     enable_iri_labels: bool = False
 
+    # Typed dates (#143). When True, the XML-sourced dcterms:created and
+    # dcterms:modified on AOPs, KERs and stressors are written as
+    # "..."^^xsd:dateTime, so MAX/ORDER BY/comparisons work in SPARQL. A value
+    # that is not YYYY-MM-DDThh:mm:ss stays a plain literal and is counted in
+    # the log. Default False keeps the plain literals (COMPAT-01).
+    typed_dates: bool = False
+
     # Pinned-snapshot knob (COMPAT-01). When set, _stage_parse reads this XML
     # file (gunzip if .gz) instead of downloading config.aopwiki_xml_url, so the
     # COMPAT gate can regenerate the pipeline deterministically against a

@@ -17,6 +17,7 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(_
 MAIN_TTL = os.path.join(PROJECT_ROOT, 'data', 'AOPWikiRDF.ttl')
 STANDARD = (
     'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+    'http://www.w3.org/2000/01/rdf-schema#',
     'http://www.w3.org/ns/shacl#',
     'http://www.w3.org/ns/prov#',
 )
