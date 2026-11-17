@@ -336,7 +336,8 @@ because they carry an NCBI taxid anyway:
 - "common ecological/toxicological species" terms with source-id `WCS_<taxid>`;
 - terms whose source is an NCBI Taxonomy Browser URL (`...wwwtax.cgi?...&id=<taxid>`).
 
-`WikiUser_<n>` terms are wiki account ids, not taxa, and stay plain strings. With the flag each
+`WikiUser_<n>` terms were created by wiki users and have no external identifier ("mammals",
+"rodents", "human, mouse, rat"), so they stay plain strings. With the flag each
 taxon IRI is written once: every AOP-Wiki name for it as `dc:title`, every source as
 `dc:source`, and one `rdfs:label` (the first NCBI-sourced name, else the first name). Some
 AOP-Wiki names are broader than the taxid they point at (`WCS_35525` is Daphnia magna but is also

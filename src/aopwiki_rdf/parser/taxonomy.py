@@ -8,8 +8,9 @@ plain strings. Two of the other sources still carry an NCBI taxid:
 * terms whose source is an NCBI Taxonomy Browser URL (``...wwwtax.cgi?...&id=<taxid>``).
 
 ``normalise_taxa`` turns those into ``ncbitaxon:<taxid>`` (behind
-``PipelineConfig.normalise_taxa``). ``WikiUser_<n>`` terms are wiki account ids,
-not taxa, and stay strings. ``taxonomy_report`` counts the applicability
+``PipelineConfig.normalise_taxa``). ``WikiUser_<n>`` terms were created by wiki
+users without an external identifier ("mammals", "rodents", "human, mouse,
+rat"), so they stay strings. ``taxonomy_report`` counts the applicability
 references by kind on every run, flag or not.
 """
 
