@@ -68,10 +68,20 @@ def test_normalise_rewrites_terms_and_entity_references():
     assert parsed.taxdict['t-human']['dc:identifier'] == 'ncbitaxon:9606'
     assert parsed.taxdict['t-human']['_normalised_from'] == 'WCS_9606'
     assert parsed.taxdict['t-ins']['dc:identifier'] == 'ncbitaxon:50557'
-    assert parsed.taxdict['t-wu']['dc:identifier'] == '"WikiUser_22"'
+    # User-created terms stay strings, but carry their name instead of the bare id (#149).
+    assert parsed.taxdict['t-wu']['dc:identifier'] == '"all species"'
+    assert parsed.taxdict['t-wu']['_wiki_user_id'] == 'WikiUser_22'
+    assert parsed.taxdict['t-odd']['dc:identifier'] == '"X1"'
     assert [a[2] for a in parsed.aopdict['1']['ncbitaxon:131567']] == [
-        'ncbitaxon:9606', 'ncbitaxon:9606', 'ncbitaxon:7955', '"WikiUser_22"']
-    assert [a[2] for a in parsed.kedict['1']['ncbitaxon:131567']] == ['ncbitaxon:50557', '"WikiUser_22"']
+        'ncbitaxon:9606', 'ncbitaxon:9606', 'ncbitaxon:7955', '"all species"']
+    assert [a[2] for a in parsed.kedict['1']['ncbitaxon:131567']] == ['ncbitaxon:50557', '"all species"']
+
+
+def test_user_created_term_names_are_escaped():
+    parsed = _parsed()
+    parsed.taxdict['t-wu']['dc:title'] = ' the "big" ones '
+    normalise_taxa(parsed)
+    assert parsed.taxdict['t-wu']['dc:identifier'] == '"the \\"big\\" ones"'
 
 
 def test_report_counts_references_by_kind_and_lists_wiki_users(tmp_path):
@@ -127,7 +137,7 @@ def _graph(path):
 def test_normalised_output_has_iris_and_one_node_per_taxon(tmp_path):
     path = _write(tmp_path, 'on.ttl', normalise=True)
     graph = _graph(path)
-    assert set(graph.objects(AOP1, TAXON)) == {HUMAN, ZEBRAFISH, Literal('WikiUser_22')}
+    assert set(graph.objects(AOP1, TAXON)) == {HUMAN, ZEBRAFISH, Literal('all species')}
     assert sorted(str(t) for t in graph.objects(HUMAN, DC.title)) == ['Homo sapiens', 'human']
     assert list(graph.objects(HUMAN, RDFS.label)) == [Literal('Homo sapiens')]
     assert list(graph.objects(ZEBRAFISH, RDFS.label)) == [Literal('zebrafish')]
