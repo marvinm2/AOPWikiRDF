@@ -10,7 +10,8 @@ plain strings. Two of the other sources still carry an NCBI taxid:
 ``normalise_taxa`` turns those into ``ncbitaxon:<taxid>`` (behind
 ``PipelineConfig.normalise_taxa``). ``WikiUser_<n>`` terms were created by wiki
 users without an external identifier ("mammals", "rodents", "human, mouse,
-rat"), so they stay strings. ``taxonomy_report`` counts the applicability
+rat"), so they stay strings; with normalisation the string is the term's name
+instead of its bare id (#149). ``taxonomy_report`` counts the applicability
 references by kind on every run, flag or not.
 """
 
@@ -48,8 +49,16 @@ def ncbi_taxid(source, source_id):
     return None
 
 
+def _literal(text):
+    """Quoted Turtle literal for a term name (the writer emits identifiers verbatim)."""
+    escaped = text.replace('\\', '\\\\').replace('"', '\\"').replace('\n', ' ').replace('\r', ' ')
+    return '"' + escaped + '"'
+
+
 def classify(entry):
     """Kind of a taxdict entry: one of ``KINDS``."""
+    if entry.get('_wiki_user_id'):
+        return 'wiki_user'
     if entry.get('_normalised_from'):
         return 'normalised'
     if entry.get('dc:source') == 'NCBI':
@@ -71,10 +80,13 @@ def normalise_taxa(entities):
 
     Updates ``entities.taxdict`` (keeping the original source-id in
     ``_normalised_from``) and the identifier slot of every applicability entry
-    on AOPs, KEs and KERs that points at a rewritten term. Returns the number
-    of taxonomy terms rewritten.
+    on AOPs, KEs and KERs that points at a rewritten term. User-created
+    ``WikiUser_<n>`` terms stay strings, but the string becomes the term's name
+    (``"mammals"`` instead of ``"WikiUser_17"``, #149), with the id kept in
+    ``_wiki_user_id``. Returns the number of terms rewritten to IRIs.
     """
     rewritten = {}
+    named = {}
     for tax_id, entry in entities.taxdict.items():
         if entry.get('dc:source') == 'NCBI' or 'dc:identifier' not in entry:
             continue
@@ -84,12 +96,19 @@ def normalise_taxa(entities):
             entry['_normalised_from'] = source_id
             entry['dc:identifier'] = 'ncbitaxon:' + taxid
             rewritten[tax_id] = entry['dc:identifier']
+        elif _WIKI_USER.fullmatch(source_id) and (entry.get('dc:title') or '').strip():
+            entry['_wiki_user_id'] = source_id
+            entry['dc:identifier'] = _literal(entry['dc:title'].strip())
+            named[tax_id] = entry['dc:identifier']
     for entity_dict in _entity_dicts(entities).values():
         for entity in entity_dict.values():
             for applicability in entity.get(TAXON_PREDICATE, []):
                 if applicability[0] in rewritten:
                     applicability[2] = rewritten[applicability[0]]
-    logger.info('Taxonomy normalisation: %d terms rewritten to NCBITaxon IRIs', len(rewritten))
+                elif applicability[0] in named:
+                    applicability[2] = named[applicability[0]]
+    logger.info('Taxonomy normalisation: %d terms rewritten to NCBITaxon IRIs, %d user-created '
+                'terms written by name', len(rewritten), len(named))
     return len(rewritten)
 
 
@@ -120,7 +139,8 @@ def taxonomy_report(entities, report_path=None):
         'references': by_entity,
         'total': {kind: totals[kind] for kind in KINDS},
         'wiki_user_terms': [
-            {'taxonomy_id': tax_id, 'source_id': _source_id(taxdict[tax_id]),
+            {'taxonomy_id': tax_id,
+             'source_id': taxdict[tax_id].get('_wiki_user_id') or _source_id(taxdict[tax_id]),
              'name': taxdict[tax_id].get('dc:title'), 'uses': uses}
             for tax_id, uses in sorted(wiki_user_uses.items(), key=lambda item: (-item[1], item[0]))
         ],

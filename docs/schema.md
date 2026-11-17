@@ -337,7 +337,8 @@ because they carry an NCBI taxid anyway:
 - terms whose source is an NCBI Taxonomy Browser URL (`...wwwtax.cgi?...&id=<taxid>`).
 
 `WikiUser_<n>` terms were created by wiki users and have no external identifier ("mammals",
-"rodents", "human, mouse, rat"), so they stay plain strings. With the flag each
+"rodents", "human, mouse, rat"), so they stay plain strings; with the flag the string is the term's
+name rather than its bare id (`"mammals"`, not `"WikiUser_17"`, #149). With the flag each
 taxon IRI is written once: every AOP-Wiki name for it as `dc:title`, every source as
 `dc:source`, and one `rdfs:label` (the first NCBI-sourced name, else the first name). Some
 AOP-Wiki names are broader than the taxid they point at (`WCS_35525` is Daphnia magna but is also
