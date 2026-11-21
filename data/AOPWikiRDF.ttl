@@ -59641,7 +59641,7 @@ aop:520
 	dcterms:alternative	"RAR agonism during neurodevelopment leading to impaired learning and memory" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2024-01-14T09:50:34"^^xsd:dateTime ;
-	dcterms:modified	"2024-02-02T04:46:38"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-20T07:37:55"^^xsd:dateTime ;
 	dc:description	"""A prime example of impairments in learning and memory as the adverse outcome for regulatory action is developmental lead exposure and IQ function in children (Bellinger, 2012). Most methods are well established in the published literature and many have been engaged to evaluate the effects of developmental thyroid disruption. The US EPA and OECD Developmental Neurotoxicity (DNT) Guidelines (OCSPP 870.6300 or OECD TG 426) as well as OECD TG 443 (OECD, 2018) both require testing of learning and memory (USEPA, 1998; OECD, 2007) advising to use the following tests passive avoidance, delayed-matching-to-position for the adult rat and for the infant rat, olfactory conditioning, Morris water maze, Biel or Cincinnati maze, radial arm maze, T-maze, and acquisition and retention of schedule-controlled behavior. These DNT Guidelines have been deemed valid to identify developmental neurotoxicity and adverse neurodevelopmental outcomes (Makris et al., 2009).&nbsp;
 
 Also, in the frame of the OECD GD 43 (2008) on reproductive toxicity, learning and memory testing may have potential to be applied in the context of developmental neurotoxicity studies. However, many of the learning and memory tasks used in guideline studies may not readily detect subtle impairments in cognitive function associated with modest degrees of developmental thyroid disruption (Gilbert et al., 2012).&nbsp;
@@ -60477,7 +60477,7 @@ aop:523
 	dcterms:alternative	"RAR agonism during neurodevelopment leading to microcephaly" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2024-01-29T03:05:01"^^xsd:dateTime ;
-	dcterms:modified	"2024-03-13T08:22:19"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-20T07:40:59"^^xsd:dateTime ;
 	aopo:has_key_event	aop.events:2202, aop.events:2203, aop.events:2210, aop.events:2201, aop.events:1978 ;
 	aopo:has_key_event_relationship	aop.relationships:3109, aop.relationships:3110, aop.relationships:3126, aop.relationships:3143, aop.relationships:3113, aop.relationships:3144 ;
 	aopo:has_molecular_initiating_event	aop.events:2201 ;
@@ -61579,7 +61579,7 @@ aop:532
 	dcterms:alternative	"RAR agonism during neurodevelopment leading to impaired locomotor function" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2024-05-27T03:24:22"^^xsd:dateTime ;
-	dcterms:modified	"2024-06-06T12:23:55"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-20T07:42:37"^^xsd:dateTime ;
 	aopo:has_key_event	aop.events:2228, aop.events:2229, aop.events:2230, aop.events:2201, aop.events:2231 ;
 	aopo:has_molecular_initiating_event	aop.events:2201 ;
 	aopo:has_adverse_outcome	aop.events:2231 .
@@ -61594,14 +61594,14 @@ aop:533
 	dcterms:alternative	"RAR antagonism during neurodevelopment leading to impaired learning and memory" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2024-05-27T03:25:46"^^xsd:dateTime ;
-	dcterms:modified	"2024-06-06T12:32:03"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-20T08:12:06"^^xsd:dateTime ;
 	dc:description	"""A prime example of impairments in learning and memory as the adverse outcome for regulatory action is developmental lead exposure and IQ function in children (Bellinger, 2012). Most methods are well established in the published literature and many have been engaged to evaluate the effects of developmental thyroid disruption. The US EPA and OECD Developmental Neurotoxicity (DNT) Guidelines (OCSPP 870.6300 or OECD TG 426) as well as OECD TG 443 (OECD, 2018) both require testing of learning and memory (USEPA, 1998; OECD, 2007) advising to use the following tests passive avoidance, delayed-matching-to-position for the adult rat and for the infant rat, olfactory conditioning, Morris water maze, Biel or Cincinnati maze, radial arm maze, T-maze, and acquisition and retention of schedule-controlled behavior. These DNT Guidelines have been deemed valid to identify developmental neurotoxicity and adverse neurodevelopmental outcomes (Makris et al., 2009).&nbsp;
 
 Also, in the frame of the OECD GD 43 (2008) on reproductive toxicity, learning and memory testing may have potential to be applied in the context of developmental neurotoxicity studies. However, many of the learning and memory tasks used in guideline studies may not readily detect subtle impairments in cognitive function associated with modest degrees of developmental thyroid disruption (Gilbert et al., 2012).&nbsp;
 
 &nbsp;
 """ ;
-	aopo:has_key_event	aop.events:1239, aop.events:851, aop.events:385, aop.events:386, aop.events:2232, aop.events:341 ;
+	aopo:has_key_event	aop.events:2419, aop.events:1239, aop.events:851, aop.events:385, aop.events:386, aop.events:2232, aop.events:341 ;
 	aopo:has_molecular_initiating_event	aop.events:2232 ;
 	aopo:has_adverse_outcome	aop.events:341 .
 
@@ -79844,12 +79844,515 @@ aop:660
 	rdfs:label	"AOP 660" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/660> ;
 	foaf:page	<https://identifiers.org/aop/660> ;
-	dc:title	"CML-mediated activation of aryl hydrocarbon receptor (AhR) leading to preeclampsia" ;
-	dcterms:alternative	"CML-mediated AhR activation leading to preeclampsia" ;
+	dc:title	"Activation of aryl hydrocarbon receptor (AhR) leading to preeclampsia via COX-2/PPAR-gamma-mediated trophoblast dysfunction" ;
+	dcterms:alternative	"AhR activation leading to preeclampsia via COX-2/PPAR-gamma-mediated dysfunction" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-11-16T21:18:26"^^xsd:dateTime ;
-	dcterms:modified	"2026-11-16T21:49:39"^^xsd:dateTime ;
-	nci:C54571	aop.stressor:878 .
+	dcterms:modified	"2026-11-17T19:51:51"^^xsd:dateTime ;
+	dc:description	"""Pregnant women with preexisting diabetes or gestational diabetes mellitus face a substantially elevated risk of developing severe PE and preterm birth. This Adverse Outcome Pathway (AOP) was developed to address a critical mechanistic question: How does a diabetic hyperglycemic microenvironment disrupt trophoblast invasion, angiogenic balance, and uterine spiral artery remodeling, thereby exacerbating the clinical severity of preeclampsia? 
+
+The primary objectives of developing this AOP are to
+1. Document specialized placental and vascular biology: Synthesize cross-disciplinary evidence connecting diabetic nephropathic/vascular mechanisms (CML&ndash;AhR&ndash;COX-2/PGE2 signaling) with PPAR-&gamma; downregulation, MMP suppression, extracellular matrix (ECM) remodeling, and placental angiogenesis (VEGF).
+2. Establish the biological relevance of upstream molecular and cellular assays (e.g., serum CML-modified peptides, AhR activation, COX-2/PGE2 levels, PPAR-&gamma; activity, MMP-2/MMP-9 expression, and VEGF production) alongside clinical angiogenic biomarkers (sFlt-1/PlGF ratio) to guide early risk stratification and targeted therapeutic interventions for high-risk diabetic pregnancies.
+""", """The AHR can be activated by several structurally diverse chemicals, but binds preferentially to planar halogenated aromatic hydrocarbons and polycyclic aromatic hydrocarbons. Dioxin-like compounds (DLCs), which include polychlorinated dibenzo-p-dioxins (PCDDs), polychlorinated dibenzofurans (PCDFs) and certain polychlorinated biphenyls (PCBs), are among the most potent AHR ligands[38]. Only a subset of PCDD, PCDF and PCB congeners has been shown to bind to the AHR and cause toxic effects to those elicited by TCDD. Until recently, TCDD was considered to be the most potent DLC in birds[39]; however, recent reports indicate that 2,3,4,7,8-pentachlorodibenzofuran (PeCDF) is more potent than TCDD in some species of birds.[40][13][41][21][42][43] When screened for their ability to induce aryl hydrocarbon hydroxylase (AHH) activity, dioxins with chlorine atoms at a minimum of three out of the four lateral ring positions, and with at least one non-chlorinated ring position are the most active[44]. Of the dioxin-like PCBs, non-ortho congeners are the most toxicologically active, while mono-ortho PCBs are generally less potent[45][9]. Chlorine substitution at ortho positions increases the energetic costs of assuming the coplanar conformation required for binding to the AHR [45]. Thus, a smaller proportion of mono-ortho PCB molecules are able to bind to the AHR and elicit toxic effects, resulting in reduced potency of these congeners. Other PCB congeners, such as di-ortho substituted PCBs, are very weak AHR agonists and do not likely contribute to dioxin-like effects [9].
+
+
+	Contrary to studies of birds and mammals, even the most potent mono-ortho PCBs bind to AhRs of fishes with very low affinity, if at all (Abnet et al 1999; Doering et al 2014; 2015; Eisner et al 2016; Van den Berg et al 1998).
+
+
+The role of the AHR in mediating the toxic effects of planar hydrophobic contaminants has been well studied, however the endogenous role of the AHR is less clear [1]. Some endogenous and natural substances, including prostaglandin PGG2 and the tryptophan derivatives indole-3-carbinol, 6-formylindolo[3,2-b]carbazole (FICZ) and kynurenic acid can bind to and activate the AHR. [6][46][47][48][49] The AHR is thought to have important endogenous roles in reproduction, liver and heart development, cardiovascular function, immune function and cell cycle regulation [50][38][51][52][53][54][46][55][56][57] and activation of the AHR by DLCs may therefore adversely affect these processes.
+""" ;
+	nci:C25217	"""
+	
+		
+			
+			&nbsp;Support for Biological Plausibility of KERs
+			
+		
+		
+			
+			MIE =&gt; KE1: Activation, AhR leads to Increase, COX-2 expression
+			
+			
+			Biological Plausibility of the MIE =&gt; KE1 is high.
+
+			Rationale:&nbsp; Ligand-bound aryl hydrocarbon receptor (AhR) undergoes conformational activation and translocates into the nucleus, where it heterodimerizes with the AhR nuclear translocator (ARNT). The resulting AhR/ARNT transcription factor complex specifically binds to xenobiotic response elements (XREs/DREs) located within the promoter region of the PTGS2 gene (encoding cyclooxygenase-2, COX-2). This genomic binding recruits transcriptional coactivators to directly drive COX-2 mRNA synthesis and protein expression. (Lee et al. (2016); Vogel et al. (2007))
+			
+		
+		
+			
+			KE1 =&gt; KE2: Increase, COX-2 expression leads to Increase, Prostaglandin E2 concentration
+			
+			
+			Biological Plausibility of the KE1 =&gt; KE2 is high. 
+
+			Rationale:&nbsp; Cyclooxygenase-2 (COX-2) functions as the rate-limiting enzyme converting membrane arachidonic acid into prostaglandin H2 (PGH2). PGH2 is subsequently isomerized to prostaglandin E2 (PGE2) via terminal microsomal prostaglandin E synthase-1 (mPGES-1). Elevated COX-2 protein level directly leads to a stoichiometric increase in PGE2 synthesis and extracellular secretion. (Lee et al. (2016); Li et al. (2015))
+			
+		
+		
+			
+			KE2 =&gt; KE3: Increase, Prostaglandin E2 concentration leads to Decreased, PPAR-gamma activation
+			
+			
+			Biological Plausibility of the KE2 =&gt; KE3 is high. 
+
+			Rationale:&nbsp; Extracellular PGE2 binds to G-protein coupled E-prostanoid receptors (EP2/EP4) on trophoblasts, activating intracellular cAMP/PKA and ERK1/2-MAPK kinase cascades. This signals inhibitory phosphorylation at serine residues within the N-terminal or ligand-binding domain of peroxisome proliferator-activated receptor gamma (PPAR-gamma), suppressing its nuclear translocation and DNA-binding activity. (Jia et al. (2022))
+			
+		
+		
+			
+			KE3 =&gt; KE4: Decreased, PPAR-gamma activation leads to Decreased, MMP
+			
+			
+			Biological Plausibility of the KE3 =&gt; KE4 is high. 
+
+			Rationale: &nbsp;Active PPAR-gamma&nbsp;functions as an essential positive transcriptional regulator of matrix metalloproteinases (MMP2 and&nbsp;MMP9) by binding to peroxisome proliferator response elements (PPREs) in their promoter regions. Suppression of PPAR-gamma&nbsp;activity abolishes this baseline transactivation and alters the MMP/TIMP stoichiometric balance, markedly reducing proMMP-2/9 expression and enzymatic cleavage. (Jia et al. (2022); Kobara et al. (2013))
+			
+		
+		
+			
+			KE4 =&gt; KE5: Decreased, MMP leads to Increase, ECM deposition
+			
+			
+			Biological Plausibility of the KE4 =&gt; KE5 is high.
+
+			Rationale: &nbsp;MMP-2 and MMP-9 (type IV collagenases) are key endopeptidases responsible for degrading structural extracellular matrix (ECM) components, including Type IV collagen, fibronectin, and laminin. Suppression of MMP gelatinase activity arrests matrix degradation and turnover, leading to pericellular accumulation of structural matrix proteins and tissue fibrosis. (Lee et al. (2016); Bautista-Bautista et al. (2024))
+			
+		
+		
+			
+			KE5 =&gt; KE6: Increase, ECM deposition leads to Cellular dysfunction (human placenta trophoblast cells)
+			
+			
+			Biological Plausibility of the KE 5 =&gt; KE6 is high.
+
+			Rationale:&nbsp; Excessive ECM deposition increases spatial biomechanical stiffness and creates dense physical barriers within the maternal decidua. Dense matrix physical constraints combined with altered integrin mechanotransduction physically restrict extravillous trophoblast (EVT) motility and invasion toward maternal spiral arteries. (Jiang et al. (2013); Tossetta et al. (2019))
+			
+		
+		
+			
+			KE6 =&gt; KE7: Cellular dysfunction (human placenta trophoblast cells) leads to increase, placental insufficiency
+			
+			
+			Biological Plausibility of the KE6 =&gt; KE7 is high. 
+
+			Rationale:&nbsp; Impaired EVT invasion prevents endovascular replacement of maternal subplacental uterine spiral artery endothelial and smooth muscle layers. Unremodeled spiral arteries remain high-resistance, low-flow vessels, causing chronic uteroplacental hypoperfusion, severe ischemia, and severe placental insufficiency. (Zhao et al. (2023/2025); Khankin et al. (2010))
+			
+		
+		
+			
+			KE7 =&gt; KE8: increase, placental insufficiency leads to reduced production, VEGF
+			
+			
+			Biological Plausibility of the KE7 =&gt; KE8 is high. 
+
+			Rationale: &nbsp;Ischemic and hypoxic syncytiotrophoblasts hypersecrete soluble fms-like tyrosine kinase-1 (sFlt-1). Secreted sFlt-1 functions as a high-affinity decoy receptor that binds and sequesters free vascular endothelial growth factor (VEGF) and placental growth factor (PlGF), dramatically reducing bioavailable circulating free VEGF levels. (Rana et al. (2019); AHA Organoid Model (2025))
+			
+		
+		
+			
+			KE8 =&gt; KE9: reduced production, VEGF leads to Altered, Cardiovascular development/function
+			
+			
+			Biological Plausibility of the KE8 =&gt; KE9 is high. 
+
+			Rationale:&nbsp; Free VEGF is mandatory for maintaining endothelial cell survival, fenestration integrity, and eNOS-mediated nitric oxide (NO) production. Depletion of free VEGF causes systemic endothelial injury, eNOS uncoupling, impaired vasorelaxation, and Endothelin-1 (ET-1) upregulation, triggering systemic arterial vasospasm. (Li et al. (2020); Zhou et al. (2019))
+			
+		
+		
+			
+			KE9 =&gt; AO: Altered, Cardiovascular development/function leads to increase, Preeclampsia
+			
+			
+			Biological Plausibility of the KE 9=&gt; AO is high. 
+
+			Rationale: &nbsp;Systemic arterial vasospasm elevates total peripheral resistance, directly causing maternal gestational hypertension. Glomerular endotheliosis and podocyte injury disrupt the renal filtration barrier, causing proteinuria and fulfilling clinical criteria for Preeclampsia. (Roberts et al. (2021); Jiang et al. (2025))
+			
+		
+	
+
+
+&nbsp;
+
+
+	
+		
+			
+			&nbsp;Support for essentiality of KEs
+			
+		
+		
+			
+			MIE: Activation, AhR
+			
+			
+			Essentiality of the MIE is high.
+
+			Rationale for Essentiality of the MIE in the AOP:&nbsp; Genetic deletion of AhR (AhR -/-), siRNA-mediated AhR knockdown, or pharmacological inhibition using specific AhR antagonists (e.g., CH223191, biseugenol, or&nbsp;alpha-naphthoflavone) completely abolishes CML- or ligand-induced COX-2 upregulation. (Lee et al. (2016); Vogel et al. (2007))
+			
+		
+		
+			
+			KE1: Increase, COX-2 expression
+			
+			
+			Essentiality of the KE1 is high.
+
+			Rationale for Essentiality of the KE1 in the AOP:&nbsp; Pharmacological inhibition of COX-2 using selective inhibitors (e.g., celecoxib, indomethacin, or low-dose aspirin) or COX-2 gene silencing directly blocks downstream PGE2 production and prevents its autocrine/paracrine accumulation. (Lee et al. (2016); Li et al. (2015))
+			
+		
+		
+			
+			KE2: Increase, Prostaglandin E2 concentration
+			
+			
+			Essentiality of the KE2 is high.
+
+			Rationale for Essentiality of the KE2 in the AOP: &nbsp;Blocking upstream AhR/COX-2 signaling, neutralizing extracellular PGE2 with specific antibodies, or antagonizing EP2/EP4 receptors fully rescues PPAR-gamma&nbsp;nuclear localization and transcriptional transactivation. (Jia et al. (2022))
+			
+		
+		
+			
+			KE3: Decreased, PPAR-gamma activation
+			
+			
+			Essentiality of the KE3 is high.
+
+			Rationale for Essentiality of the KE3 in the AOP: Administration of synthetic PPAR-gamma&nbsp;agonists (e.g., rosiglitazone or pioglitazone) directly restores MMP-2 and MMP-9 expression and gelatinase activity, overcoming upstream PGE2-mediated suppression. (Jia et al. (2022); Kobara et al. (2013))
+			
+		
+		
+			
+			KE4: Decreased, MMP
+			
+			
+			Essentiality of the KE4 is high.
+
+			Rationale for Essentiality of the KE4 in the AOP: Restoring MMP activity via PPAR-gamma&nbsp;agonists or upstream AhR/COX-2 inhibition prevents excessive matrix deposition; conversely, broad-spectrum MMP inhibitors induce rapid, uncontrolled ECM accumulation. (Lee et al. (2016); Bautista-Bautista et al. (2024))
+			
+		
+		
+			
+			KE5: Increase, ECM deposition
+			
+			
+			Essentiality of the KE5 is high.
+
+			Rationale for Essentiality of the KE5 in the AOP: Enzymatic degradation of excess matrix components or preventing upstream AhR-driven ECM overproduction restores EVT invasion depth in Matrigel and Transwell invasion assays. (Jiang et al. (2013); Tossetta et al. (2019))
+			
+		
+		
+			
+			KE6: Cellular dysfunction (human placenta trophoblast cells)
+			
+			
+			Essentiality of the KE6 is high.
+
+			Rationale for Essentiality of the KE6 in the AOP: Reversing trophoblast invasion failure or blocking upstream AhR/COX-2 pathobiology restores endovascular spiral artery transformation and improves uteroplacental blood perfusion in animal models. (Zhao et al. (2023/2025); Khankin et al. (2010))
+			
+		
+		
+			
+			KE7: placental insufficiency
+			
+			
+			Essentiality of the KE7 is high.
+
+			Rationale for Essentiality of the KE7 in the AOP: Administration of sFlt-1 neutralizing antibodies, recombinant VEGF165, or relieving placental ischemia (via upstream pathway inhibition) directly restores bioavailable free VEGF concentrations. (Rana et al. (2019); AHA Organoid Model (2025))
+			
+		
+		
+			
+			KE8: reduced production, VEGF
+			
+			
+			Essentiality of the KE8 is high.
+
+			Rationale for Essentiality of the KE8 in the AOP: Exogenous VEGF supplementation or sFlt-1 antagonism restores endothelial eNOS activation and normalizes endothelium-dependent vasodilation in isolated maternal resistance arteries. (Li et al. (2020); Zhou et al. (2019))
+			
+		
+		
+			
+			KE9: Altered, Cardiovascular development/function
+			
+			
+			Essentiality of the KE9 is high.
+
+			Rationale for Essentiality of the KE9 in the AOP: Upstream blockade of the MIE (AhR antagonism) or early KEs (COX-2 inhibition via low-dose aspirin, PPAR-gamma activation, or sFlt-1 neutralization) prevents or significantly attenuates gestational hypertension and proteinuria. (Roberts et al. (2021); Jiang et al. (2025))
+			
+		
+	
+
+
+&nbsp;
+
+&nbsp;
+""" ;
+	nci:C48192	"""
+	
+		
+			
+			Event
+			
+			
+			Direct Evidence
+			
+			
+			Indirect Evidence
+			
+		
+		
+			
+			MIE
+			
+			
+			***
+			
+			
+			***
+			
+		
+		
+			
+			KE1
+			
+			
+			***
+			
+			
+			***
+			
+		
+		
+			
+			KE2
+			
+			
+			**
+			
+			
+			***
+			
+		
+		
+			
+			KE3
+			
+			
+			***
+			
+			
+			***
+			
+		
+		
+			
+			KE4
+			
+			
+			***
+			
+			
+			**
+			
+		
+		
+			
+			KE5
+			
+			
+			**
+			
+			
+			***
+			
+		
+		
+			
+			KE6
+			
+			
+			***
+			
+			
+			***
+			
+		
+		
+			
+			KE7
+			
+			
+			***
+			
+			
+			***
+			
+		
+		
+			
+			KE8
+			
+			
+			***
+			
+			
+			***
+			
+		
+		
+			
+			KE9 
+			
+			
+			***
+			
+			
+			***
+			
+		
+	
+
+""" ;
+	aopo:AopContext	"""The AOP660 applies to Homo sapiens&nbsp;(human), pregnancy, and female.
+""" ;
+	aopo:has_evidence	"""
+	
+		
+			
+			MIE =&gt; KE1 : Activation, AhR leads to Increase, COX-2 expression
+			
+			
+			Empirical Support of the MIE =&gt; KE1 is high.
+
+			Rationale:&nbsp;In diabetic mesangial cells and human placental/endothelial models, exposure to advanced glycation end-products (CML) or dioxin-like compounds triggers AhR nuclear translocation followed by a time- and concentration-dependent elevation of COX-2 expression. This response is completely absent in AhR-deficient models. (Lee et al. (2016); Vogel et al. (2007))
+			
+		
+		
+			
+			KE1 =&gt; KE2 : Increase, COX-2 expression leads to Increase, Prostaglandin E2 concentration
+			
+			
+			Empirical Support of the KE1 =&gt; KE2 is high. 
+
+			Rationale:&nbsp;Quantitative assays in human trophoblasts, endothelial cells, and diabetic renal tissues demonstrate that COX-2 protein expression directly correlates with extracellular PGE2 concentrations in cell culture supernatants and tissue homgenates. (Lee et al. (2016); Li et al. (2015))
+			
+		
+		
+			
+			KE2 =&gt; KE3 : Increase, Prostaglandin E2 concentration leads to Decreased, PPAR-gamma activation
+			
+			
+			Empirical Support of the KE2 =&gt; KE3 is moderate.
+
+			Rationale:&nbsp;Treatment of human extravillous trophoblasts (EVTs) or vascular cells with exogenous PGE2 induces dose-dependent inhibition of PPAR-gamma&nbsp;reporter gene activity and reduces nuclear PPAR-gamma&nbsp;protein levels, mimicking pathology observed in preeclamptic placentas. (Jia et al. (2022))
+			
+		
+		
+			
+			KE3 =&gt; KE4 : Decreased, PPAR-gamma activation leads to Decreased, MMP
+			
+			
+			Empirical Support of the KE3 =&gt; KE4 is high. 
+
+			Rationale:&nbsp;siRNA-mediated PPAR-gamma&nbsp;knockdown or pharmacological inhibition with GW9662 markedly reduces MMP-2/9 mRNA expression and gelatinase zymography activity in human HTR-8/SVneo trophoblast cells and extra-placental membranes. (Jia et al. (2022); Kobara et al. (2013))
+			
+		
+		
+			
+			KE4 =&gt; KE5 : Decreased, MMP leads to Increase, ECM deposition
+			
+			
+			Empirical Support of the KE4 =&gt; KE5 is high. 
+
+			Rationale:&nbsp;In diabetic tissue models and human decidual cultures, reduced MMP-9 gelatinase activity quantitatively correlates with significant increases in Type IV collagen and Fibronectin deposition. (Lee et al. (2016); Bautista-Bautista et al. (2024))
+			
+		
+		
+			
+			KE5 =&gt; KE6 : Increase, ECM deposition leads to Cellular dysfunction (human placenta trophoblast cells)
+			
+			
+			Empirical Support of the KE5 =&gt; KE6 is moderate.
+
+			Rationale:&nbsp;Increased ECM substrate stiffness and dense Fibronectin/Collagen matrices significantly decrease HTR-8/SVneo migration speed and invasion capacity in vitro. (Jiang et al. (2013); Tossetta et al. (2019))
+			
+		
+		
+			
+			KE6 =&gt; KE7 : Cellular dysfunction (human placenta trophoblast cells) leads to increase, placental insufficiency
+			
+			
+			Empirical Support of the KE 6 =&gt; KE7 is high. 
+
+			Rationale:&nbsp;Histopathological analysis of preeclamptic placentas consistently reveals shallow EVT invasion and unremodeled spiral arteries, directly correlating with reduced Doppler uteroplacental perfusion parameters. (Zhao et al. (2023/2025); Khankin et al. (2010))
+			
+		
+		
+			
+			KE7 =&gt; KE8 : increase, placental insufficiency leads to reduced production, VEGF
+			
+			
+			Empirical Support of the KE7 =&gt; KE8 is high. Rationale:&nbsp;In clinical preeclampsia cohorts and Reduced Uteroplacental Perfusion Pressure (RUPP) animal models, placental hypoxia directly drives a surge in serum sFlt-1 accompanied by a reciprocal collapse in bioavailable free VEGF. (Rana et al. (2019); AHA Organoid Model (2025))
+			
+		
+		
+			
+			KE8 =&gt; KE9 : reduced production, VEGF leads to Altered, Cardiovascular development/function
+			
+			
+			Empirical Support of the KE8 =&gt; KE9 is high. 
+
+			Rationale:&nbsp;Exogenous sFlt-1 infusion in pregnant rodents induces systemic endothelial cell swelling, blunted vasodilation responses, and acute systemic vasoconstriction. (Li et al. (2020); Zhou et al. (2019))
+			
+		
+		
+			
+			KE9 =&gt; AO : Altered, Cardiovascular development/function leads to increase, Preeclampsia
+			
+			
+			Empirical Support of the KE9 =&gt; AO is high.
+
+			Rationale:&nbsp;Clinical trials and animal models demonstrate that reversing endothelial dysfunction directly alleviates hypertension and renal pathology, preventing progression to clinical Preeclampsia. (Roberts et al. (2021); Jiang et al. (2025))
+			
+		
+	
+
+
+&nbsp;
+""" ;
+	edam:operation_3799	"""The quantitative understanding of AOP 660 is currently categorized overall as&nbsp;Moderate, defined by a distinct temporal and scale-dependent hierarchy across biological levels of organization. 
+
+Upstream key events spanning the Molecular Initiating Event (MIE, AhR activation) to KE2 (PGE2 elevation) exhibit robust semi-quantitative dose- and time-response relationships in vitro within acute timeframes (hours to 48 h). In this early phase, chronic accumulation of&nbsp;N-&epsilon;-carboxymethyllysine (CML) under hyperglycemic stress eventually overcomes homeostatic negative feedback clearance driven by CYP1A1/CYP1A2 enzymes. 
+
+Midstream cell- and tissue-level events (KE3 to KE6: PGE2&ndash;PPAR-gamma&nbsp;repression, MMP-2/9 suppression, and ECM over-deposition) display moderate quantitative predictability; while specific PGE2 threshold concentrations and matrix stiffness values correlate directly with reduced extravillous trophoblast invasion in human explant models, quantitative inter-individual microenvironmental variations remain. 
+
+Conversely, downstream systemic events leading to the Adverse Outcome (KE7 to AO: placental insufficiency, sFlt-1/PlGF ratio surge, endothelial vasospasm, and preeclampsia) possess&nbsp;High&nbsp;quantitative predictive validity spanning weeks across gestation (weeks 12&ndash;20 to clinical presentation). Clinically validated biomarkers, particularly circulating sFlt-1/PlGF ratio thresholds (e.g., cutoffs of &gt;38 or &gt;85), reliably predict impending preeclampsia onset within 1 to 4 weeks. 
+
+Future incorporation of multi-scale toxicokinetic-toxicodynamic (TKTD) computational models will bridge early upstream CML-AhR threshold concentrations directly with downstream systemic vascular risks, advancing this framework into a fully quantitative risk-assessment tool for high-risk diabetic pregnancies.
+""" ;
+	nci:C25725	"""Based on the weight-of-evidence (WoE) evaluation&mdash;supported by strong biological plausibility, moderate empirical evidence, and evolving quantitative predictability&mdash;this Adverse Outcome Pathway (AOP) serves as a robust mechanistic framework for hypothesis generation, early biomarker discovery, and screening-level hazard identification:
+
+
+	Early Risk Stratification &amp; Biomarker Discovery:&nbsp;By mechanistic bridging of diabetic hyperglycemia to placental vascular pathology, upstream and mid-stream Key Events&mdash;including maternal serum N-&epsilon;-carboxymethyllysine (CML), AhR activation (MIE, Event 18), COX-2/PGE2 elevation (Events 1269 &amp; 2466), and MMP-2/9 suppression (Event 2467)&mdash;provide a panel of early-gestation mechanistic biomarkers. These complement established mid-to-late gestation angiogenic markers (such as the sFlt-1/PlGF ratio) to enable earlier risk stratification for preeclampsia (Event 1893) in pregnancies complicated by diabetes or GDM.
+	DART Hazard Assessment &amp; Chemical Grouping :&nbsp;As AhR activation is a shared MIE across multiple toxicological networks, this AOP provides a biological rationale for screening exogenous AhR agonists and modulators (e.g., environmental dioxin-like pollutants or pharmaceuticals) for placenta- and vascular-mediated developmental and reproductive toxicity (DART). It directly informs chemical profiling and Integrated Approaches to Testing and Assessment (IATA) using human first-trimester trophoblast (HTR-8/SVneo) and endothelial (HUVEC) assays.
+	Targeted Therapeutic Interventions:&nbsp;Mapping this intermediate signaling cascade uncovers pharmacological targets beyond conventional low-dose aspirin prophylaxis. Specifically, attenuating aberrant AhR hyperactivation, restoring PPAR-gamma transactivation (Event 233), or modulating PGE2&ndash;EP receptor signaling represent promising preclinical targets for preventing placental dysfunctions in high-risk diabetic pregnancies.
+	Regulatory Limitations:&nbsp;Due to current knowledge gaps regarding exact quantitative CML thresholds for AhR activation at the human maternal-fetal interface and bidirectional PGE2 signaling kinetics, this AOP should currently be applied for qualitative read-across and screening-level hazard identification rather than deriving quantitative points of departure (PODs) for regulatory exposure limits.
+
+""" ;
+	dc:creator	"""YuCheng Nien.
+Department of Obstetrics, Gynecology &amp; Women&#39;s Health, Taichung Veterans General Hospital, Taichung, Taiwan.
+""" ;
+	dcterms:abstract	"""Preeclampsia (PE) is a severe pregnancy-specific hypertensive disorder affecting 3-5% of pregnancies globally and is a leading cause of maternal and perinatal morbidity and mortality, with significantly elevated risk and clinical severity among women with diabetes. This Adverse Outcome Pathway (AOP) was initiated to elucidate the mechanistic linkage between diabetic hyperglycemia and exacerbated PE pathology via the aryl hydrocarbon receptor (AhR) signaling axis. Under hyperglycemic conditions, non-enzymatic glycoxidation and lipid peroxidation promote the accumulation of N-&epsilon;-carboxymethyllysine (CML), which acts as a stressor to trigger the Molecular Initiating Event (MIE): Activation, AhR (Event 18) in placental trophoblasts and endothelial cells. Aberrant AhR activation subsequently induces Increase, COX-2 expression (Event 1269) and Increase, Prostaglandin E2 concentration (Event 2466). Excessive PGE2 signaling leads to Decreased, PPAR-gamma activation (Event 233), which in turn drives Decreased, MMP (Event 2467) activity and Increase, Extracellular matrix deposition (Event 1501) within the placental microenvironment. Together, matrix remodeling arrest and excessive ECM accumulation result in Decreased trophoblast invasion/migration (Event 2103), impairing uterine spiral artery remodeling and leading to placental insufficiency (Event 1892) and hypoxia. Placental ischemia subsequently triggers the release of anti-angiogenic factors, resulting in reduced production, VEGF (Event 948) and Altered, Cardiovascular development/function (Event 317)&mdash;manifesting as widespread maternal vascular endothelial dysfunction and vasoconstriction&mdash;which ultimately culminate in the Adverse Outcome (AO) of increase, Preeclampsia (Event 1893). Overall, the biological plausibility of this pathway is supported by moderate-to-strong empirical evidence from diabetic vascular/renal models demonstrating CML&ndash;AhR&ndash;COX-2/PGE2 signaling, alongside established roles of PPAR-&gamma;, MMPs, and VEGF in placentation. However, major knowledge gaps remain regarding quantitative CML thresholds in early human gestation and direct causal confirmation of the AhR&ndash;COX-2/PGE2&ndash;PPAR-&gamma; cascade at the human maternal-fetal interface. Scientifically and regulatorily, this AOP provides an organizing framework for identifying early predictive biomarkers, evaluating developmental and reproductive toxicity (DART) of AhR ligands, and guiding targeted preventive interventions for high-risk diabetic pregnancies.
+""" ;
+	aopo:has_key_event	aop.events:1269, aop.events:2466, aop.events:233, aop.events:2467, aop.events:1501, aop.events:2103, aop.events:1892, aop.events:948, aop.events:317, aop.events:18, aop.events:1893 ;
+	aopo:has_key_event_relationship	aop.relationships:3882, aop.relationships:3876, aop.relationships:1351, aop.relationships:3887, aop.relationships:3877, aop.relationships:3878, aop.relationships:3879, aop.relationships:3885, aop.relationships:3886, aop.relationships:3888, aop.relationships:3883, aop.relationships:3881 ;
+	aopo:has_molecular_initiating_event	aop.events:18 ;
+	aopo:has_adverse_outcome	aop.events:1893 ;
+	nci:C54571	aop.stressor:878, aop.stressor:51 ;
+	pato:0000047	"Female" ;
+	aopo:LifeStageContext	"Pregnancy" ;
+	ncbitaxon:131567	ncbitaxon:9606, ncbitaxon:10090 .
 
 aop.events:888
 	a	aopo:KeyEvent ;
@@ -81057,7 +81560,7 @@ Many endogenous and exogenous ligands are present for the AhR in human (Optiz, A
 	go:0008150	go:0004874, go:0017162 ;
 	pato:0000001	"increased" ;
 	pato:0001241	pr:000003858 ;
-	dcterms:isPartOf	aop:21, aop:57, aop:131, aop:150, aop:151, aop:310, aop:414, aop:415, aop:416, aop:417, aop:418, aop:419, aop:420, aop:439, aop:455, aop:456, aop:458, aop:459, aop:494, aop:563, aop:577, aop:578 .
+	dcterms:isPartOf	aop:21, aop:57, aop:131, aop:150, aop:151, aop:310, aop:414, aop:415, aop:416, aop:417, aop:418, aop:419, aop:420, aop:439, aop:455, aop:456, aop:458, aop:459, aop:494, aop:563, aop:577, aop:578, aop:660 .
 
 aop.events:25
 	a	aopo:KeyEvent ;
@@ -91880,7 +92383,7 @@ aop.events:317
 	go:0008150	go:0072358, mp:0001544 ;
 	pato:0000001	"abnormal", "morphological change" ;
 	pato:0001241	uberon:0004535 ;
-	dcterms:isPartOf	aop:21, aop:150, aop:456 .
+	dcterms:isPartOf	aop:21, aop:150, aop:456, aop:660 .
 
 aop.events:1269
 	a	aopo:KeyEvent ;
@@ -91934,7 +92437,7 @@ COX Cardiovascular Roles:
 	go:0008150	go:0010467 ;
 	pato:0000001	"increased" ;
 	pato:0001241	pr:000013428 ;
-	dcterms:isPartOf	aop:21 .
+	dcterms:isPartOf	aop:21, aop:660 .
 
 aop.events:274
 	a	aopo:KeyEvent ;
@@ -93679,7 +94182,7 @@ Taxonomic:&nbsp;Appears to be present broadly, with representative studies in ma
 	go:0008150	go:0035357 ;
 	pato:0000001	"decreased" ;
 	pato:0001241	pr:000013058 ;
-	dcterms:isPartOf	aop:36, aop:513 .
+	dcterms:isPartOf	aop:36, aop:513, aop:660 .
 
 aop.events:327
 	a	aopo:KeyEvent ;
@@ -100992,7 +101495,7 @@ VEGF gene expression, which is directly correlated with protein levels, can be m
 	go:0008150	go:0010467, mp:0008469 ;
 	pato:0000001	"decreased" ;
 	pato:0001241	pr:000017284 ;
-	dcterms:isPartOf	aop:150, aop:151, aop:614 .
+	dcterms:isPartOf	aop:150, aop:151, aop:614, aop:660 .
 
 aop.events:1891
 	a	aopo:KeyEvent ;
@@ -101016,7 +101519,7 @@ aop.events:1892
 	dcterms:alternative	"increase, placental insufficiency" ;
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Organ""" ;
-	dcterms:isPartOf	aop:151 .
+	dcterms:isPartOf	aop:151, aop:660 .
 
 aop.events:1893
 	a	aopo:KeyEvent ;
@@ -101028,7 +101531,7 @@ aop.events:1893
 	dcterms:alternative	"increase, Preeclampsia" ;
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Individual""" ;
-	dcterms:isPartOf	aop:151 .
+	dcterms:isPartOf	aop:151, aop:660 .
 
 aop.events:958
 	a	aopo:KeyEvent ;
@@ -110866,7 +111369,7 @@ Non‑canonical RAR signaling mechanisms, independent of direct transcriptional 
 	nci:C25664	"""Tissue""" ;
 	nci:C17469	"""RARs are well-conserved throughout vertebrate evolution; therefore, this KE should be considered broadly applicable across vertebrate species. Regarding invertebrates, evidence for the presence of RARs has been reported within chordate phyla, including non-vertebrate chordates. However, multiple invertebrate lineages appear to have lost RAR genes. Although components of RA signaling have been described in some invertebrate species, it remains debated whether they possess a functional RA signaling pathway (Stevison et al, 2017). AOP developers are encouraged to add additional relevant knowledge to expand on the applicability to also include other vertebrates.
 """ ;
-	dcterms:isPartOf	aop:297, aop:398 .
+	dcterms:isPartOf	aop:297, aop:398, aop:533 .
 
 aop.events:1754
 	a	aopo:KeyEvent ;
@@ -116675,7 +117178,7 @@ Ex vivo and in vitro models of ECM deposition:
 No models currently exist which allow for in vitro assessment of ECM deposition. Using single, or co-cultures containing fibroblasts, the production of soluble ECM components can be assessed after exposure to a stressor of interest using either ELISA or qRT-PCR experiments as a proxy.&nbsp; 
 """ ;
 	nci:C25664	"""Tissue""" ;
-	dcterms:isPartOf	aop:383, aop:414, aop:415, aop:655 .
+	dcterms:isPartOf	aop:383, aop:414, aop:415, aop:655, aop:660 .
 
 aop.events:1743
 	a	aopo:KeyEvent ;
@@ -131277,6 +131780,42 @@ aop.events:2465
 	aopo:CellTypeContext	cl:1000507 ;
 	aopo:OrganContext	uberon:0002113 ;
 	dcterms:isPartOf	aop:659 .
+
+aop.events:2103
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2103 ;
+	rdfs:label	"KE 2103" ;
+	foaf:page	<https://identifiers.org/aop.events/2103> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2103> ;
+	dc:title	"Decreased trophoblast invasion/migration" ;
+	dcterms:alternative	"Cellular dysfunction (human placenta trophoblast cells) " ;
+	dc:source	"AOPWiki" ;
+	nci:C25664	"""Cellular""" ;
+	dcterms:isPartOf	aop:660 .
+
+aop.events:2466
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2466 ;
+	rdfs:label	"KE 2466" ;
+	foaf:page	<https://identifiers.org/aop.events/2466> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2466> ;
+	dc:title	"Increase, Prostaglandin E2 concentration" ;
+	dcterms:alternative	"Increase, Prostaglandin E2 concentration" ;
+	dc:source	"AOPWiki" ;
+	nci:C25664	"""Tissue""" ;
+	dcterms:isPartOf	aop:660 .
+
+aop.events:2467
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2467 ;
+	rdfs:label	"KE 2467" ;
+	foaf:page	<https://identifiers.org/aop.events/2467> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2467> ;
+	dc:title	"Decreased, MMP" ;
+	dcterms:alternative	"Decreased, MMP" ;
+	dc:source	"AOPWiki" ;
+	nci:C25664	"""Cellular""" ;
+	dcterms:isPartOf	aop:660 .
 
 <888_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	go:0006120 ;
@@ -154545,7 +155084,7 @@ COX-2 Cardiovascular Development Roles:
 	pato:0000047	"Unspecific" ;
 	aopo:LifeStageContext	"Embryo", "Development" ;
 	ncbitaxon:131567	ncbitaxon:7955, ncbitaxon:8090, ncbitaxon:9031 ;
-	dcterms:isPartOf	aop:21 .
+	dcterms:isPartOf	aop:21, aop:660 .
 
 aop.relationships:1567
 	a	aopo:KeyEventRelationship ;
@@ -261719,6 +262258,138 @@ aop.relationships:3873
 	aopo:has_downstream_key_event	aop.events:2404 ;
 	dcterms:isPartOf	aop:659 .
 
+aop.relationships:3882
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3882 ;
+	rdfs:label	"KER 3882" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3882> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3882> ;
+	dcterms:created	"2026-11-17T01:34:14"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-17T01:34:14"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:18 ;
+	aopo:has_downstream_key_event	aop.events:1269 ;
+	dcterms:isPartOf	aop:660 .
+
+aop.relationships:3876
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3876 ;
+	rdfs:label	"KER 3876" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3876> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3876> ;
+	dcterms:created	"2026-11-17T01:26:26"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-17T01:26:26"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:1269 ;
+	aopo:has_downstream_key_event	aop.events:2466 ;
+	dcterms:isPartOf	aop:660 .
+
+aop.relationships:3887
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3887 ;
+	rdfs:label	"KER 3887" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3887> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3887> ;
+	dcterms:created	"2026-11-17T02:03:28"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-17T02:03:28"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:2466 ;
+	aopo:has_downstream_key_event	aop.events:233 ;
+	dcterms:isPartOf	aop:660 .
+
+aop.relationships:3877
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3877 ;
+	rdfs:label	"KER 3877" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3877> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3877> ;
+	dcterms:created	"2026-11-17T01:31:53"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-17T01:31:53"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:233 ;
+	aopo:has_downstream_key_event	aop.events:2467 ;
+	dcterms:isPartOf	aop:660 .
+
+aop.relationships:3878
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3878 ;
+	rdfs:label	"KER 3878" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3878> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3878> ;
+	dcterms:created	"2026-11-17T01:32:13"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-17T01:32:13"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:2467 ;
+	aopo:has_downstream_key_event	aop.events:1501 ;
+	dcterms:isPartOf	aop:660 .
+
+aop.relationships:3879
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3879 ;
+	rdfs:label	"KER 3879" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3879> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3879> ;
+	dcterms:created	"2026-11-17T01:32:26"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-17T01:32:26"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:1501 ;
+	aopo:has_downstream_key_event	aop.events:2103 ;
+	dcterms:isPartOf	aop:660 .
+
+aop.relationships:3885
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3885 ;
+	rdfs:label	"KER 3885" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3885> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3885> ;
+	dcterms:created	"2026-11-17T01:57:36"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-17T01:57:36"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:2103 ;
+	aopo:has_downstream_key_event	aop.events:1892 ;
+	dcterms:isPartOf	aop:660 .
+
+aop.relationships:3886
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3886 ;
+	rdfs:label	"KER 3886" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3886> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3886> ;
+	dcterms:created	"2026-11-17T02:00:35"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-17T02:00:35"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:1892 ;
+	aopo:has_downstream_key_event	aop.events:948 ;
+	dcterms:isPartOf	aop:660 .
+
+aop.relationships:3888
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3888 ;
+	rdfs:label	"KER 3888" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3888> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3888> ;
+	dcterms:created	"2026-11-17T02:04:14"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-17T02:04:14"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:948 ;
+	aopo:has_downstream_key_event	aop.events:317 ;
+	dcterms:isPartOf	aop:660 .
+
+aop.relationships:3883
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3883 ;
+	rdfs:label	"KER 3883" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3883> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3883> ;
+	dcterms:created	"2026-11-17T01:37:44"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-17T01:37:44"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:948 ;
+	aopo:has_downstream_key_event	aop.events:1893 ;
+	dcterms:isPartOf	aop:660 .
+
+aop.relationships:3881
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3881 ;
+	rdfs:label	"KER 3881" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3881> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3881> ;
+	dcterms:created	"2026-11-17T01:33:08"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-17T01:33:08"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:317 ;
+	aopo:has_downstream_key_event	aop.events:1893 ;
+	dcterms:isPartOf	aop:660 .
+
 ncbitaxon:10116
 	a	ncbitaxon:131567 ;
 	dc:identifier	ncbitaxon:10116 ;
@@ -271713,6 +272384,19 @@ aop.stressor:878
 	dcterms:created	"2026-11-16T21:51:05"^^xsd:dateTime ;
 	dcterms:modified	"2026-11-16T21:51:05"^^xsd:dateTime ;
 	aopo:has_chemical_entity	cas:5746-04-3 ;
+	dcterms:isPartOf	aop:660 .
+
+aop.stressor:51
+	a	nci:C54571 ;
+	dc:identifier	aop.stressor:51 ;
+	rdfs:label	"Stressor 51" ;
+	foaf:page	<https://identifiers.org/aop.stressor/51> ;
+	dc:title	"Selected AHR Ligands" ;
+	dcterms:created	"2016-11-29T18:42:23"^^xsd:dateTime ;
+	dcterms:modified	"2016-11-29T21:20:17"^^xsd:dateTime ;
+	dc:description	"""Chemical properties for a selection of representative AHR ligands are provided in Table 3 in lieu of listing them separately.   Table 3: Chemical and AHR binding properties of selected AHR ligands
+This table also provides the EC50, which itself is a measure of potency and one of the determinants of sustained AHR activation. These representative ligands demonstrate the diversity in chemical properties modelling pharmacokinetics and bioavailability as well as sources, including anthropogenic chemicals, dietary constituents, and endogenous substances formed in vivo.
+""" ;
 	dcterms:isPartOf	aop:660 .
 
 mesh:D006965	a	go:0008150 ;
