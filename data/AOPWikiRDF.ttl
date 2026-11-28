@@ -32749,7 +32749,7 @@ aop:324
 	dcterms:alternative	"ROS leading to growth inhibition via oxidative DNA damage and cell cycle disruption" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-18T05:18:10"^^xsd:dateTime ;
-	dcterms:modified	"2026-10-21T06:19:18"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T14:00:27"^^xsd:dateTime ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and are also generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, while excessive ROS can disturb redox homeostasis and initiate oxidative damage to cellular macromolecules (Schieber and Chandel, 2014; Sies et al., 2017). DNA is a major target of oxidative attack. Oxidative DNA lesions such as 8-oxo-2&#39;-deoxyguanosine and other oxidized bases can arise endogenously or following toxic insult, and these lesions may contribute to mutation, strand break formation, and activation of DNA damage responses if they are not repaired correctly or efficiently (Cooke et al., 2003; OECD, 2023).
 
 This AOP was developed to represent the DNA damage-driven linear route within the broader ROS-growth AOP network. The route was selected because oxidative DNA damage is a well-established consequence of oxidative stress and because downstream events such as inadequate DNA repair, strand breaks, cell cycle disruption, and reduced cell proliferation provide a mechanistically coherent bridge between molecular damage and decreased organismal growth (Cuddihy and O&#39;Connell, 2003; Conlon and Raff, 1999; OECD, 2022; OECD, 2023). The AOP was therefore designed to provide a focused, reviewable linear representation of one major mechanistic branch by which excessive ROS can impair growth.
@@ -33406,7 +33406,7 @@ AI disclosure
 
 Artificial intelligence (AI) tools were used to support literature prioritization, review and AOP-Wiki page preparation in this work. AOP-helpFinder was used for automated literature mining, and ChatGPT (OpenAI) was used as an auxiliary tool for title and abstract screening, extraction of study metadata, and identification of potential weight-of-evidence indicators. AI-assisted outputs were used only to organize and prioritize information and were verified against the original sources by the authors before inclusion. Additional AI assistance was used for formatting, copy-editing, citation cross-checking, and harmonization of the AOP-Wiki pages. All scientific interpretations, weight-of-evidence judgments, final wording, and conclusions were determined and approved by the authors, who take full responsibility for the content and integrity of the work.
 """ ;
-	nci:C25688	"Under Development" ;
+	nci:C25688	"Under Review" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:1392, aop.events:1634, aop.events:155, aop.events:1635, aop.events:1505, aop.events:1821, aop.events:1115, aop.events:1521 ;
 	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:2810, aop.relationships:1909, aop.relationships:1910, aop.relationships:3480, aop.relationships:3363, aop.relationships:2205 ;
@@ -33427,7 +33427,7 @@ aop:325
 	dcterms:alternative	"ROS leading to growth inhibition via oxidative DNA damage and cell death" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-18T05:18:37"^^xsd:dateTime ;
-	dcterms:modified	"2026-10-21T06:38:03"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T14:00:47"^^xsd:dateTime ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and are also generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative damage to cellular macromolecules (Schieber and Chandel, 2014; Sies et al., 2017). DNA is a major target of oxidative attack. Oxidative DNA lesions such as 8-oxo-2&#39;-deoxyguanosine and other oxidized bases can arise endogenously or following toxic insult, and these lesions may contribute to mutation, strand break formation, activation of DNA damage responses, and cell death if they are not repaired correctly or efficiently (Cooke et al., 2003; OECD, 2023).
 
 &nbsp;&nbsp;&nbsp; AOP 325 was developed to represent the cell injury/death-driven linear route within the broader ROS-growth AOP network. The route was selected because oxidative DNA damage is a well-established consequence of oxidative stress and because downstream events such as inadequate DNA repair, DNA strand breaks, and cell injury/death provide a mechanistically coherent bridge between molecular damage and decreased organismal growth. This pathway complements AOP 324, which emphasizes cell cycle disruption and reduced cell proliferation as the downstream route from DNA damage to growth impairment. AOP 325 instead captures the alternative but biologically connected route in which unrepaired or severe DNA damage contributes to cell loss, thereby reducing growth capacity at the organ or organism level.
@@ -34004,7 +34004,7 @@ AI disclosure
 
 Artificial intelligence (AI) tools were used to support literature prioritization, review and AOP-Wiki page preparation in this work. AOP-helpFinder was used for automated literature mining, and ChatGPT (OpenAI) was used as an auxiliary tool for title and abstract screening, extraction of study metadata, and identification of potential weight-of-evidence indicators. AI-assisted outputs were used only to organize and prioritize information and were verified against the original sources by the authors before inclusion. Additional AI assistance was used for formatting, copy-editing, citation cross-checking, and harmonization of the AOP-Wiki pages. All scientific interpretations, weight-of-evidence judgments, final wording, and conclusions were determined and approved by the authors, who take full responsibility for the content and integrity of the work.
 """ ;
-	nci:C25688	"Under Development" ;
+	nci:C25688	"Under Review" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:1392, aop.events:1634, aop.events:155, aop.events:1635, aop.events:55, aop.events:1115, aop.events:1521 ;
 	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:2810, aop.relationships:1909, aop.relationships:1910, aop.relationships:3797, aop.relationships:2767 ;
@@ -34025,7 +34025,7 @@ aop:326
 	dcterms:alternative	"ROS leading to growth inhibition via LPO and decreased cell proliferation" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-18T05:19:06"^^xsd:dateTime ;
-	dcterms:modified	"2026-10-21T05:51:16"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T14:00:56"^^xsd:dateTime ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Lipids are important targets of oxidative attack because membrane phospholipids, especially those containing polyunsaturated fatty acyl chains, can undergo radical-driven peroxidation. Lipid peroxidation generates lipid hydroperoxides and secondary reactive products, including malondialdehyde and 4-hydroxy-2-nonenal, which can alter membrane structure, propagate oxidative damage, and affect protein and organelle function (Ayala et al., 2014).
 
 &nbsp;&nbsp;&nbsp; AOP 326 was developed to represent the lipid peroxidation-driven linear route within the broader ROS-growth AOP network. This route was selected because lipid peroxidation is a well-established consequence of oxidative stress and because mitochondrial membranes are central determinants of OXPHOS coupling. Peroxidative modification of mitochondrial membrane lipids can alter membrane fluidity, proton leak, respiratory control, and mitochondrial membrane potential, providing a mechanistically coherent bridge from oxidative stress to impaired ATP production (Murphy, 2009; Nicholls and Ferguson, 2013; Ouillon et al., 2021). The downstream sequence from decreased coupling of OXPHOS to decreased ATP pool, decreased cell proliferation, and decreased growth is already represented in AOP 263 and provides the growth-relevant terminal module for AOP 326 (AOP-Wiki, 2026b; OECD, 2022; Song and Villeneuve, 2021).
@@ -34642,7 +34642,7 @@ AI disclosure
 
 Artificial intelligence (AI) tools were used to support literature prioritization, review and AOP-Wiki page preparation in this work. AOP-helpFinder was used for automated literature mining, and ChatGPT (OpenAI) was used as an auxiliary tool for title and abstract screening, extraction of study metadata, and identification of potential weight-of-evidence indicators. AI-assisted outputs were used only to organize and prioritize information and were verified against the original sources by the authors before inclusion. Additional AI assistance was used for formatting, copy-editing, citation cross-checking, and harmonization of the AOP-Wiki pages. All scientific interpretations, weight-of-evidence judgments, final wording, and conclusions were determined and approved by the authors, who take full responsibility for the content and integrity of the work.
 """ ;
-	nci:C25688	"Under Development" ;
+	nci:C25688	"Under Review" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:1392, aop.events:1445, aop.events:1446, aop.events:1771, aop.events:1821, aop.events:1115, aop.events:1521 ;
 	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:3116, aop.relationships:1599, aop.relationships:2203, aop.relationships:2204, aop.relationships:2205 ;
@@ -34795,7 +34795,7 @@ aop:331
 	dcterms:alternative	"ROS leading to growth inhibition via LPO and cell death" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-19T04:50:03"^^xsd:dateTime ;
-	dcterms:modified	"2026-10-21T06:20:51"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T13:58:37"^^xsd:dateTime ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Lipid membranes are important targets of oxidative attack because phospholipids containing polyunsaturated fatty acids can undergo radical-driven peroxidation. Lipid peroxidation generates lipid hydroperoxides and secondary reactive aldehydes, including malondialdehyde and 4-hydroxy-2-nonenal, which can propagate oxidative injury and alter membrane-associated protein and organelle function (Ayala et al., 2014).
 
 &nbsp;&nbsp;&nbsp; AOP 331 was developed to represent the lipid peroxidation and cell injury/death-driven linear route within the broader ROS-growth AOP network. This route was selected because lipid peroxidation is a well-established consequence of oxidative stress and because mitochondrial membranes are central determinants of OXPHOS coupling. Peroxidative modification of mitochondrial membrane lipids can alter membrane fluidity, proton leak, respiratory control, and mitochondrial membrane potential, providing a mechanistically coherent bridge from oxidative stress to impaired ATP production (Murphy, 2009; Nicholls and Ferguson, 2013; Ouillon et al., 2021). ATP depletion is a well-established contributor to loss of cell viability because cellular survival depends on ATP-dependent ion gradients, membrane repair, protein turnover, stress-response pathways, and the execution of regulated death processes. Depletion of ATP can shift cells from adaptive responses to injury and death, and severe ATP loss can affect the mode of cell death (Leist et al., 1997; Bonora et al., 2012).
@@ -35412,7 +35412,7 @@ AI disclosure
 
 Artificial intelligence (AI) tools were used to support literature prioritization, review and AOP-Wiki page preparation in this work. AOP-helpFinder was used for automated literature mining, and ChatGPT (OpenAI) was used as an auxiliary tool for title and abstract screening, extraction of study metadata, and identification of potential weight-of-evidence indicators. AI-assisted outputs were used only to organize and prioritize information and were verified against the original sources by the authors before inclusion. Additional AI assistance was used for formatting, copy-editing, citation cross-checking, and harmonization of the AOP-Wiki pages. All scientific interpretations, weight-of-evidence judgments, final wording, and conclusions were determined and approved by the authors, who take full responsibility for the content and integrity of the work.
 """ ;
-	nci:C25688	"Under Development" ;
+	nci:C25688	"Under Review" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:1392, aop.events:1445, aop.events:1446, aop.events:1771, aop.events:55, aop.events:1115, aop.events:1521 ;
 	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:3116, aop.relationships:1599, aop.relationships:2203, aop.relationships:2768, aop.relationships:2767 ;
@@ -35433,7 +35433,7 @@ aop:332
 	dcterms:alternative	"ROS leading to growth inhibition via protein oxidation and decreased cell proliferation" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-19T04:52:14"^^xsd:dateTime ;
-	dcterms:modified	"2026-10-21T06:21:42"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T13:59:35"^^xsd:dateTime ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Proteins are major targets of oxidative attack because many amino acid side chains and prosthetic groups are susceptible to oxidation, carbonylation, thiol oxidation, nitration, or other oxidative modifications. Protein oxidation can alter enzyme activity, protein-protein interactions, protein folding, stability, and degradation, and it is widely used as a marker of severe oxidative damage and cellular dysfunction (Dalle-Donne et al., 2006).
 
 AOP 332 was developed to represent the protein oxidation-driven linear route within the broader ROS-growth AOP network. This route was selected because oxidative stress can directly modify proteins, including mitochondrial proteins involved in electron transport, OXPHOS coupling, ATP synthesis, metabolite transport, and maintenance of mitochondrial integrity. Oxidation of mitochondrial proteins can impair the efficiency of electron transfer and proton motive force utilization, thereby providing a mechanistically coherent bridge from oxidative stress to decreased coupling of OXPHOS (Murphy, 2009; Nicholls and Ferguson, 2013; Sokolov et al., 2019). The downstream sequence from decreased coupling of OXPHOS to decreased ATP pool, decreased cell proliferation, and decreased growth is represented in AOP 263 and provides the growth-relevant terminal module for AOP 332 (AOP-Wiki, 2026b; OECD, 2022; Song and Villeneuve, 2021).
@@ -36046,7 +36046,7 @@ AI disclosure
 
 Artificial intelligence (AI) tools were used to support literature prioritization, review and AOP-Wiki page preparation in this work. AOP-helpFinder was used for automated literature mining, and ChatGPT (OpenAI) was used as an auxiliary tool for title and abstract screening, extraction of study metadata, and identification of potential weight-of-evidence indicators. AI-assisted outputs were used only to organize and prioritize information and were verified against the original sources by the authors before inclusion. Additional AI assistance was used for formatting, copy-editing, citation cross-checking, and harmonization of the AOP-Wiki pages. All scientific interpretations, weight-of-evidence judgments, final wording, and conclusions were determined and approved by the authors, who take full responsibility for the content and integrity of the work.
 """ ;
-	nci:C25688	"Under Development" ;
+	nci:C25688	"Under Review" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:1392, aop.events:1767, aop.events:1446, aop.events:1771, aop.events:1821, aop.events:1115, aop.events:1521 ;
 	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:3632, aop.relationships:3633, aop.relationships:2203, aop.relationships:2204, aop.relationships:2205 ;
@@ -36067,7 +36067,7 @@ aop:333
 	dcterms:alternative	"ROS leading to growth inhibition via protein oxidation and cell death" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2020-04-19T04:52:38"^^xsd:dateTime ;
-	dcterms:modified	"2026-10-21T06:36:33"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T13:59:57"^^xsd:dateTime ;
 	dc:description	"""ROS are continuously formed during aerobic metabolism and can also be generated in response to environmental stressors. At controlled levels, ROS participate in redox signaling, whereas excessive ROS can disturb redox homeostasis and initiate oxidative stress (Schieber and Chandel, 2014; Sies et al., 2017). Proteins are major targets of oxidative attack because amino acid side chains, thiol groups, metal centers, and prosthetic groups can undergo oxidative modification. Protein oxidation can reduce enzyme activity, alter protein-protein interactions, impair folding, increase aggregation, disrupt degradation by proteasomal and lysosomal systems, and contribute to cellular dysfunction (Dalle-Donne et al., 2006).
 
 &nbsp;&nbsp;&nbsp; AOP 333 was developed to represent the protein oxidation and cell injury/death-driven linear route within the broader ROS-growth AOP network. This route was selected because protein oxidation is a well-established consequence of oxidative stress and because mitochondrial proteins are central determinants of OXPHOS coupling and ATP production. Oxidative modification of respiratory-chain proteins, ATP synthase subunits, mitochondrial carriers, or proteins involved in maintaining mitochondrial membrane potential can reduce respiratory efficiency and ATP synthesis (Murphy, 2009; Nicholls and Ferguson, 2013; Sokolov et al., 2019). ATP depletion is an established contributor to loss of cell viability because cell survival depends on ATP-dependent ion gradients, membrane repair, stress responses, proteostasis, and execution of regulated cell death pathways. Severe ATP depletion can shift cellular outcomes toward irreversible injury or necrosis, whereas less severe depletion may permit apoptosis or adaptive responses (Leist et al., 1997; Bonora et al., 2012).
@@ -36686,7 +36686,7 @@ AI disclosure
 
 Artificial intelligence (AI) tools were used to support literature prioritization, review and AOP-Wiki page preparation in this work. AOP-helpFinder was used for automated literature mining, and ChatGPT (OpenAI) was used as an auxiliary tool for title and abstract screening, extraction of study metadata, and identification of potential weight-of-evidence indicators. AI-assisted outputs were used only to organize and prioritize information and were verified against the original sources by the authors before inclusion. Additional AI assistance was used for formatting, copy-editing, citation cross-checking, and harmonization of the AOP-Wiki pages. All scientific interpretations, weight-of-evidence judgments, final wording, and conclusions were determined and approved by the authors, who take full responsibility for the content and integrity of the work.
 """ ;
-	nci:C25688	"Under Development" ;
+	nci:C25688	"Under Review" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
 	aopo:has_key_event	aop.events:1392, aop.events:1767, aop.events:1446, aop.events:1771, aop.events:55, aop.events:1115, aop.events:1521 ;
 	aopo:has_key_event_relationship	aop.relationships:2009, aop.relationships:3632, aop.relationships:3633, aop.relationships:2203, aop.relationships:2768, aop.relationships:2767 ;
@@ -59641,15 +59641,15 @@ aop:520
 	dcterms:alternative	"RAR agonism during neurodevelopment leading to impaired learning and memory" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2024-01-14T09:50:34"^^xsd:dateTime ;
-	dcterms:modified	"2026-11-20T07:37:55"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-24T06:18:11"^^xsd:dateTime ;
 	dc:description	"""A prime example of impairments in learning and memory as the adverse outcome for regulatory action is developmental lead exposure and IQ function in children (Bellinger, 2012). Most methods are well established in the published literature and many have been engaged to evaluate the effects of developmental thyroid disruption. The US EPA and OECD Developmental Neurotoxicity (DNT) Guidelines (OCSPP 870.6300 or OECD TG 426) as well as OECD TG 443 (OECD, 2018) both require testing of learning and memory (USEPA, 1998; OECD, 2007) advising to use the following tests passive avoidance, delayed-matching-to-position for the adult rat and for the infant rat, olfactory conditioning, Morris water maze, Biel or Cincinnati maze, radial arm maze, T-maze, and acquisition and retention of schedule-controlled behavior. These DNT Guidelines have been deemed valid to identify developmental neurotoxicity and adverse neurodevelopmental outcomes (Makris et al., 2009).&nbsp;
 
 Also, in the frame of the OECD GD 43 (2008) on reproductive toxicity, learning and memory testing may have potential to be applied in the context of developmental neurotoxicity studies. However, many of the learning and memory tasks used in guideline studies may not readily detect subtle impairments in cognitive function associated with modest degrees of developmental thyroid disruption (Gilbert et al., 2012).&nbsp;
 
 &nbsp;
 """ ;
-	aopo:has_key_event	aop.events:2202, aop.events:2203, aop.events:2204, aop.events:2201, aop.events:341 ;
-	aopo:has_key_event_relationship	aop.relationships:3109, aop.relationships:3110, aop.relationships:3111, aop.relationships:3112, aop.relationships:3113, aop.relationships:3114 ;
+	aopo:has_key_event	aop.events:2420, aop.events:2202, aop.events:2203, aop.events:2204, aop.events:2201, aop.events:341 ;
+	aopo:has_key_event_relationship	aop.relationships:3110, aop.relationships:3111, aop.relationships:3112, aop.relationships:3889, aop.relationships:3890, aop.relationships:3113, aop.relationships:3114, aop.relationships:3109 ;
 	aopo:has_molecular_initiating_event	aop.events:2201 ;
 	aopo:has_adverse_outcome	aop.events:341 ;
 	aopo:LifeStageContext	"During brain development" ;
@@ -60477,9 +60477,9 @@ aop:523
 	dcterms:alternative	"RAR agonism during neurodevelopment leading to microcephaly" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2024-01-29T03:05:01"^^xsd:dateTime ;
-	dcterms:modified	"2026-11-20T07:40:59"^^xsd:dateTime ;
-	aopo:has_key_event	aop.events:2202, aop.events:2203, aop.events:2210, aop.events:2201, aop.events:1978 ;
-	aopo:has_key_event_relationship	aop.relationships:3109, aop.relationships:3110, aop.relationships:3126, aop.relationships:3143, aop.relationships:3113, aop.relationships:3144 ;
+	dcterms:modified	"2026-11-24T06:18:28"^^xsd:dateTime ;
+	aopo:has_key_event	aop.events:2420, aop.events:2202, aop.events:2203, aop.events:2210, aop.events:2201, aop.events:1978 ;
+	aopo:has_key_event_relationship	aop.relationships:3110, aop.relationships:3126, aop.relationships:3143, aop.relationships:3889, aop.relationships:3890, aop.relationships:3113, aop.relationships:3144, aop.relationships:3109 ;
 	aopo:has_molecular_initiating_event	aop.events:2201 ;
 	aopo:has_adverse_outcome	aop.events:1978 .
 
@@ -61579,8 +61579,8 @@ aop:532
 	dcterms:alternative	"RAR agonism during neurodevelopment leading to impaired locomotor function" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2024-05-27T03:24:22"^^xsd:dateTime ;
-	dcterms:modified	"2026-11-20T07:42:37"^^xsd:dateTime ;
-	aopo:has_key_event	aop.events:2228, aop.events:2229, aop.events:2230, aop.events:2201, aop.events:2231 ;
+	dcterms:modified	"2026-11-24T06:20:55"^^xsd:dateTime ;
+	aopo:has_key_event	aop.events:2420, aop.events:2228, aop.events:2229, aop.events:2230, aop.events:2201, aop.events:2231 ;
 	aopo:has_molecular_initiating_event	aop.events:2201 ;
 	aopo:has_adverse_outcome	aop.events:2231 .
 
@@ -74516,187 +74516,15 @@ aop:624
 	rdfs:label	"AOP 624" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/624> ;
 	foaf:page	<https://identifiers.org/aop/624> ;
-	dc:title	"Increased 11β-Hydroxysteroid dehydrogenase type 1 activity leading to MASLD progression via insulin resistance-associated mitochondrial dysfunction" ;
-	dcterms:alternative	"Increased 11β-HSD1 leading to MASLD via IR-associated mitochondrial dysfunction" ;
+	dc:title	"Decreased adiponectin receptor 2 signaling leading to increased liver fibrosis" ;
+	dcterms:alternative	"Decreased AdipoR2 signaling leading to increased liver fibrosis" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-02-10T08:19:03"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-24T08:35:19"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T12:42:46"^^xsd:dateTime ;
 	dc:description	"""MASLD is a highly prevalent chronic liver disease driven by metabolic dysfunction, insulin resistance, and lipotoxic stress, with increasing evidence that endocrine signaling perturbations play a critical upstream role. Glucocorticoid receptor (GR) signaling is central to the regulation of glucose and lipid metabolism, adipose tissue lipolysis, mitochondrial function, and inflammatory responses. Dysregulation of GR signaling&mdash;whether through chronic activation, impaired feedback control, or chemical interference&mdash;has been linked to systemic insulin resistance and altered lipid fluxes that place a metabolic burden on the liver.
 
 This AOP was developed to capture the biological plausibility and mechanistic continuity between altered GR signaling and MASLD progression, with a specific emphasis on insulin resistance&ndash;associated mitochondrial dysfunction as a unifying driver of disease advancement. The pathway reflects clinically relevant disease stages and aligns with regulatory interest in identifying upstream endocrine-mediated mechanisms contributing to chronic metabolic liver disease.
-""", """Steatosis is a regulatory endpoint and has been used as an endpoint in many US EPA assessments, including IRIS assessments.
-""", """Steatohepatitis represents a clinically recognized and pathologically defined stage of metabolic dysfunction&ndash;associated steatotic liver disease (MASLD), characterized by hepatic steatosis accompanied by hepatocellular injury and inflammation. It is a critical transition point between reversible metabolic steatosis and progressive, potentially irreversible liver pathology, including fibrosis, cirrhosis, and hepatocellular carcinoma. As such, an increase in steatohepatitis severity constitutes a biologically meaningful and adverse health outcome.
-
-Human Health Relevance
-
-Steatohepatitis (formerly NASH; now MASH under MASLD nomenclature) is associated with:
-
-
-	
-	Increased risk of liver fibrosis progression
-	
-	
-	Elevated liver-related morbidity and mortality
-	
-	
-	Increased risk of hepatocellular carcinoma
-	
-	
-	Higher overall cardiometabolic mortality
-	
-
-
-Histologically confirmed steatohepatitis is a strong predictor of disease progression compared to simple steatosis. Therefore, regulatory concern is substantially higher once inflammatory and hepatocellular injury components are present.
-
-Scientific Basis for Domain of Applicability
-
-Taxonomic Applicability
-
-The adverse outcome is highly relevant to mammals, particularly humans, due to conserved hepatic architecture, lipid metabolism, inflammatory signaling, and fibrogenic pathways. Rodent models (e.g., high-fat diet, Western diet, glucocorticoid exposure models) reliably reproduce key histopathological features of steatohepatitis, including:
-
-
-	
-	Steatosis with hepatocyte ballooning
-	
-	
-	Lobular inflammation
-	
-	
-	Early perisinusoidal fibrosis
-	
-
-
-This cross-species concordance supports high biological plausibility within Mammalia.
-
-Life Stage Applicability
-
-The adverse outcome is most relevant in adolescent and adult life stages, where metabolic systems are fully developed and chronic exposure conditions can lead to progressive disease. While pediatric MASLD exists, the majority of mechanistic and regulatory evidence derives from adult populations and adult rodent models.
-
-Sex Applicability
-
-Steatohepatitis occurs in both males and females. Sex differences in susceptibility and progression rate have been reported, likely reflecting hormonal influences on lipid metabolism and inflammation. However, the pathological entity and its progression mechanisms are conserved across sexes.
-
-Weight of Evidence for Adversity
-
-The weight of evidence supporting steatohepatitis as an adverse outcome is strong based on:
-
-
-	
-	Clinical Evidence
-
-	
-		
-		Histologically confirmed steatohepatitis predicts fibrosis progression and mortality.
-		
-		
-		Longitudinal human studies demonstrate increased liver-related outcomes compared to simple steatosis.
-		
-	
-	
-	
-	Pathophysiological Evidence
-
-	
-		
-		Hepatocyte ballooning reflects cellular injury and cytoskeletal disruption.
-		
-		
-		Inflammatory infiltration drives sustained tissue damage and fibrogenesis.
-		
-		
-		Cytokine and TGF-&beta; signaling link inflammation directly to fibrosis progression.
-		
-	
-	
-	
-	Consistency Across Models
-
-	
-		
-		Reproducible induction in multiple rodent models.
-		
-		
-		Mechanistic concordance between experimental systems and human disease.
-		
-	
-	
-	
-	Irreversibility Consideration
-
-	
-		
-		While early steatohepatitis may be partially reversible, sustained inflammation significantly increases the probability of irreversible fibrosis.
-		
-	
-	
-
-
-Regulatory Relevance
-
-An increase in steatohepatitis severity represents:
-
-
-	
-	A clear adverse effect at the organ level
-	
-	
-	A progression beyond adaptive metabolic perturbation
-	
-	
-	A disease-defining pathological state recognized in clinical practice
-	
-
-
-From a regulatory perspective, this adverse outcome is relevant for:
-
-
-	
-	Hazard identification
-	
-	
-	Chronic toxicity assessment
-	
-	
-	Endocrine and metabolic disruptor evaluation
-	
-	
-	Integration into adverse outcome pathways supporting chemical prioritization
-	
-
-
-Because steatohepatitis is a well-defined diagnostic and pathological entity with established clinical consequences, it provides a robust anchor for AOP-based risk assessment frameworks.
-
-&nbsp;
 """, """From the OECD - GUIDANCE DOCUMENT ON DEVELOPING AND ASSESSING ADVERSE OUTCOME PATHWAYS - Series on Testing and Assessment 18: &quot;...an adverse effect that is of regulatory interest (e.g. repeated dose liver fibrosis)&quot;
-""", """An increase in cirrhosis represents:
-
-
-	
-	A severe, adverse organ-level outcome
-	
-	
-	Largely irreversible structural liver damage
-	
-	
-	A major determinant of liver-related morbidity and mortality
-	
-
-
-From a regulatory perspective, cirrhosis constitutes a high-concern adverse outcome suitable for:
-
-
-	
-	Chronic toxicity hazard identification
-	
-	
-	Chemical prioritization
-	
-	
-	Risk assessment frameworks
-	
-
-
-Because cirrhosis reflects irreversible architectural and functional liver impairment, it anchors the most severe end of MASLD progression within the AOP network.
 """ ;
 	nci:C25217	"""This AOP is biologically plausible and supported by a substantial body of empirical evidence linking endocrine disruption, insulin resistance, mitochondrial dysfunction, and MASLD progression. The sequence of events reflects conserved metabolic and inflammatory processes observed across species, with strong concordance between experimental models and human disease pathology.
 
@@ -74775,7 +74603,7 @@ Overall, the weight of evidence supports a coherent and credible AOP suitable fo
 """ ;
 	dc:creator	"""You Song1, Jorke H. Kamstra2, Matej Oresic3,4
 
-1 Norwegian Institute for Water Research,&nbsp;&Oslash;kernveien 94, Oslo, Norway
+1 Norwegian Institute for Water Research (NIVA), Oslo, Norway
 
 2 Utrecht University, Institute for Risk Assessment Sciences (IRAS),&nbsp;Utrecht, the Netherlands
 
@@ -74791,10 +74619,10 @@ Acknowledgement:&nbsp;This project was supported by the &ldquo;Investigation of 
 """ ;
 	nci:C25688	"Under Development" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	aopo:has_key_event	aop.events:2412, aop.events:122, aop.events:2119, aop.events:2408, aop.events:465, aop.events:2405, aop.events:177, aop.events:55, aop.events:134, aop.events:1271, aop.events:265, aop.events:68, aop.events:2406, aop.events:2410, aop.events:459, aop.events:1489, aop.events:344, aop.events:2407 ;
-	aopo:has_key_event_relationship	aop.relationships:3741, aop.relationships:3742, aop.relationships:3738, aop.relationships:3721, aop.relationships:3743, aop.relationships:3744, aop.relationships:3724, aop.relationships:363, aop.relationships:67, aop.relationships:3726, aop.relationships:3727, aop.relationships:3728, aop.relationships:295, aop.relationships:82, aop.relationships:3729, aop.relationships:3730 ;
-	aopo:has_molecular_initiating_event	aop.events:2410 ;
-	aopo:has_adverse_outcome	aop.events:459, aop.events:1489, aop.events:344, aop.events:2407 ;
+	aopo:has_key_event	aop.events:1392, aop.events:1271, aop.events:265, aop.events:68, aop.events:2470, aop.events:344 ;
+	aopo:has_key_event_relationship	aop.relationships:3891, aop.relationships:3892, aop.relationships:3728, aop.relationships:295, aop.relationships:82 ;
+	aopo:has_molecular_initiating_event	aop.events:2470 ;
+	aopo:has_adverse_outcome	aop.events:344 ;
 	ncbitaxon:131567	ncbitaxon:9606, ncbitaxon:10090, ncbitaxon:10116 .
 
 aop:625
@@ -74803,187 +74631,15 @@ aop:625
 	rdfs:label	"AOP 625" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/625> ;
 	foaf:page	<https://identifiers.org/aop/625> ;
-	dc:title	"Increased 11β-Hydroxysteroid dehydrogenase type 1 activity leading to MASLD progression via insulin resistance-associated oxidative stress" ;
-	dcterms:alternative	"Increased 11β-HSD1 leading to MASLD via IR-associated oxidative stress" ;
+	dc:title	"Estrogen receptor antagonism leading to increased liver fibrosis" ;
+	dcterms:alternative	"ER antagonism leading to increased liver fibrosis" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-02-10T08:20:42"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-24T08:49:28"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T12:52:05"^^xsd:dateTime ;
 	dc:description	"""Efficient hepatic export of triglycerides via VLDL is a critical protective mechanism preventing excessive lipid accumulation in hepatocytes. Glucocorticoid receptor (GR) signaling plays an important role in regulating lipid metabolism, including pathways involved in lipoprotein assembly, apolipoprotein expression, and triglyceride trafficking. Disruption of GR signaling&mdash;through altered activation, impaired transcriptional control, or chemical interference&mdash;can reduce VLDL export capacity, leading to hepatic lipid retention even in the absence of increased lipid influx.
 
 This AOP was developed to capture a distinct and mechanistically relevant route by which altered GR signaling promotes MASLD progression, emphasizing impaired lipid export rather than increased lipid supply. The pathway reflects clinical and experimental observations that defects in VLDL secretion contribute to steatosis, lipotoxic stress, mitochondrial dysfunction, and progressive liver injury.
-""", """Steatosis is a regulatory endpoint and has been used as an endpoint in many US EPA assessments, including IRIS assessments.
-""", """Steatohepatitis represents a clinically recognized and pathologically defined stage of metabolic dysfunction&ndash;associated steatotic liver disease (MASLD), characterized by hepatic steatosis accompanied by hepatocellular injury and inflammation. It is a critical transition point between reversible metabolic steatosis and progressive, potentially irreversible liver pathology, including fibrosis, cirrhosis, and hepatocellular carcinoma. As such, an increase in steatohepatitis severity constitutes a biologically meaningful and adverse health outcome.
-
-Human Health Relevance
-
-Steatohepatitis (formerly NASH; now MASH under MASLD nomenclature) is associated with:
-
-
-	
-	Increased risk of liver fibrosis progression
-	
-	
-	Elevated liver-related morbidity and mortality
-	
-	
-	Increased risk of hepatocellular carcinoma
-	
-	
-	Higher overall cardiometabolic mortality
-	
-
-
-Histologically confirmed steatohepatitis is a strong predictor of disease progression compared to simple steatosis. Therefore, regulatory concern is substantially higher once inflammatory and hepatocellular injury components are present.
-
-Scientific Basis for Domain of Applicability
-
-Taxonomic Applicability
-
-The adverse outcome is highly relevant to mammals, particularly humans, due to conserved hepatic architecture, lipid metabolism, inflammatory signaling, and fibrogenic pathways. Rodent models (e.g., high-fat diet, Western diet, glucocorticoid exposure models) reliably reproduce key histopathological features of steatohepatitis, including:
-
-
-	
-	Steatosis with hepatocyte ballooning
-	
-	
-	Lobular inflammation
-	
-	
-	Early perisinusoidal fibrosis
-	
-
-
-This cross-species concordance supports high biological plausibility within Mammalia.
-
-Life Stage Applicability
-
-The adverse outcome is most relevant in adolescent and adult life stages, where metabolic systems are fully developed and chronic exposure conditions can lead to progressive disease. While pediatric MASLD exists, the majority of mechanistic and regulatory evidence derives from adult populations and adult rodent models.
-
-Sex Applicability
-
-Steatohepatitis occurs in both males and females. Sex differences in susceptibility and progression rate have been reported, likely reflecting hormonal influences on lipid metabolism and inflammation. However, the pathological entity and its progression mechanisms are conserved across sexes.
-
-Weight of Evidence for Adversity
-
-The weight of evidence supporting steatohepatitis as an adverse outcome is strong based on:
-
-
-	
-	Clinical Evidence
-
-	
-		
-		Histologically confirmed steatohepatitis predicts fibrosis progression and mortality.
-		
-		
-		Longitudinal human studies demonstrate increased liver-related outcomes compared to simple steatosis.
-		
-	
-	
-	
-	Pathophysiological Evidence
-
-	
-		
-		Hepatocyte ballooning reflects cellular injury and cytoskeletal disruption.
-		
-		
-		Inflammatory infiltration drives sustained tissue damage and fibrogenesis.
-		
-		
-		Cytokine and TGF-&beta; signaling link inflammation directly to fibrosis progression.
-		
-	
-	
-	
-	Consistency Across Models
-
-	
-		
-		Reproducible induction in multiple rodent models.
-		
-		
-		Mechanistic concordance between experimental systems and human disease.
-		
-	
-	
-	
-	Irreversibility Consideration
-
-	
-		
-		While early steatohepatitis may be partially reversible, sustained inflammation significantly increases the probability of irreversible fibrosis.
-		
-	
-	
-
-
-Regulatory Relevance
-
-An increase in steatohepatitis severity represents:
-
-
-	
-	A clear adverse effect at the organ level
-	
-	
-	A progression beyond adaptive metabolic perturbation
-	
-	
-	A disease-defining pathological state recognized in clinical practice
-	
-
-
-From a regulatory perspective, this adverse outcome is relevant for:
-
-
-	
-	Hazard identification
-	
-	
-	Chronic toxicity assessment
-	
-	
-	Endocrine and metabolic disruptor evaluation
-	
-	
-	Integration into adverse outcome pathways supporting chemical prioritization
-	
-
-
-Because steatohepatitis is a well-defined diagnostic and pathological entity with established clinical consequences, it provides a robust anchor for AOP-based risk assessment frameworks.
-
-&nbsp;
 """, """From the OECD - GUIDANCE DOCUMENT ON DEVELOPING AND ASSESSING ADVERSE OUTCOME PATHWAYS - Series on Testing and Assessment 18: &quot;...an adverse effect that is of regulatory interest (e.g. repeated dose liver fibrosis)&quot;
-""", """An increase in cirrhosis represents:
-
-
-	
-	A severe, adverse organ-level outcome
-	
-	
-	Largely irreversible structural liver damage
-	
-	
-	A major determinant of liver-related morbidity and mortality
-	
-
-
-From a regulatory perspective, cirrhosis constitutes a high-concern adverse outcome suitable for:
-
-
-	
-	Chronic toxicity hazard identification
-	
-	
-	Chemical prioritization
-	
-	
-	Risk assessment frameworks
-	
-
-
-Because cirrhosis reflects irreversible architectural and functional liver impairment, it anchors the most severe end of MASLD progression within the AOP network.
 """ ;
 	nci:C25217	"""This AOP is supported by strong biological plausibility and a growing body of empirical evidence linking impaired hepatic lipid export to MASLD progression. The sequence of key events reflects conserved metabolic and stress-response pathways observed across mammalian species and aligns with known clinical features of fatty liver disease associated with defects in lipoprotein secretion.
 
@@ -75062,7 +74718,7 @@ The overall weight of evidence supports confidence in the pathway for regulatory
 """ ;
 	dc:creator	"""You Song1, Jorke H. Kamstra2, Matej Oresic3,4
 
-1 Norwegian Institute for Water Research,&nbsp;&Oslash;kernveien 94, Oslo, Norway
+1 Norwegian Institute for Water Research (NIVA), Oslo, Norway
 
 2 Utrecht University, Institute for Risk Assessment Sciences (IRAS),&nbsp;Utrecht, the Netherlands
 
@@ -75078,10 +74734,10 @@ Acknowledgement:&nbsp;This project was supported by the &ldquo;Investigation of 
 """ ;
 	nci:C25688	"Under Development" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	aopo:has_key_event	aop.events:2412, aop.events:122, aop.events:2119, aop.events:2408, aop.events:465, aop.events:2405, aop.events:1392, aop.events:55, aop.events:134, aop.events:1271, aop.events:265, aop.events:68, aop.events:2406, aop.events:2410, aop.events:459, aop.events:1489, aop.events:344, aop.events:2407 ;
-	aopo:has_key_event_relationship	aop.relationships:3741, aop.relationships:3742, aop.relationships:3738, aop.relationships:3721, aop.relationships:3743, aop.relationships:3744, aop.relationships:3724, aop.relationships:3745, aop.relationships:1690, aop.relationships:67, aop.relationships:3726, aop.relationships:3727, aop.relationships:3728, aop.relationships:295, aop.relationships:82, aop.relationships:3729, aop.relationships:3730 ;
-	aopo:has_molecular_initiating_event	aop.events:2410 ;
-	aopo:has_adverse_outcome	aop.events:459, aop.events:1489, aop.events:344, aop.events:2407 ;
+	aopo:has_key_event	aop.events:265, aop.events:68, aop.events:112, aop.events:344 ;
+	aopo:has_key_event_relationship	aop.relationships:3893, aop.relationships:295, aop.relationships:82 ;
+	aopo:has_molecular_initiating_event	aop.events:112 ;
+	aopo:has_adverse_outcome	aop.events:344 ;
 	ncbitaxon:131567	ncbitaxon:9606, ncbitaxon:10090, ncbitaxon:10116 .
 
 aop:626
@@ -75090,187 +74746,15 @@ aop:626
 	rdfs:label	"AOP 626" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/626> ;
 	foaf:page	<https://identifiers.org/aop/626> ;
-	dc:title	"Increased 11β-Hydroxysteroid dehydrogenase type 1 activity leading to MASLD progression via insulin resistance-associated endoplasmic reticulum stress" ;
-	dcterms:alternative	"Increased 11β-HSD1 leading to MASLD via IR-associated ER stress" ;
+	dc:title	"Decreased peroxisome proliferator-activated receptor alpha activity leading to increased liver fibrosis" ;
+	dcterms:alternative	"Decreased PPARα activity leading to increased liver fibrosis" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-02-10T08:22:12"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-24T09:05:50"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T13:23:57"^^xsd:dateTime ;
 	dc:description	"""While increased de novo lipogenesis is commonly associated with hepatic steatosis, emerging evidence indicates that suppression of lipogenic pathways can also exacerbate liver injury by limiting the hepatocyte&rsquo;s capacity to safely process and store fatty acids. De novo lipogenesis contributes not only to triglyceride synthesis but also to lipid remodeling and buffering processes that protect against lipotoxic species accumulation.
 
 Glucocorticoid receptor (GR) signaling regulates key transcriptional programs involved in hepatic lipogenesis, fatty acid handling, and mitochondrial metabolism. Altered GR signaling&mdash;due to dysregulation or chemical interference&mdash;can reduce DNL, disrupt lipid homeostasis, and shift hepatocytes toward accumulation of toxic lipid intermediates. This AOP was developed to capture this less intuitive but mechanistically important route linking altered GR signaling to MASLD progression.
-""", """Steatosis is a regulatory endpoint and has been used as an endpoint in many US EPA assessments, including IRIS assessments.
-""", """Steatohepatitis represents a clinically recognized and pathologically defined stage of metabolic dysfunction&ndash;associated steatotic liver disease (MASLD), characterized by hepatic steatosis accompanied by hepatocellular injury and inflammation. It is a critical transition point between reversible metabolic steatosis and progressive, potentially irreversible liver pathology, including fibrosis, cirrhosis, and hepatocellular carcinoma. As such, an increase in steatohepatitis severity constitutes a biologically meaningful and adverse health outcome.
-
-Human Health Relevance
-
-Steatohepatitis (formerly NASH; now MASH under MASLD nomenclature) is associated with:
-
-
-	
-	Increased risk of liver fibrosis progression
-	
-	
-	Elevated liver-related morbidity and mortality
-	
-	
-	Increased risk of hepatocellular carcinoma
-	
-	
-	Higher overall cardiometabolic mortality
-	
-
-
-Histologically confirmed steatohepatitis is a strong predictor of disease progression compared to simple steatosis. Therefore, regulatory concern is substantially higher once inflammatory and hepatocellular injury components are present.
-
-Scientific Basis for Domain of Applicability
-
-Taxonomic Applicability
-
-The adverse outcome is highly relevant to mammals, particularly humans, due to conserved hepatic architecture, lipid metabolism, inflammatory signaling, and fibrogenic pathways. Rodent models (e.g., high-fat diet, Western diet, glucocorticoid exposure models) reliably reproduce key histopathological features of steatohepatitis, including:
-
-
-	
-	Steatosis with hepatocyte ballooning
-	
-	
-	Lobular inflammation
-	
-	
-	Early perisinusoidal fibrosis
-	
-
-
-This cross-species concordance supports high biological plausibility within Mammalia.
-
-Life Stage Applicability
-
-The adverse outcome is most relevant in adolescent and adult life stages, where metabolic systems are fully developed and chronic exposure conditions can lead to progressive disease. While pediatric MASLD exists, the majority of mechanistic and regulatory evidence derives from adult populations and adult rodent models.
-
-Sex Applicability
-
-Steatohepatitis occurs in both males and females. Sex differences in susceptibility and progression rate have been reported, likely reflecting hormonal influences on lipid metabolism and inflammation. However, the pathological entity and its progression mechanisms are conserved across sexes.
-
-Weight of Evidence for Adversity
-
-The weight of evidence supporting steatohepatitis as an adverse outcome is strong based on:
-
-
-	
-	Clinical Evidence
-
-	
-		
-		Histologically confirmed steatohepatitis predicts fibrosis progression and mortality.
-		
-		
-		Longitudinal human studies demonstrate increased liver-related outcomes compared to simple steatosis.
-		
-	
-	
-	
-	Pathophysiological Evidence
-
-	
-		
-		Hepatocyte ballooning reflects cellular injury and cytoskeletal disruption.
-		
-		
-		Inflammatory infiltration drives sustained tissue damage and fibrogenesis.
-		
-		
-		Cytokine and TGF-&beta; signaling link inflammation directly to fibrosis progression.
-		
-	
-	
-	
-	Consistency Across Models
-
-	
-		
-		Reproducible induction in multiple rodent models.
-		
-		
-		Mechanistic concordance between experimental systems and human disease.
-		
-	
-	
-	
-	Irreversibility Consideration
-
-	
-		
-		While early steatohepatitis may be partially reversible, sustained inflammation significantly increases the probability of irreversible fibrosis.
-		
-	
-	
-
-
-Regulatory Relevance
-
-An increase in steatohepatitis severity represents:
-
-
-	
-	A clear adverse effect at the organ level
-	
-	
-	A progression beyond adaptive metabolic perturbation
-	
-	
-	A disease-defining pathological state recognized in clinical practice
-	
-
-
-From a regulatory perspective, this adverse outcome is relevant for:
-
-
-	
-	Hazard identification
-	
-	
-	Chronic toxicity assessment
-	
-	
-	Endocrine and metabolic disruptor evaluation
-	
-	
-	Integration into adverse outcome pathways supporting chemical prioritization
-	
-
-
-Because steatohepatitis is a well-defined diagnostic and pathological entity with established clinical consequences, it provides a robust anchor for AOP-based risk assessment frameworks.
-
-&nbsp;
 """, """From the OECD - GUIDANCE DOCUMENT ON DEVELOPING AND ASSESSING ADVERSE OUTCOME PATHWAYS - Series on Testing and Assessment 18: &quot;...an adverse effect that is of regulatory interest (e.g. repeated dose liver fibrosis)&quot;
-""", """An increase in cirrhosis represents:
-
-
-	
-	A severe, adverse organ-level outcome
-	
-	
-	Largely irreversible structural liver damage
-	
-	
-	A major determinant of liver-related morbidity and mortality
-	
-
-
-From a regulatory perspective, cirrhosis constitutes a high-concern adverse outcome suitable for:
-
-
-	
-	Chronic toxicity hazard identification
-	
-	
-	Chemical prioritization
-	
-	
-	Risk assessment frameworks
-	
-
-
-Because cirrhosis reflects irreversible architectural and functional liver impairment, it anchors the most severe end of MASLD progression within the AOP network.
 """ ;
 	nci:C25217	"""This AOP is biologically plausible and supported by moderate to strong empirical evidence demonstrating that impaired lipogenic capacity can exacerbate lipotoxic stress and liver injury. The sequence of events reflects conserved cellular stress responses and fibrogenic mechanisms observed across mammalian species.
 
@@ -75349,7 +74833,7 @@ Overall, the weight of evidence supports confidence in the pathway for regulator
 """ ;
 	dc:creator	"""You Song1, Jorke H. Kamstra2, Matej Oresic3,4
 
-1 Norwegian Institute for Water Research,&nbsp;&Oslash;kernveien 94, Oslo, Norway
+1 Norwegian Institute for Water Research (NIVA), Oslo, Norway
 
 2 Utrecht University, Institute for Risk Assessment Sciences (IRAS),&nbsp;Utrecht, the Netherlands
 
@@ -75365,10 +74849,10 @@ Acknowledgement:&nbsp;This project was supported by the &ldquo;Investigation of 
 """ ;
 	nci:C25688	"Under Development" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	aopo:has_key_event	aop.events:2412, aop.events:122, aop.events:2119, aop.events:2408, aop.events:465, aop.events:2405, aop.events:1815, aop.events:55, aop.events:134, aop.events:1271, aop.events:265, aop.events:68, aop.events:2406, aop.events:2410, aop.events:459, aop.events:1489, aop.events:344, aop.events:2407 ;
-	aopo:has_key_event_relationship	aop.relationships:3741, aop.relationships:3742, aop.relationships:3738, aop.relationships:3721, aop.relationships:3743, aop.relationships:3744, aop.relationships:3724, aop.relationships:3736, aop.relationships:3737, aop.relationships:67, aop.relationships:3726, aop.relationships:3727, aop.relationships:3728, aop.relationships:295, aop.relationships:82, aop.relationships:3729, aop.relationships:3730 ;
-	aopo:has_molecular_initiating_event	aop.events:2410 ;
-	aopo:has_adverse_outcome	aop.events:459, aop.events:1489, aop.events:344, aop.events:2407 ;
+	aopo:has_key_event	aop.events:2475, aop.events:1392, aop.events:1271, aop.events:265, aop.events:68, aop.events:231, aop.events:344 ;
+	aopo:has_key_event_relationship	aop.relationships:3894, aop.relationships:3895, aop.relationships:3892, aop.relationships:3728, aop.relationships:295, aop.relationships:82 ;
+	aopo:has_molecular_initiating_event	aop.events:231 ;
+	aopo:has_adverse_outcome	aop.events:344 ;
 	ncbitaxon:131567	ncbitaxon:9606, ncbitaxon:10090, ncbitaxon:10116 .
 
 aop:627
@@ -75377,187 +74861,15 @@ aop:627
 	rdfs:label	"AOP 627" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/627> ;
 	foaf:page	<https://identifiers.org/aop/627> ;
-	dc:title	"Increased 11β-Hydroxysteroid dehydrogenase type 1 activity leading to MASLD progression via lipogenesis-associated mitochondrial dysfunction" ;
-	dcterms:alternative	"Increased 11β-HSD1 leading to MASLD via DNL-associated mitochondrial dysfunction" ;
+	dc:title	"Decreased peroxisome proliferator-activated receptor gamma activity leading to increased liver fibrosis" ;
+	dcterms:alternative	"Decreased PPARγ activity leading to increased liver fibrosis" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-02-10T08:25:42"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-24T09:17:09"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T13:41:14"^^xsd:dateTime ;
 	dc:description	"""Endoplasmic reticulum (ER) stress is a central cellular stress response implicated in the progression from simple steatosis to steatohepatitis and fibrosis. In hepatocytes, insulin resistance, lipid overload, and disrupted metabolic signaling converge on the ER, overwhelming protein folding capacity and activating maladaptive unfolded protein response pathways. Chronic ER stress promotes hepatocyte injury, inflammatory signaling, and fibrogenesis.
 
 Glucocorticoid receptor (GR) signaling plays a key role in metabolic homeostasis, insulin sensitivity, and lipid flux regulation. Altered GR signaling&mdash;whether due to dysregulation or chemical interference&mdash;can induce systemic insulin resistance, increased adipose lipolysis, and hepatic lipid influx, thereby promoting ER stress. This AOP was developed to explicitly capture ER stress as a mechanistically distinct and biologically important mediator linking GR dysregulation to MASLD progression.
-""", """Steatosis is a regulatory endpoint and has been used as an endpoint in many US EPA assessments, including IRIS assessments.
-""", """Steatohepatitis represents a clinically recognized and pathologically defined stage of metabolic dysfunction&ndash;associated steatotic liver disease (MASLD), characterized by hepatic steatosis accompanied by hepatocellular injury and inflammation. It is a critical transition point between reversible metabolic steatosis and progressive, potentially irreversible liver pathology, including fibrosis, cirrhosis, and hepatocellular carcinoma. As such, an increase in steatohepatitis severity constitutes a biologically meaningful and adverse health outcome.
-
-Human Health Relevance
-
-Steatohepatitis (formerly NASH; now MASH under MASLD nomenclature) is associated with:
-
-
-	
-	Increased risk of liver fibrosis progression
-	
-	
-	Elevated liver-related morbidity and mortality
-	
-	
-	Increased risk of hepatocellular carcinoma
-	
-	
-	Higher overall cardiometabolic mortality
-	
-
-
-Histologically confirmed steatohepatitis is a strong predictor of disease progression compared to simple steatosis. Therefore, regulatory concern is substantially higher once inflammatory and hepatocellular injury components are present.
-
-Scientific Basis for Domain of Applicability
-
-Taxonomic Applicability
-
-The adverse outcome is highly relevant to mammals, particularly humans, due to conserved hepatic architecture, lipid metabolism, inflammatory signaling, and fibrogenic pathways. Rodent models (e.g., high-fat diet, Western diet, glucocorticoid exposure models) reliably reproduce key histopathological features of steatohepatitis, including:
-
-
-	
-	Steatosis with hepatocyte ballooning
-	
-	
-	Lobular inflammation
-	
-	
-	Early perisinusoidal fibrosis
-	
-
-
-This cross-species concordance supports high biological plausibility within Mammalia.
-
-Life Stage Applicability
-
-The adverse outcome is most relevant in adolescent and adult life stages, where metabolic systems are fully developed and chronic exposure conditions can lead to progressive disease. While pediatric MASLD exists, the majority of mechanistic and regulatory evidence derives from adult populations and adult rodent models.
-
-Sex Applicability
-
-Steatohepatitis occurs in both males and females. Sex differences in susceptibility and progression rate have been reported, likely reflecting hormonal influences on lipid metabolism and inflammation. However, the pathological entity and its progression mechanisms are conserved across sexes.
-
-Weight of Evidence for Adversity
-
-The weight of evidence supporting steatohepatitis as an adverse outcome is strong based on:
-
-
-	
-	Clinical Evidence
-
-	
-		
-		Histologically confirmed steatohepatitis predicts fibrosis progression and mortality.
-		
-		
-		Longitudinal human studies demonstrate increased liver-related outcomes compared to simple steatosis.
-		
-	
-	
-	
-	Pathophysiological Evidence
-
-	
-		
-		Hepatocyte ballooning reflects cellular injury and cytoskeletal disruption.
-		
-		
-		Inflammatory infiltration drives sustained tissue damage and fibrogenesis.
-		
-		
-		Cytokine and TGF-&beta; signaling link inflammation directly to fibrosis progression.
-		
-	
-	
-	
-	Consistency Across Models
-
-	
-		
-		Reproducible induction in multiple rodent models.
-		
-		
-		Mechanistic concordance between experimental systems and human disease.
-		
-	
-	
-	
-	Irreversibility Consideration
-
-	
-		
-		While early steatohepatitis may be partially reversible, sustained inflammation significantly increases the probability of irreversible fibrosis.
-		
-	
-	
-
-
-Regulatory Relevance
-
-An increase in steatohepatitis severity represents:
-
-
-	
-	A clear adverse effect at the organ level
-	
-	
-	A progression beyond adaptive metabolic perturbation
-	
-	
-	A disease-defining pathological state recognized in clinical practice
-	
-
-
-From a regulatory perspective, this adverse outcome is relevant for:
-
-
-	
-	Hazard identification
-	
-	
-	Chronic toxicity assessment
-	
-	
-	Endocrine and metabolic disruptor evaluation
-	
-	
-	Integration into adverse outcome pathways supporting chemical prioritization
-	
-
-
-Because steatohepatitis is a well-defined diagnostic and pathological entity with established clinical consequences, it provides a robust anchor for AOP-based risk assessment frameworks.
-
-&nbsp;
 """, """From the OECD - GUIDANCE DOCUMENT ON DEVELOPING AND ASSESSING ADVERSE OUTCOME PATHWAYS - Series on Testing and Assessment 18: &quot;...an adverse effect that is of regulatory interest (e.g. repeated dose liver fibrosis)&quot;
-""", """An increase in cirrhosis represents:
-
-
-	
-	A severe, adverse organ-level outcome
-	
-	
-	Largely irreversible structural liver damage
-	
-	
-	A major determinant of liver-related morbidity and mortality
-	
-
-
-From a regulatory perspective, cirrhosis constitutes a high-concern adverse outcome suitable for:
-
-
-	
-	Chronic toxicity hazard identification
-	
-	
-	Chemical prioritization
-	
-	
-	Risk assessment frameworks
-	
-
-
-Because cirrhosis reflects irreversible architectural and functional liver impairment, it anchors the most severe end of MASLD progression within the AOP network.
 """ ;
 	nci:C25217	"""This AOP is biologically plausible and supported by moderate to strong empirical evidence linking insulin resistance, ER stress, and progressive liver injury. The sequence of key events reflects conserved cellular stress and inflammatory mechanisms observed across mammalian species and aligns with established pathological features of MASLD progression.
 
@@ -75636,7 +74948,7 @@ Overall, the weight of evidence supports confidence in the pathway for regulator
 """ ;
 	dc:creator	"""You Song1, Jorke H. Kamstra2, Matej Oresic3,4
 
-1 Norwegian Institute for Water Research,&nbsp;&Oslash;kernveien 94, Oslo, Norway
+1 Norwegian Institute for Water Research (NIVA),&nbsp;Oslo, Norway
 
 2 Utrecht University, Institute for Risk Assessment Sciences (IRAS),&nbsp;Utrecht, the Netherlands
 
@@ -75652,10 +74964,10 @@ Acknowledgement:&nbsp;This project was supported by the &ldquo;Investigation of 
 """ ;
 	nci:C25688	"Under Development" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	aopo:has_key_event	aop.events:2412, aop.events:122, aop.events:1306, aop.events:2405, aop.events:177, aop.events:55, aop.events:134, aop.events:1271, aop.events:265, aop.events:68, aop.events:2406, aop.events:2410, aop.events:459, aop.events:1489, aop.events:344, aop.events:2407 ;
-	aopo:has_key_event_relationship	aop.relationships:3741, aop.relationships:3742, aop.relationships:3740, aop.relationships:3735, aop.relationships:3724, aop.relationships:3725, aop.relationships:67, aop.relationships:3726, aop.relationships:3727, aop.relationships:3728, aop.relationships:295, aop.relationships:82, aop.relationships:3729, aop.relationships:3730 ;
-	aopo:has_molecular_initiating_event	aop.events:2410 ;
-	aopo:has_adverse_outcome	aop.events:459, aop.events:1489, aop.events:344, aop.events:2407 ;
+	aopo:has_key_event	aop.events:2473, aop.events:265, aop.events:68, aop.events:233, aop.events:344 ;
+	aopo:has_key_event_relationship	aop.relationships:3896, aop.relationships:3897, aop.relationships:295, aop.relationships:82 ;
+	aopo:has_molecular_initiating_event	aop.events:233 ;
+	aopo:has_adverse_outcome	aop.events:344 ;
 	ncbitaxon:131567	ncbitaxon:9606, ncbitaxon:10090, ncbitaxon:10116 .
 
 aop:628
@@ -75664,187 +74976,15 @@ aop:628
 	rdfs:label	"AOP 628" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/628> ;
 	foaf:page	<https://identifiers.org/aop/628> ;
-	dc:title	"Increased 11β-Hydroxysteroid dehydrogenase type 1 activity leading to MASLD progression via lipogenesis-associated oxidative stress" ;
-	dcterms:alternative	"Increased 11β-HSD1 leading to MASLD via DNL-associated oxidative stress" ;
+	dc:title	"Decreased 11-beta-hydroxysteroid dehydrogenase type 1 reductase activity leading to increased liver fibrosis" ;
+	dcterms:alternative	"Decreased 11β-HSD1 reductase activity leading to increased liver fibrosis" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-02-10T08:28:31"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-26T04:15:39"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T13:50:42"^^xsd:dateTime ;
 	dc:description	"""Efficient export of triglycerides via VLDL is essential for maintaining hepatocellular lipid balance and preventing intracellular lipid overload. Impairment of VLDL assembly or secretion results in lipid accumulation within hepatocytes, particularly within the endoplasmic reticulum, where lipoprotein assembly occurs. This accumulation can directly disrupt ER membrane integrity and protein folding capacity, leading to ER stress.
 
 Glucocorticoid receptor (GR) signaling regulates multiple aspects of hepatic lipid metabolism, including lipoprotein assembly, apolipoprotein expression, and triglyceride trafficking. Altered GR signaling&mdash;whether through dysregulation or chemical interference&mdash;can suppress VLDL export independently of changes in lipid influx or insulin sensitivity. This AOP was developed to capture ER stress as a direct consequence of impaired lipid export, providing a mechanistically distinct pathway linking GR disruption to MASLD progression.
-""", """Steatosis is a regulatory endpoint and has been used as an endpoint in many US EPA assessments, including IRIS assessments.
-""", """Steatohepatitis represents a clinically recognized and pathologically defined stage of metabolic dysfunction&ndash;associated steatotic liver disease (MASLD), characterized by hepatic steatosis accompanied by hepatocellular injury and inflammation. It is a critical transition point between reversible metabolic steatosis and progressive, potentially irreversible liver pathology, including fibrosis, cirrhosis, and hepatocellular carcinoma. As such, an increase in steatohepatitis severity constitutes a biologically meaningful and adverse health outcome.
-
-Human Health Relevance
-
-Steatohepatitis (formerly NASH; now MASH under MASLD nomenclature) is associated with:
-
-
-	
-	Increased risk of liver fibrosis progression
-	
-	
-	Elevated liver-related morbidity and mortality
-	
-	
-	Increased risk of hepatocellular carcinoma
-	
-	
-	Higher overall cardiometabolic mortality
-	
-
-
-Histologically confirmed steatohepatitis is a strong predictor of disease progression compared to simple steatosis. Therefore, regulatory concern is substantially higher once inflammatory and hepatocellular injury components are present.
-
-Scientific Basis for Domain of Applicability
-
-Taxonomic Applicability
-
-The adverse outcome is highly relevant to mammals, particularly humans, due to conserved hepatic architecture, lipid metabolism, inflammatory signaling, and fibrogenic pathways. Rodent models (e.g., high-fat diet, Western diet, glucocorticoid exposure models) reliably reproduce key histopathological features of steatohepatitis, including:
-
-
-	
-	Steatosis with hepatocyte ballooning
-	
-	
-	Lobular inflammation
-	
-	
-	Early perisinusoidal fibrosis
-	
-
-
-This cross-species concordance supports high biological plausibility within Mammalia.
-
-Life Stage Applicability
-
-The adverse outcome is most relevant in adolescent and adult life stages, where metabolic systems are fully developed and chronic exposure conditions can lead to progressive disease. While pediatric MASLD exists, the majority of mechanistic and regulatory evidence derives from adult populations and adult rodent models.
-
-Sex Applicability
-
-Steatohepatitis occurs in both males and females. Sex differences in susceptibility and progression rate have been reported, likely reflecting hormonal influences on lipid metabolism and inflammation. However, the pathological entity and its progression mechanisms are conserved across sexes.
-
-Weight of Evidence for Adversity
-
-The weight of evidence supporting steatohepatitis as an adverse outcome is strong based on:
-
-
-	
-	Clinical Evidence
-
-	
-		
-		Histologically confirmed steatohepatitis predicts fibrosis progression and mortality.
-		
-		
-		Longitudinal human studies demonstrate increased liver-related outcomes compared to simple steatosis.
-		
-	
-	
-	
-	Pathophysiological Evidence
-
-	
-		
-		Hepatocyte ballooning reflects cellular injury and cytoskeletal disruption.
-		
-		
-		Inflammatory infiltration drives sustained tissue damage and fibrogenesis.
-		
-		
-		Cytokine and TGF-&beta; signaling link inflammation directly to fibrosis progression.
-		
-	
-	
-	
-	Consistency Across Models
-
-	
-		
-		Reproducible induction in multiple rodent models.
-		
-		
-		Mechanistic concordance between experimental systems and human disease.
-		
-	
-	
-	
-	Irreversibility Consideration
-
-	
-		
-		While early steatohepatitis may be partially reversible, sustained inflammation significantly increases the probability of irreversible fibrosis.
-		
-	
-	
-
-
-Regulatory Relevance
-
-An increase in steatohepatitis severity represents:
-
-
-	
-	A clear adverse effect at the organ level
-	
-	
-	A progression beyond adaptive metabolic perturbation
-	
-	
-	A disease-defining pathological state recognized in clinical practice
-	
-
-
-From a regulatory perspective, this adverse outcome is relevant for:
-
-
-	
-	Hazard identification
-	
-	
-	Chronic toxicity assessment
-	
-	
-	Endocrine and metabolic disruptor evaluation
-	
-	
-	Integration into adverse outcome pathways supporting chemical prioritization
-	
-
-
-Because steatohepatitis is a well-defined diagnostic and pathological entity with established clinical consequences, it provides a robust anchor for AOP-based risk assessment frameworks.
-
-&nbsp;
 """, """From the OECD - GUIDANCE DOCUMENT ON DEVELOPING AND ASSESSING ADVERSE OUTCOME PATHWAYS - Series on Testing and Assessment 18: &quot;...an adverse effect that is of regulatory interest (e.g. repeated dose liver fibrosis)&quot;
-""", """An increase in cirrhosis represents:
-
-
-	
-	A severe, adverse organ-level outcome
-	
-	
-	Largely irreversible structural liver damage
-	
-	
-	A major determinant of liver-related morbidity and mortality
-	
-
-
-From a regulatory perspective, cirrhosis constitutes a high-concern adverse outcome suitable for:
-
-
-	
-	Chronic toxicity hazard identification
-	
-	
-	Chemical prioritization
-	
-	
-	Risk assessment frameworks
-	
-
-
-Because cirrhosis reflects irreversible architectural and functional liver impairment, it anchors the most severe end of MASLD progression within the AOP network.
 """ ;
 	nci:C25217	"""This AOP is biologically plausible and supported by moderate to strong empirical evidence linking impaired hepatic lipid export to ER stress and progressive liver injury. The sequence of key events reflects conserved cellular stress responses and fibrogenic mechanisms observed across mammalian species.
 
@@ -75923,7 +75063,7 @@ Overall, the weight of evidence supports confidence in the pathway for regulator
 """ ;
 	dc:creator	"""You Song1, Jorke H. Kamstra2, Matej Oresic3,4
 
-1 Norwegian Institute for Water Research,&nbsp;&Oslash;kernveien 94, Oslo, Norway
+1 Norwegian Institute for Water Research (NIVA), Oslo, Norway
 
 2 Utrecht University, Institute for Risk Assessment Sciences (IRAS),&nbsp;Utrecht, the Netherlands
 
@@ -75939,10 +75079,10 @@ Acknowledgement:&nbsp;This project was supported by the &ldquo;Investigation of 
 """ ;
 	nci:C25688	"Under Development" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	aopo:has_key_event	aop.events:2412, aop.events:122, aop.events:1306, aop.events:2405, aop.events:1392, aop.events:55, aop.events:134, aop.events:1271, aop.events:265, aop.events:68, aop.events:2406, aop.events:2410, aop.events:459, aop.events:1489, aop.events:344, aop.events:2407 ;
-	aopo:has_key_event_relationship	aop.relationships:3741, aop.relationships:3742, aop.relationships:3740, aop.relationships:3735, aop.relationships:3724, aop.relationships:3745, aop.relationships:1690, aop.relationships:67, aop.relationships:3726, aop.relationships:3727, aop.relationships:3728, aop.relationships:295, aop.relationships:82, aop.relationships:3729, aop.relationships:3730 ;
-	aopo:has_molecular_initiating_event	aop.events:2410 ;
-	aopo:has_adverse_outcome	aop.events:459, aop.events:1489, aop.events:344, aop.events:2407 ;
+	aopo:has_key_event	aop.events:2472, aop.events:2474, aop.events:265, aop.events:68, aop.events:2469, aop.events:344 ;
+	aopo:has_key_event_relationship	aop.relationships:3898, aop.relationships:3899, aop.relationships:3900, aop.relationships:295, aop.relationships:82 ;
+	aopo:has_molecular_initiating_event	aop.events:2469 ;
+	aopo:has_adverse_outcome	aop.events:344 ;
 	ncbitaxon:131567	ncbitaxon:9606, ncbitaxon:10090, ncbitaxon:10116 .
 
 aop:629
@@ -75951,187 +75091,15 @@ aop:629
 	rdfs:label	"AOP 629" ;
 	rdfs:seeAlso	<https://identifiers.org/aop/629> ;
 	foaf:page	<https://identifiers.org/aop/629> ;
-	dc:title	"Increased 11β-Hydroxysteroid dehydrogenase type 1 activity leading to MASLD progression via lipogenesis-associated endoplasmic reticulum stress" ;
-	dcterms:alternative	"Increased 11β-HSD1 leading to MASLD via DNL-associated ER stress" ;
+	dc:title	"Leptin receptor agonism leading to increased liver fibrosis" ;
+	dcterms:alternative	"LEPR agonism leading to increased liver fibrosis" ;
 	dc:source	"AOPWiki" ;
 	dcterms:created	"2026-02-10T08:29:33"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-26T04:24:44"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T13:54:49"^^xsd:dateTime ;
 	dc:description	"""Although increased de novo lipogenesis is frequently associated with hepatic steatosis, adequate lipogenic capacity is also essential for maintaining ER and hepatocyte homeostasis. De novo lipogenesis supports triglyceride synthesis, lipid remodeling, and buffering of excess fatty acids, processes that limit the accumulation of toxic lipid intermediates within the ER. Suppression of DNL can therefore increase susceptibility to lipotoxic stress, particularly under conditions of ongoing lipid exposure.
 
 Glucocorticoid receptor (GR) signaling regulates transcriptional programs involved in hepatic lipogenesis, fatty acid handling, and cellular stress responses. Altered GR signaling&mdash;due to dysregulation or chemical interference&mdash;can suppress DNL, disrupt ER lipid balance, and promote ER stress. This AOP was developed to capture this mechanistically distinct pathway linking GR perturbation to MASLD progression through ER stress rather than mitochondrial dysfunction.
-""", """Steatosis is a regulatory endpoint and has been used as an endpoint in many US EPA assessments, including IRIS assessments.
-""", """Steatohepatitis represents a clinically recognized and pathologically defined stage of metabolic dysfunction&ndash;associated steatotic liver disease (MASLD), characterized by hepatic steatosis accompanied by hepatocellular injury and inflammation. It is a critical transition point between reversible metabolic steatosis and progressive, potentially irreversible liver pathology, including fibrosis, cirrhosis, and hepatocellular carcinoma. As such, an increase in steatohepatitis severity constitutes a biologically meaningful and adverse health outcome.
-
-Human Health Relevance
-
-Steatohepatitis (formerly NASH; now MASH under MASLD nomenclature) is associated with:
-
-
-	
-	Increased risk of liver fibrosis progression
-	
-	
-	Elevated liver-related morbidity and mortality
-	
-	
-	Increased risk of hepatocellular carcinoma
-	
-	
-	Higher overall cardiometabolic mortality
-	
-
-
-Histologically confirmed steatohepatitis is a strong predictor of disease progression compared to simple steatosis. Therefore, regulatory concern is substantially higher once inflammatory and hepatocellular injury components are present.
-
-Scientific Basis for Domain of Applicability
-
-Taxonomic Applicability
-
-The adverse outcome is highly relevant to mammals, particularly humans, due to conserved hepatic architecture, lipid metabolism, inflammatory signaling, and fibrogenic pathways. Rodent models (e.g., high-fat diet, Western diet, glucocorticoid exposure models) reliably reproduce key histopathological features of steatohepatitis, including:
-
-
-	
-	Steatosis with hepatocyte ballooning
-	
-	
-	Lobular inflammation
-	
-	
-	Early perisinusoidal fibrosis
-	
-
-
-This cross-species concordance supports high biological plausibility within Mammalia.
-
-Life Stage Applicability
-
-The adverse outcome is most relevant in adolescent and adult life stages, where metabolic systems are fully developed and chronic exposure conditions can lead to progressive disease. While pediatric MASLD exists, the majority of mechanistic and regulatory evidence derives from adult populations and adult rodent models.
-
-Sex Applicability
-
-Steatohepatitis occurs in both males and females. Sex differences in susceptibility and progression rate have been reported, likely reflecting hormonal influences on lipid metabolism and inflammation. However, the pathological entity and its progression mechanisms are conserved across sexes.
-
-Weight of Evidence for Adversity
-
-The weight of evidence supporting steatohepatitis as an adverse outcome is strong based on:
-
-
-	
-	Clinical Evidence
-
-	
-		
-		Histologically confirmed steatohepatitis predicts fibrosis progression and mortality.
-		
-		
-		Longitudinal human studies demonstrate increased liver-related outcomes compared to simple steatosis.
-		
-	
-	
-	
-	Pathophysiological Evidence
-
-	
-		
-		Hepatocyte ballooning reflects cellular injury and cytoskeletal disruption.
-		
-		
-		Inflammatory infiltration drives sustained tissue damage and fibrogenesis.
-		
-		
-		Cytokine and TGF-&beta; signaling link inflammation directly to fibrosis progression.
-		
-	
-	
-	
-	Consistency Across Models
-
-	
-		
-		Reproducible induction in multiple rodent models.
-		
-		
-		Mechanistic concordance between experimental systems and human disease.
-		
-	
-	
-	
-	Irreversibility Consideration
-
-	
-		
-		While early steatohepatitis may be partially reversible, sustained inflammation significantly increases the probability of irreversible fibrosis.
-		
-	
-	
-
-
-Regulatory Relevance
-
-An increase in steatohepatitis severity represents:
-
-
-	
-	A clear adverse effect at the organ level
-	
-	
-	A progression beyond adaptive metabolic perturbation
-	
-	
-	A disease-defining pathological state recognized in clinical practice
-	
-
-
-From a regulatory perspective, this adverse outcome is relevant for:
-
-
-	
-	Hazard identification
-	
-	
-	Chronic toxicity assessment
-	
-	
-	Endocrine and metabolic disruptor evaluation
-	
-	
-	Integration into adverse outcome pathways supporting chemical prioritization
-	
-
-
-Because steatohepatitis is a well-defined diagnostic and pathological entity with established clinical consequences, it provides a robust anchor for AOP-based risk assessment frameworks.
-
-&nbsp;
 """, """From the OECD - GUIDANCE DOCUMENT ON DEVELOPING AND ASSESSING ADVERSE OUTCOME PATHWAYS - Series on Testing and Assessment 18: &quot;...an adverse effect that is of regulatory interest (e.g. repeated dose liver fibrosis)&quot;
-""", """An increase in cirrhosis represents:
-
-
-	
-	A severe, adverse organ-level outcome
-	
-	
-	Largely irreversible structural liver damage
-	
-	
-	A major determinant of liver-related morbidity and mortality
-	
-
-
-From a regulatory perspective, cirrhosis constitutes a high-concern adverse outcome suitable for:
-
-
-	
-	Chronic toxicity hazard identification
-	
-	
-	Chemical prioritization
-	
-	
-	Risk assessment frameworks
-	
-
-
-Because cirrhosis reflects irreversible architectural and functional liver impairment, it anchors the most severe end of MASLD progression within the AOP network.
 """ ;
 	nci:C25217	"""This AOP is biologically plausible and supported by moderate empirical evidence demonstrating that suppression of hepatic lipogenesis can exacerbate ER stress and promote progressive liver injury. The sequence of key events reflects conserved cellular stress and fibrogenic mechanisms observed across mammalian species.
 
@@ -76210,7 +75178,7 @@ Overall, the weight of evidence supports confidence in the pathway for regulator
 """ ;
 	dc:creator	"""You Song1, Jorke H. Kamstra2, Matej Oresic3,4
 
-1 Norwegian Institute for Water Research,&nbsp;&Oslash;kernveien 94, Oslo, Norway
+1 Norwegian Institute for Water Research (NIVA), Oslo, Norway
 
 2 Utrecht University, Institute for Risk Assessment Sciences (IRAS),&nbsp;Utrecht, the Netherlands
 
@@ -76226,10 +75194,10 @@ Acknowledgement:&nbsp;This project was supported by the &ldquo;Investigation of 
 """ ;
 	nci:C25688	"Under Development" ;
 	dcterms:license	<https://creativecommons.org/licenses/by-sa/4.0/> ;
-	aopo:has_key_event	aop.events:2412, aop.events:122, aop.events:1306, aop.events:2405, aop.events:1815, aop.events:55, aop.events:134, aop.events:1271, aop.events:265, aop.events:68, aop.events:2406, aop.events:2410, aop.events:459, aop.events:1489, aop.events:344, aop.events:2407 ;
-	aopo:has_key_event_relationship	aop.relationships:3741, aop.relationships:3742, aop.relationships:3740, aop.relationships:3735, aop.relationships:3724, aop.relationships:3736, aop.relationships:3737, aop.relationships:67, aop.relationships:3726, aop.relationships:3727, aop.relationships:3728, aop.relationships:295, aop.relationships:82, aop.relationships:3729, aop.relationships:3730 ;
-	aopo:has_molecular_initiating_event	aop.events:2410 ;
-	aopo:has_adverse_outcome	aop.events:459, aop.events:1489, aop.events:344, aop.events:2407 .
+	aopo:has_key_event	aop.events:265, aop.events:68, aop.events:2471, aop.events:344 ;
+	aopo:has_key_event_relationship	aop.relationships:3901, aop.relationships:295, aop.relationships:82 ;
+	aopo:has_molecular_initiating_event	aop.events:2471 ;
+	aopo:has_adverse_outcome	aop.events:344 .
 
 aop:630
 	a	aopo:AdverseOutcomePathway ;
@@ -81939,7 +80907,7 @@ Taxonomic: This key event appears to be present broadly in vertebrates, with mos
 	aopo:hasBiologicalEvent	<459_bioevent_0> ;
 	go:0008150	hp:0001397 ;
 	pato:0000001	"increased" ;
-	dcterms:isPartOf	aop:36, aop:57, aop:58, aop:60, aop:61, aop:62, aop:213, aop:232, aop:285, aop:318, aop:494, aop:517, aop:518, aop:529, aop:591, aop:624, aop:625, aop:626, aop:627, aop:628, aop:629, aop:653 .
+	dcterms:isPartOf	aop:36, aop:57, aop:58, aop:60, aop:61, aop:62, aop:213, aop:232, aop:285, aop:318, aop:494, aop:517, aop:518, aop:529, aop:591, aop:653 .
 
 aop.events:244
 	a	aopo:KeyEvent ;
@@ -83747,7 +82715,7 @@ The weight of evidence for this KE is strong due to consistent clinical and expe
 	aopo:LifeStageContext	"All life stages" ;
 	ncbitaxon:131567	"Vertebrates" ;
 	aopo:OrganContext	uberon:0002107 ;
-	dcterms:isPartOf	aop:213, aop:401, aop:624, aop:625, aop:626, aop:627, aop:628, aop:629, aop:642 .
+	dcterms:isPartOf	aop:213, aop:401, aop:642 .
 
 aop.events:1346
 	a	aopo:KeyEvent ;
@@ -86841,7 +85809,7 @@ IR is associated with multiple health conditions including obesity, type 2 diabe
 	aopo:hasBiologicalEvent	<2119_bioevent_0> ;
 	go:0008150	hp:0000855 ;
 	pato:0000001	"increased" ;
-	dcterms:isPartOf	aop:454, aop:457, aop:493, aop:497, aop:624, aop:625, aop:626 .
+	dcterms:isPartOf	aop:454, aop:457, aop:493, aop:497 .
 
 aop.events:2042
 	a	aopo:KeyEvent ;
@@ -87427,135 +86395,6 @@ Male preputial separation refers to the detachment of the foreskin from glans pe
 	pato:0000001	"arrested", "delayed" ;
 	pato:0001241	uberon:0001332 ;
 	dcterms:isPartOf	aop:619 .
-
-aop.events:2407
-	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:2407 ;
-	rdfs:label	"KE 2407" ;
-	foaf:page	<https://identifiers.org/aop.events/2407> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/2407> ;
-	dc:title	"Increase, Cirrhosis" ;
-	dcterms:alternative	"Increase, Cirrhosis" ;
-	dc:source	"AOPWiki" ;
-	dc:description	"""Cirrhosis represents the end-stage consequence of chronic liver injury and sustained fibrogenesis. It is characterized by:
-
-
-	
-	Extensive deposition of extracellular matrix (primarily type I collagen)
-	
-	
-	Bridging fibrosis connecting portal and central regions
-	
-	
-	Formation of regenerative nodules
-	
-	
-	Distortion of normal hepatic architecture
-	
-	
-	Altered vascular structure and portal hypertension
-	
-
-""" ;
-	mmo:0000000	"""1. Histopathology (Gold Standard)
-
-
-	
-	Masson&#39;s trichrome staining
-	
-	
-	Sirius Red staining for collagen deposition
-	
-	
-	Assessment of:
-
-	
-		
-		Bridging fibrosis
-		
-		
-		Nodular regeneration
-		
-		
-		Architectural distortion
-		
-	
-	
-
-
-Common scoring systems:
-
-
-	
-	METAVIR (F4 stage indicates cirrhosis)
-	
-	
-	Ishak fibrosis score
-	
-	
-	SAF scoring system
-	
-
-
-2. Imaging (Clinical Context)
-
-
-	
-	Transient elastography (FibroScan)
-	
-	
-	Magnetic resonance elastography
-	
-	
-	Ultrasound imaging (nodular surface, splenomegaly)
-	
-
-
-Imaging provides non-invasive assessment but histology confirms diagnosis.
-
-3. Serum Biomarkers (Supportive)
-
-
-	
-	Decreased albumin
-	
-	
-	Elevated bilirubin
-	
-	
-	Prolonged prothrombin time
-	
-	
-	Fibrosis biomarkers (e.g., hyaluronic acid, procollagen peptides)
-	
-
-
-These support functional impairment but do not independently confirm cirrhosis.
-""" ;
-	nci:C25664	"""Organ""" ;
-	nci:C17469	"""Cirrhosis is a clinically recognized end-stage liver disease in humans and is reproducible in mammalian models of chronic hepatic injury. The mechanisms of fibrosis progression and architectural remodeling are highly conserved in mammals.
-
-This KE is most applicable under:
-
-
-	
-	Chronic exposure conditions
-	
-	
-	Sustained inflammatory and fibrogenic signaling
-	
-	
-	Adult or metabolically mature organisms
-	
-
-
-The biological plausibility is strong due to well-established fibrogenic pathways (e.g., TGF-&beta;&ndash;mediated stellate cell activation) and consistent cross-species pathology.
-""" ;
-	pato:0000047	"Unspecific" ;
-	aopo:LifeStageContext	"Adult" ;
-	ncbitaxon:131567	ncbitaxon:9606, ncbitaxon:10090, ncbitaxon:10116, "mammals" ;
-	aopo:OrganContext	uberon:0002107 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
 
 aop.events:2416
 	a	aopo:KeyEvent ;
@@ -88175,7 +87014,7 @@ Summing up, mitochondrial dysfunction can be measured by: &bull; ROS production:
 	aopo:hasBiologicalEvent	<177_bioevent_0> ;
 	pato:0000001	"functional change" ;
 	pato:0001241	go:0005739 ;
-	dcterms:isPartOf	aop:3, aop:34, aop:48, aop:77, aop:78, aop:79, aop:80, aop:87, aop:130, aop:144, aop:178, aop:200, aop:205, aop:207, aop:256, aop:258, aop:273, aop:335, aop:362, aop:377, aop:423, aop:437, aop:447, aop:464, aop:472, aop:476, aop:479, aop:480, aop:481, aop:497, aop:500, aop:509, aop:511, aop:530, aop:587, aop:588, aop:589, aop:595, aop:622, aop:624, aop:627, aop:636, aop:645 .
+	dcterms:isPartOf	aop:3, aop:34, aop:48, aop:77, aop:78, aop:79, aop:80, aop:87, aop:130, aop:144, aop:178, aop:200, aop:205, aop:207, aop:256, aop:258, aop:273, aop:335, aop:362, aop:377, aop:423, aop:437, aop:447, aop:464, aop:472, aop:476, aop:479, aop:480, aop:481, aop:497, aop:500, aop:509, aop:511, aop:530, aop:587, aop:588, aop:589, aop:595, aop:622, aop:636, aop:645 .
 
 aop.events:889
 	a	aopo:KeyEvent ;
@@ -89497,7 +88336,7 @@ ToxCast/Tox21 assays (invitrodb v4.3):&nbsp;APR_HepG2_CellLoss_*; ATG_XTT_Cytoto
 	aopo:hasBiologicalEvent	<55_bioevent_0> ;
 	go:0008150	go:0008219 ;
 	pato:0000001	"increased" ;
-	dcterms:isPartOf	aop:12, aop:13, aop:17, aop:38, aop:48, aop:144, aop:264, aop:265, aop:266, aop:268, aop:273, aop:278, aop:281, aop:325, aop:331, aop:333, aop:377, aop:479, aop:490, aop:494, aop:530, aop:596, aop:599, aop:624, aop:625, aop:626, aop:627, aop:628, aop:629, aop:647 .
+	dcterms:isPartOf	aop:12, aop:13, aop:17, aop:38, aop:48, aop:144, aop:264, aop:265, aop:266, aop:268, aop:273, aop:278, aop:281, aop:325, aop:331, aop:333, aop:377, aop:479, aop:490, aop:494, aop:530, aop:596, aop:599, aop:647 .
 
 aop.events:382
 	a	aopo:KeyEvent ;
@@ -89799,7 +88638,7 @@ Sex Applicability: This MIE is not sex specific.
 	go:0008150	go:0004883 ;
 	pato:0000001	"increased" ;
 	pato:0001241	pr:000011406 ;
-	dcterms:isPartOf	aop:14, aop:214, aop:318, aop:334, aop:581, aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
+	dcterms:isPartOf	aop:14, aop:214, aop:318, aop:334, aop:581 .
 
 aop.events:202
 	a	aopo:KeyEvent ;
@@ -91192,7 +90031,7 @@ Evidence for perturbation by prototypic stressor: There is evidence of the incre
 	aopo:hasBiologicalEvent	<1392_bioevent_0> ;
 	go:0008150	mp:0003674 ;
 	pato:0000001	"increased" ;
-	dcterms:isPartOf	aop:17, aop:26, aop:31, aop:138, aop:171, aop:177, aop:186, aop:200, aop:220, aop:260, aop:284, aop:324, aop:325, aop:326, aop:331, aop:332, aop:333, aop:377, aop:396, aop:411, aop:424, aop:425, aop:429, aop:437, aop:444, aop:447, aop:450, aop:452, aop:457, aop:459, aop:462, aop:464, aop:470, aop:471, aop:472, aop:476, aop:478, aop:479, aop:481, aop:482, aop:483, aop:488, aop:497, aop:501, aop:505, aop:507, aop:509, aop:510, aop:511, aop:521, aop:534, aop:535, aop:538, aop:540, aop:595, aop:596, aop:598, aop:599, aop:600, aop:601, aop:602, aop:603, aop:608, aop:616, aop:622, aop:625, aop:628, aop:636, aop:642, aop:645, aop:646, aop:647 .
+	dcterms:isPartOf	aop:17, aop:26, aop:31, aop:138, aop:171, aop:177, aop:186, aop:200, aop:220, aop:260, aop:284, aop:324, aop:325, aop:326, aop:331, aop:332, aop:333, aop:377, aop:396, aop:411, aop:424, aop:425, aop:429, aop:437, aop:444, aop:447, aop:450, aop:452, aop:457, aop:459, aop:462, aop:464, aop:470, aop:471, aop:472, aop:476, aop:478, aop:479, aop:481, aop:482, aop:483, aop:488, aop:497, aop:501, aop:505, aop:507, aop:509, aop:510, aop:511, aop:521, aop:534, aop:535, aop:538, aop:540, aop:595, aop:596, aop:598, aop:599, aop:600, aop:601, aop:602, aop:603, aop:608, aop:616, aop:622, aop:624, aop:626, aop:636, aop:642, aop:645, aop:646, aop:647 .
 
 aop.events:1488
 	a	aopo:KeyEvent ;
@@ -93484,7 +92323,7 @@ Characterization of chemical properties: Two broad categories of ER antagonists 
 	go:0008150	go:0030284 ;
 	pato:0000001	"decreased" ;
 	pato:0001241	pr:000007204 ;
-	dcterms:isPartOf	aop:30, aop:443, aop:522, aop:595 .
+	dcterms:isPartOf	aop:30, aop:443, aop:522, aop:595, aop:625 .
 
 aop.events:213
 	a	aopo:KeyEvent ;
@@ -94126,8 +92965,8 @@ aop.events:231
 	rdfs:label	"KE 231" ;
 	foaf:page	<https://identifiers.org/aop.events/231> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.events/231> ;
-	dc:title	"Decreased, PPAR-alpha activation" ;
-	dcterms:alternative	"Decreased, PPAR-alpha activation" ;
+	dc:title	"Decrease, Peroxisome proliferator-activated receptor alpha activity" ;
+	dcterms:alternative	"Decrease, PPARα activity" ;
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Molecular""" ;
 	aopo:CellTypeContext	cl:0000182 ;
@@ -94135,7 +92974,7 @@ aop.events:231
 	go:0008150	go:0035357 ;
 	pato:0000001	"decreased" ;
 	pato:0001241	pr:000013056 ;
-	dcterms:isPartOf	aop:36 .
+	dcterms:isPartOf	aop:36, aop:626 .
 
 aop.events:232
 	a	aopo:KeyEvent ;
@@ -94160,8 +92999,8 @@ aop.events:233
 	rdfs:label	"KE 233" ;
 	foaf:page	<https://identifiers.org/aop.events/233> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.events/233> ;
-	dc:title	"Decreased, PPAR-gamma activation" ;
-	dcterms:alternative	"Decreased, PPAR-gamma activation" ;
+	dc:title	"Decrease, Peroxisome proliferator-activated receptor gamma activity" ;
+	dcterms:alternative	"Decreased, PPARγ activity" ;
 	dc:source	"AOPWiki" ;
 	dc:description	"""The Peroxisome Proliferator-Activated Receptors (PPAR) family of genes involved in regulation of lipid metabolism and energy pathways (Desvergne and Wahli 1999, Hihi et al. 2002, Ahmed et al. 2007).&nbsp; Fatty acids stimulate the expression of PPAR genes, which initiate a variety of cellular responses focused on lipid metabolism, but also inflammation and apoptosis pathways.&nbsp; Decreases in PPAR-gamma expression are associated with disruption of adipocyte differentiation and glucose homeostasis.
 """ ;
@@ -94182,7 +93021,7 @@ Taxonomic:&nbsp;Appears to be present broadly, with representative studies in ma
 	go:0008150	go:0035357 ;
 	pato:0000001	"decreased" ;
 	pato:0001241	pr:000013058 ;
-	dcterms:isPartOf	aop:36, aop:513, aop:660 .
+	dcterms:isPartOf	aop:36, aop:513, aop:627, aop:660 .
 
 aop.events:327
 	a	aopo:KeyEvent ;
@@ -95698,7 +94537,7 @@ aop.events:465
 	go:0008150	go:0015908 ;
 	pato:0000001	"increased" ;
 	pato:0001241	chebio:35366 ;
-	dcterms:isPartOf	aop:57, aop:58, aop:60, aop:624, aop:625, aop:626 .
+	dcterms:isPartOf	aop:57, aop:58, aop:60 .
 
 aop.events:466
 	a	aopo:KeyEvent ;
@@ -105191,7 +104030,7 @@ aop.events:1271
 	dcterms:alternative	"Activation of TGF-β signaling" ;
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Molecular""" ;
-	dcterms:isPartOf	aop:206, aop:624, aop:625, aop:626, aop:627, aop:628, aop:629, aop:655 .
+	dcterms:isPartOf	aop:206, aop:624, aop:626, aop:655 .
 
 aop.events:1275
 	a	aopo:KeyEvent ;
@@ -115944,7 +114783,7 @@ aop.events:1815
 	dcterms:alternative	"Increase, ER stress" ;
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Cellular""" ;
-	dcterms:isPartOf	aop:362, aop:447, aop:626, aop:629 .
+	dcterms:isPartOf	aop:362, aop:447 .
 
 aop.events:1877
 	a	aopo:KeyEvent ;
@@ -117861,7 +116700,7 @@ Non‑canonical RAR signaling mechanisms, independent of direct transcriptional 
 	nci:C25664	"""Tissue""" ;
 	nci:C17469	"""RARs are well-conserved throughout vertebrate evolution, therefore this KE should be considered broadly applicable across vertebrate species. Regarding invertebrates, evidence for the presence of RARs has been reported within chordate phyla, including non-vertebrate chordates. However, multiple invertebrate lineages appear to have lost RAR genes. Although components of RA signaling have been described in some invertebrate species, it remains debated whether they possess a functional RA signaling pathway (Stevison et al, 2017). AOP developers are encouraged to add additional relevant knowledge to expand on the applicability to also include other vertebrates.
 """ ;
-	dcterms:isPartOf	aop:400 .
+	dcterms:isPartOf	aop:400, aop:520, aop:523, aop:532 .
 
 aop.events:2029
 	a	aopo:KeyEvent ;
@@ -131051,107 +129890,89 @@ Taxonomic: Primarily studied in laboratory rodents and humans. &nbsp;Plausible f
 	pato:0001241	chebio:16469 ;
 	dcterms:isPartOf	aop:623, aop:637, aop:639, aop:640, aop:658 .
 
-aop.events:2410
+aop.events:2470
 	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:2410 ;
-	rdfs:label	"KE 2410" ;
-	foaf:page	<https://identifiers.org/aop.events/2410> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/2410> ;
-	dc:title	"Increase, 11β-Hydroxysteroid dehydrogenase type 1 activity " ;
-	dcterms:alternative	"Increase, 11β-HSD1 activity" ;
+	dc:identifier	aop.events:2470 ;
+	rdfs:label	"KE 2470" ;
+	foaf:page	<https://identifiers.org/aop.events/2470> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2470> ;
+	dc:title	"Decrease, Adiponectin receptor 2 signaling" ;
+	dcterms:alternative	"Decrease, AdipoR2 signaling" ;
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Molecular""" ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
+	dcterms:isPartOf	aop:624 .
 
-aop.events:2412
+aop.events:2475
 	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:2412 ;
-	rdfs:label	"KE 2412" ;
-	foaf:page	<https://identifiers.org/aop.events/2412> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/2412> ;
-	dc:title	"Increase, Hepatic intracellular active glucocorticoids" ;
-	dcterms:alternative	"Increase, Hepatic intracellular active GC" ;
-	dc:source	"AOPWiki" ;
-	nci:C25664	"""Cellular""" ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
-
-aop.events:2408
-	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:2408 ;
-	rdfs:label	"KE 2408" ;
-	foaf:page	<https://identifiers.org/aop.events/2408> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/2408> ;
-	dc:title	"Increase, Adipose lipolysis" ;
-	dcterms:alternative	"Increase, Adipose lipolysis" ;
+	dc:identifier	aop.events:2475 ;
+	rdfs:label	"KE 2475" ;
+	foaf:page	<https://identifiers.org/aop.events/2475> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2475> ;
+	dc:title	"Decrease, Circulating fibroblast growth factor 21 level" ;
+	dcterms:alternative	"Decrease, Circulating FGF21 level" ;
 	dc:source	"AOPWiki" ;
 	nci:C25664	"""Tissue""" ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626 .
+	dcterms:isPartOf	aop:626 .
 
-aop.events:2405
+aop.events:2473
 	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:2405 ;
-	rdfs:label	"KE 2405" ;
-	foaf:page	<https://identifiers.org/aop.events/2405> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/2405> ;
-	dc:title	"Increase, Hepatocellular lipotoxicity" ;
-	dcterms:alternative	"Increase, Hepatocellular lipotoxicity" ;
+	dc:identifier	aop.events:2473 ;
+	rdfs:label	"KE 2473" ;
+	foaf:page	<https://identifiers.org/aop.events/2473> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2473> ;
+	dc:title	"Increase, Methionine adenosyltransferase 2A protein abundance" ;
+	dcterms:alternative	"Increase, MAT2A protein abundance" ;
 	dc:source	"AOPWiki" ;
-	nci:C25664	"""Cellular""" ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
+	nci:C25664	"""Molecular""" ;
+	dcterms:isPartOf	aop:627 .
 
-aop.events:134
+aop.events:2469
 	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:134 ;
-	rdfs:label	"KE 134" ;
-	foaf:page	<https://identifiers.org/aop.events/134> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/134> ;
-	dc:title	"Increase, Kupffer cell activation" ;
-	dcterms:alternative	"Increase, Kupffer cell activation" ;
+	dc:identifier	aop.events:2469 ;
+	rdfs:label	"KE 2469" ;
+	foaf:page	<https://identifiers.org/aop.events/2469> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2469> ;
+	dc:title	"Decrease, 11β-Hydroxysteroid dehydrogenase type 1 reductase activity" ;
+	dcterms:alternative	"Decrease, 11β-HSD1 reductase activity" ;
 	dc:source	"AOPWiki" ;
-	dc:description	"""Kupffer cells (KCs) are a specialized population of macrophages that reside in the liver; they were first described by Carl Wilhelm von Kupffer (1829&ndash;1902). [1] KCs constitute 80%-90% of the tissue macrophages in the reticuloendothelial system and account for approximately 15% of the total liver cell population [2] They play an important role in normal physiology and homeostasis as well as participating in the acute and chronic responses of the liver to toxic compounds. Activation of KCs results in the release of an array of inflammatory mediators, growth factors, and reactive oxygen species. This activation appears to modulate acute hepatocyte injury as well as chronic liver responses including hepatic cancer. Understanding the role KCs play in these diverse responses is key to understanding mechanisms of liver injury.[3] Besides the release of inflammatory mediators including cytokines, chemokines, lysosomal and proteolytic enzymes KCs are a main source of TGF-&beta;1 (transforming growth factor-beta 1, the most potent profibrogenic cytokine). In addition latent TGF-&beta;1 can be activated by KC-secreted matrix metalloproteinase 9 (MMP-9). [4] [5] through the release of biologically active substances that promote the pathogenic process. Activated KCs also release ROS like superoxide generated by NOX (NADPH oxidase), thus contributing to oxidative stress. Oxidative stress also activates a variety of transcription factors like NF-&kappa;B, PPAR-&gamma; leading to an increased gene expression for the production of growth factors, inflammatory cytokines and chemokines. KCs express TNF-&alpha; (Tumor Necrosis Factor-alpha), IL-1 (Interleukin-1) and MCP-1 (monocyte-chemoattractant protein-1), all being mitogens and chemoattractants for hepatic stellate ceells (HSCs) and induce the expression of PDGF receptors on HSCs which enhances cell proliferation. Expressed TNF-&alpha;, TRAIL (TNF-related apoptosis-inducing ligand), and FasL (Fas Ligand) are not only pro-inflammatory active but also capable of inducing death receptor-mediated apoptosis in hepatocytes[6] [7][3] Under conditions of oxidative stress macrophages are further activated which leads to a more enhanced inflammatory response that again further activates KCs though cytokines (Interferon gamma (IFN&gamma;), granulocyte macrophage colony-stimulating factor (GM-CSF), TNF-&alpha;), bacterial lipopolysaccharides, extracellular matrix proteins, and other chemical mediators. [8] [9] Besides KCs, the resident hepatic macrophages, infiltrating bone marrow-derived macrophages, originating from circulating monocytes are recruited to the injured liver via chemokine signals. KCs appear essential for sensing tissue injury and initiating inflammatory responses, while infiltrating Ly-6C+ monocyte-derived macrophages are linked to chronic inflammation and fibrogenesis. The profibrotic functions of KCs (HSC activation via paracrine mechanisms) during chronic hepatic injury remain functionally relevant, even if the infiltration of additional inflammatory monocytes is blocked via pharmacological inhibition of the chemokine CCL2 [10] [11] KC activation and macrophage recruitment are two separate events and both are necessary for fibrogenesis, but as they occur in parallel, they can be summarised as one KE. Probably there is a threshold of KC activation and release above which liver damage is induced. Pre-treatment with gadolinium chloride (GdCl), which inhibits KC function, reduced both hepatocyte and sinusoidal epithelial cell injury, as well as decreased the numbers of macrophages appearing in hepatic lesions and inhibited TGF-&beta;1 mRNA expression in macrophages. Experimental inhibition of KC function or depletion of KCs appeared to protect against chemical-induced liver injury.[12]
-""" ;
-	mmo:0000000	"""Kupffer cell activation can be measured by means of expressed cytokines, e.g. tissue levels of TNF-a [13], IL-6 expression, measured by immunoassays or Elisa (offered by various companies), soluble CD163 [14] [15] or increase in expression of Kupffer cell marker genes such as Lyz, Gzmb, and Il1b, (Genome U34A Array, Affymetrix); [16] 
+	nci:C25664	"""Molecular""" ;
+	dcterms:isPartOf	aop:628 .
 
-&nbsp;
-""" ;
-	nci:C25664	"""Cellular""" ;
-	nci:C17469	"""Human: [17][18][19] Rat: [5] Mouse: [20]
-""" ;
-	ncbitaxon:131567	ncbitaxon:9606, "human and other cells in culture", ncbitaxon:10090, ncbitaxon:10116 ;
-	aopo:CellTypeContext	cl:0000091 ;
-	aopo:OrganContext	uberon:0002107 ;
-	aopo:hasBiologicalEvent	<134_bioevent_0> ;
-	go:0008150	go:0042116 ;
-	pato:0000001	"increased" ;
-	pato:0001241	cl:0000091 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
-
-aop.events:2406
+aop.events:2472
 	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:2406 ;
-	rdfs:label	"KE 2406" ;
-	foaf:page	<https://identifiers.org/aop.events/2406> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/2406> ;
-	dc:title	"Increase, Regenerative nodule formation" ;
-	dcterms:alternative	"Increase, Regenerative nodule formation" ;
+	dc:identifier	aop.events:2472 ;
+	rdfs:label	"KE 2472" ;
+	foaf:page	<https://identifiers.org/aop.events/2472> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2472> ;
+	dc:title	"Decrease, Glucocorticoid receptor transcriptional activity" ;
+	dcterms:alternative	"Decrease, GR transcriptional activity" ;
 	dc:source	"AOPWiki" ;
-	nci:C25664	"""Tissue""" ;
-	aopo:OrganContext	uberon:0002107 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
+	nci:C25664	"""Molecular""" ;
+	dcterms:isPartOf	aop:628 .
 
-aop.events:1306
+aop.events:2474
 	a	aopo:KeyEvent ;
-	dc:identifier	aop.events:1306 ;
-	rdfs:label	"KE 1306" ;
-	foaf:page	<https://identifiers.org/aop.events/1306> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.events/1306> ;
-	dc:title	"Increase, De novo lipogenesis" ;
-	dcterms:alternative	"Increase, De novo lipogenesis" ;
+	dc:identifier	aop.events:2474 ;
+	rdfs:label	"KE 2474" ;
+	foaf:page	<https://identifiers.org/aop.events/2474> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2474> ;
+	dc:title	"Decrease, Period circadian regulator 1 expression" ;
+	dcterms:alternative	"Decrease, PER1 expression" ;
 	dc:source	"AOPWiki" ;
-	nci:C25664	"""Cellular""" ;
-	aopo:CellTypeContext	cl:0000182 ;
-	aopo:OrganContext	uberon:0002107 ;
-	dcterms:isPartOf	aop:627, aop:628, aop:629 .
+	nci:C25664	"""Molecular""" ;
+	dcterms:isPartOf	aop:628 .
+
+aop.events:2471
+	a	aopo:KeyEvent ;
+	dc:identifier	aop.events:2471 ;
+	rdfs:label	"KE 2471" ;
+	foaf:page	<https://identifiers.org/aop.events/2471> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.events/2471> ;
+	dc:title	"Agonism, Leptin receptor" ;
+	dcterms:alternative	"Agonism, Leptin receptor" ;
+	dc:source	"AOPWiki" ;
+	nci:C25664	"""Molecular""" ;
+	dcterms:isPartOf	aop:629 .
 
 aop.events:2409
 	a	aopo:KeyEvent ;
@@ -136946,11 +135767,6 @@ aop.events:2467
 <2402_bioevent_0> a aopo:BiologicalEvent ;
 	aopo:hasProcess	go:0090030 ;
 	aopo:hasObject	chebio:16469 ;
-	aopo:hasAction	"increased" .
-
-<134_bioevent_0> a aopo:BiologicalEvent ;
-	aopo:hasProcess	go:0042116 ;
-	aopo:hasObject	cl:0000091 ;
 	aopo:hasAction	"increased" .
 
 <2414_bioevent_0> a aopo:BiologicalEvent ;
@@ -152676,7 +151492,7 @@ Mercuric chloride
 	pato:0000047	"Male", "Female" ;
 	aopo:LifeStageContext	"All life stages" ;
 	ncbitaxon:131567	ncbitaxon:10116, ncbitaxon:10090, ncbitaxon:7955, ncbitaxon:36500 ;
-	dcterms:isPartOf	aop:17, aop:479, aop:625, aop:628 .
+	dcterms:isPartOf	aop:17, aop:479 .
 
 aop.relationships:436
 	a	aopo:KeyEventRelationship ;
@@ -160882,7 +159698,7 @@ The experiments describing semi-quantitative effects for this KER is described i
 """ ;
 	pato:0000047	"Unspecific" ;
 	aopo:LifeStageContext	"All life stages" ;
-	dcterms:isPartOf	aop:48, aop:144, aop:530, aop:624 .
+	dcterms:isPartOf	aop:48, aop:144, aop:530 .
 
 aop.relationships:634
 	a	aopo:KeyEventRelationship ;
@@ -243095,24 +241911,6 @@ aop.relationships:3412
 	aopo:has_downstream_key_event	aop.events:1929 ;
 	dcterms:isPartOf	aop:519 .
 
-aop.relationships:3109
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3109 ;
-	rdfs:label	"KER 3109" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3109> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3109> ;
-	dcterms:created	"2024-01-14T10:23:52"^^xsd:dateTime ;
-	dcterms:modified	"2024-04-18T09:31:24"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:2201 ;
-	aopo:has_downstream_key_event	aop.events:2202 ;
-	dc:description	"""Retinoic acid receptors (RARs) can function as ligand-dependent transcriptional regulators of target genes involved in cellular differentiation, proliferation and apoptosis (Gudas and Wagner 2011; Noy 2010), and therefore play crucial roles in a multitude of biological processes, such as embryonic and fetal development, including cardiovascular, respiratory and CNS development, reproduction and immunity (reviewed in Mark et al., 2009; McCaffery and Dr&auml;ger 2000; Clagett-Dame and Knutson 2011; Damdimopoulou 2019; Erkelens and Mebius 2017).&nbsp;
-
-The repertoire of target genes that can be regulated by RARs is cell-specific and additionally depends on the presence of receptor ligands (Delacroix et al., 2010; Mahony et al., 2011). Several genes regulated by RARs, including those within the retinoid pathway such as Rarb, Crbp1/2 (Rbp1/2), Crabp1/2, and Cyp26a1, have been identified (reviewed in Balmer and Blomhoff, 2002). Additionally, members of the Hox gene family, such as Hoxa1, Hoxb1, Hoxb4, and Hoxd4, contain RAREs, with demonstrated in vivo functionality (reviewed in Glover et al., 2006).&nbsp;
-
-Retinoic acid (RA) regulation of the cell cycle and related genes has been studied in various cancer cells, where RA is able to induce cell cycle arrest and apoptosis (Lotan et al., 1978; Thiele et al., 1985; Mangiarotti et al., 1998; Hsu et al., 2000; Dimberg et al., 2002; Chen and Ross, 2004; Donato et al., 2007; Lin et al., 2014; Zhang et al., 2014). Likewise, RA has been shown to promote cell cycle exit and differentiation of mouse pluripotent (Kim et al., 2009), as well as various multipotent cells such as mouse embryonic palatal mesenchymal (MEPM) cells (Yu et al., 2005), mouse and human hemogenic endothelial cells (Qiu et al., 2020), mouse and human neural progenitor cells (Wohl and Weiss, 1998; Koch et al., manuscript in preparation; Culbreth et al., 2012).
-""" ;
-	dcterms:isPartOf	aop:520, aop:523 .
-
 aop.relationships:3113
 	a	aopo:KeyEventRelationship ;
 	dc:identifier	aop.relationships:3113 ;
@@ -243181,6 +241979,24 @@ aop.relationships:3111
 	aopo:has_downstream_key_event	aop.events:2204 ;
 	dcterms:isPartOf	aop:520 .
 
+aop.relationships:3109
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3109 ;
+	rdfs:label	"KER 3109" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3109> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3109> ;
+	dcterms:created	"2024-01-14T10:23:52"^^xsd:dateTime ;
+	dcterms:modified	"2024-04-18T09:31:24"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:2201 ;
+	aopo:has_downstream_key_event	aop.events:2202 ;
+	dc:description	"""Retinoic acid receptors (RARs) can function as ligand-dependent transcriptional regulators of target genes involved in cellular differentiation, proliferation and apoptosis (Gudas and Wagner 2011; Noy 2010), and therefore play crucial roles in a multitude of biological processes, such as embryonic and fetal development, including cardiovascular, respiratory and CNS development, reproduction and immunity (reviewed in Mark et al., 2009; McCaffery and Dr&auml;ger 2000; Clagett-Dame and Knutson 2011; Damdimopoulou 2019; Erkelens and Mebius 2017).&nbsp;
+
+The repertoire of target genes that can be regulated by RARs is cell-specific and additionally depends on the presence of receptor ligands (Delacroix et al., 2010; Mahony et al., 2011). Several genes regulated by RARs, including those within the retinoid pathway such as Rarb, Crbp1/2 (Rbp1/2), Crabp1/2, and Cyp26a1, have been identified (reviewed in Balmer and Blomhoff, 2002). Additionally, members of the Hox gene family, such as Hoxa1, Hoxb1, Hoxb4, and Hoxd4, contain RAREs, with demonstrated in vivo functionality (reviewed in Glover et al., 2006).&nbsp;
+
+Retinoic acid (RA) regulation of the cell cycle and related genes has been studied in various cancer cells, where RA is able to induce cell cycle arrest and apoptosis (Lotan et al., 1978; Thiele et al., 1985; Mangiarotti et al., 1998; Hsu et al., 2000; Dimberg et al., 2002; Chen and Ross, 2004; Donato et al., 2007; Lin et al., 2014; Zhang et al., 2014). Likewise, RA has been shown to promote cell cycle exit and differentiation of mouse pluripotent (Kim et al., 2009), as well as various multipotent cells such as mouse embryonic palatal mesenchymal (MEPM) cells (Yu et al., 2005), mouse and human hemogenic endothelial cells (Qiu et al., 2020), mouse and human neural progenitor cells (Wohl and Weiss, 1998; Koch et al., manuscript in preparation; Culbreth et al., 2012).
+""" ;
+	dcterms:isPartOf	aop:520, aop:523 .
+
 aop.relationships:3112
 	a	aopo:KeyEventRelationship ;
 	dc:identifier	aop.relationships:3112 ;
@@ -243192,6 +242008,30 @@ aop.relationships:3112
 	aopo:has_upstream_key_event	aop.events:2204 ;
 	aopo:has_downstream_key_event	aop.events:341 ;
 	dcterms:isPartOf	aop:520 .
+
+aop.relationships:3889
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3889 ;
+	rdfs:label	"KER 3889" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3889> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3889> ;
+	dcterms:created	"2026-11-23T07:32:45"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-23T07:32:45"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:2201 ;
+	aopo:has_downstream_key_event	aop.events:2420 ;
+	dcterms:isPartOf	aop:520, aop:523 .
+
+aop.relationships:3890
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3890 ;
+	rdfs:label	"KER 3890" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3890> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3890> ;
+	dcterms:created	"2026-11-23T07:34:01"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-23T07:34:01"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:2420 ;
+	aopo:has_downstream_key_event	aop.events:2202 ;
+	dcterms:isPartOf	aop:520, aop:523 .
 
 aop.relationships:3115
 	a	aopo:KeyEventRelationship ;
@@ -256423,7 +255263,7 @@ aop.relationships:3832
 	foaf:page	<https://identifiers.org/aop.relationships/3832> ;
 	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3832> ;
 	dcterms:created	"2026-07-28T09:06:47"^^xsd:dateTime ;
-	dcterms:modified	"2026-08-07T12:21:08"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-23T15:32:46"^^xsd:dateTime ;
 	aopo:has_upstream_key_event	aop.events:530 ;
 	aopo:has_downstream_key_event	aop.events:1986 ;
 	dc:description	"""Gonadotropin-releasing hormone (GnRH) is produced by the hypothalamus. &nbsp;Gonadotropin-releasing hormone is a peptide hormone composed of 10 amino acids (Hassanein et al. 2024). &nbsp;Increases in GnRH stimulate increased production of gonadotropins, with Luteinizing hormone (LH) and Follicle-stimulating hormone (FSH). GnRH activation of gonadotropin production is triggering via a G-protein, phospholipase C activation, and mitogen-activated protein kinase (MAPK) pathway activation (Hassanein et al. 2024). &nbsp;LH and FSH are important hormones in the hypothalamus- pituitary-gonadal (HPG) axis. &nbsp;Decreased GnRH release leads to decreased production of gonadotropins.
@@ -256567,7 +255407,7 @@ Gonadotropins are hormones in mammals that cue development of reproductive organ
 			yes
 			
 			
-			Female mice exposed to BPA had statistically significant decreased GnRH mRNA leading to statistically decreased FSH and LH hormone.&nbsp; 
+			Female mice exposed to PFHxS had statistically significant decreased GnRH mRNA leading to statistically decreased FSH and LH hormone.&nbsp; 
 			
 			
 			Yin et al. (2021)
@@ -259351,177 +258191,29 @@ Taxonomic: Vaginal cornification is primarily studied in laboratory rodents. &nb
 	ncbitaxon:131567	ncbitaxon:9347 ;
 	dcterms:isPartOf	aop:623 .
 
-aop.relationships:3741
+aop.relationships:3891
 	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3741 ;
-	rdfs:label	"KER 3741" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3741> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3741> ;
-	dcterms:created	"2026-02-24T08:32:30"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-24T08:32:30"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:2410 ;
-	aopo:has_downstream_key_event	aop.events:2412 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
+	dc:identifier	aop.relationships:3891 ;
+	rdfs:label	"KER 3891" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3891> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3891> ;
+	dcterms:created	"2026-11-25T12:42:07"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T12:42:07"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:2470 ;
+	aopo:has_downstream_key_event	aop.events:1392 ;
+	dcterms:isPartOf	aop:624 .
 
-aop.relationships:3742
+aop.relationships:3892
 	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3742 ;
-	rdfs:label	"KER 3742" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3742> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3742> ;
-	dcterms:created	"2026-02-24T08:32:45"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-24T08:32:45"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:2412 ;
-	aopo:has_downstream_key_event	aop.events:122 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
-
-aop.relationships:3738
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3738 ;
-	rdfs:label	"KER 3738" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3738> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3738> ;
-	dcterms:created	"2026-02-12T07:38:36"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-12T07:38:36"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:122 ;
-	aopo:has_downstream_key_event	aop.events:2119 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626 .
-
-aop.relationships:3721
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3721 ;
-	rdfs:label	"KER 3721" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3721> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3721> ;
-	dcterms:created	"2026-02-10T08:59:00"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-10T08:59:00"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:2119 ;
-	aopo:has_downstream_key_event	aop.events:2408 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626 .
-
-aop.relationships:3743
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3743 ;
-	rdfs:label	"KER 3743" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3743> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3743> ;
-	dcterms:created	"2026-02-24T08:33:09"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-24T08:33:09"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:2408 ;
-	aopo:has_downstream_key_event	aop.events:465 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626 .
-
-aop.relationships:3744
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3744 ;
-	rdfs:label	"KER 3744" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3744> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3744> ;
-	dcterms:created	"2026-02-24T08:33:20"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-24T08:33:20"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:465 ;
-	aopo:has_downstream_key_event	aop.events:459 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626 .
-
-aop.relationships:3724
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3724 ;
-	rdfs:label	"KER 3724" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3724> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3724> ;
-	dcterms:created	"2026-02-10T08:59:43"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-10T08:59:43"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:459 ;
-	aopo:has_downstream_key_event	aop.events:2405 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
-
-aop.relationships:67
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:67 ;
-	rdfs:label	"KER 67" ;
-	foaf:page	<https://identifiers.org/aop.relationships/67> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/67> ;
-	dcterms:created	"2016-11-29T18:41:33"^^xsd:dateTime ;
-	dcterms:modified	"2016-11-29T19:54:53"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:55 ;
-	aopo:has_downstream_key_event	aop.events:134 ;
-	dc:description	"""Damaged hepatocytes release reactive oxygen species (ROS), cytokines such as TGF-β1 and TNF-α, and chemokines which lead to oxidative stress, inflammatory signalling and finally activation of Kupffer cells (KCs). ROS generation in hepatocytes results from oxidative metabolism by NADH oxidase (NOX) and cytochrome 2E1 activation as well as through lipid peroxidation. 
-Damaged liver cells trigger a sterile inflammatory response with activation of innate immune cells through release of damage-associated molecular patterns (DAMPs), which activate KCs through toll-like receptors and recruit activated neutrophils and monocytes into the liver.  Central to this inflammatory response is the promotion of ROS formation by these phagocytes.
-Upon initiation of apoptosis hepatocytes undergo genomic DNA fragmentation and formation of apoptotic bodies; these apoptotic bodies are consecutively engulfed by KCs and cause their activation.  
-This increased phagocytic activity strongly up-regulates NOX expression in KCs, a superoxide producing enzyme of phagocytes with profibrogenic activity, as well as nitric oxide synthase (iNOS) mRNA transcriptional levels with consequent harmful reaction between ROS and nitricoxide (NO), like the generation of cytotoxic peroxinitrite (N2O3).
-ROS and/or diffusible aldehydes also derive from liver sinusoidal endothelial cells (LSECs) which are additional initial triggers of KC activation.
-[1]   
-[2]   
-[3]   
-[4]   
-[5]    
-[6]   
-[7]   
-[8]   
-[9]     
-[10]    
-[11]
-""" ;
-	nci:C80263	"""
-
-There is a functional relationship between cell injury/death and KC activation, consistent with
-established biological knowledge.
-[1]   
-[2]   
-[3]   
-[4]   
-[5]    
-[6]   
-[7]   
-[8]   
-[9]     
-[10]    
-[11]
-""" ;
-	edam:data_2042	"""
-
-There is convincing theoretical evidence that hepatocyte injury and apoptosis causes KC activation, as well as inflammation and oxidative stress.
-But there are only limited experimental studies which could show that there is a direct relationship between these two events with temporal concordance. 
-Specific markers for activated KCs have not been identified yet. KC activation cannot be detected morphologically by staining techniques since cell morphology does not change, but cytokines release can be measured (with the caveat that KCs activate spontaneously in vitro) and used as marker for KC activation.[12][13] Tukov et al. examined the effects of KCs cultured in contact with rat hepatocytes. They found that by adding KCs to the cultures they could mimic in vivo drug-induced inflammatory responses. Experiments on cells of the macrophage lineage showed significant aldehyde-induced stimulation of the activity of protein kinase C, an enzyme involved in several signal transduction pathways. Further, 4-Hydroxynonenal (HNE) was demonstrated to up-regulate TGF-β1 expression and synthesis in isolated rat KCs.[14]    
-Canbay et al could prove that engulfment of hepatocyte apoptotic bodies stimulated KC generation of cytokines.  
-[15]
-""" ;
-	nci:C71478	"""The detailed mechanisms of the KC - hepatocyte interaction and its consequences for both normal and toxicant-driven liver responses remain to be determined. 
-KC activation followed by cytokine release is associated in some cases with evident liver damage, whereas in others this event is unrelated to liver damage or may be even protective; apparently this impact is dependent on the quantity of KC activation; excessive or prolonged release of KC mediators can switch an initially protective mechanism to a damaging inflammatory response. Evidence suggests that low levels of cytokine release from KCs constitute a survival signal that protects hepatocytes from cell death and in some cases, stimulates proliferation. [3]
-""" ;
-	nci:C17469	"""Human: [1][3][7]  
-Rat: [14][3]
-""" ;
-	edam:operation_3799	"""
-
-no quantitative data
-""" ;
-	ncbitaxon:131567	ncbitaxon:9606, ncbitaxon:10116 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
-
-aop.relationships:3726
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3726 ;
-	rdfs:label	"KER 3726" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3726> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3726> ;
-	dcterms:created	"2026-02-10T09:00:33"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-10T09:00:33"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:134 ;
-	aopo:has_downstream_key_event	aop.events:1489 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
-
-aop.relationships:3727
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3727 ;
-	rdfs:label	"KER 3727" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3727> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3727> ;
-	dcterms:created	"2026-02-10T09:00:43"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-10T09:00:43"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:1489 ;
+	dc:identifier	aop.relationships:3892 ;
+	rdfs:label	"KER 3892" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3892> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3892> ;
+	dcterms:created	"2026-11-25T12:42:18"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T12:42:18"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:1392 ;
 	aopo:has_downstream_key_event	aop.events:1271 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
+	dcterms:isPartOf	aop:624, aop:626 .
 
 aop.relationships:3728
 	a	aopo:KeyEventRelationship ;
@@ -259533,103 +258225,115 @@ aop.relationships:3728
 	dcterms:modified	"2026-02-10T09:01:01"^^xsd:dateTime ;
 	aopo:has_upstream_key_event	aop.events:1271 ;
 	aopo:has_downstream_key_event	aop.events:265 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
+	dcterms:isPartOf	aop:624, aop:626 .
 
-aop.relationships:3729
+aop.relationships:3893
 	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3729 ;
-	rdfs:label	"KER 3729" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3729> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3729> ;
-	dcterms:created	"2026-02-10T09:02:04"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-10T09:02:04"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:344 ;
-	aopo:has_downstream_key_event	aop.events:2406 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
+	dc:identifier	aop.relationships:3893 ;
+	rdfs:label	"KER 3893" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3893> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3893> ;
+	dcterms:created	"2026-11-25T12:51:51"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T12:51:51"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:112 ;
+	aopo:has_downstream_key_event	aop.events:265 ;
+	dcterms:isPartOf	aop:625 .
 
-aop.relationships:3730
+aop.relationships:3894
 	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3730 ;
-	rdfs:label	"KER 3730" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3730> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3730> ;
-	dcterms:created	"2026-02-10T09:02:13"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-10T09:02:13"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:2406 ;
-	aopo:has_downstream_key_event	aop.events:2407 ;
-	dcterms:isPartOf	aop:624, aop:625, aop:626, aop:627, aop:628, aop:629 .
+	dc:identifier	aop.relationships:3894 ;
+	rdfs:label	"KER 3894" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3894> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3894> ;
+	dcterms:created	"2026-11-25T13:02:19"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T13:02:19"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:231 ;
+	aopo:has_downstream_key_event	aop.events:2475 ;
+	dcterms:isPartOf	aop:626 .
 
-aop.relationships:3745
+aop.relationships:3895
 	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3745 ;
-	rdfs:label	"KER 3745" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3745> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3745> ;
-	dcterms:created	"2026-02-24T08:47:41"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-24T08:47:41"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:2405 ;
+	dc:identifier	aop.relationships:3895 ;
+	rdfs:label	"KER 3895" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3895> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3895> ;
+	dcterms:created	"2026-11-25T13:23:11"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T13:23:11"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:2475 ;
 	aopo:has_downstream_key_event	aop.events:1392 ;
-	dcterms:isPartOf	aop:625, aop:628 .
+	dcterms:isPartOf	aop:626 .
 
-aop.relationships:3736
+aop.relationships:3896
 	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3736 ;
-	rdfs:label	"KER 3736" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3736> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3736> ;
-	dcterms:created	"2026-02-11T06:16:28"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-11T06:16:28"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:2405 ;
-	aopo:has_downstream_key_event	aop.events:1815 ;
-	dcterms:isPartOf	aop:626, aop:629 .
-
-aop.relationships:3737
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3737 ;
-	rdfs:label	"KER 3737" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3737> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3737> ;
-	dcterms:created	"2026-02-11T06:16:35"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-11T06:16:35"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:1815 ;
-	aopo:has_downstream_key_event	aop.events:55 ;
-	dcterms:isPartOf	aop:626, aop:629 .
-
-aop.relationships:3740
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3740 ;
-	rdfs:label	"KER 3740" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3740> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3740> ;
-	dcterms:created	"2026-02-12T07:41:40"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-12T07:41:40"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:122 ;
-	aopo:has_downstream_key_event	aop.events:1306 ;
-	dcterms:isPartOf	aop:627, aop:628, aop:629 .
-
-aop.relationships:3735
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3735 ;
-	rdfs:label	"KER 3735" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3735> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3735> ;
-	dcterms:created	"2026-02-11T05:41:20"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-11T05:41:20"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:1306 ;
-	aopo:has_downstream_key_event	aop.events:459 ;
-	dcterms:isPartOf	aop:627, aop:628, aop:629 .
-
-aop.relationships:3725
-	a	aopo:KeyEventRelationship ;
-	dc:identifier	aop.relationships:3725 ;
-	rdfs:label	"KER 3725" ;
-	foaf:page	<https://identifiers.org/aop.relationships/3725> ;
-	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3725> ;
-	dcterms:created	"2026-02-10T08:59:52"^^xsd:dateTime ;
-	dcterms:modified	"2026-02-10T08:59:52"^^xsd:dateTime ;
-	aopo:has_upstream_key_event	aop.events:2405 ;
-	aopo:has_downstream_key_event	aop.events:177 ;
+	dc:identifier	aop.relationships:3896 ;
+	rdfs:label	"KER 3896" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3896> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3896> ;
+	dcterms:created	"2026-11-25T13:40:50"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T13:40:50"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:233 ;
+	aopo:has_downstream_key_event	aop.events:2473 ;
 	dcterms:isPartOf	aop:627 .
+
+aop.relationships:3897
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3897 ;
+	rdfs:label	"KER 3897" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3897> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3897> ;
+	dcterms:created	"2026-11-25T13:40:58"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T13:40:58"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:2473 ;
+	aopo:has_downstream_key_event	aop.events:265 ;
+	dcterms:isPartOf	aop:627 .
+
+aop.relationships:3898
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3898 ;
+	rdfs:label	"KER 3898" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3898> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3898> ;
+	dcterms:created	"2026-11-25T13:50:17"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T13:50:17"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:2469 ;
+	aopo:has_downstream_key_event	aop.events:2472 ;
+	dcterms:isPartOf	aop:628 .
+
+aop.relationships:3899
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3899 ;
+	rdfs:label	"KER 3899" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3899> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3899> ;
+	dcterms:created	"2026-11-25T13:50:23"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T13:50:23"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:2472 ;
+	aopo:has_downstream_key_event	aop.events:2474 ;
+	dcterms:isPartOf	aop:628 .
+
+aop.relationships:3900
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3900 ;
+	rdfs:label	"KER 3900" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3900> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3900> ;
+	dcterms:created	"2026-11-25T13:50:30"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T13:50:30"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:2474 ;
+	aopo:has_downstream_key_event	aop.events:265 ;
+	dcterms:isPartOf	aop:628 .
+
+aop.relationships:3901
+	a	aopo:KeyEventRelationship ;
+	dc:identifier	aop.relationships:3901 ;
+	rdfs:label	"KER 3901" ;
+	foaf:page	<https://identifiers.org/aop.relationships/3901> ;
+	rdfs:seeAlso	<https://identifiers.org/aop.relationships/3901> ;
+	dcterms:created	"2026-11-25T13:54:35"^^xsd:dateTime ;
+	dcterms:modified	"2026-11-25T13:54:35"^^xsd:dateTime ;
+	aopo:has_upstream_key_event	aop.events:2471 ;
+	aopo:has_downstream_key_event	aop.events:265 ;
+	dcterms:isPartOf	aop:629 .
 
 aop.relationships:3857
 	a	aopo:KeyEventRelationship ;
@@ -278752,12 +277456,6 @@ uberon:0001332	a	pato:0001241 ;
 	dc:title	"prepuce of penis" ;
 	dc:source	"UBERON" ;
 	rdfs:label	"prepuce of penis". 
-
-cl:0000091	a	pato:0001241 ;
-	dc:identifier	cl:0000091 ;
-	dc:title	"Kupffer cell" ;
-	dc:source	"CL" ;
-	rdfs:label	"Kupffer cell". 
 
 uberon:6003623	a	pato:0001241 ;
 	dc:identifier	uberon:6003623 ;

@@ -327,9 +327,6 @@ aop.events:2154	edam:data_1025	hgnc:10839,hgnc:6081 ;
 aop.events:1075	edam:data_1025	hgnc:1103,hgnc:9081 ;
 	:geneDetectedByNER	hgnc:1103,hgnc:9081 .
 
-aop.events:2407	edam:data_1025	hgnc:2197 ;
-	:geneDetectedByNER	hgnc:2197 .
-
 aop.events:887	edam:data_1025	hgnc:2579,hgnc:7701,hgnc:7716 ;
 	:geneDetectedByNER	hgnc:2579,hgnc:7701,hgnc:7716 .
 
@@ -1773,10 +1770,6 @@ aop.events:2399	edam:data_1025	hgnc:3666,hgnc:3665,hgnc:3689 ;
 aop.events:2402	edam:data_1025	hgnc:11359,hgnc:2590,hgnc:2593,hgnc:2594,hgnc:11285,hgnc:1103,hgnc:19719,hgnc:5210,hgnc:5217,hgnc:5218,hgnc:9081 ;
 	:geneDetectedByRegex	hgnc:11359,hgnc:2590,hgnc:2593,hgnc:2594,hgnc:11285 ;
 	:geneDetectedByNER	hgnc:1103,hgnc:11285,hgnc:11359,hgnc:19719,hgnc:2590,hgnc:2593,hgnc:2594,hgnc:5210,hgnc:5217,hgnc:5218,hgnc:9081 .
-
-aop.events:134	edam:data_1025	hgnc:10618,hgnc:11925,hgnc:11936,hgnc:2434,hgnc:11766,hgnc:11892,hgnc:11904,hgnc:1437,hgnc:5438,hgnc:5991,hgnc:7176,hgnc:7794,hgnc:7889,hgnc:8804,hgnc:9236,hgnc:9652 ;
-	:geneDetectedByRegex	hgnc:10618,hgnc:11925,hgnc:11936,hgnc:2434 ;
-	:geneDetectedByNER	hgnc:10618,hgnc:11766,hgnc:11892,hgnc:11904,hgnc:11925,hgnc:11936,hgnc:1437,hgnc:2434,hgnc:5438,hgnc:5991,hgnc:7176,hgnc:7794,hgnc:7889,hgnc:8804,hgnc:9236,hgnc:9652 .
 
 aop.events:2451	edam:data_1025	hgnc:11571 ;
 	:geneDetectedByRegex	hgnc:11571 ;
@@ -4046,12 +4039,12 @@ aop.relationships:3104	edam:data_1025	hgnc:11920,hgnc:10571,hgnc:12744,hgnc:2651
 	:geneDetectedByRegex	hgnc:11920,hgnc:10571,hgnc:12744,hgnc:2651,hgnc:11289,hgnc:3594 ;
 	:geneDetectedByNER	hgnc:10571,hgnc:11289,hgnc:11920,hgnc:12744,hgnc:12827,hgnc:13164,hgnc:2651,hgnc:3594,hgnc:4536,hgnc:6081,hgnc:7966 .
 
-aop.relationships:3109	edam:data_1025	hgnc:16960,hgnc:18284,hgnc:2339,hgnc:2603,hgnc:5099,hgnc:5111,hgnc:5115,hgnc:5138,hgnc:9865,hgnc:9870,hgnc:9886,hgnc:9920 ;
-	:geneDetectedByNER	hgnc:16960,hgnc:18284,hgnc:2339,hgnc:2603,hgnc:5099,hgnc:5111,hgnc:5115,hgnc:5138,hgnc:9865,hgnc:9870,hgnc:9886,hgnc:9920 .
-
 aop.relationships:3113	edam:data_1025	hgnc:7897,hgnc:11195,hgnc:7107,hgnc:7756,hgnc:9864,hgnc:9865 ;
 	:geneDetectedByRegex	hgnc:7897 ;
 	:geneDetectedByNER	hgnc:11195,hgnc:7107,hgnc:7756,hgnc:7897,hgnc:9864,hgnc:9865 .
+
+aop.relationships:3109	edam:data_1025	hgnc:16960,hgnc:18284,hgnc:2339,hgnc:2603,hgnc:5099,hgnc:5111,hgnc:5115,hgnc:5138,hgnc:9865,hgnc:9870,hgnc:9886,hgnc:9920 ;
+	:geneDetectedByNER	hgnc:16960,hgnc:18284,hgnc:2339,hgnc:2603,hgnc:5099,hgnc:5111,hgnc:5115,hgnc:5138,hgnc:9865,hgnc:9870,hgnc:9886,hgnc:9920 .
 
 aop.relationships:3115	edam:data_1025	hgnc:1516,hgnc:6678,hgnc:10809,hgnc:11179,hgnc:11180,hgnc:11632,hgnc:14296,hgnc:26359,hgnc:4341,hgnc:4553,hgnc:4623,hgnc:4626,hgnc:53445,hgnc:7782 ;
 	:geneDetectedByRegex	hgnc:1516,hgnc:6678 ;
@@ -4339,10 +4332,6 @@ aop.relationships:3717	edam:data_1025	hgnc:11359,hgnc:2590,hgnc:2593,hgnc:2594,h
 
 aop.relationships:3718	edam:data_1025	hgnc:1103,hgnc:11323,hgnc:3467,hgnc:9081 ;
 	:geneDetectedByNER	hgnc:1103,hgnc:11323,hgnc:3467,hgnc:9081 .
-
-aop.relationships:67	edam:data_1025	hgnc:7873,hgnc:3309,hgnc:11766,hgnc:11847,hgnc:11892,hgnc:13273,hgnc:1437,hgnc:2631,hgnc:30500,hgnc:7872,hgnc:7889 ;
-	:geneDetectedByRegex	hgnc:7873,hgnc:3309 ;
-	:geneDetectedByNER	hgnc:11766,hgnc:11847,hgnc:11892,hgnc:13273,hgnc:1437,hgnc:2631,hgnc:30500,hgnc:7872,hgnc:7873,hgnc:7889 .
 
 aop.relationships:3746	edam:data_1025	hgnc:6553,hgnc:1103,hgnc:9081 ;
 	:geneDetectedByRegex	hgnc:6553 ;
@@ -20879,14 +20868,6 @@ hgnc:1540	a	edam:data_2298, edam:data_1025 ;
 	skos:exactMatch	ncbigene:866,ensembl:ENSG00000170099,uniprot:G3V350,uniprot:G3V4V7,uniprot:P08185 ;
 	owl:sameAs	ncbigene:866,ensembl:ENSG00000170099,uniprot:G3V350,uniprot:G3V4V7,uniprot:P08185.
 
-hgnc:1437	a	edam:data_2298, edam:data_1025 ;
-	rdfs:label	"CALCA" ;
-	edam:data_2298	"1437" ;
-	dc:identifier	"hgnc:1437" ;
-	dc:source	"HGNC" ;
-	skos:exactMatch	ncbigene:796,ensembl:ENSG00000110680,uniprot:P01258,uniprot:P06881 ;
-	owl:sameAs	ncbigene:796,ensembl:ENSG00000110680,uniprot:P01258,uniprot:P06881.
-
 hgnc:21689	a	edam:data_2298, edam:data_1025 ;
 	rdfs:label	"FIS1" ;
 	edam:data_2298	"21689" ;
@@ -20974,6 +20955,14 @@ hgnc:13568	a	edam:data_2298, edam:data_1025 ;
 	dc:source	"HGNC" ;
 	skos:exactMatch	ncbigene:54858,ensembl:ENSG00000130517,uniprot:U3KQG9,uniprot:Q9NXJ5,uniprot:S4R2Y9,uniprot:M0QX66,uniprot:U3KQ24,uniprot:M0R0B6,uniprot:M0R3H3 ;
 	owl:sameAs	ncbigene:54858,ensembl:ENSG00000130517,uniprot:U3KQG9,uniprot:Q9NXJ5,uniprot:S4R2Y9,uniprot:M0QX66,uniprot:U3KQ24,uniprot:M0R0B6,uniprot:M0R3H3.
+
+hgnc:1437	a	edam:data_2298, edam:data_1025 ;
+	rdfs:label	"CALCA" ;
+	edam:data_2298	"1437" ;
+	dc:identifier	"hgnc:1437" ;
+	dc:source	"HGNC" ;
+	skos:exactMatch	ncbigene:796,ensembl:ENSG00000110680,uniprot:P01258,uniprot:P06881 ;
+	owl:sameAs	ncbigene:796,ensembl:ENSG00000110680,uniprot:P01258,uniprot:P06881.
 
 hgnc:1440	a	edam:data_2298, edam:data_1025 ;
 	rdfs:label	"CALCR" ;
@@ -38901,12 +38890,6 @@ ncbigene:866	a	edam:data_1027, edam:data_1025 ;
 	dc:source	"Entrez Gene" ;
 	rdfs:label	"SERPINA6".
 
-ncbigene:796	a	edam:data_1027, edam:data_1025 ;
-	edam:data_1027	"796";
-	dc:identifier	"ncbigene:796";
-	dc:source	"Entrez Gene" ;
-	rdfs:label	"CALCA".
-
 ncbigene:51024	a	edam:data_1027, edam:data_1025 ;
 	edam:data_1027	"51024";
 	dc:identifier	"ncbigene:51024";
@@ -38972,6 +38955,12 @@ ncbigene:54858	a	edam:data_1027, edam:data_1025 ;
 	dc:identifier	"ncbigene:54858";
 	dc:source	"Entrez Gene" ;
 	rdfs:label	"PGPEP1".
+
+ncbigene:796	a	edam:data_1027, edam:data_1025 ;
+	edam:data_1027	"796";
+	dc:identifier	"ncbigene:796";
+	dc:source	"Entrez Gene" ;
+	rdfs:label	"CALCA".
 
 ncbigene:799	a	edam:data_1027, edam:data_1025 ;
 	edam:data_1027	"799";
@@ -55467,12 +55456,6 @@ ensembl:ENSG00000170099	a	edam:data_1033, edam:data_1025 ;
 	dc:source	"Ensembl" ;
 	rdfs:label	"SERPINA6".
 
-ensembl:ENSG00000110680	a	edam:data_1033, edam:data_1025 ;
-	edam:data_1033	"ENSG00000110680";
-	dc:identifier	"ensembl:ENSG00000110680";
-	dc:source	"Ensembl" ;
-	rdfs:label	"CALCA".
-
 ensembl:ENSG00000214253	a	edam:data_1033, edam:data_1025 ;
 	edam:data_1033	"ENSG00000214253";
 	dc:identifier	"ensembl:ENSG00000214253";
@@ -55538,6 +55521,12 @@ ensembl:ENSG00000130517	a	edam:data_1033, edam:data_1025 ;
 	dc:identifier	"ensembl:ENSG00000130517";
 	dc:source	"Ensembl" ;
 	rdfs:label	"PGPEP1".
+
+ensembl:ENSG00000110680	a	edam:data_1033, edam:data_1025 ;
+	edam:data_1033	"ENSG00000110680";
+	dc:identifier	"ensembl:ENSG00000110680";
+	dc:source	"Ensembl" ;
+	rdfs:label	"CALCA".
 
 ensembl:ENSG00000004948	a	edam:data_1033, edam:data_1025 ;
 	edam:data_1033	"ENSG00000004948";
@@ -123045,18 +123034,6 @@ uniprot:P08185	a	edam:data_2291, edam:data_1025 ;
 	dc:source	"UniProt" ;
 	rdfs:label	"SERPINA6".
 
-uniprot:P01258	a	edam:data_2291, edam:data_1025 ;
-	edam:data_2291	"P01258";
-	dc:identifier	"uniprot:P01258";
-	dc:source	"UniProt" ;
-	rdfs:label	"CALCA".
-
-uniprot:P06881	a	edam:data_2291, edam:data_1025 ;
-	edam:data_2291	"P06881";
-	dc:identifier	"uniprot:P06881";
-	dc:source	"UniProt" ;
-	rdfs:label	"CALCA".
-
 uniprot:F5H8A8	a	edam:data_2291, edam:data_1025 ;
 	edam:data_2291	"F5H8A8";
 	dc:identifier	"uniprot:F5H8A8";
@@ -123518,6 +123495,18 @@ uniprot:M0R3H3	a	edam:data_2291, edam:data_1025 ;
 	dc:identifier	"uniprot:M0R3H3";
 	dc:source	"UniProt" ;
 	rdfs:label	"PGPEP1".
+
+uniprot:P01258	a	edam:data_2291, edam:data_1025 ;
+	edam:data_2291	"P01258";
+	dc:identifier	"uniprot:P01258";
+	dc:source	"UniProt" ;
+	rdfs:label	"CALCA".
+
+uniprot:P06881	a	edam:data_2291, edam:data_1025 ;
+	edam:data_2291	"P06881";
+	dc:identifier	"uniprot:P06881";
+	dc:source	"UniProt" ;
+	rdfs:label	"CALCA".
 
 uniprot:P30988	a	edam:data_2291, edam:data_1025 ;
 	edam:data_2291	"P30988";

@@ -8,188 +8,188 @@
       "other": 0
     },
     "key_event": {
-      "ncbi": 815,
-      "normalised": 529,
+      "ncbi": 810,
+      "normalised": 528,
       "ncbi_resolvable": 0,
-      "wiki_user": 232,
+      "wiki_user": 230,
       "other": 0
     },
     "ker": {
-      "ncbi": 807,
-      "normalised": 600,
+      "ncbi": 806,
+      "normalised": 599,
       "ncbi_resolvable": 0,
       "wiki_user": 227,
       "other": 0
     }
   },
   "total": {
-    "ncbi": 2062,
-    "normalised": 1403,
+    "ncbi": 2056,
+    "normalised": 1401,
     "ncbi_resolvable": 0,
-    "wiki_user": 588,
+    "wiki_user": 586,
     "other": 0
   },
   "wiki_user_terms": [
     {
-      "taxonomy_id": "28f106eb-e715-4b99-9235-3cc97201bf0d",
+      "taxonomy_id": "8cc5295e-f0a0-4b65-9e52-b83e32f937ac",
       "source_id": "WikiUser_17",
       "name": "mammals",
-      "uses": 183
+      "uses": 182
     },
     {
-      "taxonomy_id": "90db22bf-6882-422b-b3c0-651e0e7bdf3b",
+      "taxonomy_id": "d781c1ca-fe1d-4fe9-ac98-cc3e3b65681a",
       "source_id": "WikiUser_28",
       "name": "Vertebrates",
       "uses": 99
     },
     {
-      "taxonomy_id": "3269c5df-06c0-41a1-8539-de2eecf9ff04",
+      "taxonomy_id": "6789631a-f45a-4278-9285-d98159a4400e",
       "source_id": "WikiUser_6",
       "name": "fish",
       "uses": 85
     },
     {
-      "taxonomy_id": "5addda49-9180-4dc9-9d04-1373f034d451",
-      "source_id": "WikiUser_25",
-      "name": "human and other cells in culture",
-      "uses": 35
-    },
-    {
-      "taxonomy_id": "f38046b3-8eb0-47f3-a36d-d65a6391b6a8",
+      "taxonomy_id": "69e211ab-8c60-4988-859f-6d4aca49fee7",
       "source_id": "WikiUser_15",
       "name": "Sprague-Dawley",
       "uses": 35
     },
     {
-      "taxonomy_id": "56d97868-4fc2-4fb3-991a-6d031ea13856",
+      "taxonomy_id": "ec61de4f-d33a-43c5-8519-89a99c3c8902",
+      "source_id": "WikiUser_25",
+      "name": "human and other cells in culture",
+      "uses": 34
+    },
+    {
+      "taxonomy_id": "412efb4d-6fe9-4188-a39e-d107d61fe564",
       "source_id": "WikiUser_26",
       "name": "rodents",
       "uses": 33
     },
     {
-      "taxonomy_id": "752e1537-07b5-4124-a345-f0fe85df1f52",
+      "taxonomy_id": "a3f72140-d9f0-47c1-8f5f-7616db4f96e7",
       "source_id": "WikiUser_4",
       "name": "Human, rat, mouse",
       "uses": 16
     },
     {
-      "taxonomy_id": "1b9ac3fc-0d85-478c-ac5f-c431581f9f47",
-      "source_id": "WikiUser_29",
-      "name": "Invertebrates",
-      "uses": 14
-    },
-    {
-      "taxonomy_id": "ee058fd5-4b95-4892-9960-462e373e43f7",
+      "taxonomy_id": "52c6e60c-9f76-4e42-95dc-5231af8459f9",
       "source_id": "WikiUser_1",
       "name": "human, mouse, rat",
       "uses": 14
     },
     {
-      "taxonomy_id": "db3edcfb-dae8-4adf-bd52-9d1907a56cac",
+      "taxonomy_id": "cbdb849f-ac29-4484-8ce0-aee543b0a478",
+      "source_id": "WikiUser_29",
+      "name": "Invertebrates",
+      "uses": 14
+    },
+    {
+      "taxonomy_id": "3687f4f8-cacb-49a8-b00d-58e4106aa077",
       "source_id": "WikiUser_2",
       "name": "Honey bee",
       "uses": 13
     },
     {
-      "taxonomy_id": "19fff3ce-54d6-426d-bdc3-27731b8ccf3f",
+      "taxonomy_id": "2a74ff38-4208-4feb-8000-a0e8be1ff059",
       "source_id": "WikiUser_14",
       "name": "Monkey",
       "uses": 11
     },
     {
-      "taxonomy_id": "27e37dd2-09b3-4ae4-986d-ef10a64600ec",
+      "taxonomy_id": "ed1f5ba3-7808-40ec-b70b-e94c04f713a3",
       "source_id": "WikiUser_24",
       "name": "Pig",
       "uses": 11
     },
     {
-      "taxonomy_id": "040e29ba-0bab-4bd0-b700-71d2f4d603ea",
+      "taxonomy_id": "b8e550f2-32d0-4ef7-9d1d-ce52252d16d4",
       "source_id": "WikiUser_19",
       "name": "rodentia",
       "uses": 8
     },
     {
-      "taxonomy_id": "88694bad-e44a-4171-b72f-e15a83699575",
-      "source_id": "WikiUser_9",
-      "name": "Hamster",
-      "uses": 6
-    },
-    {
-      "taxonomy_id": "997f4f8b-abf0-467f-9373-3ef29c039490",
-      "source_id": "WikiUser_22",
-      "name": "all species",
-      "uses": 6
-    },
-    {
-      "taxonomy_id": "c4eb271d-63f9-493e-accd-35b10b5f5d06",
+      "taxonomy_id": "007f7548-416e-4f1e-81b2-9a5660e83f6a",
       "source_id": "WikiUser_5",
       "name": "insects",
       "uses": 6
     },
     {
-      "taxonomy_id": "1871735a-8265-4776-91a6-17872f3d8b46",
+      "taxonomy_id": "0382e7d2-5a7e-41b0-a709-4a966b0f67f0",
+      "source_id": "WikiUser_22",
+      "name": "all species",
+      "uses": 6
+    },
+    {
+      "taxonomy_id": "9a178530-5dff-4d82-b6fb-4fbbd779b043",
+      "source_id": "WikiUser_9",
+      "name": "Hamster",
+      "uses": 6
+    },
+    {
+      "taxonomy_id": "870cd8a7-cf04-494c-be2e-896c94574142",
       "source_id": "WikiUser_8",
       "name": "Melibe leonine",
       "uses": 2
     },
     {
-      "taxonomy_id": "d5352ed9-ed1c-488d-acdf-47989ba58f9e",
+      "taxonomy_id": "ccdf5f6a-647a-461f-9425-4fa7a1a4715e",
       "source_id": "WikiUser_20",
       "name": "Double-crested cormorant",
       "uses": 2
     },
     {
-      "taxonomy_id": "08cd4df8-653e-4a6f-b12e-6a4c1115de92",
-      "source_id": "WikiUser_21",
-      "name": "Eastern bluebird",
+      "taxonomy_id": "1d346423-e679-4857-bf27-59623653bedc",
+      "source_id": "WikiUser_7",
+      "name": "tritonea diomedea",
       "uses": 1
     },
     {
-      "taxonomy_id": "2a96da89-7439-4ad2-ae58-1c4d221d5bfb",
-      "source_id": "WikiUser_3",
-      "name": "hydra",
-      "uses": 1
-    },
-    {
-      "taxonomy_id": "83bffc33-9c9e-4d50-b125-df458c8f01f0",
-      "source_id": "WikiUser_16",
-      "name": "Common Starling",
-      "uses": 1
-    },
-    {
-      "taxonomy_id": "9b787fcd-0bc1-4045-ae3a-6cd100e46d5d",
-      "source_id": "WikiUser_23",
-      "name": "chickens, ducks, turkeys",
-      "uses": 1
-    },
-    {
-      "taxonomy_id": "b23674a0-d20e-472e-8527-de5d9bd1d8e2",
-      "source_id": "WikiUser_13",
-      "name": "orius isidiosus",
-      "uses": 1
-    },
-    {
-      "taxonomy_id": "dd8f22f0-220a-4ff2-8d42-f445f3583a05",
+      "taxonomy_id": "2f8de62a-8e4d-4928-aa22-0433579ceb0a",
       "source_id": "WikiUser_11",
       "name": "hymenoptera",
       "uses": 1
     },
     {
-      "taxonomy_id": "f0d072a0-2302-4e80-b843-46af22292224",
+      "taxonomy_id": "91052ae4-e49b-43a6-86da-2c38b049c8ed",
+      "source_id": "WikiUser_13",
+      "name": "orius isidiosus",
+      "uses": 1
+    },
+    {
+      "taxonomy_id": "9d7dc453-73cd-4984-8f76-aecac16d7129",
+      "source_id": "WikiUser_21",
+      "name": "Eastern bluebird",
+      "uses": 1
+    },
+    {
+      "taxonomy_id": "a76a99b2-14de-48e9-9553-eac41eb131be",
+      "source_id": "WikiUser_3",
+      "name": "hydra",
+      "uses": 1
+    },
+    {
+      "taxonomy_id": "ce68cf4d-983e-4ec6-b809-356ad1e95deb",
       "source_id": "WikiUser_10",
       "name": "chaetanaphothrips orchidii",
       "uses": 1
     },
     {
-      "taxonomy_id": "f16a3ea3-840d-450a-9392-f59d837aa5ac",
+      "taxonomy_id": "e51082e4-8225-4c6a-82a8-93c23cdd77d7",
+      "source_id": "WikiUser_23",
+      "name": "chickens, ducks, turkeys",
+      "uses": 1
+    },
+    {
+      "taxonomy_id": "ebcbbb59-5fed-4e4b-8a31-45a1271f8e95",
       "source_id": "WikiUser_12",
       "name": "lepidoptera",
       "uses": 1
     },
     {
-      "taxonomy_id": "f3120e24-6129-4c50-b57f-03618ef420a9",
-      "source_id": "WikiUser_7",
-      "name": "tritonea diomedea",
+      "taxonomy_id": "ff568fb3-bbaf-4ee0-840b-9c3578743f35",
+      "source_id": "WikiUser_16",
+      "name": "Common Starling",
       "uses": 1
     }
   ]
